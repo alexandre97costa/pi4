@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+require('dotenv').config();
 const path = require('path') // para enviar ficheiros
 const jwt_middleware = require('../jwt/jwt_middleware') // para login
 const app = express()
