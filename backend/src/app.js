@@ -4,7 +4,7 @@ require('dotenv').config();
 const path = require('path') // para enviar ficheiros
 const jwt_middleware = require('../jwt/jwt_middleware') // para login
 const app = express()
-app.set('port', process.env.PORT || 4011)
+app.set('port', process.env.PORT || 4001)
 
 const exemploRoute = require('./routes/exemplo.js')
 
