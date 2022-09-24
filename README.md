@@ -3,16 +3,26 @@ Um repositório que contém o código-fonte do backend e backoffice de Projecto 
 
 # 📁 Pastas
 
-#### backend/
+teste a mermaid
+
+```mermaid
+    graph TD;
+        A-->B;
+        A-->C;
+        B-->D;
+        C-->D;
+```
+
+### backend/
 É um servidor Node Express, com ligação Sequelize a uma base de dados Postgres. O Back Office, website, e aplicação móvel vêm buscar aqui conteúdo.
 
-#### backoffice/
+### backoffice/
 É uma aplicação em React criada para a gestão administrativa da aplicação móvel.
 
-#### sql_scripts/
+### sql_scripts/
 É uma pasta que guarda vários scripts úteis ao desenvolvimento do projeto. Útil quando alteramos o model/tabelas.js e precisamos que o sequelize crie de raiz uma base de dados vazia.
 
-#### website/
+### website/
 É uma aplicação em React como o back office, mas serve apenas para publicitar a aplicação móvel. Menos complexa do que o back office. Poderá ser um site estático, ou em formato de blog (com capacidade de adicionar/gerir os artigos a partir do back office)
 
 
