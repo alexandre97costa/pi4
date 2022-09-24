@@ -7,10 +7,10 @@ O projeto está organizado da seguinte maneira:
 
 ```mermaid
     graph TD;
-        DB-->Back End;
-        Back End-->Back Office;
-        Back End-->Website;
-        Back End-->App;
+        db-->backend;
+        backend-->backoffice;
+        backend-->website;
+        backend-->app;
 ```
 Neste mono-repo não está incluida a app (visto que não sabemos se é possível partilhar o código fonte de um apk) nem o servidor de DB. Contudo, há uma pasta para scripts de SQL que são usados no servidor de DB.
 
