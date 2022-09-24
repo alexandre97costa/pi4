@@ -7,12 +7,12 @@ O projeto está organizado da seguinte maneira:
 
 ```mermaid
     graph TD;
-        db-->backend;
+        bd-->backend;
         backend-->backoffice;
         backend-->website;
         backend-->app;
 ```
-Neste mono-repo não está incluida a app (visto que não sabemos se é possível partilhar o código fonte de um apk) nem o servidor de DB. Contudo, há uma pasta para scripts de SQL que são usados no servidor de DB.
+Neste mono-repo não está incluida a app (visto que não sabemos se é possível partilhar o código fonte de um apk) nem o servidor de BD. Contudo, há uma pasta para scripts de SQL que são usados no servidor de BD.
 
 ### backend/
 É um servidor Node Express, com ligação Sequelize a uma base de dados Postgres. O Back Office, website, e aplicação móvel vêm buscar aqui conteúdo.
