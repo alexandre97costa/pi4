@@ -3,15 +3,16 @@ Um repositório que contém o código-fonte de Projecto Integrado IV
 
 # 📁 Pastas
 
-teste a mermaid
+O projeto está organizado da seguinte maneira:
 
 ```mermaid
     graph TD;
-        A-->B;
-        A-->C;
-        B-->D;
-        C-->D;
+        DB-->Back End;
+        Back End-->Back Office;
+        Back End-->Website;
+        Back End-->App;
 ```
+Neste mono-repo não está incluida a app (visto que não sabemos se é possível partilhar o código fonte de um apk) nem o servidor de DB. Contudo, há uma pasta para scripts de SQL que são usados no servidor de DB.
 
 ### backend/
 É um servidor Node Express, com ligação Sequelize a uma base de dados Postgres. O Back Office, website, e aplicação móvel vêm buscar aqui conteúdo.
