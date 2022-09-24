@@ -1,11 +1,17 @@
 import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom'
 
+//Exportação de todas as páginas feitas
+import Pages from './Pages';
+
 export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>Teste</p>
-      </header>
-    </div>
+		<Router>
+			<Routes>
+				<Route
+					exact path='/'
+					element={<Pages.Exemplo/>}
+				/>
+			</Routes>
+		</Router>
   );
 }
