@@ -1,7 +1,8 @@
-
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom'
-import Exemplo from './view/exemplo';
+
+//Exportação de todas as páginas feitas
+import Pages from "./Pages/index"
 
 export default function App() {
 	return (
@@ -9,7 +10,7 @@ export default function App() {
 			<Routes>
 				<Route
 					exact path='/'
-					element={<Exemplo/>}
+					element={<Pages.Exemplo/>}
 				/>
 			</Routes>
 		</Router>

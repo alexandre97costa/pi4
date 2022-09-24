@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export default function Exemplo(props) {
+export function Exemplo(props) {
     return (
         <div>
             Yo yo um exemplo!
