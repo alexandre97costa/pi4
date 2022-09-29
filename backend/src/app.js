@@ -25,5 +25,5 @@ app.use('/', (req, res) => {
 })
 
 app.listen(app.get('port'), () => {
-    console.log('Backend online!')
+    console.log('Backend online! (port:' + app.get('port') + ')')
 })

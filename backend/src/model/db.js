@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 // todo: Github Action para alojar no heroku
 
 const sequelize = new Sequelize(
-    'pi3-sequelize',    // nome da db
+    'adm-test-database',    // nome da db
     'postgres',         // user
     'postgres',         // pass
     {
@@ -16,8 +16,8 @@ const sequelize = new Sequelize(
             hooks: {
                 afterCreate: model => {
                     const ignoreModels = [
-                        'resposta',
-                        'visita'
+                        // mete aqui as tabelas que NÃO queres ter a aparecer na consola quando são criadas.
+                        'uma-cena-qualquer'
                     ]
                     if (!ignoreModels.includes(model.constructor.name)) {
                         console.log('\x1b[37m\x1b[46m ' + model.constructor.name + '(#' + model.id + ') criado \x1b[0m ')
