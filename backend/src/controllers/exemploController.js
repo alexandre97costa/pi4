@@ -1,5 +1,5 @@
-var { Exemplo } = require('../model/tabelas/exemplo')
-var sequelize = require('../model/db')
+var { Exemplo } = require('../model/exemplo')
+var sequelize = require('../config/Database')
 const { Op } = require("sequelize")
 // * Como usar o Op:
 // * https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators

@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize')
-const sequelize = require('../db')
+const sequelize = require('../config/Database')
 const bcrypt = require('bcrypt')
 
 //! Não eliminar pelize, dá sempre ter jeito ter uma tabela bem definida para os copy paste :p
