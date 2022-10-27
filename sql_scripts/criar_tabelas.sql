@@ -2,7 +2,7 @@ CREATE TABLE reserva (
 	reserva_id		SERIAL,
 	num_pessoas		INTEGER NOT NULL,
 	validado		BOOLEAN NOT NULL,
-	nome_reserva	VARCHAR(512),
+	nome_reserva	VARCHAR(255),
 	confirmado		BOOLEAN NOT NULL,
 	observacoes		VARCHAR(255),
 	data_hora_id	INTEGER NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE evento (
 	num_vagas			INTEGER NOT NULL DEFAULT 1,
 	data_inicio			DATE NOT NULL,
 	data_fim			DATE NOT NULL,
-	observacoes			VARCHAR(512),
+	observacoes			VARCHAR(255),
 	tipo_evento_id		INTEGER NOT NULL,
 	ponto_interesse_id 	INTEGER NOT NULL,
 	PRIMARY KEY(evento_id)
@@ -43,7 +43,7 @@ CREATE TABLE utilizador (
 
 CREATE TABLE tipo_utilizador (
 	tipo_utilizador_id	 	SERIAL,
-	nome_tipo_utilizador 	VARCHAR(512) NOT NULL,
+	nome_tipo_utilizador 	VARCHAR(255) NOT NULL,
 	observacoes		 		VARCHAR(255),
 	PRIMARY KEY(tipo_utilizador_id)
 );
@@ -94,8 +94,8 @@ CREATE TABLE tipo_interesse (
 CREATE TABLE recompensa (
 	recompensa_id		SERIAL,
 	active				BOOLEAN NOT NULL,
-	titulo				VARCHAR(512) NOT NULL,
-	descricao			VARCHAR(512) NOT NULL,
+	titulo				VARCHAR(255) NOT NULL,
+	descricao			VARCHAR(255) NOT NULL,
 	observacoes			VARCHAR(255),
 	tipo_interesse_id 	INTEGER NOT NULL,
 	PRIMARY KEY(recompensa_id)
