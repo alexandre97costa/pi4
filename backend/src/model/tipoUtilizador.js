@@ -1,10 +1,9 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-const bcrypt = require('bcrypt')
 
 const TipoUtilizador = sequelize.define('tipo_utilizador',
     {
-        nome_tipo_utilizador: {
+        nome: {
             type: DataTypes.STRING,
             allowNull: false
         },

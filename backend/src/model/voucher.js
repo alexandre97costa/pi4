@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-const bcrypt = require('bcrypt')
 
 const Voucher = sequelize.define('voucher',
     {
@@ -8,16 +7,16 @@ const Voucher = sequelize.define('voucher',
             type: DataTypes.DATEONLY,
             allowNull: false
         },
-        validade: {
-            type: DataTypes.INTEGER,
+        data_validade: {
+            type: DataTypes.DATEONLY,
             allowNull: false
         },
         data_usado: DataTypes.DATE,
         usado: {
             type: DataTypes.BOOLEAN,
+            defaultValue: true,
             allowNull: false
-        },
-        observacoes: DataTypes.STRING
+        }
     },
     {
         underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)

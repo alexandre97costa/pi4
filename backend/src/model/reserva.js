@@ -1,9 +1,12 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-const bcrypt = require('bcrypt')
 
 const Reserva = sequelize.define('reserva',
     {
+        nome: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         num_pessoas: {
             type: DataTypes.INTEGER,
             allowNull: false
@@ -12,12 +15,11 @@ const Reserva = sequelize.define('reserva',
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        nome_reserva: DataTypes.STRING,
         confirmado: {
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        observacoes: DataTypes.STRING  
+        observacoes: DataTypes.STRING
     },
     {
         underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)

@@ -1,6 +1,5 @@
-const { DataTypes, DATE } = require('sequelize')
+const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-const bcrypt = require('bcrypt')
 
 const Utilizador = sequelize.define('utilizador',
     {
@@ -9,15 +8,17 @@ const Utilizador = sequelize.define('utilizador',
             allowNull: false
         },
         email: {
-            type: DataTypes.STRING(100),
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        password: {
+            type: DataTypes.STRING,
             allowNull: false
         },
         data_nascimento: {
             type: DataTypes.DATEONLY,
             allowNull: false
-        },
-        genero: DataTypes.STRING(15),
-        observacoes: DataTypes.STRING
+        }
     },
     {
         underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)

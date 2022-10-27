@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-const bcrypt = require('bcrypt')
 
 const Evento = sequelize.define('evento',
     {
@@ -12,20 +11,12 @@ const Evento = sequelize.define('evento',
             type: DataTypes.STRING,
             allowNull: false
         },
+        descricao: DataTypes.STRING,
         num_vagas: {
             type: DataTypes.INTEGER,
-            defaultValue: 1,
+            defaultValue: 0,
             allowNull: false
-        },
-        data_inicio: {
-            type: DataTypes.DATE,
-            allowNull: false
-        },
-        data_fim: {
-            type: DataTypes.DATE,
-            allowNull: false
-        },
-        observacoes: DataTypes.STRING  
+        }
     },
     {
         underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)

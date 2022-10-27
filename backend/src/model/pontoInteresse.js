@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-const bcrypt = require('bcrypt')
 
 const PontoInteresse = sequelize.define('ponto_interesse',
     {
@@ -14,7 +13,10 @@ const PontoInteresse = sequelize.define('ponto_interesse',
         },
         codigo_postal: {
             type: DataTypes.STRING(8),
-            allowNull: false
+            allowNull: false,
+            validate: {
+                is: /^[0-9]{4}-[0-9]{3}$/i // regex codigo postal (4 numeros + hiphen + 3 numeros)
+            }
         },
         num_telefone: {
             type: DataTypes.STRING(50),
@@ -27,8 +29,7 @@ const PontoInteresse = sequelize.define('ponto_interesse',
         descricao: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        observacoes: DataTypes.STRING
+        }
     },
     {
         underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)

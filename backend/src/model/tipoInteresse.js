@@ -1,10 +1,9 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-const bcrypt = require('bcrypt')
 
 const TipoInteresse = sequelize.define('tipo_interesse',
     {
-        nome_tipo_ponto_interesse: {
+        nome: {
             type: DataTypes.STRING,
             allowNull: false
         },

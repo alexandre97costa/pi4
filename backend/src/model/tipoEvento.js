@@ -1,10 +1,13 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-const bcrypt = require('bcrypt')
 
 const TipoEvento = sequelize.define('tipo_evento',
     {
-        nome_tipo_evento: DataTypes.STRING  
+        nome: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        observacoes: DataTypes.STRING
     },
     {
         underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
