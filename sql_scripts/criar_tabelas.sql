@@ -103,7 +103,7 @@ CREATE TABLE recompensa (
 
 CREATE TABLE freguesia (
 	freguesia_id	SERIAL,
-	nome_freguesia	VARCHAR(255),
+	nome_freguesia	VARCHAR(255),NOT NULL,
 	municipio_id 	INTEGER NOT NULL,
 	PRIMARY KEY(freguesia_id)
 );
