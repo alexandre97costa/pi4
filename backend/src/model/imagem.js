@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
 const bcrypt = require('bcrypt')
 
-const Imagem = sequelize.define('Imagem',
+const Imagem = sequelize.define('imagem',
     {
         img:{
             type:DataTypes.BLOB,

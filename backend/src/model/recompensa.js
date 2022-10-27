@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
 const bcrypt = require('bcrypt')
 
-const Recompensa = sequelize.define('Recompensa',
+const Recompensa = sequelize.define('recompensa',
     {
         active: {
             type: DataTypes.BOOLEAN,

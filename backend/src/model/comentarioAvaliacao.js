@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
 const bcrypt = require('bcrypt')
 
-const Comentario_avaliacao = sequelize.define('Comentario_avaliacao',
+const ComentarioAvaliacao = sequelize.define('comentario_avaliacao', 
     {
         comentario: DataTypes.STRING,
         avaliacao:{
@@ -18,4 +18,4 @@ const Comentario_avaliacao = sequelize.define('Comentario_avaliacao',
     }
 )
 
-module.exports = Comentario_avaliacao
+module.exports = ComentarioAvaliacao
