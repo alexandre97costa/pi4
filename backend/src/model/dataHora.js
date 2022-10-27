@@ -2,14 +2,14 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
 const bcrypt = require('bcrypt')
 
-const Data_hora = sequelize.define('Data_hora',
+const DataHora = sequelize.define('data_hora',
     {
         data_hora: {
             type: DataTypes.DATE,
             allowNull: false
         },
         inicio_evento: DataTypes.BOOLEAN,
-        fim_evento: DataTypes.BOOLEAN,
+        fim_evento: DataTypes.BOOLEAN
     },
     {
         underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
@@ -19,4 +19,4 @@ const Data_hora = sequelize.define('Data_hora',
     }
 )
 
-module.exports = Data_hora
+module.exports = DataHora
