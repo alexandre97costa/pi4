@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 // todo: Github Action para alojar no heroku
 
 const sequelize = new Sequelize(
-    'adm-test-database',    // nome da db
+    'pi4',              // nome da db
     'postgres',         // user
     'postgres',         // pass
     {
