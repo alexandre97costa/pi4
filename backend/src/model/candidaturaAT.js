@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
 const bcrypt = require('bcrypt')
 
-const CandidaturaAT = sequelize.define('exemplo',
+const CandidaturaAT = sequelize.define('candidatura_at',
     {
         localidade_at: {
             type: DataTypes.STRING(50),
