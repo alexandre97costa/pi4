@@ -1,0 +1,27 @@
+# This is a workflow to copy the backend folder to another repo
+
+name: Copy the backend folder
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Push the backend folder to pi4-backend
+        id: push_backend
+        uses: cpina/github-action-push-to-another-repository@v1.4.2
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GITHUB_API_TOKEN }}
+        with:
+          source-directory: 'backend'
+          destination-github-username: 'alexandre97costa'
+          destination-repository-name: 'pi4-backend'
+          user-email: alexandre97costa@gmail.com
+          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
