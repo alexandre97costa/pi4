@@ -5,12 +5,12 @@ const { Sequelize } = require('sequelize');
 const sequelize = new Sequelize(
     'adm-test-database',    // nome da db
     'postgres',         // user
-    'postgres',         // pass
+    'R7220810',         // pass
     {
         host: 'localhost',
         port: '5432',
         dialect: 'postgres',
-        logging: false,
+        logging: true,
         define: {
             // hooks globais, atingem todos os modelos
             hooks: {
