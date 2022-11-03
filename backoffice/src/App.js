@@ -7,11 +7,10 @@ import Utilities from './Utilities/index';
 
 
 let agente_turistico = [
-	{ icon: "asterisk", text: "1º item", },
-	{ icon: "asterisk", text: "2º item", },
-	{ icon: "asterisk", text: "3º item", },
-	{ icon: "asterisk", text: "4º item", },
-	{ icon: "asterisk", text: "5º item", },
+	{ icon: "speedometer2", text: "Dashboard", },
+	{ icon: "geo-alt", text: "Pontos de Interesse", },
+	{ icon: "calendar4-event", text: "Eventos", },
+	{ icon: "gift", text: "Recompensas", }
 ]
 
 export default function App() {
@@ -25,6 +24,7 @@ export default function App() {
 							userType={"Agente Turístico"}
 							userName={"Joaquim"}
 							menu={agente_turistico}
+							selected={1}
 						>
 							<div className='row row-cols-2'>
 								<div className='col'>
