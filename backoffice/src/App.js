@@ -5,9 +5,6 @@ import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'r
 import Pages from "./Pages/index"
 import Utilities from './Utilities/index';
 
-
-
-
 let agente_turistico = [
 	{ icon: "speedometer2", 	text: "Dashboard", 				path: "/"},
 	{ icon: "geo-alt", 			text: "Pontos de Interesse", 	path: "/teste"},
