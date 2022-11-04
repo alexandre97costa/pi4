@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 //Exportação de todas as páginas feitas
 import Pages from "./Pages/index"
-import Utilities from './Utilities/index';
 
 let agente_turistico = [
 	{ icon: "speedometer2", 	text: "Dashboard", 				path: "/"},
@@ -16,25 +15,9 @@ export default function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route
-					exact path='/'
-					element={
-						<Utilities.TemplatePagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={"Olá, Joaquim!"}
-						>
-							<div className='bg-danger vh-100'>
-								teste à sidebar com conteúdo muito comprido
-							</div>
-						</Utilities.TemplatePagina>
-					}
-				/>
 				<Route 
 					path="/teste"
-					element={ <div>teste</div> }
+					element={<Pages.Teste />}
 				/>
 			</Routes>
 		</Router>

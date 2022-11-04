@@ -1,4 +1,5 @@
-import { Exemplo } from "./Exemplo/index"
+import { Teste } from "./Teste/index"
 
 
-export default { Exemplo }
+
+export default { Teste }
