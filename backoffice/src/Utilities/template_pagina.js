@@ -1,61 +1,76 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { Sidebar } from './sidebar'
 
 export function TemplatePagina(props) {
     return (
         <div className='container-fluid position-relative'>
-            <div className='row vh-100'>
-                {/* SideBar */}
-                <div className='bg-dark text-secondary col-2 px-2'>
-                    <div className='d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start'>
-
-                        {/* Titulo */}
-                        <Link to='/' className='navbar-brand w-100 text-light d-flex justify-content-start align-items-center border-1 border-bottom border-secondary py-3 mb-3'>
-                            <i className='bi bi-signpost-2-fill fs-1 ms-1 me-3 text-success'></i>
-                            <div className=''>
-                                <div className='fs-5 text-success lh-sm'>Green Trip</div>
-                                <div className='fs-6 text-secondary lh-sm'>{props.userType}</div>
-                            </div>
-                        </Link>
-
-                        {/* Lista */}
-                        <ul id='menu' className='nav d-flex flex-row flex-sm-column h-100 w-100'>
-                            {props.menu.map((item, index) => {
-
-
-                                return (
-                                    (props.selected ?? 0) === index ?
-                                        <li className='my-1 py-1 d-flex align-items-center bg-success rounded-3'>
-                                            <i className={'bi bi-' + item.icon + ' fs-4 mx-2 text-white'}></i>
-                                            <span className=' d-none d-sm-inline fs-6 text-white fw-semibold'>
-                                                {item.text}
-                                            </span>
-                                        </li>
-                                        :
-                                        <li className='my-1 py-1 d-flex align-items-center'>
-                                            <i className={'bi bi-' + item.icon + ' fs-4 mx-2 text-success'}></i>
-                                            <span className=' d-none d-sm-inline fs-6'>
-                                                {item.text}
-                                            </span>
-                                        </li>
-                                )
-                            })}
-                        </ul>
-
-                    </div>
-                </div>
+            <div className='row'>
+                <Sidebar
+                    userType={props.userType}
+                    menu={props.menu}
+                    selected={props.selected}
+                />
 
                 {/* Content */}
-                <div className='col-10 bg-light'>
-                    <div className='container-fluid py-3'>
+                <div className='col-10 bg-light overflow-auto' style={{ maxHeight: '100vh' }}>
+                    <div className='container-fluid py-3 '>
+                        <div className='row mb-4'>
+                            <div className='display-6'>
+                                {props.title}
+                            </div>
+                        </div>
                         {props.children}
                     </div>
                 </div>
 
                 {/* User */}
-                <div className='col-2 position-absolute top-0 end-0 bg-white border mt-3 me-4 py-2 px-3 shadow-sm rounded-5'>
+                <div className='col-2 d-flex justify-content-between  position-absolute top-0 end-0  mt-3 me-4 py-2 px-3 '>
+                    <div class="dropdown w-100">
+                        <button class="btn btn-light bg-white border rounded-4 shadow dropdown-toggle d-flex justify-content-between align-items-center w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span>{props.userName}</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end rounded-4 shadow">
+                            <li>
+                                <Link class="dropdown-item rounded-3" path="">
+                                    <i className='bi bi-person me-2'></i>
+                                    <span>Ver perfil</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link class="dropdown-item rounded-3" path="">
+                                    <i className='bi bi-door-open me-2'></i>
+                                    <span>Logout</span>
+                                </Link>
+                            </li>
 
+                            <li><hr className='dropdown-divider' /></li>
+                            <li><h6 class="dropdown-header text-danger">Só pra desenvolvimento</h6></li>
+                            <li>
+                                <Link class="dropdown-item rounded-3" path="">
+                                    <i className='bi bi-lightning-charge-fill text-warning me-2'></i>
+                                    <span>Administrador</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link class="dropdown-item rounded-3" path="">
+                                    <i className='bi bi-lightning-charge-fill text-warning me-2'></i>
+                                    <span>Responsável de Região</span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link class="dropdown-item rounded-3" path="">
+                                    <i className='bi bi-lightning-charge-fill text-warning me-2'></i>
+                                    <span>Agente Turístico</span>
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* 
                     {props.userName}
+                    <i className='bi bi-chevron-down'></i>
+                     */}
                 </div>
             </div>
         </div>
