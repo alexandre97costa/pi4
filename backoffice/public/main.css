@@ -1,0 +1,7 @@
+.pi4-menu-item:hover {
+    background-color: var(--bs-gray-800);
+}
+.pi4-menu-item:hover span {
+    color: var(--bs-gray-400) !important;
+
+}
