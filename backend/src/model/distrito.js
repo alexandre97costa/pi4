@@ -3,7 +3,7 @@ const sequelize = require('../config/Database')
 
 const Distrito = sequelize.define('distrito',
     {
-        nome_distrito:{
+        nome:{
             type:DataTypes.STRING,
             allowNull: false
         },

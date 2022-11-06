@@ -3,7 +3,7 @@ const sequelize = require('../config/Database')
 
 const PontoInteresse = sequelize.define('ponto_interesse',
     {
-        nome_ponto_interesse: {
+        nome: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -18,7 +18,7 @@ const PontoInteresse = sequelize.define('ponto_interesse',
                 is: /^[0-9]{4}-[0-9]{3}$/i // regex codigo postal (4 numeros + hiphen + 3 numeros)
             }
         },
-        num_telefone: {
+        num_telemovel: {
             type: DataTypes.STRING(50),
             allowNull: false
         },
