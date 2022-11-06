@@ -37,7 +37,7 @@ CREATE TABLE evento (
 
 CREATE TABLE freguesia (
 	freguesia_id	SERIAL,
-	nome	VARCHAR(255),NOT NULL,
+	nome	VARCHAR(255) NOT NULL,
 	municipio_id 	INTEGER NOT NULL,
 	PRIMARY KEY(freguesia_id)
 );
