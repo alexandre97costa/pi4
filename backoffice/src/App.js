@@ -26,6 +26,11 @@ export default function App() {
 							selected={0}
 							title={"Olá, Joaquim!"}
 						>
+							<div className='row row-cols-3 mb-3 g-3'>
+								<Pages.Evento />
+								<Pages.Evento />
+								<Pages.Evento />
+							</div>
 							<div className='bg-danger vh-100'>
 								teste à sidebar com conteúdo muito comprido
 							</div>

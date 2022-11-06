@@ -3,8 +3,8 @@ const sequelize = require('../config/Database')
 
 const Imagem = sequelize.define('imagem',
     {
-        img:{
-            type:DataTypes.BLOB,
+        img: {
+            type: DataTypes.BLOB,
             allowNull: false
         },
     },
