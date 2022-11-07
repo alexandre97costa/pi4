@@ -1,6 +1,4 @@
 const { DataTypes } = require('sequelize')
-// const Utilizador = require('./utilizador')
-// const Sessao = require('./sessao')
 
 module.exports = (sequelize) => {
     sequelize.define('reserva',
@@ -31,6 +29,3 @@ module.exports = (sequelize) => {
         }
     )
 }
-
-// Reserva.belongsTo(Utilizador, { foreignKey: 'visitante_id' })
-// Reserva.belongsTo(Sessao, { foreignKey: 'sessao_id' })

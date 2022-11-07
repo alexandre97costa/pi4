@@ -1,6 +1,3 @@
-// const Evento = require('./evento')
-// const Utilizador = require('./utilizador')
-
 module.exports = (sequelize) => {
     sequelize.define('pontos_evento',
         {},
@@ -12,6 +9,3 @@ module.exports = (sequelize) => {
         }
     )
 }
-
-// PontosEvento.belongsTo(Evento, { foreignKey: 'evento_id' })
-// PontosEvento.belongsTo(Utilizador, { foreignKey: 'visitante_id' })

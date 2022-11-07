@@ -1,6 +1,4 @@
 const { DataTypes } = require('sequelize')
-// const Utilizador = require('./utilizador')
-// const Recompensa = require('./recompensa')
 
 module.exports = (sequelize) => {
     sequelize.define('voucher',
@@ -28,6 +26,3 @@ module.exports = (sequelize) => {
         }
     )
 }
-
-// Voucher.belongsTo(Utilizador, { foreignKey: 'visitante_id' })
-// Voucher.belongsTo(Recompensa, { foreignKey: 'recompensa_id' })

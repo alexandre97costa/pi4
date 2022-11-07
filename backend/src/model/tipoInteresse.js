@@ -1,6 +1,4 @@
 const { DataTypes } = require('sequelize')
-// const PontoInteresse = require('./pontoInteresse')
-// const Recompensa = require('./recompensa')
 
 module.exports = (sequelize) => {
     sequelize.define('tipo_interesse',
@@ -19,6 +17,3 @@ module.exports = (sequelize) => {
         }
     )
 }
-
-// TipoInteresse.hasMany(PontoInteresse, { foreignKey: 'tipo_interesse_id' })
-// TipoInteresse.hasMany(Recompensa, { foreignKey: 'tipo_interesse_id' })

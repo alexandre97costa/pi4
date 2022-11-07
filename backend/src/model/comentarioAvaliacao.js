@@ -1,8 +1,5 @@
 const { DataTypes } = require('sequelize')
 
-// const PontoInteresse = require('./pontoInteresse')
-// const Utilizador = require('./utilizador')
-
 module.exports = (sequelize) => {
     sequelize.define('comentario_avaliacao',
         {
@@ -20,6 +17,3 @@ module.exports = (sequelize) => {
         }
     )
 }
-
-// ComentarioAvaliacao.belongsTo(Utilizador, { foreignKey: 'visitante_id' })
-// ComentarioAvaliacao.belongsTo(PontoInteresse, { foreignKey: 'ponto_interesse_id' })

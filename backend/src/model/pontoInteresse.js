@@ -1,12 +1,4 @@
 const { DataTypes } = require('sequelize')
-// const Evento = require('./evento')
-// const Freguesia = require('./freguesia')
-// const Utilizador = require('./utilizador')
-// const Imagem = require('./imagem')
-// const ComentarioAvaliacao = require('./comentarioAvaliacao')
-// const PontosPontoInteresse = require('./pontosPontoInteresse')
-// const PontoInteresseRecompensa = require('./pontoInteresseRecompensa')
-// const TipoInteresse = require('./tipoInteresse')
 
 module.exports = (sequelize) => {
     sequelize.define('ponto_interesse',
@@ -47,12 +39,3 @@ module.exports = (sequelize) => {
         }
     )
 }
-
-// PontoInteresse.hasMany(Evento, { foreignKey: 'ponto_interesse_id' })
-// PontoInteresse.belongsTo(Freguesia, { foreignKey: 'freguesia_id' })
-// PontoInteresse.belongsTo(Utilizador, { foreignKey: 'agente_turistico_id' })
-// PontoInteresse.hasMany(Imagem, { foreignKey: 'ponto_interesse_id' })
-// PontoInteresse.hasMany(ComentarioAvaliacao, { foreignKey: 'ponto_interesse_id' })
-// PontoInteresse.hasMany(PontosPontoInteresse, { foreignKey: 'ponto_interesse_id' })
-// PontoInteresse.hasMany(PontoInteresseRecompensa, { foreignKey: 'ponto_interesse_id' })
-// PontoInteresse.belongsTo(TipoInteresse, { foreignKey: 'tipo_interesse_id' })

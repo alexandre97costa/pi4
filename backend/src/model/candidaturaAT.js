@@ -1,6 +1,4 @@
 const { DataTypes } = require('sequelize')
-// const Distrito = require('./distrito')
-// const Utilizador = require('./utilizador')
 
 module.exports = (sequelize) => {
     sequelize.define('candidatura_at',
@@ -27,6 +25,3 @@ module.exports = (sequelize) => {
         }
     )
 }
-
-// CandidaturaAT.belongsTo(Distrito, { foreignKey: 'distrito_id' })
-// CandidaturaAT.belongsTo(Utilizador, { foreignKey: 'visitante_id' })

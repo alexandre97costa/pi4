@@ -1,6 +1,4 @@
 const { DataTypes } = require('sequelize')
-// const Distrito = require('./distrito')
-// const Freguesia = require('./freguesia')
 
 module.exports = (sequelize) => {
     sequelize.define('municipio',
@@ -18,6 +16,3 @@ module.exports = (sequelize) => {
         }
     )
 }
-
-// Municipio.belongsTo(Distrito, { foreignKey: 'distrito_id' })
-// Municipio.hasMany(Freguesia, { foreignKey: 'municipio_id' })

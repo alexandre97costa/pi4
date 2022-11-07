@@ -27,6 +27,9 @@ app.use('/', (req, res) => {
 })
 
 
+// * daqui pra baixo são só cenas para iniciar a bd como deve ser
+// * e depois iniciar o app.listen()
+
 async function assertDatabaseConnectionOk() {
     console.log(`\x1b[30mChecking database connection...`);
     try {

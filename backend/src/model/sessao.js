@@ -1,6 +1,4 @@
 const { DataTypes } = require('sequelize')
-// const Reserva = require('./reserva')
-// const Evento = require('./evento')
 
 module.exports = (sequelize) => {
     sequelize.define('sessao',
@@ -20,6 +18,3 @@ module.exports = (sequelize) => {
         }
     )
 }
-
-// Sessao.hasMany(Reserva, { foreignKey: 'sessao_id' })
-// Sessao.belongsTo(Evento, { foreignKey: 'evento_id' })

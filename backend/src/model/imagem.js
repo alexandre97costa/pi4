@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize')
-// const PontoInteresse = require('./pontoInteresse')
 
 module.exports = (sequelize) => {
     sequelize.define('imagem',
@@ -17,5 +16,3 @@ module.exports = (sequelize) => {
         }
     )
 }
-
-// Imagem.belongsTo(PontoInteresse, { foreignKey: 'ponto_interesse_id' })

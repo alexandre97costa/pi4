@@ -1,5 +1,4 @@
 
-var { Exemplo } = require('../model/exemplo')
 var sequelize = require('../config/Database')
 const { Op } = require("sequelize")
 // * Como usar o Op:
@@ -12,10 +11,8 @@ module.exports = {
             .sync()
             .then(async () => {
 
-                Exemplo
-                    .findAll({
-                        attributes: ['nome', 'descricao']
-                    })
+                distrito
+                    .findAll()
                     .then(output => { res.status(200).json({ exemplos: output }) })
                     .catch(error => { res.status(400); throw new Error(error); });
 

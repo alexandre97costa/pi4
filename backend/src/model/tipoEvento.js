@@ -1,5 +1,4 @@
 const { DataTypes } = require('sequelize')
-// const Evento = require('./evento')
 
 module.exports = (sequelize) => {
     sequelize.define('tipo_evento',
@@ -18,5 +17,3 @@ module.exports = (sequelize) => {
         }
     )
 }
-
-// TipoEvento.hasMany(Evento, { foreignKey: 'tipo_evento_id' })
