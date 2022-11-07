@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
+import PontoInteresse from './pontoInteresse'
 
 const Imagem = sequelize.define('imagem',
     {

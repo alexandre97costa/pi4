@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
+import Evento from './evento'
 
 const TipoEvento = sequelize.define('tipo_evento',
     {

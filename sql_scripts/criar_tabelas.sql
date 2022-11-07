@@ -163,7 +163,6 @@ CREATE TABLE voucher (
 
 ALTER TABLE reserva						ADD CONSTRAINT reserva_fk_data_hora 					FOREIGN KEY (sessao_id)				REFERENCES sessao(sessao_id);
 ALTER TABLE reserva						ADD CONSTRAINT reserva_fk_utilizador 					FOREIGN KEY (utilizador_id)			REFERENCES utilizador(utilizador_id);
-ALTER TABLE reserva						ADD CONSTRAINT reserva_fk_evento 						FOREIGN KEY (evento_id) 			REFERENCES evento(evento_id);
 ALTER TABLE evento						ADD CONSTRAINT evento_fk_tipo 							FOREIGN KEY (tipo_evento_id)		REFERENCES tipo_evento(tipo_evento_id);
 ALTER TABLE evento						ADD CONSTRAINT evento_fk_pi 							FOREIGN KEY (ponto_interesse_id)	REFERENCES ponto_interesse(ponto_interesse_id);
 ALTER TABLE utilizador					ADD CONSTRAINT utilizador_fk_tipo 						FOREIGN KEY (tipo_utilizador_id)	REFERENCES tipo_utilizador(tipo_utilizador_id);

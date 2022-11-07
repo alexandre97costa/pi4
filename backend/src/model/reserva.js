@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
+import Utilizador from './utilizador'
+import Sessao from './sessao'
 
 const Reserva = sequelize.define('reserva',
     {

@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
+import Distrito from './distrito'
+import Utilizador from './utilizador'
 
 const CandidaturaAT = sequelize.define('candidatura_at',
     {
@@ -24,5 +26,8 @@ const CandidaturaAT = sequelize.define('candidatura_at',
         timestamps: true, // created_at, updated_at, e deleted_at
     }
 )
+
+CandidaturaAT.belongsTo(Distrito, { foreignKey: 'distrito_id' })
+CandidaturaAT.belongsTo(Utilizador, { foreignKey: 'visitante_id' })
 
 module.exports = CandidaturaAT
