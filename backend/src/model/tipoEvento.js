@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-import Evento from './evento'
+const Evento = require('./evento')
 
 const TipoEvento = sequelize.define('tipo_evento',
     {
@@ -18,6 +18,6 @@ const TipoEvento = sequelize.define('tipo_evento',
     }
 )
 
-TipoEvento.hasMany(Evento, {foreignKey: 'tipo_evento_id'})
+TipoEvento.hasMany(Evento, { foreignKey: 'tipo_evento_id' })
 
 module.exports = TipoEvento

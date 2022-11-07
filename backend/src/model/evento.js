@@ -1,9 +1,9 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-import TipoEvento from './tipoEvento'
-import Sessao from './sessao'
-import PontosEvento from './pontosEvento'
-import PontoInteresse from './pontoInteresse'
+const TipoEvento = require('./tipoEvento')
+const Sessao = require('./sessao')
+const PontosEvento = require('./pontosEvento')
+const PontoInteresse = require('./pontoInteresse')
 
 const Evento = sequelize.define('evento',
     {

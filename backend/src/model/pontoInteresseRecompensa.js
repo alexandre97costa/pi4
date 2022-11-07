@@ -1,6 +1,6 @@
 const sequelize = require('../config/Database')
-import PontoInteresse from './pontoInteresse'
-import Recompensa from './recompensa'
+const PontoInteresse = require('./pontoInteresse')
+const Recompensa = require('./recompensa')
 
 const PontoInteresseRecompensa = sequelize.define('ponto_interesse_recompensa',
     {},

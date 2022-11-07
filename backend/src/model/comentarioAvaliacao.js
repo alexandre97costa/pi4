@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-import PontoInteresse from './pontoInteresse'
-import Utilizador from './utilizador'
+const PontoInteresse = require('./pontoInteresse')
+const Utilizador = require('./utilizador')
 
 const ComentarioAvaliacao = sequelize.define('comentario_avaliacao', 
     {

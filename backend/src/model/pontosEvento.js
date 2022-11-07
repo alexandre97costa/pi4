@@ -1,6 +1,6 @@
 const sequelize = require('../config/Database')
-import Evento from './evento'
-import Utilizador from './utilizador'
+const Evento = require('./evento')
+const Utilizador = require('./utilizador')
 
 const PontosEvento = sequelize.define('pontos_evento',
     {},

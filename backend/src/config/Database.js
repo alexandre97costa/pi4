@@ -10,7 +10,7 @@ const sequelize = new Sequelize(
         host: 'localhost',
         port: '5432',
         dialect: 'postgres',
-        logging: true,
+        logging: console.log,
         define: {
             // hooks globais, atingem todos os modelos
             hooks: {

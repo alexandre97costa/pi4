@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-import Utilizador from './utilizador'
-import Recompensa from './recompensa'
+const Utilizador = require('./utilizador')
+const Recompensa = require('./recompensa')
 
 const Voucher = sequelize.define('voucher',
     {

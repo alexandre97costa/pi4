@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-import CandidaturaAT from './candidaturaAT'
-import Municipio from './municipio'
-import Utilizador from './utilizador'
+const CandidaturaAT = require('./candidaturaAT')
+const Municipio = require('./municipio')
+const Utilizador = require('./utilizador')
 
 const Distrito = sequelize.define('distrito',
     {

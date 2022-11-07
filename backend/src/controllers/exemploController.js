@@ -1,3 +1,4 @@
+var { CandidaturaAT } = require('../model/candidaturaAT')
 var { Exemplo } = require('../model/exemplo')
 var sequelize = require('../config/Database')
 const { Op } = require("sequelize")

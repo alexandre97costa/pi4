@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-import Municipio from './municipio'
-import PontoInteresse from './pontoInteresse'
+const Municipio = require('./municipio')
+const PontoInteresse = require('./pontoInteresse')
 
 const Freguesia = sequelize.define('freguesia',
     {

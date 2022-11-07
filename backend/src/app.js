@@ -17,6 +17,7 @@ app.use((req, res, next) => {
 });
 
 //* Rotas
+// esta rota é usada para "importar" todas as tabelas, e construir tudo como deve ser
 app.use('/exemplo', exemploRoute)
 
 // Rota de Introdução

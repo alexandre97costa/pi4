@@ -1,13 +1,13 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-import Evento from './evento'
-import Freguesia from './freguesia'
-import Utilizador from './utilizador'
-import Imagem from './imagem'
-import ComentarioAvaliacao from './comentarioAvaliacao'
-import PontosPontoInteresse from './pontosPontoInteresse'
-import PontoInteresseRecompensa from './pontoInteresseRecompensa'
-import TipoInteresse from './tipoInteresse'
+const Evento = require('./evento')
+const Freguesia = require('./freguesia')
+const Utilizador = require('./utilizador')
+const Imagem = require('./imagem')
+const ComentarioAvaliacao = require('./comentarioAvaliacao')
+const PontosPontoInteresse = require('./pontosPontoInteresse')
+const PontoInteresseRecompensa = require('./pontoInteresseRecompensa')
+const TipoInteresse = require('./tipoInteresse')
 
 const PontoInteresse = sequelize.define('ponto_interesse',
     {

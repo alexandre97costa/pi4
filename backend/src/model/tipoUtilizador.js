@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
-import Utilizador from './utilizador'
+const Utilizador = require('./utilizador')
 
 const TipoUtilizador = sequelize.define('tipo_utilizador',
     {
