@@ -1,18 +1,18 @@
-const sequelize = require('../config/Database')
-const PontoInteresse = require('./pontoInteresse')
-const Recompensa = require('./recompensa')
 
-const PontoInteresseRecompensa = sequelize.define('ponto_interesse_recompensa',
-    {},
-    {
-        underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
-        freezeTableName: true, // não faz plurais nas relações com outras tabelas. Os devs agradecem :D
-        paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
-        timestamps: true, // created_at, updated_at, e deleted_at
-    }
-)
+// const PontoInteresse = require('./pontoInteresse')
+// const Recompensa = require('./recompensa')
 
-PontoInteresseRecompensa.belongsTo(PontoInteresse, { foreignKey: 'ponto_interesse_id' })
-PontoInteresseRecompensa.belongsTo(Recompensa, { foreignKey: 'recompensa_id' })
+module.exports = (sequelize) => {
+    sequelize.define('ponto_interesse_recompensa',
+        {},
+        {
+            underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
+            freezeTableName: true, // não faz plurais nas relações com outras tabelas. Os devs agradecem :D
+            paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
+            timestamps: true, // created_at, updated_at, e deleted_at
+        }
+    )
+}
 
-module.exports = PontoInteresseRecompensa
+// PontoInteresseRecompensa.belongsTo(PontoInteresse, { foreignKey: 'ponto_interesse_id' })
+// PontoInteresseRecompensa.belongsTo(Recompensa, { foreignKey: 'recompensa_id' })

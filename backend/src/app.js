@@ -5,6 +5,7 @@ const path = require('path') // para enviar ficheiros
 const jwt_middleware = require('../jwt/jwt_middleware') // para login
 const app = express()
 app.set('port', process.env.PORT || 4001)
+const sequelize = require('./config/Database')
 
 const exemploRoute = require('./routes/exemplo.js')
 
@@ -25,6 +26,27 @@ app.use('/', (req, res) => {
     res.send('Yo yo, o backend tá aqui');
 })
 
-app.listen(app.get('port'), () => {
-    console.log('Backend online! (port:' + app.get('port') + ')')
-})
+
+async function assertDatabaseConnectionOk() {
+    console.log(`\x1b[30mChecking database connection...`);
+    try {
+        await sequelize.authenticate();
+        console.log('Database connection OK!');
+    } catch (error) {
+        console.log('\x1b[31mUnable to connect to the database:\x1b[0m');
+        console.log(error.message);
+        process.exit(1);
+    }
+}
+
+async function init() {
+    await assertDatabaseConnectionOk();
+
+    console.log(`\x1b[30mStarting backend...`);
+
+    app.listen(app.get('port'), () => {
+        console.log('\x1b[33mBackend online! http://localhost:' + app.get('port') + '\x1b[0m')
+    });
+}
+
+init();

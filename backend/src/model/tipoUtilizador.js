@@ -1,8 +1,8 @@
 const { DataTypes } = require('sequelize')
-const sequelize = require('../config/Database')
-const Utilizador = require('./utilizador')
+// const Utilizador = require('./utilizador')
 
-const TipoUtilizador = sequelize.define('tipo_utilizador',
+module.exports = (sequelize) => {
+sequelize.define('tipo_utilizador',
     {
         nome: {
             type: DataTypes.STRING,
@@ -17,7 +17,6 @@ const TipoUtilizador = sequelize.define('tipo_utilizador',
         timestamps: true, // created_at, updated_at, e deleted_at
     }
 )
+}
 
-TipoUtilizador.hasMany(Utilizador, { foreignKey: 'tipo_utilizador_id' })
-
-module.exports = TipoUtilizador
+// TipoUtilizador.hasMany(Utilizador, { foreignKey: 'tipo_utilizador_id' })

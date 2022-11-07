@@ -1,9 +1,9 @@
-const { DataTypes } = require('sequelize')
-const sequelize = require('../config/Database')
-const PontoInteresse = require('./pontoInteresse')
-const Utilizador = require('./utilizador')
 
-const PontosPontoInteresse = sequelize.define('pontos_ponto_interesse',
+// const PontoInteresse = require('./pontoInteresse')
+// const Utilizador = require('./utilizador')
+
+module.exports = (sequelize) => {
+sequelize.define('pontos_ponto_interesse',
     {},
     {
         underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
@@ -12,8 +12,7 @@ const PontosPontoInteresse = sequelize.define('pontos_ponto_interesse',
         timestamps: true, // created_at, updated_at, e deleted_at
     }
 )
+}
 
-PontosPontoInteresse.belongsTo(PontoInteresse, { foreignKey: 'ponto_interesse_id' })
-PontosPontoInteresse.belongsTo(Utilizador, { foreignKey: 'visitante_id' })
-
-module.exports = PontosPontoInteresse
+// PontosPontoInteresse.belongsTo(PontoInteresse, { foreignKey: 'ponto_interesse_id' })
+// PontosPontoInteresse.belongsTo(Utilizador, { foreignKey: 'visitante_id' })

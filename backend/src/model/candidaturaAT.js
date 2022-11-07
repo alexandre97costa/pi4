@@ -1,33 +1,32 @@
 const { DataTypes } = require('sequelize')
-const sequelize = require('../config/Database')
-const Distrito = require('./distrito')
-const Utilizador = require('./utilizador')
+// const Distrito = require('./distrito')
+// const Utilizador = require('./utilizador')
 
-const CandidaturaAT = sequelize.define('candidatura_at',
-    {
-        localidade_at: {
-            type: DataTypes.STRING(50),
-            allowNull: false
+module.exports = (sequelize) => {
+    sequelize.define('candidatura_at',
+        {
+            localidade_at: {
+                type: DataTypes.STRING(50),
+                allowNull: false
+            },
+            texto_candidatura: {
+                type: DataTypes.STRING(512),
+                allowNull: false
+            },
+            estado: {
+                type: DataTypes.BOOLEAN,
+                allowNull: true
+            },
+            observacoes: DataTypes.STRING
         },
-        texto_candidatura: {
-            type: DataTypes.STRING(512),
-            allowNull: false
-        },
-        estado: {
-            type: DataTypes.BOOLEAN,
-            allowNull: true
-        },
-        observacoes: DataTypes.STRING
-    },
-    {
-        underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
-        freezeTableName: true, // não faz plurais nas relações com outras tabelas. Os devs agradecem :D
-        paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
-        timestamps: true, // created_at, updated_at, e deleted_at
-    }
-)
+        {
+            underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
+            freezeTableName: true, // não faz plurais nas relações com outras tabelas. Os devs agradecem :D
+            paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
+            timestamps: true, // created_at, updated_at, e deleted_at
+        }
+    )
+}
 
-CandidaturaAT.belongsTo(Distrito, { foreignKey: 'distrito_id' })
-CandidaturaAT.belongsTo(Utilizador, { foreignKey: 'visitante_id' })
-
-module.exports = CandidaturaAT
+// CandidaturaAT.belongsTo(Distrito, { foreignKey: 'distrito_id' })
+// CandidaturaAT.belongsTo(Utilizador, { foreignKey: 'visitante_id' })
