@@ -7,6 +7,14 @@ const CandidaturaAT = sequelize.define('candidatura_at',
             type: DataTypes.STRING(50),
             allowNull: false
         },
+        texto_candidatura: {
+            type: DataTypes.STRING(512),
+            allowNull: false
+        },
+        estado: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        },
         observacoes: DataTypes.STRING
     },
     {

@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
 
-const DataHora = sequelize.define('data_hora',
+const Sessao = sequelize.define('sessao',
     {
         data_hora: {
             type: DataTypes.DATE,
@@ -18,4 +18,4 @@ const DataHora = sequelize.define('data_hora',
     }
 )
 
-module.exports = DataHora
+module.exports = Sessao

@@ -7,11 +7,14 @@ const Evento = sequelize.define('evento',
             type: DataTypes.INTEGER,
             allowNull: false
         },
-        nome_evento: {
+        nome: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        descricao: DataTypes.STRING,
+        descricao: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         num_vagas: {
             type: DataTypes.INTEGER,
             defaultValue: 0,
