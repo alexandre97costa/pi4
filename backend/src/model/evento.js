@@ -33,4 +33,9 @@ const Evento = sequelize.define('evento',
     }
 )
 
+Evento.belongsTo(TipoEvento, { foreignKey: 'tipo_evento_id' })
+Evento.hasMany(Sessao, { foreignKey: 'evento_id' })
+Evento.hasMany(PontosEvento, { foreignKey: 'evento_id' })
+Evento.belongsTo(PontoInteresse, { foreignKey: 'ponto_interesse_id' })
+
 module.exports = Evento

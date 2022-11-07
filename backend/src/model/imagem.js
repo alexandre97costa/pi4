@@ -17,4 +17,6 @@ const Imagem = sequelize.define('imagem',
     }
 )
 
+Imagem.belongsTo(PontoInteresse, { foreignKey: 'ponto_interesse_id' })
+
 module.exports = Imagem

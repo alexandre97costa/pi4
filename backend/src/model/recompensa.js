@@ -11,15 +11,15 @@ const Recompensa = sequelize.define('recompensa',
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
-        titulo:{
-            type:DataTypes.STRING,
+        titulo: {
+            type: DataTypes.STRING,
             allowNull: false
         },
-        descricao:{
-            type:DataTypes.STRING,
+        descricao: {
+            type: DataTypes.STRING,
             allowNull: false
         },
-        observacoes: DataTypes.STRING 
+        observacoes: DataTypes.STRING
     },
     {
         underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
@@ -28,5 +28,9 @@ const Recompensa = sequelize.define('recompensa',
         timestamps: true, // created_at, updated_at, e deleted_at
     }
 )
+
+Recompensa.hasMany(Voucher, { foreignKey: 'recompensa_id' })
+Recompensa.hasMany(PontoInteresseRecompensa, { foreignKey: 'recompensa_id' })
+Recompensa.belongsTo(TipoInteresse, { foreignKey: 'tipo_interesse_id' })
 
 module.exports = Recompensa

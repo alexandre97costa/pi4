@@ -19,4 +19,7 @@ const TipoInteresse = sequelize.define('tipo_interesse',
     }
 )
 
+TipoInteresse.hasMany(PontoInteresse, { foreignKey: 'tipo_interesse_id' })
+TipoInteresse.hasMany(Recompensa, { foreignKey: 'tipo_interesse_id' })
+
 module.exports = TipoInteresse

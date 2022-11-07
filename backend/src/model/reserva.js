@@ -31,4 +31,7 @@ const Reserva = sequelize.define('reserva',
     }
 )
 
+Reserva.belongsTo(Utilizador, { foreignKey: 'visitante_id' })
+Reserva.belongsTo(Sessao, { foreignKey: 'sessao_id' })
+
 module.exports = Reserva

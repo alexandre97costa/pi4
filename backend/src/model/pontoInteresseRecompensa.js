@@ -1,4 +1,3 @@
-const { DataTypes } = require('sequelize')
 const sequelize = require('../config/Database')
 import PontoInteresse from './pontoInteresse'
 import Recompensa from './recompensa'
@@ -12,5 +11,8 @@ const PontoInteresseRecompensa = sequelize.define('ponto_interesse_recompensa',
         timestamps: true, // created_at, updated_at, e deleted_at
     }
 )
+
+PontoInteresseRecompensa.belongsTo(PontoInteresse, { foreignKey: 'ponto_interesse_id' })
+PontoInteresseRecompensa.belongsTo(Recompensa, { foreignKey: 'recompensa_id' })
 
 module.exports = PontoInteresseRecompensa

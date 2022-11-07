@@ -5,8 +5,8 @@ import PontoInteresse from './pontoInteresse'
 
 const Freguesia = sequelize.define('freguesia',
     {
-        nome:{
-            type:DataTypes.STRING,
+        nome: {
+            type: DataTypes.STRING,
             allowNull: false
         },
     },
@@ -17,5 +17,8 @@ const Freguesia = sequelize.define('freguesia',
         timestamps: true, // created_at, updated_at, e deleted_at
     }
 )
+
+Freguesia.belongsTo(Municipio, { foreignKey: 'municipio_id' })
+Freguesia.hasMany(PontoInteresse, { foreignKey: 'freguesia_id' })
 
 module.exports = Freguesia

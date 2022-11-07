@@ -6,7 +6,7 @@ import Utilizador from './utilizador'
 import Imagem from './imagem'
 import ComentarioAvaliacao from './comentarioAvaliacao'
 import PontosPontoInteresse from './pontosPontoInteresse'
-import PontosPontoRecompensa from './pontoInteresseRecompensa'
+import PontoInteresseRecompensa from './pontoInteresseRecompensa'
 import TipoInteresse from './tipoInteresse'
 
 const PontoInteresse = sequelize.define('ponto_interesse',
@@ -46,5 +46,14 @@ const PontoInteresse = sequelize.define('ponto_interesse',
         timestamps: true, // created_at, updated_at, e deleted_at
     }
 )
+
+PontoInteresse.hasMany(Evento, { foreignKey: 'ponto_interesse_id' })
+PontoInteresse.belongsTo(Freguesia, { foreignKey: 'freguesia_id' })
+PontoInteresse.belongsTo(Utilizador, { foreignKey: 'agente_turistico_id' })
+PontoInteresse.hasMany(Imagem, { foreignKey: 'ponto_interesse_id' })
+PontoInteresse.hasMany(ComentarioAvaliacao, { foreignKey: 'ponto_interesse_id' })
+PontoInteresse.hasMany(PontosPontoInteresse, { foreignKey: 'ponto_interesse_id' })
+PontoInteresse.hasMany(PontoInteresseRecompensa, { foreignKey: 'ponto_interesse_id' })
+PontoInteresse.belongsTo(TipoInteresse, { foreignKey: 'tipo_interesse_id' })
 
 module.exports = PontoInteresse

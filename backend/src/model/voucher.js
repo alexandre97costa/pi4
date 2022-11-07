@@ -28,4 +28,7 @@ const Voucher = sequelize.define('voucher',
     }
 )
 
+Voucher.belongsTo(Utilizador, { foreignKey: 'visitante_id' })
+Voucher.belongsTo(Recompensa, { foreignKey: 'recompensa_id' })
+
 module.exports = Voucher

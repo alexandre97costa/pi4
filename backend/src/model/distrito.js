@@ -19,4 +19,8 @@ const Distrito = sequelize.define('distrito',
     }
 )
 
+Distrito.hasMany(CandidaturaAT, { foreignKey: 'distrito_id' })
+Distrito.hasMany(Municipio, { foreignKey: 'distrito_id' })
+Distrito.belongsTo(Utilizador, { foreignKey: 'responsavel_regiao_id' })
+
 module.exports = Distrito

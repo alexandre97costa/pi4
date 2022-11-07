@@ -19,4 +19,7 @@ const ComentarioAvaliacao = sequelize.define('comentario_avaliacao',
     }
 )
 
+ComentarioAvaliacao.belongsTo(Utilizador, { foreignKey: 'visitante_id' })
+ComentarioAvaliacao.belongsTo(PontoInteresse, { foreignKey: 'ponto_interesse_id' })
+
 module.exports = ComentarioAvaliacao

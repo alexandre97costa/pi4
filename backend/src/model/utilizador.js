@@ -3,12 +3,12 @@ const sequelize = require('../config/Database')
 import TipoUtilizador from './tipoUtilizador'
 import CandidaturaAT from './candidaturaAT'
 import Reserva from './reserva'
-import PontosEvento from './pontosEvento'
 import ComentarioAvaliacao from './comentarioAvaliacao'
+import PontosEvento from './pontosEvento'
 import PontosPontoInteresse from './pontosPontoInteresse'
 import Voucher from './voucher'
-import Distrito from './distrito'
 import PontoInteresse from './pontoInteresse'
+import Distrito from './distrito'
 
 const Utilizador = sequelize.define('utilizador',
     {
@@ -36,5 +36,15 @@ const Utilizador = sequelize.define('utilizador',
         timestamps: true, // created_at, updated_at, e deleted_at
     }
 )
+
+Utilizador.belongsTo(TipoUtilizador, { foreignKey: 'tipo_utilizador_id' })
+Utilizador.hasMany(CandidaturaAT, { foreignKey: 'visitante_id' })
+Utilizador.hasMany(Reserva, { foreignKey: 'visitante_id' })
+Utilizador.hasMany(ComentarioAvaliacao, { foreignKey: 'visitante_id' })
+Utilizador.hasMany(PontosEvento, { foreignKey: 'visitante_id' })
+Utilizador.hasMany(PontosPontoInteresse, { foreignKey: 'visitante_id' })
+Utilizador.hasMany(Voucher, { foreignKey: 'visitante_id' })
+Utilizador.hasMany(PontoInteresse, { foreignKey: 'agente_turistico_id' })
+Utilizador.hasMany(Distrito, { foreignKey: 'responsavel_regiao_id' })
 
 module.exports = Utilizador

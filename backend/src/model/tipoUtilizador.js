@@ -18,4 +18,6 @@ const TipoUtilizador = sequelize.define('tipo_utilizador',
     }
 )
 
+TipoUtilizador.hasMany(Utilizador, { foreignKey: 'tipo_utilizador_id' })
+
 module.exports = TipoUtilizador

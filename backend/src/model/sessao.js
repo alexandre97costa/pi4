@@ -20,4 +20,7 @@ const Sessao = sequelize.define('sessao',
     }
 )
 
+Sessao.hasMany(Reserva, { foreignKey: 'sessao_id' })
+Sessao.belongsTo(Evento, { foreignKey: 'evento_id' })
+
 module.exports = Sessao

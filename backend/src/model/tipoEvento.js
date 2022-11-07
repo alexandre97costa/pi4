@@ -18,4 +18,6 @@ const TipoEvento = sequelize.define('tipo_evento',
     }
 )
 
+TipoEvento.hasMany(Evento, {foreignKey: 'tipo_evento_id'})
+
 module.exports = TipoEvento
