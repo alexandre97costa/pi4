@@ -6,6 +6,7 @@ const jwt_middleware = require('../jwt/jwt_middleware') // para login
 const app = express()
 app.set('port', process.env.PORT || 4001)
 const sequelize = require('./config/Database')
+sequelize.sync()
 
 const exemploRoute = require('./routes/exemplo.js')
 
