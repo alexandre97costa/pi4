@@ -1,6 +1,5 @@
 const { Sequelize } = require('sequelize');
-
-// todo: Github Action para alojar no heroku
+const { applyExtraSetup } = require('./extra-setup.js');
 
 const sequelize = new Sequelize(
     'pi4',              // nome da db
@@ -10,7 +9,8 @@ const sequelize = new Sequelize(
         host: 'localhost',
         port: '5432',
         dialect: 'postgres',
-        logging: true,
+        logging: false,
+        // logging: console.log,
         define: {
             // hooks globais, atingem todos os modelos
             hooks: {
@@ -34,6 +34,36 @@ const sequelize = new Sequelize(
     }
 )
 
-sequelize.sync()
+// traz as tabelas todas
+const models = [
+    require('../model/candidaturaAT'),
+    require('../model/comentarioAvaliacao'),
+    require('../model/distrito'),
+    require('../model/evento'),
+    require('../model/freguesia'),
+    require('../model/imagem'),
+    require('../model/municipio'),
+    require('../model/pontoInteresse'),
+    require('../model/pontoInteresseRecompensa'),
+    require('../model/pontosEvento'),
+    require('../model/pontosPontoInteresse'),
+    require('../model/recompensa'),
+    require('../model/reserva'),
+    require('../model/sessao'),
+    require('../model/tipoEvento'),
+    require('../model/tipoInteresse'),
+    require('../model/tipoUtilizador'),
+    require('../model/utilizador'),
+    require('../model/voucher')
+]
+// define as tabelas todas
+for (const model of models) {
+    model(sequelize)
+}
+
+// depois de termos a certeza que as tabelas existem todas,
+// fazemos as relações todas
+applyExtraSetup(sequelize);
+
 
 module.exports = sequelize 

@@ -1,25 +1,14 @@
 const { DataTypes } = require('sequelize')
 
 module.exports = (sequelize) => {
-    sequelize.define('evento',
+    sequelize.define('sessao',
         {
-            num_pontos: {
-                type: DataTypes.INTEGER,
+            data_hora: {
+                type: DataTypes.DATE,
                 allowNull: false
             },
-            nome: {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
-            descricao: {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
-            num_vagas: {
-                type: DataTypes.INTEGER,
-                defaultValue: 0,
-                allowNull: false
-            }
+            inicio_evento: DataTypes.BOOLEAN,
+            fim_evento: DataTypes.BOOLEAN
         },
         {
             underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
