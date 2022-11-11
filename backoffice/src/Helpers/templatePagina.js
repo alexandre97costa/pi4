@@ -5,7 +5,7 @@ import { Sidebar } from '../Components/sidebar'
 
 export default function TemplatePagina(props) {
     useEffect(() => {
-        console.log("Carreguei o TemplatePagina")
+        console.log("✅ TemplatePagina()")
     }, [])
 
     return (
@@ -19,7 +19,7 @@ export default function TemplatePagina(props) {
 
                 {/* Content */}
                 <div className='col-10 bg-light overflow-auto' style={{ maxHeight: '100vh' }}>
-                    <div className='container-fluid py-3 '>
+                    <div className='container-fluid py-3'>
                         <div className='row mb-4'>
                             <div className='display-6'>
                                 {props.title}

@@ -1,7 +1,55 @@
+:root {
+    --pi4-primary-light: lightgreen;
+    --pi4-primary: green;
+    --pi4-primary-rgb: rgb(0, 128, 0);
+    --pi4-primary-transparent: rgba(0, 128, 0, 0.5);
+    --pi4-primary-dark: darkgreen;
+    --pi4-primary-box-shadow:  0 0 0 0.25rem var(--pi4-primary-transparent);
+
+    --pi4-secondary-light: lightgreen;
+    --pi4-secondary: green;
+    --pi4-secondary-dark: darkgreen;
+
+}
+
 .pi4-menu-item:hover {
     background-color: var(--bs-gray-800);
 }
 .pi4-menu-item:hover span {
     color: var(--bs-gray-400) !important;
+}
 
+.btn {
+    border-radius: var(--bs-border-radius-lg);
+}
+.btn:active {
+    filter: brightness(0.9) 
+}
+
+.btn-primary {
+    color: var(--bs-white);
+    background-color: var(--pi4-primary);
+    border-color: var(--pi4-primary);
+}
+
+.btn-outline-primary {
+    color: var(--pi4-primary);
+    background-color: var(--bs-white);
+    border-color: var(--pi4-primary);
+}
+
+.btn.btn-primary:hover,
+.btn.btn-outline-primary:hover {
+    color: var(--bs-white);
+    background-color: var(--pi4-primary-dark);
+    border-color: var(--pi4-primary-dark);    
+}
+
+.btn.btn-primary:focus-visible,
+.btn.btn-outline-primary:focus-visible {
+    color: var(--bs-white);
+    background-color: var(--pi4-primary);
+    border-color: var(--pi4-primary);
+    outline: 0;
+    box-shadow: var(--pi4-primary-box-shadow);
 }
