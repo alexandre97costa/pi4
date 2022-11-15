@@ -24,7 +24,7 @@ export default function Main() {
                     </button>
                 </div>
             </div>
-            <div className='row bg-danger vh-100 border mb-3'>
+            <div className='row bg-white vh-100 border mb-3'>
                 teste à sidebar com conteúdo muito comprido
             </div>
         </>
