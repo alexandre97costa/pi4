@@ -34,10 +34,10 @@ module.exports = {
                 });
             } else {
                 console.log('Token válido!')
+                console.log('decoded', decoded)
                 req.decoded = decoded;
                 next();
             }
         });
     }
 }
-

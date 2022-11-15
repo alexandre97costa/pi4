@@ -30,6 +30,7 @@ module.exports = {
             return
         }
 
+        // procura se existe um utilizador com o email enviado
         let user = await utilizador
             .findOne({ where: { email: email } })
             .then(data => { return data })
@@ -42,8 +43,11 @@ module.exports = {
             const passwordMatch = bcrypt.compareSync(password, user.password);
             if (passwordMatch) {
 
+                // o que enviar no payload do jwt
                 let token = {
-                    email: email
+                    nome: user.nome,
+                    email: user.email,
+                    tipo: user.tipo_utilizador_id
                 }
 
                 const options = {
@@ -109,7 +113,7 @@ module.exports = {
             .findOne({ where: { email: email } })
 
         if (userJaExiste) {
-            res.json({
+            res.status(400).json({
                 success: false,
                 message: 'Utilizador com esse email já existe.'
             })
@@ -122,7 +126,7 @@ module.exports = {
                 email: email,
                 data_nascimento: data_nasc,
                 password: password,
-                tipo_utilizador_id: 1 // por defeito, visitante
+                tipo_utilizador_id: 1 // por defeito visitante
             })
             .then(data => {
                 res.status(200).json({
@@ -134,6 +138,58 @@ module.exports = {
             .catch(error => { throw new Error(error) })
 
 
+    },
+
+    update: async (req, res) => {
+        // todo ainda não está feito
+        if (
+            !req.body.email ||
+            !req.body.tipo_utilizador_id
+        ) {
+            res.status(400).json({
+                success: false,
+                message: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.'
+            })
+            return
+        }
+    },
+
+    change_tipo_utilizador: async (req, res) => {
+        if (
+            !req.body.email ||
+            !req.body.tipo_utilizador_id
+        ) {
+            res.status(400).json({
+                success: false,
+                message: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.'
+            })
+            return
+        }
+
+        const email = req.body.email
+        const tipo_utilizador_id = req.body.tipo_utilizador_id
+
+        await utilizador
+            .findOne({ where: { email: email } })
+            .then(async found => {
+                if (!!found) {
+                    await found
+                        .update({ tipo_utilizador_id: tipo_utilizador_id })
+                        .then(data => {
+                            res.status(200).json({
+                                success: true,
+                                message: 'Tipo de utilizador atualizado.',
+                                data
+                            })
+                        })
+                }
+                else {
+                    res.status(404).json({
+                        success: false,
+                        message: 'Utilizador não encontrado.'
+                    })
+                }
+            })
     },
 
     delete: async (req, res) => {

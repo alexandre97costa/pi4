@@ -6,19 +6,42 @@ module.exports = (sequelize) => {
         {
             nome: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
+                validate: {
+                    notNull: { msg: 'O nome não pode estar vazio' },
+                    isAlpha: { msg: 'O nome só pode ter letras' }
+                }
             },
             email: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
+                unique: true,
+                validate: {
+                    notNull: { msg: 'O email não pode estar vazio' },
+                    isEmail: { msg: 'O email inserido não é válido' }
+                }
             },
             password: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: false,
+                validate: {
+                    notNull: { msg: 'A password não pode estar vazia' }
+                }
             },
             data_nascimento: {
                 type: DataTypes.DATEONLY,
-                allowNull: false
+                allowNull: false,
+                validate: {
+                    notNull: { msg: 'A data de nascimento não pode estar vazia' },
+                    isDate: { msg: 'A data de nascimento inserida não é valida' },
+                    isValidAge(value) {
+                        let validAge = new Date()
+                        validAge.setFullYear(validAge.getFullYear() - 13)
+                        if (validAge < value) {
+                            throw new Error('O utilizador tem que ter mais do que 13 anos para se registar')
+                        }
+                    }
+                }
             }
         },
         {
