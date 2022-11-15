@@ -5,10 +5,12 @@ const path = require('path') // para enviar ficheiros
 const jwt_middleware = require('../jwt/jwt_middleware') // para login
 const app = express()
 app.set('port', process.env.PORT || 4001)
+const port = app.get('port')
 const sequelize = require('./config/Database')
 sequelize.sync()
 
 const exemploRoute = require('./routes/exemplo.js')
+const userRoutes = require('./routes/user.js')
 
 //* Middlewares
 app.use(cors());
@@ -19,13 +21,17 @@ app.use((req, res, next) => {
 });
 
 //* Rotas
-// esta rota é usada para "importar" todas as tabelas, e construir tudo como deve ser
 app.use('/exemplo', exemploRoute)
+app.use('/user', userRoutes)
 
 // Rota de Introdução
 app.use('/', (req, res) => {
     res.send('Yo yo, o backend tá aqui');
 })
+
+
+
+
 
 
 // * daqui pra baixo são só cenas para iniciar a bd como deve ser
@@ -42,15 +48,11 @@ async function assertDatabaseConnectionOk() {
         process.exit(1);
     }
 }
-
 async function init() {
     await assertDatabaseConnectionOk();
-
     console.log(`\x1b[30mStarting backend...`);
-
-    app.listen(app.get('port'), () => {
-        console.log('\x1b[33mBackend online! http://localhost:' + app.get('port') + '\x1b[0m')
+    app.listen(port, () => {
+        console.log('\x1b[33mBackend online! http://localhost:' + port + '\x1b[0m')
     });
 }
-
 init();

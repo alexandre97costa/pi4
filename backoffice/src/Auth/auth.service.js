@@ -15,5 +15,8 @@ class AuthService {
 
     logout() { localStorage.removeItem('user') }
     getCurrentUser() { return JSON.parse(localStorage.getItem('user')) }
+
+    // todo: isLoginValid() tem que ver a validade do token
+    // todo: getUserType() tem que ir buscar o TipoDeUtilizador do user 
 }
 export default new AuthService();
