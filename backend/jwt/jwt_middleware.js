@@ -1,11 +1,10 @@
 const jwt = require('jsonwebtoken');
-const config = require('./jwt_config.js');
 require('dotenv').config()
 
 module.exports = {
     checkToken: (req, res, next) => {
 
-        // ! bar aberto para o modo de desenvolvimento
+        // ! entrada livre para o modo de desenvolvimento
         if (process.env.MODE === 'development') {
             console.log('\x1b[30m\x1b[2mcheckToken bypassed (dev mode)\x1b[0m');
             next()
@@ -16,7 +15,7 @@ module.exports = {
         
         if (!token) {
             console.warn('Não há token', req.headers)
-            res.status(401).json({
+            res.status(400).json({
                 success: false,
                 message: 'Token indisponível.'
             })
@@ -27,18 +26,18 @@ module.exports = {
             token = token.slice(7, token.length); //remove a palavra 'Bearer '
         }
 
-        jwt.verify(token, config.JWT_SECRET, (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
             if (err) {
                 return res.status(401).json({
                     success: false,
                     message: 'O token não é válido.'
                 });
             } else {
+                console.log('Token válido!')
                 req.decoded = decoded;
                 next();
             }
         });
-
     }
 }
 
