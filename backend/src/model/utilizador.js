@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize')
+const bcrypt = require('bcrypt')
 
 module.exports = (sequelize) => {
     sequelize.define('utilizador',
@@ -28,7 +29,7 @@ module.exports = (sequelize) => {
             hooks: {
                 beforeCreate: (utilizador) => {
 
-                    return bcrypt.hash(utilizador.password, process.env.BCRIPT_SECRET)
+                    return bcrypt.hash(utilizador.password, 10)
                         .then(hash => { utilizador.password = hash; })
                         .catch(err => { throw new Error(err); });
                 }

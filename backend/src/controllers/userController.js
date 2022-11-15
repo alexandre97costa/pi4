@@ -72,7 +72,13 @@ module.exports = {
         await sequelize.sync()
             .then(async () => {
                 await utilizador
-                    .findAll({ include: tipo_utilizador })
+                    .findAll({ 
+                        attributes: ['nome', 'email', 'data_nascimento', 'updated_at'],
+                        include: {
+                            model: tipo_utilizador,
+                            attributes: ['nome', 'observacoes']
+                        }
+                    })
                     .then(data => { res.json({ success: true, data }) })
                     .catch(error => { return error })
             })
@@ -81,7 +87,7 @@ module.exports = {
 
     create: async (req, res) => {
         if (
-            !req.body.name ||
+            !req.body.nome ||
             !req.body.email ||
             !req.body.data_nasc ||
             !req.body.password
@@ -93,21 +99,14 @@ module.exports = {
             return
         }
 
-        const name = req.body.name
+        const nome = req.body.nome
         const email = req.body.email
         const data_nasc = req.body.data_nasc
         const password = req.body.password
 
 
         let userJaExiste = await utilizador
-            .findOne({
-                where: {
-                    [Op.or]: [
-                        { email: email },
-                        { name: name }
-                    ]
-                }
-            })
+            .findOne({ where: { email: email } })
 
         if (userJaExiste) {
             res.json({
@@ -119,17 +118,18 @@ module.exports = {
 
         await utilizador
             .create({
-                name: name,
+                nome: nome,
                 email: email,
                 data_nascimento: data_nasc,
                 password: password,
+                tipo_utilizador_id: 1 // por defeito, visitante
             })
             .then(data => {
                 res.status(200).json({
                     success: true,
                     message: "Utilizador registado com sucesso!",
                     data
-                });
+                })
             })
             .catch(error => { throw new Error(error) })
 
