@@ -12,7 +12,7 @@ let agente_turistico = [
 
 export function Teste() {
     useEffect(() => {
-        console.log("Carreguei o Teste")
+        console.log("✅ Teste()")
     }, [])
 
     return (

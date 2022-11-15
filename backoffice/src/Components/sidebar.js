@@ -21,14 +21,14 @@ export function Sidebar(props) {
 
                         return (
                             (props.selected ?? 0) === index ?
-                                <li className=' py-1 d-flex align-items-center bg-success rounded-3'>
+                                <li key={index} className=' py-1 d-flex align-items-center bg-success rounded-3'>
                                     <i className={'bi bi-' + item.icon + ' fs-4 mx-2 text-white'}></i>
                                     <span className=' d-none d-sm-inline fs-6 text-white fw-semibold'>
                                         {item.text}
                                     </span>
                                 </li>
                                 :
-                                <Link to={item.path} className='text-decoration-none'>
+                                <Link key={index} to={item.path} className='text-decoration-none'>
                                     <li className='pi4-menu-item my-1 py-1 d-flex align-items-center rounded-3'>
                                         <i className={'bi bi-' + item.icon + ' fs-4 mx-2 text-success'}></i>
                                         <span className='d-none d-sm-inline fs-6 text-secondary'>
