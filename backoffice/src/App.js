@@ -7,16 +7,20 @@ import Pages from "./Pages/index"
 export default function App() {
 
 	useEffect(() => {
-        console.log("✅ App()")
-        console.log("%cÉ normal que as mensagens apareçam 2x!", "background-color: brown; color: gold; padding: 0 0.5rem;")
-    }, [])
+		console.log("✅ App()")
+		console.log("%cÉ normal que as mensagens apareçam 2x!", "background-color: brown; color: gold; padding: 0 0.5rem;")
+	}, [])
 
 	return (
 		<Router>
 			<Routes>
-				<Route 
+				<Route
 					path="/teste"
 					element={<Pages.Teste />}
+				/>
+				<Route
+					path="/exemplo"
+					element={<Pages.Exemplo />}
 				/>
 			</Routes>
 		</Router>
