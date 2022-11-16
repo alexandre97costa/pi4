@@ -17,5 +17,5 @@
 
 // ! Não faças commit de alterações feitas a este ficheiro
 
-const ip = 'http://localhost:4011'
+const ip = 'http://localhost:4001'
 export default ip

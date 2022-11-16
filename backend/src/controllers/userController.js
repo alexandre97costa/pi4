@@ -1,8 +1,9 @@
 
 var sequelize = require('../config/Database')
 const { Op } = require("sequelize")
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
+const { devlog } = require('../config/devlog')
 require('dotenv').config()
 // * Como usar o Op:
 // * https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
@@ -17,12 +18,7 @@ module.exports = {
 
     login: async (req, res) => {
 
-        let email, password = null
-
-        if (!!req.body.email && !!req.body.password) {
-            email = req.body.email
-            password = req.body.password
-        } else {
+        if (!req.body.email|| !req.body.password) {
             res.status(403).json({
                 success: false,
                 message: 'Dados necessários: email e password'
@@ -30,21 +26,22 @@ module.exports = {
             return
         }
 
+        let email = req.body.email.trim()
+        let password = req.body.password
+
         // procura se existe um utilizador com o email enviado
-        let user = await utilizador
+        const user = await utilizador
             .findOne({ where: { email: email } })
-            .then(data => { return data })
-            .catch(error => { console.log(error) })
-
-        console.log(user)
-
+            .then(response => { return response?.dataValues })
 
         if (!!user) {
             const passwordMatch = bcrypt.compareSync(password, user.password);
             if (passwordMatch) {
 
+                devlog(user)
+
                 // o que enviar no payload do jwt
-                let token = {
+                const token = {
                     nome: user.nome,
                     email: user.email,
                     tipo: user.tipo_utilizador_id
@@ -58,18 +55,21 @@ module.exports = {
                 res.status(200).json({
                     success: true,
                     message: 'Autenticação realizada com sucesso!',
-                    token: jwt.sign(token, process.env.JWT_SECRET, options),
-                    username: user.username,
-                    email: user.email
+                    token: jwt.sign(token, process.env.JWT_SECRET, options)
                 });
                 return
+            } else {
+                res.status(400).json({
+                    success: false,
+                    message: 'Password errada'
+                });
             }
+        } else {
+            res.status(400).json({
+                success: false,
+                message: 'Utilizador não encontrado',
+            });
         }
-
-        res.status(403).json({
-            success: false,
-            message: 'Dados inválidos.'
-        });
     },
 
     list: async (req, res) => {
@@ -95,7 +95,7 @@ module.exports = {
             !req.body.nome ||
             !req.body.email ||
             !req.body.data_nasc ||
-            !req.body.password 
+            !req.body.password
         ) {
             res.status(400).json({
                 success: false,
