@@ -76,7 +76,7 @@ module.exports = {
         await sequelize.sync()
             .then(async () => {
                 await utilizador
-                    .findAll({ 
+                    .findAll({
                         attributes: ['nome', 'email', 'data_nascimento', 'updated_at'],
                         include: {
                             model: tipo_utilizador,
@@ -90,35 +90,41 @@ module.exports = {
     },
 
     create: async (req, res) => {
+
         if (
             !req.body.nome ||
             !req.body.email ||
             !req.body.data_nasc ||
-            !req.body.password
+            !req.body.password 
         ) {
             res.status(400).json({
                 success: false,
-                message: 'Faltam dados! É preciso nome, email, data de nascimento e password.'
+                message: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.'
             })
             return
         }
 
         const nome = req.body.nome
-        const email = req.body.email
+        const email = req.body.email.trim() ?? ""
         const data_nasc = req.body.data_nasc
         const password = req.body.password
 
 
-        let userJaExiste = await utilizador
-            .findOne({ where: { email: email } })
 
-        if (userJaExiste) {
-            res.status(400).json({
-                success: false,
-                message: 'Utilizador com esse email já existe.'
+        await utilizador
+            .findOne({ where: { email: email } })
+            .then(userJaExiste => {
+                if (userJaExiste) {
+                    res.status(400).json({
+                        success: false,
+                        message: 'Utilizador com esse email já existe.'
+                    })
+                    return
+                }
             })
-            return
-        }
+            .catch(error => { throw new Error(error) })
+
+
 
         await utilizador
             .create({
@@ -135,7 +141,22 @@ module.exports = {
                     data
                 })
             })
-            .catch(error => { throw new Error(error) })
+            .catch(error => {
+
+                // se for por causa de validações do sequelize, manda a msg
+                if (error.name === "SequelizeValidationError") {
+                    res.status(400).json({
+                        success: false,
+                        message: error.errors.length === 1 ?
+                            error.errors[0].message :
+                            Array.from(error.errors, e => { return e.message })
+                    })
+                }
+                // se for qualquer outra coisa, manda o servidor abaixo (para sermos informados do erro) 
+                else {
+                    throw new Error(error)
+                }
+            })
 
 
     },

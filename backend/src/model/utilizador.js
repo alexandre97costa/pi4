@@ -9,7 +9,10 @@ module.exports = (sequelize) => {
                 allowNull: false,
                 validate: {
                     notNull: { msg: 'O nome não pode estar vazio' },
-                    isAlpha: { msg: 'O nome só pode ter letras' }
+                    is: { 
+                        args: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/g, // só letras e espaços, incluindo acentos
+                        msg: 'O nome só pode ter letras e espaços' 
+                    }
                 }
             },
             email: {
@@ -51,7 +54,18 @@ module.exports = (sequelize) => {
             timestamps: true, // created_at, updated_at, e deleted_at
             hooks: {
                 beforeCreate: (utilizador) => {
+                    // capitalizar o nome
+                    console.log('Nome antigo: ' + utilizador.nome)
+                    utilizador.nome = 
+                    utilizador.nome
+                    .split(' ')
+                    .map(word => {
+                        return word[0].toUpperCase() + word.substring(1, word.length)
+                    })
+                    .join(' ');
+                    console.log('Nome novo: ' + utilizador.nome)
 
+                    // encriptar password
                     return bcrypt.hash(utilizador.password, 10)
                         .then(hash => { utilizador.password = hash; })
                         .catch(err => { throw new Error(err); });
