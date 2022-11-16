@@ -38,7 +38,7 @@ module.exports = {
             const passwordMatch = bcrypt.compareSync(password, user.password);
             if (passwordMatch) {
 
-                devlog(user)
+                // devlog(user)
 
                 // o que enviar no payload do jwt
                 const token = {
@@ -48,7 +48,7 @@ module.exports = {
                 }
 
                 const options = {
-                    algorithm: "HS256",
+                    algorithm: process.env.JWT_ALGORITHM,
                     expiresIn: 30 // seconds
                 }
 

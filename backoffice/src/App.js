@@ -1,13 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
-import ip from './ip'
 
 //Exportação de todas as páginas feitas
 import Pages from "./Pages/index"
 
+const ip = process.env.REACT_APP_IP
+
 export default function App() {
+
+	const [decodedToken, setDecodedToken] = useState({})
+	const [token, setToken] = useState("")
 
 	useEffect(() => {
 		console.log("✅ App()")
@@ -19,17 +23,24 @@ export default function App() {
 					email: "email",
 					password: "password"
 				})
-			.then(r => console.log(jwt_decode(r.data.token)))
-			.catch(e => { console.log('%c' + e.response.data.message, 'color: tomato; background-color: darkred; padding: 1rem;') })
+			.then(r => { 
+				setToken(r.data.token)
+				setDecodedToken(jwt_decode(r.data.token)); 
+				console.log(r.data.token) 
+			})
+			.catch(e => { console.log('%c' + e.response.data, 'color: tomato; background-color: darkred; padding: 0.5rem;') })
 
 	}, [])
+
+	// useEffect(() => { console.log(token) }, [token])
+	// useEffect(() => { console.log(decodedToken) }, [decodedToken])
 
 	return (
 		<Router>
 			<Routes>
 				<Route
 					path="/"
-					element={<Pages.Teste />}
+					element={<Pages.Teste token={token} decodedToken={decodedToken} />}
 				/>
 			</Routes>
 		</Router>

@@ -1,13 +1,13 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-require('dotenv').config();
-const path = require('path') // para enviar ficheiros
-const jwt_middleware = require('../jwt/jwt_middleware') // para login
 const app = express()
-app.set('port', process.env.PORT || 4001)
-const port = app.get('port')
+const { expressjwt: validate_jwt } = require("express-jwt");
+const jwt_middleware = require('../jwt/jwt_middleware') // para login
 const sequelize = require('./config/Database')
 sequelize.sync()
+app.set('port', process.env.PORT || 4001)
+const port = app.get('port')
 
 const exemploRoute = require('./routes/exemplo.js')
 const userRoutes = require('./routes/user.js')
@@ -23,6 +23,18 @@ app.use((req, res, next) => {
 //* Rotas
 app.use('/exemplo', exemploRoute)
 app.use('/user', userRoutes)
+
+// rota só pra quem tem login feito
+app.use('/vip',
+    validate_jwt({
+        secret: process.env.JWT_SECRET,
+        algorithms: [process.env.JWT_ALGORITHM]
+    }),
+    (req, res) => {
+        console.log("auth", req.auth)
+        res.send(req.auth)
+    }
+)
 
 // Rota de Introdução
 app.use('/', (req, res) => {
