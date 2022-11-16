@@ -109,8 +109,6 @@ module.exports = {
         const data_nasc = req.body.data_nasc
         const password = req.body.password
 
-
-
         await utilizador
             .findOne({ where: { email: email } })
             .then(userJaExiste => {
@@ -123,8 +121,6 @@ module.exports = {
                 }
             })
             .catch(error => { throw new Error(error) })
-
-
 
         await utilizador
             .create({
@@ -154,6 +150,10 @@ module.exports = {
                 }
                 // se for qualquer outra coisa, manda o servidor abaixo (para sermos informados do erro) 
                 else {
+                    res.status(400).json({
+                        success: false,
+                        message: error
+                    })
                     throw new Error(error)
                 }
             })

@@ -55,7 +55,6 @@ module.exports = (sequelize) => {
             hooks: {
                 beforeCreate: (utilizador) => {
                     // capitalizar o nome
-                    console.log('Nome antigo: ' + utilizador.nome)
                     utilizador.nome = 
                     utilizador.nome
                     .split(' ')
@@ -63,7 +62,6 @@ module.exports = (sequelize) => {
                         return word[0].toUpperCase() + word.substring(1, word.length)
                     })
                     .join(' ');
-                    console.log('Nome novo: ' + utilizador.nome)
 
                     // encriptar password
                     return bcrypt.hash(utilizador.password, 10)

@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon --trace-warnings src/app.js"
+    "start": "set MODE=prod&& node -e console.log(process.env.MODE)&& node src/app.js",
+    "dev": "set MODE=dev&& node -e console.log(process.env.MODE)&& nodemon --trace-warnings src/app.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

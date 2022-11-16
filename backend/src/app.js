@@ -49,10 +49,10 @@ async function assertDatabaseConnectionOk() {
     }
 }
 async function init() {
+    console.log(`\x1b[30mStarting backend in ` + process.env.MODE + ' mode...');
     await assertDatabaseConnectionOk();
-    console.log(`\x1b[30mStarting backend...`);
     app.listen(port, () => {
-        console.log('\x1b[33mBackend online! http://localhost:' + port + '\x1b[0m')
+        console.log('\x1b[30mBackend online! \x1b[0m\x1b[34m▶ http://localhost:' + port + '\x1b[0m')
     });
 }
 init();
