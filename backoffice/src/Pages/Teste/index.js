@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
+import dev from '../../Auth/dev';
 
 import TemplatePagina from '../../Helpers/templatePagina';
 import Main from './main'
@@ -15,17 +16,10 @@ let agente_turistico = [
 
 export function Teste(props) {
 
-    const [decodedToken, setDecodedToken] = useState(props.decodedToken)
-    const [token, setToken] = useState(props.token)
 
     useEffect(() => {
-        console.log("✅ Teste()")
-        setToken(props.token)
-        setDecodedToken(props.decodedToken)
+        dev.log("✅ Teste()")
     }, [])
-
-    useEffect(() => { console.log(token) }, [token])
-    useEffect(() => { console.log(decodedToken) }, [decodedToken])
 
     return (
         <TemplatePagina
@@ -35,7 +29,9 @@ export function Teste(props) {
             selected={0}
             title={"Olá, Joaquim!"}
         >
-            <div className='row row-cols-1'>
+            <div className='row row-cols-4'>
+
+
 
 
                 <button

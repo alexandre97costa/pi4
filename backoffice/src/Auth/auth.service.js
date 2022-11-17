@@ -1,22 +1,29 @@
 import axios from 'axios'
-import ip from '../ip'
+import jwt_decode from "jwt-decode";
+import dev from './dev'
+const ip = process.env.REACT_APP_IP
 
-class AuthService {
+class auth {
     login(email, password) {
         return axios
             .post(ip + '/user/login', { email, password })
             .then(res => {
-                if (res.data.token) {
-                    localStorage.setItem('user', JSON.stringify(res.data))
-                }
-                return res.data
-            }, rejected => { return rejected })
+                // 🚨 guard clauses
+                if (!res.data.token) { return }
+                // ✅ all gucci
+                localStorage.setItem('token', res.data.token)
+                localStorage.setItem('utilizador', JSON.stringify(jwt_decode(res.data.token)))
+            })
+            .catch(e => {
+                dev.error(e)
+            })
+
     }
 
-    logout() { localStorage.removeItem('user') }
-    getCurrentUser() { return JSON.parse(localStorage.getItem('user')) }
+    logout() { localStorage.removeItem('utilizador') }
+    getCurrentUser() { return JSON.parse(localStorage.getItem('utilizador')) }
 
     // todo: isLoginValid() tem que ver a validade do token
     // todo: getUserType() tem que ir buscar o TipoDeUtilizador do user 
 }
-export default new AuthService();
+export default new auth();

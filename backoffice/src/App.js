@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
+import dev from './Auth/dev';
 
 //Exportação de todas as páginas feitas
 import Pages from "./Pages/index"
@@ -16,8 +17,9 @@ export default function App() {
 	const [token, setToken] = useState()
 
 	useEffect(() => {
-		console.log("✅ App()")
-		console.log("%cÉ normal que as mensagens apareçam 2x!", "background-color: brown; color: gold; padding: 0 0.5rem;")
+		dev.log("✅ App()")
+		dev.log("%cÉ normal que as mensagens apareçam 2x!", "background-color: brown; color: gold; padding: 0 0.5rem;")
+
 
 		axios
 			.post(ip + '/user/login',
@@ -25,18 +27,17 @@ export default function App() {
 					email: "email",
 					password: "password"
 				})
-			.then(r => { 
-				setToken(r.data.token)
-				setDecodedToken(jwt_decode(r.data.token)); 
-				// console.log(r.data.token) 
+			.then(res => { 
+				setToken(res.data.token)
+				setDecodedToken(jwt_decode(res.data.token)); 
+				localStorage.setItem('utilizador', JSON.stringify(res.data))
+
 				console.log('%cLogged in!', 'color: lime; background-color: darkgreen; padding: 0.5rem;')
 			})
 			.catch(e => { console.log('%c' + e.response.data, 'color: tomato; background-color: darkred; padding: 0.5rem;') })
 
 	}, [])
 
-	// useEffect(() => { console.log(token) }, [token])
-	// useEffect(() => { console.log(decodedToken) }, [decodedToken])
 
 	return (
 		<Router>
