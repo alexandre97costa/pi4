@@ -8,10 +8,12 @@ import Pages from "./Pages/index"
 
 const ip = process.env.REACT_APP_IP
 
+// todo: colocar o payload do jwt no local storage (pra ficar acessivel a todas as paginas)
+
 export default function App() {
 
-	const [decodedToken, setDecodedToken] = useState({})
-	const [token, setToken] = useState("")
+	const [decodedToken, setDecodedToken] = useState()
+	const [token, setToken] = useState()
 
 	useEffect(() => {
 		console.log("✅ App()")
@@ -26,7 +28,8 @@ export default function App() {
 			.then(r => { 
 				setToken(r.data.token)
 				setDecodedToken(jwt_decode(r.data.token)); 
-				console.log(r.data.token) 
+				// console.log(r.data.token) 
+				console.log('%cLogged in!', 'color: lime; background-color: darkgreen; padding: 0.5rem;')
 			})
 			.catch(e => { console.log('%c' + e.response.data, 'color: tomato; background-color: darkred; padding: 0.5rem;') })
 

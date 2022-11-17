@@ -21,6 +21,7 @@ export function Teste(props) {
     useEffect(() => {
         console.log("✅ Teste()")
         setToken(props.token)
+        setDecodedToken(props.decodedToken)
     }, [])
 
     useEffect(() => { console.log(token) }, [token])
@@ -36,14 +37,15 @@ export function Teste(props) {
         >
             <div className='row row-cols-1'>
 
+
                 <button
                     className='col btn btn-lg btn-primary mb-3 '
                     onClick={e => {
-                        console.log(token)
+                        console.log(props.token)
                         axios
                             .get(ip + '/vip', {
                                 headers: {
-                                    'Authorization': token
+                                    'Authorization': 'Bearer ' + props.token
                                 }
                             })
                             .then(response => {
