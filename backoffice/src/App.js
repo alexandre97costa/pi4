@@ -13,12 +13,12 @@ const ip = process.env.REACT_APP_IP
 
 export default function App() {
 
-	const [decodedToken, setDecodedToken] = useState()
-	const [token, setToken] = useState()
-
 	useEffect(() => {
 		dev.log("✅ App()")
-		dev.log("%cÉ normal que as mensagens apareçam 2x!", "background-color: brown; color: gold; padding: 0 0.5rem;")
+		dev.log(
+			"%cÉ normal que as mensagens apareçam 2x!",
+			"background-color: brown; color: gold; padding: 0 0.5rem;",
+			"\nhttps://reactjs.org/docs/strict-mode.html")
 
 
 		axios
@@ -27,15 +27,16 @@ export default function App() {
 					email: "email",
 					password: "password"
 				})
-			.then(res => { 
-				setToken(res.data.token)
-				setDecodedToken(jwt_decode(res.data.token)); 
-				localStorage.setItem('utilizador', JSON.stringify(res.data))
+			.then(res => {
+				const token = res.data.token
+				const payload = jwt_decode(res.data.token)
 
-				console.log('%cLogged in!', 'color: lime; background-color: darkgreen; padding: 0.5rem;')
+				localStorage.setItem('utilizador', JSON.stringify(payload))
+				localStorage.setItem('token', token)
+
+				dev.log('%cLogged in!', 'color: lime; background-color: darkgreen; padding: 0.5rem;')
 			})
-			.catch(e => { console.log('%c' + e.response.data, 'color: tomato; background-color: darkred; padding: 0.5rem;') })
-
+			.catch(e => { dev.log('%c' + e, 'color: tomato; background-color: darkred; padding: 0.5rem;') })
 	}, [])
 
 
@@ -44,7 +45,7 @@ export default function App() {
 			<Routes>
 				<Route
 					path="/"
-					element={<Pages.Teste token={token} decodedToken={decodedToken} />}
+					element={<Pages.Teste />}
 				/>
 			</Routes>
 		</Router>

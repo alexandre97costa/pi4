@@ -37,7 +37,7 @@ module.exports = {
 
         // ✅ a partir daqui já verificámos que tudo está bem, siga mandar o token
 
-        dev.log(user)
+        dev.verbose(user)
 
         const token = {
             nome: user.nome,

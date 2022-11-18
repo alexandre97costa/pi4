@@ -9,15 +9,12 @@ class auth {
             .post(ip + '/user/login', { email, password })
             .then(res => {
                 // 🚨 guard clauses
-                if (!res.data.token) { return }
+                if (!res.data.token) { dev.log('O token não veio'); return false }
                 // ✅ all gucci
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('utilizador', JSON.stringify(jwt_decode(res.data.token)))
             })
-            .catch(e => {
-                dev.error(e)
-            })
-
+            .catch(e => { dev.error(e) })
     }
 
     logout() { localStorage.removeItem('utilizador') }

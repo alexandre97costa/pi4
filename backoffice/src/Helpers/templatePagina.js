@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
+import dev from '../Auth/dev';
 
 import { Sidebar } from '../Components/sidebar'
 
 export default function TemplatePagina(props) {
-    useEffect(() => {
-        console.log("✅ TemplatePagina()")
-    }, [])
+    useEffect(() => { dev.log("✅ TemplatePagina()") }, [])
 
     return (
         <div className='container-fluid position-relative'>
