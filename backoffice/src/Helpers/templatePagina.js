@@ -70,11 +70,6 @@ export default function TemplatePagina(props) {
                             </li>
                         </ul>
                     </div>
-
-                    {/* 
-                    {props.userName}
-                    <i className='bi bi-chevron-down'></i>
-                     */}
                 </div>
             </div>
         </div>

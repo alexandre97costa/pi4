@@ -1,4 +1,5 @@
 
+// 
 class dev {
     error(e) {
         if (process.env.REACT_APP_MODE === 'dev') {

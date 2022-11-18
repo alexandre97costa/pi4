@@ -16,9 +16,12 @@ let agente_turistico = [
 
 export function Teste(props) {
 
+    const [token, setToken] = useState('')
+
 
     useEffect(() => {
         dev.log("✅ Teste()")
+        setToken(localStorage.getItem('token'))
     }, [])
 
     return (
@@ -29,29 +32,6 @@ export function Teste(props) {
             selected={0}
             title={"Olá, Joaquim!"}
         >
-            <div className='row row-cols-4'>
-
-
-
-
-                <button
-                    className='col btn btn-lg btn-primary mb-3 '
-                    onClick={e => {
-                        console.log(props.token)
-                        axios
-                            .get(ip + '/vip', {
-                                headers: {
-                                    'Authorization': 'Bearer ' + props.token
-                                }
-                            })
-                            .then(response => {
-                                console.log('vip response', response)
-                            })
-                    }}
-                >
-                    Entrar na zona vip
-                </button>
-            </div>
             <Main />
         </TemplatePagina>
     );

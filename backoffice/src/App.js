@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Navigate, BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import auth from './Auth/auth.service';
 import axios from 'axios'
 import jwt_decode from "jwt-decode";
 import dev from './Auth/dev';
@@ -13,6 +14,9 @@ const ip = process.env.REACT_APP_IP
 
 export default function App() {
 
+	const [login, setLogin] = useState(!!auth.getCurrentUser() ?? false)
+	useEffect(() => { dev.log('login: ' + login) }, [login])
+
 	useEffect(() => {
 		dev.log("✅ App()")
 		dev.log(
@@ -20,32 +24,20 @@ export default function App() {
 			"background-color: brown; color: gold; padding: 0 0.5rem;",
 			"\nhttps://reactjs.org/docs/strict-mode.html")
 
+		auth.login("email", "password")
 
-		axios
-			.post(ip + '/user/login',
-				{
-					email: "email",
-					password: "password"
-				})
-			.then(res => {
-				const token = res.data.token
-				const payload = jwt_decode(res.data.token)
-
-				localStorage.setItem('utilizador', JSON.stringify(payload))
-				localStorage.setItem('token', token)
-
-				dev.log('%cLogged in!', 'color: lime; background-color: darkgreen; padding: 0.5rem;')
-			})
-			.catch(e => { dev.log('%c' + e, 'color: tomato; background-color: darkred; padding: 0.5rem;') })
 	}, [])
 
+	function ProtectedRoute({ path, children }) {
+		return login ? children : <Navigate to='/login' />
+	}
 
 	return (
 		<Router>
 			<Routes>
+				
 				<Route
-					path="/"
-					element={<Pages.Teste />}
+					path="/" element={<Pages.Teste />}
 				/>
 			</Routes>
 		</Router>
