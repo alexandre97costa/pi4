@@ -1,5 +1,6 @@
 package pi4.main
 
+import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
@@ -9,10 +10,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val pontoInteresse1 = PontoInteresse("Jardim das mães", "jardim", "local", "4.2", "20 pts")
-        val pontoInteresse2 = PontoInteresse("Palacio do gelo", "shopping", "local", "3.1", "10 pts")
-        val pontoInteresse3 = PontoInteresse("Forum viseu", "shopping", "local", "5", "120 pts")
-        val pontoInteresse4 = PontoInteresse("Agraria", "escola", "local", "1.6", "15 pts")
+        val image = "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit"
+
+        val pontoInteresse1 = PontoInteresse( image, "Jardim das mães", "jardim", "local", "4.2", "20 pts")
+        val pontoInteresse2 = PontoInteresse( image, "Palacio do gelo", "shopping", "local", "3.1", "10 pts")
+        val pontoInteresse3 = PontoInteresse( image, "Forum viseu", "shopping", "local", "5", "120 pts")
+        val pontoInteresse4 = PontoInteresse( image, "Agraria", "escola", "local", "1.6", "15 pts")
 
         var array: ArrayList<PontoInteresse> = ArrayList()
 

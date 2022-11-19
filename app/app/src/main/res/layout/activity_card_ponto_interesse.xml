@@ -9,7 +9,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:paddingStart="16dp"
@@ -35,8 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="194dp"
                 android:contentDescription="media"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/jardim_maes" />
+                android:scaleType="centerCrop" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -51,7 +50,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
-                        android:layout_width="250dp"
+                        android:layout_width="220dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="16dp">

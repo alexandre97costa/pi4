@@ -1,6 +1,8 @@
 package pi4.main
 
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +10,9 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.getSystemService
+import androidx.core.net.toUri
+import java.net.URI
+import java.util.logging.Level.parse
 
 class SetAdapterCard(private val context: Context, private val data:ArrayList<PontoInteresse>): BaseAdapter() {
 
@@ -29,7 +34,7 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
         val rowView = inflater.inflate(R.layout.activity_card_ponto_interesse, parent, false)
 
         //Variaveis do layout
-        //val imagemPontoInteresse = rowView.findViewById<ImageView>(R.id.imagemPontoInteresse)
+        val imagemPontoInteresse = rowView.findViewById<ImageView>(R.id.imagemPontoInteresse)
         val pontoInteresse = rowView.findViewById<TextView>(R.id.pontoInteresse)
         val categoria = rowView.findViewById<TextView>(R.id.categoria)
         val local = rowView.findViewById<TextView>(R.id.local)
@@ -39,7 +44,13 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
         //Elemento do array
         val recipe = getItem(position) as PontoInteresse
 
-        //imagemPontoInteresse. = recipe.urlImagem
+        imagemPontoInteresse.contentDescription = recipe.pontoInteresse
+
+        val uri: Uri = recipe.imageUrl.toUri()
+
+        imagemPontoInteresse.setImageURI(null)
+        imagemPontoInteresse.setImageURI(uri)
+
         pontoInteresse.text = recipe.pontoInteresse
         categoria.text = recipe.categoria
         local.text = recipe.local
