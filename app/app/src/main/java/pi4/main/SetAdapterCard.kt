@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.getSystemService
 import androidx.core.net.toUri
+import com.squareup.picasso.Picasso
 import java.net.URI
 import java.util.logging.Level.parse
 
@@ -46,10 +47,8 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
 
         imagemPontoInteresse.contentDescription = recipe.pontoInteresse
 
-        val uri: Uri = recipe.imageUrl.toUri()
-        
-        imagemPontoInteresse.setImageURI(null)
-        imagemPontoInteresse.setImageURI(uri)
+
+        Picasso.get().load(recipe.imageUrl).into(imagemPontoInteresse)
 
         pontoInteresse.text = recipe.pontoInteresse
         categoria.text = recipe.categoria
