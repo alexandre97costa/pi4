@@ -47,7 +47,7 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
         imagemPontoInteresse.contentDescription = recipe.pontoInteresse
 
         val uri: Uri = recipe.imageUrl.toUri()
-
+        
         imagemPontoInteresse.setImageURI(null)
         imagemPontoInteresse.setImageURI(uri)
 
