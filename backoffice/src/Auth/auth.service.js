@@ -6,8 +6,8 @@ const ip = process.env.REACT_APP_IP
 class auth {
     
     // tenta fazer login
-    login(email, password) {
-        axios
+    async login(email, password) {
+        return axios
             .post(ip + '/user/login', { email, password })
             .then(res => {
 
@@ -22,6 +22,7 @@ class auth {
                 localStorage.setItem('token', token)
 
                 dev.log('%cLogged in!', 'color: lime; background-color: darkgreen; padding: 0.5rem;')
+                return true
             })
             .catch(e => { 
                 try {
@@ -29,6 +30,7 @@ class auth {
                 } catch {
                     dev.log(e)
                 }
+                return false
             })
     }
 
@@ -47,8 +49,5 @@ class auth {
         const exp = JSON.parse(localStorage.getItem('utilizador'))?.exp ?? 0
         return now < exp
     }
-
-    // todo: isLoginValid() tem que ver a validade do token
-    // todo: getUserType() tem que ir buscar o TipoDeUtilizador do user 
 }
 export default new auth();

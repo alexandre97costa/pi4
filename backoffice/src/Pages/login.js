@@ -1,25 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import auth from '../Auth/auth.service';
 
+const ip = process.env.REACT_APP_IP;
 export default function Login() {
+    
+    const navigate = useNavigate()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    async function submit() {
+        await auth.login(email, password) ? navigate('/') : console.log('nope')
+    }
+
+    // useEffect(() => {
+    //     auth.valid() ? navigate('/') : console.log('need to login. valid? ', auth.valid())
+    // }, [])
+
     return (
         <>
             <div className='container-fluid bg-primary text-light '>
                 <div className='row vh-100 d-flex align-items-center justify-content-center'>
-                    <div className='col-4 bg-dark border border-secondary p-4 rounded-4'>
-                        <form className=''>
-                            <div className='h3 mb-3'>Login</div>
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control rounded-3 bg-dark border border-secondary" id="floatingInput" placeholder="name@example.com" />
-                                <label htmlFor="floatingInput">Email address</label>
+                    <div className='col-4 bg-white text-dark shadow p-4 rounded-4'>
+                        <form className='' >
+                            <div className='h3 mb-4'>Back Office</div>
+                            <div className="form-floating mb-4">
+                                <input
+                                    id="input-email"
+                                    type="text" // ! trocar para email mais tarde
+                                    className="form-control rounded-3"
+                                    placeholder="name@example.com"
+                                    onChange={e => { setEmail(e.target.value) }}
+                                />
+                                <label htmlFor="input-email">Email</label>
                             </div>
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control rounded-3 bg-dark border border-secondary" id="floatingInput" placeholder="name@example.com" />
-                                <label htmlFor="floatingInput">Password</label>
+                            <div className="form-floating mb-4">
+                                <input
+                                    id="input-password"
+                                    type="password"
+                                    className="form-control rounded-3"
+                                    placeholder="secret!"
+                                    onChange={e => { setPassword(e.target.value)}}
+                                />
+                                <label htmlFor="input-password">Password</label>
                             </div>
                             <button
-                                className='btn btn-lg btn-primary w-100 text-dark'
+                                id='btn-submit'
+                                type='button'
+                                className='btn btn-lg btn-primary w-100 shadow'
+                                onClick={e => submit()}
                             >
-                            Entrar
+                                Login
                             </button>
 
                         </form>

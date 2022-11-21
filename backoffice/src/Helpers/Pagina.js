@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../Auth/auth.service';
 import dev from '../Auth/dev';
 
 import { Sidebar } from '../Components/sidebar'
 
-export default function TemplatePagina(props) {
-    useEffect(() => { dev.log("✅ TemplatePagina()") }, [])
+export default function Pagina(props) {
+    const navigate = useNavigate()
+    useEffect(() => { dev.log("✅ Pagina()") }, [])
 
     return (
         <div className='container-fluid position-relative'>
@@ -42,10 +44,13 @@ export default function TemplatePagina(props) {
                                 </Link>
                             </li>
                             <li>
-                                <Link className="dropdown-item rounded-3" path="">
+                                <button onClick={e => {
+                                    auth.logout();
+                                    navigate('/login')
+                                }} className="dropdown-item rounded-3" path="">
                                     <i className='bi bi-door-open me-2'></i>
                                     <span>Logout</span>
-                                </Link>
+                                </button>
                             </li>
 
                             <li><hr className='dropdown-divider' /></li>
