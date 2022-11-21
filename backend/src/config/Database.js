@@ -20,14 +20,14 @@ const sequelize = new Sequelize(
                         'uma-cena-qualquer'
                     ]
                     if (!ignoreModels.includes(model.constructor.name)) {
-                        console.log('\x1b[37m\x1b[46m ' + model.constructor.name + '(#' + model.id + ') criado \x1b[0m ')
+                        console.log('\x1b[37m\x1b[46m ' + model.constructor.name + ' #' + model.id + ' criado \x1b[0m ')
                     }
                 },
                 afterUpdate: model => {
-                    console.log('\x1b[37m\x1b[43m ' + model.constructor.name + '(#' + model.id + ') atualizado \x1b[0m ')
+                    console.log('\x1b[37m\x1b[43m ' + model.constructor.name + ' #' + model.id + ' atualizado \x1b[0m ')
                 },
                 afterDestroy: model => {
-                    console.log('\x1b[37m\x1b[41m ' + model.constructor.name + '(#' + model.id + ') eliminado ⚠ \x1b[0m ')
+                    console.log('\x1b[37m\x1b[41m ' + model.constructor.name + ' #' + model.id + ' eliminado ⚠ \x1b[0m ')
                 }
             }
         }
@@ -56,14 +56,13 @@ const models = [
     require('../model/utilizador'),
     require('../model/voucher')
 ]
-// define as tabelas todas
+// define as tabelas todas (ou seja, cria-as)
 for (const model of models) {
     model(sequelize)
 }
 
 // depois de termos a certeza que as tabelas existem todas,
-// fazemos as relações todas
+// fazemos as relações
 applyExtraSetup(sequelize);
-
 
 module.exports = sequelize 
