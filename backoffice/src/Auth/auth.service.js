@@ -4,6 +4,7 @@ import dev from './dev'
 const ip = process.env.REACT_APP_IP
 
 class auth {
+    
     // tenta fazer login
     login(email, password) {
         axios
@@ -22,7 +23,13 @@ class auth {
 
                 dev.log('%cLogged in!', 'color: lime; background-color: darkgreen; padding: 0.5rem;')
             })
-            .catch(e => { dev.log('%c' + e.response.data.message, 'color: tomato; background-color: darkred; padding: 0.5rem;') })
+            .catch(e => { 
+                try {
+                    dev.log('%c' + e.response.data.message, 'color: tomato; background-color: darkred; padding: 0.5rem;') 
+                } catch {
+                    dev.log(e)
+                }
+            })
     }
 
     // para quando os pedidos axios precisam de auth headers
@@ -34,6 +41,12 @@ class auth {
 
     logout() { localStorage.removeItem('utilizador') }
     getCurrentUser() { return JSON.parse(localStorage.getItem('utilizador')) }
+
+    valid() {
+        const now = Math.floor(Date.now() / 1000)
+        const exp = JSON.parse(localStorage.getItem('utilizador'))?.exp ?? 0
+        return now < exp
+    }
 
     // todo: isLoginValid() tem que ver a validade do token
     // todo: getUserType() tem que ir buscar o TipoDeUtilizador do user 

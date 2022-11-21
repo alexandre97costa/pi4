@@ -16,7 +16,11 @@ app.use(cors());
 app.use(express.json());
 // log dos pedidos todos que o servidor recebe
 app.use((req, res, next) => {
-    console.log('\x1b[37m\x1b[42m ' + req.method + ' \x1b[0m ' + req.url);
+    if (req.url === '/user/login') {
+        console.log('\x1b[37m\x1b[42m ' + req.method + ' \x1b[0m ' + req.url + ' \x1b[30m👀 ' + req.body.email + '\x1b[0m');
+    } else {
+        console.log('\x1b[37m\x1b[42m ' + req.method + ' \x1b[0m ' + req.url);
+    }
     next()
 });
 // validação jwt a tudo menos /login e /recuperar-password
@@ -24,9 +28,8 @@ app.use(
     validate_jwt({
         secret: process.env.JWT_SECRET,
         algorithms: [process.env.JWT_ALGORITHM],
-    }).unless({ path: ['/login', '/recuperar-password'] })
+    }).unless({ path: ['/user/login', '/recuperar-password'] })
 );
-
 
 //* Rotas
 app.use('/exemplo', exemploRoute)

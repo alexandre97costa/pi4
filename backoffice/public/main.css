@@ -54,3 +54,9 @@
     outline: 0;
     box-shadow: var(--pi4-primary-box-shadow);
 }
+
+
+/* background */
+.bg-primary {
+    background-color: var(--pi4-primary-transparent)!important;
+}
