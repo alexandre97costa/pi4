@@ -4,7 +4,7 @@ import dev from '../Auth/dev';
 import { Sidebar } from '../Components/sidebar'
 import User from '../Components/user'
 
-export default function Pagina(props) {
+export default function Page(props) {
     useEffect(() => { dev.log("✅ Pagina()") }, [])
 
     return (

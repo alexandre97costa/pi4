@@ -4,9 +4,10 @@ import auth from './Auth/auth.service';
 import dev from './Auth/dev';
 
 //Exportação de todas as páginas feitas
-import Pagina from './Helpers/Pagina';
+import Page from './Helpers/Page';
 import Pages from './Pages/index'
 
+const LOGIN_OVERRIDE = process.env.REACT_APP_LOGIN_OVERRIDE
 let agente_turistico = [
 	{ icon: "speedometer2", text: "Dashboard", path: "/" },
 	{ icon: "geo-alt", text: "Pontos de Interesse", path: "/teste" },
@@ -28,7 +29,7 @@ export default function App() {
 
 	function ProtectedRoute({ children }) {
 		const location = useLocation()
-		return auth.valid() ?
+		return auth.valid() || !!LOGIN_OVERRIDE ?
 			children :
 			<Navigate to={'/login'} state={{ from: location.pathname }} />
 	}
@@ -36,13 +37,12 @@ export default function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-
-				<Route path='/login' element={<Pages.Login />} />
+				<Route exact path='/login' element={<Pages.Login />} />
 
 				<Route
 					path='/'
 					element={
-						<Pagina
+						<Page
 							userType={"Agente Turístico"}
 							userName={"Joaquim"}
 							menu={agente_turistico}
@@ -50,14 +50,14 @@ export default function App() {
 							title={"Olá, Joaquim!"}
 						>
 							<Pages.Teste />
-						</Pagina>
+						</Page>
 					}
 				/>
 				<Route
 					path='/teste'
 					element={
 						<ProtectedRoute>
-							<Pagina
+							<Page
 								userType={"Agente Turístico"}
 								userName={"Joaquim"}
 								menu={agente_turistico}
@@ -65,7 +65,7 @@ export default function App() {
 								title={"Olá, Joaquim!"}
 							>
 								<Pages.Teste />
-							</Pagina>
+							</Page>
 						</ProtectedRoute>
 					}
 				/>
