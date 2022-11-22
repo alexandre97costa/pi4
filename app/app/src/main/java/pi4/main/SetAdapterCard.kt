@@ -47,7 +47,6 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
 
         imagemPontoInteresse.contentDescription = recipe.pontoInteresse
 
-
         Picasso.get().load(recipe.imageUrl).into(imagemPontoInteresse)
 
         pontoInteresse.text = recipe.pontoInteresse
