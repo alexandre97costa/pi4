@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import auth from '../Auth/auth.service';
-import dev from '../Auth/dev';
+import auth from '../../Auth/auth.service';
+import dev from '../../Auth/dev';
 
 export default function Login(props) {
     

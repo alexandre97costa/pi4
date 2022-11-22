@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Navigate, BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import auth from './Auth/auth.service';
-import axios from 'axios'
-import jwt_decode from 'jwt-decode';
 import dev from './Auth/dev';
 
 //Exportação de todas as páginas feitas
 import Pagina from './Helpers/Pagina';
 import Pages from './Pages/index'
-
-const ip = process.env.REACT_APP_IP
 
 let agente_turistico = [
 	{ icon: "speedometer2", text: "Dashboard", path: "/" },
