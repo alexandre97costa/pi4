@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import auth from '../Auth/auth.service';
+import auth from '../../Auth/auth.service';
 
 const ip = process.env.REACT_APP_IP;
 export default function Login() {
