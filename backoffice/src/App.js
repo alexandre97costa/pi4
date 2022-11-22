@@ -12,10 +12,10 @@ import Pages from './Pages/index'
 const ip = process.env.REACT_APP_IP
 
 let agente_turistico = [
-    { icon: "speedometer2", text: "Dashboard", path: "/" },
-    { icon: "geo-alt", text: "Pontos de Interesse", path: "/teste" },
-    { icon: "calendar4-event", text: "Eventos", path: "/" },
-    { icon: "gift", text: "Recompensas", path: "/" }
+	{ icon: "speedometer2", text: "Dashboard", path: "/" },
+	{ icon: "geo-alt", text: "Pontos de Interesse", path: "/teste" },
+	{ icon: "calendar4-event", text: "Eventos", path: "/" },
+	{ icon: "gift", text: "Recompensas", path: "/" }
 ]
 
 // todo: colocar o payload do jwt no local storage (pra ficar acessivel a todas as paginas)
@@ -46,6 +46,21 @@ export default function App() {
 				<Route
 					path='/'
 					element={
+						<Pagina
+							userType={"Agente Turístico"}
+							userName={"Joaquim"}
+							menu={agente_turistico}
+							selected={0}
+							title={"Olá, Joaquim!"}
+						>
+							<Pages.Teste />
+						</Pagina>
+					}
+				/>
+
+				<Route
+					path='/teste'
+					element={
 						<ProtectedRoute>
 							<Pagina
 								userType={"Agente Turístico"}
@@ -59,14 +74,7 @@ export default function App() {
 						</ProtectedRoute>
 					}
 				/>
-				<Route
-					path='/teste'
-					element={
-						<ProtectedRoute>
-							<Pages.Teste />
-						</ProtectedRoute>
-					}
-				/>
+				
 				<Route
 					path="/exemplo"
 					element={<Pages.Exemplo />}
