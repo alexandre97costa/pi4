@@ -8,6 +8,17 @@
     <item
         android:id="@+id/page_2"
         android:enabled="true"
-        android:icon="@drawable/location_notfill"
+        android:icon="@drawable/ticke_notfill"
         android:title="recompensas" />
+    <item
+        android:id="@+id/page_3"
+        android:enabled="true"
+        android:icon="@drawable/qr"
+        android:title="qr code" />
+
+    <item
+        android:id="@+id/page_4"
+        android:enabled="true"
+        android:icon="@drawable/account_notfill"
+        android:title="conta" />
 </menu>
