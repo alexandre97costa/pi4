@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/cardColor">
+    android:background="@color/backgroundColor">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="25dp"
-            android:background="@color/cardColor"
+            android:background="@color/backgroundColor"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/listViewTeste"
             app:layout_constraintEnd_toEndOf="parent"

@@ -11,5 +11,5 @@
     <color name="greenPrincipal">#80B155</color>
     <color name="gray">#C4C6C2</color>
     <color name="red">#A12820</color>
-    <color name="cardColor">#FAFAFF</color>
+    <color name="backgroundColor">#FAFAFF</color>
 </resources>

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
         android:layout_width="0dp"
@@ -61,7 +60,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans_semibold"
-                            android:text="Jardim das mães"
+                            android:text="pontoInteresse"
                             android:textColor="@color/black"
                             android:textSize="20sp" />
 
@@ -71,7 +70,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:fontFamily="@font/open_sans"
-                            android:text="Jardim"
+                            android:text="categoria"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
@@ -82,7 +81,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:fontFamily="@font/open_sans_light"
-                            android:text="Largo Maj. Teles 6, 3500-212 Viseu "
+                            android:text="local"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
@@ -152,7 +151,7 @@
                                     android:paddingTop="3dp"
                                     android:paddingEnd="5dp"
                                     android:paddingBottom="3dp"
-                                    android:text="10 pts"
+                                    android:text="x pts"
                                     android:textAlignment="center"
                                     android:textColor="@color/white"
                                     android:textSize="14dp" />
