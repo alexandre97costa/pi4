@@ -1,0 +1,160 @@
+openapi: 3.0.3
+info:
+  title: The Green Trip - Documentação de API
+  description: |-
+    Documentação da API construída para o projeto 'The Green Trip'. Construído segundo a OpenAPI 3.0. Mais sobre a OpenAPI e 
+    Swagger em [https://swagger.io](https://swagger.io).
+  version: 0.0.1
+servers:
+  - url: http://localhost:4001/
+tags:
+  - name: Utilizador
+    description: Operações sobre os utilizadores da aplicação
+  - name: Ponto de Interesse
+    description: Tudo sobre o modelo principal do negócio
+  - name: Evento
+    description: Operações relacionadas com os eventos
+  - name: Reserva
+    description: Acesso às reservas criadas na aplicação
+  - name: Recompensa
+    description: Controlo sobre as recompensas 
+paths:
+  /utilizador:
+    post:
+      tags:
+        - Utilizador
+      summary: Criar utilizador
+      description: |
+        Criar utilizador
+      operationId: create_user
+      responses:
+        default:
+          description: 'Success'
+components:
+  parameters:
+    id:
+      in: path
+      name: id
+      schema:
+        type: integer
+        minimum: 1
+      required: true
+      description: Correspondes to any id, whether from a single user, a specific product, or a category
+  responses:
+    unauthorized_error:
+      description: Access token is missing or invalid
+  schemas:
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+          example: 437 Lytton
+        city:
+          type: string
+          example: Palo Alto
+        district:
+          type: string
+          example: CA
+        country:
+          type: string
+          example: Portugal
+        zip:
+          type: string
+          example: '94301'
+      xml:
+        name: address
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        name:
+          type: string
+          example: Fruit
+      xml:
+        name: category
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: Joaquim Barreiros
+        email:
+          type: string
+          example: joquim.b@email.com
+        password:
+          type: string
+          example: '12345'
+        phone:
+          type: string
+          example: '+351 987 654 321'
+        isManager:
+          type: boolean
+          example: false
+      xml:
+        name: customer
+    Product:
+      required:
+        - id
+        - name
+        - category
+        - status
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        name:
+          type: string
+          example: banana
+        category:
+          $ref: '#/components/schemas/Category'
+        photoUrls:
+          type: array
+          xml:
+            wrapped: true
+          items:
+            type: string
+            xml:
+              name: photoUrl
+        status:
+          type: string
+          description: product status in the store
+          enum:
+            - available
+            - pending
+            - sold
+      xml:
+        name: product
+    Subscription:
+      required:
+        - id
+        - userid
+        - productid
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        userid:
+          $ref: '#/components/schemas/User'
+        productid:
+          $ref: '#/components/schemas/Product'
+      xml:
+        name: subscription
+  securitySchemes:
+    token:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - token: []

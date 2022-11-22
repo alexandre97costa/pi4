@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon --trace-warnings src/app.js"
+    "start": "set MODE=prod&& node -e console.log(process.env.MODE)&& node src/app.js",
+    "dev": "set MODE=dev&& node -e console.log(process.env.MODE)&& nodemon --trace-warnings src/app.js"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -13,6 +13,7 @@
     "debug": "~2.6.9",
     "dotenv": "^16.0.2",
     "express": "~4.16.1",
+    "express-jwt": "^7.7.7",
     "http-errors": "~1.6.3",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.7.8",

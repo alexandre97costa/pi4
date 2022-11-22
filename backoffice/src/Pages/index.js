@@ -1,4 +1,4 @@
-import { Teste } from "./Teste/index"
-import { Exemplo } from "./Exemplo/index"
+import Teste from "./teste"
+import Login from "./login"
 
-export default { Teste, Exemplo }
+export default { Teste }
