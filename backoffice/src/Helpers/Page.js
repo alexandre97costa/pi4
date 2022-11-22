@@ -4,6 +4,13 @@ import dev from '../Auth/dev';
 import { Sidebar } from '../Components/sidebar'
 import User from '../Components/user'
 
+let agente_turistico = [
+	{ icon: "speedometer2", text: "Dashboard", path: "/" },
+	{ icon: "geo-alt", text: "Pontos de Interesse", path: "/teste" },
+	{ icon: "calendar4-event", text: "Eventos", path: "/" },
+	{ icon: "gift", text: "Recompensas", path: "/" }
+]
+
 export default function Page(props) {
     useEffect(() => { dev.log("✅ Pagina()") }, [])
 
@@ -11,9 +18,9 @@ export default function Page(props) {
         <div className='container-fluid position-relative'>
             <div className='row'>
                 <Sidebar
-                    userType={props.userType}
-                    menu={props.menu}
-                    selected={props.selected}
+                    userType={"Agente Turístico"}
+                    menu={agente_turistico}
+                    selected={0}
                 />
 
                 {/* Content */}
@@ -21,14 +28,14 @@ export default function Page(props) {
                     <div className='container-fluid py-3'>
                         <div className='row mb-4'>
                             <div className='display-6'>
-                                {props.title}
+                                {"Olá, Joaquim!"}
                             </div>
                         </div>
                         {props.children}
                     </div>
                 </div>
 
-                <User userName={props.userName}/>
+                <User userName={"Joaquim"}/>
             </div>
         </div>
     )

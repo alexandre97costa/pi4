@@ -8,12 +8,7 @@ import Page from './Helpers/Page';
 import Pages from './Pages/index'
 
 const LOGIN_OVERRIDE = process.env.REACT_APP_LOGIN_OVERRIDE
-let agente_turistico = [
-	{ icon: "speedometer2", text: "Dashboard", path: "/" },
-	{ icon: "geo-alt", text: "Pontos de Interesse", path: "/teste" },
-	{ icon: "calendar4-event", text: "Eventos", path: "/" },
-	{ icon: "gift", text: "Recompensas", path: "/" }
-]
+
 
 // todo: colocar o payload do jwt no local storage (pra ficar acessivel a todas as paginas)
 
@@ -42,13 +37,7 @@ export default function App() {
 				<Route
 					path='/'
 					element={
-						<Page
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={"Olá, Joaquim!"}
-						>
+						<Page>
 							<Pages.Teste />
 						</Page>
 					}
@@ -57,13 +46,7 @@ export default function App() {
 					path='/teste'
 					element={
 						<ProtectedRoute>
-							<Page
-								userType={"Agente Turístico"}
-								userName={"Joaquim"}
-								menu={agente_turistico}
-								selected={0}
-								title={"Olá, Joaquim!"}
-							>
+							<Page>
 								<Pages.Teste />
 							</Page>
 						</ProtectedRoute>
