@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../Auth/auth.service';
 import dev from '../Auth/dev';
 
-const ip = process.env.REACT_APP_IP;
 export default function Login(props) {
     
     const navigate = useNavigate()
@@ -14,12 +12,11 @@ export default function Login(props) {
     const [password, setPassword] = useState('')
 
     async function submit() {
+        dev.log('Attempting to login...')
         let login = await auth.login(email, password)
-
         login.success ? navigate(previousPage) : alert(login.message)
     }
 
-    // useEffect(() => { }, [])
 
     return (
         <>
