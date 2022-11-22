@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/menu"
         app:labelVisibilityMode="unlabeled"
-        android:background="@color/greenPrincipal"
+        android:background="@drawable/menu_style"
         app:itemIconSize="35dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
