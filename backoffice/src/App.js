@@ -69,6 +69,20 @@ export default function App() {
 						</ProtectedRoute>
 					}
 				/>
+				<Route
+					path='/gerirVantagensApp'
+					element={
+						<Pagina
+							userType={"Agente Turístico"}
+							userName={"Joaquim"}
+							menu={agente_turistico}
+							selected={0}
+							title={"Olá, Joaquim!"}
+						>
+							<Pages.GerirVantagensApp />
+						</Pagina>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);

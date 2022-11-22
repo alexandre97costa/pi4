@@ -1,5 +1,8 @@
 import Teste from "./Teste/teste"
 import Login from "./Login/login"
 
-const Pages = { Teste, Login }
+import GerirMicrosite from "./GerirMicrosite/GerirMicrosite/gerirMicrosite"
+import GerirVantagensApp from "./GerirMicrosite/GerirVantagensApp/gerirVantagensApp"
+
+const Pages = { Teste, Login, GerirMicrosite, GerirVantagensApp }
 export default Pages
