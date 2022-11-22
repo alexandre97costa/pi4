@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ListView
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -13,7 +14,6 @@ class MainActivity : AppCompatActivity() {
 
         callAdatperCards()
         detectMenu()
-
     }
 
     fun callAdatperCards () {
@@ -45,20 +45,21 @@ class MainActivity : AppCompatActivity() {
 
     fun detectMenu() {
 
-        val menu: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        val nav: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        menu.setOnItemSelectedListener {
-
-            when(it.itemId) {
-                R.id.recompensaMenu -> Toast.makeText(this, "Recompensa", Toast.LENGTH_LONG)
-
-                else -> {
-
+        nav.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.pontoInteresseMenu -> {
+                    Toast.makeText(this, "pontoInteresseMenu", Toast.LENGTH_LONG)
+                    true
                 }
+                R.id.recompensaMenu -> {
+                    Toast.makeText(this, "recompensaMenu", Toast.LENGTH_LONG)
+                    true
+                }
+                else -> false
             }
-
-            true
-        }
+        })
 
     }
 }
