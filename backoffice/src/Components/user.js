@@ -1,9 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../Auth/auth.service';
 
 export default function User(props) {
+    const navigate = useNavigate()
     return (
-        <div className='col-2 d-flex justify-content-between  position-absolute top-0 end-0  mt-3 me-4 py-2 px-3 '>
+        <div className='col-2 d-flex justify-content-between  position-absolute top-0 end-0  mt-3 me-4 py-2 px-3 ' >
             <div className="dropdown w-100">
                 <button className="btn btn-light bg-white border rounded-4 shadow dropdown-toggle d-flex justify-content-between align-items-center w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <span>{props.userName}</span>
@@ -16,11 +18,16 @@ export default function User(props) {
                         </Link>
                     </li>
                     <li>
-                        <Link className="dropdown-item rounded-3" path="">
+                        <button onClick={e => {
+                            auth.logout();
+                            navigate('/login')
+                        }} className="dropdown-item rounded-3" path="">
                             <i className='bi bi-door-open me-2'></i>
                             <span>Logout</span>
-                        </Link>
+                        </button>
                     </li>
+
+                    
 
                     <li><hr className='dropdown-divider' /></li>
                     <li><h6 className="dropdown-header text-danger">Só pra desenvolvimento</h6></li>
@@ -44,11 +51,6 @@ export default function User(props) {
                     </li>
                 </ul>
             </div>
-
-            {/* 
-        {props.userName}
-        <i className='bi bi-chevron-down'></i>
-         */}
         </div>
     );
 }

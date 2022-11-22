@@ -3,7 +3,7 @@ var sequelize = require('../config/Database')
 const { Op } = require("sequelize")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const { dev:devClass } = require('../config/dev')
+const { dev:devClass } = require('../_dev/dev')
 const dev = new devClass;
 require('dotenv').config()
 // * Como usar o Op:

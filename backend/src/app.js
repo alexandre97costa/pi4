@@ -7,6 +7,8 @@ app.set('port', process.env.PORT || 4001)
 const port = app.get('port')
 const sequelize = require('./config/Database')
 sequelize.sync()
+const { dev:devClass } = require('./_dev/dev')
+const dev = new devClass;
 
 const exemploRoute = require('./routes/exemplo.js')
 const userRoutes = require('./routes/user.js')
@@ -16,11 +18,10 @@ app.use(cors());
 app.use(express.json());
 // log dos pedidos todos que o servidor recebe
 app.use((req, res, next) => {
+    console.log('\x1b[37m\x1b[42m ' + req.method + ' \x1b[0m ' + req.url);
     if (req.url === '/user/login') {
-        console.log('\x1b[37m\x1b[42m ' + req.method + ' \x1b[0m ' + req.url + ' \x1b[30m👀 ' + req.body.email + '\x1b[0m');
-    } else {
-        console.log('\x1b[37m\x1b[42m ' + req.method + ' \x1b[0m ' + req.url);
-    }
+        dev.log('\x1b[30m👀 ' + req.body.email + '\x1b[0m');
+    } 
     next()
 });
 // validação jwt a tudo menos /login e /recuperar-password
