@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../Auth/auth.service';
+import dev from '../Auth/dev';
 
 const ip = process.env.REACT_APP_IP;
-export default function Login() {
+export default function Login(props) {
     
     const navigate = useNavigate()
+    const location = useLocation()
+    let previousPage =  location.state.from ||  "/"  ;
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     async function submit() {
-        await auth.login(email, password) ? navigate('/') : console.log('nope')
+        let login = await auth.login(email, password)
+
+        login.success ? navigate(previousPage) : alert(login.message)
     }
 
-    // useEffect(() => {
-    //     auth.valid() ? navigate('/') : console.log('need to login. valid? ', auth.valid())
-    // }, [])
+    // useEffect(() => { }, [])
 
     return (
         <>

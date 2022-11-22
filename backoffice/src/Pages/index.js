@@ -1,4 +1,4 @@
 import Teste from "./teste"
 import Login from "./login"
 
-export default { Teste }
+export default { Teste, Login }

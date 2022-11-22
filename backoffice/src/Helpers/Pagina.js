@@ -28,7 +28,7 @@ export default function Pagina(props) {
                     </div>
                 </div>
 
-                <User />
+                <User userName={props.userName}/>
             </div>
         </div>
     )

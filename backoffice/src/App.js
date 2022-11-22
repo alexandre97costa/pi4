@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate, BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Navigate, BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import auth from './Auth/auth.service';
 import axios from 'axios'
 import jwt_decode from 'jwt-decode';
@@ -12,18 +12,15 @@ import Pages from './Pages/index'
 const ip = process.env.REACT_APP_IP
 
 let agente_turistico = [
-    { icon: "speedometer2", text: "Dashboard", path: "/" },
-    { icon: "geo-alt", text: "Pontos de Interesse", path: "/teste" },
-    { icon: "calendar4-event", text: "Eventos", path: "/" },
-    { icon: "gift", text: "Recompensas", path: "/" }
+	{ icon: "speedometer2", text: "Dashboard", path: "/" },
+	{ icon: "geo-alt", text: "Pontos de Interesse", path: "/teste" },
+	{ icon: "calendar4-event", text: "Eventos", path: "/" },
+	{ icon: "gift", text: "Recompensas", path: "/" }
 ]
 
 // todo: colocar o payload do jwt no local storage (pra ficar acessivel a todas as paginas)
 
 export default function App() {
-
-	const [login, setLogin] = useState(auth.valid())
-	// useEffect(() => { dev.log('login: ' + login) }, [login])
 
 	useEffect(() => {
 		dev.log('✅ App()')
@@ -33,18 +30,35 @@ export default function App() {
 			'\nhttps://reactjs.org/docs/strict-mode.html')
 	}, [])
 
-	function ProtectedRoute({ children, path }) {
-		return login ? children : <Navigate to='/login' />
+	function ProtectedRoute({ children }) {
+		const location = useLocation()
+		return auth.valid() ?
+			children :
+			<Navigate to={'/login'} state={{ from: location.pathname }} />
 	}
 
 	return (
-		<Router>
+		<BrowserRouter>
 			<Routes>
 
 				<Route path='/login' element={<Pages.Login />} />
 
 				<Route
 					path='/'
+					element={
+						<Pagina
+							userType={"Agente Turístico"}
+							userName={"Joaquim"}
+							menu={agente_turistico}
+							selected={0}
+							title={"Olá, Joaquim!"}
+						>
+							<Pages.Teste />
+						</Pagina>
+					}
+				/>
+				<Route
+					path='/teste'
 					element={
 						<ProtectedRoute>
 							<Pagina
@@ -59,20 +73,8 @@ export default function App() {
 						</ProtectedRoute>
 					}
 				/>
-				<Route
-					path='/teste'
-					element={
-						<ProtectedRoute>
-							<Pages.Teste />
-						</ProtectedRoute>
-					}
-				/>
-				<Route
-					path="/exemplo"
-					element={<Pages.Exemplo />}
-				/>
 			</Routes>
-		</Router>
+		</BrowserRouter>
 	);
 }
 
