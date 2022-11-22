@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Navigate, BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Navigate, BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
 import auth from './Auth/auth.service';
 import axios from 'axios'
 import jwt_decode from 'jwt-decode';
@@ -22,9 +22,6 @@ let agente_turistico = [
 
 export default function App() {
 
-	const [login, setLogin] = useState(auth.valid())
-	// useEffect(() => { dev.log('login: ' + login) }, [login])
-
 	useEffect(() => {
 		dev.log('✅ App()')
 		dev.log(
@@ -33,12 +30,15 @@ export default function App() {
 			'\nhttps://reactjs.org/docs/strict-mode.html')
 	}, [])
 
-	function ProtectedRoute({ children, path }) {
-		return login ? children : <Navigate to='/login' />
+	function ProtectedRoute({ children }) {
+		const location = useLocation()
+		return auth.valid() ?
+			children :
+			<Navigate to={'/login'} state={{ from: location.pathname }} />
 	}
 
 	return (
-		<Router>
+		<BrowserRouter>
 			<Routes>
 
 				<Route path='/login' element={<Pages.Login />} />
@@ -57,7 +57,6 @@ export default function App() {
 						</Pagina>
 					}
 				/>
-
 				<Route
 					path='/teste'
 					element={
@@ -74,13 +73,8 @@ export default function App() {
 						</ProtectedRoute>
 					}
 				/>
-				
-				<Route
-					path="/exemplo"
-					element={<Pages.Exemplo />}
-				/>
 			</Routes>
-		</Router>
+		</BrowserRouter>
 	);
 }
 

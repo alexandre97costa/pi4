@@ -1,0 +1,23 @@
+/utilizador
+GET     -> all
+POST    -> create 1 w/ body
+
+/utilizador/:id
+GET     -> 1
+PATCH   -> edit 1 w/ body; check token for same id
+PATCH   -> edit 1 w/ body; only to change type; available to admin
+DELETE  -> 1 with id
+
+/utilizador/:id/pontos
+GET     -> historico de PIs e Eventos por onde o utilizador passou
+
+/ponto_interesse
+GET     -> informação vários PI, só info básica (todos)
+GET     -> informação vários PI, com eventos e reservas (AT)
+POST    -> criar um ponto de interesse (AT)
+DELETE  -> eliminar um ponto de interesse (ADMIN/AT)
+
+/ponto_interesse/:id
+GET     -> informação de um unico PI, com eventos e reservas (todos)
+PATCH   -> editar um ponto de interesse (AT: editar tudo)
+PATCH   -> editar um ponto de interesse (RR: só validar)
