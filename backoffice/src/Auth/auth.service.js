@@ -22,15 +22,16 @@ class auth {
                 localStorage.setItem('token', token)
 
                 dev.log('%cLogged in!', 'color: lime; background-color: darkgreen; padding: 0.5rem;')
-                return true
+                return { success: true, message: 'coise'}
             })
             .catch(e => { 
                 try {
                     dev.log('%c' + e.response.data.message, 'color: tomato; background-color: darkred; padding: 0.5rem;') 
+                    return { success: false, message: e.response.data.message}
                 } catch {
                     dev.log(e)
+                    return { success: false, message: e}
                 }
-                return false
             })
     }
 
