@@ -8,6 +8,7 @@ import GerirEditarFooter from "./GerirMicrosite/GerirEditarFooter/gerirEditarFoo
 import GerirMenu from "./GerirMicrosite/GerirMenu/gerirMenu"
 import GerirHeroBanner from "./GerirMicrosite/GerirHeroBanner/gerirHeroBanner"
 import GerirPublicidadeAgenteTuristico from "./GerirMicrosite/GerirPublicidadeAgenteTuristico/gerirPublicidadeAgenteTuristico"
+import GerirAdicionarCards from "./GerirMicrosite/GerirAdicionarCards/gerirAdicionarCards"
 
-const Pages = { Teste, Login, GerirMicrosite, GerirVantagensApp, GerirDescarregarApp, GerirEditarFooter, GerirMenu, GerirHeroBanner, GerirPublicidadeAgenteTuristico,}
+const Pages = { Teste, Login, GerirMicrosite, GerirVantagensApp, GerirDescarregarApp, GerirEditarFooter, GerirMenu, GerirHeroBanner, GerirPublicidadeAgenteTuristico, GerirAdicionarCards}
 export default Pages
