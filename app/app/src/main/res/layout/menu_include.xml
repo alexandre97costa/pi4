@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.bottomnavigation.BottomNavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_navigation"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/menu_style"
+
+    app:itemIconTint="@drawable/item_menu"
+    app:itemTextColor="@drawable/item_menu"
+    app:menu="@menu/menu"
+    app:labelVisibilityMode="unlabeled"
+    app:itemIconSize="35dp" />

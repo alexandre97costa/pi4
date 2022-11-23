@@ -4,16 +4,24 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
 import android.widget.Toast
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.navigation.NavigationBarView
+import pi4.main.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        callAdatperCards()
+        replaceFragment(FragmentPontoInteresse())
+
         detectMenu()
+        callAdatperCards()
     }
 
     fun callAdatperCards () {
@@ -27,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         val pontoInteresse4 = PontoInteresse( image, "Agraria", "escola", "local", "1.6", "15 pts")
         val pontoInteresse6 = PontoInteresse( image2, "Agraria", "escola", "local", "1.6", "15 pts")
 
-        var array: ArrayList<PontoInteresse> = ArrayList()
+        val array: ArrayList<PontoInteresse> = ArrayList()
 
         array.add(pontoInteresse1)
         array.add(pontoInteresse2)
@@ -44,22 +52,38 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun detectMenu() {
-
-        val nav: BottomNavigationView = findViewById(R.id.bottom_navigation)
-
-        nav.setOnItemSelectedListener(NavigationBarView.OnItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.pontoInteresseMenu -> {
-                    Toast.makeText(this, "pontoInteresseMenu", Toast.LENGTH_LONG)
-                    true
+        binding.includeMenu.bottomNavigation.setOnItemSelectedListener(
+            NavigationBarView.OnItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.pontoInteresseMenu -> {
+                        replaceFragment(FragmentPontoInteresse())
+                        true
+                    }
+                    R.id.recompensaMenu -> {
+                        replaceFragment(FragmentPontoInteresse())
+                        Toast.makeText(this, "recompensaMenu", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    R.id.qrCodeMenu -> {
+                        replaceFragment(FragmentPontoInteresse())
+                        Toast.makeText(this, "qrCodeMenu", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    R.id.contaMenu -> {
+                        replaceFragment(FragmentPontoInteresse())
+                        Toast.makeText(this, "contaMenu", Toast.LENGTH_SHORT).show()
+                        true
+                    }
+                    else -> false
                 }
-                R.id.recompensaMenu -> {
-                    Toast.makeText(this, "recompensaMenu", Toast.LENGTH_LONG)
-                    true
-                }
-                else -> false
             }
-        })
+        )
+    }
 
+    fun replaceFragment(fragment: Fragment) {
+        val fragmentManager:FragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.fragmentContainer, fragment)
+        fragmentTransaction.commit()
     }
 }
