@@ -1,21 +1,22 @@
 package pi4.main
 
-import android.content.res.ColorStateList
-import android.graphics.Bitmap
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.ListView
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
+import android.widget.Toast
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        callAdatperCards()
+        detectMenu()
+
+    }
+
+    fun callAdatperCards () {
         val image = "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit"
         val image2 = "https://blog.emania.com.br/wp-content/uploads/2016/02/direitos-autorais-e-de-imagem.jpg"
 
@@ -40,16 +41,24 @@ class MainActivity : AppCompatActivity() {
         val listView = findViewById<ListView>(R.id.listViewTeste)
 
         listView.adapter = customAdapter
+    }
 
-        val categoria1 = CategoriaLista(image, "teste")
-        val categoria2 = CategoriaLista(image, "teste2")
-        val categoria3 = CategoriaLista(image, "teste3")
-        val categoria4 = CategoriaLista(image, "teste4")
-        val categoria5 = CategoriaLista(image, "teste5")
-        val categoria6 = CategoriaLista(image, "teste6")
+    fun detectMenu() {
 
+        val menu: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        val tab = findViewById<TabLayout>(R.id.tabLayout)
+        menu.setOnItemSelectedListener {
+
+            when(it.itemId) {
+                R.id.recompensaMenu -> Toast.makeText(this, "Recompensa", Toast.LENGTH_LONG)
+
+                else -> {
+
+                }
+            }
+
+            true
+        }
 
     }
 }
