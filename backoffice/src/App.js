@@ -83,6 +83,20 @@ export default function App() {
 						</Pagina>
 					}
 				/>
+				<Route
+					path='/gerirMicrosite'
+					element={
+						<Pagina
+							userType={"Agente Turístico"}
+							userName={"Joaquim"}
+							menu={agente_turistico}
+							selected={0}
+							title={"Gerir Microsite"}
+						>
+							<Pages.GerirMicrosite />
+						</Pagina>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);
