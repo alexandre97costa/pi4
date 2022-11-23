@@ -77,7 +77,7 @@ export default function App() {
 							userName={"Joaquim"}
 							menu={agente_turistico}
 							selected={0}
-							title={"Olá, Joaquim!"}
+							title={"Gerir Microsite"}
 						>
 							<Pages.GerirVantagensApp />
 						</Pagina>
