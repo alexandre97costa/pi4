@@ -9,7 +9,7 @@ export default function GerirVantagensApp(props){
                 <p className='fs-3 mb-5'>Vantagens Aplicação</p>
 
                 <p className='fs-5'>Card introdução</p>
-                <div className='card p-3 mb-5 shadow p-3 mb-5 bg-body rounded'>
+                <div className='card p-3 mb-5 shadow bg-body rounded'>
                     <div className='row p-3'>
                         <div className='col-12 '>
 

@@ -97,6 +97,20 @@ export default function App() {
 						</Pagina>
 					}
 				/>
+				<Route
+					path='/gerirDescarregarApp'
+					element={
+						<Pagina
+							userType={"Agente Turístico"}
+							userName={"Joaquim"}
+							menu={agente_turistico}
+							selected={0}
+							title={"Gerir Microsite"}
+						>
+							<Pages.GerirDescarregarApp />
+						</Pagina>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);
