@@ -111,6 +111,34 @@ export default function App() {
 						</Pagina>
 					}
 				/>
+				<Route
+					path='/gerirEditarFooter'
+					element={
+						<Pagina
+							userType={"Agente Turístico"}
+							userName={"Joaquim"}
+							menu={agente_turistico}
+							selected={0}
+							title={"Gerir Microsite"}
+						>
+							<Pages.GerirEditarFooter />
+						</Pagina>
+					}
+				/>
+				<Route
+					path='/gerirMenu'
+					element={
+						<Pagina
+							userType={"Agente Turístico"}
+							userName={"Joaquim"}
+							menu={agente_turistico}
+							selected={0}
+							title={"Gerir Microsite"}
+						>
+							<Pages.GerirMenu />
+						</Pagina>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);
