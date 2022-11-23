@@ -2,8 +2,6 @@ import React from 'react';
 
 export default function GerirMicrosite() {
     return (
-
-
         <div className='row gx-3'>
             <div className='col-12'>
                 <p className='fs-3 mb-5'> Gerir Microsite</p>

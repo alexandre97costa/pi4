@@ -139,6 +139,34 @@ export default function App() {
 						</Pagina>
 					}
 				/>
+				<Route
+					path='/gerirHeroBanner'
+					element={
+						<Pagina
+							userType={"Agente Turístico"}
+							userName={"Joaquim"}
+							menu={agente_turistico}
+							selected={0}
+							title={"Gerir Microsite"}
+						>
+							<Pages.GerirHeroBanner />
+						</Pagina>
+					}
+				/>
+				<Route
+					path='/gerirPublicidadeAgenteTuristico'
+					element={
+						<Pagina
+							userType={"Agente Turístico"}
+							userName={"Joaquim"}
+							menu={agente_turistico}
+							selected={0}
+							title={"Gerir Microsite"}
+						>
+							<Pages.GerirPublicidadeAgenteTuristico />
+						</Pagina>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);
