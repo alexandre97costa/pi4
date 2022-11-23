@@ -23,8 +23,10 @@ export default function App() {
 	}, [])
 
 	function ProtectedRoute({ children }) {
+		// envia a pagina onde estamos para o login (pra depois voltar praqui)
 		const location = useLocation()
-		return auth.valid() || !!LOGIN_OVERRIDE ?
+		// truques de magia com javascript (weak types ftw)
+		return auth.valid() || !!+LOGIN_OVERRIDE ?
 			children :
 			<Navigate to={'/login'} state={{ from: location.pathname }} />
 	}
