@@ -7,42 +7,16 @@
     android:background="@color/backgroundColor"
     tools:context=".FragmentPontoInteresse">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+    <include
+        android:id="@+id/includedMenuCategoria"
+        layout="@layout/menu_categorias_include"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="25dp"
-        android:background="@color/backgroundColor"
-        android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/listViewTeste"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:tabIconTint="@color/greenPrincipal"
-        app:tabIndicatorAnimationMode="linear"
-        app:tabIndicatorColor="@color/greenPrincipal"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/greenPrincipal"
-        app:tabTextColor="@color/greenPrincipal">
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/location_notfill"
-            android:isScrollContainer="false"
-            android:text="tab1"
-            app:tabTextColor="@color/greenPrincipal" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/location_notfill"
-            android:text="tab2"
-            app:tabTextColor="#000" />
-
-    </com.google.android.material.tabs.TabLayout>
+        app:layout_constraintVertical_bias="0.0"/>
 
     <ListView
         android:id="@+id/listViewTeste"
@@ -55,7 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/includedMenuCategoria" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
