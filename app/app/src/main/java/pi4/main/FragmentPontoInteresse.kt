@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.Toast
+import com.google.android.material.card.MaterialCardView
 
 class FragmentPontoInteresse() : Fragment() {
 
@@ -22,7 +24,7 @@ class FragmentPontoInteresse() : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         callAdatperCards(view)
-        }
+    }
 
     fun callAdatperCards (view: View) {
         val image = "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit"
@@ -43,7 +45,6 @@ class FragmentPontoInteresse() : Fragment() {
         array.add(pontoInteresse4)
         array.add(pontoInteresse6)
         array.add(pontoInteresse5)
-
 
         val customAdapter = SetAdapterCard(requireContext(), array)
 

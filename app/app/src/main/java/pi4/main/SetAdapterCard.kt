@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import com.google.android.material.card.MaterialCardView
 import com.squareup.picasso.Picasso
 
 class SetAdapterCard(private val context: Context, private val data:ArrayList<PontoInteresse>): BaseAdapter() {
@@ -39,16 +41,22 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
         //Elemento do array
         val recipe = getItem(position) as PontoInteresse
 
-        imagemPontoInteresse.contentDescription = recipe.pontoInteresse
-
         Picasso.get().load(recipe.imageUrl).into(imagemPontoInteresse)
-
+        imagemPontoInteresse.contentDescription = recipe.pontoInteresse
         pontoInteresse.text = recipe.pontoInteresse
         categoria.text = recipe.categoria
         local.text = recipe.local
         rating.text = recipe.rating
         score.text = recipe.score
 
+        val card = rowView.findViewById<MaterialCardView>(R.id.card)
+
+        card.setOnClickListener { teste(recipe.pontoInteresse) }
+
         return rowView
+    }
+
+    fun teste(mensagem:String) {
+        Toast.makeText(context, "$mensagem", Toast.LENGTH_SHORT).show()
     }
 }
