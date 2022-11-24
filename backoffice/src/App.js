@@ -50,7 +50,7 @@ export default function App() {
 					path='/listaUtilizador'
 					element={
 						<ProtectedRoute>
-							<Page>
+							<Page PageTitle={'Lista de utilizadores'} PageIcon={'apple'}>
 								<Pages.ListaUtilizador />
 							</Page>
 						</ProtectedRoute>

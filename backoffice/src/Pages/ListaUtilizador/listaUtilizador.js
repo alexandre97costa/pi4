@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default function lista_utilizadores(props){
+export default function ListaUtilizador(props){
 
     return (
        <div className='card'>
