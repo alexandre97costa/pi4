@@ -43,7 +43,16 @@ class auth {
     }
 
     logout() { localStorage.removeItem('utilizador') }
+
     getCurrentUser() { return JSON.parse(localStorage.getItem('utilizador')) }
+
+    // faz logo o trabalho de casa de apanhar só o tipo de user
+    // 0 = sem token
+    // 1 = visitante
+    // 2 = agente turistico
+    // 3 = responsavel de regiao
+    // 4 = administrador
+    getTipo() { return JSON.parse(localStorage?.getItem('utilizador'))?.tipo ?? 0 }
 
     valid() {
         const now = Math.floor(Date.now() / 1000)

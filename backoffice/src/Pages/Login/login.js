@@ -31,10 +31,11 @@ export default function Login(props) {
                             <div className='form-floating mb-4'>
                                 <input
                                     id='input-email'
-                                    type='email' 
-                                    pattern='/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,63})$/'
+                                    type='text' // ! mudar pra email
+                                    pattern='^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,63})$'
                                     className='form-control rounded-3'
                                     placeholder='name@example.com'
+                                    required
                                     onChange={e => { setEmail(e.target.value) }}
                                     onInvalid={e => {  }}
                                 />
