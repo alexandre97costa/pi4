@@ -37,19 +37,21 @@ export default function App() {
 					}
 				/>
 				<Route
-					path='/lista_utilizadores'
-					element={
-						<Page>
-							<Pages.lista_utilizadores />
-						</Page>
-					}
-				/>
-				<Route
 					path='/teste'
 					element={
 						<ProtectedRoute>
 							<Page>
 								<Pages.Teste />
+							</Page>
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/listaUtilizador'
+					element={
+						<ProtectedRoute>
+							<Page>
+								<Pages.ListaUtilizador />
 							</Page>
 						</ProtectedRoute>
 					}
