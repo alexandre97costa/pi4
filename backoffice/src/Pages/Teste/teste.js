@@ -1,4 +1,5 @@
 import React from 'react';
+import VisibleTo from '../../Helpers/VisibleTo';
 
 export default function Teste() {
     return (
@@ -8,7 +9,20 @@ export default function Teste() {
                 <div className='col-md-6 border'>teste1</div>
                 <div className='col-md-6 border'>teste2</div>
             </div>
-            <div className='row mb-3'>
+
+            <VisibleTo tipo={1}>
+                <div className='row border mb-3 p-3 bg-danger h1'>
+                    Visivel a visitante
+                </div>
+            </VisibleTo>
+            
+            <VisibleTo tipo={2}>
+                <div className='row border mb-3 p-3 bg-warning h1'>
+                    Visivel a agente turistico
+                </div>
+            </VisibleTo>
+
+            <div className='row border mb-3'>
                 <div className='col-12 border py-3'>
                     <button className='btn btn-primary me-3'>
                         Primary

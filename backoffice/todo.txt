@@ -1,0 +1,9 @@
+[ ] sidebar mudar segundo o tipo de user
+[ ] barrar entrada a users de tipo 1 (visitante)
+[ ] mostrar mensagens de validação no login (pré e pós submit)
+[ ] verificação de idade na criação do utilizador
+[✔] route condicional segundo o tipo (talvez não seja assim)
+    -> é suposto o path /ponto_interesse mostrar coisas 
+       diferentes a tipos de user diferentes
+[✔] conseguir alterar os erros que o validate_jwt manda
+    -> nem que seja só o tipo de info de html pra json

@@ -7,7 +7,7 @@ app.set('port', process.env.PORT || 4001)
 const port = app.get('port')
 const sequelize = require('./config/Database')
 sequelize.sync()
-const { dev:devClass } = require('./_dev/dev')
+const { dev: devClass } = require('./_dev/dev')
 const dev = new devClass;
 
 const exemploRoute = require('./routes/exemplo.js')
@@ -21,16 +21,28 @@ app.use((req, res, next) => {
     console.log('\x1b[37m\x1b[42m ' + req.method + ' \x1b[0m ' + req.url);
     if (req.url === '/user/login') {
         dev.log('\x1b[30m👀 ' + req.body.email + '\x1b[0m');
-    } 
+    }
     next()
 });
-// validação jwt a tudo menos /login e /recuperar-password
+// validação jwt (com exclusoes dentro do unless)
 app.use(
     validate_jwt({
         secret: process.env.JWT_SECRET,
         algorithms: [process.env.JWT_ALGORITHM],
-    }).unless({ path: ['/user/login', '/recuperar-password'] })
+    }).unless({
+        path: [
+            { url: '/user', methods: ['POST'] },
+            { url: '/user/login', methods: ['POST'] },
+        ]
+    })
 );
+// tratamento de erros do validate_jwt
+app.use(function (e, req, res, next) {
+    (e.name === "UnauthorizedError") ?
+        res.status(e.status).json(e.inner) :
+        next(e);
+
+});
 
 //* Rotas
 app.use('/exemplo', exemploRoute)

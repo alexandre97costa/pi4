@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-import { Navigate, BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
-import auth from './Auth/auth.service';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import dev from './Auth/dev';
 
 //Exportação de todas as páginas feitas
+import VisibleTo from './Helpers/VisibleTo';
+import ProtectedRoute from './Helpers/ProtectedRoute';
 import Page from './Helpers/Page';
 import Pages from './Pages/index'
 
@@ -21,13 +22,6 @@ export default function App() {
 			'background-color: brown; color: gold; padding: 0 0.5rem;',
 			'\nhttps://reactjs.org/docs/strict-mode.html')
 	}, [])
-
-	function ProtectedRoute({ children }) {
-		const location = useLocation()
-		return auth.valid() || !!LOGIN_OVERRIDE ?
-			children :
-			<Navigate to={'/login'} state={{ from: location.pathname }} />
-	}
 
 	return (
 		<BrowserRouter>
