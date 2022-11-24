@@ -167,6 +167,20 @@ export default function App() {
 						</Pagina>
 					}
 				/>
+				<Route
+					path='/gerirAdicionarCards'
+					element={
+						<Pagina
+							userType={"Agente Turístico"}
+							userName={"Joaquim"}
+							menu={agente_turistico}
+							selected={0}
+							title={""}
+						>
+							<Pages.GerirAdicionarCards />
+						</Pagina>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);
