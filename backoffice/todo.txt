@@ -1,4 +1,5 @@
 [ ] sidebar mudar segundo o tipo de user
+[ ] mudar logica de tipo de user para o componente Sidebar
 [ ] barrar entrada a users de tipo 1 (visitante)
 [ ] mostrar mensagens de validação no login (pré e pós submit)
 [ ] verificação de idade na criação do utilizador

@@ -4,19 +4,21 @@ import auth from '../../Auth/auth.service';
 import dev from '../../Auth/dev';
 
 export default function Login(props) {
-    
+
     const navigate = useNavigate()
     const location = useLocation()
-    let previousPage =  location.state.from ||  '/'  ;
+    let previousPage = location.state.from || '/';
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     async function submit() {
         dev.log('Attempting to login...')
         let login = await auth.login(email, password)
-        login.success ? navigate(previousPage) : alert(login.message)
-    }
 
+        if (login.success) {
+            navigate(previousPage)
+        }
+    }
 
     return (
         <>
@@ -37,7 +39,7 @@ export default function Login(props) {
                                     placeholder='name@example.com'
                                     required
                                     onChange={e => { setEmail(e.target.value) }}
-                                    onInvalid={e => {  }}
+                                    onInvalid={e => { }}
                                 />
                                 <label htmlFor='input-email'>Email</label>
                             </div>
@@ -47,7 +49,7 @@ export default function Login(props) {
                                     type='password'
                                     className='form-control rounded-3'
                                     placeholder='secret!'
-                                    onChange={e => { setPassword(e.target.value)}}
+                                    onChange={e => { setPassword(e.target.value) }}
                                 />
                                 <label htmlFor='input-password'>Password</label>
                             </div>

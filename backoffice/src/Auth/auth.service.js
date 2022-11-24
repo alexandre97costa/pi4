@@ -12,7 +12,7 @@ class auth {
             .then(res => {
 
                 // 🚨 guard clauses
-                if (!res.data.token) { dev.log('O token não veio')}
+                if (!res.data.token) { return { success: false, message: 'Falha ao receber o token'}}
 
                 // ✅ all gucci
                 const token = res.data.token
@@ -22,7 +22,7 @@ class auth {
                 localStorage.setItem('token', token)
 
                 dev.log('%cLogged in!', 'color: lime; background-color: darkgreen; padding: 0.5rem;')
-                return { success: true, message: 'coise'}
+                return { success: true, message: 'Logged in!'}
             })
             .catch(e => { 
                 try {
@@ -38,7 +38,6 @@ class auth {
     // para quando os pedidos axios precisam de auth headers
     header() {
         const token = localStorage.getItem('token')
-        dev.log('token: ' + token)
         if (token) { return { headers: { 'Authorization': 'Bearer ' + token } } }
     }
 

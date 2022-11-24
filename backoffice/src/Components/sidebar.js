@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link, useLocation } from 'react-router-dom';
 
 export function Sidebar(props) {
+    
+    const location = useLocation()
     return (
         <div className='bg-dark text-secondary col-2 px-2 vh-100'>
             <div className='d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start'>
@@ -20,7 +22,7 @@ export function Sidebar(props) {
                     {props.menu.map((item, index) => {
 
                         return (
-                            (props.selected ?? 0) === index ?
+                            item.path === location.pathname ?
                                 <li key={index} className=' py-1 d-flex align-items-center bg-success rounded-3'>
                                     <i className={'bi bi-' + item.icon + ' fs-4 mx-2 text-white'}></i>
                                     <span className=' d-none d-sm-inline fs-6 text-white fw-semibold'>

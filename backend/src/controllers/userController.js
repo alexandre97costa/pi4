@@ -3,7 +3,7 @@ var sequelize = require('../config/Database')
 const { Op } = require("sequelize")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-const { dev:devClass } = require('../_dev/dev')
+const { dev: devClass } = require('../_dev/dev')
 const dev = new devClass;
 require('dotenv').config()
 // * Como usar o Op:
@@ -61,20 +61,23 @@ module.exports = {
     },
 
     list: async (req, res) => {
-        await sequelize.sync()
-            .then(async () => {
-                await utilizador
-                    .findAll({
-                        attributes: ['nome', 'email', 'data_nascimento', 'updated_at'],
-                        include: {
-                            model: tipo_utilizador,
-                            attributes: ['nome', 'observacoes']
-                        }
-                    })
-                    .then(data => { res.json({ success: true, data }) })
-                    .catch(error => { return error })
+        await utilizador
+            .findAll({
+                attributes: ['nome', 'email', 'data_nascimento', 'updated_at'],
+                include: {
+                    model: tipo_utilizador,
+                    attributes: ['nome', 'observacoes']
+                }
             })
+            .then(data => { res.status(200).json({ data }) })
+            .catch(e => { dev.error(e); res.status(400).json({e}) })
+    },
 
+    list_tipos: async (req, res) => {
+        await tipo_utilizador
+            .findAll({ attributes: ['id', 'nome', 'observacoes'], order: [['id', 'ASC']] })
+            .then(data => { res.status(200).json({ data }) })
+            .catch(e => { dev.error(e); res.status(400).json({e}) })
     },
 
     create: async (req, res) => {

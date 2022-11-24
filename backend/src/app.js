@@ -41,7 +41,6 @@ app.use(function (e, req, res, next) {
     (e.name === "UnauthorizedError") ?
         res.status(e.status).json(e.inner) :
         next(e);
-
 });
 
 //* Rotas
