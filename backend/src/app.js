@@ -33,6 +33,7 @@ app.use(
         path: [
             { url: '/user', methods: ['POST'] },
             { url: '/user/login', methods: ['POST'] },
+            { url: '/user/bulk', methods: ['POST'] },
         ]
     })
 );

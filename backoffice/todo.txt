@@ -3,6 +3,8 @@
 [ ] barrar entrada a users de tipo 1 (visitante)
 [ ] mostrar mensagens de validação no login (pré e pós submit)
 [ ] verificação de idade na criação do utilizador
+[✔] conseguir criar 4 utilizadores de uma vez
+    -> um pra cada tipo, para efeitos de teste apenas
 [✔] route condicional segundo o tipo (talvez não seja assim)
     -> é suposto o path /ponto_interesse mostrar coisas 
        diferentes a tipos de user diferentes

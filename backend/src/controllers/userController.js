@@ -6,8 +6,7 @@ const bcrypt = require('bcrypt')
 const { dev: devClass } = require('../_dev/dev')
 const dev = new devClass;
 require('dotenv').config()
-// * Como usar o Op:
-// * https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
+const bulk_users = require('../_dev/request bodies/create_user_in_bulk.json')
 const {
     tipo_utilizador,
     utilizador
@@ -70,14 +69,14 @@ module.exports = {
                 }
             })
             .then(data => { res.status(200).json({ data }) })
-            .catch(e => { dev.error(e); res.status(400).json({e}) })
+            .catch(e => { dev.error(e); res.status(400).json({ e }) })
     },
 
     list_tipos: async (req, res) => {
         await tipo_utilizador
             .findAll({ attributes: ['id', 'nome', 'observacoes'], order: [['id', 'ASC']] })
             .then(data => { res.status(200).json({ data }) })
-            .catch(e => { dev.error(e); res.status(400).json({e}) })
+            .catch(e => { dev.error(e); res.status(400).json({ e }) })
     },
 
     create: async (req, res) => {
@@ -150,6 +149,19 @@ module.exports = {
             })
 
 
+    },
+
+    // only available in dev mode
+    create_in_bulk: async (req, res) => {
+        if (process.env.MODE !== 'dev') {
+            res.send(403).json({ message: 'Only available in a development environment.' })
+            return
+        }
+
+        await utilizador
+            .bulkCreate(bulk_users, { individualHooks: true })
+            .then(response => res.status(200).json(response))
+            .catch(error => res.status(400).json({ error }))
     },
 
     update: async (req, res) => {
