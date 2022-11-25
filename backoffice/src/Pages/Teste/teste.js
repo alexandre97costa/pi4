@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Cartao from '../../Components/Cartao';
+
 export default function Teste() {
     return (
         <>
@@ -24,9 +26,51 @@ export default function Teste() {
                     </button>
                 </div>
             </div>
-            <div className='row bg-white vh-100 border mb-3'>
-                teste à sidebar com conteúdo muito comprido
+
+            <div className='d-flex'>
+                <div className='col-3 px-2'>
+                    <Cartao
+                        title="Nome do Local Turístico" 
+                        subTitle="Categoria"
+                        morada="Morada"
+                        txtLink="Ver mais detalhes"
+                    />
+                </div>
+
+                <div className='col-3 px-2'>
+                    <Cartao
+                        title="Nome do Local Turístico" 
+                        subTitle="Categoria"
+                        morada="Morada"
+                        txtLink="Ver mais detalhes"
+                    />
+                </div>
+
+                <div className='col-3 px-2'>
+                    <Cartao
+                        title="Nome do Local Turístico" 
+                        subTitle="Categoria"
+                        morada="Morada"
+                        txtLink="Ver mais detalhes"
+                    />
+                </div>
+
+                <div className='col-3 px-2'>
+                    <Cartao
+                        title="Nome do Local Turístico" 
+                        subTitle="Categoria"
+                        morada="Morada"
+                        txtLink="Ver mais detalhes"
+                    />
+                </div>
             </div>
+
+
+
+
+            
         </>
+
+        
     );
 }
