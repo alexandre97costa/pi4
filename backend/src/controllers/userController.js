@@ -20,6 +20,7 @@ module.exports = {
 
         let email = req.body?.email
         let password = req.body?.password
+        let longExp = req.body?.longExp
 
         // 🚨 guard clauses
 
@@ -48,7 +49,7 @@ module.exports = {
 
         const options = {
             algorithm: process.env.JWT_ALGORITHM,
-            expiresIn: 30 // seconds
+            expiresIn: !!longExp ? 300 : 30
         }
 
         res.status(200).json({
@@ -118,7 +119,6 @@ module.exports = {
                 email: email,
                 data_nascimento: data_nasc,
                 password: password,
-                tipo_utilizador_id: 1 // por defeito visitante
             })
             .then(data => {
                 res.status(200).json({

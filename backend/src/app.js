@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
+const interceptor = require('express-interceptor')
 const { expressjwt: validate_jwt } = require('express-jwt');
 const app = express()
 app.set('port', process.env.PORT || 4001)
@@ -16,14 +17,20 @@ const userRoutes = require('./routes/user.js')
 //* Middlewares
 app.use(cors());
 app.use(express.json());
-// log dos pedidos todos que o servidor recebe
-app.use((req, res, next) => {
-    console.log('\x1b[37m\x1b[42m ' + req.method + ' \x1b[0m ' + req.url);
-    if (req.url === '/user/login') {
-        dev.log('\x1b[30m👀 ' + req.body.email + '\x1b[0m');
+// log dos pedidos todos que o servidor recebe (incluindo o status!)
+app.use(interceptor((req, res) => {
+    return {
+        isInterceptable: () => { return true },
+        intercept: (body, send) => {
+            console.log(
+                '\x1b[37m\x1b[42m ' + req.method +
+                    ' \x1b[0m ' + req.url +
+                    ' \x1b[33m' + res.statusCode +
+                    '\x1b[0m');
+            send(body);
+        }
     }
-    next()
-});
+}))
 // validação jwt (com exclusoes dentro do unless)
 app.use(
     validate_jwt({

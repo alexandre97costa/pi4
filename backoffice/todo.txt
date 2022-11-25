@@ -1,8 +1,12 @@
-[ ] sidebar mudar segundo o tipo de user
-[ ] mudar logica de tipo de user para o componente Sidebar
+[✔] sidebar mudar segundo o tipo de user
+    [✔] nome do user
+    [✔] menu
 [ ] barrar entrada a users de tipo 1 (visitante)
 [ ] mostrar mensagens de validação no login (pré e pós submit)
 [ ] verificação de idade na criação do utilizador
+
+[✔] status na consola
+[✔] mudar logica de tipo de user para o componente Sidebar
 [✔] conseguir criar 4 utilizadores de uma vez
     -> um pra cada tipo, para efeitos de teste apenas
 [✔] route condicional segundo o tipo (talvez não seja assim)

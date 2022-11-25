@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import auth from './Auth/auth.service';
 import dev from './Auth/dev';
 
 //Exportação de todas as páginas feitas
@@ -15,12 +16,16 @@ const LOGIN_OVERRIDE = process.env.REACT_APP_LOGIN_OVERRIDE
 
 export default function App() {
 
+	const [nome, setNome] = useState('')
+
 	useEffect(() => {
 		dev.log('✅ App()')
 		dev.log(
 			'%cÉ normal que as mensagens apareçam 2x!',
 			'background-color: brown; color: gold; padding: 0 0.5rem;',
 			'\nhttps://reactjs.org/docs/strict-mode.html')
+
+		auth.getCurrentUser().then(user => setNome(user.nome))
 	}, [])
 
 	return (
@@ -31,9 +36,15 @@ export default function App() {
 				<Route
 					path='/'
 					element={
-						<Page>
-							<Pages.Teste />
-						</Page>
+						<ProtectedRoute>
+							<Page
+								// title={'Olá ' + nome + '!'}
+								title={'Pontos de Interesse'}
+								icon='emoji-smile'
+							>
+								<Pages.Teste />
+							</Page>
+						</ProtectedRoute>
 					}
 				/>
 				<Route
