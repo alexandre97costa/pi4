@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">main</string>
+    <string name="entrar">ENTRAR</string>
+    <string name="criar">CRIAR CONTA</string>
+    <string name="localidade">LOCALIDADE</string>
+    <string name="recuperar">RECUPERAR</string>
+    <string name="nova_palavra">NOVA PALAVRA-PASSE</string>
+    <string name="entrar_texto"><u>entrar</u></string>
+    <string name="recuperar_texto"><u>recuperar</u></string>
+    <string name="criar_texto"><u>criar</u></string>
+    <string name="reenviar_texto"><u>reenviar</u></string>
 </resources>
