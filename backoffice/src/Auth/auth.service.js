@@ -12,10 +12,10 @@ class auth {
             .then(res => {
 
                 // 🚨 guard clauses
-                if (!res.data.token) { return { success: false, message: 'Falha ao receber o token' } }
+                if (!res.data.token) { return { success: false, message: 'Falha ao receber o token.' } }
                 const payload = jwt_decode(res.data.token)
                 const token = res.data.token
-                if (payload) {  }
+                if (payload?.tipo ?? 0 <= 1) { return { success: false, message: 'O Back Office não está disponivel para visitantes.' } }
                 
                 // ✅ all gucci
                 localStorage.setItem('utilizador', JSON.stringify(payload))
