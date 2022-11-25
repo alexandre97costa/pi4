@@ -181,6 +181,19 @@ export default function App() {
 						</Pagina>
 					}
 				/>
+				<Route
+					path='/gerirEditarFooter'
+					element={
+						<Pagina
+							userType={"Agente Turístico"}
+							userName={"Joaquim"}
+							menu={agente_turistico}
+							selected={0}
+						>
+							<Pages.GerirEditarFooter />
+						</Pagina>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);
