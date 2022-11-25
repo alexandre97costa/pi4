@@ -17,7 +17,8 @@ export default function ListaUtilizador(props){
                                         <div className='list-group list-group-flush'>
                                             <div className='list-group-item '>
                                                 <div className='row'>
-                                                    <div className='col-5 pb-1'>
+                                                    <div className='col-12 pb-1'>
+                                                        
                                                         <text>02 José António Gomes</text>
                                                         <div className='col-1'>
                                                             <button className=' btn btn-outline-danger bi bi-trash-fill me-md-2'></button> 
