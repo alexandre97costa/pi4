@@ -119,7 +119,7 @@ export default function App() {
 							userName={"Joaquim"}
 							menu={agente_turistico}
 							selected={0}
-							title={"Gerir Microsite"}
+							title={""}
 						>
 							<Pages.GerirEditarFooter />
 						</Pagina>
