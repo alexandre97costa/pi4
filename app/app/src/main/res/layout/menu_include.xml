@@ -9,5 +9,5 @@
     app:itemIconTint="@drawable/item_menu"
     app:itemTextColor="@drawable/item_menu"
     app:menu="@menu/menu"
-    app:labelVisibilityMode="unlabeled"
-    app:itemIconSize="35dp" />
+    app:labelVisibilityMode="labeled"
+    app:itemIconSize="29dp" />

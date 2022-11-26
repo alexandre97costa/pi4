@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.navigation.NavigationBarView
+import pi4.main.Fragments.FragmentPontoInteresse
 import pi4.main.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

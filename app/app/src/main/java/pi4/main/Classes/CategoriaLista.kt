@@ -1,4 +1,4 @@
-package pi4.main
+package pi4.main.Classes
 
 class CategoriaLista(icon: String, texto: String) {
     val icon: String

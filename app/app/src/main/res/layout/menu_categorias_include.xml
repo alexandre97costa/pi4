@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.tabs.TabLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tabLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,21 +14,7 @@
     app:tabIndicatorColor="@color/greenPrincipal"
     app:tabMode="scrollable"
     app:tabSelectedTextColor="@color/greenPrincipal"
-    app:tabTextColor="@color/greenPrincipal" >
-
-    <com.google.android.material.tabs.TabItem
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:icon="@drawable/location_notfill"
-        android:isScrollContainer="false"
-        android:text="tab1"
-        app:tabTextColor="@color/greenPrincipal" />
-
-    <com.google.android.material.tabs.TabItem
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:icon="@drawable/location_notfill"
-        android:text="tab2"
-        app:tabTextColor="#000" />
+    app:tabTextColor="@color/greenPrincipal"
+    tools:ignore="SpeakableTextPresentCheck">
 
 </com.google.android.material.tabs.TabLayout>

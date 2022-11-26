@@ -1,4 +1,4 @@
-package pi4.main
+package pi4.main.Adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,6 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.card.MaterialCardView
 import com.squareup.picasso.Picasso
+import pi4.main.Classes.PontoInteresse
+import pi4.main.R
 
 class SetAdapterCard(private val context: Context, private val data:ArrayList<PontoInteresse>): BaseAdapter() {
 
