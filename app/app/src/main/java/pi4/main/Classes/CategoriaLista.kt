@@ -1,11 +1,35 @@
 package pi4.main.Classes
 
-class CategoriaLista(icon: String, texto: String) {
-    val icon: String
-    val texto: String
+import com.google.android.material.tabs.TabLayout
+
+class CategoriaLista(arrayIconNotFill: ArrayList<Int>, arrayIconFill: ArrayList<Int>, arrayTexto: ArrayList<String>) {
+    private val arrayIconNotFill: ArrayList<Int>
+    private val arrayIconFill: ArrayList<Int>
+    private val arrayTexto: ArrayList<String>
 
     init {
-        this.icon = icon
-        this.texto = texto
+        this.arrayIconNotFill = arrayIconNotFill
+        this.arrayIconFill = arrayIconFill
+        this.arrayTexto = arrayTexto
+    }
+
+    //Alterar futuramente arrayIconNotFill[0]
+    fun insertCategorias(tabLayout: TabLayout) {
+        for (i in 0..arrayTexto.count()-1) {
+            if (i == 0)
+                tabLayout.addTab(tabLayout.newTab().setText(arrayTexto[i]).setIcon(arrayIconFill[0]))
+            else
+                tabLayout.addTab(tabLayout.newTab().setText(arrayTexto[i]).setIcon(arrayIconNotFill[0]))
+        }
+    }
+
+    //Alterar futuramente arrayIconNotFill[0]
+    fun changeIconUnSelected(tabLayout: TabLayout.Tab, index: Int) {
+        tabLayout.setIcon(arrayIconNotFill[0])
+    }
+
+    //Alterar futuramente arrayIconFill[0]
+    fun changeIconOnSelected(tabLayout: TabLayout.Tab, index: Int) {
+        tabLayout.setIcon(arrayIconFill[0])
     }
 }
