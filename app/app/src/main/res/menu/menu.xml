@@ -4,21 +4,21 @@
         android:id="@+id/pontoInteresseMenu"
         android:enabled="true"
         android:icon="@drawable/location_notfill"
-        android:title="ponto de interesse" />
+        android:title="Início" />
     <item
         android:id="@+id/recompensaMenu"
         android:enabled="true"
         android:icon="@drawable/ticke_notfill"
-        android:title="recompensas" />
+        android:title="Recompensa" />
     <item
         android:id="@+id/qrCodeMenu"
         android:enabled="true"
         android:icon="@drawable/qr"
-        android:title="qr code" />
+        android:title="QrCode" />
 
     <item
         android:id="@+id/contaMenu"
         android:enabled="true"
         android:icon="@drawable/account_notfill"
-        android:title="conta" />
+        android:title="Conta" />
 </menu>
