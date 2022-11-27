@@ -10,5 +10,7 @@ import GerirHeroBanner from "./GerirMicrosite/GerirHeroBanner/gerirHeroBanner"
 import GerirPublicidadeAgenteTuristico from "./GerirMicrosite/GerirPublicidadeAgenteTuristico/gerirPublicidadeAgenteTuristico"
 import GerirAdicionarCards from "./GerirMicrosite/GerirAdicionarCards/gerirAdicionarCards"
 
-const Pages = { Teste, Login, GerirMicrosite, GerirVantagensApp, GerirDescarregarApp, GerirEditarFooter, GerirMenu, GerirHeroBanner, GerirPublicidadeAgenteTuristico, GerirAdicionarCards}
+import { ATRecompensas } from "./ATRecompensas/atRecompensas"
+
+const Pages = { Teste, Login, GerirMicrosite, GerirVantagensApp, GerirDescarregarApp, GerirEditarFooter, GerirMenu, GerirHeroBanner, GerirPublicidadeAgenteTuristico, GerirAdicionarCards, ATRecompensas, }
 export default Pages
