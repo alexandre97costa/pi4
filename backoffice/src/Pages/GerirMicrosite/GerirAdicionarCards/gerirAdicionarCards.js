@@ -4,9 +4,9 @@ export default function GerirAdicionarCards(){
     return(
         <div className='row'>
             <div className='col-10 '>
-                <p className='fs-3 mb-5'>Adicionar Conteúdo</p>
+                <p className='fs-3 mb-5 ms-4'>Adicionar Conteúdo</p>
 
-                <div className='card  p-3 mb-5 shadow bg-body rounded'>
+                <div className='card  p-3 mb-5 shadow bg-body rounded ms-4'>
                     <div className='row pt-4 pb-4 justify-content-center'>
                         <div className='col-10'>
                             <div className='row'>
@@ -20,7 +20,7 @@ export default function GerirAdicionarCards(){
                                 </div>
 
                                 <div className='col-12'>
-                                    <label htmlFor='formGroupExampleInput' className='form-label pb-1'>Subtitulo</label>
+                                    <label htmlFor='formGroupExampleInput' className='form-label pb-1'>Descrição</label>
                                 </div>
                                 <div className='row'>
                                     <div className='col-12 pb-4'>
@@ -28,12 +28,12 @@ export default function GerirAdicionarCards(){
                                     </div>
                                 </div>
 
-                                <div className='col-12'>
-                                    <label htmlFor='formGroupExampleInput' className='form-label pb-1'>Imagem</label>
-                                </div>
                                 <div className='row'>
                                     <div className='col-12 pb-4'>
-                                        <input type='text' className='form-control' id='formGroupExampleInput' placeholder=''/>
+                                        <div className='input-group mb-3'>
+                                            <label className='input-group mb-2' for="inputGroupFile02">Imagem</label>
+                                            <input type='file' className='form-control' id='inputGroupFile02'/>
+                                        </div>
                                     </div>
                                 </div>
 
