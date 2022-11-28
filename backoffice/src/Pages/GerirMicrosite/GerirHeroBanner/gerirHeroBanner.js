@@ -1,80 +1,31 @@
 import React from 'react';
+import TituloMicrosite from "../../../Components/TituloMicrosite";
+import SubTituloMicrosite from "../../../Components/SubTituloMicrosite";
+import BotaoMicrosite from "../../../Components/BotaoMicrosite";
+import UrlImagemMicrosite from "../../../Components/UrlImagemMicrosite";
 
 export default function GerirHeroBanner(){
-    return(
-        <div className='row'>
-            <div className='col-12'>
-                <p className='fs-3 mb-5'>Gerir Hero Banner</p>
-
-                <div className='card p-3 mb-5 shadow bg-body rounded'>
-                    <div className='row p-3'>
-                        <div className='col-12'>
-                            <div className='row'>
-                                <div className="col-12">
-                                    <label htmlFor='formGroupExampleInput' className='form-label'>Titulo</label>
-                                </div>
-                                <div className='row'>
-                                    <div className='col-9 pb-4'>
-                                        <input type='text' className='form-control' id='formGroupExampleInput' placeholder='Example input placeholder'/>
-                                    </div>
-                                    <div className='col-1'>
-                                    <button className=' btn btn-outline-danger bi bi-trash-fill me-md-2'></button>
-                                    </div>
-                                    <div className='col-1'>
-                                    <button className='btn btn-outline-warning bi bi-pencil-fill'></button>
-                                    </div>
-                                </div>
-
-                                <div className="col-12">
-                                    <label htmlFor='formGroupExampleInput' className='form-label'>Subtitulo</label>
-                                </div>
-                                <div className='row'>
-                                    <div className='col-9 pb-4'>
-                                        <input type='text' className='form-control' id='formGroupExampleInput' placeholder='Example input placeholder'/>
-                                    </div>
-                                    <div className='col-1'>
-                                    <button className=' btn btn-outline-danger bi bi-trash-fill me-md-2'></button>
-                                    </div>
-                                    <div className='col-1'>
-                                    <button className='btn btn-outline-warning bi bi-pencil-fill'></button>
-                                    </div>
-                                </div>
-
-                                <div className="col-12">
-                                    <label htmlFor='formGroupExampleInput' className='form-label'>Botão Texto</label>
-                                </div>
-                                <div className='row'>
-                                    <div className='col-9 pb-4'>
-                                        <input type='text' className='form-control' id='formGroupExampleInput' placeholder='Example input placeholder'/>
-                                    </div>
-                                    <div className='col-1'>
-                                    <button className=' btn btn-outline-danger bi bi-trash-fill me-md-2'></button>
-                                    </div>
-                                    <div className='col-1'>
-                                    <button className='btn btn-outline-warning bi bi-pencil-fill'></button>
-                                    </div>
-                                </div>
-
-                                <div className="col-12">
-                                    <label htmlFor='formGroupExampleInput' className='form-label'>Imagem Banner</label>
-                                </div>
-                                <div className='row'>
-                                    <div className='col-9 pb-4'>
-                                        <input type='text' className='form-control' id='formGroupExampleInput' placeholder='Example input placeholder'/>
-                                    </div>
-                                    <div className='col-1'>
-                                    <button className=' btn btn-outline-danger bi bi-trash-fill me-md-2'></button>
-                                    </div>
-                                    <div className='col-1'>
-                                    <button className='btn btn-outline-warning bi bi-pencil-fill'></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    return (
+        <div className="container">
+          <div className="row">
+            <div className="col-10">
+              <p className="fs-3 mb-5 ms-4">Descarregar App</p>
+    
+              <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
+                <TituloMicrosite
+                titulo="Título"/>
+                <SubTituloMicrosite 
+                subTitulo="Subtítulo"/>
+                <BotaoMicrosite 
+                botao="Texto Botão"/>
+                <UrlImagemMicrosite 
+                urlImagem="Url da imagem"/>
+                
+              </div>
             </div>
+          </div>
         </div>
     );
+    
     
 }

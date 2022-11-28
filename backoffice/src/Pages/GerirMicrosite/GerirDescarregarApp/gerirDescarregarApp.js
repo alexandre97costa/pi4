@@ -2,7 +2,6 @@ import React from "react";
 import TituloMicrosite from "../../../Components/TituloMicrosite";
 import SubTituloMicrosite from "../../../Components/SubTituloMicrosite";
 import BotaoMicrosite from "../../../Components/BotaoMicrosite";
-import UrlImagemMicrosite from "../../../Components/UrlImagemMicrosite";
 
 export default function GerirDescarregarApp() {
   return (
@@ -18,9 +17,6 @@ export default function GerirDescarregarApp() {
             subTitulo="Subtítulo"/>
             <BotaoMicrosite 
             botao="Texto Botão"/>
-            <UrlImagemMicrosite 
-            urlImagem="Url da imagem"/>
-            
           </div>
         </div>
       </div>
