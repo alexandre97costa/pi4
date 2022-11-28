@@ -4,7 +4,7 @@ export default function GerirEditarFooter() {
     return (
         <div className='container'>
             <div className='row'>
-                <div className='col-10'>
+                <div className='col-12'>
                     <p className='fs-3 mb-5'>Editar Footer</p>
 
                     <p className='fs-5'>Redes Sociais</p>
