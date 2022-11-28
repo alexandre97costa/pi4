@@ -1,142 +1,53 @@
 import React from 'react';
+import RedesSociaisMicrosite from "../../../Components/RedesSociaisMicrosite"
+import PrivacidadeCoockiesMicrosite from "../../../Components/PrivacidadeCoockiesMicrosite"
 
-export default function GerirEditarFooter() {
+
+export default function GerirEditarFooter(){
     return (
-        <div className='container'>
-            <div className='row'>
-                <div className='col-12'>
-                    <p className='fs-3 mb-5'>Editar Footer</p>
+        <div className="container">
+          <div className="row">
+            <div className="col-10">
+              <p className="fs-3 mb-5 ms-4">Gerir Footer</p>
 
-                    <p className='fs-5'>Redes Sociais</p>
-                    <div className='card p-3 mb-5 shadow bg-body rounded'>
-                        <div className='row p-3'>
-                            <div className='col-12 '>
 
-                                <div className='row'>
-                                    <div className='col-10'>
-                                        <label htmlFor='formGroupExampleInput' className='form-label'> Adicionar icon Facebook</label>
-                                    </div>
-                                    <div className='row text-center'>
-                                        <div className='col-10'>
-                                            <input type='text' className='form-control' id='formGroupExampleInput' placeholder='Inserir url bootsrtap' />
-                                        </div>
-                                        <div className='col-md-2 ms-auto'>
-                                            <button className='btn btn-outline-warning bi bi-pencil-fill me-md-3'></button>
-                                            <button className=' btn btn-outline-danger bi bi-trash-fill'></button>
-                                        </div>
-                                    </div>
+              <p className="fs-3 mb-5 ms-4">Editar Redes Sociais</p>
+              <div className="card p-3 mb-5 shadow bg-body rounded">
+                <RedesSociaisMicrosite
+                iconUrl="Url do Icon Facebook"
+                iconUrlPlaceholder="Inserir o URL"
+                linkRedeSocialTexto="Link para o facebook"
+                linkRedeSocialTextoPlaceholder="Inserir o link"
+                />
+                <RedesSociaisMicrosite
+                iconUrl="Url do Icon Instagram"
+                iconUrlPlaceholder="Inserir o URL"
+                linkRedeSocialTexto="Link para o instragam"
+                linkRedeSocialTextoPlaceholder="Inserir o link"
+                />
+                <RedesSociaisMicrosite
+                iconUrl="Url do Icon Twitter"
+                iconUrlPlaceholder="Inserir o URL"
+                linkRedeSocialTexto="Link para o Twitter"
+                linkRedeSocialTextoPlaceholder="Inserir o link"
+                />
+              </div>
 
-                                    <div className='col-10'>
-                                        <label htmlFor='formGroupExampleInput' className='pt-4 form-label'>Link da Rede Social</label>
-                                    </div>
-                                    <div className='row text-center'>
-                                        <div className='col-10 '>
-                                            <input type='text' className='pb-2 form-control' id='formGroupExampleInput' placeholder='Inserir link para a rede social' />
-                                        </div>
-                                        <div className='col-md-2 ms-auto'>
-                                            <button className='btn btn-outline-warning bi bi-pencil-fill me-md-3'></button>
-                                            <button className=' btn btn-outline-danger bi bi-trash-fill'></button>
-                                        </div>
-                                    </div>
 
-                                    <div className='col-12'>
-                                        <label htmlFor='formGroupExampleInput' className='pt-4 form-label'>Adicionar icon Instagram</label>
-                                    </div>
-                                    <div className='row text-center'>
-                                        <div className='col-10 pb-4'>
-                                            <input type='text' className='pb-2 form-control' id='formGroupExampleInput' placeholder='Inserir url bootsrtap' />
-                                        </div>
-                                        <div className='col-md-2 ms-auto '>
-                                            <button className='btn btn-outline-warning bi bi-pencil-fill me-md-3'></button>
-                                            <button className=' btn btn-outline-danger bi bi-trash-fill'></button>
-                                        </div>
-                                    </div>
+              <p className="fs-3 mb-5 ms-4">Editar Política de Privacidade e Cookies</p>
+              <div className="card p-3 mb-5 shadow bg-body rounded">
+                <PrivacidadeCoockiesMicrosite
+                linkTexto="Link para a página de Política de Privacidade"
+                linkTextoPlaceholder="Inserir o URL"
+                />
+                <PrivacidadeCoockiesMicrosite
+                linkTexto="Link para a página de Política de Cookies"
+                linkTextoPlaceholder="Inserir o link"/>
+              </div>
 
-                                    <div className='col-12'>
-                                        <label htmlFor='formGroupExampleInput' className='pt-2 form-label'>Link da Rede Social</label>
-                                    </div>
-                                    <div className='row text-center'>
-                                        <div className='col-10'>
-                                            <input type='text' className=' pb-2 form-control' id='formGroupExampleInput' placeholder='Inserir link para a rede social' />
-                                        </div>
-                                        <div className='col-md-2 ms-auto '>
-                                            <button className='btn btn-outline-warning bi bi-pencil-fill me-md-3'></button>
-                                            <button className=' btn btn-outline-danger bi bi-trash-fill'></button>
-                                        </div>
-                                    </div>
 
-                                    <div className='col-12'>
-                                        <label htmlFor='formGroupExampleInput' className='pt-2 form-label'>Adicionar icon Twitter</label>
-                                    </div>
-                                    <div className='row text-center'>
-                                        <div className='col-10 pb-4'>
-                                            <input type='text' className=' pb-2  form-control' id='formGroupExampleInput' placeholder='Inserir url bootsrtap' />
-                                        </div>
-                                        <div className='col-md-2 ms-auto '>
-                                            <button className='btn btn-outline-warning bi bi-pencil-fill me-md-3'></button>
-                                            <button className=' btn btn-outline-danger bi bi-trash-fill'></button>
-                                        </div>
-                                    </div>
-
-                                    <div className='col-12'>
-                                        <label htmlFor='formGroupExampleInput' className='form-label'>Link da Rede Social</label>
-                                    </div>
-                                    <div className='row text-center'>
-                                        <div className='col-10'>
-                                            <input type='text' className=' pb-2 form-control' id='formGroupExampleInput' placeholder='Inserir link para a rede social' />
-                                        </div>
-                                        <div className='col-md-2 ms-auto '>
-                                            <button className='btn btn-outline-warning bi bi-pencil-fill me-md-3'></button>
-                                            <button className=' btn btn-outline-danger bi bi-trash-fill'></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <p className='fs-5'>Politica de Privacidade & Cookies</p>
-                    <div className='card p-3 mb-5 shadow p-3 mb-5 bg-body rounded'>
-                        <div className='row p-3'>
-                            <div className='col-12 '>
-
-                                <div className='row'>
-                                    <div className='col-12'>
-                                        <label htmlFor='formGroupExampleInput' className='form-label ps-1 pb-1'>Link para a Politica de Privacidade</label>
-                                    </div>
-                                    <div className='row'>
-                                        <div className='col-10 pb-4'>
-                                            <input type='text' className='form-control' id='formGroupExampleInput' placeholder='Inserir o link da página de destino' />
-                                        </div>
-                                        <div className='col-md-2 ms-auto '>
-                                            <button className='btn btn-outline-warning bi bi-pencil-fill me-md-3'></button>
-                                            <button className=' btn btn-outline-danger bi bi-trash-fill'></button>
-                                        </div>
-                                    </div>
-
-                                   <div className='row'>
-                                    <div className='col-12'>
-                                            <label htmlFor='formGroupExampleInput' className='form-label ps-1 pb-1'>Link para a Politica de Privacidade</label>
-                                        </div>
-                                        <div className='row'>
-                                            <div className='col-10 pb-4 '>
-                                                <input type='text' className='form-control ' id='formGroupExampleInput' placeholder='Inserir o link da página de destino' />
-                                            </div>
-                                            <div className='col-md-2 ms-auto '>
-                                                <button className='btn btn-outline-warning bi bi-pencil-fill me-md-3'></button>
-                                                <button className=' btn btn-outline-danger bi bi-trash-fill'></button>
-                                            </div>
-                                    </div>
-                                   </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
             </div>
+          </div>
         </div>
     );
-
 }
