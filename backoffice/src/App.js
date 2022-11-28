@@ -72,8 +72,7 @@ export default function App() {
 				<Route
 					path='/gerirVantagensApp'
 					element={
-						<Page
-							icon='emoji-smile'>
+						<Page>
 							<Pages.GerirVantagensApp />
 						</Page>
 					}
