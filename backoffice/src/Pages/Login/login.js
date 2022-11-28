@@ -18,6 +18,8 @@ export default function Login(props) {
 
         if (login.success) {
             navigate(previousPage)
+        } else {
+            dev.log(login.message)
         }
     }
 
