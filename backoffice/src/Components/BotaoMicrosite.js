@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SubTituloMicrosite(props) {
+export default function BotaoMicrosite(props) {
   return (
     
       <div className="row pb-4 justify-content-center">
@@ -8,8 +8,8 @@ export default function SubTituloMicrosite(props) {
 
           <div className="row">
             <div className="col-12 ">
-              <label htmlFor="formSubTituloMicrositeInput" className="form-label ms-3">
-                {props.subTitulo}
+              <label htmlFor="formBotaoMicrositeInput" className="form-label ms-3">
+                {props.botao}
               </label>
             </div>
           </div>
@@ -20,8 +20,8 @@ export default function SubTituloMicrosite(props) {
             <input
               type="text"
               className="form-control"
-              id="formSubTituloMicrositeInput"
-              placeholder={props.subTituloPlaceholder}
+              id="formBotaoMicrositeInput"
+              placeholder={props.botaoPlaceholder}
             />
           </div>
           <div className="col-md-2">

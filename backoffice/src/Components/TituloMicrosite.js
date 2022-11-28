@@ -8,7 +8,7 @@ export default function TituloMicrosite(props) {
 
           <div className="row">
             <div className="col-12 ">
-              <label htmlFor="formGroupExampleInput" className="form-label ms-3">
+              <label htmlFor="formTituloMicrositeInput" className="form-label ms-3">
                 {props.titulo}
               </label>
             </div>
@@ -20,7 +20,7 @@ export default function TituloMicrosite(props) {
             <input
               type="text"
               className="form-control"
-              id="formGroupExampleInput"
+              id="formTituloMicrositeInput"
               placeholder={props.tituloPlaceholder}
             />
           </div>
