@@ -23,10 +23,10 @@ export default function ListaUtilizador(props){
                                                             <div className='col-5'>
                                                                 <p># Nome</p>
                                                             </div> 
-                                                            <div className='col-5'>
+                                                            <div className='col-2 text-center '>
                                                                 <p>Categoria</p>
                                                             </div>  
-                                                            <div className='col-1'>
+                                                            <div className='col-md-3 ms-auto text-center'>
                                                                 <p>Ações</p>
                                                             </div>                                                             
                                                         </div>
@@ -35,14 +35,14 @@ export default function ListaUtilizador(props){
                                             </div> 
 
 
-                                            <div className='list-group-item '>
+                                            <div className='list-group-item'>
                                                 <div className='row'>
                                                     <div className='col-12 pb-1'>
                                                         <div className='row'>
                                                             <div className='col-5'>
                                                                 <p>02 José António Gomes</p>
                                                             </div>
-                                                            <div class="d-inline p-2 bg-dark text-white text-center rounded-2 col-2 ">Responsável de Região</div>
+                                                            <div class="p-2 bg-dark text-white text-center rounded-2 col-2 ">Responsável de Região</div>
                                                             
                                                             <div className='col-md-2 ms-auto'>
                                                                 <button className=' btn btn-outline-danger bi bi-trash-fill me-md-2'></button> 
@@ -214,14 +214,7 @@ export default function ListaUtilizador(props){
                                             </div>  
                                         </div>
                                     </div>
-                                </div>
-
-                                    
-                                
-
-                                        
-
-                                        
+                                </div>     
                             </div>
                         </div>
                     </div> 
