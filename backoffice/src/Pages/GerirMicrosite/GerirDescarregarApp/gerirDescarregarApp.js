@@ -8,7 +8,7 @@ export default function GerirDescarregarApp() {
           <p className="fs-3 mb-5 ms-4">Descarregar App</p>
 
           <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
-            <div className="row pt-4 pb-4 justify-content-center'">
+            <div className="row pt-4 pb-4 justify-content-center">
               <div className="col-10 ms-5 ">
 
                 <div className="row">
@@ -20,6 +20,7 @@ export default function GerirDescarregarApp() {
                       Titulo
                     </label>
                   </div>
+                  
                   <div className="row">
                     <div className="col-10 ms-auto pb-4">
                       <input
