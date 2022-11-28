@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/pontoInteresseMenu"
         android:enabled="true"
         android:icon="@drawable/location_notfill"
-        android:title="ponto de interesse" />
+        android:title="Início" />
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/recompensaMenu"
         android:enabled="true"
-        android:icon="@drawable/location_notfill"
-        android:title="recompensas" />
+        android:icon="@drawable/ticke_notfill"
+        android:title="Recompensa" />
+    <item
+        android:id="@+id/qrCodeMenu"
+        android:enabled="true"
+        android:icon="@drawable/qr"
+        android:title="QrCode" />
+
+    <item
+        android:id="@+id/contaMenu"
+        android:enabled="true"
+        android:icon="@drawable/account_notfill"
+        android:title="Conta" />
 </menu>

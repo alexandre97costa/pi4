@@ -1,14 +1,8 @@
 [
     {
-        "nome": "nome",
-        "email": "email", // nao devia dar
-        "data_nasc": "data_nasc", // devia ser uma data
-        "password": "password"
-    },
-    {
-        "nome": "nome",
-        "email": "email",
-        "data_nasc": "data_nasc",
+        "nome": "antónio joaquim",
+        "email": "aj@email.com",
+        "data_nasc": "03-03-2022",
         "password": "password"
     }
 ]

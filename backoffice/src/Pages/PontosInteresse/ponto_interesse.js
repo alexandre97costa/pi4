@@ -1,7 +1,7 @@
 import React from 'react';
 import VisibleTo from '../../Helpers/VisibleTo';
 
-export default function Teste() {
+export default function PontoInteresse() {
     return (
         <>
 

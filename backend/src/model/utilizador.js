@@ -9,9 +9,9 @@ module.exports = (sequelize) => {
                 allowNull: false,
                 validate: {
                     notNull: { msg: 'O nome não pode estar vazio' },
-                    is: { 
+                    is: {
                         args: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/g, // só letras e espaços, incluindo acentos
-                        msg: 'O nome só pode ter letras e espaços' 
+                        msg: 'O nome só pode ter letras e espaços'
                     }
                 }
             },
@@ -55,13 +55,16 @@ module.exports = (sequelize) => {
             hooks: {
                 beforeCreate: (utilizador) => {
                     // capitalizar o nome
-                    utilizador.nome = 
-                    utilizador.nome
-                    .split(' ')
-                    .map(word => {
-                        return word[0].toUpperCase() + word.substring(1, word.length)
-                    })
-                    .join(' ');
+                    utilizador.nome =
+                        utilizador.nome
+                            .split(' ')
+                            .map(word => {
+                                return word[0].toUpperCase() + word.substring(1, word.length)
+                            })
+                            .join(' ');
+
+                    // por defeito, todos os users começam como visitante
+                    utilizador.tipo_utilizador_id = 1
 
                     // encriptar password
                     return bcrypt.hash(utilizador.password, 10)

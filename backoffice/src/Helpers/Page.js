@@ -1,34 +1,35 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import dev from '../Auth/dev';
 
 import { Sidebar } from '../Components/sidebar'
 import User from '../Components/user'
 
-export default function Pagina(props) {
-    useEffect(() => { dev.log("✅ Pagina()") }, [])
+
+export default function Page({title, icon, children}) {
+
+    useEffect(() => { 
+        dev.log("✅ Pagina()") 
+    }, [])
 
     return (
         <div className='container-fluid position-relative'>
             <div className='row'>
-                <Sidebar
-                    userType={props.userType}
-                    menu={props.menu}
-                    selected={props.selected}
-                />
+                <Sidebar/>
 
                 {/* Content */}
                 <div className='col-10 bg-light overflow-auto' style={{ maxHeight: '100vh' }}>
                     <div className='container-fluid py-3'>
                         <div className='row mb-4'>
                             <div className='display-6'>
-                                {props.title}
+                                <i className={'me-3 bi bi-'+icon}></i>
+                                {title}
                             </div>
                         </div>
-                        {props.children}
+                        {children}
                     </div>
                 </div>
 
-                <User userName={props.userName}/>
+                <User/>
             </div>
         </div>
     )
