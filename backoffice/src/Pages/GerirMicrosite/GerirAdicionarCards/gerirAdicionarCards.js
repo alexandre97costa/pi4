@@ -11,7 +11,7 @@ export default function GerirAdicionarCards(){
                         <div className='col-10'>
                             <div className='row'>
                                 <div className='col-12'>
-                                    <label htmlFor='formGroupExampleInput' className='form-label pb-1'>Titulo</label>
+                                    <label htmlFor='formGroupExampleInput' className='form-label pb-1'>Título</label>
                                 </div>
                                 <div className='row'>
                                     <div className='col-12 pb-4'>
@@ -33,6 +33,7 @@ export default function GerirAdicionarCards(){
                                         <div className='input-group mb-3'>
                                             <label className='input-group mb-2' for="inputGroupFile02">Imagem</label>
                                             <input type='file' className='form-control' id='inputGroupFile02'/>
+                                            <button className='btn btn-outline-secondary' type='button' id='inputGroupFileAddon02'>Carregar</button>
                                         </div>
                                     </div>
                                 </div>
