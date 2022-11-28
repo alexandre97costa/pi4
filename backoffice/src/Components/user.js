@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../Auth/auth.service';
 
-export default function User() {
+export default function User(props) {
     const navigate = useNavigate()
-    const [nome, setNome] = useState()
-
-    useEffect(() => {
-        auth.getCurrentUser().then(user => setNome(user.nome))
-    }, [])
-
     return (
         <div className='col-2 d-flex justify-content-between  position-absolute top-0 end-0  mt-3 me-4 py-2 px-3 ' >
             <div className="dropdown w-100">
                 <button className="btn btn-light bg-white border rounded-4 shadow dropdown-toggle d-flex justify-content-between align-items-center w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span>{nome}</span>
+                    <span>{props.userName}</span>
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end rounded-4 shadow">
                     <li>
@@ -33,7 +27,7 @@ export default function User() {
                         </button>
                     </li>
 
-
+                    
 
                     <li><hr className='dropdown-divider' /></li>
                     <li><h6 className="dropdown-header text-danger">Só pra desenvolvimento</h6></li>

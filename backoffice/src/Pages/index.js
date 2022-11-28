@@ -1,6 +1,5 @@
 import Teste from "./Teste/teste"
 import Login from "./Login/login"
-import PontoInteresse from './PontosInteresse/ponto_interesse'
 
 import GerirMicrosite from "./GerirMicrosite/GerirMicrosite/gerirMicrosite"
 import GerirVantagensApp from "./GerirMicrosite/GerirVantagensApp/gerirVantagensApp"

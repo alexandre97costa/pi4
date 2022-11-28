@@ -1,17 +1,19 @@
-package pi4.main.Adapter
+package pi4.main
 
 import android.content.Context
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import com.google.android.material.card.MaterialCardView
+import androidx.core.content.getSystemService
+import androidx.core.net.toUri
 import com.squareup.picasso.Picasso
-import pi4.main.Classes.PontoInteresse
-import pi4.main.R
+import java.net.URI
+import java.util.logging.Level.parse
 
 class SetAdapterCard(private val context: Context, private val data:ArrayList<PontoInteresse>): BaseAdapter() {
 
@@ -43,22 +45,16 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
         //Elemento do array
         val recipe = getItem(position) as PontoInteresse
 
-        Picasso.get().load(recipe.imageUrl).into(imagemPontoInteresse)
         imagemPontoInteresse.contentDescription = recipe.pontoInteresse
+
+        Picasso.get().load(recipe.imageUrl).into(imagemPontoInteresse)
+
         pontoInteresse.text = recipe.pontoInteresse
         categoria.text = recipe.categoria
         local.text = recipe.local
         rating.text = recipe.rating
         score.text = recipe.score
 
-        val card = rowView.findViewById<MaterialCardView>(R.id.card)
-
-        card.setOnClickListener { teste(recipe.pontoInteresse) }
-
         return rowView
-    }
-
-    fun teste(mensagem:String) {
-        Toast.makeText(context, "$mensagem", Toast.LENGTH_SHORT).show()
     }
 }
