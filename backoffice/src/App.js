@@ -52,126 +52,73 @@ export default function App() {
 				<Route
 					path='/gerirVantagensApp'
 					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={"Gerir Microsite"}
-						>
+						<Page>
 							<Pages.GerirVantagensApp />
-						</Pagina>
+						</Page>
 					}
 				/>
 				<Route
 					path='/gerirMicrosite'
 					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={"Gerir Microsite"}
-						>
+						<Page>
 							<Pages.GerirMicrosite />
-						</Pagina>
+						</Page>
 					}
 				/>
 				<Route
 					path='/gerirDescarregarApp'
 					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={""}
-						>
+						<Page>
 							<Pages.GerirDescarregarApp />
-						</Pagina>
+						</Page>
 					}
 				/>
 				<Route
 					path='/gerirEditarFooter'
 					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={""}
-						>
+						<Page>
 							<Pages.GerirEditarFooter />
-						</Pagina>
+						</Page>
 					}
 				/>
 				<Route
 					path='/gerirMenu'
 					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={"Gerir Microsite"}
-						>
+						<Page>
 							<Pages.GerirMenu />
-						</Pagina>
+						</Page>
 					}
 				/>
 				<Route
 					path='/gerirHeroBanner'
 					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={"Gerir Microsite"}
-						>
+						<Page>
 							<Pages.GerirHeroBanner />
-						</Pagina>
+						</Page>
 					}
 				/>
 				<Route
 					path='/gerirPublicidadeAgenteTuristico'
 					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={"Gerir Microsite"}
-						>
+						<Page>
 							<Pages.GerirPublicidadeAgenteTuristico />
-						</Pagina>
+						</Page>
 					}
 				/>
 				<Route
 					path='/gerirAdicionarCards'
 					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={""}
-						>
+						<Page>
 							<Pages.GerirAdicionarCards />
-						</Pagina>
+						</Page>
 					}
 				/>
 				<Route
 					path='/gerirEditarFooter'
 					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-						>
+						<Page>
 							<Pages.GerirEditarFooter />
-						</Pagina>
+						</Page>
 					}
 				/>
 
@@ -179,14 +126,9 @@ export default function App() {
 				<Route
 					path='/atRecompensas'
 					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-						>
+						<Page>
 							<Pages.ATRecompensas />
-						</Pagina>
+						</Page>
 					}
 				/>
 			</Routes>
