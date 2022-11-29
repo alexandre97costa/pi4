@@ -3,9 +3,9 @@ import React from 'react'
 import jardimMaes from '../Assets/Images/jardimMaes.jpg'
 
 
-export default function Cartao(props) {
+export default function CartaoPI(props) {
   return (
-    <div className="card ">
+    <div className="card shadow-sm mb-4">
       <div className="card-body p-0" >
         <img src={jardimMaes} className="card-img-top" />
         <div className="p-3">
