@@ -24,32 +24,30 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun detectMenu() {
-        binding.includeMenu.bottomNavigation.setOnItemSelectedListener(
-            NavigationBarView.OnItemSelectedListener { item ->
-                when(item.itemId) {
-                    R.id.pontoInteresseMenu -> {
-                        replaceFragment(FragmentPontoInteresse())
-                        true
-                    }
-                    R.id.recompensaMenu -> {
-                        replaceFragment(FragmentPontoInteresse())
-                        Toast.makeText(this, "recompensaMenu", Toast.LENGTH_SHORT).show()
-                        true
-                    }
-                    R.id.qrCodeMenu -> {
-                        replaceFragment(FragmentPontoInteresse())
-                        Toast.makeText(this, "qrCodeMenu", Toast.LENGTH_SHORT).show()
-                        true
-                    }
-                    R.id.contaMenu -> {
-                        replaceFragment(FragmentPontoInteresse())
-                        Toast.makeText(this, "contaMenu", Toast.LENGTH_SHORT).show()
-                        true
-                    }
-                    else -> false
+        binding.includeMenu.bottomNavigation.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.pontoInteresseMenu -> {
+                    replaceFragment(FragmentPontoInteresse())
+                    true
                 }
+                R.id.recompensaMenu -> {
+                    replaceFragment(FragmentPontoInteresse())
+                    Toast.makeText(this, "recompensaMenu", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.qrCodeMenu -> {
+                    replaceFragment(FragmentPontoInteresse())
+                    Toast.makeText(this, "qrCodeMenu", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.contaMenu -> {
+                    replaceFragment(FragmentPontoInteresse())
+                    Toast.makeText(this, "contaMenu", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
             }
-        )
+        }
     }
 
     fun replaceFragment(fragment: Fragment) {
