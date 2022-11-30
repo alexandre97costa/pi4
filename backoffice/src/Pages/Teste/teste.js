@@ -2,6 +2,7 @@ import React from 'react';
 
 import CartaoPI from '../../Components/Card_pi';
 import CartaoAT from '../../Components/Card_at';
+import CartaoDetais from '../../Components/Card_details';
 
 export default function Teste() {
     return (
@@ -9,34 +10,9 @@ export default function Teste() {
     
 
             <div className='row'>
-                <div className='col-3 px-2'>
-                    <CartaoPI
-                        title="Nome do Local Turístico" 
-                        subTitle="Categoria"
-                        morada="Morada"
-                        txtLink="Ver mais detalhes"
-                    />
-                </div>
+               
 
-                <div className='col-3 px-2'>
-                    <CartaoPI
-                        title="Nome do Local Turístico" 
-                        subTitle="Categoria"
-                        morada="Morada"
-                        txtLink="Ver mais detalhes"
-                    />
-                </div>
-
-                <div className='col-3 px-2'>
-                    <CartaoPI
-                        title="Nome do Local Turístico" 
-                        subTitle="Categoria"
-                        morada="Morada"
-                        txtLink="Ver mais detalhes"
-                    />
-                </div>
-
-                <div className='col-3 px-2'>
+                <div className='col-3'>
                     <CartaoPI
                         title="Nome do Local Turístico" 
                         subTitle="Categoria"
@@ -48,37 +24,28 @@ export default function Teste() {
 
 
             <div className='row'>
-                <div className='col-3 px-2'>
+                <div className='col-3'>
                     <CartaoAT
                         title="Nome do Agente Turístico" 
                         subTitle="Categoria"                     
                         txtLink="Ver mais detalhes"
                     />
                 </div>
+            </div>
 
-                <div className='col-3 px-2'>
-                    <CartaoAT
-                        title="Nome do Agente Turístico" 
-                        subTitle="Categoria"
-                        txtLink="Ver mais detalhes"
-                    />
-                </div>
 
-                <div className='col-3 px-2'>
-                    <CartaoAT
-                        title="Nome do Agente Turístico" 
-                        subTitle="Categoria"
-                        txtLink="Ver mais detalhes"
-                    />
-                </div>
+            <div className='row'>       
+                    <CartaoDetais
+                        title="??" 
+                        subTitle="Categoria"     
+                        
+                        title2="??" 
+                        subTitle2="Categoria"     
 
-                <div className='col-3 px-2'>
-                    <CartaoAT
-                        title="Nome do Agente Turístico" 
-                        subTitle="Categoria"
-                        txtLink="Ver mais detalhes"
-                    />
-                </div>
+                        title3="??" 
+                        subTitle3="Categoria"     
+
+                    />              
             </div>
 
 

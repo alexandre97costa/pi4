@@ -5,9 +5,9 @@ import jardimMaes from '../Assets/Images/jardimMaes.jpg'
 
 export default function CartaoPI(props) {
   return (
-    <div className="card shadow-sm mb-4">
+    <div className="card border border-0 shadow mb-3">
+      <img src={jardimMaes} className="card-img-top" />
       <div className="card-body p-0" >
-        <img src={jardimMaes} className="card-img-top" />
         <div className="p-3">
           <h5 className="card-title"> {props.title}</h5>
           <h6 className="card-subtitle mb-2 text-muted"> {props.subTitle}</h6>
