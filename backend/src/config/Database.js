@@ -2,9 +2,9 @@ const { Sequelize } = require('sequelize');
 const { applyExtraSetup } = require('./extra-setup.js');
 
 const sequelize = new Sequelize(
-    'pi4',              // nome da db
+    'PI4',              // nome da db
     'postgres',         // user
-    'postgres',         // pass
+    '123',         // pass
     {
         host: 'localhost',
         port: '5432',
