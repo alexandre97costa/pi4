@@ -16,7 +16,7 @@ export default function ListaUtilizador(props){
                                     <div className='col-12 pb-4'>
                                         <div className='list-group list-group-flush'>
 
-                                        <div className='list-group-item '>
+                                        <div className='list-group-item  border-secondary'>
                                                 <div className='row'>
                                                     <div className='col-12 pb-1'>
                                                         <div className='row'>
@@ -35,7 +35,7 @@ export default function ListaUtilizador(props){
                                             </div> 
 
 
-                                            <div className='list-group-item'>
+                                            <div className='list-group-item '>
                                                 <div className='row'>
                                                     <div className='col-12 pb-1'>
                                                         <div className='row'>
