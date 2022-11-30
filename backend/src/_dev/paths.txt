@@ -1,23 +1,51 @@
-/utilizador
-GET     -> all
-POST    -> create 1 w/ body
+- utilizadores [ tipo_id | utilizador_id ]
+	-> get
+	-> post (com req body)
+	-> patch (tornar agente)
+	-> put (editar perfil)
+	-> delete
 
-/utilizador/:id
-GET     -> 1
-PATCH   -> edit 1 w/ body; check token for same id
-PATCH   -> edit 1 w/ body; only to change type; available to admin
-DELETE  -> 1 with id
+// este pode ser chamado scans ou wtv
+- carimbos [ utilizador_id | ponto_interesse_id | evento_id ]
+	-> get
+	-> post (com req body)
 
-/utilizador/:id/pontos
-GET     -> historico de PIs e Eventos por onde o utilizador passou
+- reservas [ utilizador_id | evento_id ]
+	-> get
+	-> post (com req body)
+	-> put
 
-/ponto_interesse
-GET     -> informação vários PI, só info básica (todos)
-GET     -> informação vários PI, com eventos e reservas (AT)
-POST    -> criar um ponto de interesse (AT)
-DELETE  -> eliminar um ponto de interesse (ADMIN/AT)
+- eventos [ tipo_evento_id | ponto_interesse_id ]
+	-> get
+	-> post (com req body)
+	-> put
+	-> delete
 
-/ponto_interesse/:id
-GET     -> informação de um unico PI, com eventos e reservas (todos)
-PATCH   -> editar um ponto de interesse (AT: editar tudo)
-PATCH   -> editar um ponto de interesse (RR: só validar)
+// nao ha endpoints de sessao, vai-se sempre buscar a sua info a partir do endpoint do evento
+
+- pontos_interesse [ ponto_interesse_id | freguesia_id | agente_turistico_id | tipo_interesse_id ]
+	-> get (se vem com id, incluir eventos e recompensas)
+	-> post (com req body)
+	-> put
+	-> delete
+
+- recompensas [ recompensa_id | ponto_interesse_id | tipo_interesse_id ]
+	-> get
+	-> post (com req body)
+	-> put
+	-> delete
+
+- vouchers [ utilizador_id | recompensa_id ]
+	-> get
+	-> post (com req body)
+
+- distritos [ distrito_id | responsavel_regiao_id ]
+	-> get (inclui municipios e freguesias com inner join; aka include no sequelize)
+	-> patch (atribuir responsavel)
+
+- tipo_interesse
+	-> get
+- tipo_evento
+	-> get
+- tipo_utilizador
+	-> get
