@@ -9,7 +9,7 @@ export default function ListaUtilizador(props){
 
                 <div className='col-md-2 ms-auto'>
 
-                    <div className='dropdown '>                                                       
+                    <div className='dropdown'>                                                       
                         <button class="btn  bg-white border rounded-2 shadow-1 dropdown-toggle me-md-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                            <span>Filtro 1</span> 
                         </button>
@@ -69,7 +69,7 @@ export default function ListaUtilizador(props){
                                                             <div className='col-5'>
                                                                 <p>02 José António Gomes</p>
                                                             </div>
-                                                            <div class="p-2 bg-responsavel text-white text-center rounded-2 col-2 ">Responsável de Região</div>
+                                                            <div class="p-2 bg-responsavel text-white text-center rounded-2 col-2  ">Responsável de Região</div>
                                                             
                                                             <div className='col-md-2 ms-auto'>
                                                                 <button className=' btn btn-outline-danger bi bi-trash-fill me-md-2'></button> 
@@ -241,7 +241,29 @@ export default function ListaUtilizador(props){
                                             </div>  
                                         </div>
                                     </div>
-                                </div>     
+                                </div>  
+                                <div className='row'>
+                                    <div className='col-12 '>
+                                        <div className='col-md-2 ms-auto'>                                       
+                                                <div class="pagination">
+                                                    <li class="page-item ">
+                                                    <a class="page-link" href="#" aria-label="Previous">
+                                                        <span aria-hidden="true">&laquo;</span>
+                                                    </a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item">
+                                                    <a class="page-link" href="#" aria-label="Next">
+                                                        <span aria-hidden="true">&raquo;</span>
+                                                    </a>
+                                                    </li>
+                                                </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>   
                             </div>
                         </div>
                     </div> 
