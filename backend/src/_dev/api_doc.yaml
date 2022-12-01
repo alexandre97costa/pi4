@@ -19,17 +19,27 @@ tags:
   - name: Recompensa
     description: Controlo sobre as recompensas 
 paths:
-  /utilizador:
+  /utilizadores:
+    get:
+      tags:
+        - Utilizador
+      summary: Listar utilizadores
+      description: |
+        Listar utilizadores, com opção de filtrar por tipo de utilizador, e por id:
+      operationId: get_users
+      responses: 
+        default:
+          description: Success
     post:
       tags:
         - Utilizador
       summary: Criar utilizador
       description: |
-        Criar utilizador
+        Criar utilizador (com base no req body)
       operationId: create_user
       responses:
         default:
-          description: 'Success'
+          description: Success
 components:
   parameters:
     id:
