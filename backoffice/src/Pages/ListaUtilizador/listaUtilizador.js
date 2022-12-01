@@ -6,7 +6,34 @@ export default function ListaUtilizador(props){
     return (
        <div className='row'>
             <div className='col-12'>
-                <div className='card p-3 mb-5 shadow bg-body rouded border-0'>
+
+                <div className='col-md-2 ms-auto'>
+
+                    <div className='dropdown '>                                                       
+                        <button class="btn  bg-white border rounded-2 shadow-1 dropdown-toggle me-md-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                           <span>Filtro 1</span> 
+                        </button>
+                        <div className='dropdown-menu'>
+                            <div className='dropdown-item'>Action</div>
+                            <div className='dropdown-item'>Action</div>
+                            <div className='dropdown-item'>Action</div>                                
+                        </div> 
+
+                        <button class="btn  bg-white border rounded-2 shadow-1 dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Filtro 1
+                        </button>
+                        <div className='dropdown-menu'>
+                            <div className='dropdown-item'>Action</div>
+                            <div className='dropdown-item'>Action</div>
+                            <div className='dropdown-item'>Action</div>                                
+                        </div>                          
+                    </div>
+                
+                </div>
+                                 
+
+                 
+                <div className='card p-3 mb-5 shadow bg-body rouded border-0 mt-2'>
                     <div className='row p-3'>
                         <div className='col-12'>
                             <div className='row'>
@@ -21,13 +48,13 @@ export default function ListaUtilizador(props){
                                                     <div className='col-12 pb-1'>
                                                         <div className='row'>
                                                             <div className='col-5'>
-                                                                <p># Nome</p>
+                                                                <h5># Nome</h5>
                                                             </div> 
                                                             <div className='col-2 text-center '>
-                                                                <p>Categoria</p>
+                                                                <h5>Categoria</h5>
                                                             </div>  
                                                             <div className='col-md-3 ms-auto text-center'>
-                                                                <p>Ações</p>
+                                                                <h5>Ações</h5>
                                                             </div>                                                             
                                                         </div>
                                                     </div>
