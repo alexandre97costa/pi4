@@ -1,6 +1,7 @@
 import React from 'react';
 import RedesSociaisMicrosite from "../../../Components/RedesSociaisMicrosite"
 import PrivacidadeCoockiesMicrosite from "../../../Components/PrivacidadeCoockiesMicrosite"
+import BotaoGuardar from '../../../Components/BotaoGuardar';
 
 
 export default function GerirEditarFooter(){
@@ -31,6 +32,9 @@ export default function GerirEditarFooter(){
                 linkRedeSocialTexto="Link para o Twitter"
                 linkRedeSocialTextoPlaceholder="Inserir o link"
                 />
+                <BotaoGuardar
+                botaoGuardar="Guardar"
+                />
               </div>
 
 
@@ -42,10 +46,12 @@ export default function GerirEditarFooter(){
                 />
                 <PrivacidadeCoockiesMicrosite
                 linkTexto="Link para a página de Política de Cookies"
-                linkTextoPlaceholder="Inserir o link"/>
+                linkTextoPlaceholder="Inserir o link"
+                />
+                <BotaoGuardar
+                botaoGuardar="Guardar"
+                />
               </div>
-
-
             </div>
           </div>
         </div>

@@ -45,7 +45,7 @@ export default function RedesSociaisMicrosite(props) {
           <div className="col-10 pb-4">
             <input
               type="text"
-              className="form-control mb-4"
+              className="form-control "
               id="formlinkRedeSocialTextoPlaceholderlInput"
               placeholder={props.linkRedeSocialTextoPlaceholder}
             />
