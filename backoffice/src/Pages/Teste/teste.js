@@ -3,15 +3,14 @@ import React from 'react';
 import CartaoPI from '../../Components/Card_pi';
 import CartaoAT from '../../Components/Card_at';
 import CartaoDetais from '../../Components/Card_details';
+import TopBar from '../../Components/Topbar.jsx';
 
 export default function Teste() {
     return (
         <>
     
 
-            <div className='row'>
-               
-
+            <div className='row'>           
                 <div className='col-3'>
                     <CartaoPI
                         title="Nome do Local Turístico" 
@@ -44,7 +43,6 @@ export default function Teste() {
 
                         title3="??" 
                         subTitle3="Categoria"     
-
                     />              
             </div>
 

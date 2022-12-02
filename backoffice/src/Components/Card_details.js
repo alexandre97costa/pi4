@@ -14,13 +14,13 @@ export default function CartaoDetais(props) {
     <div className="col-md-8">
       <div className="card-body">
         <h5 className="card-title"> {props.title} </h5>
-        <h6 className="card-subtitle mb-2 text-muted"> {props.subTitle}</h6>  
+        <h6 className="card-subtitle mb-5 text-muted"> {props.subTitle}</h6>  
 
         <h5 className="card-title"> {props.title2} </h5>
-        <h6 className="card-subtitle mb-2 text-muted"> {props.subTitle2}</h6>  
+        <h6 className="card-subtitle mb-5 text-muted"> {props.subTitle2}</h6>  
 
         <h5 className="card-title"> {props.title3} </h5>
-        <h6 className="card-subtitle mb-2 text-muted"> {props.subTitle3}</h6>    
+        <h6 className="card-subtitle mb-5 text-muted"> {props.subTitle3}</h6>    
 
       </div>
     </div>
