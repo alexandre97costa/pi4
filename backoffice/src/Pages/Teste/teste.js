@@ -32,7 +32,8 @@ export default function Teste() {
             </div>
 
 
-            <div className='row col-12'>     
+            <div className='row'>    
+             
                     <CartaoDetais
                         Nome="Nome" 
                         NomeDesc="Um nome qql"     
@@ -48,20 +49,28 @@ export default function Teste() {
                     />              
             </div>
 
-            <div className='row col-3'>
-                    <AddCard
+
+
+            <div className='row'>
+
+            <div className='col-3' >  
+
+            <AddCard
                         title="Adicionar Ponto de Interesse" 
                     />
-            </div>
 
+                    </div>
 
-            <div className='row col-3'>
+                    <div className='col-3 p-0'>  
+
                     <CartaoPIRemove
                         title="Nome do Local Turístico" 
                         subTitle="Categoria"
                         morada="Morada"
                         txtLink="Remover"
                     />
+
+                    </div>
             </div>
 
 
