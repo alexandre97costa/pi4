@@ -1,6 +1,5 @@
 import React from "react";
 import { RecompensaTabela } from "../../Components/RecompensaTabela";
-import CardsMicrosite from "../../Components/CardsMicrosite";
 import { CardRecompensa } from "../../Components/CardRecompensa";
 
 export function ATRecompensas(props) {
