@@ -1,5 +1,5 @@
 import React from 'react'
-import dropdown from '../../Components/dropdown';
+import { Dropdown } from '../../Components/Dropdown';
 
 
 export default function ListaUtilizador(props){
@@ -8,29 +8,10 @@ export default function ListaUtilizador(props){
        <div className='row'>
             <div className='col-12'>
 
-                <div className='col-md-2 ms-auto'>
-
-                    <div className='dropdown'>                                                       
-                        <button class="btn  bg-white border rounded-2 shadow-1 dropdown-toggle me-md-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                           <h6>Filtro 1</h6> 
-                        </button>
-                        <div className='dropdown-menu'>
-                            <div className='dropdown-item'>Action</div>
-                            <div className='dropdown-item'>Action</div>
-                            <div className='dropdown-item'>Action</div>                                
-                        </div> 
-
-                        <button class="btn  bg-white border rounded-2 shadow-1 dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filtro 1
-                        </button>
-                        <div className='dropdown-menu'>
-                            <div className='dropdown-item'>Action</div>
-                            <div className='dropdown-item'>Action</div>
-                            <div className='dropdown-item'>Action</div>                                
-                        </div>                          
-                    </div>
+                <Dropdown  nomeBotao="Filtro 1"
+                nome1="ola"
+                />
                 
-                </div>
                                  
 
                  
@@ -244,8 +225,8 @@ export default function ListaUtilizador(props){
                                     </div>
                                 </div>  
                                 <div className='row'>
-                                    <div className='col-12 '>
-                                        <div className='col-md-2 ms-auto'>                                       
+                                    
+                                        <div className="col align-self-end">                                       
                                                 <div class="pagination">
                                                     <li class="page-item ">
                                                     <a class="page-link" href="#" aria-label="Previous">
@@ -263,7 +244,7 @@ export default function ListaUtilizador(props){
                                                 </div>
                                             
                                         </div>
-                                    </div>
+                                    
                                 </div>   
                             </div>
                         </div>
