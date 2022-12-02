@@ -16,7 +16,7 @@ export default function TituloMicrosite(props) {
         </div>
 
         <div className="row">
-          <div className="col-10 pb-4">
+          <div className="col-10">
             <input
               type="text"
               className="form-control"
