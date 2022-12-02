@@ -9,8 +9,17 @@ export default function ListaUtilizador(props){
             <div className='col-12'>
 
                 <Dropdown  nomeBotao="Filtro 1"
-                nome1="ola"
+                nome1="filtro1"
+                nome2="filtro2"
+                nome3="filtro3"
                 />
+                <Dropdown  nomeBotao="Filtro 2"
+                nome1="filtro1"
+                nome2="filtro2"
+                nome3="filtro3"
+                />
+                
+                
                 
                                  
 
