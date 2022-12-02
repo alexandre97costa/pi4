@@ -1,5 +1,7 @@
 import React from "react";
 import { RecompensaTabela } from "../../Components/RecompensaTabela";
+import CardsMicrosite from "../../Components/CardsMicrosite";
+import { CardRecompensa } from "../../Components/CardRecompensa";
 
 export function ATRecompensas(props) {
   return (
@@ -28,6 +30,12 @@ export function ATRecompensas(props) {
                 nomeRecompensa4="Recompensa D"
                 nomeRecompensa1="Recompensa E"
               />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <CardRecompensa/>
+
             </div>
           </div>
         </div>
