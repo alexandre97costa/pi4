@@ -25,6 +25,8 @@ export default function App() {
 			<Routes>
 				<Route exact path='/login' element={<Pages.Login />} />
 
+				<Route exact path='/recuperar' element={<Pages.Recuperar />} />
+
 				<Route
 					path='/'
 					element={

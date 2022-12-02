@@ -36,25 +36,12 @@ export default function Login(props) {
                             e.preventDefault()
                             submit()
                         }} >
-                        <p className="text-center  mb-5 color-text fs-1 fw-bold">Iniciar sessão</p>
-                        <label className="fs-5 mb-2 ms-1" htmlFor='input-email'>Email</label>
+                        <p className="text-center  mb-5 color-text fs-1 fw-bold">Recuperar Palavra-passe</p>
+                        <label className="fs-5 mb-2 ms-1" htmlFor='input-password'>Palavra-passe</label>
                             <div className='form-floating mb-4'>
-                                <input
-                                    id='input-email'
-                                    type='text' // ! mudar pra email
-                                    pattern='^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,63})$'
-                                    className='form-control rounded-3'
-                                    placeholder='name@example.com'
-                                    required
-                                    value={email}
-                                    onChange={e => { setEmail(e.target.value) }}
-                                    onInvalid={e => { }}
-                                />
-                            </div>
-                            <label className="fs-5 mb-2 ms-1" htmlFor='input-password'>Password</label>
-                            <div className='form-floating mb-4'>
-                                <input
+                            <input
                                     id='input-password'
+                                    name="password"
                                     type='password'
                                     className='form-control rounded-3'
                                     placeholder='secret!'
@@ -62,28 +49,25 @@ export default function Login(props) {
                                     onChange={e => { setPassword(e.target.value) }}
                                 />
                             </div>
-                            <div className='form-check mb-4'>
+                            <label className="fs-5 mb-2 ms-1" htmlFor='input-confpassword'>Repetir Palavra-passe</label>
+                            <div className='form-floating mb-5'>
                                 <input
-                                    id='input-long-exp'
-                                    type='checkbox'
-                                    className='form-check-input'
-                                    value={longExp}
-                                    onChange={e => { setLongExp(e.target.checked) }}
+                                    id='input-confpassword'
+                                    name="confirm_password"
+                                    type='password'
+                                    className='form-control rounded-3'
+                                    placeholder='secret!'
+                                    value={password}
+                                    onChange={e => { setPassword(e.target.value) }}
                                 />
-                                <label className='form-check-label text-secondary' htmlFor='input-long-exp'>
-                                    Manter-me autorizado por mais tempo (5m)
-                                </label>
                             </div>
                             <button
                                 id='btn-submit'
                                 type='submit'
                                 className='btn btn-lg btn-primary w-100 shadow mb-4'
                             >
-                                Entrar
+                                Confirmar
                             </button>
-                            <p className="">
-                            Esqueceste-te da Palavra-passe? <a href="../recuperar" className="color-text">Recuperar</a>
-                            </p>
                         </form>
                     </div>
                 </div>
