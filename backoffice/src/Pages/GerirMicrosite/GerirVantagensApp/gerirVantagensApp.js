@@ -3,6 +3,7 @@ import TituloMicrosite from "../../../Components/TituloMicrosite";
 import SubTituloMicrosite from "../../../Components/SubTituloMicrosite";
 import BotaoMicrosite from "../../../Components/BotaoMicrosite";
 import UrlImagemMicrosite from "../../../Components/UrlImagemMicrosite";
+import BotaoGuardar from "../../../Components/BotaoGuardar";
 
 export default function GerirVantagensApp(props) {
   return (
@@ -15,6 +16,9 @@ export default function GerirVantagensApp(props) {
           <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
             <TituloMicrosite titulo="Título" />
             <SubTituloMicrosite subTitulo="Subtítulo" />
+            <BotaoGuardar
+            botaoGuardar="Guardar"
+            />
           </div>
 
           <p className="fs-3 mb-5 ms-4">Card1</p>
@@ -23,6 +27,9 @@ export default function GerirVantagensApp(props) {
             <SubTituloMicrosite subTitulo="Subtítulo" />
             <BotaoMicrosite botao="Texto Botão" />
             <UrlImagemMicrosite urlImagem="Link para o icon"/>
+            <BotaoGuardar
+            botaoGuardar="Guardar"
+            />
           </div>
 
           <p className="fs-3 mb-5 ms-4">Descarregar App</p>
@@ -31,6 +38,9 @@ export default function GerirVantagensApp(props) {
             <SubTituloMicrosite subTitulo="Subtítulo" />
             <BotaoMicrosite botao="Texto Botão" />
             <UrlImagemMicrosite urlImagem="Link para o icon"/>
+            <BotaoGuardar
+            botaoGuardar="Guardar"
+            />
           </div>
 
           <p className="fs-3 mb-5 ms-4">Descarregar App</p>
@@ -39,6 +49,9 @@ export default function GerirVantagensApp(props) {
             <SubTituloMicrosite subTitulo="Subtítulo" />
             <BotaoMicrosite botao="Texto Botão" />
             <UrlImagemMicrosite urlImagem="Link para o icon"/>
+            <BotaoGuardar
+            botaoGuardar="Guardar"
+            />
           </div>
 
         </div>
