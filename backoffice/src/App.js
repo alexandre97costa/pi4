@@ -97,6 +97,16 @@ export default function App() {
 						</ProtectedRoute>
 					}
 				/>
+				<Route
+					path='/atribuicaoPerfil'
+					element={
+						<ProtectedRoute>
+							<Page PageTitle={'Atribuir perfil'} PageIcon={'apple'}>
+								<Pages.AtribuicaoPerfil/>
+							</Page>
+						</ProtectedRoute>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);

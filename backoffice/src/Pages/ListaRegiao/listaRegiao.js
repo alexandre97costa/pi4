@@ -49,7 +49,7 @@ export default function ListaRegiao(props){
                                                              <div className='col-5'>
                                                                  <h5># Nome</h5>
                                                              </div> 
-                                                             <div className='col-2 text-center '>
+                                                             <div className='col-2 '>
                                                                  <h5>Categoria</h5>
                                                              </div>  
                                                              <div className='col-md-3 ms-auto text-center'>
@@ -68,7 +68,7 @@ export default function ListaRegiao(props){
                                                              <div className='col-5'>
                                                                  <p>02 José António Gomes</p>
                                                              </div>
-                                                             <div class="col-2 text-center">224 Tondela</div>
+                                                             <div class="col-2 ">224 Tondela</div>
                                                              
                                                              <div className='col-md-2 ms-auto'>
                                                                  <button className=' btn btn-outline-danger bi bi-trash-fill me-md-2'></button> 
