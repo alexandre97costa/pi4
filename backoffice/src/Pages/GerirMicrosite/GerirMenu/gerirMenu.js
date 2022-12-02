@@ -1,5 +1,6 @@
 import React from "react";
 import UrlImagemMicrosite from "../../../Components/UrlImagemMicrosite";
+import BotaoGuardar from "../../../Components/BotaoGuardar";
 
 export default function GerirMenu() {
   return (
@@ -10,6 +11,7 @@ export default function GerirMenu() {
 
           <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
             <UrlImagemMicrosite urlImagem="Url da imagem" />
+            <BotaoGuardar botaoGuardar="Guardar"/>
           </div>
         </div>
       </div>
