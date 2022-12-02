@@ -4,6 +4,8 @@ import dev from '../Auth/dev';
 import { Sidebar } from '../Components/sidebar'
 import User from '../Components/user'
 
+import Topbar from '../Components/Topbar.jsx';
+
 let agente_turistico = [
 	{ icon: "speedometer2", text: "Dashboard", path: "/" },
 	{ icon: "geo-alt", text: "Pontos de Interesse", path: "/teste" },
@@ -15,6 +17,8 @@ export default function Page(props) {
     useEffect(() => { dev.log("✅ Pagina()") }, [])
 
     return (
+
+        
         <div className='container-fluid position-relative'>
             <div className='row'>
                 <Sidebar
@@ -24,7 +28,11 @@ export default function Page(props) {
                 />
 
                 {/* Content */}
+                          
                 <div className='col-10 bg-light overflow-auto' style={{ maxHeight: '100vh' }}>
+
+                <Topbar/>  
+                    
                     <div className='container-fluid py-3'>
                         <div className='row mb-4'>
                             <div className='display-6'>
