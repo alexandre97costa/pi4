@@ -11,7 +11,7 @@ export default function ListaUtilizador(props){
 
                     <div className='dropdown'>                                                       
                         <button class="btn  bg-white border rounded-2 shadow-1 dropdown-toggle me-md-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                           <span>Filtro 1</span> 
+                           <h6>Filtro 1</h6> 
                         </button>
                         <div className='dropdown-menu'>
                             <div className='dropdown-item'>Action</div>
