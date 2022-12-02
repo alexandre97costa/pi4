@@ -31,7 +31,7 @@ function applyExtraSetup(sequelize) {
 
     distrito.hasMany(candidatura_at, { foreignKey: 'distrito_id' })
     distrito.hasMany(municipio, { foreignKey: 'distrito_id' })
-    distrito.belongsTo(utilizador, { foreignKey: 'responsavel_regiao_id' })
+    distrito.belongsTo(utilizador, { foreignKey: 'responsavel_regiao_id', as: 'responsavel_regiao' })
 
     evento.hasMany(pontos_evento, { foreignKey: 'evento_id' })
     evento.hasMany(sessao, { foreignKey: 'evento_id' })
@@ -52,7 +52,7 @@ function applyExtraSetup(sequelize) {
     ponto_interesse.hasMany(pontos_ponto_interesse, { foreignKey: 'ponto_interesse_id' })
     ponto_interesse.hasMany(ponto_interesse_recompensa, { foreignKey: 'ponto_interesse_id' })
     ponto_interesse.belongsTo(freguesia, { foreignKey: 'freguesia_id' })
-    ponto_interesse.belongsTo(utilizador, { foreignKey: 'agente_turistico_id' })
+    ponto_interesse.belongsTo(utilizador, { foreignKey: 'agente_turistico_id', as: 'agente_turistico' })
     ponto_interesse.belongsTo(tipo_interesse, { foreignKey: 'tipo_interesse_id' })
 
     ponto_interesse_recompensa.belongsTo(ponto_interesse, { foreignKey: 'ponto_interesse_id' })

@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +12,10 @@ import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.ficha8.Req
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputEditText
+import org.json.JSONObject
 import pi4.main.Classes.PontoInteresse
 import pi4.main.R
 import pi4.main.Adapter.SetAdapterCard
@@ -31,7 +34,7 @@ class FragmentPontoInteresse() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        callAdatperCards("Todos")
+        callAdapterCards("Todos")
         createCategoriasTab()
         loadPoints()
         testeLabel()
@@ -51,9 +54,9 @@ class FragmentPontoInteresse() : Fragment() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if(textInputEditText.text.toString() != "")
-                    callAdatperCards(textInputEditText.text.toString())
+                    callAdapterCards(textInputEditText.text.toString())
                 else
-                    callAdatperCards("Todos")
+                    callAdapterCards("Todos")
             }
         })
     }
@@ -85,7 +88,7 @@ class FragmentPontoInteresse() : Fragment() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 // Handle tab select
                 categoria.changeIconOnSelected(tab, tab.id)
-                callAdatperCards(tab.text.toString())
+                callAdapterCards(tab.text.toString())
                 Toast.makeText(requireContext(), "onTabSelected: ${tab.text}" , Toast.LENGTH_SHORT).show()
             }
 
@@ -101,14 +104,20 @@ class FragmentPontoInteresse() : Fragment() {
         })
     }
 
-    private fun callAdatperCards(categoria:String) {
+    private fun callAdapterCards(categoria:String) {
         val arrayFinal: ArrayList<PontoInteresse> = stringRequestPontosInteresse(categoria)
+        GetPontosInteresse()
+
 
         val customAdapter = SetAdapterCard(requireContext(), arrayFinal)
-
         val listView = requireView().findViewById<ListView>(R.id.listView)
-
         listView.adapter = customAdapter
+    }
+
+    fun GetPontosInteresse() {
+        Req().TEST("/ponto_interesse?", JSONObject("""{"name":"test name", "age":25}"""), JSONObject(), requireContext(), then = { res ->
+            Log.i("GetPontosInteresse", res.toString(2))
+        })
     }
 
     private fun stringRequestPontosInteresse(categoria: String): ArrayList<PontoInteresse> {

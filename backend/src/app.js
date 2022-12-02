@@ -42,8 +42,7 @@ app.use(
             { url: '/user', methods: ['POST'] },
             { url: '/user/login', methods: ['POST'] },
             { url: '/user/bulk', methods: ['POST'] },
-            { url: '/pontoInteresse', methods: ['GET'] },
-            { url: /^\/pontoInteresse/ }
+            { url: /^\/ponto_interesse/ }
         ]
     })
 );
@@ -57,7 +56,7 @@ app.use(function (e, req, res, next) {
 //* Rotas
 app.use('/exemplo', exemploRoute)
 app.use('/user', userRoutes)
-app.use('/pontoInteresse', pontoInteresseRoute)
+app.use('/ponto_interesse', pontoInteresseRoute)
 
 // Rota de Introdução
 app.use('/', (req, res) => {
