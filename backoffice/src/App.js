@@ -91,7 +91,7 @@ export default function App() {
 							userName={"Joaquim"}
 							menu={agente_turistico}
 							selected={0}
-							title={"Gerir Microsite"}
+							title={""}
 						>
 							<Pages.GerirMicrosite />
 						</Pagina>
@@ -133,7 +133,7 @@ export default function App() {
 							userName={"Joaquim"}
 							menu={agente_turistico}
 							selected={0}
-							title={"Gerir Microsite"}
+							title={""}
 						>
 							<Pages.GerirMenu />
 						</Pagina>
@@ -147,7 +147,7 @@ export default function App() {
 							userName={"Joaquim"}
 							menu={agente_turistico}
 							selected={0}
-							title={"Gerir Microsite"}
+							title={""}
 						>
 							<Pages.GerirHeroBanner />
 						</Pagina>
@@ -161,7 +161,7 @@ export default function App() {
 							userName={"Joaquim"}
 							menu={agente_turistico}
 							selected={0}
-							title={"Gerir Microsite"}
+							title={""}
 						>
 							<Pages.GerirPublicidadeAgenteTuristico />
 						</Pagina>
