@@ -8,24 +8,34 @@ export default function GerirMicrosite() {
         <div className="col-12">
           <p className="fs-3 mb-5"> Gerir Microsite</p>
 
-          <div className="card shadow bg-body rounded">
+
             <div className="row">
               <div className="col-12">
-                <div className=" row row-cols-4">
-                  <CardsMicrosite titulo="Menu" subTitulo="cabeçalho" />
-                  <CardsMicrosite titulo="Hero Banner" subTitulo="Card 0" />
-                  <CardsMicrosite titulo="Vantagens App" subTitulo="Card 1" />
-                  <CardsMicrosite titulo="Publicidade Agente Turístico" subTitulo="Card 2" />
-                </div>
+                <div className=" row  row-cols-4">
+
+                    <CardsMicrosite titulo="Menu" subTitulo="cabeçalho" />
+
+
+                    <CardsMicrosite titulo="Hero Banner" subTitulo="cabeçalho" />
+
+
+                    <CardsMicrosite titulo="Vantagens App" subTitulo="cabeçalho" />
+
+                    <CardsMicrosite titulo="Publicidade Agente Turístico" subTitulo="cabeçalho" />
+
+
+                    <CardsMicrosite titulo="Descarregar App" subTitulo="cabeçalho" />
+
+
+                    <CardsMicrosite titulo="Footer" subTitulo="cabeçalho" />
+
+
+                    <CardsMicrosite color="text-primary" titulo="+" subTitulo="cabeçalho" />
+
+
               </div>
             </div>
-                <div className=" row row-cols-12">
-                  <CardsMicrosite titulo="Descarregar App" subTitulo="Card 3" />
-                  <CardsMicrosite titulo="Footer" subTitulo="Rodapé" />
-                  <CardsMicrosite titulo="+" subTitulo="Adicionar novo conteúdo" />
-                </div>
-              </div>
-
+          </div>
         </div>
       </div>
     </div>

@@ -60,3 +60,9 @@
 .bg-primary {
     background-color: var(--pi4-primary-transparent)!important;
 }
+
+/* texto cor */
+
+.text-primary {
+    color: var(--pi4-primary)!important;
+}
