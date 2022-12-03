@@ -17,9 +17,13 @@ tags:
   - name: Reserva
     description: Acesso às reservas criadas na aplicação
   - name: Recompensa
-    description: Controlo sobre as recompensas 
-  - name: Agente
-    description: Controlo sobre utilizadores para mudar o seu tipo
+    description: Controlo sobre as recompensas
+  - name: Voucher
+    description: Controlo sobre vouchers
+  - name: Distrito
+    description: Operações sobre os distritos e os seus responsáveis
+  - name: Scan
+    description: Operações sobre a leitura de vouchers
 paths:
   /pontoInteresse:
     post:
@@ -271,6 +275,19 @@ paths:
         '400':
           description: Input invalido
   /reservas:
+    post:
+      tags:
+        - Reserva
+      summary: Adiciona uma reserva
+      description: Adiciona uma reserva, efetuada pelo utilizador, com base no requestBody
+      operationId: postReserva
+      responses:
+        '200':
+          description: Reserva criada com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Necessita de ter o login efetuado
     get:
       tags:
         - Reserva
@@ -295,19 +312,6 @@ paths:
           description: Input invalido
         '404':
           description: Reserva não existe
-    post:
-      tags:
-        - Reserva
-      summary: Adiciona uma reserva
-      description: Adiciona uma reserva, efetuada pelo utilizador, com base no requestBody
-      operationId: postReserva
-      responses:
-        '200':
-          description: Reserva criada com sucesso
-        '400':
-          description: Input invalido
-        '403':
-          description: Necessita de ter o login efetuado
     put:
       tags:
         - Reserva
@@ -511,6 +515,139 @@ paths:
           description: Sem autorização
         '404':
           description: Recompensa não existe 
+  /voucher:
+    post:
+      tags:
+        - Voucher
+      summary: Cria um novo voucher
+      description: Cria um novo voucher, com base no requestBody
+      operationId: postVoucher
+      responses:
+        '200':
+          description: Voucher criado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem atualização
+    get:
+      tags:
+        - Voucher
+      summary: Enviar um ou mais voucher de um utilizador
+      description: Enviar um ou mais voucher de um utilizador, consoante o filtro
+      operationId: getVoucher
+      parameters:
+        - name: utilizadorId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: recompensaId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Voucher enviado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Voucher não existe
+  /distrito:
+    # Não deviríamos ter alguma forma de criar distritos?
+    get:
+      tags:
+        - Distrito
+      summary: Enviar um ou mais distritos
+      description: Envia um ou mais distritos, consoante o filtro
+      operationId: getDistrito
+      parameters:
+        - name: distritoId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: responsavelRegiaoId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Distrito/s enviado com sucesso
+        '400':
+          description: Input invalido
+        '403':  
+          description: Sem autorização
+        '404':
+          description: Distrito não existe
+    patch:
+      tags:
+        - Distrito
+      summary: Atribui um responsavel ao distrito
+      description: Atribui um responsavel ao distrito, com base no requestBody
+      operationId: patchDistrito
+      parameters:
+        - name: distritoId
+          in: query 
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Responsavel atribuído com sucesso ao distrito
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Distrito não foi encontrado
+  /scan:
+  # Criar um scan? não deveria sé ser o get para fazer realizar o scan ao voucher?
+    post:
+      tags:
+        - Scan
+      summary: Criar um novo scan
+      description: Criar um novo scan, com base no requestBody
+      operationId: postScan
+      responses:
+        '200':
+          description: Scan criado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+    get:
+      tags:
+        - Scan
+      summary: Envia um scan 
+      description: Envia um scan, consoante o filtro
+      operationId: 
+      parameters:
+        - name: pontoInteresseId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: utilizadorId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: eventoId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Scan efetuado com sucesso
+        '400':
+          description: Input invalido
+        '404':
+          description: Scan não existe
 components:
   securitySchemes:
     token:
