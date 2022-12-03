@@ -8,7 +8,7 @@ export default function App() {
 		<Router>
 			<Routes>
 				<Route
-					exact path='/'
+					exact path='/microsite'
 					element={<Pages.Exemplo/>}
 				/>
 			</Routes>
