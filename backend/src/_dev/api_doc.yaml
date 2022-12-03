@@ -151,8 +151,8 @@ paths:
     get:
       tags:
         - Ponto de Interesse
-      summary: Envia um ou mais tipos de ponto de interesse
-      description: Envia um ou mais tipos de ponto de interesse, consoante o filtro enviado
+      summary: Envia os tipos de ponto de interesse
+      description: Envia todos os tipos de ponto de interesse
       operationId: getTipoPontoInteresse
       responses:
         '200':
@@ -258,6 +258,18 @@ paths:
           description: Sem autorização
         '404':
           description: Utilizador não existe
+  /tipoUtilizador:
+    get:
+      tags:
+        - Utilizador
+      summary: Envia os tipos de utilizador
+      description: Envia todos os tipos de utilizador
+      operationId: getTipoUtilizador
+      responses:
+        '200':
+          description: Tipo de utilizador enviada com sucesso
+        '400':
+          description: Input invalido
   /reservas:
     get:
       tags:
@@ -323,6 +335,19 @@ paths:
         '404':
           description: Reserva não existe
   /evento:
+    post:
+      tags:
+        - Evento
+      summary: Cria um evento novo
+      description: Criação de um novo evento, com base no requestBody
+      operationId: postEvento
+      responses:
+        '200':
+          description: Evento criado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização 
     get:
       tags:
         - Evento
@@ -340,12 +365,61 @@ paths:
           required: false
           schema:
             type: string
+      responses:
+        '200':
+          description: Eventos enviados com sucesso
+        '400':
+          description: Input invalido
+        '404':
+          description: Evento não foi encontrado
+    put:
+      tags:
+        - Evento
+      summary: Atualiza um evento
+      description: Atualiza um evento especifico, com base no requestBody
+      operationId: putEvento
+      parameters:
+        - name: eventoId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Evento atualizado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem atualização
+        '404':
+          description: Evento não existe
+    delete:
+      tags:
+        - Evento
+      summary: Eliminar um evento
+      description: Elimina um evento, consoante um id
+      operationId: deleteEvento
+      parameters:
+        - name: eventoId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Evento eliminado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Evento não existe
   /tipoEventos:
     get:
       tags:
         - Evento
-      summary: Envia um ou mais tipos de eventos
-      description: Envia um ou mais tipos de eventos, consoante o filtro
+      summary: Envia os tipos de eventos
+      description: Envia todos os tipos de eventos
       operationId: getTipoEventos
       responses:
         '200':
