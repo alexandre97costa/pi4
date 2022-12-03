@@ -1,6 +1,10 @@
 import React from "react";
 
 export default function PrivacidadeCoockiesMicrosite(props) {
+
+  /*const [titulo, setTitulo] = useState("")
+  /*onChange={(value)=>setTitulo(value.target.value)}*/
+
   return (
     <div className="container">
       <div className="row">
@@ -16,7 +20,7 @@ export default function PrivacidadeCoockiesMicrosite(props) {
 
         <div className="row">
           <div className="col-10">
-            <input
+            <input 
               type="text"
               className="form-control  mb-4"
               id="formLinkTextoPlaceholderInput"
