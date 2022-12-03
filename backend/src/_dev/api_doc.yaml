@@ -426,6 +426,91 @@ paths:
           description: Tipo de eventos enviado com sucesso
         '400':
           description: Input invalido
+  /recompensa:
+    post:
+      tags:
+        - Recompensa
+      summary: Cria uma nova recompensa
+      description: Cria uma nova recompensa, com base no requestBody
+      operationId: postRecompensa
+      responses:
+        '200':
+          description: Recompensa criada com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+    get:
+      tags:
+        - Recompensa
+      summary: Enviar uma ou mais recompensas
+      description: Enviar uma ou mais recompensas, consoante o filtro enviado
+      operationId: getRecompensa
+      parameters:
+        - name: recompensaId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: pontoInteresseId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: tipoInteresseId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recompensa enviada com sucesso
+        '400':
+          description: Input invalido
+        '404':
+          description: Recompensa não existe
+    put:
+      tags:
+        - Recompensa
+      summary: Atualiza uma recompensa
+      description: Atualiza uma recompensa, com base no requestBody
+      operationId: putRecompensa
+      parameters:
+        - name: recompensaId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recompensa atualizada com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Recompensa não existe
+    delete: 
+      tags:
+        - Recompensa
+      summary: Elimina uma reserva
+      description: Elimina uma reserva, consoante um id
+      operationId: deleteRecompensa
+      parameters:
+        - name: recompensaId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recompensa eliminado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Recompensa não existe 
 components:
   securitySchemes:
     token:
