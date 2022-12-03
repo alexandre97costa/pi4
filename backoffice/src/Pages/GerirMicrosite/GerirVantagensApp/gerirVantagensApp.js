@@ -16,7 +16,7 @@ export default function GerirVantagensApp(props) {
           <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
             <TituloMicrosite titulo="Título" />
             <SubTituloMicrosite subTitulo="Subtítulo" />
-            <BotaoGuardar
+            <BotaoGuardar onClick={test}
             botaoGuardar="Guardar"
             />
           </div>
@@ -58,4 +58,9 @@ export default function GerirVantagensApp(props) {
       </div>
     </div>
   );
+  
+  function test (){
+    alert("Guardado")
+
+  }
 }
