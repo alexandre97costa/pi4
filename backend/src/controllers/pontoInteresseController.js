@@ -14,16 +14,27 @@ const {
     municipio,
     distrito,
 } = sequelize.models
-// * no final, podem-se apagar os que não estão a ser usados
-
 
 module.exports = {
-    // list: async (req, res) => {
-    //     ponto_interesse
-    //         .findAll()
-    //         .then(output => { res.status(200).json({ distritos: output }) })
-    //         .catch(error => { res.status(400); throw new Error(error); });
-    // },
+    postPontoInteresse: async (req, res) => {
+        const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id ,tipo_interesse_id } = req.body
+
+        await ponto_interesse
+            .create({
+                nome: nome,
+                morada: morada,
+                codigo_postal: codigo_postal,
+                num_telemovel: num_telemovel,
+                num_pontos: num_pontos,
+                descricao: descricao,
+                freguesia_id: freguesia_id,
+                tipo_interesse_id: tipo_interesse_id,
+            })
+            .then(output => {
+                res.status(200).json({pontoInteresse: output})
+            })
+            .catch(error => { res.status(400).json(error); throw new Error(error); });
+    },
 
     getPontoInteresse: async (req, res) => {
         //if(pontoInteresse == null) then pontoInteresse = '%'
@@ -36,7 +47,7 @@ module.exports = {
 
         dev.log("distritoId: " + distritoId)
 
-        ponto_interesse
+        await ponto_interesse
             .findAll({
                 where: {
                     nome: {
@@ -90,7 +101,7 @@ module.exports = {
 
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
-        ponto_interesse
+        await ponto_interesse
             .update({
                 nome: nome,
                 morada: morada,
@@ -123,7 +134,7 @@ module.exports = {
 
         const agente_turistico_id = req.body
 
-        ponto_interesse
+        await ponto_interesse
             .update({
                 agente_turistico_id: agente_turistico_id
             }, { where: { id: pontoInteresseId } })
@@ -141,7 +152,7 @@ module.exports = {
         if(!pontoInteresseId)
             return res.status(400).json("Input invalido")
 
-        ponto_interesse
+        await ponto_interesse
             .destroy({
                 where: { id: pontoInteresseId }
             })            
@@ -150,7 +161,7 @@ module.exports = {
     },
 
     getTipoPontoInteresse: async (req, res) => {
-        tipo_interesse.findAll()
+        await tipo_interesse.findAll()
         .then(output => { res.status(200).json({tipoPontoInteresse: output}) })
         .catch(error => { res.status(400).json(error); throw new Error(error); });
     }
