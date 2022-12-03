@@ -16,7 +16,7 @@ export default function RedesSociaisMicrosite(props) {
 
         <div className="row">
           <div className="col-10">
-            <input
+            <input onChange={(input) => console.log(input.target.value)} 
               type="text"
               className="form-control  mb-4"
               id="formIconUrlPlaceholderInput"
@@ -24,8 +24,8 @@ export default function RedesSociaisMicrosite(props) {
             />
           </div>
           <div className="col-md-2">
-            <button className="btn btn-outline-warning bi bi-pencil-fill me-md-3"></button>
-            <button className=" btn btn-outline-danger bi bi-trash-fill"></button>
+            <button onClick={(value)=>props.onClick(value)} className="btn btn-outline-warning bi bi-pencil-fill me-md-3"></button>
+            <button onClick={(value)=>props.onClick(value)} className=" btn btn-outline-danger bi bi-trash-fill"></button>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@ export default function RedesSociaisMicrosite(props) {
 
         <div className="row">
           <div className="col-10 pb-4">
-            <input
+            <input onChange={(input) => console.log(input.target.value)} 
               type="text"
               className="form-control "
               id="formlinkRedeSocialTextoPlaceholderlInput"
@@ -51,8 +51,8 @@ export default function RedesSociaisMicrosite(props) {
             />
           </div>
           <div className="col-md-2">
-            <button className="btn btn-outline-warning bi bi-pencil-fill me-md-3"></button>
-            <button className=" btn btn-outline-danger bi bi-trash-fill"></button>
+            <button onClick={(value)=>props.onClick(value)} className="btn btn-outline-warning bi bi-pencil-fill me-md-3"></button>
+            <button onClick={(value)=>props.onClick(value)} className=" btn btn-outline-danger bi bi-trash-fill"></button>
           </div>
         </div>
       </div>
