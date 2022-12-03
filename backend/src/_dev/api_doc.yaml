@@ -624,7 +624,7 @@ paths:
         - Scan
       summary: Envia um scan 
       description: Envia um scan, consoante o filtro
-      operationId: 
+      operationId: getScan
       parameters:
         - name: pontoInteresseId
           in: query
