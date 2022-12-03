@@ -1,14 +1,24 @@
 import React from "react";
-import Sidebar from "../../Components/sidebar";
+import { RecompensaTabela } from "../../Components/RecompensaTabela";
+import CardsMicrosite from "../../Components/CardsMicrosite";
+import { CardRecompensa } from "../../Components/CardRecompensa";
 
-export default function GerirAdicionarCards() {
+export function EditarPerfil(props) {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-10">
-          <p className="fs-3 mb-5 ms-4">Editar Perfil</p>
+        <div className="col-12">
 
-          <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
+          <div className="row row-cols-auto">
+            <div className="col-6">
+            </div>
+
+            <div className="col-6">
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+            </div>
           </div>
         </div>
       </div>
