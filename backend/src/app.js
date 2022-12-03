@@ -42,7 +42,6 @@ app.use(
             { url: '/user', methods: ['POST'] },
             { url: '/user/login', methods: ['POST'] },
             { url: '/user/bulk', methods: ['POST'] },
-            { url: '/pontoInteresse', methods: ['GET'] },
             { url: /^\/pontoInteresse/ }
         ]
     })
