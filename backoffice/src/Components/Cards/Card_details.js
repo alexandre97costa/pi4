@@ -6,7 +6,8 @@ import fotoagente from '../../Assets/Images/fotoagente.jpg'
 export default function CartaoDetais(props) {
   return (
 
-    <div className="card border ps-0 border-0 shadow mb-3">
+    <div className="card border ps-0 border-0 shadow mb-3"
+    style={{maxHeight: '500px', minHeight: '250px', height: '300px' }}>
       <div className="row g-0">
         <div className="col-3">
           <img src={fotoagente} className="card-img-top rounded-start" />
