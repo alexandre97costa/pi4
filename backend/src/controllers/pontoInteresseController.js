@@ -53,7 +53,7 @@ module.exports = {
                     nome: {
                         [Op.iLike]: '%' + nome + '%'
                     },
-                    id: !!pontoInteresseId ? pontoInteresseId : { [Op.ne]: 0 },
+                    id: !!+pontoInteresseId ? pontoInteresseId : { [Op.ne]: 0 },
                     tipo_interesse_id: !!+tipoInteresseId ? tipoInteresseId : { [Op.ne]: 0 },
                     freguesia_id: !!+freguesiaId ? freguesiaId : { [Op.ne]: 0 },
                     agente_turistico_id: !!agenteTuristicoId ? agenteTuristicoId : { [Op.ne]: 0 },
