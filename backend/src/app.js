@@ -14,6 +14,7 @@ const dev = new devClass;
 const exemploRoute = require('./routes/exemplo.js')
 const userRoutes = require('./routes/user.js')
 const pontoInteresseRoute = require('./routes/pontoInteresseRoutes.js')
+const eventoRoute = require('./routes/eventoRoutes.js')
 
 //* Middlewares
 app.use(cors());
@@ -42,7 +43,8 @@ app.use(
             { url: '/user', methods: ['POST'] },
             { url: '/user/login', methods: ['POST'] },
             { url: '/user/bulk', methods: ['POST'] },
-            { url: /^\/pontoInteresse/ }
+            { url: /^\/pontoInteresse/ },
+            { url: /^\/evento/ }
         ]
     })
 );
@@ -57,6 +59,7 @@ app.use(function (e, req, res, next) {
 app.use('/exemplo', exemploRoute)
 app.use('/user', userRoutes)
 app.use('/pontoInteresse', pontoInteresseRoute)
+app.use('/evento', eventoRoute)
 
 // Rota de Introdução
 app.use('/', (req, res) => {

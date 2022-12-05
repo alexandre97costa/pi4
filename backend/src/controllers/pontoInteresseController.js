@@ -30,9 +30,7 @@ module.exports = {
                 freguesia_id: freguesia_id,
                 tipo_interesse_id: tipo_interesse_id
             })
-            .then(output => {
-                res.status(200).json({pontoInteresse: output})
-            })
+            .then(output => { res.status(200).json({pontoInteresse: output}) })
             .catch(error => { res.status(400).json(error); throw new Error(error); });
     },
 

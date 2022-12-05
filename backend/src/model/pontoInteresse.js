@@ -3,12 +3,6 @@ const { DataTypes } = require('sequelize')
 module.exports = (sequelize) => {
     sequelize.define('ponto_interesse',
         {
-            // id: {
-            //     type: DataTypes.STRING,
-            //     primaryKey: true,
-            //     allowNull: false,
-            //     autoIncrement: true
-            // },
             nome: {
                 type: DataTypes.STRING,
                 allowNull: false
