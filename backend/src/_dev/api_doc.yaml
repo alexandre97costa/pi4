@@ -17,140 +17,638 @@ tags:
   - name: Reserva
     description: Acesso às reservas criadas na aplicação
   - name: Recompensa
-    description: Controlo sobre as recompensas 
+    description: Controlo sobre as recompensas
+  - name: Voucher
+    description: Controlo sobre vouchers
+  - name: Distrito
+    description: Operações sobre os distritos e os seus responsáveis
+  - name: Scan
+    description: Operações sobre a leitura de vouchers
 paths:
+  /pontoInteresse:
+    post:
+      tags:
+        - Ponto de Interesse
+      summary: Criar um produto novo
+      description: Criação de um novo produto na base de dados, com base no requestBody
+      operationId: postProduto
+      responses:
+        '200':
+          description: Ponto de Interesse criado com sucesso
+        '400': 
+          description: Input invalido
+        '403':
+          description: Sem autorização
+    get:
+      tags:
+        - Ponto de Interesse
+      summary: Envia um ou mais pontos de interesse
+      description: Envia um ou mais pontos de interesse, consoante o filtro enviado
+      operationId: getPontoInteresse
+      parameters:
+        - name: nomePontoInteresse
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: pontoInteresseId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: tipoInteresseId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: freguesiaId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: agenteTuristicoId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: distritoId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ponto's de Interesse enviado com sucesso
+        '400':
+          description: Input invalido
+        '404':
+          description: Ponto's de Interesse não existem
+    put:
+      tags:
+        - Ponto de Interesse
+      summary: Atualiza um ponto de interesse
+      description: Atualiza um ponto de interesse especifico, com base no requestBody
+      operationId: putPontoInteresse
+      parameters:
+        - name: pontoInteresseId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: agenteTuristicoId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ponto de Interesse atualizado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Ponto de Interesse não existe
+    patch:
+      tags:
+        - Ponto de Interesse
+      summary: Atualiza o agente turistico de um ponto de interesse
+      description: Atualiza o agente turistico de um ponto de interesse, com base no requestBody
+      operationId: patchPontoInteresseAgente
+      parameters:
+        - name: pontoInteresseId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Agente turistico do ponto de Interesse atualizado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Ponto de Interesse não existe
+    delete:
+      tags:
+        - Ponto de Interesse
+      summary: Eliminar um ponto de interesse
+      description: Elimina um ponto de interesse, consoante um id
+      operationId: deletePontoInteresse
+      parameters:
+        - name: pontoInteresseId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ponto de Interesse eliminado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Ponto de Interesse não existe
+  /tipoPontosInteresse:
+    get:
+      tags:
+        - Ponto de Interesse
+      summary: Envia os tipos de ponto de interesse
+      description: Envia todos os tipos de ponto de interesse
+      operationId: getTipoPontoInteresse
+      responses:
+        '200':
+          description: Tipo de ponto de interesse enviado com sucesso
+        '400':
+          description: Input invalido
   /utilizador:
     post:
       tags:
         - Utilizador
-      summary: Criar utilizador
-      description: |
-        Criar utilizador
-      operationId: create_user
+      summary: Criar um novo utilizador
+      description: Criar utilizador, com base no requestBody
+      operationId: postUser
       responses:
-        default:
-          description: 'Success'
-components:
-  parameters:
-    id:
-      in: path
-      name: id
-      schema:
-        type: integer
-        minimum: 1
-      required: true
-      description: Correspondes to any id, whether from a single user, a specific product, or a category
-  responses:
-    unauthorized_error:
-      description: Access token is missing or invalid
-  schemas:
-    Address:
-      type: object
-      properties:
-        street:
-          type: string
-          example: 437 Lytton
-        city:
-          type: string
-          example: Palo Alto
-        district:
-          type: string
-          example: CA
-        country:
-          type: string
-          example: Portugal
-        zip:
-          type: string
-          example: '94301'
-      xml:
-        name: address
-    Category:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 1
-        name:
-          type: string
-          example: Fruit
-      xml:
-        name: category
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 10
-        name:
-          type: string
-          example: Joaquim Barreiros
-        email:
-          type: string
-          example: joquim.b@email.com
-        password:
-          type: string
-          example: '12345'
-        phone:
-          type: string
-          example: '+351 987 654 321'
-        isManager:
-          type: boolean
-          example: false
-      xml:
-        name: customer
-    Product:
-      required:
-        - id
-        - name
-        - category
-        - status
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 10
-        name:
-          type: string
-          example: banana
-        category:
-          $ref: '#/components/schemas/Category'
-        photoUrls:
-          type: array
-          xml:
-            wrapped: true
-          items:
+        '200':
+          description: Utilizador criado com sucesso
+        '400':
+          description: Input invalido 
+    get:
+      tags:
+        - Utilizador
+      summary: Envia um ou mais utilizadores
+      description: Envia um ou mais utilizadores, consoante o filtro usado
+      operationId: getUtilizador
+      parameters:
+        - name: utilizadorId
+          in: query
+          required: false
+          schema:
             type: string
-            xml:
-              name: photoUrl
-        status:
-          type: string
-          description: product status in the store
-          enum:
-            - available
-            - pending
-            - sold
-      xml:
-        name: product
-    Subscription:
-      required:
-        - id
-        - userid
-        - productid
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          example: 10
-        userid:
-          $ref: '#/components/schemas/User'
-        productid:
-          $ref: '#/components/schemas/Product'
-      xml:
-        name: subscription
+        - name: tipoUtilizadorId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Utilizador/es enviada com sucesso
+        '400':
+          description: Input invalido
+        '404':
+          description: Utilizador/es não existem
+    put:
+      tags:
+        - Utilizador
+      summary: Atualiza as informações do utilizador
+      description: Atualiza as informações do utilizador especifico, com base no requestBody
+      operationId: putUtilizador
+      parameters:
+        - name: utilizadorId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Utilizador atualizado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Utilizador não existe
+    patch:
+      tags:
+        - Utilizador
+      summary: Tornar um utilizador em um agente turistico
+      description: Tornar um utilizador em um agente turistico, com base no requestBody
+      operationId: patchUtilizadorAgenteTuristico
+      parameters:
+        - name: utilizadorId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Utilizador mudado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Utilizador não existe
+    delete:
+      tags:
+        - Utilizador
+      summary: Eliminar um utilizador
+      description: Elimina um utilizador especifico
+      operationId: deleteUtilizador
+      parameters:
+        - name: utilizadorId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Utilizador eliminado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Utilizador não existe
+  /tipoUtilizador:
+    get:
+      tags:
+        - Utilizador
+      summary: Envia os tipos de utilizador
+      description: Envia todos os tipos de utilizador
+      operationId: getTipoUtilizador
+      responses:
+        '200':
+          description: Tipo de utilizador enviada com sucesso
+        '400':
+          description: Input invalido
+  /reservas:
+    post:
+      tags:
+        - Reserva
+      summary: Adiciona uma reserva
+      description: Adiciona uma reserva, efetuada pelo utilizador, com base no requestBody
+      operationId: postReserva
+      responses:
+        '200':
+          description: Reserva criada com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Necessita de ter o login efetuado
+    get:
+      tags:
+        - Reserva
+      summary: Envia uma ou mais reservas
+      description: Envia uma ou mais reservas, consoante o filtro
+      operationId: getReservas
+      parameters:
+        - name: utilizadorId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: eventoId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Reservas enviadas com sucesso
+        '400':
+          description: Input invalido
+        '404':
+          description: Reserva não existe
+    put:
+      tags:
+        - Reserva
+      summary: Atualiza um reserva ja efetuada
+      description: Atualiza um reserva ja efetuada, com base no requestBody
+      operationId: putReserva
+      parameters:
+        - name: utilizadorId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: eventoId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Reserva atualizada com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Necessita de ter o login efetuado
+        '404':
+          description: Reserva não existe
+  /evento:
+    post:
+      tags:
+        - Evento
+      summary: Cria um evento novo
+      description: Criação de um novo evento, com base no requestBody
+      operationId: postEvento
+      responses:
+        '200':
+          description: Evento criado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização 
+    get:
+      tags:
+        - Evento
+      summary: Enviar um ou mais eventos
+      description: Enviar um ou mais eventos, consoante o filtro enviado
+      operationId: getEvento
+      parameters:
+        - name: tipoEventoId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: pontoInteresseId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Eventos enviados com sucesso
+        '400':
+          description: Input invalido
+        '404':
+          description: Evento não foi encontrado
+    put:
+      tags:
+        - Evento
+      summary: Atualiza um evento
+      description: Atualiza um evento especifico, com base no requestBody
+      operationId: putEvento
+      parameters:
+        - name: eventoId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Evento atualizado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem atualização
+        '404':
+          description: Evento não existe
+    delete:
+      tags:
+        - Evento
+      summary: Eliminar um evento
+      description: Elimina um evento, consoante um id
+      operationId: deleteEvento
+      parameters:
+        - name: eventoId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Evento eliminado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Evento não existe
+  /tipoEventos:
+    get:
+      tags:
+        - Evento
+      summary: Envia os tipos de eventos
+      description: Envia todos os tipos de eventos
+      operationId: getTipoEventos
+      responses:
+        '200':
+          description: Tipo de eventos enviado com sucesso
+        '400':
+          description: Input invalido
+  /recompensa:
+    post:
+      tags:
+        - Recompensa
+      summary: Cria uma nova recompensa
+      description: Cria uma nova recompensa, com base no requestBody
+      operationId: postRecompensa
+      responses:
+        '200':
+          description: Recompensa criada com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+    get:
+      tags:
+        - Recompensa
+      summary: Enviar uma ou mais recompensas
+      description: Enviar uma ou mais recompensas, consoante o filtro enviado
+      operationId: getRecompensa
+      parameters:
+        - name: recompensaId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: pontoInteresseId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: tipoInteresseId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recompensa enviada com sucesso
+        '400':
+          description: Input invalido
+        '404':
+          description: Recompensa não existe
+    put:
+      tags:
+        - Recompensa
+      summary: Atualiza uma recompensa
+      description: Atualiza uma recompensa, com base no requestBody
+      operationId: putRecompensa
+      parameters:
+        - name: recompensaId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recompensa atualizada com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Recompensa não existe
+    delete: 
+      tags:
+        - Recompensa
+      summary: Elimina uma reserva
+      description: Elimina uma reserva, consoante um id
+      operationId: deleteRecompensa
+      parameters:
+        - name: recompensaId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recompensa eliminado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Recompensa não existe 
+  /voucher:
+    post:
+      tags:
+        - Voucher
+      summary: Cria um novo voucher
+      description: Cria um novo voucher, com base no requestBody
+      operationId: postVoucher
+      responses:
+        '200':
+          description: Voucher criado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem atualização
+    get:
+      tags:
+        - Voucher
+      summary: Enviar um ou mais voucher de um utilizador
+      description: Enviar um ou mais voucher de um utilizador, consoante o filtro
+      operationId: getVoucher
+      parameters:
+        - name: utilizadorId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: recompensaId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Voucher enviado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Voucher não existe
+  /distrito:
+    # Não deviríamos ter alguma forma de criar distritos?
+    get:
+      tags:
+        - Distrito
+      summary: Enviar um ou mais distritos
+      description: Envia um ou mais distritos, consoante o filtro
+      operationId: getDistrito
+      parameters:
+        - name: distritoId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: responsavelRegiaoId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Distrito/s enviado com sucesso
+        '400':
+          description: Input invalido
+        '403':  
+          description: Sem autorização
+        '404':
+          description: Distrito não existe
+    patch:
+      tags:
+        - Distrito
+      summary: Atribui um responsavel ao distrito
+      description: Atribui um responsavel ao distrito, com base no requestBody
+      operationId: patchDistrito
+      parameters:
+        - name: distritoId
+          in: query 
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Responsavel atribuído com sucesso ao distrito
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+        '404':
+          description: Distrito não foi encontrado
+  /scan:
+  # Criar um scan? não deveria sé ser o get para fazer realizar o scan ao voucher?
+    post:
+      tags:
+        - Scan
+      summary: Criar um novo scan
+      description: Criar um novo scan, com base no requestBody
+      operationId: postScan
+      responses:
+        '200':
+          description: Scan criado com sucesso
+        '400':
+          description: Input invalido
+        '403':
+          description: Sem autorização
+    get:
+      tags:
+        - Scan
+      summary: Envia um scan 
+      description: Envia um scan, consoante o filtro
+      operationId: getScan
+      parameters:
+        - name: pontoInteresseId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: utilizadorId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: eventoId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Scan efetuado com sucesso
+        '400':
+          description: Input invalido
+        '404':
+          description: Scan não existe
+components:
   securitySchemes:
     token:
       type: http
