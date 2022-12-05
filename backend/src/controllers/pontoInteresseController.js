@@ -28,7 +28,7 @@ module.exports = {
                 num_pontos: num_pontos,
                 descricao: descricao,
                 freguesia_id: freguesia_id,
-                tipo_interesse_id: tipo_interesse_id,
+                tipo_interesse_id: tipo_interesse_id
             })
             .then(output => {
                 res.status(200).json({pontoInteresse: output})
@@ -53,10 +53,10 @@ module.exports = {
                     nome: {
                         [Op.iLike]: '%' + nome + '%'
                     },
-                    id: !!+pontoInteresseId ? pontoInteresseId : { [Op.ne]: pontoInteresseId },
-                    tipo_interesse_id: !!+tipoInteresseId ? tipoInteresseId : { [Op.ne]: tipoInteresseId },
-                    freguesia_id: !!+freguesiaId ? freguesiaId : { [Op.ne]: freguesiaId },
-                    agente_turistico_id: !!agenteTuristicoId ? agenteTuristicoId : { [Op.ne]: agenteTuristicoId },
+                    id: !!pontoInteresseId ? pontoInteresseId : { [Op.ne]: 0 },
+                    tipo_interesse_id: !!+tipoInteresseId ? tipoInteresseId : { [Op.ne]: 0 },
+                    freguesia_id: !!+freguesiaId ? freguesiaId : { [Op.ne]: 0 },
+                    agente_turistico_id: !!agenteTuristicoId ? agenteTuristicoId : { [Op.ne]: 0 },
                     freguesia_id: !!+distritoId ? { include: {
                         model: municipio,
                         include: {
@@ -96,6 +96,8 @@ module.exports = {
         let pontoInteresseId =  req.query?.pontoInteresseId ?? 0
         let agenteTuristicoId = req.query?.agenteTuristicoId ?? 0
 
+        dev.log("pontoInteresseId: " + pontoInteresseId)
+
         if(!pontoInteresseId || !agenteTuristicoId)
             return res.status(400).json("Input invalido")
 
@@ -132,7 +134,7 @@ module.exports = {
         if(!pontoInteresseId)
             return res.status(400).json("Input invalido")
 
-        const agente_turistico_id = req.body
+        const { agente_turistico_id } = req.body
 
         await ponto_interesse
             .update({
