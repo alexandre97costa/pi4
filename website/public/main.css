@@ -1,6 +1,7 @@
 :root {
     --pi4-primary-light: #d6ffab;
     --pi4-primary: #80b155;
+    --pi4-base-microsite:#E8E8E9;
     --pi4-primary-rgb: rgb(128, 177, 85);
     --pi4-primary-transparent: rgba(128, 177, 85, 0.5);
     --pi4-primary-dark: #729d4c;
@@ -58,7 +59,11 @@
 
 /* background */
 .bg-primary {
-    background-color: var(--pi4-primary-transparent)!important;
+    background-color: var(--pi4-primary-dark)!important;
+}
+
+.bg-microsite{
+    background-color: var(--pi4-base-microsite)!important;
 }
 
 

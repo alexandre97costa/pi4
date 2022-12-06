@@ -16,7 +16,7 @@ export default function GerirMicrosite() {
                     <CardsMicrosite titulo="Menu" subTitulo="Cabeçalho" />
 
 
-                    <CardsMicrosite titulo="Hero Banner" subTitulo="" />
+                    <CardsMicrosite titulo="Hero Banner" subTitulo="Conteúdo de Entrada" />
 
 
                     <CardsMicrosite titulo="Vantagens App" subTitulo="Card 1" />
