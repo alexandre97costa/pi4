@@ -18,8 +18,6 @@ class auth {
                 if (payload?.tipo ?? 0 <= 1) { return { success: false, message: 'O Back Office não está disponivel para visitantes.' } }
                 
                 // ✅ all gucci
-                const token = res.data.token
-                const payload = jwt_decode(res.data.token)
 
                 localStorage.setItem('utilizador', JSON.stringify(payload))
                 localStorage.setItem('token', token)

@@ -10,6 +10,7 @@ export default function Login(props) {
     let previousPage =  location.state.from ||  "/"  ;
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [longExp, setLongExp] = useState(false)
 
     async function submit() {
         dev.log('Attempting to login...')

@@ -14,6 +14,6 @@ export default function CardsMicrosite(props) {
     </div>
   );
   function changeColorTitulo(props) {
-    return "card-title fs-2 text-center " + props.color;
+    return "card-title fs-5 text-center " + props.color;
   }
 }

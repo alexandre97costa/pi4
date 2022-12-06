@@ -13,24 +13,24 @@ export default function GerirMicrosite() {
               <div className="col-12">
                 <div className=" row  row-cols-4">
 
-                    <CardsMicrosite titulo="Menu" subTitulo="cabeçalho" />
+                    <CardsMicrosite titulo="Menu" subTitulo="Cabeçalho" />
 
 
-                    <CardsMicrosite titulo="Hero Banner" subTitulo="cabeçalho" />
+                    <CardsMicrosite titulo="Hero Banner" subTitulo="" />
 
 
-                    <CardsMicrosite titulo="Vantagens App" subTitulo="cabeçalho" />
+                    <CardsMicrosite titulo="Vantagens App" subTitulo="Card 1" />
 
-                    <CardsMicrosite titulo="Publicidade Agente Turístico" subTitulo="cabeçalho" />
-
-
-                    <CardsMicrosite titulo="Descarregar App" subTitulo="cabeçalho" />
+                    <CardsMicrosite titulo="Publicidade Agente Turístico" subTitulo="Card 2" />
 
 
-                    <CardsMicrosite titulo="Footer" subTitulo="cabeçalho" />
+                    <CardsMicrosite titulo="Descarregar App" subTitulo="Card 3" />
 
 
-                    <CardsMicrosite color="text-primary" titulo="+" subTitulo="cabeçalho" />
+                    <CardsMicrosite titulo="Footer" subTitulo="Rodapé" />
+
+
+                    <CardsMicrosite color="text-primary" titulo="+" subTitulo="Adicionar conteúdo" />
 
 
               </div>
