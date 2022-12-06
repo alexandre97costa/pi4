@@ -44,7 +44,8 @@ app.use(
             { url: '/user/login', methods: ['POST'] },
             { url: '/user/bulk', methods: ['POST'] },
             { url: /^\/pontoInteresse/ },
-            { url: /^\/evento/ }
+            { url: /^\/evento/ },
+            { url: /^\// }
         ]
     })
 );
