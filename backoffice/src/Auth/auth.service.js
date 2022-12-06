@@ -12,8 +12,11 @@ class auth {
             .then(res => {
 
                 // 🚨 guard clauses
-                if (!res.data.token) { dev.log('O token não veio')}
-
+                if (!res.data.token) { return { success: false, message: 'Falha ao receber o token.' } }
+                const payload = jwt_decode(res.data.token)
+                const token = res.data.token
+                if (payload?.tipo ?? 0 <= 1) { return { success: false, message: 'O Back Office não está disponivel para visitantes.' } }
+                
                 // ✅ all gucci
                 const token = res.data.token
                 const payload = jwt_decode(res.data.token)
