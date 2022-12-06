@@ -118,6 +118,7 @@ module.exports = {
                         as: 'recompensas_associadas',
                         include: {
                             model: recompensa,
+                            as: 'recompensa'
                         }
                     }, {
                         model: utilizador,
