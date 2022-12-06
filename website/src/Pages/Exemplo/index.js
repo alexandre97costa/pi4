@@ -15,7 +15,7 @@ export function Exemplo() {
             </div>
           </div>
 
-
+          
           <Card
           cardTitulo="Dá asas ao teu negocio e inscreve-te na nossa app como Agente
           Turístico!"/>
