@@ -26,30 +26,32 @@ class MainActivity : AppCompatActivity() {
         val pontoInteresse4 = PontoInteresse( image, "Agraria", "escola", "local", "1.6", "15 pts")
         val pontoInteresse6 = PontoInteresse( image2, "Agraria", "escola", "local", "1.6", "15 pts")
 
-        var array: ArrayList<PontoInteresse> = ArrayList()
-
-        array.add(pontoInteresse1)
-        array.add(pontoInteresse2)
-        array.add(pontoInteresse3)
-        array.add(pontoInteresse4)
-        array.add(pontoInteresse6)
-        array.add(pontoInteresse5)
-
-        val customAdapter = SetAdapterCard(this, array)
-
-        val listView = findViewById<ListView>(R.id.listViewTeste)
-
-        listView.adapter = customAdapter
-
-        val categoria1 = CategoriaLista(image, "teste")
-        val categoria2 = CategoriaLista(image, "teste2")
-        val categoria3 = CategoriaLista(image, "teste3")
-        val categoria4 = CategoriaLista(image, "teste4")
-        val categoria5 = CategoriaLista(image, "teste5")
-        val categoria6 = CategoriaLista(image, "teste6")
-
-
-        val tab = findViewById<TabLayout>(R.id.tabLayout)
+    fun detectMenu() {
+        binding.includeMenu.bottomNavigation.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.pontoInteresseMenu -> {
+                    replaceFragment(FragmentPontoInteresse())
+                    true
+                }
+                R.id.recompensaMenu -> {
+                    replaceFragment(FragmentPontoInteresse())
+                    Toast.makeText(this, "recompensaMenu", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.qrCodeMenu -> {
+                    replaceFragment(FragmentPontoInteresse())
+                    Toast.makeText(this, "qrCodeMenu", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.contaMenu -> {
+                    replaceFragment(FragmentPontoInteresse())
+                    Toast.makeText(this, "contaMenu", Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
+        }
+    }
 
     }
 }

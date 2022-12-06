@@ -14,8 +14,13 @@ export default function Login(props) {
 
     async function submit() {
         dev.log('Attempting to login...')
-        let login = await auth.login(email, password)
-        login.success ? navigate(previousPage) : alert(login.message)
+        let login = await auth.login(email, password, longExp)
+
+        if (login.success) {
+            navigate(previousPage)
+        } else {
+            dev.log(login.message)
+        }
     }
 
 
