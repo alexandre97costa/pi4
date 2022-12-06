@@ -27,6 +27,8 @@ export default function App() {
 
 				<Route exact path='/recuperar' element={<Pages.Recuperar />} />
 
+				<Route exact path='/editar_perfil' element={<Pages.EditarPerfil />} />
+
 				<Route
 					path='/'
 					element={

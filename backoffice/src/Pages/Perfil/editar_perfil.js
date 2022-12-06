@@ -1,24 +1,17 @@
-import React from "react";
+import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Sidebar } from '../../Components/sidebar';
 
-export function EditarPerfil(props) {
+export default function EditarPerfil(props) {
   return (
+    <>
     <div className="container">
       <div className="row">
-        <div className="col-12">
-
-          <div className="row row-cols-auto">
-            <div className="col-6">
-            </div>
-
-            <div className="col-6">
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-            </div>
-          </div>
+        <div className="col">
+          
         </div>
       </div>
     </div>
+    </>
   );
 }
