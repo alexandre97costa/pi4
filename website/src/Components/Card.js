@@ -5,17 +5,14 @@ export default function Card(props) {
   return (
     <div className="container">
       <div className="row pb-5 ">
-        <div className="col-12">
-          <div className="card bg-microsite text-center">
-            <div className="card-tittle ps-5 fs-5 text-start">
+        <div className="col-sm">
+          <div className="card border-0 bg-microsite text-center">
+            <div className="card-tittle ps-5 fs-5">
               {props.cardTitulo}
+              <Botao botao="Inscrever-me" />
             </div>
 
-            <div className="row align-items-end">
-              <div className="col-12">
-                <Botao botao="Inscrever-me" />
-              </div>
-            </div>
+
           </div>
         </div>
       </div>

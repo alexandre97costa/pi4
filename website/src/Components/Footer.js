@@ -6,7 +6,7 @@ export default function Footer(props) {
     <div className="container">
       <div className="row">
         <div className="col-12">
-            <div className="card bg-primary">
+            <div className="card border-0 bg-primary">
 
 
                 <div className="col-md-4 p-5">
