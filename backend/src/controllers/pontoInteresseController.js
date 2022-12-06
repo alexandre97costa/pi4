@@ -14,6 +14,8 @@ const {
     tipo_interesse,
     municipio,
     distrito,
+    ponto_interesse_recompensa,
+    recompensa,
 } = sequelize.models
 
 module.exports = {
@@ -45,14 +47,16 @@ module.exports = {
         let distritoId = req.query?.distritoId ?? 0
 
         // * ordenação e paginação
+        const orderParams = ['nome']
         let order = req.query?.order ?? 'nome'
-        let direction = req.query?.order ?? 'asc'
+        let direction = req.query?.direction ?? 'asc'
         let offset = req.query?.offset ?? 0
         let limit = req.query?.limit ?? 0
 
         // * outras opções
-        let includeDeleted = !!req.query?.includeDeleted
-
+        let incluirEliminados = !!req.query?.incluirEliminados // incluir também os PIs eliminados
+        let soEliminados = !!req.query?.soEliminados           // pedir só os PIs eliminados
+        let validado = !!(req.query?.validado ?? true)         // True: Só PIs validados; False: Só PIs por validar
 
         await ponto_interesse
             .findAndCountAll({
@@ -77,6 +81,17 @@ module.exports = {
                                 [Op.eq]: null // porque pode não ter agente
                             }
                         },
+                    deleted_at: soEliminados ?
+                        { [Op.eq]: null } :
+                        // se for false, quero que venham com ou sem o deleted_at
+                        // a condição para virem deleted é o paranoid
+                        {
+                            [Op.or]: {
+                                [Op.ne]: null,
+                                [Op.eq]: null
+                            }
+                        },
+                    validado
                 },
                 include: [
                     {
@@ -98,28 +113,37 @@ module.exports = {
                                 },
                             }
                         }
-                    },{
+                    }, {
+                        model: ponto_interesse_recompensa,
+                        as: 'recompensas_associadas',
+                        include: {
+                            model: recompensa,
+                        }
+                    }, {
                         model: utilizador,
                         as: 'agente_turistico'
-                    },{
+                    }, {
                         model: tipo_interesse,
                         attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
                     }
                 ],
-                order: [[order, direction.toUpperCase()]],
+                order: [[order, direction]],
                 offset,
                 limit: !!limit ? limit : null,
-                paranoid: !includeDeleted
+                paranoid: !incluirEliminados || !soEliminados // caso um ou outro seja true, traz PIs eliminados
             })
             .then(output => {
-                dev.log(output)
+                // caso não tenha encontrado, 404
                 if (!output.count) {
-                    return res.status(404).json("Não existem Pontos de Interesse que correspondam a estes filtros")
+                    return res.status(404).json({ msg: 'Não existem pontos de interesse que correspondam aos filtros solicitados' })
                 }
-
-                res.status(200).json({ data: output.rows, count: output.count })
+                return res.status(200).json({ data: output.rows, count: output.count })
             })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+            .catch(error => {
+                res.status(400).json({ msg: 'Ocorreu um erro no pedido de pontos de interesse' })
+                dev.error(error)
+                return
+            })
     },
 
     putPontoInteresse: async (req, res) => {

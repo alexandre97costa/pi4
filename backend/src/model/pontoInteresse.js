@@ -29,6 +29,11 @@ module.exports = (sequelize) => {
             descricao: {
                 type: DataTypes.STRING,
                 allowNull: false
+            },
+            validado: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                default: false
             }
         },
         {
