@@ -3,12 +3,12 @@ import React from 'react';
 export function Dropdown (props) {
     return (    
         
-        <div className="row">        
+               
 
-            <div className='col-md-2 ms-auto'>
+            <div className='col-md-2 '>
 
                 <div className='dropdown'>                                                       
-                    <button class="btn  bg-white border rounded-2 shadow-1 dropdown-toggle me-md-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn w-100 text-start bg-white border rounded-2 shadow-1 dropdown-toggle me-md-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {props.nomeBotao}                    
                     </button>
                     <div className='dropdown-menu'>
@@ -18,7 +18,7 @@ export function Dropdown (props) {
                     </div>                         
                 </div>                
             </div>
-        </div>
+        
                 
     );
 }
