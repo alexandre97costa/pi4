@@ -109,7 +109,7 @@ module.exports = {
             })
             .then(output => {
                 if(!output)
-                    return res.status(404).json("Evento não existe") 
+                    return res.status(404).json("Evento não existe")
                 res.status(200).json({evento: output}) 
             })
             .catch(error => { res.status(400).json(error); throw new Error(error); }); 

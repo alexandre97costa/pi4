@@ -43,6 +43,7 @@ module.exports = {
         let agenteTuristicoId = req.query?.agenteTuristicoId ?? 0
         let distritoId = req.query?.distritoId ?? 0
 
+        dev.log(tipoInteresseId)
         dev.log("distritoId: " + distritoId)
 
         await ponto_interesse
@@ -54,19 +55,16 @@ module.exports = {
                     id: !!+pontoInteresseId ? pontoInteresseId : { [Op.ne]: 0 },
                     tipo_interesse_id: !!+tipoInteresseId ? tipoInteresseId : { [Op.ne]: 0 },
                     freguesia_id: !!+freguesiaId ? freguesiaId : { [Op.ne]: 0 },
-                    agente_turistico_id: !!agenteTuristicoId ? agenteTuristicoId : { [Op.ne]: 0 },
+                    agente_turistico_id: !!+agenteTuristicoId ? agenteTuristicoId : { [Op.ne]: 0 },
                     freguesia_id: !!+distritoId ? { include: {
                         model: municipio,
                         include: {
                             model: distrito,
-                            through: {
-                                attributes: [ id ]
-                            },
                             where: {
-                                id: !!+distritoId ? distritoId : { [Op.ne]: distritoId }
+                                id: !!+distritoId ? +distritoId : { [Op.ne]: +distritoId }
                             }
                         }
-                    }} : { [Op.ne]: distritoId },
+                    }} : { [Op.ne]: +distritoId },
                 },
                 include: { all: true }
                 // include: [{
@@ -82,6 +80,7 @@ module.exports = {
                 // }]
             })
             .then(output => {
+                dev.log(output)
                 if(!output[0])
                     return res.status(404).json("Ponto's de Interesse não existem")
                 res.status(200).json({pontoInteresse: output})
@@ -156,7 +155,11 @@ module.exports = {
             .destroy({
                 where: { id: pontoInteresseId }
             })            
-            .then(output => { res.status(200).json({pontoInteresse: output}) })
+            .then(output => {
+                if(!output)
+                    return res.status(404).json("Ponto de interesse não existe")
+                res.status(200).json({pontoInteresse: output}) 
+            })
             .catch(error => { res.status(400).json(error); throw new Error(error); });      
     },
 
