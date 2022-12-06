@@ -12,8 +12,6 @@ const dev = new devClass;
 
 const exemploRoute = require('./routes/exemplo.js')
 const userRoutes = require('./routes/user.js')
-const pontoInteresseRoute = require('./routes/pontoInteresseRoutes.js')
-const eventoRoute = require('./routes/eventoRoutes.js')
 
 //* Middlewares
 app.use(cors());
@@ -31,22 +29,12 @@ app.use(
     validate_jwt({
         secret: process.env.JWT_SECRET,
         algorithms: [process.env.JWT_ALGORITHM],
-    }).unless({
-        path: [
-            { url: '/user', methods: ['POST'] },
-            { url: '/user/login', methods: ['POST'] },
-            { url: '/user/bulk', methods: ['POST'] },
-            { url: /^\/pontoInteresse/ },
-            { url: /^\/evento/ }
-        ]
-    })
+    }).unless({ path: ['/user/login', '/recuperar-password'] })
 );
 
 //* Rotas
 app.use('/exemplo', exemploRoute)
 app.use('/user', userRoutes)
-app.use('/pontoInteresse', pontoInteresseRoute)
-app.use('/evento', eventoRoute)
 
 // Rota de Introdução
 app.use('/', (req, res) => {

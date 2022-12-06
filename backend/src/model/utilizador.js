@@ -8,10 +8,10 @@ module.exports = (sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: false,
                 validate: {
-                    notNull: { msg: 'O nome não pode estar vazio.' },
-                    is: {
+                    notNull: { msg: 'O nome não pode estar vazio' },
+                    is: { 
                         args: /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/g, // só letras e espaços, incluindo acentos
-                        msg: 'O nome só pode ter letras e espaços.'
+                        msg: 'O nome só pode ter letras e espaços' 
                     }
                 }
             },
@@ -20,30 +20,29 @@ module.exports = (sequelize) => {
                 allowNull: false,
                 unique: true,
                 validate: {
-                    notNull: { msg: 'O email não pode estar vazio.' },
-                    isEmail: { msg: 'O email inserido não é válido.' }
+                    notNull: { msg: 'O email não pode estar vazio' },
+                    isEmail: { msg: 'O email inserido não é válido' }
                 }
             },
             password: {
                 type: DataTypes.STRING,
                 allowNull: false,
                 validate: {
-                    notNull: { msg: 'A password não pode estar vazia.' },
-                    len: {
-                        args: [6, 30],
-                        msg: 'A password tem que conter entre 6 e 30 caracteres.'
-                    }
+                    notNull: { msg: 'A password não pode estar vazia' }
                 }
             },
             data_nascimento: {
                 type: DataTypes.DATEONLY,
                 allowNull: false,
                 validate: {
-                    notNull: { msg: 'A data de nascimento não pode estar vazia.' },
-                    isDate: { msg: 'A data de nascimento inserida não é valida.' },
-                    isBefore: {
-                        args: new Date(new Date().setFullYear(new Date().getFullYear() -13)),
-                        msg: 'Precisa de ter mais de 13 anos para se resgistar.'
+                    notNull: { msg: 'A data de nascimento não pode estar vazia' },
+                    isDate: { msg: 'A data de nascimento inserida não é valida' },
+                    isValidAge(value) {
+                        let validAge = new Date()
+                        validAge.setFullYear(validAge.getFullYear() - 13)
+                        if (validAge < value) {
+                            throw new Error('O utilizador tem que ter mais do que 13 anos para se registar')
+                        }
                     }
                 }
             }

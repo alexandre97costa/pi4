@@ -3,9 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "prestart": "npm i",
     "start": "set MODE=prod&& node -e console.log(process.env.MODE)&& node src/app.js",
-    "predev": "npm i",
     "dev": "set MODE=dev&& node -e console.log(process.env.MODE)&& nodemon --trace-warnings src/app.js"
   },
   "dependencies": {
