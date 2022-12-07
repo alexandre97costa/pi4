@@ -5,10 +5,10 @@ import dev from '../../Auth/dev';
 import Logo from '../../Assets/Images/logo.png';
 
 export default function Login(props) {
-
+    
     const navigate = useNavigate()
     const location = useLocation()
-    let previousPage = location?.state?.from ?? '/';
+    let previousPage =  location.state.from ||  "/"  ;
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [longExp, setLongExp] = useState(false)
@@ -23,6 +23,7 @@ export default function Login(props) {
             dev.log(login.message)
         }
     }
+
 
     return (
         <>
@@ -40,26 +41,21 @@ export default function Login(props) {
                         <label className="fs-5 mb-2 ms-1" htmlFor='input-email'>Email</label>
                             <div className='form-floating mb-4'>
                                 <input
-                                    id='input-email'
-                                    type='text' // ! mudar pra email
-                                    pattern='^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,63})$'
-                                    className='form-control rounded-3'
-                                    placeholder='name@example.com'
-                                    required
-                                    value={email}
+                                    id="input-email"
+                                    type="text" // ! trocar para email mais tarde
+                                    className="form-control rounded-3"
+                                    placeholder="name@example.com"
                                     onChange={e => { setEmail(e.target.value) }}
-                                    onInvalid={e => { }}
                                 />
                             </div>
                             <label className="fs-5 mb-2 ms-1" htmlFor='input-password'>Password</label>
                             <div className='form-floating mb-4'>
                                 <input
-                                    id='input-password'
-                                    type='password'
-                                    className='form-control rounded-3'
-                                    placeholder='secret!'
-                                    value={password}
-                                    onChange={e => { setPassword(e.target.value) }}
+                                    id="input-password"
+                                    type="password"
+                                    className="form-control rounded-3"
+                                    placeholder="secret!"
+                                    onChange={e => { setPassword(e.target.value)}}
                                 />
                             </div>
                             <div className='form-check mb-4'>
