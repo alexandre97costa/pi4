@@ -4,10 +4,10 @@ import dev from '../Auth/dev';
 import { Sidebar } from '../Components/sidebar'
 import User from '../Components/user'
 
-import Topbar from '../Components/Topbar.jsx';
 
 let agente_turistico = [
 	{ icon: "speedometer2", text: "Dashboard", path: "/" },
+    { icon: "person-badge", text: "Agentes Turísticos", path: "/inicioAT" },
 	{ icon: "geo-alt", text: "Pontos de Interesse", path: "/teste" },
 	{ icon: "calendar4-event", text: "Eventos", path: "/" },
 	{ icon: "gift", text: "Recompensas", path: "/" }
@@ -29,9 +29,7 @@ export default function Page(props) {
 
                 {/* Content */}
                           
-                <div className='col-10 bg-light overflow-auto' style={{ maxHeight: '100vh' }}>
-
-                <Topbar/>  
+                <div className='col-10 bg-light overflow-auto' style={{ maxHeight: '100vh' }}>          
                     
                     <div className='container-fluid py-3'>
                         <div className='row mb-4'>
