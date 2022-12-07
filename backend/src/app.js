@@ -1,14 +1,13 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-const interceptor = require('express-interceptor')
 const { expressjwt: validate_jwt } = require('express-jwt');
 const app = express()
 app.set('port', process.env.PORT || 4001)
 const port = app.get('port')
 const sequelize = require('./config/Database')
 sequelize.sync()
-const { dev: devClass } = require('./_dev/dev')
+const { dev:devClass } = require('./_dev/dev')
 const dev = new devClass;
 
 const exemploRoute = require('./routes/exemplo.js')
@@ -19,21 +18,15 @@ const eventoRoute = require('./routes/eventoRoutes.js')
 //* Middlewares
 app.use(cors());
 app.use(express.json());
-// log dos pedidos todos que o servidor recebe (incluindo o status!)
-app.use(interceptor((req, res) => {
-    return {
-        isInterceptable: () => { return true },
-        intercept: (body, send) => {
-            console.log(
-                '\x1b[37m\x1b[42m ' + req.method +
-                    ' \x1b[0m ' + req.url +
-                    ' \x1b[33m' + res.statusCode +
-                    '\x1b[0m');
-            send(body);
-        }
-    }
-}))
-// validação jwt (com exclusoes dentro do unless)
+// log dos pedidos todos que o servidor recebe
+app.use((req, res, next) => {
+    console.log('\x1b[37m\x1b[42m ' + req.method + ' \x1b[0m ' + req.url);
+    if (req.url === '/user/login') {
+        dev.log('\x1b[30m👀 ' + req.body.email + '\x1b[0m');
+    } 
+    next()
+});
+// validação jwt a tudo menos /login e /recuperar-password
 app.use(
     validate_jwt({
         secret: process.env.JWT_SECRET,
@@ -49,12 +42,6 @@ app.use(
         ]
     })
 );
-// tratamento de erros do validate_jwt
-app.use(function (e, req, res, next) {
-    (e.name === "UnauthorizedError") ?
-        res.status(e.status).json(e.inner) :
-        next(e);
-});
 
 //* Rotas
 app.use('/exemplo', exemploRoute)

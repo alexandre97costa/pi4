@@ -57,16 +57,13 @@ module.exports = (sequelize) => {
             hooks: {
                 beforeCreate: (utilizador) => {
                     // capitalizar o nome
-                    utilizador.nome =
-                        utilizador.nome
-                            .split(' ')
-                            .map(word => {
-                                return word[0].toUpperCase() + word.substring(1, word.length)
-                            })
-                            .join(' ');
-
-                    // por defeito, todos os users começam como visitante
-                    utilizador.tipo_utilizador_id = 1
+                    utilizador.nome = 
+                    utilizador.nome
+                    .split(' ')
+                    .map(word => {
+                        return word[0].toUpperCase() + word.substring(1, word.length)
+                    })
+                    .join(' ');
 
                     // encriptar password
                     return bcrypt.hash(utilizador.password, 10)
