@@ -29,6 +29,8 @@ export default function App() {
 
 				<Route exact path='/editar_perfil' element={<Pages.EditarPerfil />} />
 
+				<Route exact path='/editar_pass' element={<Pages.EditarPass />} />
+
 				<Route
 					path='/'
 					element={

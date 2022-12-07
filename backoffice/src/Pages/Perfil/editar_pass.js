@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { Sidebar } from '../../Components/sidebar';
-import { FormEditar } from '../../Components/form_editar_perfil';
+import { FormEditarPass } from '../../Components/form_editar_pass';
 
-export default function EditarPerfil(props) {
+export default function EditarPass(props) {
   return (
     <>
     <div className="">
       <div className="d-flex">
         <Sidebar/>
-        <FormEditar/>
+        <FormEditarPass/>
         <div className='col'>botao</div>
       </div>
     </div>
