@@ -49,6 +49,57 @@ export default function App() {
 						</ProtectedRoute>
 					}
 				/>
+				<Route
+					path='/listaUtilizador'
+					element={
+						<ProtectedRoute>
+							<Page PageTitle={'Lista de utilizadores'} PageIcon={'apple'}>
+								<Pages.ListaUtilizador />
+							</Page>
+						</ProtectedRoute>
+					}
+				/>
+
+				<Route
+					path='/listaVisitantes'
+					element={
+						<ProtectedRoute>
+							<Page PageTitle={'Lista de Visitantes'} PageIcon={'apple'}>
+								<Pages.ListaVisitantes />
+							</Page>
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/listaAgente'
+					element={
+						<ProtectedRoute>
+							<Page PageTitle={'Lista Agente Turistico'} PageIcon={'apple'}>
+								<Pages.ListaAgenteTuristico />
+							</Page>
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/listaResponsavel'
+					element={
+						<ProtectedRoute>
+							<Page PageTitle={'Lista Responsavel Regiao'} PageIcon={'apple'}>
+								<Pages.ListaResponsavelRegiao />
+							</Page>
+						</ProtectedRoute>
+					}
+				/>
+				<Route
+					path='/listaRegiao'
+					element={
+						<ProtectedRoute>
+							<Page PageTitle={'Lista Regiao'} PageIcon={'apple'}>
+								<Pages.ListaRegiao />
+							</Page>
+						</ProtectedRoute>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	);

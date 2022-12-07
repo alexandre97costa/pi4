@@ -11,8 +11,34 @@
     --pi4-secondary: green;
     --pi4-secondary-dark: darkgreen;
 
+    --responsavel-regiao:#67C3D0;
+    --agente-turistico:#E97B86;
+    --visitante:#BCD067;
+    --administrador:#6767D0;
+    --modais:#343A40;
+
 }
 
+/* Cores dos tipos de utilizador */
+.bg-modais{
+    background-color: var(--modais);
+}
+
+.bg-responsavel {
+    background-color: var( --responsavel-regiao);
+}
+
+.bg-agente{
+    background-color: var(--agente-turistico);
+}
+.bg-visitante{
+    background-color: var(--visitante);
+}
+.bg-administrador{
+    background-color: var(--administrador);
+}
+
+/* outas cenas */
 .pi4-menu-item:hover {
     background-color: var(--bs-gray-800);
 }
