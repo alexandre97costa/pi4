@@ -19,18 +19,20 @@ export function Linhadalista (props){
                                         <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target="#exampleModal"></button> 
                                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    ...
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
+                                                <div class="modal-content border border-secondary">
+                                                    <div class="modal-header bg-modais">
+                                                        <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Selecionar Categoria</h1>
+                                                        <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div className="row col-12">
+                                                            <button type="button" class="btn btn-light border border-2">Responsável Região</button>
+                                                            <button type="button" class="btn btn-light border border-2">Agente Turístico</button>
+                                                            <button type="button" class="btn btn-light border border-2">Visitante</button>
+                                                            <button type="button" class="btn btn-dark text-white border border-2">Guardar</button>
+                                                        </div>
+                                                                                                           
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
