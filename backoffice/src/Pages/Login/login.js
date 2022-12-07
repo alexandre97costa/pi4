@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Auth/auth.service';
 import dev from '../../Auth/dev';
+import Logo from '../../Assets/Images/logo.png';
 
 export default function Login(props) {
     
@@ -26,12 +27,19 @@ export default function Login(props) {
 
     return (
         <>
-            <div className='container-fluid bg-primary text-light '>
-                <div className='row vh-100 d-flex align-items-center justify-content-center'>
-                    <div className='col-4 bg-white text-dark shadow p-4 rounded-4'>
-                        <form className='' >
-                            <div className='h3 mb-4'>Back Office</div>
-                            <div className="form-floating mb-4">
+            <div className='container-fluid text-light'>
+                <div className='row vh-100'>
+                    <div className="col-lg-6 h-100 d-flex align-items-center justify-content-center bg-primary-login">
+                    <img src={Logo} className="img-fluid h-25" alt="Logo" />
+                    </div>
+                    <div className='col-lg-6 h-100 d-flex align-items-center justify-content-center text-dark'>
+                        <form onSubmit={e => {
+                            e.preventDefault()
+                            submit()
+                        }} >
+                        <p className="text-center  mb-5 color-text fs-1 fw-bold">Iniciar sessão</p>
+                        <label className="fs-5 mb-2 ms-1" htmlFor='input-email'>Email</label>
+                            <div className='form-floating mb-4'>
                                 <input
                                     id="input-email"
                                     type="text" // ! trocar para email mais tarde
@@ -39,9 +47,9 @@ export default function Login(props) {
                                     placeholder="name@example.com"
                                     onChange={e => { setEmail(e.target.value) }}
                                 />
-                                <label htmlFor="input-email">Email</label>
                             </div>
-                            <div className="form-floating mb-4">
+                            <label className="fs-5 mb-2 ms-1" htmlFor='input-password'>Password</label>
+                            <div className='form-floating mb-4'>
                                 <input
                                     id="input-password"
                                     type="password"
@@ -49,17 +57,29 @@ export default function Login(props) {
                                     placeholder="secret!"
                                     onChange={e => { setPassword(e.target.value)}}
                                 />
-                                <label htmlFor="input-password">Password</label>
+                            </div>
+                            <div className='form-check mb-4'>
+                                <input
+                                    id='input-long-exp'
+                                    type='checkbox'
+                                    className='form-check-input'
+                                    value={longExp}
+                                    onChange={e => { setLongExp(e.target.checked) }}
+                                />
+                                <label className='form-check-label text-secondary' htmlFor='input-long-exp'>
+                                    Manter-me autorizado por mais tempo (5m)
+                                </label>
                             </div>
                             <button
                                 id='btn-submit'
-                                type='button'
-                                className='btn btn-lg btn-primary w-100 shadow'
-                                onClick={e => submit()}
+                                type='submit'
+                                className='btn btn-lg btn-primary w-100 shadow mb-4'
                             >
-                                Login
+                                Entrar
                             </button>
-
+                            <p className="">
+                            Esqueceste-te da Palavra-passe? <a href="../recuperar" className="color-text">Recuperar</a>
+                            </p>
                         </form>
                     </div>
                 </div>
