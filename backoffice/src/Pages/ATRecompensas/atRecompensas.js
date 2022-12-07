@@ -2,7 +2,7 @@ import React from "react";
 import { RecompensaTabela } from "../../Components/RecompensaTabela";
 import { CardRecompensa } from "../../Components/CardRecompensa";
 
-export function ATRecompensas(props) {
+export default function ATRecompensas(props) {
   return (
     <div className="container">
       <div className="row">

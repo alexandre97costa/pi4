@@ -79,9 +79,9 @@ export default function App() {
 					path='/listaUtilizador'
 					element={
 						<ProtectedRoute>
-							<Page PageTitle={'Lista de utilizadores'} PageIcon={'apple'}>
+							<Pagina PageTitle={'Lista de utilizadores'} PageIcon={'apple'}>
 								<Pages.ListaUtilizador />
-							</Page>
+							</Pagina>
 						</ProtectedRoute>
 					}
 				/>
@@ -90,9 +90,9 @@ export default function App() {
 					path='/listaVisitantes'
 					element={
 						<ProtectedRoute>
-							<Page PageTitle={'Lista de Visitantes'} PageIcon={'apple'}>
+							<Pagina PageTitle={'Lista de Visitantes'} PageIcon={'apple'}>
 								<Pages.ListaVisitantes />
-							</Page>
+							</Pagina>
 						</ProtectedRoute>
 					}
 				/>
@@ -100,9 +100,9 @@ export default function App() {
 					path='/listaAgente'
 					element={
 						<ProtectedRoute>
-							<Page PageTitle={'Lista Agente Turistico'} PageIcon={'apple'}>
+							<Pagina PageTitle={'Lista Agente Turistico'} PageIcon={'apple'}>
 								<Pages.ListaAgenteTuristico />
-							</Page>
+							</Pagina>
 						</ProtectedRoute>
 					}
 				/>
@@ -110,9 +110,9 @@ export default function App() {
 					path='/listaResponsavel'
 					element={
 						<ProtectedRoute>
-							<Page PageTitle={'Lista Responsavel Regiao'} PageIcon={'apple'}>
+							<Pagina PageTitle={'Lista Responsavel Regiao'} PageIcon={'apple'}>
 								<Pages.ListaResponsavelRegiao />
-							</Page>
+							</Pagina>
 						</ProtectedRoute>
 					}
 				/>
@@ -120,10 +120,13 @@ export default function App() {
 					path='/listaRegiao'
 					element={
 						<ProtectedRoute>
-							<Page PageTitle={'Lista Regiao'} PageIcon={'apple'}>
+							<Pagina PageTitle={'Lista Regiao'} PageIcon={'apple'}>
 								<Pages.ListaRegiao />
-							</Page>
+							</Pagina>
 						</ProtectedRoute>
+					}
+				/>
+				<Route
 					path='/gerirVantagensApp'
 					element={
 						<Pagina

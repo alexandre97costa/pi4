@@ -6,7 +6,6 @@ import ListaAgenteTuristico from "./ListaAgenteTuristico/listaAgente"
 import ListaResponsavelRegiao from "./ListaResponsavelRegiao/listaResponsavel"
 import ListaRegiao from "./ListaRegiao/listaRegiao"
 import Recuperar from "./Login/recuperar"
-import PontoInteresse from './PontosInteresse/ponto_interesse'
 import EditarPerfil from "./Perfil/editar_perfil"
 import EditarPass from "./Perfil/editar_pass"
 import GerirMicrosite from "./GerirMicrosite/GerirMicrosite/gerirMicrosite"
@@ -19,9 +18,7 @@ import GerirPublicidadeAgenteTuristico from "./GerirMicrosite/GerirPublicidadeAg
 import GerirAdicionarCards from "./GerirMicrosite/GerirAdicionarCards/gerirAdicionarCards"
 import ATRecompensas from "./ATRecompensas/atRecompensas"
 
-const Pages = { Teste, Login, GerirMicrosite, GerirVantagensApp, GerirDescarregarApp, GerirEditarFooter, GerirMenu, GerirHeroBanner, GerirPublicidadeAgenteTuristico,
-    GerirAdicionarCards, ATRecompensas, ListaUtilizador, ListaVisitantes, ListaAgenteTuristico, ListaResponsavelRegiao, ListaRegiao, Recuperar, PontoInteresse, EditarPass,
-    EditarPerfil
+const Pages = { Teste, Login, GerirMicrosite, GerirVantagensApp, GerirDescarregarApp, GerirEditarFooter, GerirMenu, GerirHeroBanner, GerirPublicidadeAgenteTuristico,GerirAdicionarCards, ATRecompensas, ListaUtilizador, ListaVisitantes,ListaAgenteTuristico, ListaResponsavelRegiao, ListaRegiao, Recuperar, EditarPass,EditarPerfil
 }
 
 export default Pages

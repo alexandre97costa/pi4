@@ -8,14 +8,6 @@ import CartaoPIRemove from '../../Components/Cards/Card_piRemove';
 import MiniCard from '../../Components/Cards/MiniCard';
 
 
-import CartaoPI from '../../Components/Cards/Card_pi';
-import CartaoAT from '../../Components/Cards/Card_at';
-import CartaoDetais from '../../Components/Cards/Card_details';
-import AddCard from '../../Components/Cards/AddCard';
-import CartaoPIRemove from '../../Components/Cards/Card_piRemove';
-import MiniCard from '../../Components/Cards/MiniCard';
-
-
 export default function Teste() {
     return (
         <>
