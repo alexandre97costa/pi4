@@ -1,5 +1,4 @@
 import React from 'react';
-import VisibleTo from '../../Helpers/VisibleTo';
 
 import CartaoPI from '../../Components/Cards/Card_pi';
 import CartaoAT from '../../Components/Cards/Card_at';
@@ -80,20 +79,7 @@ export default function Teste() {
                     />
                 </div>
             </div>
-
-            <VisibleTo tipo={1}>
-                <div className='row border mb-3 p-3 bg-danger h1'>
-                    Visivel a visitante
-                </div>
-            </VisibleTo>
-            
-            <VisibleTo tipo={2}>
-                <div className='row border mb-3 p-3 bg-warning h1'>
-                    Visivel a agente turistico
-                </div>
-            </VisibleTo>
-
-            <div className='row border mb-3'>
+            <div className='row mb-3'>
                 <div className='col-12 border py-3'>
                     <button className='btn btn-primary me-3'>
                         Primary
