@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Auth/auth.service';
 import dev from '../../Auth/dev';
+import Logo from '../../Assets/Images/logo.png';
 
 export default function Login(props) {
 
@@ -25,14 +26,18 @@ export default function Login(props) {
 
     return (
         <>
-            <div className='container-fluid bg-primary text-light '>
-                <div className='row vh-100 d-flex align-items-center justify-content-center'>
-                    <div className='col-4 bg-white text-dark shadow p-4 rounded-4'>
+            <div className='container-fluid text-light'>
+                <div className='row vh-100'>
+                    <div className="col-lg-6 h-100 d-flex align-items-center justify-content-center bg-primary-login">
+                    <img src={Logo} className="img-fluid h-25" alt="Logo" />
+                    </div>
+                    <div className='col-lg-6 h-100 d-flex align-items-center justify-content-center text-dark'>
                         <form onSubmit={e => {
                             e.preventDefault()
                             submit()
                         }} >
-                            <div className='h3 mb-4'>Back Office</div>
+                        <p className="text-center  mb-5 color-text fs-1 fw-bold">Iniciar sessão</p>
+                        <label className="fs-5 mb-2 ms-1" htmlFor='input-email'>Email</label>
                             <div className='form-floating mb-4'>
                                 <input
                                     id='input-email'
@@ -45,8 +50,8 @@ export default function Login(props) {
                                     onChange={e => { setEmail(e.target.value) }}
                                     onInvalid={e => { }}
                                 />
-                                <label htmlFor='input-email'>Email</label>
                             </div>
+                            <label className="fs-5 mb-2 ms-1" htmlFor='input-password'>Password</label>
                             <div className='form-floating mb-4'>
                                 <input
                                     id='input-password'
@@ -56,7 +61,6 @@ export default function Login(props) {
                                     value={password}
                                     onChange={e => { setPassword(e.target.value) }}
                                 />
-                                <label htmlFor='input-password'>Password</label>
                             </div>
                             <div className='form-check mb-4'>
                                 <input
@@ -73,11 +77,13 @@ export default function Login(props) {
                             <button
                                 id='btn-submit'
                                 type='submit'
-                                className='btn btn-lg btn-primary w-100 shadow'
+                                className='btn btn-lg btn-primary w-100 shadow mb-4'
                             >
-                                Login
+                                Entrar
                             </button>
-
+                            <p className="">
+                            Esqueceste-te da Palavra-passe? <a href="../recuperar" className="color-text">Recuperar</a>
+                            </p>
                         </form>
                     </div>
                 </div>

@@ -86,3 +86,11 @@
 .bg-primary {
     background-color: var(--pi4-primary-transparent)!important;
 }
+
+.bg-primary-login {
+    background-color: var(--pi4-primary)!important;
+}
+
+.color-text{
+    color:var(--pi4-primary);
+}
