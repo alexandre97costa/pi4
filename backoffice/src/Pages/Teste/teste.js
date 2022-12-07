@@ -1,13 +1,84 @@
 import React from 'react';
 import VisibleTo from '../../Helpers/VisibleTo';
 
+import CartaoPI from '../../Components/Cards/Card_pi';
+import CartaoAT from '../../Components/Cards/Card_at';
+import CartaoDetais from '../../Components/Cards/Card_details';
+import AddCard from '../../Components/Cards/AddCard';
+import CartaoPIRemove from '../../Components/Cards/Card_piRemove';
+import MiniCard from '../../Components/Cards/MiniCard';
+
+
+import CartaoPI from '../../Components/Cards/Card_pi';
+import CartaoAT from '../../Components/Cards/Card_at';
+import CartaoDetais from '../../Components/Cards/Card_details';
+import AddCard from '../../Components/Cards/AddCard';
+import CartaoPIRemove from '../../Components/Cards/Card_piRemove';
+import MiniCard from '../../Components/Cards/MiniCard';
+
+
 export default function Teste() {
     return (
         <>
 
-            <div className='row border mb-3'>
-                <div className='col-md-6 border'>teste1</div>
-                <div className='col-md-6 border'>teste2</div>
+            <div className='row col-3'>
+                <CartaoPI
+                    title="Nome do Local Turístico"
+                    subTitle="Categoria"
+                    morada="Morada"
+                    txtLink="Ver mais detalhes"
+                />
+            </div>
+
+
+
+
+            <div className='row col-3'>
+                <CartaoAT
+                    title="Nome do Agente Turístico"
+                    subTitle="Categoria"
+                    txtLink="Ver mais detalhes"
+                />
+            </div>
+
+
+            <div className='row'>
+
+                <CartaoDetais
+                    Nome="Nome"
+                    NomeDesc="Um nome qql"
+
+                    Descricao="Descrição"
+                    DescricaoDesc="Uma categoria qql"
+
+                    Contacto="Contacto"
+                    ContactoDesc="987452136"
+
+                    Email="Email"
+                    EmailDesc="ahdhd@email.pt"
+                />
+            </div>
+
+
+
+            <div className='row'>
+                <div className='col-3' >
+
+                    <AddCard
+                        title="Adicionar Ponto de Interesse"
+                    />
+
+                </div>
+
+                <div className='col-3 p-0'>
+
+                    <CartaoPIRemove
+                        title="Nome do Local Turístico"
+                        subTitle="Categoria"
+                        morada="Morada"
+                        txtLink="Remover"
+                    />
+                </div>
             </div>
 
             <VisibleTo tipo={1}>
@@ -38,9 +109,69 @@ export default function Teste() {
                     </button>
                 </div>
             </div>
-            <div className='row bg-white vh-100 border mb-3'>
-                teste à sidebar com conteúdo muito comprido
+
+            <div className='row'>
+
+
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div className='row'>
+                                    <div className='col-2'>
+                                        <MiniCard
+                                            title="Nome do Restaurante" />
+                                    </div>
+
+                                    <div className='col-2'>
+                                        <MiniCard
+                                            title="Nome do Restaurante" />
+                                    </div>
+
+                                    <div className='col-2'>
+                                        <MiniCard
+                                            title="Nome do Restaurante" />
+                                    </div>
+
+                                    <div className='col-2'>
+                                        <MiniCard
+                                            title="Nome do Restaurante" />
+                                    </div>
+
+                                    <div className='col-2'>
+                                        <MiniCard
+                                            title="Nome do Restaurante" />
+                                    </div>
+
+                                    <div className='col-2'>
+                                        <MiniCard
+                                            title="Nome do Restaurante" />
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button type="button" class="btn btn-primary">Validar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
             </div>
+
         </>
+
+
     );
 }

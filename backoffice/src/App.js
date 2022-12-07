@@ -49,6 +49,18 @@ export default function App() {
 						</ProtectedRoute>
 					}
 				/>
+
+				<Route
+					path='/inicioAT'
+					element={
+						<ProtectedRoute>
+							<Page>
+								<Pages.Teste />
+							</Page>
+						</ProtectedRoute>
+					}
+				/>
+				
 			</Routes>
 		</BrowserRouter>
 	);
