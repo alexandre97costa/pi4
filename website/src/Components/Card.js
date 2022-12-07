@@ -5,7 +5,7 @@ export default function Card(props) {
   return (
     <div className="container">
       <div className="row pb-5 ">
-        <div className="col-sm">
+        <div className="col-sm-12">
           <div className="card border-0 bg-microsite text-center">
             <div className="card-tittle ps-5 fs-5">
               {props.cardTitulo}
