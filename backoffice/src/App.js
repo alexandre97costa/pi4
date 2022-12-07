@@ -45,9 +45,19 @@ export default function App() {
 
 				<Route exact path='/editar_pass' element={<Pages.EditarPass />} />
 
-				<Route
-					path='/'
-					element={
+				<Route path='/' element={
+					<Pagina
+						userType={"Agente Turístico"}
+						userName={"Joaquim"}
+						menu={agente_turistico}
+						selected={0}
+						title={"Olá, Joaquim!"}
+					>
+						<Pages.Teste />
+					</Pagina>
+				} />
+				<Route path='/teste' element={
+					<ProtectedRoute>
 						<Pagina
 							userType={"Agente Turístico"}
 							userName={"Joaquim"}
@@ -57,215 +67,96 @@ export default function App() {
 						>
 							<Pages.Teste />
 						</Pagina>
-					}
-				/>
-				<Route
-					path='/teste'
-					element={
-						<ProtectedRoute>
-							<Pagina
-								userType={"Agente Turístico"}
-								userName={"Joaquim"}
-								menu={agente_turistico}
-								selected={0}
-								title={"Olá, Joaquim!"}
-							>
-								<Pages.Teste />
-							</Pagina>
-						</ProtectedRoute>
-					}
-				/>
-				<Route
-					path='/listaUtilizador'
-					element={
-						<ProtectedRoute>
-							<Pagina PageTitle={'Lista de utilizadores'} PageIcon={'apple'}>
-								<Pages.ListaUtilizador />
-							</Pagina>
-						</ProtectedRoute>
-					}
-				/>
+					</ProtectedRoute>
+				} />
+				<Route path='/listaUtilizador' element={
+					<ProtectedRoute>
+						<Pagina PageTitle={'Lista de utilizadores'} PageIcon={'apple'}>
+							<Pages.ListaUtilizador />
+						</Pagina>
+					</ProtectedRoute>
+				} />
 
-				<Route
-					path='/listaVisitantes'
-					element={
-						<ProtectedRoute>
-							<Pagina PageTitle={'Lista de Visitantes'} PageIcon={'apple'}>
-								<Pages.ListaVisitantes />
-							</Pagina>
-						</ProtectedRoute>
-					}
-				/>
-				<Route
-					path='/listaAgente'
-					element={
-						<ProtectedRoute>
-							<Pagina PageTitle={'Lista Agente Turistico'} PageIcon={'apple'}>
-								<Pages.ListaAgenteTuristico />
-							</Pagina>
-						</ProtectedRoute>
-					}
-				/>
-				<Route
-					path='/listaResponsavel'
-					element={
-						<ProtectedRoute>
-							<Pagina PageTitle={'Lista Responsavel Regiao'} PageIcon={'apple'}>
-								<Pages.ListaResponsavelRegiao />
-							</Pagina>
-						</ProtectedRoute>
-					}
-				/>
-				<Route
-					path='/listaRegiao'
-					element={
-						<ProtectedRoute>
-							<Pagina PageTitle={'Lista Regiao'} PageIcon={'apple'}>
-								<Pages.ListaRegiao />
-							</Pagina>
-						</ProtectedRoute>
-					}
-				/>
-				<Route
-					path='/gerirVantagensApp'
-					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={""}
-						>
-							<Pages.GerirVantagensApp />
+				<Route path='/listaVisitantes' element={
+					<ProtectedRoute>
+						<Pagina PageTitle={'Lista de Visitantes'} PageIcon={'apple'}>
+							<Pages.ListaVisitantes />
 						</Pagina>
-					}
-				/>
-				<Route
-					path='/gerirMicrosite'
-					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={""}
-						>
-							<Pages.GerirMicrosite />
+					</ProtectedRoute>
+				} />
+				<Route path='/listaAgente' element={
+					<ProtectedRoute>
+						<Pagina PageTitle={'Lista Agente Turistico'} PageIcon={'apple'}>
+							<Pages.ListaAgenteTuristico />
 						</Pagina>
-					}
-				/>
-				<Route
-					path='/gerirDescarregarApp'
-					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={""}
-						>
-							<Pages.GerirDescarregarApp />
+					</ProtectedRoute>
+				} />
+				<Route path='/listaResponsavel' element={
+					<ProtectedRoute>
+						<Pagina PageTitle={'Lista Responsavel Regiao'} PageIcon={'apple'}>
+							<Pages.ListaResponsavelRegiao />
 						</Pagina>
-					}
-				/>
-				<Route
-					path='/gerirEditarFooter'
-					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={""}
-						>
-							<Pages.GerirEditarFooter />
+					</ProtectedRoute>
+				} />
+				<Route path='/listaRegiao' element={
+					<ProtectedRoute>
+						<Pagina PageTitle={'Lista Regiao'} PageIcon={'apple'}>
+							<Pages.ListaRegiao />
 						</Pagina>
-					}
-				/>
-				<Route
-					path='/gerirMenu'
-					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={""}
-						>
-							<Pages.GerirMenu />
-						</Pagina>
-					}
-				/>
-				<Route
-					path='/gerirHeroBanner'
-					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={""}
-						>
-							<Pages.GerirHeroBanner />
-						</Pagina>
-					}
-				/>
-				<Route
-					path='/gerirPublicidadeAgenteTuristico'
-					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={""}
-						>
-							<Pages.GerirPublicidadeAgenteTuristico />
-						</Pagina>
-					}
-				/>
-				<Route
-					path='/gerirAdicionarCards'
-					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={""}
-						>
-							<Pages.GerirAdicionarCards />
-						</Pagina>
-					}
-				/>
-				<Route
-					path='/gerirEditarFooter'
-					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-						>
-							<Pages.GerirEditarFooter />
-						</Pagina>
-					}
-				/>
+					</ProtectedRoute>
+				} />
+				<Route path='/gerirVantagensApp' element={
+					<Pagina>
+						<Pages.GerirVantagensApp />
+					</Pagina>
+				} />
+				<Route path='/gerirMicrosite' element={
+					<Pagina>
+						<Pages.GerirMicrosite />
+					</Pagina>
+				} />
+				<Route path='/gerirDescarregarApp' element={
+					<Pagina>
+						<Pages.GerirDescarregarApp />
+					</Pagina>
+				} />
+				<Route path='/gerirEditarFooter' element={
+					<Pagina>
+						<Pages.GerirEditarFooter />
+					</Pagina>
+				} />
+				<Route path='/gerirMenu' element={
+					<Pagina>
+						<Pages.GerirMenu />
+					</Pagina>
+				} />
+				<Route path='/gerirHeroBanner' element={
+					<Pagina>
+						<Pages.GerirHeroBanner />
+					</Pagina>
+				} />
+				<Route path='/gerirPublicidadeAgenteTuristico' element={
+					<Pagina>
+						<Pages.GerirPublicidadeAgenteTuristico />
+					</Pagina>
+				} />
+				<Route path='/gerirAdicionarCards' element={
+					<Pagina>
+						<Pages.GerirAdicionarCards />
+					</Pagina>
+				} />
+				<Route path='/gerirEditarFooter' element={
+					<Pagina>
+						<Pages.GerirEditarFooter />
+					</Pagina>
+				} />
 
-				
-				<Route
-					path='/atRecompensas'
-					element={
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-						>
-							<Pages.ATRecompensas />
-						</Pagina>
-					}
-				/>
+
+				<Route path='/atRecompensas' element={
+					<Pagina>
+						<Pages.ATRecompensas />
+					</Pagina>
+				} />
 			</Routes>
 		</BrowserRouter>
 	);
