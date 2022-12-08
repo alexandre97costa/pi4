@@ -3,7 +3,7 @@ import TituloMicrosite from "../../../Components/TituloMicrosite";
 import SubTituloMicrosite from "../../../Components/SubTituloMicrosite";
 import InputMicrosite from "../../../Components/InputMicrosite";
 import UrlImagemMicrosite from "../../../Components/UrlImagemMicrosite";
-import BotaoGuardar from "../../../Components/BotaoGuardar";
+import Botao from "../../../Components/Botao";
 
 export default function GerirVantagensApp(props) {
   return (
@@ -16,8 +16,8 @@ export default function GerirVantagensApp(props) {
           <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
             <TituloMicrosite titulo="Título" />
             <SubTituloMicrosite subTitulo="Subtítulo" />
-            <BotaoGuardar onClick={test}
-            botaoGuardar="Guardar"
+            <Botao onClick={test}
+            Botao="Guardar"
             />
           </div>
 
@@ -27,8 +27,8 @@ export default function GerirVantagensApp(props) {
             <SubTituloMicrosite subTitulo="Subtítulo" />
             <InputMicrosite botao="Texto Botão" />
             <UrlImagemMicrosite urlImagem="Link para o icon"/>
-            <BotaoGuardar
-            botaoGuardar="Guardar"
+            <Botao
+            Botao="Guardar"
             />
           </div>
 
@@ -38,8 +38,8 @@ export default function GerirVantagensApp(props) {
             <SubTituloMicrosite subTitulo="Subtítulo" />
             <InputMicrosite botao="Texto Botão" />
             <UrlImagemMicrosite urlImagem="Link para o icon"/>
-            <BotaoGuardar
-            botaoGuardar="Guardar"
+            <Botao
+            Botao="Guardar"
             />
           </div>
 
@@ -49,8 +49,8 @@ export default function GerirVantagensApp(props) {
             <SubTituloMicrosite subTitulo="Subtítulo" />
             <InputMicrosite botao="Texto Botão" />
             <UrlImagemMicrosite urlImagem="Link para o icon"/>
-            <BotaoGuardar
-            botaoGuardar="Guardar"
+            <Botao
+            Botao="Guardar"
             />
           </div>
 

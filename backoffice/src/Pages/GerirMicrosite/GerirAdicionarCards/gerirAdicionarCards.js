@@ -3,7 +3,7 @@ import TituloMicrosite from "../../../Components/TituloMicrosite";
 import SubTituloMicrosite from "../../../Components/SubTituloMicrosite";
 import UrlImagemMicrosite from "../../../Components/UrlImagemMicrosite";
 import InputMicrosite from "../../../Components/InputMicrosite";
-import BotaoGuardar from "../../../Components/BotaoGuardar";
+import Botao from "../../../Components/Botao";
 
 export default function GerirAdicionarCards() {
   return (
@@ -24,8 +24,8 @@ export default function GerirAdicionarCards() {
             <InputMicrosite
             botao=" Texto Botão"
             />
-            <BotaoGuardar
-            botaoGuardar="Guardar"
+            <Botao
+            Botao="Guardar"
             />
           </div>
         </div>

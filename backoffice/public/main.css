@@ -100,3 +100,11 @@
 .text-primary {
     color: var(--pi4-primary)!important;
 }
+
+.h-18rem {
+    height: 18rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}

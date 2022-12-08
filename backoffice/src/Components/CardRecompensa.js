@@ -1,6 +1,6 @@
 import React from "react";
 
-export function CardRecompensa(props){
+export default function CardRecompensa(props){
     return(
         <div className="container-fluid">
             <div className="row">

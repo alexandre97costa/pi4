@@ -3,7 +3,7 @@ import TituloMicrosite from "../../../Components/TituloMicrosite";
 import SubTituloMicrosite from "../../../Components/SubTituloMicrosite";
 import InputMicrosite from "../../../Components/InputMicrosite";
 import UrlImagemMicrosite from "../../../Components/UrlImagemMicrosite";
-import BotaoGuardar from '../../../Components/BotaoGuardar';
+import Botao from '../../../Components/Botao';
 
 export default function GerirHeroBanner(){
     return (
@@ -21,8 +21,8 @@ export default function GerirHeroBanner(){
                 botao="Texto Botão"/>
                 <UrlImagemMicrosite 
                 urlImagem="Url da imagem"/>
-                <BotaoGuardar
-                botaoGuardar="Guardar"
+                <Botao
+                Botao="Guardar"
                 />
               </div>
             </div>

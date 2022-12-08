@@ -17,11 +17,16 @@ export default function CardPontoInteresse(props) {
               <a href="#" className="bi bi-star text-warning px-2"></a>
               <a href="#" className="bi bi-journal-check text-info px-2"></a>
             </div>
-          <a href="#" className="btn btn-outline-success d-grid">{props.txtLink}</a>
+          <a href="#" className={changeButton()}>{props.txtLink}</a>
         </div>
       </div>
     </div>
-  );
+  )
+
+  function changeButton() {
+    return "btn d-grid " + props.outline
+  }
+
 }
 
 
