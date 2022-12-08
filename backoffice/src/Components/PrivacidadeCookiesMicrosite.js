@@ -1,15 +1,18 @@
 import React from "react";
 
-export default function BotaoMicrosite(props) {
-  return (
-    
-      <div className="row pb-4 justify-content-center">
-        <div className="col-12 ">
+export default function PrivacidadeCookiesMicrosite(props) {
 
-          <div className="row">
+  /*const [titulo, setTitulo] = useState("")
+  /*onChange={(value)=>setTitulo(value.target.value)}*/
+
+  return (
+    <div className="container">
+      <div className="row">
+        <div className="col-12 ">
+          <div className="row mt-3">
             <div className="col-12 ">
-              <label htmlFor="formBotaoMicrositeInput" className="form-label ms-3">
-                {props.botao}
+              <label htmlFor="formLinkTextoInput" className="form-label mb-2 ">
+                {props.linkTexto}
               </label>
             </div>
           </div>
@@ -19,9 +22,9 @@ export default function BotaoMicrosite(props) {
           <div className="col-10">
             <input onChange={(input) => console.log(input.target.value)} 
               type="text"
-              className="form-control"
-              id="formBotaoMicrositeInput"
-              placeholder={props.botaoPlaceholder}
+              className="form-control  mb-4"
+              id="formLinkTextoPlaceholderInput"
+              placeholder={props.linkTextoPlaceholder}
             />
           </div>
           <div className="col-md-2">
@@ -29,8 +32,7 @@ export default function BotaoMicrosite(props) {
             <button onClick={(value)=>props.onClick(value)} className=" btn btn-outline-danger bi bi-trash-fill"></button>
           </div>
         </div>
-
       </div>
-
+    </div>
   );
 }

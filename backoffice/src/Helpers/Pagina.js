@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react'
 import dev from '../Auth/dev';
 
-import { Sidebar } from '../Components/sidebar'
-import User from '../Components/user'
+import { Sidebar } from '../Components/Sidebar'
+import User from '../Components/User'
 
 export default function Pagina(props) {
     useEffect(() => { dev.log("✅ Pagina()") }, [])
 
     return (
-
-        
         <div className='container-fluid position-relative'>
             <div className='row'>
                 <Sidebar

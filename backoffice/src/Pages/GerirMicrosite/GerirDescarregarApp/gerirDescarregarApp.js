@@ -1,7 +1,7 @@
 import React from "react";
 import TituloMicrosite from "../../../Components/TituloMicrosite";
 import SubTituloMicrosite from "../../../Components/SubTituloMicrosite";
-import BotaoMicrosite from "../../../Components/BotaoMicrosite";
+import InputMicrosite from "../../../Components/InputMicrosite";
 import BotaoGuardar from "../../../Components/BotaoGuardar";
 
 export default function GerirDescarregarApp() {
@@ -16,7 +16,7 @@ export default function GerirDescarregarApp() {
             titulo="Título"/>
             <SubTituloMicrosite 
             subTitulo="Subtítulo"/>
-            <BotaoMicrosite 
+            <InputMicrosite 
             botao="Texto Botão"/>
             <BotaoGuardar
             botaoGuardar="Guardar"

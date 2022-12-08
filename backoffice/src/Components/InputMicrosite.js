@@ -1,18 +1,15 @@
 import React from "react";
 
-export default function PrivacidadeCoockiesMicrosite(props) {
-
-  /*const [titulo, setTitulo] = useState("")
-  /*onChange={(value)=>setTitulo(value.target.value)}*/
-
+export default function InputMicrosite(props) {
   return (
-    <div className="container">
-      <div className="row">
+    
+      <div className="row pb-4 justify-content-center">
         <div className="col-12 ">
-          <div className="row mt-3">
+
+          <div className="row">
             <div className="col-12 ">
-              <label htmlFor="formLinkTextoInput" className="form-label mb-2 ">
-                {props.linkTexto}
+              <label htmlFor="formBotaoMicrositeInput" className="form-label ms-3">
+                {props.botao}
               </label>
             </div>
           </div>
@@ -22,9 +19,9 @@ export default function PrivacidadeCoockiesMicrosite(props) {
           <div className="col-10">
             <input onChange={(input) => console.log(input.target.value)} 
               type="text"
-              className="form-control  mb-4"
-              id="formLinkTextoPlaceholderInput"
-              placeholder={props.linkTextoPlaceholder}
+              className="form-control"
+              id="formBotaoMicrositeInput"
+              placeholder={props.botaoPlaceholder}
             />
           </div>
           <div className="col-md-2">
@@ -32,7 +29,8 @@ export default function PrivacidadeCoockiesMicrosite(props) {
             <button onClick={(value)=>props.onClick(value)} className=" btn btn-outline-danger bi bi-trash-fill"></button>
           </div>
         </div>
+
       </div>
-    </div>
+
   );
 }

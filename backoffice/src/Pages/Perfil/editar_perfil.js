@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Sidebar } from '../../Components/sidebar';
-import { FormEditar } from '../../Components/form_editar_perfil';
+import { Sidebar } from '../../Components/Sidebar';
+import { FormEditarPerfil } from '../../Components/FormEditarPerfil';
 
 export default function EditarPerfil(props) {
   return (
@@ -9,7 +8,7 @@ export default function EditarPerfil(props) {
     <div className="">
       <div className="d-flex">
         <Sidebar/>
-        <FormEditar/>
+        <FormEditarPerfil/>
         <div className='col'>botao</div>
       </div>
     </div>

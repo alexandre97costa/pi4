@@ -1,7 +1,6 @@
 import React from 'react'
-import fotoagente from '../../Assets/Images/fotoagente.jpg'
-import jardimMaes from '../../Assets/Images/jardimMaes.jpg'
 
+import jardimMaes from '../../Assets/Images/jardimMaes.jpg'
 
 export default function MiniCard(props) {
   return (

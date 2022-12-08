@@ -2,8 +2,7 @@ import React from 'react'
 
 import jardimMaes from '../../Assets/Images/jardimMaes.jpg'
 
-
-export default function CartaoPIRemove(props) {
+export default function CardPontoInteresseRemove(props) {
   return (
     <div className="card border border-0 shadow mb-3 p-0" style={{ maxHeight: '500px', minHeight: '250px', height: '500px' }}>
       <img src={jardimMaes} className="card-img-top" />

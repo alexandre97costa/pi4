@@ -1,19 +1,25 @@
 import React from 'react';
 
-import CartaoPI from '../../Components/Cards/Card_pi';
-import CartaoPIRemove from '../../Components/Cards/Card_piRemove';
-import CartaoAT from '../../Components/Cards/Card_at';
-import CartaoDetais from '../../Components/Cards/Card_details';
+import CardPontoInteresse from '../../Components/Cards/CardPontoInteresse';
+import CardPontoInteresseRemove from '../../Components/Cards/CardPontoInteresseRemove';
+import CardAgenteTuristico from '../../Components/Cards/CardAgenteTuristico';
+import CardDetails from '../../Components/Cards/CardDetails';
 import AddCard from '../../Components/Cards/AddCard';
 import MiniCard from '../../Components/Cards/MiniCard';
+
+import BotaoGuardar from '../../Components/BotaoGuardar';
+import InputMicrosite from '../../Components/InputMicrosite'
 
 
 export default function Teste() {
     return (
         <>
+            <InputMicrosite botao="Teste2" />
+
+            <BotaoGuardar botaoGuardar="Teste1" />
 
             <div className='row col-3'>
-                <CartaoPI
+                <CardPontoInteresse
                     title="Nome do Local Turístico"
                     subTitle="Categoria"
                     morada="Morada"
@@ -22,10 +28,8 @@ export default function Teste() {
             </div>
 
 
-
-
             <div className='row col-3'>
-                <CartaoAT
+                <CardAgenteTuristico
                     title="Nome do Agente Turístico"
                     subTitle="Categoria"
                     txtLink="Ver mais detalhes"
@@ -35,7 +39,7 @@ export default function Teste() {
 
             <div className='row'>
 
-                <CartaoDetais
+                <CardDetails
                     Nome="Nome"
                     NomeDesc="Um nome qql"
 
@@ -63,7 +67,7 @@ export default function Teste() {
 
                 <div className='col-3 p-0'>
 
-                    <CartaoPIRemove
+                    <CardPontoInteresseRemove
                         title="Nome do Local Turístico"
                         subTitle="Categoria"
                         morada="Morada"

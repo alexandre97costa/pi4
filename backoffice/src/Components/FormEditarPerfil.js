@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function FormEditar() {
+export function FormEditarPerfil() {
     return (
         <div className='container col-8'>
             <p className="mb-5 mt-5 ms-5 fs-3 fw-bold"> <i class="bi bi-file-earmark"></i> Editar Perfil</p>

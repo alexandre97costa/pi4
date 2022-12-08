@@ -10,8 +10,8 @@ export function CardRecompensa(props){
                             <div className="card-img" >
                             </div>
                         </div>
-                        <div className="card-tittle">sdgdf
-
+                        <div className="card-tittle">
+                            sdgdf
                         </div>
                     </div>
                 </div>

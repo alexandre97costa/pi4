@@ -1,7 +1,7 @@
 import React from "react";
 import { Dropdown } from "../../Components/Dropdown";
 import { Lista } from "../../Components/Lista";
-import { Linhadalista } from "../../Components/Linhadalista";
+import { LinhaDaLista } from "../../Components/LinhaDaLista";
 import { Pagina } from "../../Components/Pagina";
 
 export default function ListaResponsavelRegiao(props) {
@@ -28,47 +28,47 @@ export default function ListaResponsavelRegiao(props) {
               <div className="col-12">
                 <div className="row">
                   <Lista nomeA="# Nome" nomeB="Categoria" nomeC="Ações" />
-                  <Linhadalista
+                  <LinhaDaLista
                     nomepessoa="02 José António Gomes"
                     nomeCard="Responsável Região"
                     color="bg-responsavel"
                   />
-                  <Linhadalista
+                  <LinhaDaLista
                     nomepessoa="11 Luisa Machado Castro"
                     nomeCard="Responsável Região"
                     color="bg-responsavel"
                   />
-                  <Linhadalista
+                  <LinhaDaLista
                     nomepessoa="21 Rodrigo Miguel"
                     nomeCard="Responsável Região"
                     color="bg-responsavel"
                   />
-                  <Linhadalista
+                  <LinhaDaLista
                     nomepessoa="31 Amália Rodrigues Silva"
                     nomeCard="Responsável Região"
                     color="bg-responsavel"
                   />
-                  <Linhadalista
+                  <LinhaDaLista
                     nomepessoa="36 Dinis Martins"
                     nomeCard="Responsável Região"
                     color="bg-responsavel"
                   />
-                  <Linhadalista
+                  <LinhaDaLista
                     nomepessoa="22 Priscila Lopes"
                     nomeCard="Responsável Região"
                     color="bg-responsavel"
                   />
-                  <Linhadalista
+                  <LinhaDaLista
                     nomepessoa="25 Mateus Almeida"
                     nomeCard="Responsável Região"
                     color="bg-responsavel"
                   />
-                  <Linhadalista
+                  <LinhaDaLista
                     nomepessoa="09 Sara Martins Campos"
                     nomeCard="Responsável Região"
                     color="bg-responsavel"
                   />
-                  <Linhadalista
+                  <LinhaDaLista
                     nomepessoa="07 João Pedro Pereira"
                     nomeCard="Responsável Região"
                     color="bg-responsavel"

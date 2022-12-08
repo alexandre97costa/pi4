@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CardsMicrosite(props) {
+export default function CardMicrosite(props) {
   return (
     <div className="col mb-4">
       <div className="card h-100 text-center shadow bg-body rounded">
@@ -13,6 +13,7 @@ export default function CardsMicrosite(props) {
       </div>
     </div>
   );
+  
   function changeColorTitulo(props) {
     return "card-title fs-5 text-center " + props.color;
   }

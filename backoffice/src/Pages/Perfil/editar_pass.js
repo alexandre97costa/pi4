@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Sidebar } from '../../Components/sidebar';
-import { FormEditarPass } from '../../Components/form_editar_pass';
+import { Sidebar } from '../../Components/Sidebar';
+import { FormEditarPass } from '../../Components/FormEditarPass';
 
 export default function EditarPass(props) {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import CardsMicrosite from "../../../Components/CardsMicrosite";
+import CardsMicrosite from "../../../Components/CardMicrosite";
 
 export default function GerirMicrosite() {
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Linhadalista (props){
+export function LinhaDaLista (props){
     return(
         <div className='row'>
             <div className='col-12 pb-4'>

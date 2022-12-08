@@ -1,6 +1,6 @@
 import React from 'react';
 import RedesSociaisMicrosite from "../../../Components/RedesSociaisMicrosite"
-import PrivacidadeCoockiesMicrosite from "../../../Components/PrivacidadeCoockiesMicrosite"
+import PrivacidadeCookiesMicrosite from "../../../Components/PrivacidadeCookiesMicrosite"
 import BotaoGuardar from '../../../Components/BotaoGuardar';
 
 
@@ -40,11 +40,11 @@ export default function GerirEditarFooter(){
 
               <p className="fs-3 mb-5 ms-4">Editar Política de Privacidade e Cookies</p>
               <div className="card p-3 mb-5 shadow bg-body rounded">
-                <PrivacidadeCoockiesMicrosite
+                <PrivacidadeCookiesMicrosite
                 linkTexto="Link para a página de Política de Privacidade"
                 linkTextoPlaceholder="Inserir o URL"
                 />
-                <PrivacidadeCoockiesMicrosite
+                <PrivacidadeCookiesMicrosite
                 linkTexto="Link para a página de Política de Cookies"
                 linkTextoPlaceholder="Inserir o link"
                 />
