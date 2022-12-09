@@ -25,21 +25,12 @@ export default function App() {
 		<BrowserRouter>
 			<Routes>
 
-				{/* <Route path='/testeJorge' element={<Pages.InicioAT />} /> */}
-
-				<Route path='/login' element={<Pages.Login />} />
-
-				<Route exact path='/recuperar' element={<Pages.Recuperar />} />
-
-				<Route exact path='/editar_perfil' element={<Pages.EditarPerfil />} />
-
-				<Route exact path='/editar_pass' element={<Pages.EditarPass />} />
-
 				<Route path='/' element={
 					<Pagina>
-						<Pages.Teste />
+						<Pages.ListaUtilizador />
 					</Pagina>
 				} />
+
 				<Route path='/teste' element={
 					<ProtectedRoute>
 						<Pagina>
@@ -47,6 +38,24 @@ export default function App() {
 						</Pagina>
 					</ProtectedRoute>
 				} />
+				
+				<Route path='/login' element={<Pages.Login />} />
+
+				<Route exact path='/recuperar' element={<Pages.Recuperar />} />
+
+				<Route path='/editarPerfil' element={
+					<Pagina>
+						<Pages.EditarPerfil />
+					</Pagina>
+				} />
+
+				<Route path='/editarPass' element={
+					<Pagina>
+						<Pages.EditarPasse />
+					</Pagina>
+				} />
+
+
 				<Route path='/listaUtilizador' element={
 					<ProtectedRoute>
 						<Pagina PageTitle={'Lista de utilizadores'} PageIcon={'apple'}>
