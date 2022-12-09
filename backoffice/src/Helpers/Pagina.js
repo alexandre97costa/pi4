@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import dev from '../Auth/dev';
 
-import { Sidebar } from '../Components/Sidebar'
-import User from '../Components/User'
+import { Sidebar } from './Sidebar'
+import User from './User'
 
 export default function Pagina(props) {
     useEffect(() => { dev.log("✅ Pagina()") }, [])
