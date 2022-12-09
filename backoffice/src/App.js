@@ -87,11 +87,9 @@ export default function App() {
 					</ProtectedRoute>
 				} />
 				<Route path='/listaAgente' element={
-					<ProtectedRoute>
 						<Pagina PageTitle={'Lista Agente Turistico'} PageIcon={'apple'}>
 							<Pages.ListaAgenteTuristico />
 						</Pagina>
-					</ProtectedRoute>
 				} />
 				<Route path='/listaResponsavel' element={
 					<ProtectedRoute>

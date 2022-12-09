@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Pagina () {
+export default function Pagina () {
     return (    
         
         <div className="row  justify-content-end">

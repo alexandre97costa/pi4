@@ -1,6 +1,6 @@
 import React from "react";
 
-export function LinhaDaRegiao (props){
+export default function LinhaDaRegiao (props){
     return(
         <div className='row'>
             <div className='col-12 pb-4'>

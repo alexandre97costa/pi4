@@ -1,8 +1,8 @@
 import React from "react";
 import { Dropdown } from "../../Components/Dropdown";
 import { Lista } from "../../Components/Lista";
-import { LinhaDaRegiao } from "../../Components/LinhaDaRegiao";
-import { Pagina } from "../../Components/Pagina";
+import LinhaDaRegiao from "../../Components/LinhaDaRegiao";
+import Pagina from "../../Components/Pagina";
 
 export default function ListaRegiao(props) {
   return (

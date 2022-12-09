@@ -2,7 +2,7 @@ import React from "react";
 import { Dropdown } from "../../Components/Dropdown";
 import { Lista } from "../../Components/Lista";
 import { LinhaDaLista } from "../../Components/LinhaDaLista";
-import { Pagina } from "../../Components/Pagina";
+import Pagina from "../../Components/Pagina";
 
 export default function listaVisitantes(props) {
   return (
