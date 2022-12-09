@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import dev from '../Auth/dev';
 
-import { Sidebar } from './Sidebar'
+import Sidebar from './Sidebar'
 import User from './User'
 
 export default function Pagina(props) {

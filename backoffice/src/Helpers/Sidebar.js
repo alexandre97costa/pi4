@@ -103,7 +103,7 @@ const menu = [
     ],
 ]
 
-export function Sidebar(props) {
+export default function Sidebar(props) {
 
     const location = useLocation()
     const [tipos, setTipos] = useState([])
