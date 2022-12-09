@@ -1,6 +1,6 @@
 import React from "react";
 import { RecompensaTabela } from "../../Components/RecompensaTabela";
-import CardRecompensa from "../../Components/CardRecompensa";
+import CardRecompensa from "../../Components/Cards/CardRecompensa";
 
 export default function ATRecompensas(props) {
   return (

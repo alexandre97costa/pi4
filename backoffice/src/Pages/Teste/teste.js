@@ -6,7 +6,7 @@ import CardDetails from '../../Components/Cards/CardDetails'
 import MiniCard from '../../Components/Cards/MiniCard'
 import CardPontoInteresse from '../../Components/Cards/CardPontoInteresse'
 import Botao from '../../Components/Botao'
-import CardMicrosite from '../../Components/CardMicrosite';
+import CardMicrosite from '../../Components/Microsite/CardMicrosite';
 import { FormEditarPass } from '../../Components/FormEditarPass'
 
 export default function Teste() {
