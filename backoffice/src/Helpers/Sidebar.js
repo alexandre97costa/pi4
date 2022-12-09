@@ -3,105 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import axios from 'axios'
 import auth from '../Auth/auth.service'
 import dev from '../Auth/dev'
+import { menu } from './menu'
 const ip = process.env.REACT_APP_IP
-
-// consts para o menu
-const menu = [
-    // agente turistico
-    [
-        {
-            text: "Dashboard",
-            path: "/",
-            icon: "speedometer2",
-        },
-        {
-            text: "Pontos de Interesse",
-            path: "/2",
-            icon: "geo-alt",
-        },
-        {
-            text: "Eventos",
-            path: "/3",
-            icon: "calendar4-event",
-        },
-        {
-            text: "Recompensas",
-            path: "/4",
-            icon: "gift",
-        }
-    ],
-    // responsavel de regiao
-    [
-        {
-            text: "Dashboard",
-            path: "/",
-            icon: "speedometer2",
-        },
-        {
-            text: "Agentes Turísticos",
-            path: "/2",
-            icon: "speedometer2",
-        },
-        {
-            text: "Pontos de Interesse",
-            path: "/3",
-            icon: "geo-alt",
-        },
-        {
-            text: "Eventos",
-            path: "/4",
-            icon: "calendar4-event",
-        },
-        {
-            text: "Reservas",
-            path: "/5",
-            icon: "calendar4-event",
-        },
-        {
-            text: "Recompensas",
-            path: "/6",
-            icon: "gift",
-        }
-    ],
-    // administrador
-    [
-        {
-            text: "Dashboard",
-            path: "/",
-            icon: "speedometer2",
-        },
-        {
-            text: "Utilizadores",
-            path: "/2",
-            icon: "speedometer2",
-        },
-        {
-            text: "Pontos de Interesse",
-            path: "/3",
-            icon: "geo-alt",
-        },
-        {
-            text: "Eventos",
-            path: "/4",
-            icon: "calendar4-event",
-        },
-        {
-            text: "Rservas",
-            path: "/5",
-            icon: "calendar4-event",
-        },
-        {
-            text: "Recompensas",
-            path: "/6",
-            icon: "gift",
-        },
-        {
-            text: "Microsite",
-            path: "/7",
-            icon: "gift",
-        }
-    ],
-]
 
 export default function Sidebar(props) {
 
@@ -141,7 +44,7 @@ export default function Sidebar(props) {
 
                 {/* Lista */}
                 <ul id='menu' className='nav d-flex flex-row flex-sm-column h-100 w-100'>
-                    {menu[tipoID-2].map((item, index) => {
+                    {menu[tipoID - 2].map((item, index) => {
 
                         return (
                             item.path === location.pathname ?
