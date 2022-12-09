@@ -37,6 +37,8 @@ export default function App() {
 		<BrowserRouter>
 			<Routes>
 
+				{/* <Route path='/testeJorge' element={<Pages.InicioAT />} /> */}
+
 				<Route path='/login' element={<Pages.Login />} />
 
 				<Route exact path='/recuperar' element={<Pages.Recuperar />} />
