@@ -10,11 +10,7 @@ export default function Pagina(props) {
     return (
         <div className='container-fluid position-relative'>
             <div className='row'>
-                <Sidebar
-                    userType={props.userType}
-                    menu={props.menu}
-                    selected={props.selected}
-                />
+                <Sidebar/>
 
                 {/* Content */}
                           

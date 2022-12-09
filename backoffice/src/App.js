@@ -7,9 +7,6 @@ import ProtectedRoute from './Helpers/ProtectedRoute';
 import Pagina from './Helpers/Pagina';
 import Pages from './Pages/index'
 
-
-// todo: colocar o payload do jwt no local storage (pra ficar acessivel a todas as paginas)
-
 export default function App() {
 
 	useEffect(() => {
@@ -41,7 +38,7 @@ export default function App() {
 				
 				<Route path='/login' element={<Pages.Login />} />
 
-				<Route exact path='/recuperar' element={<Pages.Recuperar />} />
+				<Route exact path='/recuperar' element={<Pages.RecuperarPass />} />
 
 				<Route path='/editarPerfil' element={
 					<Pagina>
@@ -51,7 +48,7 @@ export default function App() {
 
 				<Route path='/editarPass' element={
 					<Pagina>
-						<Pages.EditarPasse />
+						<Pages.EditarPass />
 					</Pagina>
 				} />
 
