@@ -1,18 +1,12 @@
 import React, { useEffect } from 'react'
-import { Navigate, BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
-import auth from './Auth/auth.service';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import dev from './Auth/dev';
+import ProtectedRoute from './Helpers/ProtectedRoute';
 
 //Exportação de todas as páginas feitas
 import Pagina from './Helpers/Pagina';
 import Pages from './Pages/index'
 
-let agente_turistico = [
-	{ icon: "speedometer2", text: "Dashboard", path: "/" },
-	{ icon: "geo-alt", text: "Pontos de Interesse", path: "/teste" },
-	{ icon: "calendar4-event", text: "Eventos", path: "/" },
-	{ icon: "gift", text: "Recompensas", path: "/" }
-]
 
 // todo: colocar o payload do jwt no local storage (pra ficar acessivel a todas as paginas)
 
@@ -26,12 +20,6 @@ export default function App() {
 			'\nhttps://reactjs.org/docs/strict-mode.html')
 	}, [])
 
-	function ProtectedRoute({ children }) {
-		const location = useLocation()
-		return auth.valid() ?
-			children :
-			<Navigate to={'/login'} state={{ from: location.pathname }} />
-	}
 
 	return (
 		<BrowserRouter>
@@ -48,25 +36,13 @@ export default function App() {
 				<Route exact path='/editar_pass' element={<Pages.EditarPass />} />
 
 				<Route path='/' element={
-					<Pagina
-						userType={"Agente Turístico"}
-						userName={"Joaquim"}
-						menu={agente_turistico}
-						selected={0}
-						title={"Olá, Joaquim!"}
-					>
+					<Pagina>
 						<Pages.Teste />
 					</Pagina>
 				} />
 				<Route path='/teste' element={
 					<ProtectedRoute>
-						<Pagina
-							userType={"Agente Turístico"}
-							userName={"Joaquim"}
-							menu={agente_turistico}
-							selected={0}
-							title={"Olá, Joaquim!"}
-						>
+						<Pagina>
 							<Pages.Teste />
 						</Pagina>
 					</ProtectedRoute>
