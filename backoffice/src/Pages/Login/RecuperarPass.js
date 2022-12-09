@@ -4,7 +4,7 @@ import auth from "../../Auth/auth.service";
 import dev from "../../Auth/dev";
 import Logo from "../../Assets/Images/logo.png";
 
-export default function Login(props) {
+export default function RecuperarPass(props) {
     const navigate = useNavigate();
     const location = useLocation();
     let previousPage = location?.state?.from ?? "/";
