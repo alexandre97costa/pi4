@@ -19,7 +19,6 @@ import GerirAdicionarCards from "./GerirMicrosite/GerirAdicionarCards/gerirAdici
 import ATRecompensas from "./ATRecompensas/atRecompensas"
 import InicioAT from "./Agentes_Turisticos/Inicio_AT"
 
-const Pages = { Teste, Login, GerirMicrosite, GerirVantagensApp, GerirDescarregarApp, GerirEditarFooter, GerirMenu, GerirHeroBanner, GerirPublicidadeAgenteTuristico,GerirAdicionarCards, ATRecompensas, ListaUtilizador, ListaVisitantes,ListaAgenteTuristico, ListaResponsavelRegiao, ListaRegiao, Recuperar, EditarPass, EditarPerfil, InicioAT
-}
+const Pages = { Teste, Login, GerirMicrosite, GerirVantagensApp, GerirDescarregarApp, GerirEditarFooter, GerirMenu, GerirHeroBanner, GerirPublicidadeAgenteTuristico,GerirAdicionarCards, ATRecompensas, ListaUtilizador, ListaVisitantes,ListaAgenteTuristico, ListaResponsavelRegiao, ListaRegiao, Recuperar, EditarPass, EditarPerfil, InicioAT}
 
 export default Pages
