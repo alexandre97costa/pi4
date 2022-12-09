@@ -1,7 +1,7 @@
 import React from "react";
-import { Dropdown } from "../../Components/Dropdown";
+import { Dropdown } from "../../Components/Dropdown_";
 import { Lista } from "../../Components/Lista";
-import { LinhaDaLista } from "../../Components/LinhaDaLista";
+import { LinhaDaLista } from "../../Components/LinhaDaLista_";
 import { Pagina } from "../../Components/Pagina";
 
 export default function ListaUtilizador(props) {
