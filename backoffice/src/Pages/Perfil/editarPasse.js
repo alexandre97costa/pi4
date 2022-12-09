@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Sidebar } from '../../Helpers/Sidebar';
 import { FormEditarPass } from '../../Components/FormEditarPass';
 
-export default function EditarPass(props) {
+export default function EditarPasse(props) {
   return (
     <>
       <div className="">

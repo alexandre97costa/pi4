@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Sidebar } from '../../Helpers/Sidebar';
 import { FormEditarPerfil } from '../../Components/FormEditarPerfil';
 
 export default function EditarPerfil(props) {
