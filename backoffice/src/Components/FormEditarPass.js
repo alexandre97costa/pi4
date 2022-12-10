@@ -1,5 +1,8 @@
 import React from 'react';
 
+import Botao from './Botao';
+import Input from './Input';
+
 export function FormEditarPass() {
     return (
         <div className="card shadow border-0">
@@ -32,24 +35,20 @@ export function FormEditarPass() {
 
                     <label className="fs-5 mb-2 ms-1" htmlFor='input-genero'>Confirmar Palavra-passe nova</label>
                     <div className='form-floating mb-4'>
-                        <input
-                            id='input-genero'
-                            type='password'
+                        <Input 
+                            id="input-genero"
+                            type="text"
                             pattern='^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,63})$'
-                            className='form-control rounded-3 h-25'
-                            placeholder='secret!'
-                            required
-                        />
+                            required={true}
+                            onChange={(value) => console.log(value.target)}  />
                     </div>
 
                     <div className='d-flex justify-content-end mt-5'>
-                        <button
-                            id='btn-submit'
-                            type='submit'
-                            className='btn btn-lg btn-primary shadow mb-4'
-                        >
-                            Guardar
-                        </button>
+                        <Botao 
+                            id="btn-submit"
+                            type="submit"
+                            className="btn-lg shadow mb-4"
+                            texto="Guardar" />
                     </div>
 
                 </form>
