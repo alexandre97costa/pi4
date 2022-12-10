@@ -5,13 +5,13 @@ import dev from '../Auth/dev';
 
 export default function User() {
     const navigate = useNavigate()
-    const [nome, setNome] = useState('')
+    const [nome, setNome] = useState('O Alexandre não sabe react')
 
     useEffect(() => {
-        auth
-        .getCurrentUser()
-        .then(user => setNome(user.nome))
-        .catch(error => { setNome('Oops!'); dev.log(error) })
+        // auth
+        // .getCurrentUser()
+        // .then(user => setNome(user.nome))
+        // .catch(error => { setNome('Oops!'); dev.log(error) })
     }, [])
 
     return (
