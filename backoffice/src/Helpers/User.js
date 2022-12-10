@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from '../Auth/auth.service';
+import dev from '../Auth/dev';
 
 export default function User() {
     const navigate = useNavigate()
-    const [nome, setNome] = useState()
+    const [nome, setNome] = useState('')
 
     useEffect(() => {
-        auth.getCurrentUser().then(user => setNome(user.nome))
+        auth
+        .getCurrentUser()
+        .then(user => setNome(user.nome))
+        .catch(error => { setNome('Oops!'); dev.log(error) })
     }, [])
 
     return (
