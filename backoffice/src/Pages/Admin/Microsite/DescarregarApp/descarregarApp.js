@@ -1,8 +1,8 @@
 import React from "react";
-import TituloMicrosite from "../../../Components/Microsite/TituloMicrosite";
-import SubTituloMicrosite from "../../../Components/Microsite/SubTituloMicrosite";
-import InputMicrosite from "../../../Components/Microsite/InputMicrosite";
-import Botao from "../../../Components/Botao";
+import TituloMicrosite from "../../../../Components/Microsite/TituloMicrosite";
+import SubTituloMicrosite from "../../../../Components/Microsite/SubTituloMicrosite";
+import InputMicrosite from "../../../../Components/Microsite/InputMicrosite";
+import Botao from "../../../../Components/Botao";
 
 export default function GerirDescarregarApp() {
   return (

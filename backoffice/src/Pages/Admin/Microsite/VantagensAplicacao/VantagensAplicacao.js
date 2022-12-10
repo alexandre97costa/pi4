@@ -1,9 +1,9 @@
 import React from "react";
-import TituloMicrosite from "../../../Components/Microsite/TituloMicrosite";
-import SubTituloMicrosite from "../../../Components/Microsite/SubTituloMicrosite";
-import InputMicrosite from "../../../Components/Microsite/InputMicrosite";
-import UrlImagemMicrosite from "../../../Components/Microsite/UrlImagemMicrosite";
-import Botao from "../../../Components/Botao";
+import TituloMicrosite from "../../../../Components/Microsite/TituloMicrosite";
+import SubTituloMicrosite from "../../../../Components/Microsite/SubTituloMicrosite";
+import InputMicrosite from "../../../../Components/Microsite/InputMicrosite";
+import UrlImagemMicrosite from "../../../../Components/Microsite/UrlImagemMicrosite";
+import Botao from "../../../../Components/Botao";
 
 export default function GerirVantagensApp(props) {
   return (

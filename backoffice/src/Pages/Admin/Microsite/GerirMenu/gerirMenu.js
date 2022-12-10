@@ -1,6 +1,6 @@
 import React from "react";
-import UrlImagemMicrosite from "../../../Components/Microsite/UrlImagemMicrosite";
-import Botao from "../../../Components/Botao";
+import UrlImagemMicrosite from "../../../../Components/Microsite/UrlImagemMicrosite";
+import Botao from "../../../../Components/Botao";
 
 export default function GerirMenu() {
   return (

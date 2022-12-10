@@ -22,12 +22,6 @@ export default function App() {
 		<BrowserRouter>
 			<Routes>
 
-				<Route path='/' element={
-					<Pagina>
-						<Pages.ListaUtilizador />
-					</Pagina>
-				} />
-
 				<Route path='/teste' element={
 					<ProtectedRoute>
 						<Pagina>
@@ -35,7 +29,7 @@ export default function App() {
 						</Pagina>
 					</ProtectedRoute>
 				} />
-				
+
 				<Route path='/login' element={<Pages.Login />} />
 
 				<Route exact path='/recuperar' element={<Pages.RecuperarPass />} />
@@ -52,34 +46,66 @@ export default function App() {
 					</Pagina>
 				} />
 
-
-				<Route path='/listaUtilizador' element={
+				<Route path='/Utilizadores' element={
 					<ProtectedRoute>
 						<Pagina PageTitle={'Lista de utilizadores'} PageIcon={'apple'}>
-							<Pages.ListaUtilizador />
+							<Pages.Utilizadores />
 						</Pagina>
 					</ProtectedRoute>
 				} />
 
-				<Route path='/listaVisitantes' element={
-					<ProtectedRoute>
-						<Pagina PageTitle={'Lista de Visitantes'} PageIcon={'apple'}>
-							<Pages.ListaVisitantes />
-						</Pagina>
-					</ProtectedRoute>
+				<Route path='/Microsite' element={
+					<Pagina>
+						<Pages.Microsite />
+					</Pagina>
 				} />
-				<Route path='/listaAgente' element={
-						<Pagina PageTitle={'Lista Agente Turistico'} PageIcon={'apple'}>
-							<Pages.ListaAgenteTuristico />
-						</Pagina>
+
+				<Route path='/Microsite/HeroBanner' element={
+					<Pagina>
+						<Pages.HeroBanner />
+					</Pagina>
 				} />
-				<Route path='/listaResponsavel' element={
-					<ProtectedRoute>
-						<Pagina PageTitle={'Lista Responsavel Regiao'} PageIcon={'apple'}>
-							<Pages.ListaResponsavelRegiao />
-						</Pagina>
-					</ProtectedRoute>
+
+				<Route path='/Microsite/DescarregarApp' element={
+					<Pagina>
+						<Pages.DescarregarApp />
+					</Pagina>
 				} />
+
+				<Route path='/Microsite/GerirFooter' element={
+					<Pagina>
+						<Pages.GerirFooter />
+					</Pagina>
+				} />
+
+				<Route path='/Microsite/AdicionarConteudo' element={
+					<Pagina>
+						<Pages.AdicionarConteudo />
+					</Pagina>
+				} />
+
+				<Route path='/Microsite/PublicidadeAgenteTuristico' element={
+					<Pagina>
+						<Pages.PublicidadeAgenteTuristico />
+					</Pagina>
+				} />
+
+				<Route path='Microsite/gerirMenu' element={
+					<Pagina>
+						<Pages.GerirMenu />
+					</Pagina>
+				} />
+
+				<Route path='/Microsite/VantagensAplicacao' element={
+					<Pagina>
+						<Pages.VantagensAplicacao />
+					</Pagina>
+				} />
+
+
+
+
+
 				<Route path='/listaRegiao' element={
 					<ProtectedRoute>
 						<Pagina PageTitle={'Lista Regiao'} PageIcon={'apple'}>
@@ -87,52 +113,6 @@ export default function App() {
 						</Pagina>
 					</ProtectedRoute>
 				} />
-				<Route path='/gerirVantagensApp' element={
-					<Pagina>
-						<Pages.GerirVantagensApp />
-					</Pagina>
-				} />
-				<Route path='/gerirMicrosite' element={
-					<Pagina>
-						<Pages.GerirMicrosite />
-					</Pagina>
-				} />
-				<Route path='/gerirDescarregarApp' element={
-					<Pagina>
-						<Pages.GerirDescarregarApp />
-					</Pagina>
-				} />
-				<Route path='/gerirEditarFooter' element={
-					<Pagina>
-						<Pages.GerirEditarFooter />
-					</Pagina>
-				} />
-				<Route path='/gerirMenu' element={
-					<Pagina>
-						<Pages.GerirMenu />
-					</Pagina>
-				} />
-				<Route path='/gerirHeroBanner' element={
-					<Pagina>
-						<Pages.GerirHeroBanner />
-					</Pagina>
-				} />
-				<Route path='/gerirPublicidadeAgenteTuristico' element={
-					<Pagina>
-						<Pages.GerirPublicidadeAgenteTuristico />
-					</Pagina>
-				} />
-				<Route path='/gerirAdicionarCards' element={
-					<Pagina>
-						<Pages.GerirAdicionarCards />
-					</Pagina>
-				} />
-				<Route path='/gerirEditarFooter' element={
-					<Pagina>
-						<Pages.GerirEditarFooter />
-					</Pagina>
-				} />
-
 
 				<Route path='/atRecompensas' element={
 					<Pagina>

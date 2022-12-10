@@ -1,7 +1,7 @@
 import React from 'react';
-import RedesSociaisMicrosite from "../../../Components/Microsite/RedesSociaisMicrosite"
-import PrivacidadeCookiesMicrosite from "../../../Components/Microsite/PrivacidadeCookiesMicrosite"
-import Botao from '../../../Components/Botao';
+import RedesSociaisMicrosite from "../../../../Components/Microsite/RedesSociaisMicrosite"
+import PrivacidadeCookiesMicrosite from "../../../../Components/Microsite/PrivacidadeCookiesMicrosite"
+import Botao from '../../../../Components/Botao';
 
 export default function GerirEditarFooter(){
     return (
