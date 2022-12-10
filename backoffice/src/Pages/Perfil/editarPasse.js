@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import FormEditarPasse from '../../Components/FormEditarPasse';
+import Breadcrumb from '../../Components/Breadcrumb';
 
 export default function EditarPasse() {
   return (
@@ -8,10 +10,7 @@ export default function EditarPasse() {
         <div className="row">
 
           <div className="col-12">
-            <p className="mb-5 mt-5 ms-5 fs-3 fw-bold">
-              <i className="bi bi-file-earmark" />
-              Editar Palavra-passe
-            </p>
+            <Breadcrumb icon="bi bi-file-earmark" nome="Editar Palavra-passe" />
           </div>
 
           <div className="col-12 offset-md-2 col-md-8">

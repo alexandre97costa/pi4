@@ -3,20 +3,30 @@ import { Dropdown } from "../../../Components/Dropdown";
 import { Lista } from "../../../Components/Lista";
 import { LinhaDaLista } from "../../../Components/LinhaDaLista";
 import Pagina from "../../../Components/Pagina";
+import Breadcrumb from "../../../Components/Breadcrumb";
 
 export default function Utilizadores() {
   return (
     <>
-      <div className="row justify-content-end">
+      <div className="container-fluid">
 
-        <div className="col-4 col-md-2">
-          <Dropdown
-            nomeBotao="Categoria"
-            nome1="filtro1"
-            nome2="filtro2"
-            nome3="filtro3"
-          />
+        <div className="row">
+
+          <div className="col-12">
+            <Breadcrumb icon="bi bi-list-ul" nome="Lista de Utilizadores" />
+          </div>
+
         </div>
+
+        <div className="row justify-content-end">
+
+          <div className="col-4 col-md-2">
+            <Dropdown nomeBotao="Categoria" />
+          </div>
+
+        </div>
+
+        
 
       </div>
 
@@ -72,7 +82,7 @@ export default function Utilizadores() {
                     nomeCard="Administrador"
                     color="bg-administrador"
                   />
-                  <Pagina/>
+                  <Pagina />
                 </div>
               </div>
             </div>
