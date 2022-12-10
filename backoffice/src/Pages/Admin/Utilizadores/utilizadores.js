@@ -8,19 +8,18 @@ export default function Utilizadores() {
   return (
     <>
       <div className="row justify-content-end">
-        <Dropdown
-          nomeBotao="Filtro 1"
-          nome1="filtro1"
-          nome2="filtro2"
-          nome3="filtro3"
-        />
-        <Dropdown
-          nomeBotao="Filtro 2"
-          nome1="filtro1"
-          nome2="filtro2"
-          nome3="filtro3"
-        />
+
+        <div className="col-4 col-md-2">
+          <Dropdown
+            nomeBotao="Categoria"
+            nome1="filtro1"
+            nome2="filtro2"
+            nome3="filtro3"
+          />
+        </div>
+
       </div>
+
       <div className="row">
         <div className="col-12">
           <div className="card p-3 mb-5 shadow bg-body rouded border-0 mt-2">
