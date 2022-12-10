@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Botao from './Botao';
 import Input from './Input';
 
 export default function FormEditarPasse() {
+    const [palavraPasseAntiga, setPalavraPasseAntiga] = useState('')
+    const [palavraPasseNova, setPalavraPasseNova] = useState('')
+    const [palavraPasseConfirmacao, setPalavraPasseConfirmacao] = useState('')
+
+    function teste() {
+        console.log(palavraPasseAntiga)
+        console.log(palavraPasseNova)
+        console.log(palavraPasseConfirmacao)
+    }
 
     return (
         <div className="card shadow border-0">
@@ -18,7 +27,7 @@ export default function FormEditarPasse() {
                             className="rounded-3 h-25"
                             pattern='^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,63})$'
                             required={true}
-                            onchange={(value) => { console.log(value.target.value) }} />
+                            onchange={(value) => { setPalavraPasseAntiga(value.target.value) }} />
                     </div>
 
                     <label className="fs-5 mb-2 ms-1" htmlFor='inputPasseNova'>Palavra-passe nova</label>
@@ -29,7 +38,7 @@ export default function FormEditarPasse() {
                             className="rounded-3 h-25"
                             pattern='^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,63})$'
                             required={true}
-                            onchange={(value) => { console.log(value.target.value) }} />
+                            onchange={(value) => { setPalavraPasseNova(value.target.value) }} />
                     </div>
 
                     <label className="fs-5 mb-2 ms-1" htmlFor='inputPasseConfirmar'>Confirmar Palavra-passe nova</label>
@@ -40,7 +49,7 @@ export default function FormEditarPasse() {
                             className="rounded-3 h-25"
                             pattern='^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,63})$'
                             required={true}
-                            onchange={(value) => { console.log(value.target.value) }} />
+                            onchange={(value) => { setPalavraPasseConfirmacao(value.target.value) }} />
                     </div>
 
                     <div className='d-flex justify-content-end mt-5'>
@@ -48,7 +57,8 @@ export default function FormEditarPasse() {
                             id="btn-submit"
                             type="submit"
                             className="btn-lg shadow mb-4"
-                            texto="Guardar" />
+                            texto="Guardar"
+                            onClick={() => teste()} />
                     </div>
 
                 </form>
