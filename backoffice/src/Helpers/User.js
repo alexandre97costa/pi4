@@ -5,14 +5,16 @@ import dev from '../Auth/dev';
 
 export default function User() {
     const navigate = useNavigate()
-    const [nome, setNome] = useState('O Alexandre não sabe react')
+    const [nome, setNome] = useState('A carregar...')
 
-    useEffect(() => {
-        // auth
-        // .getCurrentUser()
-        // .then(user => setNome(user.nome))
-        // .catch(error => { setNome('Oops!'); dev.log(error) })
-    }, [])
+    async function fetchName() {
+        await auth
+        .getCurrentUser()
+        .then(user => setNome(user.nome))
+        .catch(error => { setNome('Oops!'); dev.log(error) })
+    }
+
+    useEffect(() => { fetchName() }, [])
 
     return (
         <div className='col-2 d-flex justify-content-between  position-absolute top-0 end-0  mt-3 me-4 py-2 px-3 ' >
