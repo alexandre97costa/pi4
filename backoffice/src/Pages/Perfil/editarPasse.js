@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FormEditarPass } from '../../Components/FormEditarPass';
+import FormEditarPasse from '../../Components/FormEditarPasse';
 
 export default function EditarPasse() {
   return (
@@ -15,7 +15,7 @@ export default function EditarPasse() {
           </div>
 
           <div className="col-12 offset-md-2 col-md-8">
-            <FormEditarPass />
+            <FormEditarPasse />
           </div>
 
         </div>

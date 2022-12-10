@@ -3,7 +3,7 @@ import React from 'react';
 import Botao from './Botao';
 import Input from './Input';
 
-export function FormEditarPass() {
+export default function FormEditarPasse() {
 
     return (
         <div className="card shadow border-0">

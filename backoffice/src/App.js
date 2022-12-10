@@ -40,7 +40,7 @@ export default function App() {
 					</Pagina>
 				} />
 
-				<Route path='/editarPass' element={
+				<Route path='/editarPasse' element={
 					<Pagina>
 						<Pages.EditarPasse />
 					</Pagina>
