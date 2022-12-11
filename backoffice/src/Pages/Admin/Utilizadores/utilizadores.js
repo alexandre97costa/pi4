@@ -20,7 +20,7 @@ export default function Utilizadores() {
         <div className="row justify-content-end">
 
           <div className="col-4 col-md-2">
-            <Dropdown nomeBotao="Categoria" />
+            <Dropdown onChange={(value) => console.log(value)}/>
           </div>
 
         </div>

@@ -22,7 +22,7 @@ export default function TabelaUtilizadores(props) {
         }]
 
         setUtilizadores(utilizador)
-    })
+    }, [])
 
     function changeClassCategoria(tipoUtilizador) {
         if (tipoUtilizador === 'Visitante')
