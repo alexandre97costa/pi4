@@ -34,6 +34,7 @@ export default function Utilizadores() {
             <TabelaUtilizadores coluna1="# Nome" coluna2="Categoria" coluna3="Ações" />
 
           </div>
+          
         </div>
       </div>
     </>

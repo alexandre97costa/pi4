@@ -73,7 +73,7 @@ export default function FormEditarPerfil() {
                         <Botao
                             id="btn-submit"
                             type="submit"
-                            className="btn-lg shadow mb-4"
+                            className="btn-primary btn-lg shadow mb-4"
                             texto="Guardar"
                             onClick={() => teste()} />
 

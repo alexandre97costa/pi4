@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react';
 
+import Modal from './Modal';
+
 export default function TabelaUtilizadores(props) {
     const [utilizadores, setUtilizadores] = useState([])
 
     useEffect(() => {
         const utilizador = [{
             nome: "Manuel Antonio",
+            regiao: "Viseu",
             tipoUtilizador: "Visitante"
         }, {
-            nome: "Manuel Antonio",
+            nome: "Manuel Jeremias",
+            regiao: "Viseu",
+            tipoUtilizador: "Responsável Região"
+        }, {
+            nome: "Manuel Antonio Cartão",
+            regiao: "Viseu",
             tipoUtilizador: "Responsável Região"
         }, {
             nome: "Manuel Antonio",
-            tipoUtilizador: "Responsável Região"
-        }, {
-            nome: "Manuel Antonio",
+            regiao: "Viseu",
             tipoUtilizador: "Agente Turístico"
         }, {
             nome: "Manuel Antonio",
+            regiao: "Viseu",
             tipoUtilizador: "Visitante"
         }]
 
@@ -54,7 +61,8 @@ export default function TabelaUtilizadores(props) {
                                 </td>
                                 <td className='w-33'>
                                     <button className='btn btn-outline-danger bi bi-trash-fill me-md-2' />
-                                    <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target="#exampleModal" />
+                                    <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
+                                    <Modal idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao}/>
                                 </td>
                             </tr>
                         )

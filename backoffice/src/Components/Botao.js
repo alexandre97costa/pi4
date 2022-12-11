@@ -2,13 +2,13 @@ import React from "react";
 
 export default function Botao(props) {
     return (
-        <button onClick={(value) => props.onClick(value)} id={ changeId() } type={ changeType() } className={ changeClassName() }>{props.texto}</button>
+        <button onClick={(value) => props.onClick(value)} id={ changeId() } type={ changeType() } className={ changeClassName() } data-bs-dismiss={props.dismiss} aria-label={props.label}>{props.texto}</button>
     )
 
     function changeClassName() {
         if(!props.className)
             return "btn btn-primary"
-        return "btn btn-primary " + props.className
+        return "btn " + props.className
     }
 
     function changeType() {
