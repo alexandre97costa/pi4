@@ -31,6 +31,8 @@ export default function App() {
 
 				<Route exact path='/editar_pass' element={<Pages.EditarPass />} />
 
+				<Route exact path='/administrador_dashboard' element={<Pages.AdministradorDashboard />} />
+
 				<Route
 					path='/'
 					element={

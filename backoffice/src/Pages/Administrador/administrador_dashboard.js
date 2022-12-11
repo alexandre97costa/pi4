@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import { Sidebar } from '../../Components/sidebar';
-import { FormEditarPass } from '../../Components/form_editar_pass';
+import { Administrador } from '../../Components/administrador_corpo';
 
 export default function EditarPass(props) {
   return (
     <>
     <div className="">
       <div className="d-flex">
-        <Sidebar/>
-        <FormEditarPass/>
+        <Administrador/>
         <div className='col'>
         </div>
       </div>

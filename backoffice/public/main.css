@@ -56,6 +56,35 @@
 }
 
 
+.btn-dashboard {
+    background-color: var(--bs-white);
+    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+.btn-agentes {
+    background-color: #BACC6A;
+    color: var(--bs-white);
+}
+
+.btn.btn-agentes:hover,
+.btn.btn-outline-agentes:hover {
+    color: var(--bs-white);
+    background-color: #a2b15b;
+    border-color: #a2b15b;    
+}
+
+.btn-regiao {
+    background-color: #729586;
+    color: var(--bs-white);
+}
+
+.btn.btn-regiao:hover,
+.btn.btn-outline-regiao:hover {
+    color: var(--bs-white);
+    background-color: #628173;
+    border-color: #628173;    
+}
+
 /* background */
 .bg-primary {
     background-color: var(--pi4-primary-transparent)!important;

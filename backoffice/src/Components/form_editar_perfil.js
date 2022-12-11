@@ -3,9 +3,9 @@ import React from 'react';
 export function FormEditar() {
     return (
         <div className='container col-8'>
-            <p className="mb-5 mt-5 ms-5 fs-3 fw-bold"> <i class="bi bi-file-earmark"></i> Editar Perfil</p>
-            <div class="card shadow ms-4 border-0">
-                <div class="card-body">
+            <p className="mb-5 mt-5 ms-5 fs-3 fw-bold"> <i className="bi bi-file-earmark"></i> Editar Perfil</p>
+            <div className="card shadow ms-4 border-0">
+                <div className="card-body">
                     <form className='mt-5 ms-4 me-4'>
                         <label className="fs-5 mb-2 ms-1" htmlFor='input-nome'>Nome</label>
                         <div className='form-floating mb-4'>
