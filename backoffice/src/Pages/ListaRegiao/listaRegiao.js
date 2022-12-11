@@ -1,5 +1,5 @@
 import React from "react";
-import { Dropdown } from "../../Components/Dropdown";
+import Dropdown from "../../Components/Dropdown";
 import { Lista } from "../../Components/Lista";
 import LinhaDaRegiao from "../../Components/LinhaDaRegiao";
 import Pagina from "../../Components/Pagina";

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Dropdown(props) {
+export default function Dropdown(props) {
     const categorias = ["Admin", "Responsavel de região", "Agente turistico"]
 
     return (

@@ -1,9 +1,8 @@
 import React from "react";
-import { Dropdown } from "../../../Components/Dropdown";
-import { Lista } from "../../../Components/Lista";
-import { LinhaDaLista } from "../../../Components/LinhaDaLista";
-import Pagina from "../../../Components/Pagina";
+
+import Dropdown from "../../../Components/Dropdown";
 import Breadcrumb from "../../../Components/Breadcrumb";
+import TabelaUtilizadores from "../../../Components/TabelaUtilizadores";
 
 export default function Utilizadores() {
   return (
@@ -26,66 +25,14 @@ export default function Utilizadores() {
 
         </div>
 
-
-
       </div>
 
       <div className="row">
         <div className="col-12">
-          <div className="card p-3 mb-5 shadow bg-body rouded border-0 mt-2">
-            <div className="row p-3">
-              <div className="col-12">
-                <div className="row">
-                  <Lista nomeA="# Nome" nomeB="Categoria" nomeC="Ações" />
-                  <LinhaDaLista
-                    nomepessoa="02 José António Gomes"
-                    nomeCard="Responsável Região"
-                    color="bg-responsavel"
-                  />
-                  <LinhaDaLista
-                    nomepessoa="11 Luisa Machado Castro"
-                    nomeCard="Agente Turístico"
-                    color="bg-agente"
-                  />
-                  <LinhaDaLista
-                    nomepessoa="21 Rodrigo Miguel"
-                    nomeCard="Visitante"
-                    color="bg-visitante"
-                  />
-                  <LinhaDaLista
-                    nomepessoa="31 Amália Rodrigues Silva"
-                    nomeCard="Responsável Região"
-                    color="bg-responsavel"
-                  />
-                  <LinhaDaLista
-                    nomepessoa="36 Dinis Martins"
-                    nomeCard="Agente Turístico"
-                    color="bg-agente"
-                  />
-                  <LinhaDaLista
-                    nomepessoa="22 Priscila Lopes"
-                    nomeCard="Agente Turístico"
-                    color="bg-agente"
-                  />
-                  <LinhaDaLista
-                    nomepessoa="25 Mateus Almeida"
-                    nomeCard="Visitante"
-                    color="bg-visitante"
-                  />
-                  <LinhaDaLista
-                    nomepessoa="09 Sara Martins Campos"
-                    nomeCard="Responsável Região"
-                    color="bg-responsavel"
-                  />
-                  <LinhaDaLista
-                    nomepessoa="07 João Pedro Pereira"
-                    nomeCard="Administrador"
-                    color="bg-administrador"
-                  />
-                  <Pagina />
-                </div>
-              </div>
-            </div>
+
+          <div className="card px-5 py-4 mb-5 shadow bg-body rounded-4 border-0 mt-2">
+            <TabelaUtilizadores coluna1="# Nome" coluna2="Categoria" coluna3="Ações" />
+
           </div>
         </div>
       </div>

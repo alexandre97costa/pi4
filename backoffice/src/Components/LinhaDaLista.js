@@ -12,7 +12,7 @@ export function LinhaDaLista (props){
                                     <div className='col-5'>
                                         <p>{props.nomepessoa}</p>
                                     </div>
-                                    <div className={ changeColorDoQueTuQuiseres(props) }>{props.nomeCard} </div>
+                                    <div className={ changeColorDoQueTuQuiseres(props) }>{props.nomeCard}</div>
                                                                                                         
                                     <div className='col-md-2 ms-auto'>
                                         <button className=' btn btn-outline-danger bi bi-trash-fill me-md-2'></button> 

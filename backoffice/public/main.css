@@ -105,6 +105,14 @@
     height: 18rem;
 }
 
+.h-5-5rem {
+    height: 5.5rem;
+}
+
 .cursor-pointer {
     cursor: pointer;
+}
+
+.w-33 {
+    width: 33%;
 }
