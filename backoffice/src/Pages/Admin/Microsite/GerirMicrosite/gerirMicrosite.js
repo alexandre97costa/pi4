@@ -9,29 +9,37 @@ export default function GerirMicrosite() {
           <p className="fs-3 mb-5"> Gerir Microsite</p>
 
 
-            <div className="row">
-              <div className="col-12">
-                <div className=" row  row-cols-4">
+          <div className="row">
+            <div className="col-12">
+              <div className=" row row-cols-4">
 
-                    <CardsMicrosite titulo="Menu" subTitulo="Cabeçalho" />
+                <div className="col">
+                  <CardsMicrosite titulo="Menu" subTitulo="Cabeçalho" />
+                </div>
 
+                <div className="col">
+                  <CardsMicrosite titulo="Hero Banner" subTitulo="Conteúdo de Entrada" />
+                </div>
 
-                    <CardsMicrosite titulo="Hero Banner" subTitulo="Conteúdo de Entrada" />
+                <div className="col">
+                  <CardsMicrosite titulo="Vantagens App" subTitulo="Card 1" />
+                </div>
 
+                <div className="col">
+                  <CardsMicrosite titulo="Publicidade Agente Turístico" subTitulo="Card 2" />
+                </div>
 
-                    <CardsMicrosite titulo="Vantagens App" subTitulo="Card 1" />
+                <div className="col">
+                  <CardsMicrosite titulo="Descarregar App" subTitulo="Card 3" />
+                </div>
 
-                    <CardsMicrosite titulo="Publicidade Agente Turístico" subTitulo="Card 2" />
+                <div className="col">
+                  <CardsMicrosite titulo="Footer" subTitulo="Rodapé" />
+                </div>
 
-
-                    <CardsMicrosite titulo="Descarregar App" subTitulo="Card 3" />
-
-
-                    <CardsMicrosite titulo="Footer" subTitulo="Rodapé" />
-
-
-                    <CardsMicrosite color="text-primary" titulo="+" subTitulo="Adicionar conteúdo" />
-
+                <div className="col">
+                  <CardsMicrosite color="text-primary" titulo="+" subTitulo="Adicionar conteúdo" />
+                </div>
 
               </div>
             </div>

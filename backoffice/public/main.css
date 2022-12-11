@@ -98,7 +98,7 @@
 }
 
 .text-primary {
-    color: var(--pi4-primary)!important;
+    color: var(--pi4-primary) !important;
 }
 
 .h-18rem {
