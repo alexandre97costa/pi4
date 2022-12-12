@@ -5,8 +5,10 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONException
 import org.json.JSONObject
 import pi4.main.Utils.BackendURL
+
 
 class Req {
     fun AddToQueue(request:JsonObjectRequest, context: Context) {
@@ -14,28 +16,32 @@ class Req {
         queue.add(request)
     }
 
-    fun TEST(path:String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
-
+    fun queryParamsToString(queryParams: JSONObject):String {
+        var returnString:String = "";
         for (i in 0 until queryParams.names()!!.length()) {
-            Log.i(
-                "QUERY PARAMS",
-                "key = " + queryParams.names()?.getString(i).toString() + " value = " + queryParams.get(queryParams.names()!!.getString(i))
-            )
+            if (i == 0) {
+                returnString += "?"
+            } else {
+                returnString += "&"
+            }
+            returnString +=
+                java.net.URLEncoder.encode(
+                    queryParams.names()?.getString(i).toString(),
+                    "UTF-8") + "=" +
+                java.net.URLEncoder.encode(
+                    queryParams.get(queryParams.names()!!.getString(i)).toString(),
+                    "UTF-8"
+                )
         }
-
-        val request = JsonObjectRequest( Request.Method.GET, BackendURL + path, requestBody,
-            { res ->
-                Log.i("Request GET\n", res.toString(2))
-                then(res)
-            },
-            { error -> error.printStackTrace() }
-        )
-        AddToQueue(request, context)
+        return returnString;
     }
 
     fun GET(path:String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
 
-        val request = JsonObjectRequest( Request.Method.GET, BackendURL + path, requestBody,
+        val request = JsonObjectRequest(
+            Request.Method.GET,
+            BackendURL + path + queryParamsToString(queryParams),
+            requestBody,
             { res ->
                 Log.i("Request GET\n", res.toString(2))
                 then(res)
@@ -46,7 +52,10 @@ class Req {
     }
 
     fun POST(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
-        val request = JsonObjectRequest( Request.Method.POST, BackendURL + path, requestBody,
+        val request = JsonObjectRequest(
+            Request.Method.POST,
+            BackendURL + path + queryParamsToString(queryParams),
+            requestBody,
             { res ->
                 Log.i("Request POST\n", res.toString(2))
                 then(res)
@@ -57,7 +66,10 @@ class Req {
     }
 
     fun PUT(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
-        val request = JsonObjectRequest( Request.Method.PUT, BackendURL + path, requestBody,
+        val request = JsonObjectRequest(
+            Request.Method.PUT,
+            BackendURL + path + queryParamsToString(queryParams),
+            requestBody,
             { res ->
                 Log.i("Request PUT\n", res.toString(2))
                 then(res)
@@ -68,7 +80,10 @@ class Req {
     }
 
     fun PATCH(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
-        val request = JsonObjectRequest( Request.Method.PATCH, BackendURL + path, requestBody,
+        val request = JsonObjectRequest(
+            Request.Method.PATCH,
+            BackendURL + path + queryParamsToString(queryParams),
+            requestBody,
             { res ->
                 Log.i("Request PATCH\n", res.toString(2))
                 then(res)
