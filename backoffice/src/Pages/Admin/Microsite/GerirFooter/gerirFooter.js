@@ -60,7 +60,7 @@ export default function GerirEditarFooter() {
     <div className="container-fluid">
       <div className="row">
         <div className="col-10">
-          <Breadcrumb icon="bi bi-list-ul" nome="Hero Banner" />
+          <Breadcrumb icon="bi bi-list-ul" nome="Gerir Footer" />
         </div>
 
         <div className='col-12 offset-md-1 col-md-10 mb-5'>

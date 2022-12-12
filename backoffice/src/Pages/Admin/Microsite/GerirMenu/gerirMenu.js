@@ -1,20 +1,29 @@
-import React from "react";
-import UrlImagemMicrosite from "../../../../Components/Microsite/UrlImagemMicrosite";
-import Botao from "../../../../Components/Botao";
+import React from 'react';
+
+import FormsMicrosite from '../../../../Components/FormsMicrosite';
+import Breadcrumb from '../../../../Components/Breadcrumb';
 
 export default function GerirMenu() {
+  const teste = [
+    {
+      id: "inputUrlImagem",
+      texto: "Url da imagem",
+      useState: "teste1"
+    }
+  ]
+
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="row">
         <div className="col-10">
-          <p className="fs-3 mb-5 ms-4">Gerir Menu</p>
+          <Breadcrumb icon="bi bi-list-ul" nome="Gerir Menu" />
+        </div>
 
-          <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
-            <UrlImagemMicrosite urlImagem="Url da imagem" />
-            <Botao Botao="Guardar"/>
-          </div>
+        <div className='col-12 offset-md-1 col-md-10'>
+          <FormsMicrosite itens={teste} />
         </div>
       </div>
     </div>
   );
 }
+
