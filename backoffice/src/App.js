@@ -119,6 +119,7 @@ export default function App() {
 						<Pages.ATRecompensas />
 					</Pagina>
 				} />
+				
 			</Routes>
 		</BrowserRouter>
 	);

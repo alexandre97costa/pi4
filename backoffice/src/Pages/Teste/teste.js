@@ -7,14 +7,15 @@ import MiniCard from '../../Components/Cards/MiniCard'
 import CardPontoInteresse from '../../Components/Cards/CardPontoInteresse'
 import Botao from '../../Components/Botao'
 import CardMicrosite from '../../Components/Microsite/CardMicrosite';
+import ListaRegiao from '../ListaRegiao/listaRegiao';
 
 export default function Teste() {
     return (
         <>
             <div className='row'>
 
-                <div className='col-3'>
-                    <AddCard />
+                <div className='col-12'>
+                    <ListaRegiao />
                 </div>
 
                 <div className='col-3'>

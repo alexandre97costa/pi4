@@ -4,7 +4,7 @@ import { Lista } from "../../Components/Lista";
 import LinhaDaRegiao from "../../Components/LinhaDaRegiao";
 import Pagina from "../../Components/Pagina";
 
-export default function ListaRegiao(props) {
+export default function ListaRegiao() {
   return (
     <>
       <div className="row justify-content-end">
