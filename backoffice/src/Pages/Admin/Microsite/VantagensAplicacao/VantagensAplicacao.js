@@ -1,66 +1,123 @@
-import React from "react";
-import TituloMicrosite from "../../../../Components/Microsite/TituloMicrosite";
-import SubTituloMicrosite from "../../../../Components/Microsite/SubTituloMicrosite";
-import InputMicrosite from "../../../../Components/Microsite/InputMicrosite";
-import UrlImagemMicrosite from "../../../../Components/Microsite/UrlImagemMicrosite";
-import Botao from "../../../../Components/Botao";
+import React from 'react';
 
-export default function GerirVantagensApp(props) {
+import FormsMicrosite from '../../../../Components/FormsMicrosite';
+import Breadcrumb from '../../../../Components/Breadcrumb';
+
+export default function GerirVantagensApp() {
+  const teste = [
+    {
+      id: "inputTitulo",
+      texto: "Titulo",
+      useState: "teste1"
+    },
+    {
+      id: "inputSubtitulo",
+      texto: "Subtítulo",
+      useState: "teste2"
+    }
+  ]
+
+  const teste2 = [
+    {
+      id: "inputTitulo",
+      texto: "Titulo",
+      useState: "teste1"
+    },
+    {
+      id: "inputSubtitulo",
+      texto: "Subtítulo",
+      useState: "teste2"
+    },
+    {
+      id: "inputTextoBotao",
+      texto: "Texto Botão",
+      useState: "teste3"
+    },
+    {
+      id: "inputLinkIcon",
+      texto: "Link para o icon",
+      useState: "teste4"
+    }
+  ]
+
+  const teste3 = [
+    {
+      id: "inputTitulo",
+      texto: "Titulo",
+      useState: "teste1"
+    },
+    {
+      id: "inputSubtitulo",
+      texto: "Subtítulo",
+      useState: "teste2"
+    },
+    {
+      id: "inputTextoBotao",
+      texto: "Texto Botão",
+      useState: "teste3"
+    },
+    {
+      id: "inputLinkIcon",
+      texto: "Link para o icon",
+      useState: "teste4"
+    }
+  ]
+
+  const teste4 = [
+    {
+      id: "inputTitulo",
+      texto: "Titulo",
+      useState: "teste1"
+    },
+    {
+      id: "inputSubtitulo",
+      texto: "Subtítulo",
+      useState: "teste2"
+    },
+    {
+      id: "inputTextoBotao",
+      texto: "Texto Botão",
+      useState: "teste3"
+    },
+    {
+      id: "inputLinkIcon",
+      texto: "Link para o icon",
+      useState: "teste4"
+    }
+  ]
+
   return (
-    <div className="container">
-
+    <div className="container-fluid">
       <div className="row">
         <div className="col-10">
-          <p className="fs-3 mb-5 ms-4">Vantagens Aplicação</p>
+          <Breadcrumb icon="bi bi-list-ul" nome="Vantagens Aplicação" />
+        </div>
 
-          <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
-            <TituloMicrosite titulo="Título" />
-            <SubTituloMicrosite subTitulo="Subtítulo" />
-            <Botao onClick={test}
-            Botao="Guardar"
-            />
-          </div>
+        <div className='col-12 offset-md-1 col-md-10'>
+          <FormsMicrosite itens={teste} />
+        </div>
 
-          <p className="fs-3 mb-5 ms-4">Card1</p>
-          <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
-            <TituloMicrosite titulo="Título" />
-            <SubTituloMicrosite subTitulo="Subtítulo" />
-            <InputMicrosite botao="Texto Botão" />
-            <UrlImagemMicrosite urlImagem="Link para o icon"/>
-            <Botao
-            Botao="Guardar"
-            />
-          </div>
+        <div className="col-10">
+          <Breadcrumb icon="bi bi-list-ul" nome="Card1" />
+        </div>
+        <div className='col-12 offset-md-1 col-md-10'>
+          <FormsMicrosite itens={teste2} />
+        </div>
 
-          <p className="fs-3 mb-5 ms-4">Descarregar App</p>
-          <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
-            <TituloMicrosite titulo="Título" />
-            <SubTituloMicrosite subTitulo="Subtítulo" />
-            <InputMicrosite botao="Texto Botão" />
-            <UrlImagemMicrosite urlImagem="Link para o icon"/>
-            <Botao
-            Botao="Guardar"
-            />
-          </div>
+        <div className="col-10">
+          <Breadcrumb icon="bi bi-list-ul" nome="Descarregar App" />
+        </div>
+        <div className='col-12 offset-md-1 col-md-10'>
+          <FormsMicrosite itens={teste3} />
+        </div>
 
-          <p className="fs-3 mb-5 ms-4">Descarregar App</p>
-          <div className="card p-3 mb-5 ms-4 shadow bg-body rounded">
-            <TituloMicrosite titulo="Título" />
-            <SubTituloMicrosite subTitulo="Subtítulo" />
-            <InputMicrosite botao="Texto Botão" />
-            <UrlImagemMicrosite urlImagem="Link para o icon"/>
-            <Botao
-            Botao="Guardar"
-            />
-          </div>
-
+        <div className="col-10">
+          <Breadcrumb icon="bi bi-list-ul" nome="Descarregar App" />
+        </div>
+        <div className='col-12 offset-md-1 col-md-10'>
+          <FormsMicrosite itens={teste4} />
         </div>
       </div>
     </div>
   );
-  
-  function test (){
-    alert("Guardado")
-
-  }
 }
