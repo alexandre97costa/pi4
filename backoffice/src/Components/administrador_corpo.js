@@ -13,7 +13,7 @@ export function Administrador() {
                         type='submit'
                         className='btn btn-dashboard'
                     >
-                        <i class="bi bi-journal-check"></i> Atribuição de Perfil
+                        <i className="bi bi-journal-check"></i> Atribuição de Perfil
                     </button>
                     <button
                         id='btn-submit'

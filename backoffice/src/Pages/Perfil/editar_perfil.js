@@ -8,9 +8,7 @@ export default function EditarPerfil(props) {
     <>
     <div className="">
       <div className="d-flex">
-        <Sidebar/>
         <FormEditar/>
-        <div className='col'>botao</div>
       </div>
     </div>
     </>

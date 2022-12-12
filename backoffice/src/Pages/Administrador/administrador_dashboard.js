@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Sidebar } from '../../Components/sidebar';
 import { Administrador } from '../../Components/administrador_corpo';
+import  Bar  from '../../Components/graficos';
 
 export default function EditarPass(props) {
   return (
@@ -8,10 +8,9 @@ export default function EditarPass(props) {
     <div className="">
       <div className="d-flex">
         <Administrador/>
-        <div className='col'>
+        <Bar/>
         </div>
       </div>
-    </div>
     </>
   );
 }

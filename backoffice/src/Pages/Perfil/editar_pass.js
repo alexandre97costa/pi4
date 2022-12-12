@@ -7,10 +7,7 @@ export default function EditarPass(props) {
     <>
     <div className="">
       <div className="d-flex">
-        <Sidebar/>
         <FormEditarPass/>
-        <div className='col'>
-        </div>
       </div>
     </div>
     </>
