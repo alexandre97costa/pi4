@@ -28,8 +28,8 @@ app.use(interceptor((req, res) => {
                 '\x1b[30m\x1b[45m ' + req.method +
                 ' \x1b[0m ' + req.baseUrl +
                 ' \x1b[33m' + res.statusCode +
-                (!!req._parsedUrl.query ? '\n\x1b[35mquery \x1b[30m' + req._parsedUrl.query.replaceAll('&', ' ') : '') +
-                (!!req._body ? '\n\x1b[35mbody  \x1b[30m' + JSON.stringify(req.body).replaceAll('"','\'') : '') +
+                (!!req._parsedUrl.query ? '\n\x1b[35m⤷ query \x1b[30m' + req._parsedUrl.query.replaceAll('&', ' ') : '') +
+                (!!req._body ? '\n\x1b[35m⤷ body \x1b[30m' + JSON.stringify(req.body).replaceAll('"','\'') : '') +
                 '\x1b[0m');
             send(body);
         }
