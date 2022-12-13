@@ -105,8 +105,15 @@ class FragmentPontoInteresse() : Fragment() {
     }
 
     private fun callAdapterCards(categoria:String) {
-        val arrayFinal: ArrayList<PontoInteresse> = stringRequestPontosInteresse(categoria)
-        GetPontosInteresse()
+        //val arrayFinal: ArrayList<PontoInteresse> = stringRequestPontosInteresse(categoria)
+
+        var arrayFinal:ArrayList<PontoInteresse>
+
+        val queryParams = JSONObject("""{}""")
+        val requestBody = JSONObject("""{}""")
+        Req().GET("/pontointeresse", queryParams, requestBody, requireContext(), then = { res ->
+            arrayFinal = res.getJSONArray("data").let {  }
+        })
 
 
         val customAdapter = SetAdapterCard(requireContext(), arrayFinal)
@@ -115,7 +122,10 @@ class FragmentPontoInteresse() : Fragment() {
     }
 
     fun GetPontosInteresse() {
-        Req().GET("/pontointeresse", JSONObject("""{"name":"jardim", "age":25}"""), JSONObject("""{}"""), requireContext(), then = { res ->
+        val queryParams = JSONObject("""{"name":"jardim", "age":25}""")
+        val requestBody = JSONObject("""{}""")
+
+        Req().GET("/pontointeresse", queryParams, requestBody, requireContext(), then = { res ->
             Log.i("GetPontosInteresse", res.toString(2))
         })
     }

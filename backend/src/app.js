@@ -25,12 +25,12 @@ app.use(interceptor((req, res) => {
         isInterceptable: () => { return true },
         intercept: (body, send) => {
             console.log(
-                '\x1b[37m\x1b[42m ' + req.method +
-                    ' \x1b[0m ' + req.url +
-                    ' \x1b[33m' + res.statusCode +
-                    '\x1b[0m');
-
-            console.log(req.body)
+                '\x1b[30m\x1b[45m ' + req.method +
+                ' \x1b[0m ' + req.baseUrl +
+                ' \x1b[33m' + res.statusCode +
+                (!!req._parsedUrl.query ? '\n\x1b[35mquery \x1b[30m' + req._parsedUrl.query.replaceAll('&', ' ') : '') +
+                (!!req._body ? '\n\x1b[35mbody  \x1b[30m' + JSON.stringify(req.body).replaceAll('"','\'') : '') +
+                '\x1b[0m');
             send(body);
         }
     }
@@ -66,7 +66,7 @@ app.use('/evento', eventoRoute)
 
 // Rota de Introdução
 app.use('/', (req, res) => {
-    res.send('Yo yo, o backend tá aqui');
+    res.status(200).json({msg: 'Yo yo, o backend tá aqui'});
 })
 
 
@@ -89,10 +89,10 @@ async function assertDatabaseConnectionOk() {
     }
 }
 async function init() {
-    console.log(`\x1b[30mStarting backend in ` + process.env.MODE + ' mode...');
+    console.log('\x1b[30mStarting backend in ' + process.env.MODE + ' mode...');
     await assertDatabaseConnectionOk();
     app.listen(port, () => {
-        console.log('\x1b[30mBackend online! \x1b[0m\x1b[34m▶ http://localhost:' + port + '\x1b[0m')
+        console.log('\x1b[30mBackend online! \x1b[0m\x1b[34m▶ http://localhost:' + port + '\x1b[0m\n')
     });
 }
 init();
