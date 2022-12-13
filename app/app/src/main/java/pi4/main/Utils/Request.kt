@@ -17,13 +17,17 @@ class Req {
     }
 
     fun queryParamsToString(queryParams: JSONObject):String {
-        var returnString:String = "";
+        // excusa de fazer o for se estiver vazio
+        if (queryParams.length() == 0) {
+            return ""
+        }
+
+        var returnString:String = "?"
         for (i in 0 until queryParams.names()!!.length()) {
-            if (i == 0) {
-                returnString += "?"
-            } else {
+            if (i != 0) {
                 returnString += "&"
             }
+
             returnString +=
                 java.net.URLEncoder.encode(
                     queryParams.names()?.getString(i).toString(),
@@ -38,9 +42,11 @@ class Req {
 
     fun GET(path:String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
 
+        val url = BackendURL + path + queryParamsToString(queryParams)
+        Log.i("Request GET", url)
         val request = JsonObjectRequest(
             Request.Method.GET,
-            BackendURL + path + queryParamsToString(queryParams),
+            url,
             requestBody,
             { res ->
                 Log.i("Request GET\n", res.toString(2))
@@ -94,7 +100,10 @@ class Req {
     }
 
     fun DELETE(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
-        val request = JsonObjectRequest( Request.Method.DELETE, BackendURL + path, requestBody,
+        val request = JsonObjectRequest(
+            Request.Method.DELETE,
+            BackendURL + path + queryParamsToString(queryParams),
+            requestBody,
             { res ->
                 Log.i("Request DELETE\n", res.toString(2))
                 then(res)

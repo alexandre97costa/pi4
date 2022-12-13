@@ -115,7 +115,7 @@ class FragmentPontoInteresse() : Fragment() {
     }
 
     fun GetPontosInteresse() {
-        Req().TEST("/ponto_interesse?", JSONObject("""{"name":"test name", "age":25}"""), JSONObject(), requireContext(), then = { res ->
+        Req().GET("/pontointeresse", JSONObject("""{"name":"jardim", "age":25}"""), JSONObject("""{}"""), requireContext(), then = { res ->
             Log.i("GetPontosInteresse", res.toString(2))
         })
     }

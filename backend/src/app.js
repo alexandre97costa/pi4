@@ -29,6 +29,8 @@ app.use(interceptor((req, res) => {
                     ' \x1b[0m ' + req.url +
                     ' \x1b[33m' + res.statusCode +
                     '\x1b[0m');
+
+            console.log(req.body)
             send(body);
         }
     }
