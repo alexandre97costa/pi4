@@ -1,9 +1,9 @@
 import React from 'react';
-import Chart from 'chart.js/auto';
+
 
 export function Administrador() {
     return (
-        <div className='container col-8'>
+        <>
             <p className="mb-4 mt-5 ms-5 fs-4"> Olá, Diogo!</p>
             <div className="ms-5">
                 <p className="fs-6">Ações Rápidas</p>
@@ -56,12 +56,7 @@ export function Administrador() {
                         </button>
                     </div>
                 </div>
-                <div className="mt-5">
-                    <p className="fs-6">Utilizadores</p>
-                    <div className='mt-4'>
-                    </div>
-                </div>
             </div>
-        </div>
+        </>
     );
 }

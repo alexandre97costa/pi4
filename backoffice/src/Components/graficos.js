@@ -44,21 +44,23 @@ function Chart(props) {
     "32",
     "12",
     "43",
+    "60",
   ];
 
   const data = {
     labels: labels,
     datasets: [
       {
-        label: "Dataset 1",
+        label: "Utilizadores",
         data: data1,
         backgroundColor: "#BACC6A",
+        borderRadius: 10,
       }
     ],
   };
   return (
     <>
-      <div className="w-50">
+      <div className="w-50 mt-4">
         <Bar options={options} data={data} />
       </div>
     </>
