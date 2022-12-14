@@ -58,6 +58,8 @@ module.exports = {
         let soEliminados = !!req.query?.soEliminados           // pedir só os PIs eliminados
         let validado = !!(req.query?.validado ?? true)         // True: Só PIs validados; False: Só PIs por validar
 
+
+        // todo: imagens, ratings, count de carimbos
         await ponto_interesse
             .findAndCountAll({
                 where: {
