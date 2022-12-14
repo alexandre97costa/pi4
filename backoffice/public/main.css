@@ -88,7 +88,7 @@
     background-color: var(--pi4-primary-transparent)!important;
 }
 
-.bg-primary-login {
+.bg-primary-no-transparent {
     background-color: var(--pi4-primary)!important;
 }
 

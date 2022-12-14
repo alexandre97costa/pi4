@@ -32,7 +32,7 @@ export default function App() {
 
 				<Route path='/login' element={<Pages.Login />} />
 
-				<Route exact path='/recuperar' element={<Pages.RecuperarPass />} />
+				<Route exact path='/recuperarPasse' element={<Pages.RecuperarPass />} />
 
 				<Route path='/editarPerfil' element={
 					<Pagina>
