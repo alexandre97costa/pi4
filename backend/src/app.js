@@ -7,7 +7,9 @@ const app = express()
 app.set('port', process.env.PORT || 4001)
 const port = app.get('port')
 const sequelize = require('./config/Database')
-sequelize.sync()
+sequelize.sync(
+    { alter: true }
+)
 const { dev: devClass } = require('./_dev/dev')
 const dev = new devClass;
 
@@ -26,11 +28,13 @@ app.use(interceptor((req, res) => {
         intercept: (body, send) => {
             console.log(
                 '\x1b[30m\x1b[45m ' + req.method +
-                ' \x1b[0m ' + req.baseUrl +
+                ' \x1b[0m ' + req.baseUrl + req._parsedUrl.pathname +
                 ' \x1b[33m' + res.statusCode +
+                // ' \x1b[30m 🕙 ' + new Date().toLocaleTimeString().slice(0, -3) + '\x1b[0m ' +
                 (!!req._parsedUrl.query ? '\n\x1b[35m⤷ query \x1b[30m' + req._parsedUrl.query.replaceAll('&', ' ') : '') +
                 (!!req._body ? '\n\x1b[35m⤷ body \x1b[30m' + JSON.stringify(req.body).replaceAll('"','\'') : '') +
                 '\x1b[0m');
+            // console.log(req)
             send(body);
         }
     }

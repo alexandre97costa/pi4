@@ -9,6 +9,7 @@ const dev = new devClass;
 
 const {
     ponto_interesse,
+    pontos_ponto_interesse,
     utilizador,
     freguesia,
     tipo_interesse,
@@ -19,6 +20,18 @@ const {
 } = sequelize.models
 
 module.exports = {
+
+    test_ppi: async (req, res) => {
+        await pontos_ponto_interesse
+            .create({
+                // ! atenção a estes numeros, verifica se existem estes ids na tua bd local
+                ponto_interesse_id: 1,
+                visitante_id: 1
+            })
+            .then(output => { res.status(200).json({ output }) })
+            .catch(error => { res.status(400).json(error); dev.error(error); });
+    },
+
     postPontoInteresse: async (req, res) => {
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
@@ -37,6 +50,8 @@ module.exports = {
             .catch(error => { res.status(400).json(error); throw new Error(error); });
     },
 
+    // todo: trazer imagens
+    // todo: trazer média de avaliação (talvez com hook em vez de select avg)
     getPontoInteresse: async (req, res) => {
         // * filtros
         let nome = req.query?.nome ?? '%'
