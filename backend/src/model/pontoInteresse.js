@@ -34,6 +34,12 @@ module.exports = (sequelize) => {
                 type: DataTypes.BOOLEAN,
                 allowNull: false,
                 default: false
+            },
+            // para evitar um count desnecessário à bd, sempre que há um scan este numero aumenta
+            count_scans: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                default: 0
             }
         },
         {

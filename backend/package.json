@@ -2,11 +2,12 @@
   "name": "pi4-backend",
   "version": "0.0.0",
   "private": true,
+  "main":"src/app.js",
   "scripts": {
-    "prestart": "npm i",
-    "start": "set MODE=prod&& node -e console.log(process.env.MODE)&& node src/app.js",
-    "predev": "npm i",
-    "dev": "set MODE=dev&& node -e console.log(process.env.MODE)&& nodemon --trace-warnings src/app.js"
+    "prestart": "npm i --silent",
+    "start": "set MODE=prod&& node src/app.js",
+    "predev": "npm i --silent",
+    "dev": "set MODE=dev&& nodemon -e yaml,js,json --trace-warnings "
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

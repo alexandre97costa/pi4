@@ -109,16 +109,43 @@ class FragmentPontoInteresse() : Fragment() {
 
         var arrayFinal:ArrayList<PontoInteresse>
 
+        fun oSequeiraEJeitoso(res:JSONObject){
+            arrayFinal = res
+                .getJSONArray("data")
+                .let { 0.until(it.length()).map { i -> it.optJSONObject(i) } }
+                .map { pi -> PontoInteresse(
+                    // todo: imagens
+                    //imageUrl
+                    pi.getString("nome"),
+                    // nome
+                    pi.getString("nome"),
+                    // categoria
+                    pi.getJSONObject("tipo_interesse").getString("nome"),
+                    // local (freguesia, municipio)
+                    pi.getJSONObject("freguesia").getString("nome") + ", " +
+                            pi.getJSONObject("freguesia").getJSONObject("municipio").getString("nome"),
+                    // todo: rating
+                    // rating
+                    pi.getString("nome"),
+                    // todo: score
+                    // score
+                    pi.getString("nome")
+                ) }
+                .toCollection(ArrayList())
+
+            val customAdapter = SetAdapterCard(requireContext(), arrayFinal)
+            val listView = requireView().findViewById<ListView>(R.id.listView)
+            listView.adapter = customAdapter
+        }
+
+        // todo: filtros
         val queryParams = JSONObject("""{}""")
         val requestBody = JSONObject("""{}""")
+
         Req().GET("/pontointeresse", queryParams, requestBody, requireContext(), then = { res ->
-            arrayFinal = res.getJSONArray("data").let {  }
+            oSequeiraEJeitoso(res)
         })
 
-
-        val customAdapter = SetAdapterCard(requireContext(), arrayFinal)
-        val listView = requireView().findViewById<ListView>(R.id.listView)
-        listView.adapter = customAdapter
     }
 
     fun GetPontosInteresse() {
