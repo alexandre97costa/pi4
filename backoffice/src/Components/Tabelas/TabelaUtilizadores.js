@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import Modal from './Modal';
+import Modal from '../Modais/Modal';
 
 export default function TabelaUtilizadores(props) {
     const [utilizadores, setUtilizadores] = useState([])

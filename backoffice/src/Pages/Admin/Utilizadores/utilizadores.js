@@ -2,7 +2,7 @@ import React from "react";
 
 import Dropdown from "../../../Components/Dropdown";
 import Breadcrumb from "../../../Components/Breadcrumb";
-import TabelaUtilizadores from "../../../Components/TabelaUtilizadores";
+import TabelaUtilizadores from "../../../Components/Tabelas/TabelaUtilizadores";
 
 export default function Utilizadores() {
   const tipos = ["Todos", "Admin", "Responsavel de região", "Agente turistico"]

@@ -2,9 +2,6 @@ import React from "react";
 
 import Dropdown from "../../Components/Dropdown";
 import Breadcrumb from "../../Components/Breadcrumb";
-import { Lista } from "../../Components/Lista";
-import LinhaDaRegiao from "../../Components/LinhaDaRegiao";
-import Pagina from "../../Components/Pagina";
 
 export default function ListaRegiao() {
   const tipos = ["Todas", "A", "B", "C"]

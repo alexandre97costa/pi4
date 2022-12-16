@@ -1,8 +1,8 @@
 import React from 'react';
 
-import CardForm from './CardForm';
-import Input from './Input';
-import Botao from './Botao';
+import CardForm from '../CardForm';
+import Input from '../Input';
+import Botao from '../Botao';
 
 export default function FormsMicrosite(props) {
     return (

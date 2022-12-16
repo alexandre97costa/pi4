@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Botao from './Botao';
+import Botao from '../Botao';
 
 export default function Modal(props) {
     return (

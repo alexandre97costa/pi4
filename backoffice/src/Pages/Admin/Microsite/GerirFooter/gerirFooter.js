@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FormsMicrosite from '../../../../Components/FormsMicrosite';
+import FormsMicrosite from '../../../../Components/Microsite/FormsMicrosite';
 import Breadcrumb from '../../../../Components/Breadcrumb';
 
 export default function GerirEditarFooter() {
