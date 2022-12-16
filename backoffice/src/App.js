@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import dev from './Auth/dev';
 import ProtectedRoute from './Helpers/ProtectedRoute';
 
+import './main.css'
+
 //Exportação de todas as páginas feitas
 import Pagina from './Helpers/Pagina';
 import Pages from './Pages/index'
