@@ -23,7 +23,7 @@ export default function FormEditar(props) {
                 )
             })}
 
-            <div className='d-flex justify-content-end mt-5'>
+            <div className='col-12 mt-5'>
                 <Botao
                     id="btn-submit"
                     className="btn-primary btn-lg shadow mb-4"

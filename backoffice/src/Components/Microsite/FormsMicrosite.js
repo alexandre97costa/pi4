@@ -42,7 +42,7 @@ export default function FormsMicrosite(props) {
                     )
                 })}
 
-                <div className='col-3 mt-4'>
+                <div className='col-12 mt-4'>
                     <Botao
                         id="btn-submit"
                         type="submit"
