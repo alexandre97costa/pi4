@@ -2,7 +2,6 @@ import React from "react";
 
 import Dropdown from "../../../Components/Dropdown";
 import TabelaUtilizadores from "../../../Components/Tabelas/TabelaUtilizadores";
-import CardForm from "../../../Components/CardForm";
 
 export default function Utilizadores() {
   const tipos = ["Todos", "Admin", "Responsavel de região", "Agente turistico"]
