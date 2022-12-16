@@ -5,6 +5,8 @@ import Breadcrumb from "../../../Components/Breadcrumb";
 import TabelaUtilizadores from "../../../Components/TabelaUtilizadores";
 
 export default function Utilizadores() {
+  const tipos = ["Todos", "Admin", "Responsavel de região", "Agente turistico"]
+
   return (
     <>
       <div className="container-fluid">
@@ -20,7 +22,7 @@ export default function Utilizadores() {
         <div className="row justify-content-end">
 
           <div className="col-4 col-md-2">
-            <Dropdown onChange={(value) => console.log(value)}/>
+            <Dropdown tipos={tipos} onChange={(value) => console.log(value)}/>
           </div>
 
         </div>

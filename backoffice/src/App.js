@@ -35,69 +35,69 @@ export default function App() {
 				<Route exact path='/recuperarPasse' element={<Pages.RecuperarPass />} />
 
 				<Route path='/editarPerfil' element={
-					<Pagina>
+					<Pagina title="Editar Perfil">
 						<Pages.EditarPerfil />
 					</Pagina>
 				} />
 
 				<Route path='/editarPasse' element={
-					<Pagina>
+					<Pagina title="Editar Palavra-passe">
 						<Pages.EditarPasse />
 					</Pagina>
 				} />
 
 				<Route path='/utilizadores' element={
 					<ProtectedRoute>
-						<Pagina PageTitle={'Lista de utilizadores'} PageIcon={'apple'}>
+						<Pagina title="Lista de Utilizadores">
 							<Pages.Utilizadores />
 						</Pagina>
 					</ProtectedRoute>
 				} />
 
 				<Route path='/microsite' element={
-					<Pagina>
+					<Pagina title="Gerir Microsite">
 						<Pages.Microsite />
 					</Pagina>
 				} />
 
 				<Route path='/microsite/heroBanner' element={
-					<Pagina>
+					<Pagina title="Hero Banner">
 						<Pages.HeroBanner />
 					</Pagina>
 				} />
 
 				<Route path='/microsite/descarregarApp' element={
-					<Pagina>
+					<Pagina title="Descarregar App">
 						<Pages.DescarregarApp />
 					</Pagina>
 				} />
 
 				<Route path='/microsite/gerirFooter' element={
-					<Pagina>
+					<Pagina title="Gerir Footer">
 						<Pages.GerirFooter />
 					</Pagina>
 				} />
 
 				<Route path='/microsite/adicionarConteudo' element={
-					<Pagina>
+					<Pagina title="Adicionar Conteúdo">
 						<Pages.AdicionarConteudo />
 					</Pagina>
 				} />
 
 				<Route path='/microsite/publicidadeAgenteTuristico' element={
-					<Pagina>
+					<Pagina title="Publicidade Agente Turístico">
 						<Pages.PublicidadeAgenteTuristico />
 					</Pagina>
 				} />
 
 				<Route path='microsite/gerirMenu' element={
-					<Pagina>
+					<Pagina title="Gerir Menu">
 						<Pages.GerirMenu />
 					</Pagina>
 				} />
 
 				<Route path='/microsite/vantagensAplicacao' element={
-					<Pagina>
+					<Pagina title="Vantagens Aplicação">
 						<Pages.VantagensAplicacao />
 					</Pagina>
 				} />

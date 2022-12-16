@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 export default function Dropdown(props) {
-    const categorias = ["Todos", "Admin", "Responsavel de região", "Agente turistico"]
-    const [select, setSelect] = useState(categorias[0])
+    const [select, setSelect] = useState(props.tipos[0])
 
     //Passa a deteção do click da categoria
     useEffect(() => {
@@ -15,7 +14,7 @@ export default function Dropdown(props) {
                 {select}
             </button>
             <ul className='dropdown-menu'>
-                {categorias.map((item, index) => {
+                {props.tipos.map((item, index) => {
                     return (
                         <li onClick={(value) => setSelect(value.target.outerText)} key={index} className="dropdown-item">{item}</li>
                     )

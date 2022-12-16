@@ -60,8 +60,8 @@ export default function TabelaUtilizadores(props) {
                                     <div className={changeClassCategoria(item.tipoUtilizador)}>{item.tipoUtilizador}</div>
                                 </td>
                                 <td className='w-33'>
-                                    <button className='btn btn-outline-danger bi bi-trash-fill me-md-2' />
                                     <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
+                                    <button className='btn btn-outline-danger bi bi-trash-fill me-md-2' />
                                     <Modal idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao}/>
                                 </td>
                             </tr>

@@ -1,27 +1,38 @@
 import React from "react";
+
 import Dropdown from "../../Components/Dropdown";
+import Breadcrumb from "../../Components/Breadcrumb";
 import { Lista } from "../../Components/Lista";
 import LinhaDaRegiao from "../../Components/LinhaDaRegiao";
 import Pagina from "../../Components/Pagina";
 
 export default function ListaRegiao() {
+  const tipos = ["Todas", "A", "B", "C"]
+
   return (
     <>
-      <div className="row justify-content-end">
-        <Dropdown
-          nomeBotao="Filtro 1"
-          nome1="filtro1"
-          nome2="filtro2"
-          nome3="filtro3"
-        />
-        <Dropdown
-          nomeBotao="Filtro 2"
-          nome1="filtro1"
-          nome2="filtro2"
-          nome3="filtro3"
-        />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12">
+            <Breadcrumb icon="bi bi-list-ul" nome="Lista de Regiões" />
+          </div>
+        </div>
+
+        <div className="row justify-content-end">
+          <div className="col-4 col-md-2">
+            <Dropdown tipos={tipos} onChange={(value) => console.log(value)} />
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-12">
+            
+          </div>
+        </div>
+
+
       </div>
-      <div className="row">
+      {/* <div className="row">
         <div className="col-12">
           <div className="card p-3 mb-5 shadow bg-body rouded border-0 mt-2">
             <div className="row p-3">
@@ -64,13 +75,13 @@ export default function ListaRegiao() {
                     nomeResponsavel="07 João Pedro Pereira"
                     nomeRegiao="224 Satão"
                   />
-                  <Pagina/>
+                  <Pagina />
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div> 
+      </div> */}
     </>
   );
 }

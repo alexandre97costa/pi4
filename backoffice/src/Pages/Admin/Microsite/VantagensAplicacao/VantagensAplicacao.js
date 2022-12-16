@@ -97,22 +97,22 @@ export default function GerirVantagensApp() {
           <FormsMicrosite itens={teste} />
         </div>
 
-        <div className="col-10">
-          <Breadcrumb icon="bi bi-list-ul" nome="Card1" />
+        <div className="col-12">
+          <h4 className='mt-5 mb-4'>Card 1</h4>
         </div>
         <div className='col-12 offset-md-1 col-md-10'>
           <FormsMicrosite itens={teste2} />
         </div>
 
-        <div className="col-10">
-          <Breadcrumb icon="bi bi-list-ul" nome="Descarregar App" />
+        <div className="col-12">
+          <h4 className='mt-5 mb-4'>Card 2</h4>
         </div>
         <div className='col-12 offset-md-1 col-md-10'>
           <FormsMicrosite itens={teste3} />
         </div>
 
-        <div className="col-10">
-          <Breadcrumb icon="bi bi-list-ul" nome="Descarregar App" />
+        <div className="col-12">
+          <h4 className='mt-5 mb-4'>Card 3</h4>
         </div>
         <div className='col-12 offset-md-1 col-md-10'>
           <FormsMicrosite itens={teste4} />
