@@ -2,7 +2,7 @@ import React from 'react';
 
 import Botao from '../Botao';
 
-export default function Modal(props) {
+export default function ModalSelectCategoria(props) {
     return (
         <div className="modal fade" id={props.idModal} tabIndex="-1" aria-labelledby="modalLabel" aria-hidden="true">
             <div className="modal-dialog">

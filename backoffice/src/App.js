@@ -109,7 +109,7 @@ export default function App() {
 						</Pagina>
 					</ProtectedRoute>
 				} />
-				
+
 			</Routes>
 		</BrowserRouter>
 	);

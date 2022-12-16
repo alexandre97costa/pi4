@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CardForm from '../CardForm';
 
-import Modal from '../Modais/Modal';
+import ModalSelectCategoria from '../Modais/ModalSelectCategoria';
 
 export default function TabelaUtilizadores(props) {
     const [utilizadores, setUtilizadores] = useState([])
@@ -64,7 +64,7 @@ export default function TabelaUtilizadores(props) {
                                     <td className='w-33'>
                                         <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
                                         <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' />
-                                        <Modal idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} />
+                                        <ModalSelectCategoria idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} />
                                     </td>
                                 </tr>
                             )
