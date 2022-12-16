@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
                     // incrementa o count_scans do PI correspondente
                     await sequelize.models.ponto_interesse
                         .increment('count_scans', { where: { id: ppi.ponto_interesse_id } })
-                        .then(result => console.log('PI #' + result.id + ' -> count_scans ++'))
+                        .then(result => console.log('PI #' + result.id + ' -> count_scans atualizado'))
                         .catch(e => console.error(e))
                 }
             }
