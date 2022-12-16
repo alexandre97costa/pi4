@@ -113,12 +113,6 @@ export default function App() {
 						</Pagina>
 					</ProtectedRoute>
 				} />
-
-				<Route path='/atRecompensas' element={
-					<Pagina>
-						<Pages.ATRecompensas />
-					</Pagina>
-				} />
 				
 			</Routes>
 		</BrowserRouter>

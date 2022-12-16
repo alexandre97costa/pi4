@@ -1,7 +1,6 @@
 import React from "react";
 
 import Dropdown from "../../../Components/Dropdown";
-import Breadcrumb from "../../../Components/Breadcrumb";
 import TabelaUtilizadores from "../../../Components/Tabelas/TabelaUtilizadores";
 
 export default function Utilizadores() {
@@ -10,15 +9,6 @@ export default function Utilizadores() {
   return (
     <>
       <div className="container-fluid">
-
-        <div className="row">
-
-          <div className="col-12">
-            <Breadcrumb icon="bi bi-list-ul" nome="Lista de Utilizadores" />
-          </div>
-
-        </div>
-
         <div className="row justify-content-end">
 
           <div className="col-4 col-md-2">

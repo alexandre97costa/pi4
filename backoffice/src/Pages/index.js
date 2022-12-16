@@ -1,7 +1,6 @@
 import Teste from "./Teste/teste"
 
 import ListaRegiao from "./ListaRegiao/listaRegiao"
-import ATRecompensas from "./ATRecompensas/atRecompensas"
 import AT_Home from "./AgenteTuristico/Home/home"
 
 import Login from "./Login/login"
@@ -19,6 +18,6 @@ import VantagensAplicacao from "./Admin/Microsite/VantagensAplicacao/VantagensAp
 import PublicidadeAgenteTuristico from "./Admin/Microsite/GerirPublicidadeAgenteTuristico/gerirPublicidadeAgenteTuristico"
 import GerirMenu from "./Admin/Microsite/GerirMenu/gerirMenu"
 
-const Pages = { Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico,AdicionarConteudo, ATRecompensas, AT_Home, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil}
+const Pages = { Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico,AdicionarConteudo, AT_Home, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil}
 
 export default Pages

@@ -1,7 +1,6 @@
 import React from 'react';
 
 import FormsMicrosite from '../../../../Components/Microsite/FormsMicrosite';
-import Breadcrumb from '../../../../Components/Breadcrumb';
 
 export default function GerirPublicidadeAgenteTuristico() {
   const teste = [
@@ -25,10 +24,6 @@ export default function GerirPublicidadeAgenteTuristico() {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-10">
-          <Breadcrumb icon="bi bi-list-ul" nome="Publicidade Agente Turístico" />
-        </div>
-
         <div className='col-12 offset-md-1 col-md-10'>
           <FormsMicrosite itens={teste} />
         </div>

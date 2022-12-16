@@ -11,17 +11,17 @@ export default function FormsMicrosite(props) {
                 <div className='row'>
                     {props.itens.map((item, index) => {
                         return (
-                            <>
+                            <div key={index}>
                                 <div className='col-12'>
                                     <label className="fs-5 mb-2 ms-1" htmlFor={item.id}>{item.texto}</label>
                                 </div>
 
-                                <div className='col-7 col-sm-8 col-md-9' key={index}>
+                                <div className='col-7 col-sm-8 col-md-9'>
                                     <Input
                                         id={item.id}
                                         type="text"
                                         className="rounded-3 mb-3"
-                                        pattern='^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,63})$'
+                                        pattern={item.pattern}
                                         required={true}
                                         onchange={(value) => { console.log(value.target.value) }} />
 
@@ -39,7 +39,7 @@ export default function FormsMicrosite(props) {
                                         className="btn-outline-danger bi bi-trash-fill ms-3"
                                         onClick={() => console.log(item.useState)} />
                                 </div>
-                            </>
+                            </div>
                         )
                     })}
 

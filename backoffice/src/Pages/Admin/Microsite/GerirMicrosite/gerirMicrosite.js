@@ -1,17 +1,10 @@
 import React from "react";
 
 import CardsMicrosite from "../../../../Components/Microsite/CardMicrosite";
-import Breadcrumb from "../../../../Components/Breadcrumb";
 
 export default function GerirMicrosite() {
   return (
     <div className="container-fluid">
-      
-      <div className="row">
-        <div className="col-12">
-          <Breadcrumb icon="bi bi-list-ul" nome="Gerir Microsite" />
-        </div>
-      </div>
 
       <div className="row">
         <div className="col-12">
