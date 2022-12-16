@@ -19,6 +19,7 @@ module.exports = (sequelize) => {
             observacoes: DataTypes.STRING
         },
         {
+            name: { singular: 'recompensa', plural: 'recompensas' },
             underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
             freezeTableName: true, // não faz plurais nas relações com outras tabelas. Os devs agradecem :D
             paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 

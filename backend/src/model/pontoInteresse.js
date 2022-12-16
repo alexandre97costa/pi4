@@ -29,9 +29,21 @@ module.exports = (sequelize) => {
             descricao: {
                 type: DataTypes.STRING,
                 allowNull: false
+            },
+            validado: {
+                type: DataTypes.BOOLEAN,
+                allowNull: false,
+                default: false
+            },
+            // para evitar um count desnecessário à bd, sempre que há um scan este numero aumenta
+            count_scans: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                default: 0
             }
         },
         {
+            name: { singular: 'ponto_interesse', plural: 'pontos_interesse' },
             underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
             freezeTableName: true, // não faz plurais nas relações com outras tabelas. Os devs agradecem :D
             paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 

@@ -7,13 +7,16 @@ const app = express()
 app.set('port', process.env.PORT || 4001)
 const port = app.get('port')
 const sequelize = require('./config/Database')
-sequelize.sync()
+sequelize.sync(
+    { alter: true }
+)
 const { dev: devClass } = require('./_dev/dev')
 const dev = new devClass;
 
 const exemploRoute = require('./routes/exemplo.js')
 const userRoutes = require('./routes/user.js')
 const pontoInteresseRoute = require('./routes/pontoInteresseRoutes.js')
+const eventoRoute = require('./routes/eventoRoutes.js')
 
 //* Middlewares
 app.use(cors());
@@ -24,10 +27,14 @@ app.use(interceptor((req, res) => {
         isInterceptable: () => { return true },
         intercept: (body, send) => {
             console.log(
-                '\x1b[37m\x1b[42m ' + req.method +
-                    ' \x1b[0m ' + req.url +
-                    ' \x1b[33m' + res.statusCode +
-                    '\x1b[0m');
+                '\x1b[30m\x1b[45m ' + req.method +
+                ' \x1b[0m ' + req.baseUrl + req._parsedUrl.pathname +
+                ' \x1b[33m' + res.statusCode +
+                // ' \x1b[30m 🕙 ' + new Date().toLocaleTimeString().slice(0, -3) + '\x1b[0m ' +
+                (!!req._parsedUrl.query ? '\n\x1b[35m⤷ query \x1b[30m' + req._parsedUrl.query.replaceAll('&', ' ') : '') +
+                (!!req._body ? '\n\x1b[35m⤷ body \x1b[30m' + JSON.stringify(req.body).replaceAll('"','\'') : '') +
+                '\x1b[0m');
+            // console.log(req)
             send(body);
         }
     }
@@ -42,8 +49,9 @@ app.use(
             { url: '/user', methods: ['POST'] },
             { url: '/user/login', methods: ['POST'] },
             { url: '/user/bulk', methods: ['POST'] },
-            { url: '/pontoInteresse', methods: ['GET'] },
-            { url: /^\/pontoInteresse/ }
+            { url: /^\/pontoInteresse/ },
+            { url: /^\/evento/ },
+            { url: /^\// }
         ]
     })
 );
@@ -58,10 +66,11 @@ app.use(function (e, req, res, next) {
 app.use('/exemplo', exemploRoute)
 app.use('/user', userRoutes)
 app.use('/pontoInteresse', pontoInteresseRoute)
+app.use('/evento', eventoRoute)
 
 // Rota de Introdução
 app.use('/', (req, res) => {
-    res.send('Yo yo, o backend tá aqui');
+    res.status(200).json({msg: 'Yo yo, o backend tá aqui'});
 })
 
 
@@ -84,10 +93,10 @@ async function assertDatabaseConnectionOk() {
     }
 }
 async function init() {
-    console.log(`\x1b[30mStarting backend in ` + process.env.MODE + ' mode...');
+    console.log('\x1b[30mStarting backend in ' + process.env.MODE + ' mode...');
     await assertDatabaseConnectionOk();
     app.listen(port, () => {
-        console.log('\x1b[30mBackend online! \x1b[0m\x1b[34m▶ http://localhost:' + port + '\x1b[0m')
+        console.log('\x1b[30mBackend online! \x1b[0m\x1b[34m▶ http://localhost:' + port + '\x1b[0m\n')
     });
 }
 init();

@@ -31,7 +31,7 @@ function applyExtraSetup(sequelize) {
 
     distrito.hasMany(candidatura_at, { foreignKey: 'distrito_id' })
     distrito.hasMany(municipio, { foreignKey: 'distrito_id' })
-    distrito.belongsTo(utilizador, { foreignKey: 'responsavel_regiao_id' })
+    distrito.belongsTo(utilizador, { foreignKey: 'responsavel_regiao_id', as: 'responsavel_regiao' })
 
     evento.hasMany(pontos_evento, { foreignKey: 'evento_id' })
     evento.hasMany(sessao, { foreignKey: 'evento_id' })
@@ -50,13 +50,13 @@ function applyExtraSetup(sequelize) {
     ponto_interesse.hasMany(imagem, { foreignKey: 'ponto_interesse_id' })
     ponto_interesse.hasMany(comentario_avaliacao, { foreignKey: 'ponto_interesse_id' })
     ponto_interesse.hasMany(pontos_ponto_interesse, { foreignKey: 'ponto_interesse_id' })
-    ponto_interesse.hasMany(ponto_interesse_recompensa, { foreignKey: 'ponto_interesse_id' })
+    ponto_interesse.hasMany(ponto_interesse_recompensa, { foreignKey: 'ponto_interesse_id', as: 'recompensas_associadas' })
     ponto_interesse.belongsTo(freguesia, { foreignKey: 'freguesia_id' })
-    ponto_interesse.belongsTo(utilizador, { foreignKey: 'agente_turistico_id' })
+    ponto_interesse.belongsTo(utilizador, { foreignKey: 'agente_turistico_id', as: 'agente_turistico' })
     ponto_interesse.belongsTo(tipo_interesse, { foreignKey: 'tipo_interesse_id' })
 
-    ponto_interesse_recompensa.belongsTo(ponto_interesse, { foreignKey: 'ponto_interesse_id' })
-    ponto_interesse_recompensa.belongsTo(recompensa, { foreignKey: 'recompensa_id' })
+    ponto_interesse_recompensa.belongsTo(ponto_interesse, { foreignKey: 'ponto_interesse_id', as: 'ponto_interesse' })
+    ponto_interesse_recompensa.belongsTo(recompensa, { foreignKey: 'recompensa_id', as: 'recompensa' })
 
     pontos_evento.belongsTo(evento, { foreignKey: 'evento_id' })
     pontos_evento.belongsTo(utilizador, { foreignKey: 'visitante_id' })
@@ -65,7 +65,7 @@ function applyExtraSetup(sequelize) {
     pontos_ponto_interesse.belongsTo(utilizador, { foreignKey: 'visitante_id' })
 
     recompensa.hasMany(voucher, { foreignKey: 'recompensa_id' })
-    recompensa.hasMany(ponto_interesse_recompensa, { foreignKey: 'recompensa_id' })
+    recompensa.hasMany(ponto_interesse_recompensa, { foreignKey: 'recompensa_id', as: 'pontos_aderentes' })
     recompensa.belongsTo(tipo_interesse, { foreignKey: 'tipo_interesse_id' })
 
     reserva.belongsTo(utilizador, { foreignKey: 'visitante_id' })

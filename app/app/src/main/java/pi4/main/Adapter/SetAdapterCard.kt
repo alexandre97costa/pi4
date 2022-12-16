@@ -44,8 +44,8 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
         val recipe = getItem(position) as PontoInteresse
 
         Picasso.get().load(recipe.imageUrl).into(imagemPontoInteresse)
-        imagemPontoInteresse.contentDescription = recipe.pontoInteresse
-        pontoInteresse.text = recipe.pontoInteresse
+        imagemPontoInteresse.contentDescription = recipe.nome
+        pontoInteresse.text = recipe.nome
         categoria.text = recipe.categoria
         local.text = recipe.local
         rating.text = recipe.rating
@@ -53,7 +53,7 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
 
         val card = rowView.findViewById<MaterialCardView>(R.id.card)
 
-        card.setOnClickListener { teste(recipe.pontoInteresse) }
+        card.setOnClickListener { teste(recipe.nome) }
 
         return rowView
     }
