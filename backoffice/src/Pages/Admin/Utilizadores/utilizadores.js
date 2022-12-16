@@ -2,6 +2,7 @@ import React from "react";
 
 import Dropdown from "../../../Components/Dropdown";
 import TabelaUtilizadores from "../../../Components/Tabelas/TabelaUtilizadores";
+import CardForm from "../../../Components/CardForm";
 
 export default function Utilizadores() {
   const tipos = ["Todos", "Admin", "Responsavel de região", "Agente turistico"]
@@ -21,12 +22,7 @@ export default function Utilizadores() {
 
       <div className="row">
         <div className="col-12">
-
-          <div className="card px-5 py-4 mb-5 shadow bg-body rounded-4 border-0 mt-2">
-            <TabelaUtilizadores coluna1="# Nome" coluna2="Categoria" coluna3="Ações" />
-
-          </div>
-          
+          <TabelaUtilizadores coluna1="# Nome" coluna2="Categoria" coluna3="Ações" />
         </div>
       </div>
     </>

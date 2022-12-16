@@ -102,13 +102,9 @@ export default function App() {
 					</Pagina>
 				} />
 
-
-
-
-
 				<Route path='/listaRegiao' element={
 					<ProtectedRoute>
-						<Pagina PageTitle={'Lista Regiao'} PageIcon={'apple'}>
+						<Pagina title='Lista Região'>
 							<Pages.ListaRegiao />
 						</Pagina>
 					</ProtectedRoute>
