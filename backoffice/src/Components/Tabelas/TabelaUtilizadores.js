@@ -6,29 +6,29 @@ import ModalSelectCategoria from '../Modais/ModalSelectCategoria';
 export default function TabelaUtilizadores(props) {
     const [utilizadores, setUtilizadores] = useState([])
 
-    useEffect(() => {
-        const utilizador = [{
-            nome: "Manuel Antonio",
-            regiao: "Viseu",
-            tipoUtilizador: "Visitante"
-        }, {
-            nome: "Manuel Jeremias",
-            regiao: "Viseu",
-            tipoUtilizador: "Responsável Região"
-        }, {
-            nome: "Manuel Antonio Cartão",
-            regiao: "Viseu",
-            tipoUtilizador: "Responsável Região"
-        }, {
-            nome: "Manuel Antonio",
-            regiao: "Viseu",
-            tipoUtilizador: "Agente Turístico"
-        }, {
-            nome: "Manuel Antonio",
-            regiao: "Viseu",
-            tipoUtilizador: "Visitante"
-        }]
+    const utilizador = [{
+        nome: "Manuel Antonio",
+        regiao: "Viseu",
+        tipoUtilizador: "Visitante"
+    }, {
+        nome: "Manuel Jeremias",
+        regiao: "Viseu",
+        tipoUtilizador: "Responsável Região"
+    }, {
+        nome: "Manuel Antonio Cartão",
+        regiao: "Viseu",
+        tipoUtilizador: "Responsável Região"
+    }, {
+        nome: "Manuel Antonio",
+        regiao: "Viseu",
+        tipoUtilizador: "Agente Turístico"
+    }, {
+        nome: "Manuel Antonio",
+        regiao: "Viseu",
+        tipoUtilizador: "Visitante"
+    }]
 
+    useEffect(() => {
         setUtilizadores(utilizador)
     }, [])
 
@@ -42,7 +42,7 @@ export default function TabelaUtilizadores(props) {
     }
 
     return (
-        <CardForm>
+        // <CardForm>
             <div className="table-responsive">
                 <table className="table text-center align-middle">
                     <thead>
@@ -63,7 +63,7 @@ export default function TabelaUtilizadores(props) {
                                     </td>
                                     <td className='w-33'>
                                         <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
-                                        <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' />
+                                        <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={(value) => console.log(value.target)}/>
                                         <ModalSelectCategoria idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} />
                                     </td>
                                 </tr>
@@ -72,6 +72,6 @@ export default function TabelaUtilizadores(props) {
                     </tbody>
                 </table>
             </div>
-        </CardForm>
+        // </CardForm>
     );
 }
