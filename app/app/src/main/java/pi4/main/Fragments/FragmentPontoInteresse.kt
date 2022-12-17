@@ -115,7 +115,9 @@ class FragmentPontoInteresse() : Fragment() {
                 .let { 0.until(it.length()).map { i -> it.optJSONObject(i) } }
                 .map { pi -> PontoInteresse(
                     // image_url
-                    pi.getJSONArray("imagens").getJSONObject(0).getString("url"),
+                    // pi.getJSONArray("imagens").getJSONObject(0).getString("url")
+                    // todo failsafe de quando nao ha imagens no array
+                    "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit",
                     // nome
                     pi.getString("nome"),
                     // morada
