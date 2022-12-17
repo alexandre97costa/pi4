@@ -3,10 +3,14 @@ const { DataTypes } = require('sequelize')
 module.exports = (sequelize) => {
     sequelize.define('imagem',
         {
-            img: {
+            blob: {
                 type: DataTypes.BLOB,
-                allowNull: false
+                // allowNull: false
             },
+            url: {
+                type: DataTypes.STRING,
+                // allowNull: false
+            }
         },
         {
             name: { singular: 'imagem', plural: 'imagens' },

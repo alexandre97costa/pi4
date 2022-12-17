@@ -35,11 +35,17 @@ module.exports = (sequelize) => {
                 allowNull: false,
                 default: false
             },
-            // para evitar um count desnecessário à bd, sempre que há um scan este numero aumenta
+            // para evitar um count desnecessário à bd, sempre que há um scan este nº aumenta
             count_scans: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 default: 0
+            },
+            // para evitar um avg desnecessário à bd, sempre que há uma aval este nº atualiza
+            avg_avaliacao: {
+                type: DataTypes.DECIMAL,
+                allowNull: false,
+                default: 0.00
             }
         },
         {

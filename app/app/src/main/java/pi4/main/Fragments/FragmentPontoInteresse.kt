@@ -109,27 +109,34 @@ class FragmentPontoInteresse() : Fragment() {
 
         var arrayFinal:ArrayList<PontoInteresse>
 
-        fun oSequeiraEJeitoso(res:JSONObject){
+        fun ResponseToArrayList(res:JSONObject){
             arrayFinal = res
                 .getJSONArray("data")
                 .let { 0.until(it.length()).map { i -> it.optJSONObject(i) } }
                 .map { pi -> PontoInteresse(
-                    // todo: imagens
-                    //imageUrl
-                    pi.getString("nome"),
+                    // image_url
+                    // pi.getJSONArray("imagens").getJSONObject(0).getString("url")
+                    // todo failsafe de quando nao ha imagens no array
+                    "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit",
                     // nome
                     pi.getString("nome"),
-                    // categoria
+                    // morada
+                    pi.getString("morada"),
+                    // descricao
+                    pi.getString("descricao"),
+                    // tipo_interesse
                     pi.getJSONObject("tipo_interesse").getString("nome"),
-                    // local (freguesia, municipio)
+                    // freguesia_municipio
                     pi.getJSONObject("freguesia").getString("nome") + ", " +
                             pi.getJSONObject("freguesia").getJSONObject("municipio").getString("nome"),
-                    // todo: rating
-                    // rating
-                    pi.getString("nome"),
-                    // todo: score
-                    // score
-                    pi.getString("nome")
+                    // pontos
+                    pi.getInt("num_pontos").toString() + " pts",
+                    // avg_avaliacao
+                    pi.getDouble("avg_avaliacao").toFloat(),
+                    // count_scans
+                    pi.getInt("count_scans"),
+                    // agente_turistico
+                    pi.getJSONObject("agente_turistico").getString("nome")
                 ) }
                 .toCollection(ArrayList())
 
@@ -143,53 +150,11 @@ class FragmentPontoInteresse() : Fragment() {
         val requestBody = JSONObject("""{}""")
 
         Req().GET("/pontointeresse", queryParams, requestBody, requireContext(), then = { res ->
-            oSequeiraEJeitoso(res)
+            ResponseToArrayList(res)
         })
 
+        // val image = "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit"
+        // val image2 = "https://blog.emania.com.br/wp-content/uploads/2016/02/direitos-autorais-e-de-imagem.jpg"
+
     }
-
-    fun GetPontosInteresse() {
-        val queryParams = JSONObject("""{"name":"jardim", "age":25}""")
-        val requestBody = JSONObject("""{}""")
-
-        Req().GET("/pontointeresse", queryParams, requestBody, requireContext(), then = { res ->
-            Log.i("GetPontosInteresse", res.toString(2))
-        })
-    }
-
-    private fun stringRequestPontosInteresse(categoria: String): ArrayList<PontoInteresse> {
-        val arrayFinal: ArrayList<PontoInteresse> = ArrayList()
-
-        val image = "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit"
-        val image2 = "https://blog.emania.com.br/wp-content/uploads/2016/02/direitos-autorais-e-de-imagem.jpg"
-
-        val pontoInteresse5 = PontoInteresse( image, "Santuário de Cristo Rei", "Cristão", "Pragal, Almada, Portugal Almada, Cova da Piedade, Pragal e Cacilhas", "3.1", "200 pts")
-        val pontoInteresse1 = PontoInteresse( image, "Jardim das mães", "Jardim", "local", "4.2", "20 pts")
-        val pontoInteresse2 = PontoInteresse( image, "Palacio do gelo", "Shopping", "local", "3.1", "10 pts")
-        val pontoInteresse3 = PontoInteresse( image, "Forum viseu", "Jardim", "local", "5", "120 pts")
-        val pontoInteresse4 = PontoInteresse( image, "Agraria", "Escola", "local", "1.6", "15 pts")
-        val pontoInteresse6 = PontoInteresse( image2, "Agraria", "Jardim", "local", "1.6", "15 pts")
-        val pontoInteresse7 = PontoInteresse( image2, "mimi", "Restaurante", "visabona", "1.6", "800 pts")
-
-        val array: ArrayList<PontoInteresse> = ArrayList()
-
-        array.add(pontoInteresse1)
-        array.add(pontoInteresse2)
-        array.add(pontoInteresse3)
-        array.add(pontoInteresse4)
-        array.add(pontoInteresse6)
-        array.add(pontoInteresse5)
-        array.add(pontoInteresse7)
-
-        for(i in 0 .. array.count() - 1) {
-            if(array[i].categoria == categoria)
-                arrayFinal.add(array[i])
-
-            if(categoria == "Todos")
-                arrayFinal.add(array[i])
-        }
-
-        return arrayFinal
-    }
-
 }
