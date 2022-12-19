@@ -98,7 +98,7 @@ export default function App() {
 					</Pagina>
 				} />
 
-				<Route path='/microsite/vantagens-aplicacao' element={
+				<Route path='/microsite/vantagens-app' element={
 					<Pagina title="Vantagens Aplicação">
 						<Pages.VantagensAplicacao />
 					</Pagina>
