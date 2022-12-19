@@ -11,7 +11,7 @@ export default function FormsMicrosite(props) {
 
     return (
         <CardForm>
-            <div className='container-fluid'>
+            <form className='container-fluid'>
                 {props.itens.map((item, index) => {
                     return (
                         <div className='row' key={index}>
@@ -55,7 +55,7 @@ export default function FormsMicrosite(props) {
                         texto="Guardar"
                         onClick={(value) => props.onSave(value)} />
                 </div>
-            </div>
+            </form>
         </CardForm>
     );
 }

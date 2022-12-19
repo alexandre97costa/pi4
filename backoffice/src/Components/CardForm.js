@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function CardForm(props) {
-    return (  
-        <div className='card card-body shadow rounded-4 border-0'>
-            <form className='mt-4 ms-4 me-4'>
-                {props.children}
-            </form>
+    useEffect(() => {
+        console.log("Dei render ao CardForm")
+    }, [])
+    return (
+        <div className='card card-body shadow rounded-4 border-0 my-4'>
+            {props.children}
         </div>
     );
 }

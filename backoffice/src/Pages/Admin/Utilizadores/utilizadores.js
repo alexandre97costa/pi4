@@ -12,16 +12,15 @@ export default function Utilizadores() {
         <div className="row justify-content-end">
 
           <div className="col-4 col-md-2">
-            <Dropdown tipos={tipos} onChange={(value) => console.log(value)}/>
+            <Dropdown tipos={tipos} onChange={(value) => console.log(value)} />
           </div>
 
         </div>
 
-      </div>
-
-      <div className="row">
-        <div className="col-12">
-          <TabelaUtilizadores coluna1="# Nome" coluna2="Categoria" coluna3="Ações" />
+        <div className="row">
+          <div className="col-12">
+            <TabelaUtilizadores coluna1="# Nome" coluna2="Categoria" coluna3="Ações" />
+          </div>
         </div>
       </div>
     </>

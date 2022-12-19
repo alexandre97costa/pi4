@@ -34,15 +34,15 @@ export default function App() {
 
 				<Route path='/login' element={<Pages.Login />} />
 
-				<Route exact path='/recuperarPasse' element={<Pages.RecuperarPass />} />
+				<Route exact path='/recuperar-passe' element={<Pages.RecuperarPass />} />
 
-				<Route path='/editarPerfil' element={
+				<Route path='/editar-perfil' element={
 					<Pagina title="Editar Perfil">
 						<Pages.EditarPerfil />
 					</Pagina>
 				} />
 
-				<Route path='/editarPasse' element={
+				<Route path='/editar-passe' element={
 					<Pagina title="Editar Palavra-passe">
 						<Pages.EditarPasse />
 					</Pagina>
@@ -62,49 +62,49 @@ export default function App() {
 					</Pagina>
 				} />
 
-				<Route path='/microsite/heroBanner' element={
+				<Route path='/microsite/hero-banner' element={
 					<Pagina title="Hero Banner">
 						<Pages.HeroBanner />
 					</Pagina>
 				} />
 
-				<Route path='/microsite/descarregarApp' element={
+				<Route path='/microsite/descarregar-app' element={
 					<Pagina title="Descarregar App">
 						<Pages.DescarregarApp />
 					</Pagina>
 				} />
 
-				<Route path='/microsite/gerirFooter' element={
+				<Route path='/microsite/gerir-footer' element={
 					<Pagina title="Gerir Footer">
 						<Pages.GerirFooter />
 					</Pagina>
 				} />
 
-				<Route path='/microsite/adicionarConteudo' element={
+				<Route path='/microsite/adicionar-conteudo' element={
 					<Pagina title="Adicionar Conteúdo">
 						<Pages.AdicionarConteudo />
 					</Pagina>
 				} />
 
-				<Route path='/microsite/publicidadeAgenteTuristico' element={
+				<Route path='/microsite/publicidade-agente-turistico' element={
 					<Pagina title="Publicidade Agente Turístico">
 						<Pages.PublicidadeAgenteTuristico />
 					</Pagina>
 				} />
 
-				<Route path='microsite/gerirMenu' element={
+				<Route path='microsite/gerir-menu' element={
 					<Pagina title="Gerir Menu">
 						<Pages.GerirMenu />
 					</Pagina>
 				} />
 
-				<Route path='/microsite/vantagensAplicacao' element={
+				<Route path='/microsite/vantagens-aplicacao' element={
 					<Pagina title="Vantagens Aplicação">
 						<Pages.VantagensAplicacao />
 					</Pagina>
 				} />
 
-				<Route path='/listaRegiao' element={
+				<Route path='/lista-regiao' element={
 					<ProtectedRoute>
 						<Pagina title='Lista Região'>
 							<Pages.ListaRegiao />
