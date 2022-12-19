@@ -15,12 +15,21 @@ module.exports = (sequelize) => {
                 type: DataTypes.STRING(8),
                 allowNull: false,
                 validate: {
-                    is: /^[0-9]{4}-[0-9]{3}$/i // regex codigo postal (4 numeros + hiphen + 3 numeros)
+                    is: {
+                        args: /^[0-9]{4}-[0-9]{3}$/i, // regex codigo postal (4 numeros + hiphen + 3 numeros)
+                        msg: 'o valor inserido não corresponde ao padrão xxxx-xxx'
+                    } 
                 }
             },
             num_telemovel: {
                 type: DataTypes.STRING(50),
-                allowNull: false
+                allowNull: false,
+                validate: {
+                    is: {
+                        args: /^[0-9]{9}$/i, // regex nº tlm (9 numeros)
+                        msg: 'o valor inserido não tem 9 números'
+                    } 
+                }
             },
             num_pontos: {
                 type: DataTypes.INTEGER,
@@ -36,12 +45,14 @@ module.exports = (sequelize) => {
                 default: false
             },
             // para evitar um count desnecessário à bd, sempre que há um scan este nº aumenta
+            // para mais info, ver o modelo pontos_ponto_interesse
             count_scans: {
                 type: DataTypes.INTEGER,
                 allowNull: false,
                 default: 0
             },
             // para evitar um avg desnecessário à bd, sempre que há uma aval este nº atualiza
+            // para mais info, ver o modelo comentario_avaliacao
             avg_avaliacao: {
                 type: DataTypes.DECIMAL,
                 allowNull: false,
