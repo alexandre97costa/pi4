@@ -88,10 +88,10 @@ insert into freguesia(id, nome, created_at, updated_at, deleted_at, municipio_id
 (30, 'Silgueiros',          CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 23);
 
 -- pontos de interesse ficticios
-insert into ponto_interesse(id, nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, validado, created_at, updated_at, deleted_at, freguesia_id, agente_turistico_id, tipo_interesse_id, count_scans) values
-(1, 'Jardim das Mães',      'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1, 1, 1, 0),
-(2, 'Jardim dos Pais',      'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2, 1, 2, 0),
-(3, 'Jardim das Primas',    'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3, 1, 3, 0),
-(4, 'Jardim dos Tios',      'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4, 1, 4, 0),
-(5, 'Jardim dos Avós',      'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 5, 1, 5, 0),
-(6, 'Jardim das Cunhadas',  'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0);
+insert into ponto_interesse(id, nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, validado, created_at, updated_at, deleted_at, freguesia_id, agente_turistico_id, tipo_interesse_id, count_scans, avg_avaliacao) values
+(1, 'Jardim das Mães',      'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1, 1, 1, 0, 0.00),
+(2, 'Jardim dos Pais',      'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2, 1, 2, 0, 0.00),
+(3, 'Jardim das Primas',    'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3, 1, 3, 0, 0.00),
+(4, 'Jardim dos Tios',      'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4, 1, 4, 0, 0.00),
+(5, 'Jardim dos Avós',      'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 5, 1, 5, 0, 0.00),
+(6, 'Jardim das Cunhadas',  'Uma morada já com alguns carateres, prai cinquenta', '1566-895', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00);
