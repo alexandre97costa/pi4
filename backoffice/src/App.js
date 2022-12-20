@@ -112,6 +112,34 @@ export default function App() {
 					</ProtectedRoute>
 				} />
 
+
+
+
+
+				<Route path='/ponto-interesse' element={
+					<ProtectedRoute>
+						<Pagina title='Lista Região'>
+							<Pages.PontoInteresse />
+						</Pagina>
+					</ProtectedRoute>
+				} />
+
+				<Route path='/detalhes-utilizador' element={
+					<ProtectedRoute>
+						<Pagina title='Lista Região'>
+							<Pages.DetalhesUtilizador />
+						</Pagina>
+					</ProtectedRoute>
+				} />
+
+				<Route path='/agente-turistico/dashboard' element={
+					<ProtectedRoute>
+						<Pagina title='Lista Região'>
+							<Pages.HomeAgenteTuristico />
+						</Pagina>
+					</ProtectedRoute>
+				} />
+
 			</Routes>
 		</BrowserRouter>
 	);

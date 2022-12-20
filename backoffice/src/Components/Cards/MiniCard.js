@@ -1,18 +1,12 @@
 import React from 'react'
 
-import jardimMaes from '../../Assets/Images/jardimMaes.jpg'
-
 export default function MiniCard(props) {
   return (
-
-    <div className="card border border-0 shadow mb-3 p-0 text-center"   >
-      <img src={jardimMaes} className="card-img-top" style={{ maxHeight: '200px'}}  />
-      <div className="card-body p-0"  >
-        <div className="p-3">
-          <h5 className="card-title"> {props.title}</h5>
-        </div>
+    <div className="card border-0 shadow text-center h-100 cursor-pointer" onClick={() => console.log(props.id)}>
+      <img src={props.imagem} className="card-img-top" />
+      <div className="card-body py-3">
+        <h5 className="card-title cursor-pointer">{props.title}</h5>
       </div>
-    </div> 
-
+    </div>
   );
 }
