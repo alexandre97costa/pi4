@@ -13,26 +13,26 @@ substituido por um utilizador real nesses mesmos distritos e ponto de
 interesse.
 */
 insert into utilizador(id, nome, email, password, data_nascimento, created_at, updated_at, deleted_at, tipo_utilizador_id) values
-(1, 'Francisco Fictício',   'franfic@email.com', 'password', '2000-01-01', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(2, 'Tiago Almeida',        'ttiago17@hotmail.com', '1234', '2000-11-14', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(3, 'João Silva',           'joaosil@hotmail.com', 'joaosilva1', '2000-11-20', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(4, 'Rita Pinho',           'ritapinho@gmail.com', 'htyu123', '2000-05-02', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(5, 'Pedro Almeida',        'pedrinhomc@gmail.com', 'pedrinpequeninin', '2000-10-04', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(6, 'Leandro Teixeira',     'leandrin@gmail.com', 'leadrinfinin', '1998-09-10', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(7, 'Guilherme Novo',       'guinovo@gmail.com', 'velho12445', '2002-06-04', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(8, 'Pedro Almeida',        'pedroalmeida23@gmail.com', 'pedroalmeidaemaisvinteetres', '2000-10-04', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(9, 'Filipa Brandão',       'filipaturistando@hotmail.com', 'lipinhavaiaopasseio', '2000-02-28', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(10, 'Rodrigo Cunha',       'cunharodri@gmail.com', 'rodrigova3412', '1988-08-12', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(11, 'Joaquim Almeida',     'jqa123@gmail.com', 'quimtxiperguntou', '1970-12-21', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(12, 'Miguel Valente',      'miguelespeles@gmail.com', 'valenteemcasa', '2000-10-04', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(13, 'Tiago Joaquim',       'tiglatelegrandxin@gmail.com', 'grandixnteu', '2000-11-18', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(14, 'Tânia Mota',          'brumbrummota@gmail.com', '125cma1000', '2005-07-15', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(15, 'Beatriz Cruz',        'cruznabeatriz@gmail.com', 'biazinhaseperdeunacozinha', '1990-04-06', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(16, 'Manuela Vidigal',     'nelinha@hotmail.com', 'nelinhavaiaescola', '1989-10-04', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(17, 'Mariana Castanheira', 'marianacastanha@gmail.com', 'assadinhacomsal', '1978-12-31', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(18, 'Raquel Almeida',      'raquelinmeidin@gmail.com', 'mcraquelnacasa', '1996-08-01', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(19, 'Rui Pedro',           'ruidospcs@gmail.com', 'dospcseusou', '2001-10-16', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
-(20, 'Joana Pestana',       'pestaninha@hotmail.com', 'bonssonhos', '2004-10-12', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(1, 'Francisco Fictício',   'franfic@email.com',                'password',                      '2000-01-01',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(2, 'Tiago Almeida',        'ttiago17@hotmail.com',             '1234',                          '2000-11-14',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(3, 'João Silva',           'joaosil@hotmail.com',              'joaosilva1',                    '2000-11-20',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(4, 'Rita Pinho',           'ritapinho@gmail.com',              'htyu123',                       '2000-05-02',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(5, 'Pedro Almeida',        'pedrinhomc@gmail.com',             'pedrinpequeninin',              '2000-10-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(6, 'Leandro Teixeira',     'leandrin@gmail.com',               'leadrinfinin',                  '1998-09-10',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(7, 'Guilherme Novo',       'guinovo@gmail.com',                'velho12445',                    '2002-06-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(8, 'Pedro Almeida',        'pedroalmeida23@gmail.com',         'pedroalmeidaemaisvinteetres',   '2000-10-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(9, 'Filipa Brandão',       'filipaturistando@hotmail.com',     'lipinhavaiaopasseio',           '2000-02-28',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(10, 'Rodrigo Cunha',       'cunharodri@gmail.com',             'rodrigova3412',                 '1988-08-12',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(11, 'Joaquim Almeida',     'jqa123@gmail.com',                 'quimtxiperguntou',              '1970-12-21',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(12, 'Miguel Valente',      'miguelespeles@gmail.com',          'valenteemcasa',                 '2000-10-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(13, 'Tiago Joaquim',       'tiglatelegrandxin@gmail.com',      'grandixnteu',                   '2000-11-18',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(14, 'Tânia Mota',          'brumbrummota@gmail.com',           '125cma1000',                    '2005-07-15',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(15, 'Beatriz Cruz',        'cruznabeatriz@gmail.com',          'biazinhaseperdeunacozinha',     '1990-04-06',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(16, 'Manuela Vidigal',     'nelinha@hotmail.com',              'nelinhavaiaescola',             '1989-10-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(17, 'Mariana Castanheira', 'marianacastanha@gmail.com',        'assadinhacomsal',               '1978-12-31',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(18, 'Raquel Almeida',      'raquelinmeidin@gmail.com',         'mcraquelnacasa',                '1996-08-01',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(19, 'Rui Pedro',           'ruidospcs@gmail.com',              'dospcseusou',                   '2001-10-16',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(20, 'Joana Pestana',       'pestaninha@hotmail.com',           'bonssonhos',                    '2004-10-12',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
 
 insert into tipo_interesse(id, nome, observacoes, created_at, updated_at, deleted_at) values
 (1, 'Paisagem', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -476,12 +476,12 @@ insert into freguesia(id, nome, created_at, updated_at, deleted_at, municipio_id
 ( 120, 'Sanfins',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
 ( 121, 'Sanguedo',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
 ( 122, 'Santa Maria de Lamas',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
-( 123, 'S. João de Ver',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
+( 123, 'S. João de Ver',                                                                     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
 ( 124, 'Caldas de São Jorge',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
-( 125, 'Souto',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
-( 126, 'Travanca',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
-( 127, 'Vale',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
-( 128, 'Vila Maior',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
+( 125, 'Souto',                                                                     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
+( 126, 'Travanca',                                                                       CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
+( 127, 'Vale',                                                                       CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
+( 128, 'Vila Maior',                                                                     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 9),
 
 ( 129, 'Gafanha do Carmo',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 10),
 ( 130, 'Gafanha da Encarnação',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 10),
