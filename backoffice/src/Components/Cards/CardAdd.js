@@ -27,7 +27,7 @@ export default function AddCard(props) {
 
   return (
     <>
-      <div className="card border-0 shadow h-100 cursor-pointer"
+      <div className="card border-0 shadow rounded-4 h-100 cursor-pointer"
         data-bs-toggle="modal" data-bs-target={'#' + props.idModal}>
         <div className="text-success text-center my-auto">
           <i className="bi-plus-lg fs-1 "></i>

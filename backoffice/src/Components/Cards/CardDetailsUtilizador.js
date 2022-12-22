@@ -1,14 +1,15 @@
 import React from 'react'
+import CardForm from '../CardForm';
 
-export default function CardDetails(props) {
+export default function CardDetailsUtilizador(props) {
   return (
     <div className="row mb-4">
       <div className="col-3 d-none d-md-block">
-        <img src={props.imagem} className="card-img-top h-100 img-fluid rounded" />
+        <img src={props.imagem} className="card-img-top h-100 img-fluid rounded-4" />
       </div>
 
       <div className="col-md-9">
-        <div className="card border-0 shadow mb-3 h-100">
+        <div className='card shadow rounded-4 border-0 h-100'>
 
           <div className="card-body">
             <h5 className="card-title fw-light">Nome</h5>

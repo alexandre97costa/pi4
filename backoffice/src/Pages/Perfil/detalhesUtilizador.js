@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CardDetail from '../../Components/Cards/CardDetails';
+import CardDetailsUtilizador from '../../Components/Cards/CardDetailsUtilizador';
 import CardAdd from '../../Components/Cards/CardAdd';
 import CardPontoInteresse from '../../Components/Cards/CardPontoInteresse';
 
@@ -34,7 +34,7 @@ export default function DetalhesAgenteTuristico() {
         <>
             <div className='row'>
                 <div className='col-12'>
-                    <CardDetail
+                    <CardDetailsUtilizador
                         imagem={fotoAgente}
                         nome="Manuel Antonio"
                         descricao="Um agente turistico 5 estrelas"

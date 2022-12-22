@@ -1,5 +1,6 @@
-import React from 'react'
+  import React from 'react'
 import { Link } from 'react-router-dom';
+import CardForm from '../CardForm';
 
 export default function CardPontoInteresse(props) {
   function chooseTipoCartao(tipo) {
@@ -14,7 +15,7 @@ export default function CardPontoInteresse(props) {
   }
 
   return (
-    <div className="card border-0 shadow">
+    <div className="card border-0 rounded-4 shadow">
       <img src={props.imagem} className="card-img-top" />
 
       <div className="card-body p-3">

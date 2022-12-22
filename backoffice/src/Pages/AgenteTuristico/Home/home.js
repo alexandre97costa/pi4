@@ -52,10 +52,10 @@ export default function Home() {
                     <p className="fs-5 text-body fw-light">Ações Rápidas</p>
                 </div>
                 <div className='col-4 col-md-2'>
-                    <Link to="/AT_validarVoucher" className="btn btn-light btn-lg shadow text-break" >Validar Voucher<i className="bi bi-cart-check ps-2"></i></Link>
+                    <Link to="/AT_validarVoucher" className="btn btn-light btn-lg shadow text-break rounded-4" >Validar Voucher<i className="bi bi-cart-check ps-2"></i></Link>
                 </div>
                 <div className='col-4 col-md-2'>
-                    <Link to={'/microsite'} className="btn btn-light btn-lg shadow text-break">Validar Reserva<i className="bi bi-journal-check ps-2"> </i></Link>
+                    <Link to={'/microsite'} className="btn btn-light btn-lg shadow text-break rounded-4">Validar Reserva<i className="bi bi-journal-check ps-2"> </i></Link>
                 </div>
                 <div className='col-12 mt-4'>
                     <p className="fs-5 text-body fw-light">Confirmar Reservas<i className="bi bi-box-arrow-up-right ps-2"></i></p>

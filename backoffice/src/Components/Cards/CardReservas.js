@@ -1,10 +1,8 @@
 import React from 'react'
 
-
 export default function CardReservas(props) {
     return (
-
-        <div className="card border border-0 shadow">
+        <div className="card border border-0 rounded-4 shadow">
 
             <p className="fs-6 text-success mx-2 mt-2">{props.nomePontoInteresse}</p>
             <p className="fs-5 mx-2">{props.nomeEvento}</p>
