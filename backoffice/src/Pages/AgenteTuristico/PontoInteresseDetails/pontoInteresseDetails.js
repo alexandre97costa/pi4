@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import CardDetailsPontoInteresse from '../../../Components/Cards/CardDetailPontoInteresse';
 import ConfirmarReservas from '../../../Components/Cards/CardReservas';
 import CardAdd from '../../../Components/Cards/CardAdd';
 import CardRecompensa from '../../../Components/Cards/CardRecompensa';
+import CardDetails from '../../../Components/Cards/CardDetails';
+import Carousel from '../../../Components/Carousel';
 
 //Imagem exemplo
 import Pancakes from '../../../Assets/Images/fotoagente.jpg'
@@ -70,6 +71,20 @@ export default function PontoInteresseDetails() {
         imagem: coffe
     }]
 
+    const pontoInteresseDetails = [{
+        categoria: 'Nome',
+        informacao: 'Forninho da Mimi'
+    }, {
+        categoria: 'Descrição',
+        informacao: 'm restaurante com 5 estrelas, melhor comida caseira do mundo'
+    }, {
+        categoria: 'Tipo de Interesse',
+        informacao: 'Restaurante'
+    } , {
+        categoria: 'Avaliação',
+        informacao: '4.3 (52 avaliações)'
+    }]
+
     function axiosGetReservas() {
         //Aqui que fazemos o pedido axios das reservas
     }
@@ -87,14 +102,11 @@ export default function PontoInteresseDetails() {
                 <div className='col-6 mt-4 mb-3 text-end'>
                     <Link to={''} type="button" className="btn btn-primary">Editar Detalhes</Link>
                 </div>
-                <div className='col-12'>
-                    <CardDetailsPontoInteresse
-                        nome="Forninho da Mimi"
-                        descricao="Um restaurante com 5 estrelas, melhor comida caseira do mundo"
-                        tipoInteresse="Restaurante"
-                        avaliacao="4.3 (52 avaliações)"
-                        imagens={imagens}
-                    />
+                <div className='col-12 col-md-4'>
+                    <CardDetails info={pontoInteresseDetails} />
+                </div>
+                <div className='col-12 col-md-8'>
+                    <Carousel id="imagensPontoInteresse" imagens={imagens} />
                 </div>
 
                 <div className="col-12 mt-5 mb-3">

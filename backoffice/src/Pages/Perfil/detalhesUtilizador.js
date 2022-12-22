@@ -1,8 +1,8 @@
 import React from 'react';
 
-import CardDetailsUtilizador from '../../Components/Cards/CardDetailsUtilizador';
 import CardAdd from '../../Components/Cards/CardAdd';
 import CardPontoInteresse from '../../Components/Cards/CardPontoInteresse';
+import CardDetails from '../../Components/Cards/CardDetails';
 
 //Imagem exemplo
 import fotoAgente from '../../Assets/Images/fotoagente.jpg'
@@ -30,18 +30,31 @@ export default function DetalhesAgenteTuristico() {
         numeroCheck: "3"
     }]
 
+    const utilizadorDetails = [{
+        categoria: 'Nome',
+        informacao: 'Manuel Antonio'
+    }, {
+        Descrição: 'Descrição',
+        informacao: 'Um agente turistico 5 estrelas'
+    }, {
+        categoria: 'Contacto',
+        informacao: '910933857'
+    } , {
+        categoria: 'Email',
+        informacao: 'manuel.antonio@gmail.com'
+    }]
+
     return (
         <>
-            <div className='row'>
-                <div className='col-12'>
-                    <CardDetailsUtilizador
-                        imagem={fotoAgente}
-                        nome="Manuel Antonio"
-                        descricao="Um agente turistico 5 estrelas"
-                        contacto="910933857"
-                        email="manuel.antonio@gmail.com"
-                    />
+            <div className='row gy-4'>
+                <div className='col-3 d-none d-md-block'>
+                    <img src={fotoAgente} className="card-img-top h-100 img-fluid rounded-4" />
                 </div>
+
+                <div className='col-12 col-md-9'>
+                    <CardDetails info={utilizadorDetails} />
+                </div>
+
 
                 <div className='col-12 col-md-3'>
                     <CardAdd
