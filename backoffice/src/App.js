@@ -160,6 +160,14 @@ export default function App() {
 					</ProtectedRoute>
 				} />
 
+				<Route path='/admin/dashboard' element={
+					<ProtectedRoute>
+						<Pagina title='Dashboard'>
+							<Pages.HomeAdmin />
+						</Pagina>
+					</ProtectedRoute>
+				} />
+
 			</Routes>
 		</BrowserRouter>
 	);
