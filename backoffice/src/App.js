@@ -112,10 +112,6 @@ export default function App() {
 					</ProtectedRoute>
 				} />
 
-
-
-
-
 				<Route path='/ponto-interesse' element={
 					<ProtectedRoute>
 						<Pagina title='Lista Pontos Interesse'>

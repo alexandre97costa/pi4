@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import CardReservas from '../../../Components/Cards/CardReservas';
-import ModalValidarVoucher from '../../../Components/Modais/ModalValidarVoucher';
+import ModalValidar from '../../../Components/Modais/ModalValidar';
 
 export default function Home() {
     const testeReserva1 = [{
@@ -53,12 +52,14 @@ export default function Home() {
                     <p className="fs-5 text-body fw-light">Ações Rápidas</p>
                 </div>
                 <div className='col-4 col-md-2'>
-                    <button to="/AT_validarVoucher" className="btn btn-light btn-lg shadow text-break rounded-4" data-bs-toggle="modal" data-bs-target="#validarVoucher">Validar Voucher<i className="bi bi-cart-check ps-2"></i></button>
+                    <button className="btn btn-light btn-lg shadow text-break rounded-4" data-bs-toggle="modal" data-bs-target="#validarVoucher">Validar Voucher<i className="bi bi-cart-check ps-2"></i></button>
 
-                    <ModalValidarVoucher idModal="validarVoucher" />
+                    <ModalValidar idModal="validarVoucher" title="Validar Voucher" onClick={() => console.log("submeter")} />
                 </div>
                 <div className='col-4 col-md-2'>
-                    <Link to={'/microsite'} className="btn btn-light btn-lg shadow text-break rounded-4">Validar Reserva<i className="bi bi-journal-check ps-2"> </i></Link>
+                    <button className="btn btn-light btn-lg shadow text-break rounded-4" data-bs-toggle="modal" data-bs-target="#validarReserva">Validar Reserva<i className="bi bi-journal-check ps-2"></i></button>
+
+                    <ModalValidar idModal="validarReserva" title="Validar Reserva" onClick={() => console.log("submeter")} />
                 </div>
                 <div className='col-12 mt-4'>
                     <p className="fs-5 text-body fw-light">Confirmar Reservas<i className="bi bi-box-arrow-up-right ps-2"></i></p>
