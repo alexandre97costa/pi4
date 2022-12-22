@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Botao from '../Botao'
+
 export default function CardReservas(props) {
     return (
         <div className="card border border-0 rounded-4 shadow">
@@ -31,8 +33,8 @@ export default function CardReservas(props) {
                                     </div>
 
                                     <div className="col-7 text-end">
-                                        <button type="button" className="btn btn-outline-success btn-sm me-2">Confirmar</button>
-                                        <button type="button" className="btn btn-outline-danger btn-sm">Rejeitar</button>
+                                        <Botao className="btn-outline-success btn-sm me-2" texto="Confirmar" onCLick={() => console.log(index)} />
+                                        <Botao className="btn-outline-danger btn-sm" texto="Rejeitar" onCLick={() => console.log(index)} />
                                     </div>
 
                                 </div>

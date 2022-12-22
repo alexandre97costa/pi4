@@ -1,15 +1,16 @@
-  import React from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
-import CardForm from '../CardForm';
+
+import Botao from '../Botao';
 
 export default function CardPontoInteresse(props) {
   function chooseTipoCartao(tipo) {
-    if(tipo === 'remove')
+    if (tipo === 'remove')
       return (
-        <button className="btn btn-outline-danger w-100" onClick={(value) => props.onClick(value)}>Remover</button>
+        <Botao className="btn-outline-danger w-100" onClick={() => props.onClick(props.id)} texto="Remover" />
       )
 
-    return(
+    return (
       <Link to={"/AT_detalhesPI/" + props.id} className="btn btn-outline-success w-100">Ver mais detalhes</Link>
     )
   }
@@ -32,7 +33,7 @@ export default function CardPontoInteresse(props) {
           <i className="bi bi-journal-check text-info px-2">{props.numeroCheck}</i>
         </div>
 
-        { chooseTipoCartao(props.tipo) }
+        {chooseTipoCartao(props.tipo)}
 
       </div>
     </div>

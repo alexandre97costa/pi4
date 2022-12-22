@@ -1,4 +1,5 @@
 import React from 'react'
+import Botao from '../Botao';
 
 import CardForm from '../CardForm';
 
@@ -14,8 +15,8 @@ export default function CardListaRecompensas(props) {
                                 <p className="text-start text-muted">{item.nomeRecompensa}</p>
                             </div>
                             <div className='col-7 text-end'>
-                                <button type="button" className="btn btn-outline-warning btn-sm me-2">Editar</button>
-                                <button type="button" className="btn btn-outline-danger btn-sm">Eliminar</button>
+                                <Botao className="btn-outline-warning btn-sm me-2" texto="Editar" onClick={() => console.log(item)}/>
+                                <Botao className="btn-outline-danger btn-sm" texto="Eliminar" onClick={() => console.log(item)}/>
                             </div>
                         </div>
                     )

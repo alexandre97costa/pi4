@@ -65,6 +65,7 @@ export default function DetalhesAgenteTuristico() {
                                 numeroFavoritos={item.numeroFavoritos}
                                 numeroCheck={item.numeroCheck}
                                 tipo="remove"
+                                onClick={(value) => console.log(value)}
                             />
                         </div>
                     )

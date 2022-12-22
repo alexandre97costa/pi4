@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Input from '../Input';
 
 export default function ModalNewPontoInteresse(props) {
     const TiposPontoInteresse = [{
@@ -30,13 +31,11 @@ export default function ModalNewPontoInteresse(props) {
                         <div className="modal-body">
                             <div className="card border border-0 mb-3 p-0">
                                 <div className="input-group align-self-center">
-                                    <input type="text" className="form-control" placeholder={props.title}
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                    <Input id="limitePessoas" placeholder={props.title} onchange={(value) => console.log(value.target.value)} />
                                 </div>
 
                                 <div className="input-group mt-4">
-                                    <input type="text" className="form-control" placeholder={props.morada}
-                                        aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                    <Input id="limitePessoas" placeholder={props.morada} onchange={(value) => console.log(value.target.value)} />
                                 </div>
 
                                 <div className="mt-4">
@@ -45,8 +44,8 @@ export default function ModalNewPontoInteresse(props) {
 
                                 <select defaultValue="1" className="form-select mt-4" onChange={(value) => console.log(value.target.value)}>
                                     <option defaultValue="0">{props.cabecalho}</option>
-                                    {TiposPontoInteresse.map((item,index) => {
-                                        return(
+                                    {TiposPontoInteresse.map((item, index) => {
+                                        return (
                                             <option key={index} defaultValue={item.id}>{item.nome}</option>
                                         )
                                     })}
@@ -56,7 +55,7 @@ export default function ModalNewPontoInteresse(props) {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="button" className="btn btn-primary">Submeter</button>
+                            <button type="button" className="btn btn-primary" onClick={() => console.log('Submeter')}>Submeter</button>
                         </div>
                     </div>
                 </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Input from '../Input';
 
 export default function ModalAddRecompensa(props) {
     return (
@@ -13,24 +14,21 @@ export default function ModalAddRecompensa(props) {
                         <div className="modal-body">
 
                             <div className="input-group align-self-center">
-                                <input type="text" className="form-control" placeholder="Nome da Recompensa"
-                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                <Input id="nomeRecompensa" placeholder="Nome da Recompensa" onchange={(value) => console.log(value.target.value)} />
                             </div>
 
                             <div className="input-group mt-4">
-                                <input type="text" className="form-control" placeholder="Pontos"
-                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                <Input id="numeroPontos" placeholder="Número de Pontos" onchange={(value) => console.log(value.target.value)} />
                             </div>
 
                             <div className="input-group mt-4">
-                                <input type="text" className="form-control" placeholder="Imagem"
-                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                <Input id="urlImagem" placeholder="Url da imagem" onchange={(value) => console.log(value.target.value)} />
                             </div>
 
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="button" className="btn btn-primary">Submeter</button>
+                            <button type="button" className="btn btn-primary" onClick={() => console.log('Submeter')}>Submeter</button>
                         </div>
                     </div>
                 </div>

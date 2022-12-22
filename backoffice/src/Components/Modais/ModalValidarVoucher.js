@@ -15,19 +15,19 @@ export default function ModalValidarVoucher(props) {
                             <div className='row justify-content-center'>
                                 <div className="col-6 align-self-center">
                                     <div className="input-group ">
-                                        <input type="text" className="form-control text-center" maxLength={1} />
-                                        <input type="text" className="form-control text-center" maxLength={1} />
-                                        <input type="text" className="form-control text-center" maxLength={1} />
-                                        <input type="text" className="form-control text-center" maxLength={1} />
-                                        <input type="text" className="form-control text-center" maxLength={1} />
-                                        <input type="text" className="form-control text-center" maxLength={1} />
+                                        <input type="text" className="form-control text-center" maxLength={1} onChange={(value) => console.log(value.target.value)} />
+                                        <input type="text" className="form-control text-center" maxLength={1} onChange={(value) => console.log(value.target.value)} />
+                                        <input type="text" className="form-control text-center" maxLength={1} onChange={(value) => console.log(value.target.value)} />
+                                        <input type="text" className="form-control text-center" maxLength={1} onChange={(value) => console.log(value.target.value)} />
+                                        <input type="text" className="form-control text-center" maxLength={1} onChange={(value) => console.log(value.target.value)} />
+                                        <input type="text" className="form-control text-center" maxLength={1} onChange={(value) => console.log(value.target.value)} />
                                     </div>
                                 </div>
                             </div>
 
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-primary">Submeter</button>
+                        <button type="button" className="btn btn-primary" onClick={() => console.log('Submeter')}>Submeter</button>
                         </div>
                     </div>
                 </div>

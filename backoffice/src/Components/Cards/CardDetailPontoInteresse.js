@@ -6,7 +6,7 @@ export default function CardDetailsPontoInteresse(props) {
         <div className='row mb-3'>
             <div className='col-12 mb-3 col-md-4 mb-md-0'>
 
-                <div className="card border-0 rounded-4 shadow py-3 d-flex align-items-center">
+                <div className="card border-0 rounded-4 shadow py-3 h-100">
                     <div className="card-body">
                         <h5 className="card-title fw-light">Nome</h5>
                         <h6 className="card-subtitle mb-4 fs-4">{props.nome}</h6>

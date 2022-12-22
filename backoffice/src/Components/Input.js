@@ -10,6 +10,8 @@ export default function Input(props) {
                 placeholder={props.placeholder}
                 pattern={props.pattern}
                 defaultValue={props.value}
+                min={props.min}
+                max={props.max}
                 onChange={(valeu) => props.onchange(valeu)}
                 required={props.required}
             />
@@ -26,11 +28,5 @@ export default function Input(props) {
         if (!props.type)
             return "text"
         return props.type
-    }
-
-    function changeValue() {
-        if (!props.value)
-            return ''
-        return props.value
     }
 }

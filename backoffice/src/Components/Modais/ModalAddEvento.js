@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Input from '../Input';
+
 export default function ModalAddEvento(props) {
     return (
         <div className='row align-self-center'>
@@ -13,28 +15,25 @@ export default function ModalAddEvento(props) {
                         <div className="modal-body">
 
                             <div className="input-group align-self-center">
-                                <input type="text" className="form-control" placeholder="Nome do Evento"
-                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                <Input id="nomeEvento" placeholder="Nome do Evento" onchange={(value) => console.log(value.target.value)} />
                             </div>
 
                             <div className="input-group mt-4">
-                                <input type="text" className="form-control" placeholder="Data do Evento"
-                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                <Input id="dataEvento" placeholder="Data do Evento" pattern="(?:(?:31(-)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(-)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(-)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(-)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{4})" onchange={(value) => console.log(value.target.value)} />
                             </div>
 
                             <div className="input-group mt-4">
-                                <input type="text" className="form-control" placeholder="Limite de pessoas"
-                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                <Input type="number" id="limitePessoas" placeholder="Limite de pessoas" min="1" onchange={(value) => console.log(value.target.value)} />
                             </div>
 
                             <div className="mt-4">
-                                <textarea className="form-control" placeholder="Descrição" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea className="form-control" placeholder="Descrição" id="descricao" rows="3" onChange={(value) => console.log(value.target.value)} />
                             </div>
 
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                            <button type="button" className="btn btn-primary">Submeter</button>
+                            <button type="button" className="btn btn-primary" onClick={() => console.log('Submeter')}>Submeter</button>
                         </div>
                     </div>
                 </div>
