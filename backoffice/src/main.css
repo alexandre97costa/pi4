@@ -120,3 +120,19 @@
 .w-33 {
     width: 33%;
 }
+
+.btn-regiao {
+    background-color: #729586;
+}
+
+.btn-agentes {
+    background-color: #BACC6A;
+}
+
+.btn-regiao:hover {
+    background-color: #618575 !important;
+}
+
+.btn-agentes:hover {
+    background-color: #a5b45f !important;
+}
