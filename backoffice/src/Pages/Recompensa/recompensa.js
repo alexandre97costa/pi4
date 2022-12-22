@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import CardRecompensa from '../../Components/Cards/CardRecompensa';
 import CardAdd from '../../Components/Cards/CardAdd';
 import CardListaRecompensas from '../../Components/Cards/CardListaRecompensas';
+import GraficoHorizontal from '../../Components/GraficoHorizontal';
 
 //Imagem exemplo
 import coffe from '../../Assets/Images/logo.png'
@@ -50,6 +51,25 @@ export default function Recompensa() {
         imagem: coffe
     }]
 
+    const borderRadius = 14
+
+    const voucher = [
+        "Desconto de 50% na Pizza",
+        "Café Gratis"
+    ];
+
+    const dataVoucher = [
+        "452",
+        "531"
+    ]
+
+    const datasets = [{
+        label: "Recompensa's",
+        data: dataVoucher,
+        backgroundColor: "#BACC6A",
+        borderRadius: borderRadius
+    }]
+
     return (
         <div className='row gy-3'>
 
@@ -91,6 +111,14 @@ export default function Recompensa() {
                     </div>
                 )
             })}
+
+            <div className='col-12 mt-5'>
+                <p className="fs-5 text-body fw-light">Recompensas Resgatadas</p>
+            </div>
+
+            <div className='col-12 col-md-10'>
+                <GraficoHorizontal datasets={datasets} data={voucher} />
+            </div>
         </div>
     )
 }

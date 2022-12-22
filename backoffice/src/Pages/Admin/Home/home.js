@@ -4,6 +4,65 @@ import { Link } from 'react-router-dom';
 import GraficoHorizontal from '../../../Components/GraficoHorizontal';
 
 export default function Home() {
+    const borderRadius = 14
+
+    const dias = [
+        "22/12",
+        "23/12",
+        "24/12",
+        "25/12",
+    ];
+
+    const dataUtilizadores = [
+        "10",
+        "13",
+        "50",
+        "26"
+    ]
+
+    const dataAgenteTuristico = [
+        "100",
+        "112",
+        "58",
+        "91"
+    ]
+
+    const dataResponsavelRegiao = [
+        "35",
+        "36",
+        "59",
+        "126"
+    ]
+
+    const dataAdmin = [
+        "145",
+        "56",
+        "89",
+        "46"
+    ]
+
+    const datasets = [{
+        label: "Utilizadores",
+        data: dataUtilizadores,
+        backgroundColor: "#BACC6A",
+        borderRadius: borderRadius
+    }, {
+        label: "Agente Turistico",
+        data: dataAgenteTuristico,
+        backgroundColor: "#BACC6A",
+        borderRadius: borderRadius,
+    }, {
+        label: "Responsavel de Região",
+        data: dataResponsavelRegiao,
+        backgroundColor: "#BACC6A",
+        borderRadius: borderRadius,
+    }, {
+        label: "Administrador",
+        data: dataAdmin,
+        backgroundColor: "#BACC6A",
+        borderRadius: borderRadius,
+    }]
+
     return (
         <>
             <div className="row">
@@ -50,7 +109,7 @@ export default function Home() {
                 </div>
 
                 <div className='col-12 col-md-10'>
-                    <GraficoHorizontal />
+                    <GraficoHorizontal datasets={datasets} data={dias} />
                 </div>
 
             </div>

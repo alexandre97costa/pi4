@@ -6,6 +6,7 @@ import CardAdd from '../../../Components/Cards/CardAdd';
 import CardRecompensa from '../../../Components/Cards/CardRecompensa';
 import CardDetails from '../../../Components/Cards/CardDetails';
 import Carousel from '../../../Components/Carousel';
+import GraficoHorizontal from '../../../Components/GraficoHorizontal';
 
 //Imagem exemplo
 import Pancakes from '../../../Assets/Images/fotoagente.jpg'
@@ -80,9 +81,32 @@ export default function PontoInteresseDetails() {
     }, {
         categoria: 'Tipo de Interesse',
         informacao: 'Restaurante'
-    } , {
+    }, {
         categoria: 'Avaliação',
         informacao: '4.3 (52 avaliações)'
+    }]
+
+    const borderRadius = 14
+
+    const dias = [
+        "22/12",
+        "23/12",
+        "24/12",
+        "25/12",
+    ];
+
+    const dataVisitas = [
+        "100",
+        "134",
+        "108",
+        "85"
+    ]
+
+    const datasets = [{
+        label: "Visitas",
+        data: dataVisitas,
+        backgroundColor: "#BACC6A",
+        borderRadius: borderRadius
     }]
 
     function axiosGetReservas() {
@@ -162,7 +186,11 @@ export default function PontoInteresseDetails() {
                 })}
 
                 <div className='col-12 mt-5'>
-                    <p className="fs-5 text-body fw-light">Estatísticas</p>
+                    <p className="fs-5 text-body fw-light">Número de Visitas</p>
+                </div>
+
+                <div className='col-12 col-md-10'>
+                    <GraficoHorizontal datasets={datasets} data={dias} />
                 </div>
 
             </div>

@@ -2,28 +2,29 @@ import React from 'react';
 
 import CardReservas from '../../../Components/Cards/CardReservas';
 import ModalValidar from '../../../Components/Modais/ModalValidar';
+import GraficoHorizontal from '../../../Components/GraficoHorizontal';
 
 export default function Home() {
     const testeReserva1 = [{
-        dataReserva:'20 Jan 2023',
-        numeroPessoas:'2'
+        dataReserva: '20 Jan 2023',
+        numeroPessoas: '2'
     }, {
-        dataReserva:'20 Jan 2023',
-        numeroPessoas:'5'
+        dataReserva: '20 Jan 2023',
+        numeroPessoas: '5'
     }, {
-        dataReserva:'20 Jan 2023',
-        numeroPessoas:'13'
+        dataReserva: '20 Jan 2023',
+        numeroPessoas: '13'
     }]
 
     const testeReserva2 = [{
-        dataReserva:'20 Jan 2023',
-        numeroPessoas:'3'
+        dataReserva: '20 Jan 2023',
+        numeroPessoas: '3'
     }, {
-        dataReserva:'20 Jan 2023',
-        numeroPessoas:'5'
+        dataReserva: '20 Jan 2023',
+        numeroPessoas: '5'
     }]
 
-    const teste= [{
+    const teste = [{
         nomePontoInteresse: 'Ponto de Interesse',
         nomeEvento: 'Evento X',
         dataEvento: "20 Jan 2023",
@@ -39,10 +40,31 @@ export default function Home() {
         reservas: testeReserva2
     }]
 
+    const borderRadius = 14
+
+    const pontoInteresse = [
+        "Jardim das Mães",
+        "Jardim dos Pais",
+        "Jardim dos Filhos"
+    ];
+
+    const dataPontoInteresse = [
+        "123",
+        "138",
+        "560"
+    ]
+
+    const datasets = [{
+        label: "Ponto's de Interesse",
+        data: dataPontoInteresse,
+        backgroundColor: "#BACC6A",
+        borderRadius: borderRadius
+    }]
+
     function determinarValeuNow(statusReserva) {
         //Calcular de forma automática a percentagem de ocupação
         const percentagem = statusReserva.split('/')
-        return '10' 
+        return '10'
     }
 
     return (
@@ -68,7 +90,7 @@ export default function Home() {
 
             <div className='row'>
                 {teste.map((item, index) => {
-                    return(
+                    return (
                         <div key={index} className="col-12 col-sm-6 col-md-3">
                             <CardReservas
                                 nomePontoInteresse={item.nomePontoInteresse}
@@ -82,6 +104,14 @@ export default function Home() {
 
                     )
                 })}
+            </div>
+
+            <div className='col-12 mt-5'>
+                <p className="fs-5 text-body fw-light">Média de Visitas</p>
+            </div>
+
+            <div className='col-12 col-md-10'>
+                <GraficoHorizontal datasets={datasets} data={pontoInteresse} />
             </div>
         </>
     );
