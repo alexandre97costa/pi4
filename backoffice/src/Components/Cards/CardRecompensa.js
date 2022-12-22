@@ -1,22 +1,12 @@
-import React from "react";
+import React from 'react'
 
-export default function CardRecompensa(props){
-    return(
-        <div className="container-fluid">
-            <div className="row">
-                <div className="col-3">
-                    < div className="card bg-white">
-                        <div className="card p-5 m-5 bg-primary"> 
-                            <div className="card-img" >
-                            </div>
-                        </div>
-                        <div className="card-tittle">
-                            sdgdf
-                        </div>
-                    </div>
-                </div>
-            </div>
+export default function CardRecompensa(props) {
+    return (
+        <div className="card border-0 shadow h-100 p-4">
+            <img src={props.imagem} className="img-fluid align-self-center rounded w-50 img-fluid" />
 
+            <h5 className="card-title fs-4 pt-3">{props.title}</h5>
+            <h5 className="card-title text-success">{props.pontos}</h5>
         </div>
     );
 }

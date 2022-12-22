@@ -1,5 +1,9 @@
 import Teste from "./Teste/teste"
 
+import PontoInteresseDetails from "./AgenteTuristico/PontoInteresseDetails/pontoInteresseDetails"
+import Eventos from "./Eventos/eventos"
+import Recompensa from "./Recompensa/recompensa"
+
 import HomeAgenteTuristico from "./AgenteTuristico/Home/home"
 import PontoInteresse from './PontoInteresse/pontoInteresse'
 import DetalhesUtilizador from './Perfil/detalhesUtilizador'
@@ -19,6 +23,6 @@ import VantagensAplicacao from "./Admin/Microsite/VantagensAplicacao/VantagensAp
 import PublicidadeAgenteTuristico from "./Admin/Microsite/GerirPublicidadeAgenteTuristico/gerirPublicidadeAgenteTuristico"
 import GerirMenu from "./Admin/Microsite/GerirMenu/gerirMenu"
 
-const Pages = { Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico,AdicionarConteudo, HomeAgenteTuristico, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil, PontoInteresse, DetalhesUtilizador}
+const Pages = {Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico,AdicionarConteudo, HomeAgenteTuristico, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil, PontoInteresse, DetalhesUtilizador, PontoInteresseDetails, Recompensa, Eventos}
 
 export default Pages

@@ -2,8 +2,10 @@ import React from 'react'
 
 import ModalNewPontoInteresse from '../Modais/ModalNewPontoInteresse';
 import ModalAddAgenteTuristicoPontoInteresse from '../Modais/ModalAddAgenteTuristicoPontoInteresse'
+import ModalAddEvento from '../Modais/ModalAddEvento';
+import ModalAddRecompensa from '../Modais/ModaAddRecompensa';
 
-export default function CardAdd(props) {
+export default function AddCard(props) {
   function callModal(nome) {
     if (nome === 'newPontoInteresse')
       return (
@@ -12,6 +14,14 @@ export default function CardAdd(props) {
     if (nome == 'addAgenteTuristicoPontoInteresse')
       return (
         <ModalAddAgenteTuristicoPontoInteresse idModal={props.idModal} />
+      )
+    if (nome == 'addEvento')
+      return (
+        <ModalAddEvento idModal={props.idModal} />
+      )
+    if (nome == 'addRecompensa')
+      return (
+        <ModalAddRecompensa idModal={props.idModal} />
       )
   }
 
@@ -27,5 +37,5 @@ export default function CardAdd(props) {
 
       {callModal(props.nomeModal)}
     </>
-  );
+  )
 }

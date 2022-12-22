@@ -118,7 +118,7 @@ export default function App() {
 
 				<Route path='/ponto-interesse' element={
 					<ProtectedRoute>
-						<Pagina title='Lista Região'>
+						<Pagina title='Lista Pontos Interesse'>
 							<Pages.PontoInteresse />
 						</Pagina>
 					</ProtectedRoute>
@@ -126,7 +126,7 @@ export default function App() {
 
 				<Route path='/detalhes-utilizador' element={
 					<ProtectedRoute>
-						<Pagina title='Lista Região'>
+						<Pagina title='Utilizador'>
 							<Pages.DetalhesUtilizador />
 						</Pagina>
 					</ProtectedRoute>
@@ -134,8 +134,32 @@ export default function App() {
 
 				<Route path='/agente-turistico/dashboard' element={
 					<ProtectedRoute>
-						<Pagina title='Lista Região'>
+						<Pagina title='Dashboard'>
 							<Pages.HomeAgenteTuristico />
+						</Pagina>
+					</ProtectedRoute>
+				} />
+
+				<Route path='/agente-turistico/ponto-interesse-details' element={
+					<ProtectedRoute>
+						<Pagina title='Ponto Interesse'>
+							<Pages.PontoInteresseDetails />
+						</Pagina>
+					</ProtectedRoute>
+				} />
+
+				<Route path='/agente-turistico/eventos' element={
+					<ProtectedRoute>
+						<Pagina title='Eventos'>
+							<Pages.Eventos />
+						</Pagina>
+					</ProtectedRoute>
+				} />
+
+				<Route path='/recompensas' element={
+					<ProtectedRoute>
+						<Pagina title='Recompensas'>
+							<Pages.Recompensa />
 						</Pagina>
 					</ProtectedRoute>
 				} />
