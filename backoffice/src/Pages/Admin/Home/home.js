@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import GraficoHorizontal from '../../../Components/GraficoHorizontal';
+import BotaoDashboard from '../../../Components/BotaoDashboard';
 
 export default function Home() {
     const borderRadius = 14
@@ -71,21 +72,15 @@ export default function Home() {
                 </div>
 
                 <div className='col-4 col-md-2'>
-                    <Link to="" className='btn btn-light btn-lg shadow text-break rounded-4'>
-                        <i className="bi bi-journal-check me-3" />Atribuição de Perfil
-                    </Link>
+                    <BotaoDashboard colorBotao="btn-light btn-lg" icon="bi-journal-check" texto="Atribuição de Perfil"/>
                 </div>
 
                 <div className='col-4 col-md-2'>
-                    <Link to="/microsite" className='btn btn-light btn-lg shadow text-break rounded-4'>
-                        <i className="bi bi-file-earmark me-3" />Gerir Página Web
-                    </Link>
+                    <BotaoDashboard to="/microsite" colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Página Web"/>
                 </div>
 
                 <div className='col-4 col-md-2'>
-                    <Link to="" className='btn btn-light btn-lg shadow text-break rounded-4'>
-                        <i className="bi bi-file-earmark me-3" />Gerir Regiões Web
-                    </Link>
+                    <BotaoDashboard colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Regiões Web"/>
                 </div>
 
                 <div className='col-12 mt-5'>
@@ -93,15 +88,15 @@ export default function Home() {
                 </div>
 
                 <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-2 text-center'>
-                    <Link to="/utilizadores" className='btn btn-agentes h-100 w-100 rounded-4 text-white fw-bold py-5'>Agentes Turísticos</Link>
+                    <BotaoDashboard to="/utilizadores" colorBotao="btn-agentes h-100 text-white fw-bold py-5 w-100 h-100" texto="Agentes Turísticos"/>
                 </div>
 
                 <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-2 text-center'>
-                    <Link to="/utilizadores" className='btn btn-regiao h-100 w-100 rounded-4 text-white fw-bold py-5'>Responsáveis de Região</Link>
+                    <BotaoDashboard to="/utilizadores" colorBotao="btn-regiao h-100 text-white fw-bold py-5 w-100 h-100" texto="Responsáveis de Região"/>
                 </div>
 
                 <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-2 text-center'>
-                    <Link to="/utilizadores" className='btn btn-primary h-100 w-100 rounded-4 fw-bold py-5'>Visitantes</Link>
+                    <BotaoDashboard to="/utilizadores" colorBotao="btn-primary h-100 text-white fw-bold py-5 w-100 h-100" texto="Visitantes"/>
                 </div>
 
                 <div className='col-12 mt-5'>
