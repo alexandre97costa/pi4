@@ -167,10 +167,10 @@ export default function App() {
 						</Pagina>
 					</ProtectedRoute>
 				} />
-				<Route path='responsavel-regiao/listaAgente' element={
+				<Route path='listaAgente' element={
 					<ProtectedRoute>
 						<Pagina title='Lista de Agente Turístico'>
-							<Pages.HomeAdmin />
+							<Pages.ListaAgente />
 						</Pagina>
 					</ProtectedRoute>
 				}/>

@@ -20,7 +20,7 @@ import AdicionarConteudo from "./Admin/Microsite/AdicionarConteudo/AdicionarCont
 import VantagensAplicacao from "./Admin/Microsite/VantagensAplicacao/VantagensAplicacao"
 import PublicidadeAgenteTuristico from "./Admin/Microsite/GerirPublicidadeAgenteTuristico/gerirPublicidadeAgenteTuristico"
 import GerirMenu from "./Admin/Microsite/GerirMenu/gerirMenu"
-import ListaAgente from "./ResponsavelRegiao/Home/ListaAgente/listaAgente"
+import ListaAgente from "./ResponsavelRegiao/ListaAgente/listaAgente"
 
 
 import HomeAdmin from './Admin/Home/home'
