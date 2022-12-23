@@ -2,7 +2,6 @@ import React from "react";
 
 import Dropdown from "../../Components/Dropdown";
 import TabelaRegiao from "../../Components/Tabelas/TabelaRegiao";
-import CardForm from "../../Components/CardForm";
 
 export default function ListaRegiao() {
   const tipos = ["Todas", "A", "B", "C"]
@@ -21,7 +20,6 @@ export default function ListaRegiao() {
             <TabelaRegiao coluna1="# Região" coluna2="# Responsável de Região" coluna3="Ações"/>
           </div>
         </div>
-
 
       </div>
     </>

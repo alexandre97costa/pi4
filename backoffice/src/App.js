@@ -104,7 +104,7 @@ export default function App() {
 					</Pagina>
 				} />
 
-				<Route path='/lista-regiao' element={
+				<Route path='/admin/lista-regiao' element={
 					<ProtectedRoute>
 						<Pagina title='Lista Região'>
 							<Pages.ListaRegiao />

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import GraficoHorizontal from '../../../Components/GraficoHorizontal';
 import BotaoDashboard from '../../../Components/BotaoDashboard';
