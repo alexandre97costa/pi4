@@ -167,7 +167,8 @@ export default function App() {
 						</Pagina>
 					</ProtectedRoute>
 				} />
-				<Route path='listaAgente' element={
+
+				<Route path='lista-Agente' element={
 					<ProtectedRoute>
 						<Pagina title='Lista de Agente Turístico'>
 							<Pages.ListaAgente />
