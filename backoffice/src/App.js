@@ -167,6 +167,13 @@ export default function App() {
 						</Pagina>
 					</ProtectedRoute>
 				} />
+				<Route path='responsavel-regiao/listaAgente' element={
+					<ProtectedRoute>
+						<Pagina title='Lista de Agente Turístico'>
+							<Pages.HomeAdmin />
+						</Pagina>
+					</ProtectedRoute>
+				}/>
 
 			</Routes>
 		</BrowserRouter>
