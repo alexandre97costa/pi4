@@ -103,11 +103,16 @@ export default function App() {
 						<Pages.VantagensAplicacao />
 					</Pagina>
 				} />
-				<React path='/lista-agente' element={
-					<Pagina title="Lista de Agentes Turisticos">
-						<Pages.ListaAgente/>
-					</Pagina>
-				} />
+
+
+				<React 
+					path='/lista-agente' 
+					element={
+						<Pagina title="Lista de Agentes Turisticos">
+							<Pages.ListaAgente/>
+						</Pagina>
+					} 
+				/>
 				<React path='/reservas-evento' element={
 					<Pagina title="Reservas ao Evento">
 						<Pages.ReservasEvento/>
@@ -118,7 +123,7 @@ export default function App() {
 						<Pages.Evento/>
 					</Pagina>
 				} />
-				<React path='/validar-ponto-interesse' element={
+				<React path='/vista-detalhada-agente' element={
 					<Pagina title="Detalhes Agentes Turísticos">
 						<Pages.VistaDetalhadaAgente/>
 					</Pagina>
@@ -128,6 +133,12 @@ export default function App() {
 						<Pages.AssociarPontoInteresse/>
 					</Pagina>
 				} />
+				<React path='/validar-ponto-interesse' element={
+					<Pagina title="Validar Pontos de Interesse">
+						<Pages.ValidarPontoInteresse/>
+					</Pagina>
+				} />
+			
 				
 				
 
