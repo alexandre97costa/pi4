@@ -103,37 +103,33 @@ export default function App() {
 						<Pages.VantagensAplicacao />
 					</Pagina>
 				} />
+				<Route path='/lista-agentes' element={
+					<Pagina title="Lista de Agentes Turisticos">
+						<Pages.ListaAgente />
+					</Pagina>
+				} />
 
-
-				<React 
-					path='/lista-agente' 
-					element={
-						<Pagina title="Lista de Agentes Turisticos">
-							<Pages.ListaAgente/>
-						</Pagina>
-					} 
-				/>
-				<React path='/reservas-evento' element={
+				<Route path='/reservas-eventos' element={
 					<Pagina title="Reservas ao Evento">
-						<Pages.ReservasEvento/>
+						<Pages.ReservasEvento />
 					</Pagina>
 				} />
-				<React path='/evento' element={
-					<Pagina title="Eventos">
-						<Pages.Evento/>
+				<Route path='/eventos' element={
+					<Pagina title="Evento">
+						<Pages.Evento />
 					</Pagina>
 				} />
-				<React path='/vista-detalhada-agente' element={
+				<Route path='/vista-detalhada' element={
 					<Pagina title="Detalhes Agentes Turísticos">
 						<Pages.VistaDetalhadaAgente/>
 					</Pagina>
 				} />
-				<React path='/associar-ponto-interesse' element={
-					<Pagina title="associar ponto">
+				<Route path='/associar-pontos-interesse' element={
+					<Pagina title="Detalhes Agentes Turísticos">
 						<Pages.AssociarPontoInteresse/>
 					</Pagina>
 				} />
-				<React path='/validar-ponto-interesse' element={
+				<Route path='/validar-pontos-interesse' element={
 					<Pagina title="Validar Pontos de Interesse">
 						<Pages.ValidarPontoInteresse/>
 					</Pagina>
