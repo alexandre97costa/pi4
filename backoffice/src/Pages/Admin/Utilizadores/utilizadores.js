@@ -19,7 +19,7 @@ export default function Utilizadores() {
 
         <div className="row">
           <div className="col-12">
-            <TabelaUtilizadores coluna1="# Nome" coluna2="Categoria" coluna3="Ações" />
+            <TabelaUtilizadores />
           </div>
         </div>
       </div>

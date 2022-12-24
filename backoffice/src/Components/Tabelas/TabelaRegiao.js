@@ -29,9 +29,9 @@ export default function TabelaRegiao(props) {
                 <table className="table text-center align-middle">
                     <thead>
                         <tr>
-                            <th className='text-start fw-normal fs-5' scope="col">{props.coluna1}</th>
-                            <th className='fw-normal fs-5' scope="col">{props.coluna2}</th>
-                            <th className='fw-normal fs-5' scope="col">{props.coluna3}</th>
+                            <th className='text-start fw-normal fs-5' scope="col"># Região</th>
+                            <th className='fw-normal fs-5' scope="col"># Responsável de Região</th>
+                            <th className='fw-normal fs-5' scope="col">Ações</th>
                         </tr>
                     </thead>
 

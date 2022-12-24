@@ -57,9 +57,9 @@ export default function TabelaUtilizadores(props) {
                 <table className="table text-center align-middle">
                     <thead>
                         <tr>
-                            <th className='text-start fw-normal fs-5' scope="col">{props.coluna1}</th>
-                            <th className='fw-normal fs-5' scope="col">{props.coluna2}</th>
-                            <th className='fw-normal fs-5' scope="col">{props.coluna3}</th>
+                            <th className='text-start fw-normal fs-5' scope="col"># Nome</th>
+                            <th className='fw-normal fs-5' scope="col">Categoria</th>
+                            <th className='fw-normal fs-5' scope="col">Ações</th>
                         </tr>
                     </thead>
 

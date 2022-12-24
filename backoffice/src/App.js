@@ -48,7 +48,7 @@ export default function App() {
 					</Pagina>
 				} />
 
-				<Route path='/utilizadores' element={
+				<Route path='/admin/utilizadores' element={
 					<ProtectedRoute>
 						<Pagina title="Lista de Utilizadores">
 							<Pages.Utilizadores />

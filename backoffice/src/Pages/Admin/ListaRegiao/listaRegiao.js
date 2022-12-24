@@ -1,7 +1,7 @@
 import React from "react";
 
-import Dropdown from "../../Components/Dropdown";
-import TabelaRegiao from "../../Components/Tabelas/TabelaRegiao";
+import Dropdown from "../../../Components/Dropdown";
+import TabelaRegiao from "../../../Components/Tabelas/TabelaRegiao";
 
 export default function ListaRegiao() {
   const tipos = ["Todas", "A", "B", "C"]
@@ -17,7 +17,7 @@ export default function ListaRegiao() {
 
         <div className="row">
           <div className="col-12">
-            <TabelaRegiao coluna1="# Região" coluna2="# Responsável de Região" coluna3="Ações"/>
+            <TabelaRegiao />
           </div>
         </div>
 
