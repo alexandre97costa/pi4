@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import MiniCard from '../Cards/MiniCard';
 
 //Imagem de exemplo
 import jardimMaes from '../../Assets/Images/jardimMaes.jpg'
+import Botao from '../Botao';
 
 export default function ModalAddAgenteTuristicoPontoInteresse(props) {
+    const [select, setSelect] = useState([])
+
+    let array = select
+
     const teste = [{
         id: 1,
         nome: 'Forninho da mimi'
@@ -19,6 +24,10 @@ export default function ModalAddAgenteTuristicoPontoInteresse(props) {
 
     function axiosGetPontosInteresse() {
         //Aqui vamos buscar os pontos de interesse sem agentes associados
+    }
+
+    function axiosPost() {
+        console.log(select)
     }
 
     return (
@@ -35,7 +44,13 @@ export default function ModalAddAgenteTuristicoPontoInteresse(props) {
                             {teste.map((item, index) => {
                                 return(
                                     <div key={index} className='col-12 col-sm-6 col-md-2 mb-3'>
-                                        <MiniCard imagem={jardimMaes} id={item.id} title={item.nome} />
+                                        <MiniCard imagem={jardimMaes} id={item.id} title={item.nome} onChange={(value, flag) => {
+                                            if(!flag)
+                                                return array.splice(array.indexOf(value), 1)
+
+                                            array.push(value)
+                                            setSelect(array)
+                                        }} />
                                     </div>
                                 )
                             })}
@@ -43,8 +58,8 @@ export default function ModalAddAgenteTuristicoPontoInteresse(props) {
 
                     </div>
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                        <button type="button" className="btn btn-primary">Validar</button>
+                        <Botao className="btn-secondary" dismiss="modal" texto="Fechar"/>
+                        <Botao texto="Validar" onClick={() => axiosPost()}/>
                     </div>
                 </div>
             </div>

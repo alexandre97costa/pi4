@@ -39,6 +39,8 @@ paths:
           description: Input invalido
         '403':
           description: Sem autorização
+      security:
+      - bearerAuth: []
     get:
       tags:
         - Ponto de Interesse
@@ -109,6 +111,8 @@ paths:
           description: Sem autorização
         '404':
           description: Ponto de Interesse não existe
+      security:
+      - bearerAuth: []
     patch:
       tags:
         - Ponto de Interesse
@@ -130,6 +134,8 @@ paths:
           description: Sem autorização
         '404':
           description: Ponto de Interesse não existe
+      security:
+      - bearerAuth: []
     delete:
       tags:
         - Ponto de Interesse
@@ -151,6 +157,8 @@ paths:
           description: Sem autorização
         '404':
           description: Ponto de Interesse não existe
+      security:
+      - bearerAuth: []
   /tipoPontosInteresse:
     get:
       tags:
@@ -199,6 +207,8 @@ paths:
           description: Input invalido
         '404':
           description: Utilizador/es não existem
+      security:
+      - bearerAuth: []
     put:
       tags:
         - Utilizador
@@ -220,6 +230,8 @@ paths:
           description: Sem autorização
         '404':
           description: Utilizador não existe
+      security:
+      - bearerAuth: []
     patch:
       tags:
         - Utilizador
@@ -241,6 +253,8 @@ paths:
           description: Sem autorização
         '404':
           description: Utilizador não existe
+      security:
+      - bearerAuth: []
     delete:
       tags:
         - Utilizador
@@ -262,6 +276,8 @@ paths:
           description: Sem autorização
         '404':
           description: Utilizador não existe
+      security:
+      - bearerAuth: []
   /tipoUtilizador:
     get:
       tags:
@@ -274,6 +290,8 @@ paths:
           description: Tipo de utilizador enviada com sucesso
         '400':
           description: Input invalido
+      security:
+      - bearerAuth: []
   /reservas:
     post:
       tags:
@@ -288,6 +306,8 @@ paths:
           description: Input invalido
         '403':
           description: Necessita de ter o login efetuado
+      security:
+      - bearerAuth: []
     get:
       tags:
         - Reserva
@@ -312,6 +332,8 @@ paths:
           description: Input invalido
         '404':
           description: Reserva não existe
+      security:
+      - bearerAuth: []
     put:
       tags:
         - Reserva
@@ -338,6 +360,8 @@ paths:
           description: Necessita de ter o login efetuado
         '404':
           description: Reserva não existe
+      security:
+      - bearerAuth: []
   /evento:
     post:
       tags:
@@ -351,7 +375,9 @@ paths:
         '400':
           description: Input invalido
         '403':
-          description: Sem autorização 
+          description: Sem autorização
+      security:
+      - bearerAuth: []
     get:
       tags:
         - Evento
@@ -397,6 +423,8 @@ paths:
           description: Sem atualização
         '404':
           description: Evento não existe
+      security:
+      - bearerAuth: []
     delete:
       tags:
         - Evento
@@ -418,6 +446,8 @@ paths:
           description: Sem autorização
         '404':
           description: Evento não existe
+      security:
+      - bearerAuth: []
   /tipoEventos:
     get:
       tags:
@@ -444,6 +474,8 @@ paths:
           description: Input invalido
         '403':
           description: Sem autorização
+      security:
+      - bearerAuth: []
     get:
       tags:
         - Recompensa
@@ -494,6 +526,8 @@ paths:
           description: Sem autorização
         '404':
           description: Recompensa não existe
+      security:
+      - bearerAuth: []
     delete: 
       tags:
         - Recompensa
@@ -514,7 +548,9 @@ paths:
         '403':
           description: Sem autorização
         '404':
-          description: Recompensa não existe 
+          description: Recompensa não existe
+      security:
+      - bearerAuth: []
   /voucher:
     post:
       tags:
@@ -529,6 +565,8 @@ paths:
           description: Input invalido
         '403':
           description: Sem atualização
+      security:
+      - bearerAuth: []
     get:
       tags:
         - Voucher
@@ -555,6 +593,8 @@ paths:
           description: Sem autorização
         '404':
           description: Voucher não existe
+      security:
+      - bearerAuth: []
   /distrito:
     # Não deviríamos ter alguma forma de criar distritos?
     get:
@@ -604,6 +644,8 @@ paths:
           description: Sem autorização
         '404':
           description: Distrito não foi encontrado
+      security:
+      - bearerAuth: []
   /scan:
   # Criar um scan? não deveria sé ser o get para fazer realizar o scan ao voucher?
     post:
@@ -619,6 +661,8 @@ paths:
           description: Input invalido
         '403':
           description: Sem autorização
+      security:
+      - bearerAuth: []
     get:
       tags:
         - Scan
@@ -648,11 +692,11 @@ paths:
           description: Input invalido
         '404':
           description: Scan não existe
+      security:
+      - bearerAuth: []
 components:
   securitySchemes:
-    token:
+    bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: JWT
-security:
-  - token: []
