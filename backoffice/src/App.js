@@ -103,6 +103,33 @@ export default function App() {
 						<Pages.VantagensAplicacao />
 					</Pagina>
 				} />
+				<React path='/lista-agente' element={
+					<Pagina title="Lista de Agentes Turisticos">
+						<Pages.ListaAgente/>
+					</Pagina>
+				} />
+				<React path='/reservas-evento' element={
+					<Pagina title="Reservas ao Evento">
+						<Pages.ReservasEvento/>
+					</Pagina>
+				} />
+				<React path='/evento' element={
+					<Pagina title="Eventos">
+						<Pages.Evento/>
+					</Pagina>
+				} />
+				<React path='/validar-ponto-interesse' element={
+					<Pagina title="Detalhes Agentes Turísticos">
+						<Pages.VistaDetalhadaAgente/>
+					</Pagina>
+				} />
+				<React path='/associar-ponto-interesse' element={
+					<Pagina title="associar ponto">
+						<Pages.AssociarPontoInteresse/>
+					</Pagina>
+				} />
+				
+				
 
 				<Route path='/admin/lista-regiao' element={
 					<ProtectedRoute>
