@@ -21,11 +21,9 @@ import VantagensAplicacao from "./Admin/Microsite/VantagensAplicacao/VantagensAp
 import PublicidadeAgenteTuristico from "./Admin/Microsite/GerirPublicidadeAgenteTuristico/gerirPublicidadeAgenteTuristico"
 import GerirMenu from "./Admin/Microsite/GerirMenu/gerirMenu"
 
-import ListaAgente from "./ResponsavelRegiao/ListaAgente/listaAgente"
-
 
 import HomeAdmin from './Admin/Home/home'
 
-const Pages = {Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico,AdicionarConteudo, HomeAgenteTuristico, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil, PontoInteresse, DetalhesUtilizador, PontoInteresseDetails, Recompensa, Eventos, HomeAdmin, ListaAgente}
+const Pages = {Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico,AdicionarConteudo, HomeAgenteTuristico, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil, PontoInteresse, DetalhesUtilizador, PontoInteresseDetails, Recompensa, Eventos, HomeAdmin}
 
 export default Pages

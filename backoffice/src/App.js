@@ -168,14 +168,6 @@ export default function App() {
 					</ProtectedRoute>
 				} />
 
-				<Route path='lista-Agente' element={
-					<ProtectedRoute>
-						<Pagina title='Lista de Agente Turístico'>
-							<Pages.ListaAgente />
-						</Pagina>
-					</ProtectedRoute>
-				}/>
-
 			</Routes>
 		</BrowserRouter>
 	);
