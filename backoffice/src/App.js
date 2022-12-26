@@ -202,6 +202,15 @@ export default function App() {
 					</ProtectedRoute>
 				} />
 
+
+				<Route path='/utilizadores' element={
+					<ProtectedRoute>
+						<Pagina title='utilizador'>
+							<Pages.Utilizadores/>
+						</Pagina>
+					</ProtectedRoute>
+				} />
+
 			</Routes>
 		</BrowserRouter>
 	);
