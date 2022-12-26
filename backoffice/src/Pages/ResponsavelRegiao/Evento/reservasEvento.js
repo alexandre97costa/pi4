@@ -1,6 +1,7 @@
 import React from "react";
 
 import Dropdown from "../../../Components/Dropdown";
+import TabelaListaReservaEvento from "../../../Components/Tabelas/TabelaReservarEvento";
 
 export default function ReservasEvento(){
     const tipos = ["Todas", "A", "B", "C"]
@@ -13,7 +14,11 @@ export default function ReservasEvento(){
                         <Dropdown tipos={tipos} onChange={(value) => console.log(value)} />
                     </div>                    
                 </div>
-                                
+                <div className="row">
+                    <div className="col-12">
+                        <TabelaListaReservaEvento/>
+                    </div>
+                </div>                
             </div>
 
         </>

@@ -28,7 +28,7 @@ export default function TabelaListaReservaEvento(props) {
     
 
     useEffect(() => {
-        setLista(listaReservaEventoExemplo)
+        setListaReservaEvento(listaReservaEventoExemplo)
     }, [])
 
 
@@ -44,38 +44,30 @@ export default function TabelaListaReservaEvento(props) {
                     <thead>
                         <tr>
                             <th className='text-start fw-normal fs-5' scope="col">Nome Reserva </th>
-                            <th className='fw-normal fs-5' scope="col">Recompensa</th>
-                            <th className='fw-normal fs-5 d-none d-md-table-cell' scope="col">Tipo de Recompensa</th>
-                            <th className='fw-normal fs-5' scope="col">Pontos</th>
-                            <th className='fw-normal fs-5' scope="col">Ações</th>
+                            <th className='fw-normal fs-5' scope="col">Nº Pessoas</th>
+                            <th className='fw-normal fs-5 d-none d-md-table-cell' scope="col">Hora Chegada</th>
+                            <th className='fw-normal fs-5' scope="col">Data</th>
                         </tr>
                     </thead>
 
                     <tbody className='table-group-divider'>
-                        {listaRecompensas.map((item, index) => {
+                        {listaReservaEvento.map((item, index) => {
                             if (props.tipoTabela === 'validar')
                                 return (
                                     <tr key={index} className="h-5-5rem">
-                                        <td className='text-start w-20'>{item.pontoInteresse}</td>
-                                        <td className='w-20'>{item.recompensa}</td>
-                                        <td className='w-20 d-none d-md-table-cell'>{item.tipoRecompensa}</td>
-                                        <td className='w-20'>{item.pontos}</td>
-                                        <td className='w-20'>
-                                            <button className='btn btn-outline-primary bi bi-check-lg' onClick={() => axiosValidar(index)} />
-                                            <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
-                                        </td>
+                                        <td className='text-start w-20'>{item.nomeReserva}</td>
+                                        <td className='w-20'>{item.numeroPessoas}</td>
+                                        <td className='w-20 d-none d-md-table-cell'>{item.horaChegada}</td>
+                                        <td className='w-20'>{item.data}</td>
                                     </tr>
                                 )
 
                             return (
                                 <tr key={index} className="h-5-5rem">
-                                    <td className='text-start w-20'>{item.pontoInteresse}</td>
-                                    <td className='w-20'>{item.recompensa}</td>
-                                    <td className='w-20 d-none d-md-table-cell'>{item.tipoRecompensa}</td>
-                                    <td className='w-20'>{item.pontos}</td>
-                                    <td className='w-20'>
-                                        <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
-                                    </td>
+                                    <td className='text-start w-20'>{item.nomeReserva}</td>
+                                    <td className='w-20'>{item.numeroPessoas}</td>
+                                    <td className='w-20 d-none d-md-table-cell'>{item.horaChegada}</td>
+                                    <td className='w-20'>{item.data}</td>
                                 </tr>
                             )
                         })}
