@@ -17,6 +17,10 @@ export default function TabelaListaEventos(props) {
         id: 3,
         eventos: "Recital das aves",
         pontoInteresse: "Jardim das mães",
+    },{
+        id: 4,
+        eventos: "Recital das aves",
+        pontoInteresse: "Jardim das mães",
     }]
 
     useEffect(() => {
