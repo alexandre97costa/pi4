@@ -119,19 +119,16 @@ export default function App() {
 						<Pages.Evento />
 					</Pagina>
 				} />
-				<Route path='/vista-detalhada' element={
-					<Pagina title="Detalhes Agentes Turísticos">
-						<Pages.VistaDetalhadaAgente/>
-					</Pagina>
-				} />
-				<Route path='/associar-pontos-interesse' element={
-					<Pagina title="Detalhes Agentes Turísticos">
-						<Pages.AssociarPontoInteresse/>
-					</Pagina>
-				} />
+				
 				<Route path='/validar-pontos-interesse' element={
 					<Pagina title="Validar Pontos de Interesse">
 						<Pages.ValidarPontoInteresse/>
+					</Pagina>
+				} />
+
+				<Route path='/vista-detalhadas' element={
+					<Pagina title="Detalhes Agentes Turísticos">
+						<Pages.VistaDetalhadaAgente />
 					</Pagina>
 				} />
 			

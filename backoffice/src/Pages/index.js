@@ -25,11 +25,11 @@ import ReservasEvento from "./ResponsavelRegiao/Evento/reservasEvento"
 import Evento from "./ResponsavelRegiao/Evento/evento"
 import ValidarPontoInteresse from "./ResponsavelRegiao/ValidarPontoInteresse/validarPontoInteresse"
 import VistaDetalhadaAgente from "./ResponsavelRegiao/ListaAgente/vistaDetalhadaAgente"
-import AssociarPontoInteresse from "./ResponsavelRegiao/ListaAgente/associarPontoInteresse"
+
 
 
 import HomeAdmin from './Admin/Home/home'
 
-const Pages = {Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico,AdicionarConteudo, HomeAgenteTuristico, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil, PontoInteresse, DetalhesUtilizador, PontoInteresseDetails, Recompensa, Eventos, HomeAdmin, ListaAgente, ReservasEvento, Evento, ValidarPontoInteresse, VistaDetalhadaAgente,AssociarPontoInteresse}
+const Pages = {Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico,AdicionarConteudo, HomeAgenteTuristico, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil, PontoInteresse, DetalhesUtilizador, PontoInteresseDetails, Recompensa, Eventos, HomeAdmin, ListaAgente, ReservasEvento, Evento, ValidarPontoInteresse, VistaDetalhadaAgente,}
 
 export default Pages

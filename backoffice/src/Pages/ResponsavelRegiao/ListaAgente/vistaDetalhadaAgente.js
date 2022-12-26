@@ -1,17 +1,18 @@
 import React from "react";
 
 import Dropdown from "../../../Components/Dropdown";
+import DetalhesAgenteTuristico from "../../Perfil/detalhesUtilizador";
 
 export default function VistaDetalhadaAgente(){
     const tipos = ["Todas", "A", "B", "C"]
     return(
         <>
             <div className="container-fluid">
-               <div className="row">
-                    <div className="col-4 col-md-9 d-flex justify-content-end">
-                        <Dropdown tipos={tipos} onChange={(value) => console.log(value)} />
+                <div className="row">
+                    <div className="col-12">
+                        <DetalhesAgenteTuristico/>
                     </div>
-                </div>  
+                </div>
             </div>
 
         </>
