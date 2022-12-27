@@ -65,19 +65,35 @@ export default function TabelaUtilizadores(props) {
 
                     <tbody className='table-group-divider'>
                         {utilizadores.map((item, index) => {
-                            return (
-                                <tr key={index} className="h-5-5rem">
-                                    <td className='text-start w-33'>{item.nome}</td>
-                                    <td className='w-33'>
-                                        <div className={changeClassCategoria(item.tipoUtilizador)}>{item.tipoUtilizador}</div>
-                                    </td>
-                                    <td className='w-33'>
-                                        <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
-                                        <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
-                                        <ModalSelectCategoria idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} id={item.id} />
-                                    </td>
-                                </tr>
-                            )
+                            if (item.tipoUtilizador == props.tipoTabela)
+                                return (
+                                    <tr key={index} className="h-5-5rem">
+                                        <td className='text-start w-33'>{item.nome}</td>
+                                        <td className='w-33'>
+                                            <div className={changeClassCategoria(item.tipoUtilizador)}>{item.tipoUtilizador}</div>
+                                        </td>
+                                        <td className='w-33'>
+                                            <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
+                                            <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
+                                            <ModalSelectCategoria idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} id={item.id} />
+                                        </td>
+                                    </tr>
+                                )
+
+                            if (!props.tipoTabela)
+                                return (
+                                    <tr key={index} className="h-5-5rem">
+                                        <td className='text-start w-33'>{item.nome}</td>
+                                        <td className='w-33'>
+                                            <div className={changeClassCategoria(item.tipoUtilizador)}>{item.tipoUtilizador}</div>
+                                        </td>
+                                        <td className='w-33'>
+                                            <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
+                                            <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
+                                            <ModalSelectCategoria idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} id={item.id} />
+                                        </td>
+                                    </tr>
+                                )
                         })}
                     </tbody>
                 </table>

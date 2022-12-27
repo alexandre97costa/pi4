@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+import Botao from '../Botao';
 import CardForm from '../CardForm';
 
-export default function TabelaListaValidarPontos(props) {
+export default function TabelaValidarPontos(props) {
     const [listaValidarPontos, setListaValidarPontos] = useState([])
 
     const listaValidarPontosExemplo = [{
@@ -26,7 +27,6 @@ export default function TabelaListaValidarPontos(props) {
     }]
 
     useEffect(() => {
-        
         setListaValidarPontos(listaValidarPontosExemplo)
     }, [])
 
@@ -56,20 +56,6 @@ export default function TabelaListaValidarPontos(props) {
 
                     <tbody className='table-group-divider'>
                         {listaValidarPontos.map((item, index) => {
-                            if (props.tipoTabela === 'validar')
-                                return (
-                                    <tr key={index} className="h-5-5rem">
-                                        <td className='text-start w-20'>{item.pontoInteresse}</td>
-                                        <td className='w-20'>{item.morada}</td>
-                                        <td className='w-20 d-none d-md-table-cell'>{item.tipoPontoInteresse}</td>
-                                        <td className='w-20'>{item.descricao}</td>
-                                        <td className='w-20'>
-                                            <button className='btn btn-outline-primary bi bi-check-lg' onClick={() => axiosValidar(index)} />
-                                            <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
-                                        </td>
-                                    </tr>
-                                )
-
                             return (
                                 <tr key={index} className="h-5-5rem">
                                     <td className='text-start w-20'>{item.pontoInteresse}</td>
@@ -77,8 +63,8 @@ export default function TabelaListaValidarPontos(props) {
                                     <td className='w-20 d-none d-md-table-cell'>{item.tipoPontoInteresse}</td>
                                     <td className='w-20'>{item.descricao}</td>
                                     <td className='w-20'>
-                                        <button className='btn btn-outline-primary bi bi-check-lg' onClick={() => axiosValidar(index)} />
-                                        <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
+                                        <Botao className="btn-outline-primary bi bi-check-lg" onClick={() => axiosValidar(index)}/>
+                                        <Botao className="btn-outline-danger bi bi-trash-fill ms-md-2" onClick={() => axiosDelete(index)}/>
                                     </td>
                                 </tr>
                             )
