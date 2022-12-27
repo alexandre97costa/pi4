@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Botao from '../Botao';
 
 import CardForm from '../CardForm';
 
@@ -53,13 +52,25 @@ export default function TabelaListaEventos(props) {
 
                     <tbody className='table-group-divider'>
                         {listaEventos.map((item, index) => {
+                            if (props.tipoTabela === 'validar')
+                                return (
+                                    <tr key={index} className="h-5-5rem">
+                                        <td className='text-start w-20'>{item.eventos}</td>
+                                        <td className='w-20'>{item.pontoInteresse}</td>
+                                        <td className='w-20'>
+                                            <button type="button" class="btn btn-primary">Visualizar</button>
+                                            <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
+                                        </td>
+                                    </tr>
+                                )
+
                             return (
                                 <tr key={index} className="h-5-5rem">
                                     <td className='text-start w-20'>{item.eventos}</td>
                                     <td className='w-20'>{item.pontoInteresse}</td>
                                     <td className='w-20'>
-                                        <Botao className="btn-outline-primary bi bi-plus-lg" />
-                                        <Botao className="btn-outline-danger bi bi-trash-fill ms-md-2" onClick={() => axiosDelete(index)} />
+                                        <button type="button" class="btn btn-primary">Visualizar</button>
+                                        <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
                                     </td>
                                 </tr>
                             )

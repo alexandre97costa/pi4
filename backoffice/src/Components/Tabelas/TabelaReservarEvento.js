@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import CardForm from '../CardForm';
 
-export default function TabelaReservaEvento(props) {
+export default function TabelaListaReservaEvento(props) {
     const [listaReservaEvento, setListaReservaEvento] = useState([])
 
     const listaReservaEventoExemplo = [{
@@ -25,7 +25,7 @@ export default function TabelaReservaEvento(props) {
         data: "15/01/2023",
     }]
 
-
+    
 
     useEffect(() => {
         setListaReservaEvento(listaReservaEventoExemplo)
@@ -43,7 +43,7 @@ export default function TabelaReservaEvento(props) {
                 <table className="table text-center align-middle">
                     <thead>
                         <tr>
-                            <th className='text-start fw-normal fs-5' scope="col">Nome Reserva</th>
+                            <th className='text-start fw-normal fs-5' scope="col">Nome Reserva </th>
                             <th className='fw-normal fs-5' scope="col">Nº Pessoas</th>
                             <th className='fw-normal fs-5 d-none d-md-table-cell' scope="col">Hora Chegada</th>
                             <th className='fw-normal fs-5' scope="col">Data</th>
@@ -52,6 +52,16 @@ export default function TabelaReservaEvento(props) {
 
                     <tbody className='table-group-divider'>
                         {listaReservaEvento.map((item, index) => {
+                            if (props.tipoTabela === 'validar')
+                                return (
+                                    <tr key={index} className="h-5-5rem">
+                                        <td className='text-start w-20'>{item.nomeReserva}</td>
+                                        <td className='w-20'>{item.numeroPessoas}</td>
+                                        <td className='w-20 d-none d-md-table-cell'>{item.horaChegada}</td>
+                                        <td className='w-20'>{item.data}</td>
+                                    </tr>
+                                )
+
                             return (
                                 <tr key={index} className="h-5-5rem">
                                     <td className='text-start w-20'>{item.nomeReserva}</td>

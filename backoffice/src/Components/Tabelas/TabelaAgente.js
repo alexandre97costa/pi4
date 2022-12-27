@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import CardForm from '../CardForm';
 
-import ModalSelectCategoria from '../Modais/ModalSelectCategoria';
-
-export default function TabelaUtilizadores(props) {
+export default function TabelaListaAgente(props) {
     const [utilizadores, setUtilizadores] = useState([])
 
     const utilizador = [{
         id: 1,
-        nome: "Manuel Antonio",
+        nome: "José António Gomes",
         regiao: "Viseu",
-        tipoUtilizador: "Visitante"
+        tipoUtilizador: "Agente Turístico"
     }, {
         id: 2,
-        nome: "Manuel Jeremias",
+        nome: "Luisa Machado Castro",
         regiao: "Viseu",
-        tipoUtilizador: "Responsável Região"
+        tipoUtilizador: "Agente Turístico"
     }, {
         id: 3,
         nome: "Manuel Antonio Cartão",
         regiao: "Viseu",
-        tipoUtilizador: "Responsável Região"
+        tipoUtilizador: "Agente Turístico"
     }, {
         id: 4,
         nome: "Manuel Antonio",
@@ -30,7 +28,7 @@ export default function TabelaUtilizadores(props) {
         id: 5,
         nome: "Manuel Antonio",
         regiao: "Viseu",
-        tipoUtilizador: "Visitante"
+        tipoUtilizador: "Agente Turístico"
     }]
 
     useEffect(() => {
@@ -42,7 +40,7 @@ export default function TabelaUtilizadores(props) {
             return "p-2 text-white w-50 me-auto ms-auto rounded-2 bg-visitante"
         if (tipoUtilizador === 'Responsável Região')
             return "p-2 text-white w-50 me-auto ms-auto rounded-2 bg-responsavel"
-
+        if (tipoUtilizador === 'Agente Turístico')
         return "p-2 text-white w-50 me-auto ms-auto rounded-2 bg-agente"
     }
 
@@ -72,9 +70,9 @@ export default function TabelaUtilizadores(props) {
                                         <div className={changeClassCategoria(item.tipoUtilizador)}>{item.tipoUtilizador}</div>
                                     </td>
                                     <td className='w-33'>
-                                        <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
+                                        <button type="button" class="btn btn-primary">Visualizar</button>
                                         <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
-                                        <ModalSelectCategoria idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} id={item.id} />
+                                        
                                     </td>
                                 </tr>
                             )

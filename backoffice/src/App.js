@@ -103,25 +103,19 @@ export default function App() {
 						<Pages.VantagensAplicacao />
 					</Pagina>
 				} />
-
-
-
-
-
-
 				<Route path='/lista-agentes' element={
-					<Pagina title="Lista de Agentes Turísticos">
+					<Pagina title="Lista de Agentes Turisticos">
 						<Pages.ListaAgente />
 					</Pagina>
 				} />
 
-				<Route path='/eventos/reserva' element={
-					<Pagina title="Reservas no Evento">
+				<Route path='/reservas-eventos' element={
+					<Pagina title="Reservas ao Evento">
 						<Pages.ReservasEvento />
 					</Pagina>
 				} />
 				<Route path='/eventos' element={
-					<Pagina title="Lista de Eventos">
+					<Pagina title="Evento">
 						<Pages.Evento />
 					</Pagina>
 				} />
@@ -131,12 +125,14 @@ export default function App() {
 						<Pages.ValidarPontoInteresse/>
 					</Pagina>
 				} />
+
+				<Route path='/vista-detalhadas' element={
+					<Pagina title="Detalhes Agentes Turísticos">
+						<Pages.VistaDetalhadaAgente />
+					</Pagina>
+				} />
 			
 				
-
-
-
-
 				
 
 				<Route path='/admin/lista-regiao' element={
@@ -157,7 +153,7 @@ export default function App() {
 
 				<Route path='/detalhes-utilizador' element={
 					<ProtectedRoute>
-						<Pagina title='Detalhes do Utilizador'>
+						<Pagina title='Utilizador'>
 							<Pages.DetalhesUtilizador />
 						</Pagina>
 					</ProtectedRoute>
