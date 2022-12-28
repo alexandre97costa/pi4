@@ -10,6 +10,8 @@ const dev = new devClass;
 const {
     ponto_interesse,
     pontos_ponto_interesse,
+    comentario_avaliacao,
+    imagem,
     utilizador,
     freguesia,
     tipo_interesse,
@@ -20,6 +22,28 @@ const {
 } = sequelize.models
 
 module.exports = {
+
+    test_aval: async (req, res) => {
+        await comentario_avaliacao
+            .create({
+                comentario: 'comentario de teste',
+                avaliacao: req.query?.aval ?? 3,
+                ponto_interesse_id: 1,
+                visitante_id: 1
+            })
+            .then(output => { res.status(200).json({ output }) })
+            .catch(error => { res.status(400).json(error); dev.error(error); });
+    },
+
+    test_img: async (req, res) => {
+        await imagem
+            .create({
+                url: 'https://images.unsplash.com/photo-1572085313466-6710de8d7ba3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80',
+                ponto_interesse_id: 1,
+            })
+            .then(output => { res.status(200).json({ output }) })
+            .catch(error => { res.status(400).json(error); dev.error(error); });
+    },
 
     test_ppi: async (req, res) => {
         await pontos_ponto_interesse
@@ -44,14 +68,12 @@ module.exports = {
                 num_pontos: num_pontos,
                 descricao: descricao,
                 freguesia_id: freguesia_id,
-                tipo_interesse_id: tipo_interesse_id
+                tipo_interesse_id: tipo_interesse_id,
             })
             .then(output => { res.status(200).json({ pontoInteresse: output }) })
             .catch(error => { res.status(400).json(error); throw new Error(error); });
     },
 
-    // todo: trazer imagens
-    // todo: trazer média de avaliação (talvez com hook em vez de select avg)
     getPontoInteresse: async (req, res) => {
         // * filtros
         let nome = req.query?.nome ?? '%'
@@ -60,9 +82,10 @@ module.exports = {
         let freguesiaId = req.query?.freguesiaId ?? 0
         let agenteTuristicoId = req.query?.agenteTuristicoId ?? 0
         let distritoId = req.query?.distritoId ?? 0
+        let minScans = req.query?.minScans ?? 0
+        // todo: valor minimo para a avg_avaliacao
 
         // * ordenação e paginação
-        const orderParams = ['nome']
         let order = req.query?.order ?? 'nome'
         let direction = req.query?.direction ?? 'asc'
         let offset = req.query?.offset ?? 0
@@ -73,8 +96,6 @@ module.exports = {
         let soEliminados = !!req.query?.soEliminados           // pedir só os PIs eliminados
         let validado = !!(req.query?.validado ?? true)         // True: Só PIs validados; False: Só PIs por validar
 
-
-        // todo: imagens, ratings, count de carimbos
         await ponto_interesse
             .findAndCountAll({
                 where: {
@@ -98,6 +119,9 @@ module.exports = {
                                 [Op.eq]: null // porque pode não ter agente
                             }
                         },
+                    count_scans: !!minScans ?
+                        { [Op.gt]: minScans } :
+                        { [Op.ne]: -1 },
                     deleted_at: soEliminados ?
                         { [Op.eq]: null } :
                         // se for false, quero que venham com ou sem o deleted_at
@@ -114,15 +138,15 @@ module.exports = {
                     {
                         model: freguesia,
                         required: true,
-                        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+                        attributes: ['id', 'nome'],
                         include: {
                             model: municipio,
                             required: true,
-                            attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+                            attributes: ['id', 'nome'],
                             include: {
                                 model: distrito,
                                 required: true,
-                                attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+                                attributes: ['id', 'nome'],
                                 where: {
                                     id: !!+distritoId ?
                                         +distritoId :
@@ -139,10 +163,14 @@ module.exports = {
                         }
                     }, {
                         model: utilizador,
-                        as: 'agente_turistico'
+                        as: 'agente_turistico',
+                        attributes: ['nome', 'email']
                     }, {
                         model: tipo_interesse,
                         attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+                    }, {
+                        model: imagem,
+                        attributes: ['blob', 'url'],
                     }
                 ],
                 order: [[order, direction]],
@@ -193,6 +221,7 @@ module.exports = {
                 }
             })
             .then(output => {
+                console.log(output)
                 if (!output[0])
                     return res.status(404).json("Ponto de Interesse não existe")
                 res.status(200).json({ pontoInteresse: output })
@@ -207,18 +236,31 @@ module.exports = {
         if (!pontoInteresseId)
             return res.status(400).json("Input invalido")
 
-        const { agente_turistico_id } = req.body
+        const { agente_turistico_id, validado } = req.body
 
-        await ponto_interesse
+        if(!!agente_turistico_id)
+            await ponto_interesse
+                .update({
+                    agente_turistico_id: agente_turistico_id
+                }, { where: { id: pontoInteresseId } })
+                .then(output => {
+                    if (!output[0])
+                        return res.status(404).json("Ponto de Interesse não existe")
+                    res.status(200).json({ pontoInteresse: output })
+                })
+                .catch(error => { res.status(400).json(error); throw new Error(error); })
+        
+        if(!!validado)
+            await ponto_interesse
             .update({
-                agente_turistico_id: agente_turistico_id
+                validado: validado
             }, { where: { id: pontoInteresseId } })
             .then(output => {
                 if (!output[0])
                     return res.status(404).json("Ponto de Interesse não existe")
                 res.status(200).json({ pontoInteresse: output })
             })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+            .catch(error => { res.status(400).json(error); throw new Error(error); })
     },
 
     deletePontoInteresse: async (req, res) => {

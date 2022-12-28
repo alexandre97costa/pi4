@@ -596,7 +596,6 @@ paths:
       security:
       - bearerAuth: []
   /distrito:
-    # Não deviríamos ter alguma forma de criar distritos?
     get:
       tags:
         - Distrito
@@ -647,7 +646,6 @@ paths:
       security:
       - bearerAuth: []
   /scan:
-  # Criar um scan? não deveria sé ser o get para fazer realizar o scan ao voucher?
     post:
       tags:
         - Scan
