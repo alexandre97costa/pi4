@@ -41,22 +41,22 @@ module.exports = (sequelize) => {
             },
             validado: {
                 type: DataTypes.BOOLEAN,
-                allowNull: false,
-                default: false
+                // allowNull: false,
+                defaultValue: false
             },
             // para evitar um count desnecessário à bd, sempre que há um scan este nº aumenta
             // para mais info, ver o modelo pontos_ponto_interesse
             count_scans: {
                 type: DataTypes.INTEGER,
-                allowNull: false,
-                default: 0
+                // allowNull: false,
+                defaultValue: 0
             },
             // para evitar um avg desnecessário à bd, sempre que há uma aval este nº atualiza
             // para mais info, ver o modelo comentario_avaliacao
             avg_avaliacao: {
                 type: DataTypes.DECIMAL,
-                allowNull: false,
-                default: 0.00
+                // allowNull: false,
+                defaultValue: 0.00
             }
         },
         {

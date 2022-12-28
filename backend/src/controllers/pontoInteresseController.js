@@ -68,7 +68,7 @@ module.exports = {
                 num_pontos: num_pontos,
                 descricao: descricao,
                 freguesia_id: freguesia_id,
-                tipo_interesse_id: tipo_interesse_id
+                tipo_interesse_id: tipo_interesse_id,
             })
             .then(output => { res.status(200).json({ pontoInteresse: output }) })
             .catch(error => { res.status(400).json(error); throw new Error(error); });
@@ -221,6 +221,7 @@ module.exports = {
                 }
             })
             .then(output => {
+                console.log(output)
                 if (!output[0])
                     return res.status(404).json("Ponto de Interesse não existe")
                 res.status(200).json({ pontoInteresse: output })
@@ -235,18 +236,31 @@ module.exports = {
         if (!pontoInteresseId)
             return res.status(400).json("Input invalido")
 
-        const { agente_turistico_id } = req.body
+        const { agente_turistico_id, validado } = req.body
 
-        await ponto_interesse
+        if(!!agente_turistico_id)
+            await ponto_interesse
+                .update({
+                    agente_turistico_id: agente_turistico_id
+                }, { where: { id: pontoInteresseId } })
+                .then(output => {
+                    if (!output[0])
+                        return res.status(404).json("Ponto de Interesse não existe")
+                    res.status(200).json({ pontoInteresse: output })
+                })
+                .catch(error => { res.status(400).json(error); throw new Error(error); })
+        
+        if(!!validado)
+            await ponto_interesse
             .update({
-                agente_turistico_id: agente_turistico_id
+                validado: validado
             }, { where: { id: pontoInteresseId } })
             .then(output => {
                 if (!output[0])
                     return res.status(404).json("Ponto de Interesse não existe")
                 res.status(200).json({ pontoInteresse: output })
             })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+            .catch(error => { res.status(400).json(error); throw new Error(error); })
     },
 
     deletePontoInteresse: async (req, res) => {
