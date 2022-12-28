@@ -63,7 +63,11 @@ insert into distrito(id, nome, created_at, updated_at, deleted_at, responsavel_r
 (15, 'Setúbal',             CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
 (16, 'Viana do Castelo',    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
 (17, 'Vila Real',           CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
-(18, 'Viseu',               CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1);
+(18, 'Viseu',               CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
+(19, 'Angra do Heroísmo',               CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
+(20, 'Horta',               CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
+(21, 'Ponta Delgada',               CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
+(22, 'Funchal',               CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1);
 
 insert into municipio(id, nome, created_at, updated_at, deleted_at, distrito_id) values
 ( 1, 'Agueda', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
@@ -343,7 +347,37 @@ insert into municipio(id, nome, created_at, updated_at, deleted_at, distrito_id)
 (275, 'Tondela', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 18),
 (276, 'Vila Nova de Paiva', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 18),
 (277, 'Viseu', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 18),
-(278, 'Vouzela', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 18);
+(278, 'Vouzela', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 18),
+(279, 'Angra do Heroísmo', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 19),
+(280, 'Calheta', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 19),
+(281, 'Santa Cruz da Graciosa', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 19),
+(282, 'Velas', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 19),
+(283, 'Vila Praia da Vitória', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 19),
+(284, 'Corvo', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 20),
+(285, 'Horta', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 20),
+(286, 'Lajes das Flores', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 20),
+(287, 'Lajes do Pico', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 20),
+(288, 'Madalena', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 20),
+(289, 'Santa Cruz das Flores', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 20),
+(290, 'São Roque do Pico', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 20),
+(291, 'Lagoa', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 21),
+(292, 'Nordeste', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 21),
+(293, 'Ponta Delgada', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 21),
+(294, 'Povoação', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 21),
+(295, 'Ribeira Grande', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 21),
+(296, 'Vila Franca de Campo', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 21),
+(297, 'Vila do Porto', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 21),
+(298, 'Calheta', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 22),
+(299, 'Câmara de Lobos', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 22),
+(300, 'Funchal', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 22),
+(301, 'Machico', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 22),
+(302, 'Ponta do Sol', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 22),
+(303, 'Porto Moniz', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 22),
+(304, 'Porto Santo', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 22),
+(305, 'Ribeira Brava', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 22),
+(306, 'Santa Cruz', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 22),
+(307, 'Santana', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 22),
+(308, 'São Vincente', 				CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 22);
 
 insert into freguesia(id, nome, created_at, updated_at, deleted_at, municipio_id) values
 (1, 'AGADÃO', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
