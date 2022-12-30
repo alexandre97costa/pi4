@@ -42,7 +42,7 @@ module.exports = (sequelize) => {
                     notNull: { msg: 'A data de nascimento não pode estar vazia.' },
                     isDate: { msg: 'A data de nascimento inserida não é valida.' },
                     isBefore: {
-                        args: new Date(new Date().setFullYear(new Date().getFullYear() -13)),
+                        args: new Date(new Date().setFullYear(new Date().getFullYear() -13)).toString(),
                         msg: 'Precisa de ter mais de 13 anos para se resgistar.'
                     }
                 }

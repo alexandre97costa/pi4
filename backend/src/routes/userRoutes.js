@@ -4,7 +4,7 @@ const userController = require('../controllers/userController.js')
 
 router.post('/', userController.create)
 router.post('/bulk', userController.create_in_bulk)
-router.post('/login', userController.login)
+router.get('/login', userController.login)
 router.get('/all', userController.list)
 router.get('/tipos', userController.list_tipos)
 router.put('/:id', userController.update)

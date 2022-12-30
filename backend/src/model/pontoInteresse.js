@@ -41,21 +41,18 @@ module.exports = (sequelize) => {
             },
             validado: {
                 type: DataTypes.BOOLEAN,
-                // allowNull: false,
                 defaultValue: false
             },
             // para evitar um count desnecessário à bd, sempre que há um scan este nº aumenta
             // para mais info, ver o modelo pontos_ponto_interesse
             count_scans: {
                 type: DataTypes.INTEGER,
-                // allowNull: false,
                 defaultValue: 0
             },
             // para evitar um avg desnecessário à bd, sempre que há uma aval este nº atualiza
             // para mais info, ver o modelo comentario_avaliacao
             avg_avaliacao: {
                 type: DataTypes.DECIMAL,
-                // allowNull: false,
                 defaultValue: 0.00
             }
         },
@@ -65,6 +62,19 @@ module.exports = (sequelize) => {
             freezeTableName: true, // não faz plurais nas relações com outras tabelas. Os devs agradecem :D
             paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
             timestamps: true, // created_at, updated_at, e deleted_at
+            hooks: {
+                afterBulkDestroy: async(item) => {
+                    console.log(item)
+                    await sequelize.models.evento
+                        .destroy({ where: { ponto_interesse_id: item.where.id}})
+                        .then(output => {
+                            if(!output)
+                                return console.log("Não existem eventos")
+                            console.log(output)
+                        })
+                        .catch(error => { console.log(error) })
+                }
+            }
         }
     )
 }

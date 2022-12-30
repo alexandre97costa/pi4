@@ -81,7 +81,6 @@ module.exports = {
     },
 
     create: async (req, res) => {
-
         if (
             !req.body.nome ||
             !req.body.email ||
@@ -99,11 +98,12 @@ module.exports = {
         const email = req.body.email.trim() ?? ""
         const data_nasc = req.body.data_nasc
         const password = req.body.password
+        console.log(typeof(data_nasc))
 
         await utilizador
             .findOne({ where: { email: email } })
             .then(userJaExiste => {
-                if (userJaExiste) {
+                if (userJaExiste) {                    
                     res.status(400).json({
                         success: false,
                         message: 'Utilizador com esse email já existe.'
@@ -128,6 +128,7 @@ module.exports = {
                 })
             })
             .catch(error => {
+                console.log(error)
 
                 // se for por causa de validações do sequelize, manda a msg
                 if (error.name === "SequelizeValidationError") {

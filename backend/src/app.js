@@ -14,9 +14,10 @@ const { dev: devClass } = require('./_dev/dev')
 const dev = new devClass;
 
 const exemploRoute = require('./routes/exemplo.js')
-const userRoutes = require('./routes/user.js')
+const userRoutes = require('./routes/userRoutes.js')
 const pontoInteresseRoute = require('./routes/pontoInteresseRoutes.js')
 const eventoRoute = require('./routes/eventoRoutes.js')
+const reservaRoute = require('./routes/reservaRoutes')
 
 //* Middlewares
 app.use(cors());
@@ -47,7 +48,7 @@ app.use(
     }).unless({
         path: [
             { url: '/user', methods: ['POST'] },
-            { url: '/user/login', methods: ['POST'] },
+            { url: '/user/login', methods: ['GET'] },
             { url: '/user/bulk', methods: ['POST'] },
             { url: /^\/pontoInteresse/ },
             { url: /^\/evento/ },
@@ -67,6 +68,7 @@ app.use('/exemplo', exemploRoute)
 app.use('/user', userRoutes)
 app.use('/pontoInteresse', pontoInteresseRoute)
 app.use('/evento', eventoRoute)
+app.use('/reserva', reservaRoute)
 
 // Rota de Introdução
 app.use('/', (req, res) => {

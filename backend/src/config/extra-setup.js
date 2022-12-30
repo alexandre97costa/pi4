@@ -35,7 +35,14 @@ function applyExtraSetup(sequelize) {
 
     evento.hasMany(pontos_evento, { foreignKey: 'evento_id' })
     evento.hasMany(sessao, { foreignKey: 'evento_id' })
-    evento.belongsTo(ponto_interesse, { foreignKey: 'ponto_interesse_id' })
+
+
+    evento.belongsTo(ponto_interesse, { 
+        foreignKey: 'ponto_interesse_id',
+        constraints: false,
+        hooks: true
+    })
+
     evento.belongsTo(tipo_evento, { foreignKey: 'tipo_evento_id' })
 
     freguesia.hasMany(ponto_interesse, { foreignKey: 'freguesia_id' })
@@ -46,7 +53,11 @@ function applyExtraSetup(sequelize) {
     municipio.hasMany(freguesia, { foreignKey: 'municipio_id' })
     municipio.belongsTo(distrito, { foreignKey: 'distrito_id' })
 
-    ponto_interesse.hasMany(evento, { foreignKey: 'ponto_interesse_id' })
+    ponto_interesse.hasMany(evento, { 
+        foreignKey: 'ponto_interesse_id',
+        onDelete: 'cascade',
+        hooks: true,
+    })
     ponto_interesse.hasMany(imagem, { foreignKey: 'ponto_interesse_id' })
     ponto_interesse.hasMany(comentario_avaliacao, { foreignKey: 'ponto_interesse_id' })
     ponto_interesse.hasMany(pontos_ponto_interesse, { foreignKey: 'ponto_interesse_id' })

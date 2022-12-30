@@ -4685,3 +4685,5 @@ insert into ponto_interesse(id, nome, morada, codigo_postal, num_telemovel, num_
 (7, 'Parque Aquilino Ribeiro', 'Avenida 25 de Abril n25', '3510-118', 123456789, 10, 'Parque público localizado na cidade de Viseu perfeito para uma caminhada', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00),
 (8, 'Ecopista do Dão', 'Avenida Europa', '3514-506', 123456789, 10, 'Ciclovia de 49km que percorre a antiga linha de comboio entre Santa Comba Dão e Viseu, é a maior de Portugal', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00),
 (9, 'Parque de Santiago', 'Avenida Cidade de Salamanca', '3500-001', 123456789, 10, 'Perfeito para atividades ao ar livre. Possui espaços de lazer, refeição, exercicio e de corrida.', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00);
+
+SELECT setval('ponto_interesse_id_seq', 10, true);

@@ -57,6 +57,7 @@ module.exports = {
     },
 
     postPontoInteresse: async (req, res) => {
+        console.log(req.auth)
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
         await ponto_interesse
@@ -96,6 +97,10 @@ module.exports = {
         let soEliminados = !!req.query?.soEliminados           // pedir só os PIs eliminados
         let validado = !!(req.query?.validado ?? true)         // True: Só PIs validados; False: Só PIs por validar
 
+        console.log("incluirEliminados: " + incluirEliminados)
+        console.log("soEliminados: " + soEliminados)
+
+
         await ponto_interesse
             .findAndCountAll({
                 where: {
@@ -122,8 +127,8 @@ module.exports = {
                     count_scans: !!minScans ?
                         { [Op.gt]: minScans } :
                         { [Op.ne]: -1 },
-                    deleted_at: soEliminados ?
-                        { [Op.eq]: null } :
+                    deleted_at: !!soEliminados ?
+                        { [Op.ne]: null } :
                         // se for false, quero que venham com ou sem o deleted_at
                         // a condição para virem deleted é o paranoid
                         {
@@ -176,7 +181,7 @@ module.exports = {
                 order: [[order, direction]],
                 offset,
                 limit: !!limit ? limit : null,
-                paranoid: !incluirEliminados || !soEliminados // caso um ou outro seja true, traz PIs eliminados
+                paranoid: !!incluirEliminados || !!soEliminados ? false : true // caso um ou outro seja true, traz PIs eliminados
             })
             .then(output => {
                 // caso não tenha encontrado, 404
@@ -200,7 +205,7 @@ module.exports = {
         dev.log("pontoInteresseId: " + pontoInteresseId)
 
         if (!pontoInteresseId || !agenteTuristicoId)
-            return res.status(400).json("Input invalido")
+            return res.status(400).json("Introduza pontoInteresseId e agenteTurisiticoId validos")
 
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
@@ -234,12 +239,18 @@ module.exports = {
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0
 
         if (!pontoInteresseId)
-            return res.status(400).json("Input invalido")
+            return res.status(400).json("Introduza pontoInteresseId valido")
 
         const { agente_turistico_id, validado } = req.body
 
+        if (!agente_turistico_id && !validado)
+            return res.status(400).json("Body vazio")
+
+        if(!!agente_turistico_id && !!validado)
+            return res.status(400).json("Só pode enviar um elemento no body")
+        
         if(!!agente_turistico_id)
-            await ponto_interesse
+            return await ponto_interesse
                 .update({
                     agente_turistico_id: agente_turistico_id
                 }, { where: { id: pontoInteresseId } })
@@ -251,7 +262,7 @@ module.exports = {
                 .catch(error => { res.status(400).json(error); throw new Error(error); })
         
         if(!!validado)
-            await ponto_interesse
+            return await ponto_interesse
             .update({
                 validado: validado
             }, { where: { id: pontoInteresseId } })
@@ -267,7 +278,7 @@ module.exports = {
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0
 
         if (!pontoInteresseId)
-            return res.status(400).json("Input invalido")
+            return res.status(400).json("pontoInteresseId invalido")
 
         await ponto_interesse
             .destroy({
