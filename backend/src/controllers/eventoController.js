@@ -40,7 +40,7 @@ module.exports = {
                 descricao: descricao,
                 num_vagas: num_vagas,
                 ponto_interesse_id: ponto_interesse_id,
-                tipo_evento_id: tipo_evento_id
+                tipo_evento_id: tipo_evento_id,
             })
             .then(output => { res.status(200).json({ evento: output }) })
             .catch(error => { res.status(400); throw new Error(error); });

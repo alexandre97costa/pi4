@@ -5,7 +5,8 @@ module.exports = (sequelize) => {
         {
             data_hora: {
                 type: DataTypes.DATE,
-                allowNull: false
+                allowNull: false,
+                defaultValue: new Date()
             },
             inicio_evento: DataTypes.BOOLEAN,
             fim_evento: DataTypes.BOOLEAN

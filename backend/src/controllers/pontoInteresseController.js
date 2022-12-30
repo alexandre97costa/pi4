@@ -2,7 +2,7 @@
 var sequelize = require('../config/Database')
 const { Op } = require("sequelize")
 const { dev: devClass } = require('../_dev/dev');
-const userController = require('./userController');
+const utilizadorController = require('./utilizadorController');
 const dev = new devClass;
 // * Como usar o Op:
 // * https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
@@ -57,6 +57,9 @@ module.exports = {
     },
 
     postPontoInteresse: async (req, res) => {
+        if(req.auth.tipo === 1)
+            return res.status(401).json("Sem autorização para criar Pontos de Interesse")
+
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
         await ponto_interesse
@@ -122,8 +125,8 @@ module.exports = {
                     count_scans: !!minScans ?
                         { [Op.gt]: minScans } :
                         { [Op.ne]: -1 },
-                    deleted_at: soEliminados ?
-                        { [Op.eq]: null } :
+                    deleted_at: !!soEliminados ?
+                        { [Op.ne]: null } :
                         // se for false, quero que venham com ou sem o deleted_at
                         // a condição para virem deleted é o paranoid
                         {
@@ -176,7 +179,7 @@ module.exports = {
                 order: [[order, direction]],
                 offset,
                 limit: !!limit ? limit : null,
-                paranoid: !incluirEliminados || !soEliminados // caso um ou outro seja true, traz PIs eliminados
+                paranoid: !!incluirEliminados || !!soEliminados ? false : true // caso um ou outro seja true, traz PIs eliminados
             })
             .then(output => {
                 // caso não tenha encontrado, 404
@@ -193,14 +196,16 @@ module.exports = {
     },
 
     putPontoInteresse: async (req, res) => {
+        console.log(req.auth.tipo)
+        if(req.auth.tipo === 1)
+            return res.status(401).json("Sem autorização para alterar informação do Ponto de Interesse")
+
         //if(pontoInteresse == null) then pontoInteresse = '%'
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0
         let agenteTuristicoId = req.query?.agenteTuristicoId ?? 0
 
-        dev.log("pontoInteresseId: " + pontoInteresseId)
-
         if (!pontoInteresseId || !agenteTuristicoId)
-            return res.status(400).json("Input invalido")
+            return res.status(400).json("Introduza pontoInteresseId e agenteTurisiticoId validos")
 
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
@@ -230,16 +235,31 @@ module.exports = {
     },
 
     patchPontoInteresse: async (req, res) => {
+        
         //if(pontoInteresse == null) then pontoInteresse = '%'
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0
+        const { agente_turistico_id, validado } = req.body
+        
+        if(req.auth.tipo === 1 || req.auth.tipo === 2) {
+            if(!!agente_turistico_id)
+                return res.status(401).json("Sem autorização para atualizar o Agente Turistico")
+            if(!!validado)
+                return res.status(401).json("Sem autorização para atualizar o estado do Ponto de interesse")
+            return res.status(401).json("Sem autorização")
+        }
 
         if (!pontoInteresseId)
-            return res.status(400).json("Input invalido")
+            return res.status(400).json("Introduza pontoInteresseId valido")
 
-        const { agente_turistico_id, validado } = req.body
 
+        if (!agente_turistico_id && !validado)
+            return res.status(400).json("Body vazio")
+
+        if(!!agente_turistico_id && !!validado)
+            return res.status(400).json("Só pode enviar um elemento no body")
+        
         if(!!agente_turistico_id)
-            await ponto_interesse
+            return await ponto_interesse
                 .update({
                     agente_turistico_id: agente_turistico_id
                 }, { where: { id: pontoInteresseId } })
@@ -251,7 +271,7 @@ module.exports = {
                 .catch(error => { res.status(400).json(error); throw new Error(error); })
         
         if(!!validado)
-            await ponto_interesse
+            return await ponto_interesse
             .update({
                 validado: validado
             }, { where: { id: pontoInteresseId } })
@@ -264,10 +284,13 @@ module.exports = {
     },
 
     deletePontoInteresse: async (req, res) => {
+        if(req.auth.tipo === 1 || req.auth.tipo === 2)
+            return res.status(401).json("Sem autorização para eliminar Pontos de Interesse")
+
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0
 
         if (!pontoInteresseId)
-            return res.status(400).json("Input invalido")
+            return res.status(400).json("pontoInteresseId invalido")
 
         await ponto_interesse
             .destroy({
