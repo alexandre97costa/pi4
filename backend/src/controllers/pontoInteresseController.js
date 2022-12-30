@@ -2,7 +2,7 @@
 var sequelize = require('../config/Database')
 const { Op } = require("sequelize")
 const { dev: devClass } = require('../_dev/dev');
-const userController = require('./userController');
+const utilizadorController = require('./utilizadorController');
 const dev = new devClass;
 // * Como usar o Op:
 // * https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
@@ -57,7 +57,9 @@ module.exports = {
     },
 
     postPontoInteresse: async (req, res) => {
-        console.log(req.auth)
+        if(req.auth.tipo === 1)
+            return res.status(401).json("Sem autorização para criar Pontos de Interesse")
+
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
         await ponto_interesse
@@ -96,10 +98,6 @@ module.exports = {
         let incluirEliminados = !!req.query?.incluirEliminados // incluir também os PIs eliminados
         let soEliminados = !!req.query?.soEliminados           // pedir só os PIs eliminados
         let validado = !!(req.query?.validado ?? true)         // True: Só PIs validados; False: Só PIs por validar
-
-        console.log("incluirEliminados: " + incluirEliminados)
-        console.log("soEliminados: " + soEliminados)
-
 
         await ponto_interesse
             .findAndCountAll({
@@ -198,11 +196,13 @@ module.exports = {
     },
 
     putPontoInteresse: async (req, res) => {
+        console.log(req.auth.tipo)
+        if(req.auth.tipo === 1)
+            return res.status(401).json("Sem autorização para alterar informação do Ponto de Interesse")
+
         //if(pontoInteresse == null) then pontoInteresse = '%'
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0
         let agenteTuristicoId = req.query?.agenteTuristicoId ?? 0
-
-        dev.log("pontoInteresseId: " + pontoInteresseId)
 
         if (!pontoInteresseId || !agenteTuristicoId)
             return res.status(400).json("Introduza pontoInteresseId e agenteTurisiticoId validos")
@@ -235,13 +235,22 @@ module.exports = {
     },
 
     patchPontoInteresse: async (req, res) => {
+        
         //if(pontoInteresse == null) then pontoInteresse = '%'
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0
+        const { agente_turistico_id, validado } = req.body
+        
+        if(req.auth.tipo === 1 || req.auth.tipo === 2) {
+            if(!!agente_turistico_id)
+                return res.status(401).json("Sem autorização para atualizar o Agente Turistico")
+            if(!!validado)
+                return res.status(401).json("Sem autorização para atualizar o estado do Ponto de interesse")
+            return res.status(401).json("Sem autorização")
+        }
 
         if (!pontoInteresseId)
             return res.status(400).json("Introduza pontoInteresseId valido")
 
-        const { agente_turistico_id, validado } = req.body
 
         if (!agente_turistico_id && !validado)
             return res.status(400).json("Body vazio")
@@ -275,6 +284,9 @@ module.exports = {
     },
 
     deletePontoInteresse: async (req, res) => {
+        if(req.auth.tipo === 1 || req.auth.tipo === 2)
+            return res.status(401).json("Sem autorização para eliminar Pontos de Interesse")
+
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0
 
         if (!pontoInteresseId)

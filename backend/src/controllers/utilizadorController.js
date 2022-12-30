@@ -49,7 +49,7 @@ module.exports = {
 
         const options = {
             algorithm: process.env.JWT_ALGORITHM,
-            expiresIn: !!longExp ? 300 : 30
+            expiresIn: 30000
         }
 
         res.status(200).json({
@@ -63,7 +63,7 @@ module.exports = {
     list: async (req, res) => {
         await utilizador
             .findAll({
-                attributes: ['nome', 'email', 'data_nascimento', 'updated_at'],
+                attributes: ['nome', 'email', 'password' ,'data_nascimento', 'updated_at'],
                 include: {
                     model: tipo_utilizador,
                     attributes: ['nome', 'observacoes']
