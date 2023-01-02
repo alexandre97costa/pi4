@@ -1,6 +1,6 @@
 import Teste from "./Teste/teste"
 
-import PontoInteresseDetails from "./AgenteTuristico/PontoInteresseDetails/pontoInteresseDetails"
+import PontoInteresseDetails from "./PontoInteresse/pontoInteresseDetails"
 import Eventos from './Eventos/eventos'
 import Recompensa from "./Recompensa/recompensa"
 import HomeAgenteTuristico from "./AgenteTuristico/Home/home"
@@ -27,13 +27,12 @@ import HomeResponsavelRegiao from './ResponsavelRegiao/Home/home'
 import EventosResponsavelRegiao from "./ResponsavelRegiao/Eventos/eventos"
 import ReservasEvento from './ResponsavelRegiao/Eventos/reservasEventos'
 import ValidarPontoInteresse from './ResponsavelRegiao/ValidarPontoInteresse/ValidarPontoInteresse'
-import PontoInteresseDetalheResponsavel from './ResponsavelRegiao/PontosInteresse/pontoInteresseDetalhe'
 import Vouchers from './ResponsavelRegiao/Vouchers/vouchers'
 import ListaRecompensas from './ResponsavelRegiao/Recompensas/listaRecompensas'
 import ValidarRecompensas from  './ResponsavelRegiao/Recompensas/validarRecompensas'
 
 
 
-const Pages = {Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico,AdicionarConteudo, HomeAgenteTuristico, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil, PontoInteresse, DetalhesUtilizador, PontoInteresseDetails, Recompensa, Eventos, HomeAdmin, EventosResponsavelRegiao, ReservasEvento, ValidarPontoInteresse, HomeResponsavelRegiao, PontoInteresseDetalheResponsavel, Vouchers, ListaRecompensas, ValidarRecompensas}
+const Pages = {Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico,AdicionarConteudo, HomeAgenteTuristico, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil, PontoInteresse, DetalhesUtilizador, PontoInteresseDetails, Recompensa, Eventos, HomeAdmin, EventosResponsavelRegiao, ReservasEvento, ValidarPontoInteresse, HomeResponsavelRegiao, Vouchers, ListaRecompensas, ValidarRecompensas}
 
 export default Pages

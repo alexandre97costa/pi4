@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import ConfirmarReservas from '../../../Components/Cards/CardReservas';
-import CardAdd from '../../../Components/Cards/CardAdd';
-import CardRecompensa from '../../../Components/Cards/CardRecompensa';
-import CardDetails from '../../../Components/Cards/CardDetails';
-import Carousel from '../../../Components/Carousel';
-import GraficoHorizontal from '../../../Components/GraficoHorizontal';
+import ConfirmarReservas from '../../Components/Cards/CardReservas';
+import CardAdd from '../../Components/Cards/CardAdd';
+import CardRecompensa from '../../Components/Cards/CardRecompensa';
+import CardDetails from '../../Components/Cards/CardDetails';
+import Carousel from '../../Components/Carousel';
+import GraficoHorizontal from '../../Components/GraficoHorizontal';
 
 //Imagem exemplo
-import Pancakes from '../../../Assets/Images/fotoagente.jpg'
-import coffe from '../../../Assets/Images/logo.png'
+import Pancakes from '../../Assets/Images/fotoagente.jpg'
+import coffe from '../../Assets/Images/logo.png'
 
-export default function PontoInteresseDetails() {
+export default function PontoInteresseDetails(props) {
     const imagens = [{
         imagem: Pancakes
     }, {
@@ -117,6 +117,31 @@ export default function PontoInteresseDetails() {
         //Aqui que fazemos o pedido axios das recompensa
     }
 
+    function tipoUtilizador(card) {
+        if(props.tipoUtilizador === 'Agente Turistico') {
+            if(card === 'evento')
+                return (
+                    <div className='col-12 col-md-3'>
+                        <CardAdd
+                            title='Adicionar Evento'
+                            idModal='AddEvento'
+                            nomeModal='addEvento'
+                        />
+                    </div>
+                )
+            if(card === 'recompensa')
+                return (
+                    <div className='col-12 col-md-3'>
+                        <CardAdd
+                            title='Adicionar Recompensa'
+                            idModal='AddRecompensa'
+                            nomeModal='addRecompensa'
+                        />
+                    </div>
+                )
+        }
+    }
+
     return (
         <>
             <div className='row gy-3'>
@@ -137,13 +162,7 @@ export default function PontoInteresseDetails() {
                     <p className="fs-5 text-body fw-light">Eventos</p>
                 </div>
 
-                <div className='col-12 col-md-3'>
-                    <CardAdd
-                        title='Adicionar Evento'
-                        idModal='AddEvento'
-                        nomeModal='addEvento'
-                    />
-                </div>
+                {tipoUtilizador("evento")}
 
                 {itens.map((item, index) => {
                     return (
@@ -165,13 +184,8 @@ export default function PontoInteresseDetails() {
                     <p className="fs-5 text-body fw-light">Recompensas</p>
                 </div>
 
-                <div className='col-12 col-md-3'>
-                    <CardAdd
-                        title='Adicionar Recompensa'
-                        idModal='AddRecompensa'
-                        nomeModal='addRecompensa'
-                    />
-                </div>
+                {tipoUtilizador("recompensa")}
+
 
                 {recompensa.map((item, index) => {
                     return (

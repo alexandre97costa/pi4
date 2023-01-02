@@ -12,7 +12,7 @@ export default function ValidarRecompensas() {
       <div className="container-fluid">
         <div className="row">
           <div className='col-8 col-md-3'>
-            <BotaoDashboard to="/lista-recompensas" colorBotao="btn-light btn-lg" icon="bi-journal-check" texto="Lista de Recompensas" />
+            <BotaoDashboard to="/responsavel-regiao/lista-recompensas" colorBotao="btn-light btn-lg" icon="bi-journal-check" texto="Lista de Recompensas" />
           </div>
 
           <div className="col-4 col-md-9 d-flex justify-content-end">

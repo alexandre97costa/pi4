@@ -212,7 +212,7 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Pagina title="Ponto Interesse">
-                <Pages.PontoInteresseDetalheResponsavel />
+                <Pages.PontoInteresseDetails />
               </Pagina>
             </ProtectedRoute>
           }
@@ -310,7 +310,7 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Pagina title="Ponto Interesse">
-                <Pages.PontoInteresseDetails />
+                <Pages.PontoInteresseDetails tipoUtilizador='Agente Turistico'/>
               </Pagina>
             </ProtectedRoute>
           }
