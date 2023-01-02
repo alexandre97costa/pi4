@@ -201,7 +201,7 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Pagina title="Pontos de Interesse">
-                <Pages.ConsultarPontosInteresse />
+                <Pages.PontosInteresse tipoUtilizador="Responsavel Regiao" />
               </Pagina>
             </ProtectedRoute>
           }
@@ -288,7 +288,7 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Pagina title="Lista Pontos Interesse">
-                <Pages.PontoInteresse />
+                <Pages.PontoInteresse tipoUtilizador="Agente Turisitico" />
               </Pagina>
             </ProtectedRoute>
           }
