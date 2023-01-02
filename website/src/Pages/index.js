@@ -1,3 +1,3 @@
-import { Exemplo } from "./Exemplo";
+import Index from "./Index/index";
 
-export default { Exemplo }
+export default { Index }
