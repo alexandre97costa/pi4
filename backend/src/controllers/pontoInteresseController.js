@@ -298,14 +298,14 @@ module.exports = {
             .then(output => {
                 if (!output)
                     return res.status(404).json('Ponto de interesse não existe')
-                res.status(200).json({ pontoInteresse: output })
+                return res.status(200).json({ pontoInteresse: output })
             })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+            .catch(error => { res.status(400).json(error); dev(error); });
     },
 
     getTipoPontoInteresse: async (req, res) => {
         await tipo_interesse.findAll()
             .then(output => { res.status(200).json({ tipoPontoInteresse: output }) })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+            .catch(error => { res.status(400).json(error); dev(error); });
     }
 }

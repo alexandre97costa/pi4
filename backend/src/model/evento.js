@@ -3,10 +3,6 @@ const { DataTypes } = require('sequelize')
 module.exports = (sequelize) => {
     sequelize.define('evento',
         {
-            num_pontos: {
-                type: DataTypes.INTEGER,
-                allowNull: false
-            },
             nome: {
                 type: DataTypes.STRING,
                 allowNull: false
@@ -15,10 +11,26 @@ module.exports = (sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: false
             },
+            num_pontos: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            },
             num_vagas: {
                 type: DataTypes.INTEGER,
                 defaultValue: 0,
                 allowNull: false
+            },
+            // num_horas: quantas horas demora o evento.
+            // É usado juntamente com a data/hora das sessoes
+            // para determinar se um scan a este evento é válido
+            num_horas: { 
+                type: DataTypes.INTEGER,
+                defaultValue: 1,
+                allowNull: false
+            },
+            codigo_uuid: {
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4
             }
         },
         {
