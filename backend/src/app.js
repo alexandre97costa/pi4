@@ -13,11 +13,12 @@ sequelize.sync(
 const { dev: devClass } = require('./_dev/dev')
 const dev = new devClass;
 
-const exemploRoute = require('./routes/exemplo.js')
-const utilizadorRoutes = require('./routes/utilizadorRoutes.js')
-const pontoInteresseRoute = require('./routes/pontoInteresseRoutes.js')
-const eventoRoute = require('./routes/eventoRoutes.js')
-const reservaRoute = require('./routes/reservaRoutes')
+const exemploRoute = require('./routes/exemplo')
+const utilizadorRoutes = require('./routes/utilizadorRoutes')
+const pontoInteresseRoutes = require('./routes/pontoInteresseRoutes')
+const eventoRoutes = require('./routes/eventoRoutes')
+const reservaRoutes = require('./routes/reservaRoutes')
+const scanRoutes = require('./routes/scanRoutes')
 
 //* Middlewares
 app.use(cors());
@@ -31,8 +32,12 @@ app.use(interceptor((req, res) => {
                 '\x1b[30m\x1b[45m ' + req.method +
                 ' \x1b[0m ' + req.baseUrl + req._parsedUrl.pathname +
                 ' \x1b[33m' + res.statusCode +
-                // ' \x1b[30m 🕙 ' + new Date().toLocaleTimeString().slice(0, -3) + '\x1b[0m ' +
+                
+                // params
+                (!!req.params ? '\n\x1b[35m⤷ params \x1b[30m' + JSON.stringify(req.params).replaceAll('"','\'') : '') +
+                // query
                 (!!req._parsedUrl.query ? '\n\x1b[35m⤷ query \x1b[30m' + req._parsedUrl.query.replaceAll('&', ' ') : '') +
+                // body
                 (!!req._body ? '\n\x1b[35m⤷ body \x1b[30m' + JSON.stringify(req.body).replaceAll('"','\'') : '') +
                 '\x1b[0m');
             // console.log(req)
@@ -53,14 +58,18 @@ app.use(
             { url: '/utilizador/all', methods: ['GET'] },
             { url: '/utilizador/bulk', methods: ['POST'] },
             { url: '/pontoInteresse', method: ['GET'] },
-            { url: '/pontoInteresse/tipoPontosInteresse', method: ['GET'] }
+            { url: '/pontoInteresse/tipoPontosInteresse', method: ['GET'] },
+            
+            // para os scans feitos fora da app, nao precisam de auth porque são redirecionados para o micro site
+            { url: /^\/scan/, method: ['GET'] },
+
             // { url: /^\// },
         ]
     })
 );
 // tratamento de erros do validate_jwt
 app.use(function (e, req, res, next) {
-    (e.name === "UnauthorizedError") ?
+    (e.name === 'UnauthorizedError') ?
         res.status(e.status).json(e.inner) :
         next(e);
 });
@@ -68,16 +77,15 @@ app.use(function (e, req, res, next) {
 //* Rotas
 app.use('/exemplo', exemploRoute)
 app.use('/utilizador', utilizadorRoutes)
-app.use('/pontoInteresse', pontoInteresseRoute)
-app.use('/evento', eventoRoute)
-app.use('/reserva', reservaRoute)
+app.use('/pontoInteresse', pontoInteresseRoutes)
+app.use('/evento', eventoRoutes)
+app.use('/reserva', reservaRoutes)
+app.use('/scan', scanRoutes)
 
 // Rota de Introdução
 app.use('/', (req, res) => {
-    res.status(200).json({msg: 'Yo yo, o backend tá aqui'});
+    res.status(200).json({msg: 'Vieste para o "/". Se não era suposto, verifica o método ou o url!'});
 })
-
-
 
 
 
@@ -91,8 +99,8 @@ async function assertDatabaseConnectionOk() {
         await sequelize.authenticate();
         console.log('Database connection OK!');
     } catch (error) {
-        console.log('\x1b[31mUnable to connect to the database:\x1b[0m');
-        console.log(error.message);
+        console.log('\x1b[30mUnable to connect to the database.');
+        console.log('\x1b[31m' + error.message + '\x1b[0m');
         process.exit(1);
     }
 }

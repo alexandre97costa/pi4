@@ -4,7 +4,7 @@ const { applyExtraSetup } = require('./extra-setup.js');
 const sequelize = new Sequelize(
     'pi4',              // nome da db
     'postgres',         // user
-    'R7220810',         // pass
+    'Não te esqueças que és lindo ❤',         // pass
     {
         host: 'localhost',
         port: '5432',
@@ -45,8 +45,8 @@ const models = [
     require('../model/municipio'),
     require('../model/pontoInteresse'),
     require('../model/pontoInteresseRecompensa'),
-    require('../model/pontosEvento'),
-    require('../model/pontosPontoInteresse'),
+    require('../model/scanEvento'),
+    require('../model/scanPontoInteresse'),
     require('../model/recompensa'),
     require('../model/reserva'),
     require('../model/sessao'),

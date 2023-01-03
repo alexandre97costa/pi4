@@ -1,6 +1,13 @@
+const { DataTypes } = require('sequelize')
+
 module.exports = (sequelize) => {
-    sequelize.define('pontos_ponto_interesse',
-        {},
+    sequelize.define('scan_ponto_interesse',
+        {
+            pontos_recebidos: {
+                type: DataTypes.INTEGER,
+                allowNull: false
+            }
+        },
         {
             underscored: true, // passa de 'createdAt' para 'created_at'. O postgres agradece :)
             freezeTableName: true, // não faz plurais nas relações com outras tabelas. Os devs agradecem :D
