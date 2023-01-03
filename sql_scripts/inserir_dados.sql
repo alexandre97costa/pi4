@@ -4748,5 +4748,10 @@ insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_a
 insert into evento(id, nome, num_pontos, descricao, num_vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id) values 
 (1, 'Noite Mágina no Palha Club', 50, 'Dresscode: Roupa branca', 200, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4);
 
+-- contem erro rever: raquel
+insert into pontos_evento(id, created_at, updated_at, deleted_at, evento_id, visitante_id) values 
+(1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1, 0);
+
+
 
 -- todo: atualizar as sequências de PIs e utilizadores
