@@ -4774,10 +4774,12 @@ INSERT INTO reserva (id, nome, num_pessoas, validado, confirmado, observacoes, s
 INSERT INTO comentario_avaliacao (id, visitante_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at) VALUES 
 (1, 1, 4, 'Adorei a minha visita ao jardim zoológico!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
-INSERT INTO recompensa(id, titulo, descricao, num_pontos_necessarios, created_at, updated_at, deleted_at) VALUES
-(1, 'Caneca turística', 'Caneca turística com o logotipo da cidade', 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(2, 'Café', 'Um café sabe sempre bem', 150, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
-(3, 'Voucher para jantar', 'Voucher para jantar para 2 pessoas', 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+
+
+INSERT INTO recompensa(id, active, titulo, descricao, num_pontos_necessarios, created_at, updated_at, deleted_at) VALUES
+(1, true, 'Caneca turística', 'Caneca turística com o logotipo da cidade', 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, true, 'Café', 'Um café sabe sempre bem', 150, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(3, true, 'Voucher para jantar', 'Voucher para jantar para 2 pessoas', 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
 INSERT INTO ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, created_at, updated_at, deleted_at) VALUES
  (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
