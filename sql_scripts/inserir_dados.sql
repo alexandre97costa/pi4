@@ -4687,30 +4687,30 @@ insert into ponto_interesse(id, nome, morada, codigo_postal, num_telemovel, num_
 (8, 'Ecopista do Dão', 'Avenida Europa', '3514-506', 123456789, 10, 'Ciclovia de 49km que percorre a antiga linha de comboio entre Santa Comba Dão e Viseu, é a maior de Portugal', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00),
 (9, 'Parque de Santiago', 'Avenida Cidade de Salamanca', '3500-001', 123456789, 10, 'Perfeito para atividades ao ar livre. Possui espaços de lazer, refeição, exercicio e de corrida.', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00),
 -- outros distritos
-(10, 'Torre dos Gléricos',  'R. de São Filipe de Nery, Porto', '4050-546', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2754, 1, 2, 0),
-(11, 'Ponte 25 de Abril',  'Ponte 25 de Abril, Ponte 25 de Abril, Lisboa', '2805-030', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3074, 1, 1, 0),
-(12, 'Museu da Chapelaria',  'R. António José de Oliveira Júnior 501, São João da Madeira', '3700-204', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 179, 1, 2, 0),
-(13, 'Jardim do Morro',  'Jardim do Morro, Vila Nova de Gaia', '4430-210', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2856, 1, 7, 0),
-(14, 'Jardim Zoológico de Lisboa',  'Praça Marechal Humberto Delgado, Lisboa', '1549-004', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3118, 1, 7, 0),
-(15, 'Museu de Aveiro',  'Av. Santa Joana, Aveiro', '3810-164', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2466, 1, 2, 0),
-(16, 'Salinas de Aveiro',  '8, R. Dr. Bernardino Machado, Aveiro', '3800-180', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1571, 1, 7, 0),
-(17, 'Marinha da Noeirinha',  'Av. Dr. David Cristo, Aveiro', '3800', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1571, 1, 7, 0),
-(18, 'Teatro Gretua',  'GRETUA - Grupo Experimental de Teatro da UA, Aveiro', '3810-193', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1820, 1, 2, 0),
-(19, 'Praia Fluvial Burgães',  'EM548 143, Vale de Cambra', '3730-040', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2779, 1, 9, 0),
-(20, 'Castelo de Santa Maria da Feira',  'Alameda Roberto Vaz de Oliveira 4520, Santa Maria da Feira', '4520-141', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1126, 1, 2, 0),
-(21, 'AD Modicus Sandim',  'Pavilhão Gimnodesportivo do MODICUS, Sandim', '4415-887', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2855, 1, 5, 0),
-(22, 'Quinta do Covelo',  'Q.ta do Covelo, Porto', '4200-049', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2573, 1, 7, 0),
-(23, 'Estádio do Dragão',  'Via Futebol Clube do Porto, Porto', '4350-415', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3876, 1, 5, 0),
-(24, 'Estádio Jose Alvalade',  'Rua Professor Fernando da Fonseca 1, Lisboa', '1600-410', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3118, 1, 5, 0),
-(25, 'Estádio da luz',  'Av. Eusébio da Silva Ferreira, Lisboa', '1500-313', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2214, 1, 5, 0),
-(26, 'Casino Lisboa',  'Alameda dos Oceanos 45, Lisboa', '1990-204', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2265, 1, 4, 0),
-(27, 'Castelo de Pirescoxe',  'Pc Viscondes de Castelo Branco, Santa Iria de Azoia', '2690-414', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2269, 1, 2, 0),
-(28, 'Castelo de Tavira',  'in parish of Santiago, Largo Abu-Otmane, Tavira', '8800-312', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1661, 1, 2, 0),
-(29, 'Praia do Relógio',  'Av. 25 de Abril 4, Figueira da Foz', '3080-079', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3940, 1, 9, 0),
-(30, 'Praia de Mira',  'R. 25 de Abril, Praia de Mira', '3070-726', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1397, 1, 9, 0),
-(31, 'Aliança Underground Museum',  'R. Comércio 444, Sangalhos', '3781-908', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 37, 1, 2, 0),
-(32, 'Caves São João - Sociedade dos Vinhos Irmãos Unidos, Lda',  'Estrada Real, Sangalhos', '3780-140', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 37, 1, 2, 0),
-(33, 'Castelo de Castelo Branco',  'Castelo Branco', '6000-108', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 2, 0),
+(10, 'Torre dos Gléricos',  'R. de São Filipe de Nery, Porto', '4050-546', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2754, 1, 2, 0, 0.00),
+(11, 'Ponte 25 de Abril',  'Ponte 25 de Abril, Ponte 25 de Abril, Lisboa', '2805-030', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3074, 1, 1, 0, 0.00),
+(12, 'Museu da Chapelaria',  'R. António José de Oliveira Júnior 501, São João da Madeira', '3700-204', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 179, 1, 2, 0, 0.00),
+(13, 'Jardim do Morro',  'Jardim do Morro, Vila Nova de Gaia', '4430-210', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2856, 1, 7, 0, 0.00),
+(14, 'Jardim Zoológico de Lisboa',  'Praça Marechal Humberto Delgado, Lisboa', '1549-004', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3118, 1, 7, 0, 0.00),
+(15, 'Museu de Aveiro',  'Av. Santa Joana, Aveiro', '3810-164', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2466, 1, 2, 0, 0.00),
+(16, 'Salinas de Aveiro',  '8, R. Dr. Bernardino Machado, Aveiro', '3800-180', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1571, 1, 7, 0, 0.00),
+(17, 'Marinha da Noeirinha',  'Av. Dr. David Cristo, Aveiro', '3800', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1571, 1, 7, 0, 0.00),
+(18, 'Teatro Gretua',  'GRETUA - Grupo Experimental de Teatro da UA, Aveiro', '3810-193', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1820, 1, 2, 0, 0.00),
+(19, 'Praia Fluvial Burgães',  'EM548 143, Vale de Cambra', '3730-040', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2779, 1, 9, 0, 0.00),
+(20, 'Castelo de Santa Maria da Feira',  'Alameda Roberto Vaz de Oliveira 4520, Santa Maria da Feira', '4520-141', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1126, 1, 2, 0, 0.00),
+(21, 'AD Modicus Sandim',  'Pavilhão Gimnodesportivo do MODICUS, Sandim', '4415-887', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2855, 1, 5, 0, 0.00),
+(22, 'Quinta do Covelo',  'Q.ta do Covelo, Porto', '4200-049', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2573, 1, 7, 0, 0.00),
+(23, 'Estádio do Dragão',  'Via Futebol Clube do Porto, Porto', '4350-415', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3876, 1, 5, 0, 0.00),
+(24, 'Estádio Jose Alvalade',  'Rua Professor Fernando da Fonseca 1, Lisboa', '1600-410', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3118, 1, 5, 0, 0.00),
+(25, 'Estádio da luz',  'Av. Eusébio da Silva Ferreira, Lisboa', '1500-313', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2214, 1, 5, 0, 0.00),
+(26, 'Casino Lisboa',  'Alameda dos Oceanos 45, Lisboa', '1990-204', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2265, 1, 4, 0, 0.00),
+(27, 'Castelo de Pirescoxe',  'Pc Viscondes de Castelo Branco, Santa Iria de Azoia', '2690-414', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2269, 1, 2, 0, 0.00),
+(28, 'Castelo de Tavira',  'in parish of Santiago, Largo Abu-Otmane, Tavira', '8800-312', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1661, 1, 2, 0, 0.00),
+(29, 'Praia do Relógio',  'Av. 25 de Abril 4, Figueira da Foz', '3080-079', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3940, 1, 9, 0, 0.00),
+(30, 'Praia de Mira',  'R. 25 de Abril, Praia de Mira', '3070-726', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1397, 1, 9, 0, 0.00),
+(31, 'Aliança Underground Museum',  'R. Comércio 444, Sangalhos', '3781-908', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 37, 1, 2, 0, 0.00),
+(32, 'Caves São João - Sociedade dos Vinhos Irmãos Unidos, Lda',  'Estrada Real, Sangalhos', '3780-140', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 37, 1, 2, 0, 0.00),
+(33, 'Castelo de Castelo Branco',  'Castelo Branco', '6000-108', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 2, 0, 0.00),
 
 -- viseu, restauracao
 (34, 'Taberna D. Maria',  'Avenida Alberto Sampaio 28', '3510-027', 925698744, 15, 'Comida para levar, Reservas, Lugares sentados, Televisão, Tem cadeiras de papa, Acessível a cadeiras de rodas. Wi-Fi gratuito, Música ao vivo', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 8, 0, 0.00),
@@ -4729,9 +4729,9 @@ insert into ponto_interesse(id, nome, morada, codigo_postal, num_telemovel, num_
 (41, 'Igreja de Nossa Senhora do Carmo',  'Viseu', '3500-164', 92145711, 10, 'Igreja de viseu centro aberta a todos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 3, 0, 0.00),
 
 -- outros
-(42, 'Praia do Furadouro',  'Av. do Infante Dom Henrique 602, Ovar', '3880-352', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1361, 1, 9, 0),
-(43, 'Praia do Vau',  'Coral do Vau, Portimão', '8500-820', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2117, 1, 9, 0),
-(44, 'Estádio Municipal de Portimão',  'Portimão', '8500-512', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1646, 1, 5, 0),
+(42, 'Praia do Furadouro',  'Av. do Infante Dom Henrique 602, Ovar', '3880-352', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1361, 1, 9, 0, 0.00),
+(43, 'Praia do Vau',  'Coral do Vau, Portimão', '8500-820', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2117, 1, 9, 0, 0.00),
+(44, 'Estádio Municipal de Portimão',  'Portimão', '8500-512', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1646, 1, 5, 0, 0.00);
 
 
 insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_at) values 
@@ -4746,11 +4746,11 @@ insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_a
 (9, 'Praia', 		'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
 insert into evento(id, nome, num_pontos, descricao, num_vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id) values 
-(1, 'Noite Mágina no Palha Club', 50, 'Dresscode: Roupa branca', 200, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4);
+(1, 'Noite Mágica no Palha Club', 50, 'Dresscode: Roupa branca', 200, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4);
 
 -- contem erro rever: raquel
-insert into pontos_evento(id, created_at, updated_at, deleted_at, evento_id, visitante_id) values 
-(1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1, 0);
+insert into scan_evento(id, created_at, updated_at, deleted_at, evento_id, visitante_id, pontos_recebidos) values 
+(1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1, 1, (select num_pontos from evento where id=1));
 
 
 
