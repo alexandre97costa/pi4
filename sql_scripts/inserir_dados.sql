@@ -4772,7 +4772,8 @@ INSERT INTO reserva (id, nome, num_pessoas, validado, confirmado, observacoes, s
 (1, 'João da Silva', 2, true, true, 'Sem observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
 INSERT INTO comentario_avaliacao (id, visitante_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at) VALUES 
-(1, 1, 4, 'Adorei a minha visita ao jardim zoológico!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(1, 1, 4, 'Adorei a minha visita ao jardim zoológico!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, 1, 1, 'Gostei muito do ponto de interesse!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
 
 
@@ -4782,19 +4783,16 @@ INSERT INTO recompensa(id, active, titulo, descricao, num_pontos_necessarios, cr
 (3, true, 'Voucher para jantar', 'Voucher para jantar para 2 pessoas', 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
 INSERT INTO ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, created_at, updated_at, deleted_at) VALUES
- (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
- (2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+ (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+ (2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
-INSERT INTO comentario_avaliacao (id, utilizador_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at) VALUES 
-(1, 1, 1, 'Gostei muito do ponto de interesse!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO voucher (id, data_compra, data_validade, data_usado, usado, recompensa_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
+(1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, FALSE, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
-INSERT INTO voucher (id, data_compra, data_validade, data_usado, usado, recompensa_id, utilizador_id, created_at, updated_at, deleted_at) VALUES 
-(1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, FALSE, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted_at) VALUES 
+(1, 'URL DA IMAGEM', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
-INSERT INTO imagem (id, img, ponto_interesse_id, created_at, updated_at, deleted_at) VALUES 
-(1, 'URL DA IMAGEM', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
-
-INSERT INTO candidatura_at (id, localidade_at, texto_candidatura, estado, observacoes, distrito_id, utilizador_id, created_at, updated_at, deleted_at) VALUES
-(1, 'Lisboa', 'Gostaria de apresentar a minha candidatura para ser um agente turístico em Lisboa', TRUE, 'Não tenho observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+INSERT INTO candidatura_at (id, localidade_at, texto_candidatura, estado, observacoes, distrito_id, visitante_id, created_at, updated_at, deleted_at) VALUES
+(1, 'Lisboa', 'Gostaria de apresentar a minha candidatura para ser um agente turístico em Lisboa', TRUE, 'Não tenho observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
 -- todo: atualizar as sequências de PIs e utilizadores
