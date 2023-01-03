@@ -4713,7 +4713,7 @@ insert into ponto_interesse(id, nome, morada, codigo_postal, num_telemovel, num_
 (33, 'Castelo de Castelo Branco',  'Castelo Branco', '6000-108', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 2, 0),
 
 -- viseu, restauracao
-(34, 'Taberna D. Maria',  'Avenida Alberto Sampaio 28', '3510-027', 925698744, 15, 'Comida para levar, Reservas, Lugares sentados, Televisão, Tem cadeiras de papa, Acessível a cadeiras de rodas, Serve bebidas alcoólicas, Bebidas alcoólicas, Cerveja e vinho, Apenas dinheiro, Serviço de mesa, Estacionamento na rua, Wi-Fi gratuito, Música ao vivo', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 8, 0, 0.00),
+(34, 'Taberna D. Maria',  'Avenida Alberto Sampaio 28', '3510-027', 925698744, 15, 'Comida para levar, Reservas, Lugares sentados, Televisão, Tem cadeiras de papa, Acessível a cadeiras de rodas. Wi-Fi gratuito, Música ao vivo', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 8, 0, 0.00),
 (35, 'Vintage Bistro',  'Rua Miguel Bombarda 76', '3510-088', 91567744, 50, 'Primeira hamburgueria de Viseu, com uma cozinha estilo Americana. Hambúrgueres artesanais, pratos vegan e vegetarianos. Temos Francesinhas, Saladas , Bifes, Sobremesas diversas, gin´s, Varias cervejas, etc.', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 8, 0, 0.00),
 (36, 'Maisabor',  'Rua Miguel Bombarda 29', '3510-089', 91545744, 35, 'Comida para levar, Lugares sentados, Acessível a cadeiras de rodas, Serviço de mesa, Reservas', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 8, 0, 0.00),
 
@@ -4732,5 +4732,21 @@ insert into ponto_interesse(id, nome, morada, codigo_postal, num_telemovel, num_
 (42, 'Praia do Furadouro',  'Av. do Infante Dom Henrique 602, Ovar', '3880-352', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1361, 1, 9, 0),
 (43, 'Praia do Vau',  'Coral do Vau, Portimão', '8500-820', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2117, 1, 9, 0),
 (44, 'Estádio Municipal de Portimão',  'Portimão', '8500-512', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1646, 1, 5, 0),
+
+
+insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_at) values 
+(1, 'Paisagem', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, 'Museu', 		'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(3, 'Religião', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(4, 'Bar/Discoteca','Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(5, 'Desporto', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(6, 'Comércio', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(7, 'Natureza', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(8, 'Restauração',  'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(9, 'Praia', 		'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+
+insert into evento(id, nome, num_pontos, descricao, num_vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id) values 
+(1, 'Noite Mágina no Palha Club', 50, 'Dresscode: Roupa branca', 200, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4);
+
 
 -- todo: atualizar as sequências de PIs e utilizadores
