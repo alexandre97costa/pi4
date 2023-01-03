@@ -4745,8 +4745,67 @@ insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_a
 (8, 'Restauração',  'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (9, 'Praia', 		'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
+
+
+
 insert into evento(id, nome, num_pontos, descricao, num_vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id) values 
-(1, 'Noite Mágina no Palha Club', 50, 'Dresscode: Roupa branca', 200, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4);
+(1, 'Noite Mágina no Palha Club', 50,  'Dresscode: Roupa branca',       200,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4);
+(2, 'Glow Run',                   100, 'Corrida de Pós Coloridos',      150,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 40, 5);
+(3, 'Visita Museu',                50, 'Veja as reliquias guardadas',   25,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  3, 2);
+(4, 'Feira das Velharias',         75, 'Venha comprar as reliquias do passado',   100,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  7, 6);
+(5, 'Missa do Viriato',            50, 'Missa em memória de Viriato',   25,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  6, 3);
+(6, 'Jantar dos Solteiros',        25, 'Para todos os solteiros um jantar de confraternização',   50,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  34, 8);
+(7, 'Derbie Benfica - Sporting',   100, 'Apoia os encarnados em mais um derbie fenomenal',   50,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  25, 5);
+(8, '3 dias em Mira',              50, 'Escapadinha de Fim de Semana na Praia de Mira',   10,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  30, 9);
+(9, 'Tarde de Animação Infantil',  75, 'O seu filho merece uma tarde de animação',   400,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  9, 7);
+(10, 'Prova de Vinhos',           50, 'Teste o seu palato nesta prova de vinhos',   5,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  32, 8);
+
+
+-- VERIFICAR SE ESTÁ TUDO NA CONFORMIDADE, BY ALEX :D  TY
+
+
+
+INSERT INTO comentario_avaliacao (id, utilizador_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at)
+VALUES 
+(1, 3, 4, 'Adorei a minha visita ao jardim zoológico!', 5);
+
+INSERT INTO recompensa(id, titulo, descricao, num_pontos_necessarios, created_at, updated_at, deleted_at) VALUES
+(1, 'Caneca turística', 'Caneca turística com o logotipo da cidade', 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, 'Café', 'Um café sabe sempre bem', 150, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,),
+
+INSERT INTO pontos_evento (id, evento_id, utilizador_id, created_at, updated_at, deleted_at) VALUES 
+(1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO sessao (id, data_hora, inicio_evento, fim_evento, evento_id, created_at, updated_at, deleted_at) VALUES 
+(1, '2023-01-005 10:00:00', true, false, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO reserva (id, nome, num_pessoas, validado, confirmado, observacoes, sessao_id, utilizador_id, evento_id, created_at, updated_at, deleted_at) VALUES 
+(1, 'João da Silva', 2, true, true, 'Sem observações', 1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO comentario_avaliacao (id, utilizador_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at) VALUES 
+(1, 1, 1, 'Gostei muito do ponto de interesse!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, created_at, updated_at, deleted_at) VALUES
+ (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO recompensa (nome, descricao, num_pontos_necessarios, created_at, updated_at, deleted_at)
+VALUES ('Voucher para jantar', 'Voucher para jantar para 2 pessoas', 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO voucher (id, data_compra, data_validade, data_usado, usado, recompensa_id, utilizador_id, created_at, updated_at, deleted_at) VALUES 
+(1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, FALSE, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, created_at, updated_at, deleted_at)
+VALUES (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+INSERT INTO imagem (id, img, ponto_interesse_id, created_at, updated_at, deleted_at) VALUES 
+(1, 'URL DA IMAGEM', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+
+INSERT INTO candidatura_at (localidade_at, texto_candidatura, estado, observacoes, distrito_id, utilizador_id, created_at, updated_at, deleted_at)
+VALUES ('Lisboa', 'Gostaria de apresentar a minha candidatura para ser um agente turístico em Lisboa', TRUE, 'Não tenho observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+
+
+
 
 -- contem erro rever: raquel
 insert into pontos_evento(id, created_at, updated_at, deleted_at, evento_id, visitante_id) values 
