@@ -4767,7 +4767,7 @@ insert into evento(id, nome, num_pontos, descricao, num_vagas, created_at, updat
 
 INSERT INTO comentario_avaliacao (id, utilizador_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at)
 VALUES 
-(1, 3, 4, 'Adorei a minha visita ao jardim zoológico!', 5);
+(1, 3, 4, 'Adorei a minha visita ao jardim zoológico!', 5, created_at, updated_at, deleted_at);
 
 INSERT INTO recompensa(id, titulo, descricao, num_pontos_necessarios, created_at, updated_at, deleted_at) VALUES
 (1, 'Caneca turística', 'Caneca turística com o logotipo da cidade', 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
