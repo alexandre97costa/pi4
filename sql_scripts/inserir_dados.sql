@@ -4745,9 +4745,6 @@ insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_a
 (8, 'Restauração',  'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (9, 'Praia', 		'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
-
-
-
 insert into evento(id, nome, num_pontos, descricao, num_vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id) values 
 (1, 'Noite Mágica no Palha Club', 50,  'Dresscode: Roupa branca',       200,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4),
 (2, 'Glow Run',                   100, 'Corrida de Pós Coloridos',      150,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 40, 5),
@@ -4760,39 +4757,36 @@ insert into evento(id, nome, num_pontos, descricao, num_vagas, created_at, updat
 (9, 'Tarde de Animação Infantil',  75, 'O seu filho merece uma tarde de animação',   400,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  9, 7),
 (10, 'Prova de Vinhos',           50, 'Teste o seu palato nesta prova de vinhos',   5,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  32, 8);
 
--- contem erro rever: raquel
 insert into scan_evento(id, created_at, updated_at, deleted_at, evento_id, visitante_id, pontos_recebidos) values 
 (1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1, 1, (select num_pontos from evento where id=1)),
 (2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2, 1, (select num_pontos from evento where id=2));
 
-INSERT INTO sessao (id, data_hora, inicio_evento, fim_evento, evento_id, created_at, updated_at, deleted_at) VALUES 
+insert into sessao (id, data_hora, inicio_evento, fim_evento, evento_id, created_at, updated_at, deleted_at) VALUES 
 (1, '2023-01-005 10:00:00', true, false, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
-INSERT INTO reserva (id, nome, num_pessoas, validado, confirmado, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
+insert into reserva (id, nome, num_pessoas, validado, confirmado, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
 (1, 'João da Silva', 2, true, true, 'Sem observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
-INSERT INTO comentario_avaliacao (id, visitante_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at) VALUES 
+insert into comentario_avaliacao (id, visitante_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at) VALUES 
 (1, 1, 4, 'Adorei a minha visita ao jardim zoológico!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (2, 1, 1, 'Gostei muito do ponto de interesse!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
+-- aqui temos de rever é necessario observacoes e descricao?
+insert into recompensa(id, validado, titulo, descricao, num_pontos, observacoes, created_at, updated_at, deleted_at) VALUES
+(1, false, 'Caneca turística', 'Caneca turística com o logotipo da cidade', 100, 'Caneca turística com o logotipo da cidade', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, false, 'Café', 'Um café sabe sempre bem', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(3, false, 'Voucher para jantar', 'Voucher para jantar para 2 pessoas', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
-
-INSERT INTO recompensa(id, active, titulo, descricao, num_pontos_necessarios, created_at, updated_at, deleted_at) VALUES
-(1, true, 'Caneca turística', 'Caneca turística com o logotipo da cidade', 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(2, true, 'Café', 'Um café sabe sempre bem', 150, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(3, true, 'Voucher para jantar', 'Voucher para jantar para 2 pessoas', 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
-
-INSERT INTO ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, created_at, updated_at, deleted_at) VALUES
+insert into ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, created_at, updated_at, deleted_at) VALUES
  (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
  (2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
-INSERT INTO voucher (id, data_compra, data_validade, data_usado, usado, recompensa_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
+insert into voucher (id, data_compra, data_validade, data_usado, usado, recompensa_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
 (1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, FALSE, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
-INSERT INTO imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted_at) VALUES 
+insert into imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted_at) VALUES 
 (1, 'URL DA IMAGEM', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
-INSERT INTO candidatura_at (id, localidade_at, texto_candidatura, estado, observacoes, distrito_id, visitante_id, created_at, updated_at, deleted_at) VALUES
+insert into candidatura_at (id, localidade_at, texto_candidatura, estado, observacoes, distrito_id, visitante_id, created_at, updated_at, deleted_at) VALUES
 (1, 'Lisboa', 'Gostaria de apresentar a minha candidatura para ser um agente turístico em Lisboa', TRUE, 'Não tenho observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
--- todo: atualizar as sequências de PIs e utilizadores
