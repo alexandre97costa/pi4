@@ -24,16 +24,17 @@ module.exports = {
 
         // 🚨 guard clauses
 
-        if (!email) { res.status(403).json({ message: 'Email necessário!' }); return; }
-        if (!password) { res.status(403).json({ message: 'Password necessária!' }); return; }
+        if (!email) return res.status(403).json({ message: 'Email necessário!' })
+        if (!password) return res.status(403).json({ message: 'Password necessária!' })
 
         const user = await utilizador
             .findOne({ where: { email: email } })
             .then(response => { return response?.dataValues })
-        if (!user) { res.status(400).json({ message: 'Utilizador não encontrado' }); return; }
+
+        if (!user) return res.status(400).json({ message: 'Utilizador não encontrado' })
 
         const passwordMatch = bcrypt.compareSync(password, user.password);
-        if (!passwordMatch) { res.status(400).json({ message: 'Password errada' }); return; }
+        if (!passwordMatch) return res.status(400).json({ message: 'Password errada' })
 
         // ✅ a partir daqui já verificámos que tudo está bem, siga mandar o token
 
@@ -52,12 +53,10 @@ module.exports = {
             expiresIn: 30000
         }
 
-        res.status(200).json({
+        return res.status(200).json({
             message: 'Autenticação realizada com sucesso!',
             token: jwt.sign(token, secret, options)
         });
-
-        return
     },
 
     list: async (req, res) => {
@@ -98,20 +97,11 @@ module.exports = {
         const email = req.body.email.trim() ?? ""
         const data_nasc = req.body.data_nasc
         const password = req.body.password
-        console.log(typeof(data_nasc))
 
-        await utilizador
-            .findOne({ where: { email: email } })
-            .then(userJaExiste => {
-                if (userJaExiste) {                    
-                    res.status(400).json({
-                        success: false,
-                        message: 'Utilizador com esse email já existe.'
-                    })
-                    return
-                }
-            })
-            .catch(error => { throw new Error(error) })
+        const utilizadorJaExiste = await utilizador.findOne({ where: { email: email } })
+
+        if (utilizadorJaExiste) return res.status(400).json({ message: 'Utilizador com esse email já existe.' })
+        
 
         await utilizador
             .create({
@@ -122,7 +112,6 @@ module.exports = {
             })
             .then(data => {
                 res.status(200).json({
-                    success: true,
                     message: "Utilizador registado com sucesso!",
                     data
                 })
@@ -132,8 +121,7 @@ module.exports = {
 
                 // se for por causa de validações do sequelize, manda a msg
                 if (error.name === "SequelizeValidationError") {
-                    res.status(400).json({
-                        success: false,
+                    return res.status(400).json({
                         message: error.errors.length === 1 ?
                             error.errors[0].message :
                             Array.from(error.errors, e => { return e.message })
@@ -142,10 +130,10 @@ module.exports = {
                 // se for qualquer outra coisa, manda o servidor abaixo (para sermos informados do erro) 
                 else {
                     res.status(400).json({
-                        success: false,
                         message: error
                     })
-                    throw new Error(error)
+                    dev(error)
+                    return
                 }
             })
 
@@ -154,10 +142,8 @@ module.exports = {
 
     // only available in dev mode
     create_in_bulk: async (req, res) => {
-        if (process.env.MODE !== 'dev') {
-            res.send(403).json({ message: 'Only available in a development environment.' })
-            return
-        }
+        if (process.env.MODE !== 'dev') return res.send(403).json({ message: 'Only available in a development environment.' })
+        
 
         await utilizador
             .bulkCreate(bulk_users, { individualHooks: true })
@@ -171,11 +157,10 @@ module.exports = {
             !req.body.email ||
             !req.body.tipo_utilizador_id
         ) {
-            res.status(400).json({
+            return res.status(400).json({
                 success: false,
                 message: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.'
             })
-            return
         }
     },
 
@@ -184,11 +169,10 @@ module.exports = {
             !req.body.email ||
             !req.body.tipo_utilizador_id
         ) {
-            res.status(400).json({
+            return res.status(400).json({
                 success: false,
                 message: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.'
             })
-            return
         }
 
         const email = req.body.email
@@ -219,11 +203,10 @@ module.exports = {
 
     delete: async (req, res) => {
         if (!req.body.email) {
-            res.json({
+            return res.json({
                 success: false,
                 message: 'Faltam dados! É preciso email.'
             })
-            return
         }
 
         const email = req.body.email

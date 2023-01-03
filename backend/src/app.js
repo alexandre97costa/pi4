@@ -34,13 +34,13 @@ app.use(interceptor((req, res) => {
                 ' \x1b[33m' + res.statusCode +
                 
                 // params
-                (!!req.params ? '\n\x1b[35m⤷ params \x1b[30m' + JSON.stringify(req.params).replaceAll('"','\'') : '') +
+                (Object.keys(req.params).length !== 0 ? '\n\x1b[35m⤷ params \x1b[30m' + JSON.stringify(req.params).replaceAll('"','\'') : '') +
                 // query
                 (!!req._parsedUrl.query ? '\n\x1b[35m⤷ query \x1b[30m' + req._parsedUrl.query.replaceAll('&', ' ') : '') +
                 // body
                 (!!req._body ? '\n\x1b[35m⤷ body \x1b[30m' + JSON.stringify(req.body).replaceAll('"','\'') : '') +
                 '\x1b[0m');
-            // console.log(req)
+            
             send(body);
         }
     }

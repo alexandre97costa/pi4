@@ -33,6 +33,8 @@ insert into utilizador(id, nome, email, password, data_nascimento, created_at, u
 (18, 'Raquel Almeida',      'raquelinmeidin@gmail.com',         'mcraquelnacasa',                '1996-08-01',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
 (19, 'Rui Pedro',           'ruidospcs@gmail.com',              'dospcseusou',                   '2001-10-16',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
 (20, 'Joana Pestana',       'pestaninha@hotmail.com',           'bonssonhos',                    '2004-10-12',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+-- sequencia utilizador
+SELECT setval('utilizador_id_seq', 21, true);
 
 insert into tipo_interesse(id, nome, observacoes, created_at, updated_at, deleted_at) values
 (1, 'Paisagem', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -44,6 +46,8 @@ insert into tipo_interesse(id, nome, observacoes, created_at, updated_at, delete
 (7, 'Natureza', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (8, 'Restauração',  'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (9, 'Praia', 		'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+-- sequencia tipo_interesse
+SELECT setval('tipo_interesse_id_seq', 10, true);
 
 insert into distrito(id, nome, created_at, updated_at, deleted_at, responsavel_regiao_id) values
 (1, 'Aveiro',               CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
@@ -4672,67 +4676,71 @@ insert into freguesia(id, nome, created_at, updated_at, deleted_at, municipio_id
 
 -- para transformar o nome das freguesias para PascalCase
 update freguesia set nome = initcap(nome);
-
+-- sequencia locais
+SELECT setval('distrito_id_seq', 23, true);
+SELECT setval('municipio_id_seq', 309, true);
+SELECT setval('freguesia_id_seq', 4290, true);
 
 -- pontos de interesse ficticios
-insert into ponto_interesse(id, nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, validado, created_at, updated_at, deleted_at, freguesia_id, agente_turistico_id, tipo_interesse_id, count_scans, avg_avaliacao) values
+insert into ponto_interesse(id, nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, validado, created_at, updated_at, deleted_at, freguesia_id, agente_turistico_id, tipo_interesse_id, count_scans, avg_avaliacao, codigo_uuid) values
 -- viseu
-(1, 'Jardim das Mães', 'Largo Major Teles n6', '3500-212', 123456789, 10, 'Jardim em homenagem a todas as mães, localizado no centro da cidade com passeios em caminhos de pedra', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1, 1, 1, 0, 0.00),
-(2, 'Sé Catedral de Viseu', 'Adro da Sé', '3500-195', 123456789, 10, 'Também designada por Igreja Paroquial de Santa Maria está classificada como Monumento Nacional desde 1910', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2, 1, 2, 0, 0.00),
-(3, 'Museu Nacional Grão Vasco', 'Adro da Sé', '3500-195', 123456789, 10, 'Localizado no centro histórico de Viseu foi construido no século XVI', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3, 1, 3, 0, 0.00),
-(4, 'Igreja da Misericórdia de Viseu', 'Adro da Sé', '3500-195', 123456789, 10, 'Construída no século XVIII possuio uma fachada rococó localizando-se em frente à Sé de Viseu', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4, 1, 4, 0, 0.00),
-(5, 'Jardim do Fontelo', 'Avenida José Relvas', '3500-043', 123456789, 10, 'Originalmente um parque de recreio de bispos e altos clérigos é hoje um dos locais naturais perfeito para familias e passeios ao ar livre', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 5, 1, 5, 0, 0.00),
-(6, 'Estátua de Viriato', 'Avenida da Bélgica n5', '3510-010', 123456789, 10, 'Estátua em bronze com cerca de 2,50 metros representa Viriato em posição heroica em cima de uma pedra rodeada de vários soldados lusitanos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00),
-(7, 'Parque Aquilino Ribeiro', 'Avenida 25 de Abril n25', '3510-118', 123456789, 10, 'Parque público localizado na cidade de Viseu perfeito para uma caminhada', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00),
-(8, 'Ecopista do Dão', 'Avenida Europa', '3514-506', 123456789, 10, 'Ciclovia de 49km que percorre a antiga linha de comboio entre Santa Comba Dão e Viseu, é a maior de Portugal', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00),
-(9, 'Parque de Santiago', 'Avenida Cidade de Salamanca', '3500-001', 123456789, 10, 'Perfeito para atividades ao ar livre. Possui espaços de lazer, refeição, exercicio e de corrida.', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00),
+(1, 'Jardim das Mães', 'Largo Major Teles n6', '3500-212', 123456789, 10, 'Jardim em homenagem a todas as mães, localizado no centro da cidade com passeios em caminhos de pedra', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1, 1, 1, 0, 0.00, '3594dcfc-d56c-4c2b-8361-7916af7de03e'),
+(2, 'Sé Catedral de Viseu', 'Adro da Sé', '3500-195', 123456789, 10, 'Também designada por Igreja Paroquial de Santa Maria está classificada como Monumento Nacional desde 1910', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2, 1, 2, 0, 0.00, '2c075663-07a1-4eb2-8d4d-339015644943'),
+(3, 'Museu Nacional Grão Vasco', 'Adro da Sé', '3500-195', 123456789, 10, 'Localizado no centro histórico de Viseu foi construido no século XVI', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3, 1, 3, 0, 0.00, '6eb7829f-b719-478e-81c2-60f70db22a1a'),
+(4, 'Igreja da Misericórdia de Viseu', 'Adro da Sé', '3500-195', 123456789, 10, 'Construída no século XVIII possuio uma fachada rococó localizando-se em frente à Sé de Viseu', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4, 1, 4, 0, 0.00, '6ec19beb-0483-4c50-9956-74883074d963'),
+(5, 'Jardim do Fontelo', 'Avenida José Relvas', '3500-043', 123456789, 10, 'Originalmente um parque de recreio de bispos e altos clérigos é hoje um dos locais naturais perfeito para familias e passeios ao ar livre', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 5, 1, 5, 0, 0.00, '1d5cc4e5-fe9e-4530-9633-0c115a9cad93'),
+(6, 'Estátua de Viriato', 'Avenida da Bélgica n5', '3510-010', 123456789, 10, 'Estátua em bronze com cerca de 2,50 metros representa Viriato em posição heroica em cima de uma pedra rodeada de vários soldados lusitanos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00, '81496c2f-89ab-4bd8-a8f5-cefec9a6d3c7'),
+(7, 'Parque Aquilino Ribeiro', 'Avenida 25 de Abril n25', '3510-118', 123456789, 10, 'Parque público localizado na cidade de Viseu perfeito para uma caminhada', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00, 'e0fb1f8b-9c91-4c7d-a557-04fadc1fa1b5'),
+(8, 'Ecopista do Dão', 'Avenida Europa', '3514-506', 123456789, 10, 'Ciclovia de 49km que percorre a antiga linha de comboio entre Santa Comba Dão e Viseu, é a maior de Portugal', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00, '45a20535-f637-4d9b-899e-b40f3b68d32d'),
+(9, 'Parque de Santiago', 'Avenida Cidade de Salamanca', '3500-001', 123456789, 10, 'Perfeito para atividades ao ar livre. Possui espaços de lazer, refeição, exercicio e de corrida.', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 6, 0, 0.00, 'a37c9dbe-7e55-45c9-81b1-9a7aa4ef8aeb'),
 -- outros distritos
-(10, 'Torre dos Gléricos',  'R. de São Filipe de Nery, Porto', '4050-546', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2754, 1, 2, 0, 0.00),
-(11, 'Ponte 25 de Abril',  'Ponte 25 de Abril, Ponte 25 de Abril, Lisboa', '2805-030', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3074, 1, 1, 0, 0.00),
-(12, 'Museu da Chapelaria',  'R. António José de Oliveira Júnior 501, São João da Madeira', '3700-204', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 179, 1, 2, 0, 0.00),
-(13, 'Jardim do Morro',  'Jardim do Morro, Vila Nova de Gaia', '4430-210', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2856, 1, 7, 0, 0.00),
-(14, 'Jardim Zoológico de Lisboa',  'Praça Marechal Humberto Delgado, Lisboa', '1549-004', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3118, 1, 7, 0, 0.00),
-(15, 'Museu de Aveiro',  'Av. Santa Joana, Aveiro', '3810-164', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2466, 1, 2, 0, 0.00),
-(16, 'Salinas de Aveiro',  '8, R. Dr. Bernardino Machado, Aveiro', '3800-180', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1571, 1, 7, 0, 0.00),
-(17, 'Marinha da Noeirinha',  'Av. Dr. David Cristo, Aveiro', '3800', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1571, 1, 7, 0, 0.00),
-(18, 'Teatro Gretua',  'GRETUA - Grupo Experimental de Teatro da UA, Aveiro', '3810-193', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1820, 1, 2, 0, 0.00),
-(19, 'Praia Fluvial Burgães',  'EM548 143, Vale de Cambra', '3730-040', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2779, 1, 9, 0, 0.00),
-(20, 'Castelo de Santa Maria da Feira',  'Alameda Roberto Vaz de Oliveira 4520, Santa Maria da Feira', '4520-141', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1126, 1, 2, 0, 0.00),
-(21, 'AD Modicus Sandim',  'Pavilhão Gimnodesportivo do MODICUS, Sandim', '4415-887', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2855, 1, 5, 0, 0.00),
-(22, 'Quinta do Covelo',  'Q.ta do Covelo, Porto', '4200-049', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2573, 1, 7, 0, 0.00),
-(23, 'Estádio do Dragão',  'Via Futebol Clube do Porto, Porto', '4350-415', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3876, 1, 5, 0, 0.00),
-(24, 'Estádio Jose Alvalade',  'Rua Professor Fernando da Fonseca 1, Lisboa', '1600-410', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3118, 1, 5, 0, 0.00),
-(25, 'Estádio da luz',  'Av. Eusébio da Silva Ferreira, Lisboa', '1500-313', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2214, 1, 5, 0, 0.00),
-(26, 'Casino Lisboa',  'Alameda dos Oceanos 45, Lisboa', '1990-204', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2265, 1, 4, 0, 0.00),
-(27, 'Castelo de Pirescoxe',  'Pc Viscondes de Castelo Branco, Santa Iria de Azoia', '2690-414', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2269, 1, 2, 0, 0.00),
-(28, 'Castelo de Tavira',  'in parish of Santiago, Largo Abu-Otmane, Tavira', '8800-312', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1661, 1, 2, 0, 0.00),
-(29, 'Praia do Relógio',  'Av. 25 de Abril 4, Figueira da Foz', '3080-079', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3940, 1, 9, 0, 0.00),
-(30, 'Praia de Mira',  'R. 25 de Abril, Praia de Mira', '3070-726', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1397, 1, 9, 0, 0.00),
-(31, 'Aliança Underground Museum',  'R. Comércio 444, Sangalhos', '3781-908', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 37, 1, 2, 0, 0.00),
-(32, 'Caves São João - Sociedade dos Vinhos Irmãos Unidos, Lda',  'Estrada Real, Sangalhos', '3780-140', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 37, 1, 2, 0, 0.00),
-(33, 'Castelo de Castelo Branco',  'Castelo Branco', '6000-108', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 2, 0, 0.00),
+(10, 'Torre dos Gléricos',  'R. de São Filipe de Nery, Porto', '4050-546', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2754, 1, 2, 0, 0.00, 'ff585fce-5a23-4b2a-b009-9f9ed61eaad4'),
+(11, 'Ponte 25 de Abril',  'Ponte 25 de Abril, Ponte 25 de Abril, Lisboa', '2805-030', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3074, 1, 1, 0, 0.00, '8605b37a-5c27-4cc6-8821-b5343cb68f27'),
+(12, 'Museu da Chapelaria',  'R. António José de Oliveira Júnior 501, São João da Madeira', '3700-204', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 179, 1, 2, 0, 0.00, 'eed4d0de-b12a-4a32-9e27-5c2c9d534655'),
+(13, 'Jardim do Morro',  'Jardim do Morro, Vila Nova de Gaia', '4430-210', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2856, 1, 7, 0, 0.00, '94101ac0-670b-403e-a8a5-eb5d6aa062f3'),
+(14, 'Jardim Zoológico de Lisboa',  'Praça Marechal Humberto Delgado, Lisboa', '1549-004', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3118, 1, 7, 0, 0.00, '0ea8914f-aca4-47bc-a472-a5373c73d2c7'),
+(15, 'Museu de Aveiro',  'Av. Santa Joana, Aveiro', '3810-164', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2466, 1, 2, 0, 0.00, '924c8232-7bbc-4b98-954d-74bc6fede91e'),
+(16, 'Salinas de Aveiro',  '8, R. Dr. Bernardino Machado, Aveiro', '3800-180', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1571, 1, 7, 0, 0.00, 'a960f006-ef8c-4aa7-ac5d-d83e226f9fce'),
+(17, 'Marinha da Noeirinha',  'Av. Dr. David Cristo, Aveiro', '3800', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1571, 1, 7, 0, 0.00, '1b7bce6e-2c4d-43a4-b0b2-811638ea4c80'),
+(18, 'Teatro Gretua',  'GRETUA - Grupo Experimental de Teatro da UA, Aveiro', '3810-193', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1820, 1, 2, 0, 0.00, 'e4c12d49-1488-42f8-bcba-6154b5d04259'),
+(19, 'Praia Fluvial Burgães',  'EM548 143, Vale de Cambra', '3730-040', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2779, 1, 9, 0, 0.00, '1500841c-838a-4bbf-9b56-b122a22f6c8c'),
+(20, 'Castelo de Santa Maria da Feira',  'Alameda Roberto Vaz de Oliveira 4520, Santa Maria da Feira', '4520-141', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1126, 1, 2, 0, 0.00, '91c7c2e3-864a-4bad-81a7-9589e7f14581'),
+(21, 'AD Modicus Sandim',  'Pavilhão Gimnodesportivo do MODICUS, Sandim', '4415-887', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2855, 1, 5, 0, 0.00, 'c9bccc15-6e39-4623-a3c5-cccd5572a53f'),
+(22, 'Quinta do Covelo',  'Q.ta do Covelo, Porto', '4200-049', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2573, 1, 7, 0, 0.00, '259211c8-c610-4b1e-8801-69f85b0db7b2'),
+(23, 'Estádio do Dragão',  'Via Futebol Clube do Porto, Porto', '4350-415', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3876, 1, 5, 0, 0.00, '40ef4140-1ec4-4be5-b7cc-f1dd316b2567'),
+(24, 'Estádio Jose Alvalade',  'Rua Professor Fernando da Fonseca 1, Lisboa', '1600-410', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3118, 1, 5, 0, 0.00, '545475fb-d1b0-4936-8a5f-4308b83360a1'),
+(25, 'Estádio da luz',  'Av. Eusébio da Silva Ferreira, Lisboa', '1500-313', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2214, 1, 5, 0, 0.00, '3d3404a6-329e-42d8-9d29-4885c8cd7e4f'),
+(26, 'Casino Lisboa',  'Alameda dos Oceanos 45, Lisboa', '1990-204', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2265, 1, 4, 0, 0.00, '7f11846b-7365-49ca-b8bb-3a3948b46098'),
+(27, 'Castelo de Pirescoxe',  'Pc Viscondes de Castelo Branco, Santa Iria de Azoia', '2690-414', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2269, 1, 2, 0, 0.00, 'b82c9828-6923-4d27-8f97-655996d7b2fa'),
+(28, 'Castelo de Tavira',  'in parish of Santiago, Largo Abu-Otmane, Tavira', '8800-312', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1661, 1, 2, 0, 0.00, 'c70c4dc5-3eb4-4ed0-9585-307e87dbe98f'),
+(29, 'Praia do Relógio',  'Av. 25 de Abril 4, Figueira da Foz', '3080-079', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 3940, 1, 9, 0, 0.00, '940c540f-bbcd-4b28-af01-86a8ab248c3a'),
+(30, 'Praia de Mira',  'R. 25 de Abril, Praia de Mira', '3070-726', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1397, 1, 9, 0, 0.00, 'baf6b035-9a4d-4827-8ef2-063e3a894a00'),
+(31, 'Aliança Underground Museum',  'R. Comércio 444, Sangalhos', '3781-908', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 37, 1, 2, 0, 0.00, 'cb89d62f-c813-4057-a109-d70f91a989e2'),
+(32, 'Caves São João - Sociedade dos Vinhos Irmãos Unidos, Lda',  'Estrada Real, Sangalhos', '3780-140', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 37, 1, 2, 0, 0.00, '6ac9db7c-0320-4a26-a85b-d7d5cc5ba032'),
+(33, 'Castelo de Castelo Branco',  'Castelo Branco', '6000-108', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 2, 0, 0.00, 'a68d8ce9-c498-46ed-a3bd-43886f429bd3'),
 
 -- viseu, restauracao
-(34, 'Taberna D. Maria',  'Avenida Alberto Sampaio 28', '3510-027', 925698744, 15, 'Comida para levar, Reservas, Lugares sentados, Televisão, Tem cadeiras de papa, Acessível a cadeiras de rodas. Wi-Fi gratuito, Música ao vivo', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 8, 0, 0.00),
-(35, 'Vintage Bistro',  'Rua Miguel Bombarda 76', '3510-088', 91567744, 50, 'Primeira hamburgueria de Viseu, com uma cozinha estilo Americana. Hambúrgueres artesanais, pratos vegan e vegetarianos. Temos Francesinhas, Saladas , Bifes, Sobremesas diversas, gin´s, Varias cervejas, etc.', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 8, 0, 0.00),
-(36, 'Maisabor',  'Rua Miguel Bombarda 29', '3510-089', 91545744, 35, 'Comida para levar, Lugares sentados, Acessível a cadeiras de rodas, Serviço de mesa, Reservas', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 8, 0, 0.00),
+(34, 'Taberna D. Maria',  'Avenida Alberto Sampaio 28', '3510-027', 925698744, 15, 'Comida para levar, Reservas, Lugares sentados, Televisão, Tem cadeiras de papa, Acessível a cadeiras de rodas. Wi-Fi gratuito, Música ao vivo', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 8, 0, 0.00, '23ebc712-855b-4b24-9c7a-1c847291cefd'),
+(35, 'Vintage Bistro',  'Rua Miguel Bombarda 76', '3510-088', 91567744, 50, 'Primeira hamburgueria de Viseu, com uma cozinha estilo Americana. Hambúrgueres artesanais, pratos vegan e vegetarianos. Temos Francesinhas, Saladas , Bifes, Sobremesas diversas, gin´s, Varias cervejas, etc.', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 8, 0, 0.00, '1b075a96-8f96-41b5-ab68-16dfdbfb1311'),
+(36, 'Maisabor',  'Rua Miguel Bombarda 29', '3510-089', 91545744, 35, 'Comida para levar, Lugares sentados, Acessível a cadeiras de rodas, Serviço de mesa, Reservas', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 8, 0, 0.00, '869db54c-9624-404b-ac89-ca650360f276'),
 
 --viseu comercio
-(37, 'Tavares',  'Rua Formosa, n.º 77', '3500-135', 91145744, 60, 'Loja Tavares, vestuário para todos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 6, 0, 0.00),
+(37, 'Tavares',  'Rua Formosa, n.º 77', '3500-135', 91145744, 60, 'Loja Tavares, vestuário para todos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 6, 0, 0.00, 'f09d1923-899f-4441-9b6e-4e63f4b402d6'),
 
 -- viseu, bar/discoteca
-(38, 'Palha Club',  'Rua Engº Beirão Carmo, nº 38', '3500-445', 91145717, 10, 'Festa garantida a um ótimo preço', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 4, 0, 0.00),
-(39, 'Amazóna',  'Av. Ten-Cel. Silva Simões', '3510-512', 93645711, 10, 'Amazing Amazónia para todos os seres animados', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 4, 0, 0.00),
+(38, 'Palha Club',  'Rua Engº Beirão Carmo, nº 38', '3500-445', 91145717, 10, 'Festa garantida a um ótimo preço', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 4, 0, 0.00, '4a8cddcf-f1da-437c-ba14-7f888744bea0'),
+(39, 'Amazóna',  'Av. Ten-Cel. Silva Simões', '3510-512', 93645711, 10, 'Amazing Amazónia para todos os seres animados', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 4, 0, 0.00, '9bcd8c21-adbd-49b3-ace1-7a83f7a322c8'),
 
 -- viseu, religiao
-(40, 'Igreja da Misericórdia de Viseu',  'Adro Sé, Viseu', '3510-512', 93645711, 10, 'Igreja aberta a todos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 3, 0, 0.00),
-(41, 'Igreja de Nossa Senhora do Carmo',  'Viseu', '3500-164', 92145711, 10, 'Igreja de viseu centro aberta a todos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 3, 0, 0.00),
+(40, 'Igreja da Misericórdia de Viseu',  'Adro Sé, Viseu', '3510-512', 93645711, 10, 'Igreja aberta a todos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 3, 0, 0.00, 'b4d575c1-b1b7-42e5-8cff-160b823b9200'),
+(41, 'Igreja de Nossa Senhora do Carmo',  'Viseu', '3500-164', 92145711, 10, 'Igreja de viseu centro aberta a todos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 3, 0, 0.00, '40725b9a-f0b4-41fb-a9a9-1b5fe0f57ae8'),
 
 -- outros
-(42, 'Praia do Furadouro',  'Av. do Infante Dom Henrique 602, Ovar', '3880-352', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1361, 1, 9, 0, 0.00),
-(43, 'Praia do Vau',  'Coral do Vau, Portimão', '8500-820', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2117, 1, 9, 0, 0.00),
-(44, 'Estádio Municipal de Portimão',  'Portimão', '8500-512', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1646, 1, 5, 0, 0.00);
-
+(42, 'Praia do Furadouro',  'Av. do Infante Dom Henrique 602, Ovar', '3880-352', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1361, 1, 9, 0, 0.00, '086b192c-6721-40b9-9e7d-d27f8651202b'),
+(43, 'Praia do Vau',  'Coral do Vau, Portimão', '8500-820', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2117, 1, 9, 0, 0.00, 'f0b0508d-2409-455b-b295-e021a4c0e910'),
+(44, 'Estádio Municipal de Portimão',  'Portimão', '8500-512', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1646, 1, 5, 0, 0.00, 'bdf87702-8bbc-40eb-8f8a-f5d7e3a4bd80');
+-- sequencia ponto_interesse
+SELECT setval('ponto_interesse_id_seq', 45, true);
 
 insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_at) values 
 (1, 'Paisagem', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -4744,49 +4752,103 @@ insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_a
 (7, 'Natureza', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (8, 'Restauração',  'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (9, 'Praia', 		'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+-- sequencia tipo_evento
+SELECT setval('tipo_evento_id_seq', 10, true);
 
-insert into evento(id, nome, num_pontos, descricao, num_vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id) values 
-(1, 'Noite Mágica no Palha Club', 50,  'Dresscode: Roupa branca',       200,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4),
-(2, 'Glow Run',                   100, 'Corrida de Pós Coloridos',      150,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 40, 5),
-(3, 'Visita Museu',                50, 'Veja as reliquias guardadas',   25,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  3, 2),
-(4, 'Feira das Velharias',         75, 'Venha comprar as reliquias do passado',   100,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  7, 6),
-(5, 'Missa do Viriato',            50, 'Missa em memória de Viriato',   25,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  6, 3),
-(6, 'Jantar dos Solteiros',        25, 'Para todos os solteiros um jantar de confraternização',   50,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  34, 8),
-(7, 'Derbie Benfica - Sporting',   100, 'Apoia os encarnados em mais um derbie fenomenal',   50,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  25, 5),
-(8, '3 dias em Mira',              50, 'Escapadinha de Fim de Semana na Praia de Mira',   10,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  30, 9),
-(9, 'Tarde de Animação Infantil',  75, 'O seu filho merece uma tarde de animação',   400,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  9, 7),
-(10, 'Prova de Vinhos',           50, 'Teste o seu palato nesta prova de vinhos',   5,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  32, 8);
 
+
+
+
+
+
+
+
+
+
+
+insert into evento(id, nome, num_pontos, num_horas, descricao, num_vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id, codigo_uuid) values 
+(1, 'Noite Mágica no Palha Club',  50,  3, 'Dresscode: Roupa branca',       200,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4, '05f8ad77-b0b0-40b4-a37f-ed080007e422'),
+(2, 'Glow Run',                    100, 9, 'Corrida de Pós Coloridos',      150,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 40, 5, '949aa71d-8cee-4ebc-a049-f0215e48eca8'),
+(3, 'Visita Museu',                50,  8, 'Veja as reliquias guardadas',   25,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  3, 2, '1d8c321b-0136-4b47-bced-4af3e4b4d145'),
+(4, 'Feira das Velharias',         75,  7, 'Venha comprar as reliquias do passado',   100,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  7, 6, '0ecc5b50-0224-4229-81e3-acd56aa44e43'),
+(5, 'Missa do Viriato',            50,  6, 'Missa em memória de Viriato',   25,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  6, 3, 'ea3cd9e8-efda-4eb1-83a5-d2c18c828ecd'),
+(6, 'Jantar dos Solteiros',        25,  5, 'Para todos os solteiros um jantar de confraternização',   50,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  34, 8, '994da453-138a-42ba-86de-1087aed9dcc8'),
+(7, 'Derbie Benfica - Sporting',   100, 4, 'Apoia os encarnados em mais um derbie fenomenal',   50,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  25, 5, '8daac093-709e-4d15-bdf6-b4d352c47779'),
+(8, '3 dias em Mira',              50,  3, 'Escapadinha de Fim de Semana na Praia de Mira',   10,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  30, 9, '16b5b558-e658-4b2d-9839-b1c897260c3d'),
+(9, 'Tarde de Animação Infantil',  75,  2, 'O seu filho merece uma tarde de animação',   400,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  9, 7, '107b7d59-e596-43b6-a26e-6abc990c4335'),
+(10, 'Prova de Vinhos',            50,  4, 'Teste o seu palato nesta prova de vinhos',   5,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  32, 8, '06183bff-5079-4754-b70a-9dd4003ee603');
+-- sequencia evento
+SELECT setval('evento_id_seq', 11, true);
+
+-- todo: sequencias daqui pra baixo
 insert into scan_evento(id, created_at, updated_at, deleted_at, evento_id, visitante_id, pontos_recebidos) values 
 (1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1, 1, (select num_pontos from evento where id=1)),
 (2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2, 1, (select num_pontos from evento where id=2));
+-- sequencia scan_ponto_interesse
+SELECT setval('scan_ponto_interesse_id_seq', 3, true);
 
-insert into sessao (id, data_hora, inicio_evento, fim_evento, evento_id, created_at, updated_at, deleted_at) VALUES 
-(1, '2023-01-005 10:00:00', true, false, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+INSERT INTO sessao (id, data_hora, inicio_evento, fim_evento, evento_id, created_at, updated_at, deleted_at) VALUES 
+(1, '2023-01-05 17:00:00', false, false, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, '2023-01-06 16:00:00', false, false, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(3, '2023-01-07 15:00:00', false, false, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(4, '2023-01-08 14:00:00', false, false, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(5, '2023-01-09 13:00:00', false, false, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(6, '2023-01-10 12:00:00', false, false, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(7, '2023-01-11 11:00:00', false, false, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(8, '2023-01-12 10:00:00', false, false, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+-- sequencia sessao
+SELECT setval('sessao_id_seq', 9, true);
 
 insert into reserva (id, nome, num_pessoas, validado, confirmado, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
 (1, 'João da Silva', 2, true, true, 'Sem observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+-- sequencia reserva
+SELECT setval('reserva_id_seq', 2, true);
 
 insert into comentario_avaliacao (id, visitante_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at) VALUES 
 (1, 1, 4, 'Adorei a minha visita ao jardim zoológico!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (2, 1, 1, 'Gostei muito do ponto de interesse!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+-- sequencia comentario_avaliacao
+SELECT setval('comentario_avaliacao_id_seq', 3, true);
 
 -- aqui temos de rever é necessario observacoes e descricao?
 insert into recompensa(id, validado, titulo, descricao, num_pontos, observacoes, created_at, updated_at, deleted_at) VALUES
 (1, false, 'Caneca turística', 'Caneca turística com o logotipo da cidade', 100, 'Caneca turística com o logotipo da cidade', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (2, false, 'Café', 'Um café sabe sempre bem', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (3, false, 'Voucher para jantar', 'Voucher para jantar para 2 pessoas', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+-- sequencia recompensa
+SELECT setval('recompensa_id_seq', 4, true);
 
 insert into ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, created_at, updated_at, deleted_at) VALUES
  (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
  (2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+ -- sequencia ponto_interesse_recompensa
+SELECT setval('ponto_interesse_recompensa_id_seq', 3, true);
 
 insert into voucher (id, data_compra, data_validade, data_usado, usado, recompensa_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
 (1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, FALSE, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+ -- sequencia voucher
+SELECT setval('voucher_id_seq', 2, true);
 
 insert into imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted_at) VALUES 
 (1, 'URL DA IMAGEM', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+-- sequencia imagem
+SELECT setval('imagem_id_seq', 2, true);
 
 insert into candidatura_at (id, localidade_at, texto_candidatura, estado, observacoes, distrito_id, visitante_id, created_at, updated_at, deleted_at) VALUES
 (1, 'Lisboa', 'Gostaria de apresentar a minha candidatura para ser um agente turístico em Lisboa', TRUE, 'Não tenho observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+-- sequencia candidatura_at
+SELECT setval('candidatura_at_id_seq', 2, true);
 
+insert into scan_ponto_interesse values 
+(1, 10, current_timestamp, current_timestamp, null, 1 , 8),
+(2, 20, current_timestamp, current_timestamp, null, 2 , 7),
+(3, 30, current_timestamp, current_timestamp, null, 3 , 6),
+(4, 40, current_timestamp, current_timestamp, null, 4 , 5),
+(5, 50, current_timestamp, current_timestamp, null, 5 , 4),
+(6, 60, current_timestamp, current_timestamp, null, 6 , 3),
+(7, 70, current_timestamp, current_timestamp, null, 7 , 2),
+(8, 80, current_timestamp, current_timestamp, null, 8 , 1);
+-- sequencia scan_ponto_interesse
+SELECT setval('scan_ponto_interesse_id_seq', 9, true);
+
+select 'Todos os dados inseridos com sucesso!';
