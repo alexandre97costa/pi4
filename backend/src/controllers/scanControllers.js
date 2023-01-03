@@ -21,7 +21,8 @@ const {
 
 module.exports = {
     anonymousScan: async (req, res) => {
-        res.status(302).redirect('https://google.com')
+        res.status(200).json(req.params.codigo)
+        // res.status(302).redirect('https://google.com')
     },
     visitanteScan: async (req, res) => {
         // Não permitir scans de utilizadores que não sejam visitantes

@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
                     is: {
                         args: /^[0-9]{4}-[0-9]{3}$/i, // regex codigo postal (4 numeros + hiphen + 3 numeros)
                         msg: 'o valor inserido não corresponde ao padrão xxxx-xxx'
-                    } 
+                    }
                 }
             },
             num_telemovel: {
@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
                     is: {
                         args: /^[0-9]{9}$/i, // regex nº tlm (9 numeros)
                         msg: 'o valor inserido não tem 9 números'
-                    } 
+                    }
                 }
             },
             num_pontos: {
@@ -54,6 +54,10 @@ module.exports = (sequelize) => {
             avg_avaliacao: {
                 type: DataTypes.DECIMAL,
                 defaultValue: 0.00
+            },
+            codigo_uuid: {
+                type: DataTypes.UUID,
+                defaultValue: DataTypes.UUIDV4
             }
         },
         {
@@ -63,12 +67,12 @@ module.exports = (sequelize) => {
             paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
             timestamps: true, // created_at, updated_at, e deleted_at
             hooks: {
-                afterBulkDestroy: async(item) => {
+                afterBulkDestroy: async (item) => {
                     console.log(item)
                     await sequelize.models.evento
-                        .destroy({ where: { ponto_interesse_id: item.where.id}})
+                        .destroy({ where: { ponto_interesse_id: item.where.id } })
                         .then(output => {
-                            if(!output)
+                            if (!output)
                                 return console.log("Não existem eventos")
                             console.log(output)
                         })
