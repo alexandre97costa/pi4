@@ -4710,6 +4710,27 @@ insert into ponto_interesse(id, nome, morada, codigo_postal, num_telemovel, num_
 (30, 'Praia de Mira',  'R. 25 de Abril, Praia de Mira', '3070-726', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1397, 1, 9, 0),
 (31, 'Aliança Underground Museum',  'R. Comércio 444, Sangalhos', '3781-908', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 37, 1, 2, 0),
 (32, 'Caves São João - Sociedade dos Vinhos Irmãos Unidos, Lda',  'Estrada Real, Sangalhos', '3780-140', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 37, 1, 2, 0),
-(33, 'Castelo de Castelo Branco',  'Castelo Branco', '6000-108', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 2, 0);
+(33, 'Castelo de Castelo Branco',  'Castelo Branco', '6000-108', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 2, 0),
+
+-- viseu, restauracao
+(34, 'Taberna D. Maria',  'Avenida Alberto Sampaio 28', '3510-027', 925698744, 15, 'Comida para levar, Reservas, Lugares sentados, Televisão, Tem cadeiras de papa, Acessível a cadeiras de rodas, Serve bebidas alcoólicas, Bebidas alcoólicas, Cerveja e vinho, Apenas dinheiro, Serviço de mesa, Estacionamento na rua, Wi-Fi gratuito, Música ao vivo', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 8, 0, 0.00),
+(35, 'Vintage Bistro',  'Rua Miguel Bombarda 76', '3510-088', 91567744, 50, 'Primeira hamburgueria de Viseu, com uma cozinha estilo Americana. Hambúrgueres artesanais, pratos vegan e vegetarianos. Temos Francesinhas, Saladas , Bifes, Sobremesas diversas, gin´s, Varias cervejas, etc.', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 8, 0, 0.00),
+(36, 'Maisabor',  'Rua Miguel Bombarda 29', '3510-089', 91545744, 35, 'Comida para levar, Lugares sentados, Acessível a cadeiras de rodas, Serviço de mesa, Reservas', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 8, 0, 0.00),
+
+--viseu comercio
+(37, 'Tavares',  'Rua Formosa, n.º 77', '3500-135', 91145744, 60, 'Loja Tavares, vestuário para todos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 6, 0, 0.00),
+
+-- viseu, bar/discoteca
+(38, 'Palha Club',  'Rua Engº Beirão Carmo, nº 38', '3500-445', 91145717, 10, 'Festa garantida a um ótimo preço', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 4, 0, 0.00),
+(39, 'Amazóna',  'Av. Ten-Cel. Silva Simões', '3510-512', 93645711, 10, 'Amazing Amazónia para todos os seres animados', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 4, 0, 0.00),
+
+-- viseu, religiao
+(40, 'Igreja da Misericórdia de Viseu',  'Adro Sé, Viseu', '3510-512', 93645711, 10, 'Igreja aberta a todos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 3, 0, 0.00),
+(41, 'Igreja de Nossa Senhora do Carmo',  'Viseu', '3500-164', 92145711, 10, 'Igreja de viseu centro aberta a todos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 3, 0, 0.00),
+
+-- outros
+(42, 'Praia do Furadouro',  'Av. do Infante Dom Henrique 602, Ovar', '3880-352', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1361, 1, 9, 0),
+(43, 'Praia do Vau',  'Coral do Vau, Portimão', '8500-820', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2117, 1, 9, 0),
+(44, 'Estádio Municipal de Portimão',  'Portimão', '8500-512', 123456789, 10, 'Uma descrição', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1646, 1, 5, 0),
 
 -- todo: atualizar as sequências de PIs e utilizadores
