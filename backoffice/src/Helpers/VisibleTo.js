@@ -7,5 +7,6 @@ import auth from '../Auth/auth.service'
 // 4 = administrador
 
 export default function VisibleTo({tipo, children}) { 
+    // todo: mudar pra getCurrentUser() por ser async
     return auth.getTipo() === tipo && children 
 }

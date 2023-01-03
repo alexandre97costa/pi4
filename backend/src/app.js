@@ -14,9 +14,10 @@ const { dev: devClass } = require('./_dev/dev')
 const dev = new devClass;
 
 const exemploRoute = require('./routes/exemplo.js')
-const userRoutes = require('./routes/user.js')
+const utilizadorRoutes = require('./routes/utilizadorRoutes.js')
 const pontoInteresseRoute = require('./routes/pontoInteresseRoutes.js')
 const eventoRoute = require('./routes/eventoRoutes.js')
+const reservaRoute = require('./routes/reservaRoutes')
 
 //* Middlewares
 app.use(cors());
@@ -46,12 +47,14 @@ app.use(
         algorithms: [process.env.JWT_ALGORITHM],
     }).unless({
         path: [
-            { url: '/user', methods: ['POST'] },
-            { url: '/user/login', methods: ['POST'] },
-            { url: '/user/bulk', methods: ['POST'] },
-            { url: /^\/pontoInteresse/ },
-            { url: /^\/evento/ },
-            { url: /^\// }
+            { url: '/utilizador', methods: ['POST'] },
+            { url: '/utilizador/login', methods: ['GET'] },
+            { url: '/utilizador/tipos', methods: ['GET'] },
+            { url: '/utilizador/all', methods: ['GET'] },
+            { url: '/utilizador/bulk', methods: ['POST'] },
+            { url: '/pontoInteresse', method: ['GET'] },
+            { url: '/pontoInteresse/tipoPontosInteresse', method: ['GET'] }
+            // { url: /^\// },
         ]
     })
 );
@@ -64,9 +67,10 @@ app.use(function (e, req, res, next) {
 
 //* Rotas
 app.use('/exemplo', exemploRoute)
-app.use('/user', userRoutes)
+app.use('/utilizador', utilizadorRoutes)
 app.use('/pontoInteresse', pontoInteresseRoute)
 app.use('/evento', eventoRoute)
+app.use('/reserva', reservaRoute)
 
 // Rota de Introdução
 app.use('/', (req, res) => {

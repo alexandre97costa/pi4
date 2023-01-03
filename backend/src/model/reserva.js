@@ -13,11 +13,11 @@ module.exports = (sequelize) => {
             },
             validado: {
                 type: DataTypes.BOOLEAN,
-                allowNull: false
+                defaultValue: false
             },
             confirmado: {
                 type: DataTypes.BOOLEAN,
-                allowNull: false
+                defaultValue: false
             },
             observacoes: DataTypes.STRING
         },

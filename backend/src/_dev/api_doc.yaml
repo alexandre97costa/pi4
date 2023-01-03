@@ -556,7 +556,6 @@ paths:
         '404':
           description: Voucher não existe
   /distrito:
-    # Não deviríamos ter alguma forma de criar distritos?
     get:
       tags:
         - Distrito
@@ -605,7 +604,6 @@ paths:
         '404':
           description: Distrito não foi encontrado
   /scan:
-  # Criar um scan? não deveria sé ser o get para fazer realizar o scan ao voucher?
     post:
       tags:
         - Scan

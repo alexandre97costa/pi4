@@ -45,13 +45,16 @@ class auth {
 
     async getCurrentUser() {
         const user = new Promise((resolve, reject) => {
+            // espera no max 5s pelo utilizador aparecer no localStorage
             const now = Math.floor(Date.now() / 1000)
             while (!('utilizador' in localStorage)) {
                 const after = Math.floor(Date.now() / 1000)
                 if (after - now > 5) {
+                    // timeout
                     reject(null)
                 }
             }
+            // sai do while porque encontrou o utlizador no localStorage; devolve-o.
             resolve(JSON.parse(localStorage.getItem('utilizador')))
         })
         return user
