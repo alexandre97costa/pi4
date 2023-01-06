@@ -14,27 +14,29 @@ interesse.
 */
 insert into utilizador(id, nome, email, password, data_nascimento, created_at, updated_at, deleted_at, tipo_utilizador_id) values
 (1, 'Francisco Fictício',   'franfic@email.com',                'password',                      '2000-01-01',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(2, 'Tiago Almeida',        'ttiago17@hotmail.com',             '1234',                          '2000-11-14',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(3, 'João Silva',           'joaosil@hotmail.com',              'joaosilva1',                    '2000-11-20',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(4, 'Rita Pinho',           'ritapinho@gmail.com',              'htyu123',                       '2000-05-02',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(5, 'Pedro Almeida',        'pedrinhomc@gmail.com',             'pedrinpequeninin',              '2000-10-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(6, 'Leandro Teixeira',     'leandrin@gmail.com',               'leadrinfinin',                  '1998-09-10',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
+(2, 'Tiago Almeida',        'ttiago17@hotmail.com',             '1234',                          '2000-11-14',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2),
+(3, 'João Silva',           'joaosil@hotmail.com',              'joaosilva1',                    '2000-11-20',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
+(4, 'Rita Pinho',           'ritapinho@gmail.com',              'htyu123',                       '2000-05-02',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 4),
+(5, 'Pedro Almeida',        'pedrinhomc@gmail.com',             'pedrinpequeninin',              '2000-10-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2),
+(6, 'Leandro Teixeira',     'leandrin@gmail.com',               'leadrinfinin',                  '1998-09-10',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
 (7, 'Guilherme Novo',       'guinovo@gmail.com',                'velho12445',                    '2002-06-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
 (8, 'Pedro Almeida',        'pedroalmeida23@gmail.com',         'pedroalmeidaemaisvinteetres',   '2000-10-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
 (9, 'Filipa Brandão',       'filipaturistando@hotmail.com',     'lipinhavaiaopasseio',           '2000-02-28',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
 (10, 'Rodrigo Cunha',       'cunharodri@gmail.com',             'rodrigova3412',                 '1988-08-12',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
 (11, 'Joaquim Almeida',     'jqa123@gmail.com',                 'quimtxiperguntou',              '1970-12-21',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(12, 'Miguel Valente',      'miguelespeles@gmail.com',          'valenteemcasa',                 '2000-10-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(13, 'Tiago Joaquim',       'tiglatelegrandxin@gmail.com',      'grandixnteu',                   '2000-11-18',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(14, 'Tânia Mota',          'brumbrummota@gmail.com',           '125cma1000',                    '2005-07-15',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
+(12, 'Miguel Valente',      'miguelespeles@gmail.com',          'valenteemcasa',                 '2000-10-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2),
+(13, 'Tiago Joaquim',       'tiglatelegrandxin@gmail.com',      'grandixnteu',                   '2000-11-18',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2),
+(14, 'Tânia Mota',          'brumbrummota@gmail.com',           '125cma1000',                    '2005-07-15',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2),
 (15, 'Beatriz Cruz',        'cruznabeatriz@gmail.com',          'biazinhaseperdeunacozinha',     '1990-04-06',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
 (16, 'Manuela Vidigal',     'nelinha@hotmail.com',              'nelinhavaiaescola',             '1989-10-04',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(17, 'Mariana Castanheira', 'marianacastanha@gmail.com',        'assadinhacomsal',               '1978-12-31',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(18, 'Raquel Almeida',      'raquelinmeidin@gmail.com',         'mcraquelnacasa',                '1996-08-01',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(19, 'Rui Pedro',           'ruidospcs@gmail.com',              'dospcseusou',                   '2001-10-16',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3),
-(20, 'Joana Pestana',       'pestaninha@hotmail.com',           'bonssonhos',                    '2004-10-12',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 3);
+(17, 'Mariana Castanheira', 'marianacastanha@gmail.com',        'assadinhacomsal',               '1978-12-31',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
+(18, 'Raquel Almeida',      'raquelinmeidin@gmail.com',         'mcraquelnacasa',                '1996-08-01',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
+(19, 'Rui Pedro',           'ruidospcs@gmail.com',              'dospcseusou',                   '2001-10-16',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
+(20, 'Joana Pestana',       'pestaninha@hotmail.com',           'bonssonhos',                    '2004-10-12',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
+(21, 'Rodrigo Parente',     'parentinho@gmail.com',             'parentao',                      '2007-10-12',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1);
+
 -- sequencia utilizador
-SELECT setval('utilizador_id_seq', 21, true);
+SELECT setval('utilizador_id_seq', 22, true);
 
 insert into tipo_interesse(id, nome, observacoes, created_at, updated_at, deleted_at) values
 (1, 'Paisagem', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -4755,20 +4757,6 @@ insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_a
 -- sequencia tipo_evento
 SELECT setval('tipo_evento_id_seq', 10, true);
 
-
-
-
-
-
-
-
-
-INSERT INTO comentario_avaliacao (id, utilizador_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at)
-VALUES 
-(1, 3, 4, 'Adorei a minha visita ao jardim zoológico!', 5, created_at, updated_at, deleted_at);
-
-
-
 insert into evento(id, nome, num_pontos, num_horas, descricao, num_vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id, codigo_uuid) values 
 (1, 'Noite Mágica no Palha Club',  50,  3, 'Dresscode: Roupa branca',       200,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4, '05f8ad77-b0b0-40b4-a37f-ed080007e422'),
 (2, 'Glow Run',                    100, 9, 'Corrida de Pós Coloridos',      150,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 40, 5, '949aa71d-8cee-4ebc-a049-f0215e48eca8'),
@@ -4803,9 +4791,11 @@ INSERT INTO sessao (id, data_hora, inicio_evento, fim_evento, evento_id, created
 SELECT setval('sessao_id_seq', 9, true);
 
 insert into reserva (id, nome, num_pessoas, validado, confirmado, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
-(1, 'João da Silva', 2, true, true, 'Sem observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(1, 'Francisco Fictício', 2, true, true, 'Sem observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(2, 'Rodrigo Parente', 10, true, true, 'Sem observações', 2, 21, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(3, 'Tânia Mota', 5, true, true, 'Sem observações', 3, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 -- sequencia reserva
-SELECT setval('reserva_id_seq', 2, true);
+SELECT setval('reserva_id_seq', 4, true);
 
 insert into comentario_avaliacao (id, visitante_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at) VALUES 
 (1, 1, 4, 'Adorei a minha visita ao jardim zoológico!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -4829,8 +4819,11 @@ SELECT setval('ponto_interesse_recompensa_id_seq', 3, true);
 
 insert into voucher (id, data_compra, data_validade, data_usado, usado, recompensa_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
 (1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, FALSE, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(2, CURRENT_DATE, CURRENT_DATE + INTERVAL '3', NULL, FALSE, 2, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(3, CURRENT_DATE, CURRENT_DATE + INTERVAL '2', NULL, FALSE, 3, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(4, CURRENT_DATE, CURRENT_DATE + INTERVAL '6', NULL, FALSE, 4, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
  -- sequencia voucher
-SELECT setval('voucher_id_seq', 2, true);
+SELECT setval('voucher_id_seq', 5, true);
 
 insert into imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted_at) VALUES 
 (1, 'URL DA IMAGEM', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
