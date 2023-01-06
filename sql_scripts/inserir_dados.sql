@@ -4818,20 +4818,24 @@ insert into ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, c
 SELECT setval('ponto_interesse_recompensa_id_seq', 3, true);
 
 insert into voucher (id, data_compra, data_validade, data_usado, usado, recompensa_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
-(1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, FALSE, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
-(2, CURRENT_DATE, CURRENT_DATE + INTERVAL '3', NULL, FALSE, 2, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
-(3, CURRENT_DATE, CURRENT_DATE + INTERVAL '2', NULL, FALSE, 3, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, FALSE, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, CURRENT_DATE, CURRENT_DATE + INTERVAL '3', NULL, FALSE, 2, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(3, CURRENT_DATE, CURRENT_DATE + INTERVAL '2', NULL, FALSE, 3, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (4, CURRENT_DATE, CURRENT_DATE + INTERVAL '6', NULL, FALSE, 4, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
  -- sequencia voucher
 SELECT setval('voucher_id_seq', 5, true);
 
 insert into imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted_at) VALUES 
-(1, 'URL DA IMAGEM', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(1, 'URL DA IMAGEM', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, 'URL DA IMAGEM', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(3, 'URL DA IMAGEM', 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(4, 'URL DA IMAGEM', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 -- sequencia imagem
-SELECT setval('imagem_id_seq', 2, true);
+SELECT setval('imagem_id_seq', 5, true);
 
 insert into candidatura_at (id, localidade_at, texto_candidatura, estado, observacoes, distrito_id, visitante_id, created_at, updated_at, deleted_at) VALUES
-(1, 'Lisboa', 'Gostaria de apresentar a minha candidatura para ser um agente turístico em Lisboa', TRUE, 'Não tenho observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(1, 'Aveiro', 'Gostaria de apresentar a minha candidatura para ser um agente turístico em Lisboa', TRUE, 'Não tenho observações', 1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(2, 'Beja', 'Gostaria de apresentar a minha candidatura para ser um agente turístico no Porto', TRUE, 'Não tenho observações', 1, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 -- sequencia candidatura_at
 SELECT setval('candidatura_at_id_seq', 2, true);
 
