@@ -1,8 +1,7 @@
 
 var sequelize = require('../config/Database')
-const { Op } = require("sequelize")
+const { Op } = require('sequelize')
 const { dev: devClass } = require('../_dev/dev');
-const utilizadorController = require('./utilizadorController');
 const dev = new devClass;
 // * Como usar o Op:
 // * https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
@@ -58,7 +57,7 @@ module.exports = {
 
     postPontoInteresse: async (req, res) => {
         if(req.auth.tipo === 1)
-            return res.status(401).json("Sem autorização para criar Pontos de Interesse")
+            return res.status(401).json('Sem autorização para criar Pontos de Interesse')
 
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
@@ -198,14 +197,14 @@ module.exports = {
     putPontoInteresse: async (req, res) => {
         console.log(req.auth.tipo)
         if(req.auth.tipo === 1)
-            return res.status(401).json("Sem autorização para alterar informação do Ponto de Interesse")
+            return res.status(401).json('Sem autorização para alterar informação do Ponto de Interesse')
 
         //if(pontoInteresse == null) then pontoInteresse = '%'
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0
         let agenteTuristicoId = req.query?.agenteTuristicoId ?? 0
 
         if (!pontoInteresseId || !agenteTuristicoId)
-            return res.status(400).json("Introduza pontoInteresseId e agenteTurisiticoId validos")
+            return res.status(400).json('Introduza pontoInteresseId e agenteTurisiticoId validos')
 
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
@@ -228,7 +227,7 @@ module.exports = {
             .then(output => {
                 console.log(output)
                 if (!output[0])
-                    return res.status(404).json("Ponto de Interesse não existe")
+                    return res.status(404).json('Ponto de Interesse não existe')
                 res.status(200).json({ pontoInteresse: output })
             })
             .catch(error => { res.status(400).json(error); throw new Error(error); });
@@ -242,21 +241,21 @@ module.exports = {
         
         if(req.auth.tipo === 1 || req.auth.tipo === 2) {
             if(!!agente_turistico_id)
-                return res.status(401).json("Sem autorização para atualizar o Agente Turistico")
+                return res.status(401).json('Sem autorização para atualizar o Agente Turistico')
             if(!!validado)
-                return res.status(401).json("Sem autorização para atualizar o estado do Ponto de interesse")
-            return res.status(401).json("Sem autorização")
+                return res.status(401).json('Sem autorização para atualizar o estado do Ponto de interesse')
+            return res.status(401).json('Sem autorização')
         }
 
         if (!pontoInteresseId)
-            return res.status(400).json("Introduza pontoInteresseId valido")
+            return res.status(400).json('Introduza pontoInteresseId valido')
 
 
         if (!agente_turistico_id && !validado)
-            return res.status(400).json("Body vazio")
+            return res.status(400).json('Body vazio')
 
         if(!!agente_turistico_id && !!validado)
-            return res.status(400).json("Só pode enviar um elemento no body")
+            return res.status(400).json('Só pode enviar um elemento no body')
         
         if(!!agente_turistico_id)
             return await ponto_interesse
@@ -265,7 +264,7 @@ module.exports = {
                 }, { where: { id: pontoInteresseId } })
                 .then(output => {
                     if (!output[0])
-                        return res.status(404).json("Ponto de Interesse não existe")
+                        return res.status(404).json('Ponto de Interesse não existe')
                     res.status(200).json({ pontoInteresse: output })
                 })
                 .catch(error => { res.status(400).json(error); throw new Error(error); })
@@ -277,7 +276,7 @@ module.exports = {
             }, { where: { id: pontoInteresseId } })
             .then(output => {
                 if (!output[0])
-                    return res.status(404).json("Ponto de Interesse não existe")
+                    return res.status(404).json('Ponto de Interesse não existe')
                 res.status(200).json({ pontoInteresse: output })
             })
             .catch(error => { res.status(400).json(error); throw new Error(error); })
@@ -285,12 +284,12 @@ module.exports = {
 
     deletePontoInteresse: async (req, res) => {
         if(req.auth.tipo === 1 || req.auth.tipo === 2)
-            return res.status(401).json("Sem autorização para eliminar Pontos de Interesse")
+            return res.status(401).json('Sem autorização para eliminar Pontos de Interesse')
 
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0
 
         if (!pontoInteresseId)
-            return res.status(400).json("pontoInteresseId invalido")
+            return res.status(400).json('pontoInteresseId invalido')
 
         await ponto_interesse
             .destroy({
@@ -298,15 +297,15 @@ module.exports = {
             })
             .then(output => {
                 if (!output)
-                    return res.status(404).json("Ponto de interesse não existe")
-                res.status(200).json({ pontoInteresse: output })
+                    return res.status(404).json('Ponto de interesse não existe')
+                return res.status(200).json({ pontoInteresse: output })
             })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+            .catch(error => { res.status(400).json(error); dev(error); });
     },
 
     getTipoPontoInteresse: async (req, res) => {
         await tipo_interesse.findAll()
             .then(output => { res.status(200).json({ tipoPontoInteresse: output }) })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+            .catch(error => { res.status(400).json(error); dev(error); });
     }
 }
