@@ -1,16 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Main" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.Main" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/greenPrincipal</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/greenPrincipal</item>
-        <item name="colorSecondaryVariant">@color/greenPrincipal</item>
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorSecondaryVariant">@color/white</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/greenPrincipal</item>
         <!-- Customize your theme here. -->
+        <item name="shapeAppearanceMediumComponent">@style/Theme.MaterialComponents</item>
+        <item name="textAppearanceSubtitle1">@style/Theme.MaterialComponents</item>
+        <item name="textAppearanceCaption">@style/Theme.MaterialComponents</item>
+        <item name="shapeAppearanceSmallComponent">@style/Theme.MaterialComponents</item>
     </style>
 </resources>

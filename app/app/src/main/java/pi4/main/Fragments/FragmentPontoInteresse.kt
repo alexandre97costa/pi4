@@ -1,10 +1,8 @@
 package pi4.main.Fragments
 
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,10 +24,6 @@ class FragmentPontoInteresse() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_ponto_interesse, container, false)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -149,7 +143,7 @@ class FragmentPontoInteresse() : Fragment() {
         val queryParams = JSONObject("""{}""")
         val requestBody = JSONObject("""{}""")
 
-        Req().GET("/pontointeresse", queryParams, requestBody, requireContext(), then = { res ->
+        Req().GET("/pontoInteresse", queryParams, requestBody, requireContext(), then = { res ->
             ResponseToArrayList(res)
         })
 

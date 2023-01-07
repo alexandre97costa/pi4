@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.google.android.material.navigation.NavigationBarView
+import pi4.main.Fragments.FragmentPerfil
 import pi4.main.Fragments.FragmentPontoInteresse
+import pi4.main.Fragments.FragmentRecompensa
+import pi4.main.Fragments.FragmentRecompensaJaResgatada
 import pi4.main.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -31,8 +33,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.recompensaMenu -> {
-                    replaceFragment(FragmentPontoInteresse())
-                    Toast.makeText(this, "recompensaMenu", Toast.LENGTH_SHORT).show()
+                    replaceFragment(FragmentRecompensa())
                     true
                 }
                 R.id.qrCodeMenu -> {
@@ -41,8 +42,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.contaMenu -> {
-                    replaceFragment(FragmentPontoInteresse())
-                    Toast.makeText(this, "contaMenu", Toast.LENGTH_SHORT).show()
+                    replaceFragment(FragmentPerfil())
                     true
                 }
                 else -> false

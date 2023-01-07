@@ -30,7 +30,7 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val rowView = inflater.inflate(R.layout.activity_card_ponto_interesse, parent, false)
+        val rowView = inflater.inflate(R.layout.card_ponto_interesse, parent, false)
 
         //Variaveis do layout
         val imagemPontoInteresse = rowView.findViewById<ImageView>(R.id.imagemPontoInteresse)
