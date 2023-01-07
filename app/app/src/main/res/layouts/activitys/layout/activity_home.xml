@@ -21,19 +21,19 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="490dp"
+        android:layout_marginTop="470dp"
+        android:background="@drawable/shape_corner_top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/shape_corner_top">
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/buttonEntrar"
             android:layout_width="match_parent"
-            android:layout_height="67dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="55dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/shape_green"
             android:fontFamily="@font/open_sans_bold"
@@ -47,19 +47,21 @@
         <Button
             android:id="@+id/buttonCriar"
             android:layout_width="match_parent"
-            android:layout_height="67dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/shape_outline"
             android:fontFamily="@font/open_sans_bold"
             android:text="Criar Conta"
             android:textColor="#000000"
             android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonEntrar" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

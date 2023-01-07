@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pizza"
+        app:srcCompat="@drawable/cidade"
         android:scaleType="centerCrop"/>
 
     <include
@@ -25,15 +25,12 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="190dp"
-        android:theme="@style/breadcrumb_principal_white"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="60dp"
         android:text="EDITAR PERFIL"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.388"
+        android:theme="@style/breadcrumb_principal_white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.495" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -132,7 +129,7 @@
                 android:id="@+id/buttonGuardar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/shape_green"
                 android:fontFamily="@font/open_sans_bold"
                 android:text="Guardar"

@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pizza"
+        app:srcCompat="@drawable/montanhas"
         android:scaleType="centerCrop"/>
 
     <include
@@ -118,7 +118,7 @@
             <Button
                 android:id="@+id/buttonCriar"
                 android:layout_width="match_parent"
-                android:layout_height="67dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/shape_green"
                 android:fontFamily="@font/open_sans_bold"

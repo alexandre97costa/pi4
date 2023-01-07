@@ -134,7 +134,7 @@
                 android:id="@+id/btnGuardar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="40dp"
                 android:background="@drawable/shape_green"
                 android:text="Enviar"
                 android:textColor="@color/white"
