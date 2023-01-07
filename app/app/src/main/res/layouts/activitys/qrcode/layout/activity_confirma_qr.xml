@@ -35,8 +35,8 @@
     <Button
         android:id="@+id/btnContinuar"
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/shape_green"
         android:fontFamily="@font/open_sans_bold"
         android:text="CONTINUAR"
