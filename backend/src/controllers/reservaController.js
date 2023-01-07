@@ -1,7 +1,8 @@
 
 var sequelize = require('../config/Database')
 const { Op } = require("sequelize")
-const { dev } = require('../_dev/dev')
+const { dev: devClass } = require('../_dev/dev')
+const dev = new devClass;
 // * Como usar o Op:
 // * https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
 const {
@@ -94,9 +95,6 @@ module.exports = {
         let offset = req.query?.offset ?? 0
         let limit = req.query?.limit ?? 0
 
-        // visitantes só podem aceder às suas próprias reservas
-        // todo: fazer este if
-
         await reserva
             .findAndCountAll({
                 where: {
@@ -109,6 +107,10 @@ module.exports = {
                     num_pessoas: !!maxPessoas ?
                         { [Op.between]: [minPessoas, maxPessoas] } :
                         { [Op.gte]: minPessoas },
+                    // os visitantes (tipo 1) só podem ver as suas próprias reservas
+                    visitante_id: (req.auth.tipo === 1) ?
+                        req.auth.id :
+                        { [Op.ne]: 0 },
                     validado,
                     confirmado,
                 },

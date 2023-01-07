@@ -85,7 +85,7 @@ module.exports = {
         let agenteTuristicoId = req.query?.agenteTuristicoId ?? 0
         let distritoId = req.query?.distritoId ?? 0
         let minScans = req.query?.minScans ?? 0
-        // todo: valor minimo para a avg_avaliacao
+        let minAval = req.query?.minAval ?? 0
 
         // * ordenação e paginação
         let order = req.query?.order ?? 'nome'
@@ -97,9 +97,6 @@ module.exports = {
         let incluirEliminados = !!req.query?.incluirEliminados // incluir também os PIs eliminados
         let soEliminados = !!req.query?.soEliminados           // pedir só os PIs eliminados
         let validado = !!(req.query?.validado ?? true)         // True: Só PIs validados; False: Só PIs por validar
-
-        // o agente só tem acesso aos seus próprios pontos de interesse
-        // todo: fazer este if
 
         await ponto_interesse
             .findAndCountAll({
@@ -116,16 +113,25 @@ module.exports = {
                     freguesia_id: !!+freguesiaId ?
                         +freguesiaId :
                         { [Op.ne]: 0 },
-                    agente_turistico_id: !!+agenteTuristicoId ?
-                        +agenteTuristicoId :
-                        {
-                            [Op.or]: {
-                                [Op.ne]: 0,
-                                [Op.eq]: null // porque pode não ter agente
-                            }
-                        },
+                    agente_turistico_id:
+                        // se o utilizador logado for agente
+                        (req.auth.tipo === 2) ?
+                            // automaticamente so mostra is seus proprios PIS
+                            req.auth.id :
+                            // caso contrário, podemos filtrar pelo param (se vier preenchido)
+                            !!+agenteTuristicoId ?
+                                +agenteTuristicoId :
+                                {
+                                    [Op.or]: {
+                                        [Op.ne]: 0,
+                                        [Op.eq]: null // porque pode não ter agente
+                                    }
+                                },
                     count_scans: !!minScans ?
                         { [Op.gt]: minScans } :
+                        { [Op.ne]: -1 },
+                    avg_avaliacao: !!minAval ?
+                        { [Op.gt]: minAval } :
                         { [Op.ne]: -1 },
                     deleted_at: !!soEliminados ?
                         { [Op.ne]: null } :

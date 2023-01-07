@@ -41,6 +41,7 @@ module.exports = {
         dev.verbose(user)
 
         const token = {
+            id: user.id,
             nome: user.nome,
             email: user.email,
             tipo: user.tipo_utilizador_id
