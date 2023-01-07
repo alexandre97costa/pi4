@@ -56,8 +56,8 @@ module.exports = {
     },
 
     postPontoInteresse: async (req, res) => {
-        if(req.auth.tipo === 1)
-            return res.status(401).json('Sem autorização para criar Pontos de Interesse')
+        if (req.auth.tipo === 1)
+            return res.status(401).json({ msg: 'Sem autorização para criar Pontos de Interesse' })
 
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
@@ -98,15 +98,18 @@ module.exports = {
         let soEliminados = !!req.query?.soEliminados           // pedir só os PIs eliminados
         let validado = !!(req.query?.validado ?? true)         // True: Só PIs validados; False: Só PIs por validar
 
+        // o agente só tem acesso aos seus próprios pontos de interesse
+        // todo: fazer este if
+
         await ponto_interesse
             .findAndCountAll({
                 where: {
-                    nome: {
-                        [Op.iLike]: '%' + nome + '%'
-                    },
                     id: !!+pontoInteresseId ?
                         +pontoInteresseId :
                         { [Op.ne]: 0 },
+                    nome: {
+                        [Op.iLike]: '%' + nome + '%'
+                    },
                     tipo_interesse_id: !!+tipoInteresseId ?
                         +tipoInteresseId :
                         { [Op.ne]: 0 },
@@ -182,9 +185,9 @@ module.exports = {
             })
             .then(output => {
                 // caso não tenha encontrado, 404
-                if (!output.count) {
+                if (!output.count)
                     return res.status(404).json({ msg: 'Não existem pontos de interesse que correspondam aos filtros solicitados' })
-                }
+
                 return res.status(200).json({ data: output.rows, count: output.count })
             })
             .catch(error => {
@@ -196,7 +199,7 @@ module.exports = {
 
     putPontoInteresse: async (req, res) => {
         console.log(req.auth.tipo)
-        if(req.auth.tipo === 1)
+        if (req.auth.tipo === 1)
             return res.status(401).json('Sem autorização para alterar informação do Ponto de Interesse')
 
         //if(pontoInteresse == null) then pontoInteresse = '%'
@@ -234,15 +237,15 @@ module.exports = {
     },
 
     patchPontoInteresse: async (req, res) => {
-        
+
         //if(pontoInteresse == null) then pontoInteresse = '%'
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0
         const { agente_turistico_id, validado } = req.body
-        
-        if(req.auth.tipo === 1 || req.auth.tipo === 2) {
-            if(!!agente_turistico_id)
+
+        if (req.auth.tipo === 1 || req.auth.tipo === 2) {
+            if (!!agente_turistico_id)
                 return res.status(401).json('Sem autorização para atualizar o Agente Turistico')
-            if(!!validado)
+            if (!!validado)
                 return res.status(401).json('Sem autorização para atualizar o estado do Ponto de interesse')
             return res.status(401).json('Sem autorização')
         }
@@ -254,10 +257,10 @@ module.exports = {
         if (!agente_turistico_id && !validado)
             return res.status(400).json('Body vazio')
 
-        if(!!agente_turistico_id && !!validado)
+        if (!!agente_turistico_id && !!validado)
             return res.status(400).json('Só pode enviar um elemento no body')
-        
-        if(!!agente_turistico_id)
+
+        if (!!agente_turistico_id)
             return await ponto_interesse
                 .update({
                     agente_turistico_id: agente_turistico_id
@@ -268,22 +271,22 @@ module.exports = {
                     res.status(200).json({ pontoInteresse: output })
                 })
                 .catch(error => { res.status(400).json(error); throw new Error(error); })
-        
-        if(!!validado)
+
+        if (!!validado)
             return await ponto_interesse
-            .update({
-                validado: validado
-            }, { where: { id: pontoInteresseId } })
-            .then(output => {
-                if (!output[0])
-                    return res.status(404).json('Ponto de Interesse não existe')
-                res.status(200).json({ pontoInteresse: output })
-            })
-            .catch(error => { res.status(400).json(error); throw new Error(error); })
+                .update({
+                    validado: validado
+                }, { where: { id: pontoInteresseId } })
+                .then(output => {
+                    if (!output[0])
+                        return res.status(404).json('Ponto de Interesse não existe')
+                    res.status(200).json({ pontoInteresse: output })
+                })
+                .catch(error => { res.status(400).json(error); throw new Error(error); })
     },
 
     deletePontoInteresse: async (req, res) => {
-        if(req.auth.tipo === 1 || req.auth.tipo === 2)
+        if (req.auth.tipo === 1 || req.auth.tipo === 2)
             return res.status(401).json('Sem autorização para eliminar Pontos de Interesse')
 
         let pontoInteresseId = req.query?.pontoInteresseId ?? 0

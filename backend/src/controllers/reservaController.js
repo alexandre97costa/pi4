@@ -1,6 +1,7 @@
 
 var sequelize = require('../config/Database')
 const { Op } = require("sequelize")
+const { dev } = require('../_dev/dev')
 // * Como usar o Op:
 // * https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
 const {
@@ -28,8 +29,12 @@ const {
 
 
 module.exports = {
+    // só visitantes é que podem fazer reservas
     postReserva: async (req, res) => {
-        const { nome, num_pessoas, visitante_id, sessao_id,observacoes } = req.body
+        if (req.auth.tipo !== 1)
+            return res.status(401).json({ msg: 'Apenas visitantes podem colocar reservas' })
+
+        const { nome, num_pessoas, visitante_id, sessao_id, observacoes } = req.body
 
         await reserva
             .create({
@@ -39,14 +44,130 @@ module.exports = {
                 sessao_id: sessao_id,
                 observacoes: observacoes
             })
-            .then(output => { res.status(200).json({reserva: output}) })
-            .catch(error => { res.status(400).json(error); throw new Error(error) })
+            .then(output => { return res.status(200).json({ reserva: output }) })
+            .catch(error => {
+                res.status(400).json(error);
+                dev.error(error)
+                return
+            })
     },
 
-    list: async (req, res) => {
-        distrito
-            .findAll()
-            .then(output => { res.status(200).json({ distritos: output }) })
-            .catch(error => { res.status(400); throw new Error(error); });
+    // o unico parametro que o visitante pode mudar na sua reserva
+    mudarVagasReserva: async (req, res) => {
+
+    },
+
+    // o agente pode validar ou rejeitar a reserva
+    validarReserva: async (req, res) => {
+
+    },
+
+    // processo automatico parecido a um scan
+    // o visitante mostra o codigo da sua reserva ao agente
+    // o agente insere-o no back office, que por sua vez confirma a reserva
+    confirmarResesva: async (req, res) => {
+
+    },
+
+    //só o visitante (e dono da reserva) é que pode eliminar
+    deleteReserva: async (req, res) => {
+
+    },
+
+    // qualquer utilizador registado pode aceder a reservas
+    getReserva: async (req, res) => {
+        // * filtros
+        let nome = req.query?.nome ?? '%'
+        let reserva_id = req.query?.reserva_id ?? 0
+        let visitante_id = req.query?.visitante_id ?? 0
+        let sessao_id = req.query?.sessao_id ?? 0
+        let evento_id = req.query?.evento_id ?? 0
+        let ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
+        let minPessoas = req.query?.minPessoas ?? 0
+        let maxPessoas = req.query?.maxPessoas ?? 0
+        let validado = !!(req.query?.validado ?? true)
+        let confirmado = !!(req.query?.confirmado ?? true)
+
+        // * ordenação e paginação
+        let order = req.query?.order ?? 'nome'
+        let direction = req.query?.direction ?? 'asc'
+        let offset = req.query?.offset ?? 0
+        let limit = req.query?.limit ?? 0
+
+        // visitantes só podem aceder às suas próprias reservas
+        // todo: fazer este if
+
+        await reserva
+            .findAndCountAll({
+                where: {
+                    id: !!+reserva_id ?
+                        +reserva_id :
+                        { [Op.ne]: 0 },
+                    nome: {
+                        [Op.iLike]: '%' + nome + '%'
+                    },
+                    num_pessoas: !!maxPessoas ?
+                        { [Op.between]: [minPessoas, maxPessoas] } :
+                        { [Op.gte]: minPessoas },
+                    validado,
+                    confirmado,
+                },
+                include: [
+                    {
+                        model: utilizador,
+                        required: true,
+                        attributes: ['nome'],
+                        where: {
+                            id: !!+visitante_id ?
+                                +visitante_id :
+                                { [Op.ne]: 0 }
+                        }
+                    }, {
+                        model: sessao,
+                        required: true,
+                        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+                        where: {
+                            id: !!+sessao_id ?
+                                +sessao_id :
+                                { [Op.ne]: 0 }
+                        },
+                        include: {
+                            model: evento,
+                            required: true,
+                            attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+                            where: {
+                                id: !!+evento_id ?
+                                    +evento_id :
+                                    { [Op.ne]: 0 }
+                            },
+                            include: {
+                                model: ponto_interesse,
+                                required: true,
+                                attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+                                where: {
+                                    id: !!+ponto_interesse_id ?
+                                        +ponto_interesse_id :
+                                        { [Op.ne]: 0 }
+                                }
+                            }
+                        }
+                    }
+                ],
+                order: [[order, direction]],
+                offset,
+                limit: !!limit ? limit : null
+            })
+            .then(output => {
+                // caso nao tenha encontrado reservas, 404
+                if (!output.count)
+                    return res.status(404).json({ msg: 'Não existem reservas que correspondam aos filtros solicitados' })
+
+                return res.status(200).json({ data: output.rows, count: output.count })
+            })
+            .catch(error => {
+                res.status(400).json({ msg: 'Ocorreu um erro no pedido de reservas' })
+                dev.error(error)
+                return
+            })
     }
 }
