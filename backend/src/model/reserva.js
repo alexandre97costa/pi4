@@ -15,6 +15,10 @@ module.exports = (sequelize) => {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false
             },
+            codigo_confirmacao: {
+                type: DataTypes.STRING(5),
+                allowNull: false
+            },
             confirmado: {
                 type: DataTypes.BOOLEAN,
                 defaultValue: false
@@ -27,6 +31,16 @@ module.exports = (sequelize) => {
             freezeTableName: true, // não faz plurais nas relações com outras tabelas. Os devs agradecem :D
             paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
             timestamps: true, // created_at, updated_at, e deleted_at
+            hooks: {
+                beforeCreate: record => {
+                    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    record.dataValues.codigo_confirmacao =
+                        characters.charAt(Math.floor(Math.random() * characters.length))
+                        + record.dataValues.id.slice(-4).padStart(4, '0')
+
+                    // exemplo de resultado final: "F0345"
+                }
+            }
         }
     )
 }

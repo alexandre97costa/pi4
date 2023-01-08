@@ -4755,17 +4755,6 @@ insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_a
 -- sequencia tipo_evento
 SELECT setval('tipo_evento_id_seq', 10, true);
 
-
-
-
-
-
-
-
-
-
-
-
 insert into evento(id, nome, num_pontos, num_horas, descricao, num_vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id, codigo_uuid) values 
 (1, 'Noite Mágica no Palha Club',  50,  3, 'Dresscode: Roupa branca',       200,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4, '05f8ad77-b0b0-40b4-a37f-ed080007e422'),
 (2, 'Glow Run',                    100, 9, 'Corrida de Pós Coloridos',      150,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 40, 5, '949aa71d-8cee-4ebc-a049-f0215e48eca8'),
@@ -4799,8 +4788,12 @@ INSERT INTO sessao (id, data_hora, inicio_evento, fim_evento, evento_id, created
 -- sequencia sessao
 SELECT setval('sessao_id_seq', 9, true);
 
-insert into reserva (id, nome, num_pessoas, validado, confirmado, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
-(1, 'João da Silva', 2, true, true, 'Sem observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+insert into reserva (id, nome, num_pessoas, validado, confirmado, codigo_confirmacao, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
+(1, 'João da Silva', 2, true, true,  'G0001', 'Sem observações', 1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, 'João da Silva', 4, true, false, 'D0002', 'Sem observações', 2, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(3, 'João da Silva', 1, true, false, 'E0003', 'Sem observações', 3, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(4, 'João da Silva', 3, true, false, 'K0004', 'Sem observações', 4, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(5, 'João da Silva', 2, true, false, 'M0005', 'Sem observações', 5, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 -- sequencia reserva
 SELECT setval('reserva_id_seq', 2, true);
 

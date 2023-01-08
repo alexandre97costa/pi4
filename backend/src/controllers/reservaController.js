@@ -115,11 +115,15 @@ module.exports = {
     },
 
     test_reserva: async (req, res) => {
+        // * 🚨 guard clauses
         if (req.auth.tipo !== 2)
             return res.status(401).json({ msg: 'Apenas agentes podem confirmar reservas' })
 
-        // !pode nao trazer algumas coisas 
-        // ex: pode nao trazer sessao se nao houverem eventos
+        if (!req.body.codigo_confirmacao)
+            return res.status(400).json({ msg: 'É necessário o código de confirmação' })
+
+        const { codigo_confirmacao } = req.body
+
         const reservas_agente = await utilizador
             .findOne({
                 where: { id: req.auth.id },
@@ -136,9 +140,34 @@ module.exports = {
                     }
                 }
             })
+            .then(output => {
+                return output
+                    ?.pontos_interesse.map(pi =>
+                        pi?.eventos.map(e =>
+                            e?.sessoes.map(s =>
+                                s?.reservas
+                            )
+                        )
+                    ).flat(3) // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
+            })
 
+        if (reservas_agente === undefined)
+            return res.status(404).json({msg: 'Não existem reservas associadas aos teus eventos'})
 
-        res.status(200).json(reservas_agente)
+        const reserva_correta = reservas_agente.find(reserva => reserva.codigo_confirmacao === codigo_confirmacao)
+
+        if (reserva_correta === undefined)
+            return res.status(404).json({ msg: 'Não foi feita nenhuma reserva com este código. Se o código foi bem inserido, pode ser uma reserva a um evento que tu não geres.' })
+
+        // ✅ tudo gucci, siga pra vinho
+        await reserva
+            .update({
+                confirmado: true
+            }, {
+                where: { id: reserva_correta.id }
+            })
+            .then(output => { return res.status(200).json(output) })
+            .catch(error => { return res.status(400).json(error) })
     },
 
     // processo automatico parecido a um scan
