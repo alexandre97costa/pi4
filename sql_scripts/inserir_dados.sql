@@ -4790,10 +4790,12 @@ INSERT INTO sessao (id, data_hora, inicio_evento, fim_evento, evento_id, created
 -- sequencia sessao
 SELECT setval('sessao_id_seq', 9, true);
 
-insert into reserva (id, nome, num_pessoas, validado, confirmado, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
-(1, 'Francisco Fictício', 2, true, true, 'Sem observações', 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(2, 'Rodrigo Parente', 10, true, true, 'Sem observações', 2, 21, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(3, 'Tânia Mota', 5, true, true, 'Sem observações', 3, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+insert into reserva (id, nome, num_pessoas, validado, confirmado, codigo_confirmacao, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
+(1, 'João da Silva', 2, true, true,  'G0001', 'Sem observações', 1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, 'João da Silva', 4, true, false, 'D0002', 'Sem observações', 2, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(3, 'João da Silva', 1, true, false, 'E0003', 'Sem observações', 3, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(4, 'João da Silva', 3, true, false, 'K0004', 'Sem observações', 4, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(5, 'João da Silva', 2, true, false, 'M0005', 'Sem observações', 5, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 -- sequencia reserva
 SELECT setval('reserva_id_seq', 4, true);
 
