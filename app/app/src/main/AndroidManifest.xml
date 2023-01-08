@@ -37,13 +37,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activitys.ActivityVoucherJaResgatado"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".Activitys.Evento.ActivityEventoDetalhe"
             android:exported="false">
             <meta-data

@@ -6,13 +6,13 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.ficha8.Req
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.textfield.TextInputEditText
 import org.json.JSONObject
 import pi4.main.Classes.PontoInteresse
 import pi4.main.R
@@ -31,16 +31,16 @@ class FragmentPontoInteresse() : Fragment() {
         callAdapterCards("Todos")
         createCategoriasTab()
         loadPoints()
-        testeLabel()
+        searchBar()
     }
 
-    private fun testeLabel() {
-        val editText = requireView().findViewById<TextInputEditText>(R.id.label)
+    private fun searchBar() {
+        val editText = requireView().findViewById<EditText>(R.id.editTextSearch)
 
         createTextListener(editText)
     }
 
-    private fun createTextListener(textInputEditText: TextInputEditText) {
+    private fun createTextListener(textInputEditText: EditText) {
         textInputEditText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }

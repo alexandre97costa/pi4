@@ -6,6 +6,12 @@
         <item name="fontFamily">@font/open_sans_bold</item>
     </style>
 
+    <style name="tittle_principal_white">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/open_sans_bold</item>
+    </style>
+
     <style name="tittle_principal_green">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/greenPrincipal</item>

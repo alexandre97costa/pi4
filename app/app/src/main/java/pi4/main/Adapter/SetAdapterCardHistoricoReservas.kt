@@ -1,21 +1,16 @@
 package pi4.main.Adapter
 
-import android.content.ContentQueryMap
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContentProviderCompat
-import androidx.core.content.res.ResourcesCompat
 import pi4.main.Classes.Historico
 import pi4.main.R
 
-class SetAdapterCardHistorico(private val context: Context, private val data:ArrayList<Historico>): BaseAdapter() {
+class SetAdapterCardHistoricoReservas(private val context: Context, private val data:ArrayList<Historico>): BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -42,13 +37,14 @@ class SetAdapterCardHistorico(private val context: Context, private val data:Arr
 
         tituloReserva.text = recipe.titulo
         dataReserva.text = recipe.data
+        estadoReserva.text = recipe.estado
 
         if(recipe.estado === "pendente")
-            estadoReserva.setTextColor(Color.parseColor("#f2f2f2"))
+            rowView.setBackgroundResource(R.drawable.shape_yellow)
         if(recipe.estado === "rejeitado")
-            estadoReserva.setTextColor(Color.parseColor("#f2f2f2"))
+            rowView.setBackgroundResource(R.drawable.shape_red)
         if(recipe.estado === "valido")
-            estadoReserva.setTextColor(Color.parseColor("#f2f2f2"))
+            rowView.setBackgroundResource(R.drawable.shape_green)
 
         estadoReserva.text = recipe.estado
 

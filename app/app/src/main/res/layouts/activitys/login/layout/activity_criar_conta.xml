@@ -138,7 +138,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="24dp"
                 android:clickable="true"
-                android:text="entrar"
+                android:text="@string/entrar"
                 android:theme="@style/text_light_green"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView3" />
