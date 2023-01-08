@@ -78,11 +78,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:fontFamily="@font/open_sans_bold"
                 android:text="PIZZA GRÁTIS"
                 android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="24sp"
+                android:theme="@style/tittle_principal_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -93,8 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Limitado ao consumo lojas aderentes e de uma pizza margarita, ou fugi ou tropical."
-                android:textColor="@color/black"
-                android:textSize="14sp"
+                android:theme="@style/text_normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -104,10 +101,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:fontFamily="@font/open_sans_bold"
                 android:text="Requisitos"
-                android:textColor="@color/black"
-                android:textSize="18sp"
+                android:theme="@style/tittle_secundario_black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -134,9 +129,10 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:text="80 pontos"
+                    android:theme="@style/text_normal"
                     android:textColor="@color/greenPrincipal"
-                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView8"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -166,8 +162,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Só em lojas aderentes"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:theme="@style/text_light"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView9"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -197,8 +192,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Não acumula com outras campanhas"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
+                    android:theme="@style/text_light"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageView10"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -222,7 +216,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-
         <Button
             android:id="@+id/btnResgatar"
             android:layout_width="match_parent"
@@ -231,10 +224,8 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/shape_green"
-            android:fontFamily="@font/open_sans_bold"
+            android:theme="@style/text_button_white"
             android:text="RESGATAR"
-            android:textColor="@color/backgroundColor"
-            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
