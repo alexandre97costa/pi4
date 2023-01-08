@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
         android:layout_marginTop="60dp"
-        android:text="EDITAR PERFIL"
+        android:text="editar perfil"
         android:theme="@style/breadcrumb_principal_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

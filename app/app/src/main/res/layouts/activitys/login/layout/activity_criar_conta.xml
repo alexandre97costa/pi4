@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -59,12 +58,10 @@
                 android:layout_marginTop="32dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:fontFamily="@font/open_sans"
                 android:hint="nome"
                 android:inputType="textPersonName"
                 android:paddingStart="16dp"
-                android:textColor="#7C7C7C"
-                android:textSize="16sp"
+                android:theme="@style/text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -77,12 +74,10 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:fontFamily="@font/open_sans"
                 android:hint="email"
                 android:inputType="textEmailAddress"
                 android:paddingStart="16dp"
-                android:textColor="#7C7C7C"
-                android:textSize="16sp"
+                android:theme="@style/text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
@@ -94,12 +89,10 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:fontFamily="@font/open_sans"
                 android:hint="palavra-chave"
                 android:inputType="textPassword"
                 android:paddingStart="16dp"
-                android:textColor="#7C7C7C"
-                android:textSize="16sp"
+                android:theme="@style/text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
@@ -111,7 +104,7 @@
                 android:layout_marginTop="8dp"
                 android:buttonTint="@color/greenPrincipal"
                 android:text="aceitar termos"
-                android:textSize="14sp"
+                android:theme="@style/text_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
@@ -121,10 +114,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/shape_green"
-                android:fontFamily="@font/open_sans_bold"
                 android:text="Criar Conta"
-                android:textColor="@color/white"
-                android:textSize="16sp"
+                android:theme="@style/text_button_white"
                 app:layout_constraintBottom_toTopOf="@+id/textView3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -135,9 +126,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="24dp"
-                android:text="já tem conta?"
-                android:textColor="@color/black"
-                android:textSize="12sp"
+                android:text="Já tem conta?"
+                android:theme="@style/text_light"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -148,9 +138,8 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginBottom="24dp"
                 android:clickable="true"
-                android:text="Entrar"
-                android:textColor="@color/greenPrincipal"
-                android:textSize="12sp"
+                android:text="entrar"
+                android:theme="@style/text_light_green"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView3" />
 
