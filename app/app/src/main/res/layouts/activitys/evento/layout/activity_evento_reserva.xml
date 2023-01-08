@@ -94,31 +94,25 @@
                     android:id="@+id/pontoInteresse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_semibold"
                     android:text="Recital das aves"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
+                   android:theme="@style/tittle_principal_black"/>
 
                 <TextView
                     android:id="@+id/categoria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:fontFamily="@font/open_sans"
                     android:text="Músical"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:theme="@style/tittle_secundario_black"/>
 
                 <TextView
                     android:id="@+id/local"
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:fontFamily="@font/open_sans_light"
                     android:text="Largo Maj. Teles 6, 3500-212 Viseu"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:theme="@style/text_light" />
 
             </LinearLayout>
 
@@ -127,10 +121,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:fontFamily="@font/open_sans_bold"
                 android:text="Informação"
-                android:textColor="@color/black"
-                android:textSize="20sp"
+                android:theme="@style/tittle_principal_black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -141,12 +133,10 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:fontFamily="@font/open_sans"
                 android:inputType="textPersonName"
                 android:paddingStart="16dp"
-                android:text="nome"
-                android:textColor="#7C7C7C"
-                android:textSize="16sp"
+                android:hint="nome"
+                android:theme="@style/text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView17" />
@@ -158,12 +148,10 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:fontFamily="@font/open_sans"
                 android:inputType="textPersonName"
                 android:paddingStart="10dp"
-                android:text="telefone"
-                android:textColor="#7C7C7C"
-                android:textSize="16sp"
+                android:hint="telefone"
+                android:theme="@style/text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
@@ -173,11 +161,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:fontFamily="@font/open_sans_bold"
                 android:text="Número de pessoas"
-                android:textColor="@color/black"
-                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                android:theme="@style/tittle_principal_black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersoTelefone" />
 
@@ -206,10 +192,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:fontFamily="@font/open_sans"
+                        android:theme="@style/text_normal"
                         android:text="Confirmação de reserva dentro de 24h."
-                        android:textColor="@color/black"
-                        android:textSize="14dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageView13"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -233,10 +217,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/shape_green"
-                android:fontFamily="@font/open_sans_bold"
+                android:theme="@style/text_button_white"
                 android:text="Reservar"
-                android:textColor="@color/white"
-                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

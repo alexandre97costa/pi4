@@ -60,12 +60,10 @@
                 android:layout_marginTop="60dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:fontFamily="@font/open_sans"
                 android:hint="nome"
+                android:theme="@style/text_input"
                 android:inputType="textPersonName"
                 android:paddingStart="16dp"
-                android:textColor="#7C7C7C"
-                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -76,12 +74,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/shape_outline"
-                android:fontFamily="@font/open_sans"
                 android:hint=" fotografia.jpg"
                 android:inputType="textPersonName"
                 android:paddingStart="16dp"
-                android:textColor="#7C7C7C"
-                android:textSize="16sp"
+                android:theme="@style/text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
@@ -93,12 +89,10 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:fontFamily="@font/open_sans"
                 android:hint="email@gmail.com"
                 android:inputType="textEmailAddress"
                 android:paddingStart="16dp"
-                android:textColor="#7C7C7C"
-                android:textSize="16sp"
+                android:theme="@style/text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextfoto" />
@@ -109,7 +103,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Quer editar a palavra-passe?"
-                android:textSize="12sp"
+                android:theme="@style/text_light"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
@@ -120,8 +114,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="16dp"
                 android:text="editar"
-                android:textColor="@color/greenPrincipal"
-                android:textSize="12sp"
+                android:theme="@style/text_light_green"
                 app:layout_constraintStart_toEndOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
@@ -131,11 +124,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/shape_green"
-                android:fontFamily="@font/open_sans_bold"
                 android:text="Guardar"
                 android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="16sp"
+                android:theme="@style/text_button_white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
