@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Histórico"
-                android:theme="@style/breadcrumb_principal_black"
+                android:theme="@style/tittle_principal_black"
                 android:textAlignment="textStart"
                 android:textSize="24sp"
                 android:textStyle="bold"

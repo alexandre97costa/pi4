@@ -20,10 +20,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="12dp"
-        android:fontFamily="@font/open_sans_bold"
         android:text="Titulo"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:theme="@style/tittle_principal_black"/>
 
     <TextView
         android:id="@+id/textViewDataReserva"

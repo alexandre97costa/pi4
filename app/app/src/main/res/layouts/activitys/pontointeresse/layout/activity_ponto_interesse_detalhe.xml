@@ -61,28 +61,22 @@
                     android:id="@+id/textViewNomePontoInteresse"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_bold"
                     android:text="Nome do Ponto de Interesse"
-                    android:textColor="@color/black"
-                    android:textSize="24sp" />
+                    android:theme="@style/tittle_principal_black" />
 
                 <TextView
                     android:id="@+id/textViewCategoria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_semibold"
                     android:text="Categoria"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:theme="@style/tittle_secundario_black" />
 
                 <TextView
                     android:id="@+id/textView_morada"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans"
                     android:text="Morada"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:theme="@style/text_normal" />
 
 
             </LinearLayout>
@@ -120,18 +114,15 @@
                     android:id="@+id/textViewDescricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_bold"
                     android:text="Descrição"
-                    android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:theme="@style/tittle_principal_black" />
 
                 <TextView
                     android:id="@+id/textView_txt_descricao"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans"
                     android:text="Texto descritivo..."
-                    android:textSize="14sp" />
+                    android:theme="@style/text_normal" />
             </LinearLayout>
 
             <include
