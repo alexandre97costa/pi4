@@ -17,10 +17,8 @@
         android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/open_sans_bold"
         android:text="4.5"
-        android:textColor="@color/greenPrincipal"
-        android:textSize="16dp"
+        android:theme="@style/tittle_secundario_green"
         app:layout_constraintStart_toEndOf="@+id/star"
         app:layout_constraintTop_toTopOf="parent" />
 
