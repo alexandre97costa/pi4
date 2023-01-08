@@ -51,7 +51,9 @@ module.exports = {
 
         const options = {
             algorithm: process.env.JWT_ALGORITHM,
-            expiresIn: 30000
+            expiresIn: process.env.MODE === "dev" ?
+                259200 :    // 3 dias
+                900         // 15 minutos
         }
 
         return res.status(200).json({
@@ -101,7 +103,8 @@ module.exports = {
 
         const utilizadorJaExiste = await utilizador.findOne({ where: { email: email } })
 
-        if (utilizadorJaExiste) return res.status(400).json({ message: 'Utilizador com esse email já existe.' })
+        if (utilizadorJaExiste) 
+            return res.status(400).json({ message: 'Utilizador com esse email já existe.' })
         
 
         await utilizador

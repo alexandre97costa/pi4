@@ -55,18 +55,108 @@ module.exports = {
 
     // o unico parametro que o visitante pode mudar na sua reserva
     mudarVagasReserva: async (req, res) => {
+        // só visitantes
+        if (req.auth.tipo !== 1)
+            return res.status(401).json({ msg: 'Apenas visitantes podem mudar as vagas da sua reserva' })
 
+        if (!req.body.reserva_id || !req.body.num_pessoas_novo)
+            return res.status(400).json({ msg: 'Faltam dados! É preciso identificar a reserva e o novo numero de pessoas.' })
+
+        const { reserva_id, num_pessoas_novo } = req.body
+
+        // procurar se a reserva existe e se é do visitante que as pediu
+        const _reserva = await reserva.findByPk(reserva_id)
+
+        if (_reserva === null)
+            return res.status(404).json({ msg: 'Essa reserva não existe' })
+
+        if (_reserva.visitante_id !== req.auth.id)
+            return res.status(401).json({ msg: 'Só podes mudar as tuas próprias reservas' })
+
+        await _reserva
+            .update({ num_pessoas: +num_pessoas_novo })
+            .then(output => { return res.status(200).json(output) })
+            .catch(error => { return res.status(400).json(error) })
     },
 
     // o agente pode validar ou rejeitar a reserva
     validarReserva: async (req, res) => {
+        // * 🚨 guard clauses
+        // so agentes
+        if (req.auth.tipo !== 2)
+            return res.status(401).json({ msg: 'Apenas agentes turísticos podem validar reservas.' })
 
+        if (!req.body.reserva_id || !req.body.validado)
+            return res.status(400).json({ msg: 'Faltam dados! É preciso identificar a reserva e o novo valor de validação.' })
+
+        const { reserva_id, validado } = req.body
+
+        const _reserva = await reserva.findByPk(reserva_id)
+        if (_reserva === null) return res.status(404).json({ msg: 'Essa reserva não existe.' })
+
+        // so o agente que é proprietario do ponto de interesse onde decorre o evento é que pode validar
+        const _sessao = await evento.findByPk(_reserva.sessao_id)
+        if (_sessao === null) return res.status(404).json({ msg: 'Essa sessão não existe' })
+
+        const _evento = await evento.findByPk(_sessao.evento_id)
+        if (_evento === null) return res.status(404).json({ msg: 'Esse evento não existe' })
+
+        const _pi = await ponto_interesse.findByPk(_evento.ponto_interesse_id)
+        if (_pi === null) return res.status(404).json({ msg: 'Esse ponto de interesse não existe' })
+
+        if (req.auth.id !== _pi.agente_turistico_id)
+            return res.status(401).json({ msg: 'Apenas o agente turístico proprietário pode validar uma reserva' })
+
+        // ✅ tudo gucci, siga pra vinho
+        await _reserva
+            .update({ validado: !!validado })
+            .then(output => { return res.status(200).json(output) })
+            .catch(error => { return res.status(400).json(error) })
+    },
+
+    test_reserva: async (req, res) => {
+        if (req.auth.tipo !== 2)
+            return res.status(401).json({ msg: 'Apenas agentes podem confirmar reservas' })
+
+        // !pode nao trazer algumas coisas 
+        // ex: pode nao trazer sessao se nao houverem eventos
+        const reservas_agente = await utilizador
+            .findOne({
+                where: { id: req.auth.id },
+                include: {
+                    model: ponto_interesse,
+                    include: {
+                        model: evento,
+                        include: {
+                            model: sessao,
+                            include: {
+                                model: reserva
+                            }
+                        }
+                    }
+                }
+            })
+
+
+        res.status(200).json(reservas_agente)
     },
 
     // processo automatico parecido a um scan
     // o visitante mostra o codigo da sua reserva ao agente
     // o agente insere-o no back office, que por sua vez confirma a reserva
     confirmarResesva: async (req, res) => {
+        // tem que ser um agente a confirmar
+        if (req.auth.tipo !== 2)
+            return res.status(401).json({ msg: 'Apenas agentes podem confirmar reservas' })
+
+        if (!req.body.reserva_id || !req.body.codigo_confirmacao)
+            return res.status(400).json({ msg: 'Faltam dados! É preciso identificar a reserva e o código de confirmação.' })
+
+        const { reserva_id, codigo_confirmacao } = req.body
+
+        // precisamos de apanhar as reservas deste agente em especifico, e procurar uma reserva dentro dessas
+        const reservas_agente = await utilizador.findByPk(req.auth.id)
+
 
     },
 
