@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="40dp"
         app:cardCornerRadius="14dp"
         app:contentPadding="10dp"
@@ -106,7 +106,7 @@
 
                 <TextView
                     android:id="@+id/textView11"
-                    android:layout_width="84dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/open_sans"

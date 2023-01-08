@@ -1,5 +1,6 @@
 package pi4.main.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment
 import com.example.ficha8.Req
 import com.google.android.material.tabs.TabLayout
 import org.json.JSONObject
+import pi4.main.Activitys.Historico.ActivityHistoricoPontos
 import pi4.main.Classes.PontoInteresse
 import pi4.main.R
 import pi4.main.Adapter.SetAdapterCard
@@ -61,6 +63,10 @@ class FragmentPontoInteresse() : Fragment() {
         val pontos = Points(998)
 
         pontos.loadPontos(textView)
+
+        textView.setOnClickListener{
+            startActivity(Intent(requireContext(), ActivityHistoricoPontos::class.java))
+        }
     }
 
     private fun createCategoriasTab() {
@@ -101,9 +107,28 @@ class FragmentPontoInteresse() : Fragment() {
     private fun callAdapterCards(categoria:String) {
         //val arrayFinal: ArrayList<PontoInteresse> = stringRequestPontosInteresse(categoria)
 
-        var arrayFinal:ArrayList<PontoInteresse>
+        var arrayFinal:ArrayList<PontoInteresse> = arrayListOf()
 
-        fun ResponseToArrayList(res:JSONObject){
+        val objetoExemplo = PontoInteresse(
+            image_url = "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit",
+            nome = "Jardim das Mães",
+            morada =  "Largo Maj. Teles 6, 3500-212 Viseu",
+            descricao = "Um jardim muito bonito",
+            tipo_interesse = "Jardim",
+            freguesia_municipio = "Viseu",
+            num_pontos = "10 pts",
+            avg_avaliacao = 4.8f,
+            count_scans = 2,
+            agente_turistico = "José"
+        )
+
+        arrayFinal.add(objetoExemplo)
+
+        val customAdapter = SetAdapterCard(requireContext(), arrayFinal)
+        val listView = requireView().findViewById<ListView>(R.id.listView)
+        listView.adapter = customAdapter
+
+        /*fun ResponseToArrayList(res:JSONObject){
             arrayFinal = res
                 .getJSONArray("data")
                 .let { 0.until(it.length()).map { i -> it.optJSONObject(i) } }
@@ -148,7 +173,7 @@ class FragmentPontoInteresse() : Fragment() {
         })
 
         // val image = "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit"
-        // val image2 = "https://blog.emania.com.br/wp-content/uploads/2016/02/direitos-autorais-e-de-imagem.jpg"
+        // val image2 = "https://blog.emania.com.br/wp-content/uploads/2016/02/direitos-autorais-e-de-imagem.jpg" */
 
     }
 }

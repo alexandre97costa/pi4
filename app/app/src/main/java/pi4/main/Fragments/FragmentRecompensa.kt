@@ -1,5 +1,6 @@
 package pi4.main.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.tabs.TabLayout
+import pi4.main.Activitys.Historico.ActivityHistoricoPontos
 import pi4.main.Classes.CategoriaLista
 import pi4.main.Classes.Points
 import pi4.main.R
@@ -30,6 +32,10 @@ class FragmentRecompensa : Fragment() {
         val pontos = Points(998)
 
         pontos.loadPontos(textView)
+
+        textView.setOnClickListener{
+            startActivity(Intent(requireContext(), ActivityHistoricoPontos::class.java))
+        }
     }
 
     private fun createCategoriasTab() {

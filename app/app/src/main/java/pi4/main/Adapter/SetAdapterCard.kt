@@ -1,6 +1,7 @@
 package pi4.main.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,8 +9,10 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import com.google.android.material.card.MaterialCardView
 import com.squareup.picasso.Picasso
+import pi4.main.Activitys.PontoInteresse.ActivityPontoInteresseDetalhe
 import pi4.main.Classes.PontoInteresse
 import pi4.main.R
 
@@ -59,6 +62,6 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
     }
 
     fun teste(mensagem:String) {
-        Toast.makeText(context, "$mensagem", Toast.LENGTH_SHORT).show()
+        context.startActivity(Intent(context, ActivityPontoInteresseDetalhe::class.java))
     }
 }

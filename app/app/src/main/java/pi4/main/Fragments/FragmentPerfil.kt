@@ -12,6 +12,7 @@ import pi4.main.Activitys.Historico.ActivityHistoricoPontos
 import pi4.main.Activitys.ActivityTornarAgente
 import pi4.main.Activitys.Historico.ActivityHistoricoReserva
 import pi4.main.Activitys.Historico.ActivityHistoricoVisitas
+import pi4.main.Activitys.PontoInteresse.ActivityPontoInteresseDetalhe
 import pi4.main.R
 
 class FragmentPerfil : Fragment() {
