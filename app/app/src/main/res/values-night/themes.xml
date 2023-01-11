@@ -12,5 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/greenPrincipal</item>
         <!-- Customize your theme here. -->
+        <item name="shapeAppearanceMediumComponent">@style/Theme.MaterialComponents</item>
+        <item name="textAppearanceSubtitle1">@style/Theme.MaterialComponents</item>
+        <item name="textAppearanceCaption">@style/Theme.MaterialComponents</item>
+        <item name="shapeAppearanceSmallComponent">@style/Theme.MaterialComponents</item>
     </style>
 </resources>
