@@ -22,12 +22,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/nsei23"
+            android:id="@+id/cardContraint"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout9"
+                android:id="@+id/colorContraint"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@color/greenPrincipal"
@@ -55,21 +55,19 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/nsei"
+                android:id="@+id/constraintLayout10"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout9"
+                app:layout_constraintStart_toEndOf="@+id/colorContraint"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
-                    android:orientation="vertical"
                     android:gravity="center_vertical"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -92,18 +90,51 @@
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/local"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
-                        android:fontFamily="@font/open_sans_light"
-                        android:text="Só em lojas aderentes"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+                        <ImageView
+                            android:id="@+id/imageView9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/store" />
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="Só em lojas aderentes"
+                            android:theme="@style/text_light"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/imageView9"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/constraintLayout10"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/arrow_forward" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
