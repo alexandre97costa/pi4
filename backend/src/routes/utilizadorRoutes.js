@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const utilizadorController = require('../controllers/utilizadorController.js')
+const u = require('../controllers/utilizadorController')
 
-router.post('/', utilizadorController.create)
-router.get('/login', utilizadorController.login)
-router.get('/all', utilizadorController.list)
-router.get('/tipos', utilizadorController.list_tipos)
-router.put('/:id', utilizadorController.update)
-router.patch('/:id', utilizadorController.change_tipo_utilizador)
+router.get('/login', u.login)
+
+router.get('/', u.get)
+router.get('/:id', u.get)
+router.post('/', u.post)
+router.put('/:id', u.editar)
+router.patch('/:id', u.mudar_tipo)
+router.delete('/:id', u.delete)
+
+router.get('/tipos', u.tipos)
 
 module.exports = router;

@@ -61,7 +61,8 @@ module.exports = {
         });
     },
 
-    list: async (req, res) => {
+    // todo: atualizar estes controllers todos
+    get: async (req, res) => {
         await utilizador
             .findAll({
                 attributes: ['nome', 'email', 'password', 'data_nascimento', 'updated_at'],
@@ -74,14 +75,14 @@ module.exports = {
             .catch(e => { dev.error(e); res.status(400).json({ e }) })
     },
 
-    list_tipos: async (req, res) => {
+    tipos: async (req, res) => {
         await tipo_utilizador
             .findAll({ attributes: ['id', 'nome', 'observacoes'], order: [['id', 'ASC']] })
             .then(data => { res.status(200).json({ data }) })
             .catch(e => { dev.error(e); res.status(400).json({ e }) })
     },
 
-    create: async (req, res) => {
+    post: async (req, res) => {
         if (
             !req.body.nome ||
             !req.body.email ||
@@ -140,7 +141,7 @@ module.exports = {
 
     },
 
-    update: async (req, res) => {
+    editar: async (req, res) => {
         // todo ainda não está feito
         if (
             !req.body.email ||
@@ -150,7 +151,7 @@ module.exports = {
         }
     },
 
-    change_tipo_utilizador: async (req, res) => {
+    mudar_tipo: async (req, res) => {
         if (
             !req.body.email ||
             !req.body.tipo_utilizador_id

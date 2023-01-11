@@ -88,7 +88,11 @@ app.use('/dev', devRoutes)
 
 // Rota de Introdução
 app.use('/', (req, res) => {
-    res.status(200).json({msg: 'Vieste para o root. Se não era suposto, verifica o método ou o url!'});
+    res.status(200).json({
+        msg: 'Vieste para o root. Se não era suposto, verifica o método ou o url!',
+        method: req.method,
+        url: req.baseUrl + req._parsedUrl.pathname
+    });
 })
 
 
