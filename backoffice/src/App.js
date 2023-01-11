@@ -197,11 +197,11 @@ export default function App() {
         />
 
         <Route
-          path="/responsavel-regiao/consultar-pontos-interesse"
+          path="/consultar-pontos-interesse"
           element={
             <ProtectedRoute>
               <Pagina title="Pontos de Interesse">
-                <Pages.PontosInteresse tipoUtilizador="Responsavel Regiao" />
+                <Pages.PontoInteresse tipoUtilizador="Responsavel Regiao" />
               </Pagina>
             </ProtectedRoute>
           }
@@ -224,6 +224,17 @@ export default function App() {
             <ProtectedRoute>
               <Pagina title="Lista Região">
                 <Pages.ListaRegiao />
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/responsavel-regiao/lista-eventos"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Lista Eventos">
+                <Pages.EventosResponsavelRegiao />
               </Pagina>
             </ProtectedRoute>
           }
@@ -268,6 +279,17 @@ export default function App() {
             <ProtectedRoute>
               <Pagina title="Detalhes utilizador">
                 <Pages.DetalhesUtilizador />
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/responsavel-regiao/agentes"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Lista de Agentes Turísticos">
+                <Pages.Agentes />
               </Pagina>
             </ProtectedRoute>
           }

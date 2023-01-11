@@ -71,19 +71,19 @@ export default function Home() {
                 </div>
 
                 <div className='col-4 col-md-2'>
-                    <BotaoDashboard colorBotao="btn-light btn-lg" icon="bi-journal-check" texto="Atribuição de Perfil"/>
+                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-light btn-lg" icon="bi-journal-check" texto="Atribuição de Perfil"/>
                 </div>
 
                 <div className='col-4 col-md-2'>
-                    <BotaoDashboard to="/microsite" colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Página Web"/>
+                    <BotaoDashboard to="/admin/microsite" colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Página Web"/>
                 </div>
 
                 <div className='col-4 col-md-2'>
-                    <BotaoDashboard colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Regiões Web"/>
+                    <BotaoDashboard to="/admin/lista-regiao" colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Regiões Web"/>
                 </div>
 
                 <div className='col-12 mt-5'>
-                    <p className="fs-5 text-body fw-light">Lista de Regiões</p>
+                    <p className="fs-5 text-body fw-light">Lista de Utilizadores</p>
                 </div>
 
                 <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-2 text-center'>
