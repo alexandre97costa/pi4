@@ -72,27 +72,27 @@ export default function Home() {
 
             <div className='row row-cols-4 gt-4'>
                 <div className='col pb-3 col-sm-3 mb-sm-0 text-break  text-center'>
-                    <BotaoDashboard to="/responsavel-regiao/agentes" colorBotao="btn-agentes h-100 text-white fw-bold py-5 w-100 h-100" texto="Agentes Turísticos" />
+                    <BotaoDashboard to="/responsavel-regiao/agentes" colorBotao="btn-agentes h-100 text-white fw-bold text-center py-5 w-100 h-100 text-uppercase" texto="AGENTES TURÍSTICOS" />
                 </div>
 
                 <div className='col pb-3 col-sm-3 mb-sm-0 text-break  text-center'>
-                    <BotaoDashboard to="/consultar-pontos-interesse" colorBotao="btn-regiao h-100 text-white fw-bold py-5 w-100 h-100" texto="Pontos de Interesse" />
+                    <BotaoDashboard to="/consultar-pontos-interesse" colorBotao="btn-regiao h-100 text-white fw-bold py-5 w-100 h-100 text-uppercase" texto="Pontos de Interesse" />
                 </div>
 
                 <div className='col pb-3 col-sm-3 mb-sm-0 text-break  text-center'>
-                    <BotaoDashboard to="/responsavel-regiao/lista-eventos" colorBotao="btn-primary h-100 text-white fw-bold py-5 w-100 h-100" texto="Eventos" />
+                    <BotaoDashboard to="/responsavel-regiao/lista-eventos" colorBotao="btn-primary h-100 text-white fw-bold py-5 w-100 h-100 text-uppercase" texto="Eventos" />
                 </div>
 
                 <div className='col pb-3 col-sm-3 mb-sm-0 text-break  text-center'>
-                    <BotaoDashboard to="/responsavel-regiao/lista-vouchers" colorBotao="btn-agentes h-100 text-white fw-bold py-5 w-100 h-100" texto="Vouchers" />
+                    <BotaoDashboard to="/responsavel-regiao/lista-vouchers" colorBotao="btn-agentes h-100 text-white fw-bold py-5 w-100 h-100 text-uppercase" texto="Vouchers" />
                 </div>
 
                 <div className='col b-3 col-sm-3 mb-sm-0 text-break  text-center'>
-                    <BotaoDashboard to="/responsavel-regiao/lista-recompensas" colorBotao="btn-regiao h-100 text-white fw-bold py-5 w-100 h-100" texto="Recompensas" />
+                    <BotaoDashboard to="/responsavel-regiao/lista-recompensas" colorBotao="btn-regiao h-100 text-white fw-bold py-5 w-100 h-100 text-uppercase" texto="Recompensas" />
                 </div>
             </div>
 
-            <div className='row'>
+            <div className='row mt-5'>
                 <div className='col-12 mt-5'>
                     <p className="fs-5 text-body fw-light">Validação de Agentes Turísticos</p>
                 </div>

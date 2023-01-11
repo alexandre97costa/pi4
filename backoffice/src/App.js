@@ -241,6 +241,17 @@ export default function App() {
         />
 
         <Route
+          path="/responsavel-regiao/lista-reservas-eventos"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Reservas ao evento">
+                <Pages.ReservasEvento/>
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/responsavel-regiao/lista-vouchers"
           element={
             <ProtectedRoute>
