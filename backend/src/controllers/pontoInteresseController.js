@@ -22,96 +22,42 @@ const {
 
 module.exports = {
 
-    test_aval: async (req, res) => {
-        await comentario_avaliacao
-            .create({
-                comentario: 'comentario de teste',
-                avaliacao: req.query?.aval ?? 3,
-                ponto_interesse_id: 1,
-                visitante_id: 1
-            })
-            .then(output => { res.status(200).json({ output }) })
-            .catch(error => { res.status(400).json(error); dev.error(error); });
-    },
-
-    test_img: async (req, res) => {
-        await imagem
-            .create({
-                url: 'https://images.unsplash.com/photo-1572085313466-6710de8d7ba3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80',
-                ponto_interesse_id: 1,
-            })
-            .then(output => { res.status(200).json({ output }) })
-            .catch(error => { res.status(400).json(error); dev.error(error); });
-    },
-
-    test_ppi: async (req, res) => {
-        await pontos_ponto_interesse
-            .create({
-                // ! atenção a estes numeros, verifica se existem estes ids na tua bd local
-                ponto_interesse_id: 1,
-                visitante_id: 1
-            })
-            .then(output => { res.status(200).json({ output }) })
-            .catch(error => { res.status(400).json(error); dev.error(error); });
-    },
-
-    postPontoInteresse: async (req, res) => {
-        if (req.auth.tipo === 1)
-            return res.status(401).json({ msg: 'Sem autorização para criar Pontos de Interesse' })
-
-        const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
-
-        await ponto_interesse
-            .create({
-                nome: nome,
-                morada: morada,
-                codigo_postal: codigo_postal,
-                num_telemovel: num_telemovel,
-                num_pontos: num_pontos,
-                descricao: descricao,
-                freguesia_id: freguesia_id,
-                tipo_interesse_id: tipo_interesse_id,
-            })
-            .then(output => { res.status(200).json({ pontoInteresse: output }) })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
-    },
-
-    getPontoInteresse: async (req, res) => {
+    get: async (req, res) => {
         // * filtros
-        let nome = req.query?.nome ?? '%'
-        let pontoInteresseId = req.query?.pontoInteresseId ?? 0
-        let tipoInteresseId = req.query?.tipoInteresseId ?? 0
-        let freguesiaId = req.query?.freguesiaId ?? 0
-        let agenteTuristicoId = req.query?.agenteTuristicoId ?? 0
-        let distritoId = req.query?.distritoId ?? 0
-        let minScans = req.query?.minScans ?? 0
-        let minAval = req.query?.minAval ?? 0
+        const nome = req.query?.nome ?? '%'
+        const ponto_interesse_id = req.params?.id ?? 0
+        const tipo_interesse_id = req.query?.tipo_interesse_id ?? 0
+        const freguesia_id = req.query?.freguesia_id ?? 0
+        const agente_turistico_id = req.query?.agente_turistico_id ?? 0
+        const distrito_id = req.query?.distrito_id ?? 0
+        const min_scans = req.query?.min_scans ?? 0
+        const min_aval = req.query?.min_aval ?? 0
 
         // * ordenação e paginação
-        let order = req.query?.order ?? 'nome'
-        let direction = req.query?.direction ?? 'asc'
-        let offset = req.query?.offset ?? 0
-        let limit = req.query?.limit ?? 0
+        const order = req.query?.order ?? 'nome'
+        const direction = req.query?.direction ?? 'asc'
+        const offset = req.query?.offset ?? 0
+        const limit = req.query?.limit ?? 0
 
         // * outras opções
-        let incluirEliminados = !!req.query?.incluirEliminados // incluir também os PIs eliminados
-        let soEliminados = !!req.query?.soEliminados           // pedir só os PIs eliminados
-        let validado = !!(req.query?.validado ?? true)         // True: Só PIs validados; False: Só PIs por validar
+        const incluir_eliminados = !!req.query?.incluir_eliminados // incluir também os PIs eliminados
+        const so_eliminados = !!req.query?.so_eliminados           // pedir só os PIs eliminados
+        const validado = !!(req.query?.validado ?? true)         // True: Só PIs validados; False: Só PIs por validar
 
         await ponto_interesse
             .findAndCountAll({
                 where: {
-                    id: !!+pontoInteresseId ?
-                        +pontoInteresseId :
+                    id: !!+ponto_interesse_id ?
+                        +ponto_interesse_id :
                         { [Op.ne]: 0 },
                     nome: {
                         [Op.iLike]: '%' + nome + '%'
                     },
-                    tipo_interesse_id: !!+tipoInteresseId ?
-                        +tipoInteresseId :
+                    tipo_interesse_id: !!+tipo_interesse_id ?
+                        +tipo_interesse_id :
                         { [Op.ne]: 0 },
-                    freguesia_id: !!+freguesiaId ?
-                        +freguesiaId :
+                    freguesia_id: !!+freguesia_id ?
+                        +freguesia_id :
                         { [Op.ne]: 0 },
                     agente_turistico_id:
                         // se o utilizador logado for agente
@@ -119,21 +65,21 @@ module.exports = {
                             // automaticamente so mostra is seus proprios PIS
                             req.auth.id :
                             // caso contrário, podemos filtrar pelo param (se vier preenchido)
-                            !!+agenteTuristicoId ?
-                                +agenteTuristicoId :
+                            !!+agente_turistico_id ?
+                                +agente_turistico_id :
                                 {
                                     [Op.or]: {
                                         [Op.ne]: 0,
                                         [Op.eq]: null // porque pode não ter agente
                                     }
                                 },
-                    count_scans: !!minScans ?
-                        { [Op.gt]: minScans } :
+                    count_scans: !!min_scans ?
+                        { [Op.gt]: min_scans } :
                         { [Op.ne]: -1 },
-                    avg_avaliacao: !!minAval ?
-                        { [Op.gt]: minAval } :
+                    avg_avaliacao: !!min_aval ?
+                        { [Op.gt]: min_aval } :
                         { [Op.ne]: -1 },
-                    deleted_at: !!soEliminados ?
+                    deleted_at: !!so_eliminados ?
                         { [Op.ne]: null } :
                         // se for false, quero que venham com ou sem o deleted_at
                         // a condição para virem deleted é o paranoid
@@ -143,7 +89,7 @@ module.exports = {
                                 [Op.eq]: null
                             }
                         },
-                    validado
+                    validado: validado
                 },
                 include: [
                     {
@@ -159,8 +105,8 @@ module.exports = {
                                 required: true,
                                 attributes: ['id', 'nome'],
                                 where: {
-                                    id: !!+distritoId ?
-                                        +distritoId :
+                                    id: !!+distrito_id ?
+                                        +distrito_id :
                                         { [Op.ne]: 0 }
                                 },
                             }
@@ -185,9 +131,9 @@ module.exports = {
                     }
                 ],
                 order: [[order, direction]],
-                offset,
+                offset: offset,
                 limit: !!limit ? limit : null,
-                paranoid: !!incluirEliminados || !!soEliminados ? false : true // caso um ou outro seja true, traz PIs eliminados
+                paranoid: !!incluir_eliminados || !!so_eliminados ? false : true // caso um ou outro seja true, traz PIs eliminados
             })
             .then(output => {
                 // caso não tenha encontrado, 404
@@ -198,26 +144,56 @@ module.exports = {
             })
             .catch(error => {
                 res.status(400).json({ msg: 'Ocorreu um erro no pedido de pontos de interesse' })
-                dev.error(error)
+                dev.error({ error })
                 return
             })
     },
 
-    putPontoInteresse: async (req, res) => {
-        console.log(req.auth.tipo)
+    post: async (req, res) => {
         if (req.auth.tipo === 1)
-            return res.status(401).json('Sem autorização para alterar informação do Ponto de Interesse')
-
-        //if(pontoInteresse == null) then pontoInteresse = '%'
-        let pontoInteresseId = req.query?.pontoInteresseId ?? 0
-        let agenteTuristicoId = req.query?.agenteTuristicoId ?? 0
-
-        if (!pontoInteresseId || !agenteTuristicoId)
-            return res.status(400).json('Introduza pontoInteresseId e agenteTurisiticoId validos')
+            return res.status(401).json({ msg: 'Sem autorização para criar Pontos de Interesse' })
 
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
         await ponto_interesse
+            .create({
+                nome: nome,
+                morada: morada,
+                codigo_postal: codigo_postal,
+                num_telemovel: num_telemovel,
+                num_pontos: num_pontos,
+                descricao: descricao,
+                freguesia_id: freguesia_id,
+                tipo_interesse_id: tipo_interesse_id,
+            })
+            .then(output => { 
+                return res.status(200).json({ msg: 'Ponto de interesse criado.', ponto_interesse: output }) 
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            });
+    },
+
+    editar: async (req, res) => {
+        if (req.auth.tipo === 1)
+            return res.status(401).json({ msg: 'Sem autorização para alterar informação do Ponto de Interesse' })
+
+        const { id } = req.params
+        const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
+
+        // verificar se o pi existe
+        const _pi = await ponto_interesse.findByPk(+id)
+        if (_pi === null) return res.status(404).json({ msg: 'O ponto de interesse não existe ou foi eliminado.' })
+
+        // se for um agente a editar, verificar se o pi lhe pertence
+        const _user = await utilizador.findByPk(+req.auth.id)
+        if (req.auth.tipo === 2 && _pi.agente_turistico_id === _user.id)
+            return res.status(401).json({ msg: 'Como agente, não podes editar pontos de interesse que não te pertençam.' })
+
+
+        await _pi
             .update({
                 nome: nome,
                 morada: morada,
@@ -229,92 +205,166 @@ module.exports = {
                 tipo_interesse_id: tipo_interesse_id
             }, {
                 where: {
-                    id: pontoInteresseId,
-                    agente_turistico_id: agenteTuristicoId
+                    id: +id,
+                    agente_turistico_id: req.auth.id
                 }
             })
             .then(output => {
-                console.log(output)
-                if (!output[0])
-                    return res.status(404).json('Ponto de Interesse não existe')
-                res.status(200).json({ pontoInteresse: output })
+                return !output[0] ?
+                    res.status(404).json({ msg: 'Ponto de interesse não atualizado.' }) :
+                    res.status(200).json({ msg: 'Ponto de interesse atualizado.', pontoInteresse: output })
             })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            });
     },
 
-    patchPontoInteresse: async (req, res) => {
+    mudar_agente: async (req, res) => {
+        // so o responsavel de regiao e admin podem mudar o agente de um ponto
+        if (req.auth.tipo !== 3 || req.auth.tipo !== 4)
+            return res.status(401).json({ msg: 'Apenas responsáveis e admins podem mudar o agente de um ponto de interesse.' })
 
-        //if(pontoInteresse == null) then pontoInteresse = '%'
-        let pontoInteresseId = req.query?.pontoInteresseId ?? 0
-        const { agente_turistico_id, validado } = req.body
+        const { id, agente_id } = req.params
 
-        if (req.auth.tipo === 1 || req.auth.tipo === 2) {
-            if (!!agente_turistico_id)
-                return res.status(401).json('Sem autorização para atualizar o Agente Turistico')
-            if (!!validado)
-                return res.status(401).json('Sem autorização para atualizar o estado do Ponto de interesse')
-            return res.status(401).json('Sem autorização')
-        }
-
-        if (!pontoInteresseId)
-            return res.status(400).json('Introduza pontoInteresseId valido')
+        // verificar se o pi e o agente existem
+        const _pi = await ponto_interesse.findByPk(+id)
+        const _agente = await utilizador.findOne({ where: { id: +agente_id, tipo_utilizador_id: 2 } })
+        if (_pi === null) return res.status(404).json({ msg: 'O ponto de interesse não existe ou foi eliminado.' })
+        if (_agente === null) res.status(404).json({ msg: 'O utilizador fornecido não existe, foi eliminado, ou não é agente.' })
 
 
-        if (!agente_turistico_id && !validado)
-            return res.status(400).json('Body vazio')
-
-        if (!!agente_turistico_id && !!validado)
-            return res.status(400).json('Só pode enviar um elemento no body')
-
-        if (!!agente_turistico_id)
-            return await ponto_interesse
-                .update({
-                    agente_turistico_id: agente_turistico_id
-                }, { where: { id: pontoInteresseId } })
-                .then(output => {
-                    if (!output[0])
-                        return res.status(404).json('Ponto de Interesse não existe')
-                    res.status(200).json({ pontoInteresse: output })
-                })
-                .catch(error => { res.status(400).json(error); throw new Error(error); })
-
-        if (!!validado)
-            return await ponto_interesse
-                .update({
-                    validado: validado
-                }, { where: { id: pontoInteresseId } })
-                .then(output => {
-                    if (!output[0])
-                        return res.status(404).json('Ponto de Interesse não existe')
-                    res.status(200).json({ pontoInteresse: output })
-                })
-                .catch(error => { res.status(400).json(error); throw new Error(error); })
-    },
-
-    deletePontoInteresse: async (req, res) => {
-        if (req.auth.tipo === 1 || req.auth.tipo === 2)
-            return res.status(401).json('Sem autorização para eliminar Pontos de Interesse')
-
-        let pontoInteresseId = req.query?.pontoInteresseId ?? 0
-
-        if (!pontoInteresseId)
-            return res.status(400).json('pontoInteresseId invalido')
-
-        await ponto_interesse
-            .destroy({
-                where: { id: pontoInteresseId }
-            })
+        await _pi
+            .update(
+                { agente_turistico_id: +agente_id }
+            )
             .then(output => {
-                if (!output)
-                    return res.status(404).json('Ponto de interesse não existe')
-                return res.status(200).json({ pontoInteresse: output })
+                return !output[0] ?
+                    res.status(400).json({ msg: 'Ponto de interesse não atualizado.' }) :
+                    res.status(200).json({ msg: 'Ponto de interesse atualizado.', ponto_interesse: output })
             })
-            .catch(error => { res.status(400).json(error); dev(error); });
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
     },
 
-    getTipoPontoInteresse: async (req, res) => {
-        await tipo_interesse.findAll()
-            .then(output => { res.status(200).json({ tipoPontoInteresse: output }) })
-            .catch(error => { res.status(400).json(error); dev(error); });
-    }
+    mudar_estado: async (req, res) => {
+
+        // so o responsavel de regiao e admin podem mudar o estado de um ponto
+        if (req.auth.tipo !== 3 || req.auth.tipo !== 4)
+            return res.status(401).json({ msg: 'Apenas responsáveis e admins podem mudar o estado de um ponto de interesse.' })
+
+        const { id, novo_estado } = req.params
+
+        // verificar se o pi existe
+        const _pi = await ponto_interesse.findByPk(id)
+        if (_pi === null) return res.status(404).json({ msg: 'O ponto de interesse não existe ou foi eliminado.' })
+
+
+        await _pi
+            .update(
+                { validado: !!novo_estado }
+            )
+            .then(output => {
+                return !output[0] ?
+                    res.status(400).json({ msg: 'Ponto de interesse não atualizado.' }) :
+                    res.status(200).json({ msg: 'Ponto de interesse atualizado.', ponto_interesse: output })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
+    },
+
+    // todo
+    delete: async (req, res) => {
+        if (req.auth.tipo === 1)
+            return res.status(401).json({ msg: 'Visitantes não podem eliminar pontos de interesse' })
+
+        const { id } = req.params
+
+        // verificar se o pi existe
+        const _pi = await ponto_interesse.findByPk(+id)
+        if (_pi === null) return res.status(404).json({ msg: 'O ponto de interesse não existe' })
+
+
+        await _pi
+            .destroy()
+            .then(output => {
+                return !output ?
+                    res.status(404).json({ msg: 'Ponto de interesse não foi eliminado.' }) :
+                    res.status(200).json({ msg: 'Ponto de interesse eliminado.', ponto_interesse: output })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev(error)
+                return
+            });
+    },
+
+    tipos: async (req, res) => {
+        await tipo_interesse
+            .findAll()
+            .then(output => { 
+                return res.status(200).json({ tipos_interesse: output }) 
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev(error)
+                return
+            });
+    },
+
+
+    // * testes
+
+
+    test_aval: async (req, res) => {
+        await comentario_avaliacao
+            .create({
+                comentario: 'comentario de teste',
+                avaliacao: req.query?.aval ?? 3,
+                ponto_interesse_id: 1,
+                visitante_id: 1
+            })
+            .then(output => { res.status(200).json({ output }) })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            });
+    },
+
+    test_img: async (req, res) => {
+        await imagem
+            .create({
+                url: 'https://images.unsplash.com/photo-1572085313466-6710de8d7ba3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80',
+                ponto_interesse_id: 1,
+            })
+            .then(output => { res.status(200).json({ output }) })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            });
+    },
+
+    test_ppi: async (req, res) => {
+        await pontos_ponto_interesse
+            .create({
+                // ! atenção a estes numeros, verifica se existem estes ids na tua bd local
+                ponto_interesse_id: 1,
+                visitante_id: 1
+            })
+            .then(output => { res.status(200).json({ output }) })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            });
+    },
 }

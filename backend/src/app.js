@@ -13,7 +13,6 @@ sequelize.sync(
 const { dev: devClass } = require('./_dev/dev')
 const dev = new devClass;
 
-const exemploRoute = require('./routes/exemplo')
 const utilizadorRoutes = require('./routes/utilizadorRoutes')
 const pontoInteresseRoutes = require('./routes/pontoInteresseRoutes')
 const eventoRoutes = require('./routes/eventoRoutes')
@@ -64,6 +63,7 @@ app.use(
             
             // para os scans feitos fora da app, nao precisam de auth porque são redirecionados para o micro site
             { url: /^\/scan/, method: ['GET'] },
+
             { url: /^\/dev/ },
 
             // { url: /^\// },
@@ -78,9 +78,8 @@ app.use(function (e, req, res, next) {
 });
 
 //* Rotas
-app.use('/exemplo', exemploRoute)
 app.use('/utilizador', utilizadorRoutes)
-app.use('/pontoInteresse', pontoInteresseRoutes)
+app.use('/pi', pontoInteresseRoutes)
 app.use('/evento', eventoRoutes)
 app.use('/reserva', reservaRoutes)
 app.use('/scan', scanRoutes)
