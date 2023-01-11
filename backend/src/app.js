@@ -20,6 +20,8 @@ const eventoRoutes = require('./routes/eventoRoutes')
 const reservaRoutes = require('./routes/reservaRoutes')
 const scanRoutes = require('./routes/scanRoutes')
 
+const devRoutes = require('./routes/devRoutes')
+
 //* Middlewares
 app.use(cors());
 app.use(express.json());
@@ -62,6 +64,7 @@ app.use(
             
             // para os scans feitos fora da app, nao precisam de auth porque são redirecionados para o micro site
             { url: /^\/scan/, method: ['GET'] },
+            { url: /^\/dev/ },
 
             // { url: /^\// },
         ]
@@ -82,9 +85,11 @@ app.use('/evento', eventoRoutes)
 app.use('/reserva', reservaRoutes)
 app.use('/scan', scanRoutes)
 
+app.use('/dev', devRoutes)
+
 // Rota de Introdução
 app.use('/', (req, res) => {
-    res.status(200).json({msg: 'Vieste para o "/". Se não era suposto, verifica o método ou o url!'});
+    res.status(200).json({msg: 'Vieste para o root. Se não era suposto, verifica o método ou o url!'});
 })
 
 

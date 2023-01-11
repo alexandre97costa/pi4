@@ -65,9 +65,6 @@ module.exports = (sequelize) => {
                             })
                             .join(' ');
 
-                    // por defeito, todos os users começam como visitante
-                    utilizador.tipo_utilizador_id = 1
-
                     // encriptar password
                     return bcrypt.hash(utilizador.password, 10)
                         .then(hash => { utilizador.password = hash; })

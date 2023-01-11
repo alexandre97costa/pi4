@@ -6,7 +6,6 @@ const bcrypt = require('bcrypt')
 const { dev: devClass } = require('../_dev/dev')
 const dev = new devClass;
 require('dotenv').config()
-const bulk_users = require('../_dev/request bodies/create_user_in_bulk.json')
 const {
     tipo_utilizador,
     utilizador
@@ -24,17 +23,17 @@ module.exports = {
 
         // 🚨 guard clauses
 
-        if (!email) return res.status(403).json({ message: 'Email necessário!' })
-        if (!password) return res.status(403).json({ message: 'Password necessária!' })
+        if (!email) return res.status(403).json({ msg: 'Email necessário!' })
+        if (!password) return res.status(403).json({ msg: 'Password necessária!' })
 
         const user = await utilizador
             .findOne({ where: { email: email } })
             .then(response => { return response?.dataValues })
 
-        if (!user) return res.status(400).json({ message: 'Utilizador não encontrado' })
+        if (!user) return res.status(400).json({ msg: 'Utilizador não encontrado' })
 
         const passwordMatch = bcrypt.compareSync(password, user.password);
-        if (!passwordMatch) return res.status(400).json({ message: 'Password errada' })
+        if (!passwordMatch) return res.status(400).json({ msg: 'Password errada' })
 
         // ✅ a partir daqui já verificámos que tudo está bem, siga mandar o token
 
@@ -57,7 +56,7 @@ module.exports = {
         }
 
         return res.status(200).json({
-            message: 'Autenticação realizada com sucesso!',
+            msg: 'Autenticação realizada com sucesso!',
             token: jwt.sign(token, secret, options)
         });
     },
@@ -65,7 +64,7 @@ module.exports = {
     list: async (req, res) => {
         await utilizador
             .findAll({
-                attributes: ['nome', 'email', 'password' ,'data_nascimento', 'updated_at'],
+                attributes: ['nome', 'email', 'password', 'data_nascimento', 'updated_at'],
                 include: {
                     model: tipo_utilizador,
                     attributes: ['nome', 'observacoes']
@@ -89,23 +88,19 @@ module.exports = {
             !req.body.data_nasc ||
             !req.body.password
         ) {
-            res.status(400).json({
-                success: false,
-                message: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.'
-            })
-            return
+            return res.status(400).json({ msg: 'Faltam dados!' })
         }
 
         const nome = req.body.nome
         const email = req.body.email.trim() ?? ""
         const data_nasc = req.body.data_nasc
         const password = req.body.password
+        const tipo = req.body?.tipo ?? 1
 
         const utilizadorJaExiste = await utilizador.findOne({ where: { email: email } })
 
-        if (utilizadorJaExiste) 
-            return res.status(400).json({ message: 'Utilizador com esse email já existe.' })
-        
+        if (utilizadorJaExiste)
+            return res.status(400).json({ msg: 'Utilizador com esse email já existe.' })
 
         await utilizador
             .create({
@@ -113,10 +108,13 @@ module.exports = {
                 email: email,
                 data_nascimento: data_nasc,
                 password: password,
+                // em dev, pode-se criar um user que nao seja visitante logo à partida
+                // em prod, todos os utilizadores começam como visitantes
+                tipo_utilizador_id: process.env.MODE == "dev" ? +tipo : 1
             })
             .then(data => {
-                res.status(200).json({
-                    message: "Utilizador registado com sucesso!",
+                return res.status(200).json({
+                    msg: 'Utilizador registado com sucesso!',
                     data
                 })
             })
@@ -126,33 +124,20 @@ module.exports = {
                 // se for por causa de validações do sequelize, manda a msg
                 if (error.name === "SequelizeValidationError") {
                     return res.status(400).json({
-                        message: error.errors.length === 1 ?
+                        msg: error.errors.length === 1 ?
                             error.errors[0].message :
                             Array.from(error.errors, e => { return e.message })
                     })
                 }
                 // se for qualquer outra coisa, manda o servidor abaixo (para sermos informados do erro) 
                 else {
-                    res.status(400).json({
-                        message: error
-                    })
-                    dev(error)
+                    res.status(400).json({ msg: error })
+                    dev.error(error)
                     return
                 }
             })
 
 
-    },
-
-    // only available in dev mode
-    create_in_bulk: async (req, res) => {
-        if (process.env.MODE !== 'dev') return res.send(403).json({ message: 'Only available in a development environment.' })
-        
-
-        await utilizador
-            .bulkCreate(bulk_users, { individualHooks: true })
-            .then(response => res.status(200).json(response))
-            .catch(error => res.status(400).json({ error }))
     },
 
     update: async (req, res) => {
@@ -161,10 +146,7 @@ module.exports = {
             !req.body.email ||
             !req.body.tipo_utilizador_id
         ) {
-            return res.status(400).json({
-                success: false,
-                message: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.'
-            })
+            return res.status(400).json({ msg: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.' })
         }
     },
 
@@ -173,10 +155,7 @@ module.exports = {
             !req.body.email ||
             !req.body.tipo_utilizador_id
         ) {
-            return res.status(400).json({
-                success: false,
-                message: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.'
-            })
+            return res.status(400).json({ msg: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.' })
         }
 
         const email = req.body.email
@@ -189,28 +168,21 @@ module.exports = {
                     await found
                         .update({ tipo_utilizador_id: tipo_utilizador_id })
                         .then(data => {
-                            res.status(200).json({
-                                success: true,
-                                message: 'Tipo de utilizador atualizado.',
+                            return res.status(200).json({
+                                msg: 'Tipo de utilizador atualizado.',
                                 data
                             })
                         })
                 }
                 else {
-                    res.status(404).json({
-                        success: false,
-                        message: 'Utilizador não encontrado.'
-                    })
+                    return res.status(404).json({ msg: 'Utilizador não encontrado.' })
                 }
             })
     },
 
     delete: async (req, res) => {
         if (!req.body.email) {
-            return res.json({
-                success: false,
-                message: 'Faltam dados! É preciso email.'
-            })
+            return res.json({ msg: 'Faltam dados! É preciso email.' })
         }
 
         const email = req.body.email
@@ -222,17 +194,11 @@ module.exports = {
                     await utilizador
                         .destroy({ where: { email: email } })
                         .then(destroyed => {
-                            res.json({
-                                success: true,
-                                message: 'Utilizador eliminado.'
-                            })
+                            return res.json({ msg: 'Utilizador eliminado.' })
                         })
                 }
                 else {
-                    res.json({
-                        success: false,
-                        message: 'Utilizador não encontrado.'
-                    })
+                    return res.json({ msg: 'Utilizador não encontrado.' })
                 }
             })
 
