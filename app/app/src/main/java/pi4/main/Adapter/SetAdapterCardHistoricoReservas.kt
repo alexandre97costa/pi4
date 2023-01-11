@@ -26,7 +26,7 @@ class SetAdapterCardHistoricoReservas(private val context: Context, private val 
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val rowView = inflater.inflate(R.layout.card_historico_reservas, parent, false)
+        val rowView = inflater.inflate(R.layout.card_historico_reserva, parent, false)
 
         val tituloReserva = rowView.findViewById<TextView>(R.id.textViewTituloReserva)
         val dataReserva = rowView.findViewById<TextView>(R.id.textViewDataReserva)
