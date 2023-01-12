@@ -1,23 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const reservaController = require('../controllers/reservaController')
+const r = require('../controllers/reservaController')
 
-router.post('/', reservaController.postReserva)
+router.get('/', r.get)
+router.get('/:id', r.get)
+router.post('/', r.post)
 
-router.patch('/vagas/:id', reservaController.mudarVagasReserva)
-router.patch('/vagas/', reservaController.mudarVagasReserva)
+router.patch('/vagas/', r.mudar_vagas)
+router.patch('/vagas/:id', r.mudar_vagas)
 
-router.patch('/validar/:id', reservaController.validarReserva)
-router.patch('/validar/', reservaController.validarReserva)
+router.patch('/validar/', r.validar)
+router.patch('/validar/:id', r.validar)
 
-router.patch('/confirmar/:codigo', reservaController.validarReserva)
-router.patch('/confirmar/', reservaController.validarReserva)
+router.patch('/confirmar/', r.confirmar)
+router.patch('/confirmar/:codigo', r.confirmar)
 
-router.delete('/:id', reservaController.deleteReserva)
-router.delete('/', reservaController.deleteReserva)
-
-router.get('/:id', reservaController.getReserva)
-router.get('/', reservaController.getReserva)
-
+router.delete('/', r.delete)
+router.delete('/:id', r.delete)
 
 module.exports = router;

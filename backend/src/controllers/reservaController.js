@@ -30,194 +30,9 @@ const {
 
 
 module.exports = {
-    // só visitantes é que podem fazer reservas
-    postReserva: async (req, res) => {
-        if (req.auth.tipo !== 1)
-            return res.status(401).json({ msg: 'Apenas visitantes podem colocar reservas' })
-
-        const { nome, num_pessoas, visitante_id, sessao_id, observacoes } = req.body
-
-        await reserva
-            .create({
-                nome: nome,
-                num_pessoas: num_pessoas,
-                visitante_id: visitante_id,
-                sessao_id: sessao_id,
-                observacoes: observacoes
-            })
-            .then(output => { return res.status(200).json({ reserva: output }) })
-            .catch(error => {
-                res.status(400).json(error);
-                dev.error(error)
-                return
-            })
-    },
-
-    // o unico parametro que o visitante pode mudar na sua reserva
-    mudarVagasReserva: async (req, res) => {
-        // só visitantes
-        if (req.auth.tipo !== 1)
-            return res.status(401).json({ msg: 'Apenas visitantes podem mudar as vagas da sua reserva' })
-
-        if (!req.params.id || !req.body.num_pessoas_novo)
-            return res.status(400).json({ msg: 'Faltam dados! É preciso identificar a reserva e o novo numero de pessoas.' })
-
-        const { num_pessoas_novo } = req.body
-        const { id } = req.params
-
-        // procurar se a reserva existe e se é do visitante que as pediu
-        const _reserva = await reserva.findByPk(id)
-
-        if (_reserva === null)
-            return res.status(404).json({ msg: 'Essa reserva não existe' })
-
-        if (_reserva.visitante_id !== req.auth.id)
-            return res.status(401).json({ msg: 'Só podes mudar as tuas próprias reservas' })
-
-        await _reserva
-            .update({ num_pessoas: +num_pessoas_novo })
-            .then(output => { return res.status(200).json(output) })
-            .catch(error => { return res.status(400).json(error) })
-    },
-
-    // o agente pode validar ou rejeitar a reserva
-    validarReserva: async (req, res) => {
-        // * 🚨 guard clauses
-        // so agentes
-        if (req.auth.tipo !== 2)
-            return res.status(401).json({ msg: 'Apenas agentes turísticos podem validar reservas.' })
-
-        if (!req.params.id || !req.body.validado)
-            return res.status(400).json({ msg: 'Faltam dados! É preciso identificar a reserva e o novo valor de validação.' })
-
-        const { validado } = req.body
-        const { id } = req.params
-
-        const _reserva = await reserva.findByPk(id)
-        if (_reserva === null) return res.status(404).json({ msg: 'Essa reserva não existe.' })
-
-        // so o agente que é proprietario do ponto de interesse onde decorre o evento é que pode validar
-        const _sessao = await evento.findByPk(_reserva.sessao_id)
-        if (_sessao === null) return res.status(404).json({ msg: 'Essa sessão não existe' })
-
-        const _evento = await evento.findByPk(_sessao.evento_id)
-        if (_evento === null) return res.status(404).json({ msg: 'Esse evento não existe' })
-
-        const _pi = await ponto_interesse.findByPk(_evento.ponto_interesse_id)
-        if (_pi === null) return res.status(404).json({ msg: 'Esse ponto de interesse não existe' })
-
-        if (req.auth.id !== _pi.agente_turistico_id)
-            return res.status(401).json({ msg: 'Apenas o agente turístico proprietário pode validar uma reserva' })
-
-        // ✅ tudo gucci, siga pra vinho
-        await _reserva
-            .update({ validado: !!validado })
-            .then(output => { return res.status(200).json(output) })
-            .catch(error => { return res.status(400).json(error) })
-    },
-
-    // processo automatico parecido a um scan
-    // o visitante mostra o codigo da sua reserva ao agente
-    // o agente insere-o no back office, que por sua vez confirma a reserva
-    confirmarReserva: async (req, res) => {
-        // tem que ser um agente a confirmar
-        // * 🚨 guard clauses
-        if (req.auth.tipo !== 2)
-            return res.status(401).json({ msg: 'Apenas agentes podem confirmar reservas' })
-
-        if (!req.params.codigo)
-            return res.status(400).json({ msg: 'É necessário o código de confirmação' })
-
-        const { codigo } = req.params
-
-        const reservas_agente = await utilizador
-            .findOne({
-                where: {
-                    id: req.auth.id,
-                    confirmado: false
-                },
-                include: {
-                    model: ponto_interesse,
-                    include: {
-                        model: evento,
-                        include: {
-                            model: sessao,
-                            include: {
-                                model: reserva
-                            }
-                        }
-                    }
-                }
-            })
-            .then(output => {
-                return output
-                    ?.pontos_interesse.map(pi =>
-                        pi?.eventos.map(e =>
-                            e?.sessoes.map(s =>
-                                s?.reservas
-                            )
-                        )
-                    ).flat(3) // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
-            })
-
-        if (reservas_agente === undefined)
-            return res.status(404).json({ msg: 'Não existem reservas associadas aos teus eventos' })
-
-        // encontrar uma reserva que tenha aquele codigo de confirmacao
-        const reserva_correta = reservas_agente.find(reserva => reserva.codigo_confirmacao === codigo)
-
-        if (reserva_correta === undefined)
-            return res.status(404).json({ msg: 'Não foi feita nenhuma reserva com este código. Se o código foi bem inserido, pode ser uma reserva a um evento que tu não geres.' })
-
-        // ✅ tudo gucci, siga pra vinho
-        await reserva
-            .update({
-                confirmado: true
-            }, {
-                where: { id: reserva_correta.id }
-            })
-            .then(output => { return res.status(200).json(output) })
-            .catch(error => { return res.status(400).json(error) })
-    },
-
-    deleteReserva: async (req, res) => {
-        // * 🚨 guard clauses
-        // tem que ser visitante, logo à partida
-        if (req.auth.tipo !== 1)
-            return res.status(401).json({ msg: 'Apenas visitantes podem eliminar reservas' })
-
-        if (!req.params?.id)
-            return res.status(400).json({ msg: 'É necessário passar o id da reserva por query' })
-
-        const reserva_id = req.params.id
-        const _reserva = await reserva.findByPk(+reserva_id)
-
-        if (_reserva === null)
-            return res.status(404).json({ msg: 'Essa reserva não existe' })
-
-
-        //só o dono da reserva é que pode eliminar
-        if (_reserva.dataValues.visitante_id !== req.auth.id)
-            return res.status(401).json({ msg: 'Não és o autor desta reserva' })
-
-        // ✅ tudo gucci, siga pra vinho
-        await _reserva
-            .destroy()
-            .then(output => {
-                return !output ?
-                    res.status(400).json({ msg: 'Reserva não eliminada' }) :
-                    res.status(200).json({ msg: 'Reserva eliminada' })
-            })
-            .catch(error => {
-                res.status(400).json({ error })
-                dev.error(error)
-                return
-            })
-
-    },
-
+    
     // qualquer utilizador registado pode aceder a reservas
-    getReserva: async (req, res) => {
+    get: async (req, res) => {
         // * filtros
         let nome = req.query?.nome ?? '%'
         let reserva_id = req.params?.id ?? 0
@@ -312,5 +127,212 @@ module.exports = {
                 dev.error(error)
                 return
             })
-    }
+    },
+
+    // só visitantes é que podem fazer reservas
+    post: async (req, res) => {
+        if (req.auth.tipo !== 1)
+            return res.status(401).json({ msg: 'Apenas visitantes podem colocar reservas' })
+
+        const { nome, num_pessoas, visitante_id, sessao_id, observacoes } = req.body
+
+        await reserva
+            .create({
+                nome: nome,
+                num_pessoas: num_pessoas,
+                visitante_id: visitante_id,
+                sessao_id: sessao_id,
+                observacoes: observacoes
+            })
+            .then(output => { return res.status(200).json({ reserva: output }) })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
+    },
+
+    // o unico parametro que o visitante pode mudar na sua reserva
+    mudar_vagas: async (req, res) => {
+        // só visitantes
+        if (req.auth.tipo !== 1)
+            return res.status(401).json({ msg: 'Apenas visitantes podem mudar as vagas da sua reserva' })
+
+        if (!req.params.id || !req.body.num_pessoas_novo)
+            return res.status(400).json({ msg: 'Faltam dados! É preciso identificar a reserva e o novo numero de pessoas.' })
+
+        const { num_pessoas_novo } = req.body
+        const { id } = req.params
+
+        // procurar se a reserva existe e se é do visitante que as pediu
+        const _reserva = await reserva.findByPk(id)
+
+        if (_reserva === null)
+            return res.status(404).json({ msg: 'Essa reserva não existe' })
+
+        if (_reserva.visitante_id !== req.auth.id)
+            return res.status(401).json({ msg: 'Só podes mudar as tuas próprias reservas' })
+
+        await _reserva
+            .update({ num_pessoas: +num_pessoas_novo })
+            .then(output => { return res.status(200).json(output) })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
+    },
+
+    // o agente pode validar ou rejeitar a reserva
+    validar: async (req, res) => {
+        // * 🚨 guard clauses
+        // so agentes
+        if (req.auth.tipo !== 2)
+            return res.status(401).json({ msg: 'Apenas agentes turísticos podem validar reservas.' })
+
+        if (!req.params.id || !req.body.validado)
+            return res.status(400).json({ msg: 'Faltam dados! É preciso identificar a reserva e o novo valor de validação.' })
+
+        const { validado } = req.body
+        const { id } = req.params
+
+        const _reserva = await reserva.findByPk(id)
+        if (_reserva === null) return res.status(404).json({ msg: 'Essa reserva não existe.' })
+
+        // so o agente que é proprietario do ponto de interesse onde decorre o evento é que pode validar
+        const _sessao = await evento.findByPk(_reserva.sessao_id)
+        if (_sessao === null) return res.status(404).json({ msg: 'Essa sessão não existe' })
+
+        const _evento = await evento.findByPk(_sessao.evento_id)
+        if (_evento === null) return res.status(404).json({ msg: 'Esse evento não existe' })
+
+        const _pi = await ponto_interesse.findByPk(_evento.ponto_interesse_id)
+        if (_pi === null) return res.status(404).json({ msg: 'Esse ponto de interesse não existe' })
+
+        if (req.auth.id !== _pi.agente_turistico_id)
+            return res.status(401).json({ msg: 'Apenas o agente turístico proprietário pode validar uma reserva' })
+
+        // ✅ tudo gucci, siga pra vinho
+        await _reserva
+            .update({ validado: !!validado })
+            .then(output => { 
+                return !output[0] ?
+                    res.status(400).json({msg: 'Reserva não atualizada'}) :
+                    res.status(200).json({msg: 'Reserva atualizada', reserva: output[0]})
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
+    },
+
+    // processo automatico parecido a um scan
+    // o visitante mostra o codigo da sua reserva ao agente
+    // o agente insere-o no back office, que por sua vez confirma a reserva
+    confirmar: async (req, res) => {
+        // tem que ser um agente a confirmar
+        // * 🚨 guard clauses
+        if (req.auth.tipo !== 2)
+            return res.status(401).json({ msg: 'Apenas agentes podem confirmar reservas' })
+
+        if (!req.params.codigo)
+            return res.status(400).json({ msg: 'É necessário o código de confirmação' })
+
+        const { codigo } = req.params
+
+        const reservas_agente = await utilizador
+            .findOne({
+                where: {
+                    id: req.auth.id,
+                    confirmado: false
+                },
+                include: {
+                    model: ponto_interesse,
+                    include: {
+                        model: evento,
+                        include: {
+                            model: sessao,
+                            include: {
+                                model: reserva
+                            }
+                        }
+                    }
+                }
+            })
+            .then(output => {
+                return output
+                    ?.pontos_interesse.map(pi =>
+                        pi?.eventos.map(e =>
+                            e?.sessoes.map(s =>
+                                s?.reservas
+                            )
+                        )
+                    ).flat(3) // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flat
+            })
+
+        if (reservas_agente === undefined)
+            return res.status(404).json({ msg: 'Não existem reservas associadas aos teus eventos' })
+
+        // encontrar uma reserva que tenha aquele codigo de confirmacao
+        const reserva_correta = reservas_agente.find(reserva => reserva.codigo_confirmacao === codigo)
+
+        if (reserva_correta === undefined)
+            return res.status(404).json({ msg: 'Não foi feita nenhuma reserva com este código. Se o código foi bem inserido, pode ser uma reserva a um evento que tu não geres.' })
+
+        // ✅ tudo gucci, siga pra vinho
+        await reserva
+            .update({ 
+                confirmado: true
+            }, {
+                where: { id: reserva_correta.id }
+            })
+            .then(output => { 
+                return !output[0] ?
+                    res.status(400).json({msg: 'Reserva não atualizada'}) :
+                    res.status(200).json({msg: 'Reserva atualizada', reserva: output[0]})
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
+    },
+
+    delete: async (req, res) => {
+        // * 🚨 guard clauses
+        // tem que ser visitante, logo à partida
+        if (req.auth.tipo !== 1)
+            return res.status(401).json({ msg: 'Apenas visitantes podem eliminar reservas' })
+
+        if (!req.params?.id)
+            return res.status(400).json({ msg: 'É necessário passar o id da reserva por query' })
+
+        const reserva_id = req.params.id
+        const _reserva = await reserva.findByPk(+reserva_id)
+
+        if (_reserva === null)
+            return res.status(404).json({ msg: 'Essa reserva não existe' })
+
+
+        //só o dono da reserva é que pode eliminar
+        if (_reserva.dataValues.visitante_id !== req.auth.id)
+            return res.status(401).json({ msg: 'Não és o autor desta reserva' })
+
+        // ✅ tudo gucci, siga pra vinho
+        await _reserva
+            .destroy()
+            .then(output => {
+                return !output ?
+                    res.status(400).json({ msg: 'Reserva não eliminada' }) :
+                    res.status(200).json({ msg: 'Reserva eliminada' })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
+
+    },
+
 }
