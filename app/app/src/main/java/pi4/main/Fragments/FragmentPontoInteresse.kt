@@ -60,13 +60,9 @@ class FragmentPontoInteresse() : Fragment() {
     private fun loadPoints() {
         val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
 
-        val pontos = Points(998)
+        val pontos = Points(998, textView, requireContext())
 
-        pontos.loadPontos(textView)
-
-        textView.setOnClickListener{
-            startActivity(Intent(requireContext(), ActivityHistoricoPontos::class.java))
-        }
+        pontos.loadPontos()
     }
 
     private fun createCategoriasTab() {

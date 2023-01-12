@@ -9,11 +9,13 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import com.google.android.material.card.MaterialCardView
 import com.squareup.picasso.Picasso
 import pi4.main.Activitys.PontoInteresse.ActivityPontoInteresseDetalhe
 import pi4.main.Classes.PontoInteresse
+import pi4.main.Classes.StartActivitys
 import pi4.main.R
 
 class SetAdapterCard(private val context: Context, private val data:ArrayList<PontoInteresse>): BaseAdapter() {
@@ -56,12 +58,14 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
 
         val card = rowView.findViewById<MaterialCardView>(R.id.card)
 
-        card.setOnClickListener { teste(recipe.nome) }
+        eventListener(card, recipe.nome)
 
         return rowView
     }
 
-    fun teste(mensagem:String) {
-        context.startActivity(Intent(context, ActivityPontoInteresseDetalhe::class.java))
+    fun eventListener(cardView: CardView, mensagem:String) {
+        val startActivity = StartActivitys(context)
+
+        startActivity.cardGoTo(cardView, ActivityPontoInteresseDetalhe())
     }
 }

@@ -20,8 +20,7 @@ class ActivityEventoDetalhe : AppCompatActivity() {
         val btnReservar = findViewById<Button>(R.id.btnReserva)
 
         btnReservar.setOnClickListener {
-            Toast.makeText(this, "Aguarde por validação da reserva", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, ActivityEventoReserva::class.java))
         }
     }
 }

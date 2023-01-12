@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -23,12 +22,16 @@
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ponto_interesse_exemplo" />
 
-        <include layout="@layout/background_degrade"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent" />
-
+        <include
+            layout="@layout/background_degrade"
+            android:layout_width="match_parent"
+            android:layout_height="800dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout14"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="228dp"
@@ -111,7 +114,7 @@
                     android:id="@+id/linearLayout4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -122,7 +125,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Descrição"
-                        android:theme="@style/tittle_principal_black" />
+                        android:theme="@style/tittle_secundario_black" />
 
                     <TextView
                         android:id="@+id/textView_txt_descricao"
@@ -138,21 +141,43 @@
                     layout="@layout/card_agente_turistico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
-                <TextView
-                    android:id="@+id/textView18"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintEvento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="Eventos"
-                    android:theme="@style/tittle_principal_black"
+                    android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/include4" />
+                    app:layout_constraintTop_toBottomOf="@+id/include4">
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Eventos"
+                        android:theme="@style/tittle_secundario_black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ver_mais"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:theme="@style/tittle_secundario_green"
+                        android:clickable="true" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                 <LinearLayout
                     android:id="@+id/linearLayout5"
@@ -162,7 +187,7 @@
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18">
+                    app:layout_constraintTop_toBottomOf="@+id/constraintEvento">
 
                     <include
                         android:id="@+id/cardRecitalAves"
@@ -176,7 +201,7 @@
                     android:id="@+id/constraintLayout13"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
@@ -197,7 +222,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
                         android:text="4,82"
-                        android:theme="@style/tittle_principal_black"
+                        android:theme="@style/tittle_secundario_black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/imageView6"
                         app:layout_constraintTop_toTopOf="parent"
@@ -220,10 +245,21 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="120 comentários"
-                        android:theme="@style/tittle_principal_black"
+                        android:theme="@style/tittle_secundario_black"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView22"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ver_mais"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:theme="@style/tittle_secundario_green"
+                        android:clickable="true"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <include

@@ -8,10 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet.Constraint
 import com.google.android.material.tabs.TabLayout
 import pi4.main.Activitys.Historico.ActivityHistoricoPontos
 import pi4.main.Classes.CategoriaLista
 import pi4.main.Classes.Points
+import pi4.main.MainActivity
 import pi4.main.R
 
 class FragmentRecompensa : Fragment() {
@@ -24,18 +27,23 @@ class FragmentRecompensa : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         createCategoriasTab()
         loadPoints()
+        jaResgatado()
+    }
+
+    private fun jaResgatado() {
+        val button = requireView().findViewById<ConstraintLayout>(R.id.constraintLayoutJaResgatado)
+
+        button.setOnClickListener {
+
+        }
     }
 
     private fun loadPoints() {
         val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
 
-        val pontos = Points(998)
+        val pontos = Points(998, textView, requireContext())
 
-        pontos.loadPontos(textView)
-
-        textView.setOnClickListener{
-            startActivity(Intent(requireContext(), ActivityHistoricoPontos::class.java))
-        }
+        pontos.loadPontos()
     }
 
     private fun createCategoriasTab() {

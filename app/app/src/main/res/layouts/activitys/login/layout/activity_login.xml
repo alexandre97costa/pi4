@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -44,7 +45,7 @@
                 android:id="@+id/textViewEntrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="50dp"
                 android:text="Entrar"
                 android:theme="@style/breadcrumb_principal_black"
@@ -59,34 +60,36 @@
                 android:layout_marginTop="50dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
+                android:hint="email"
                 android:inputType="textEmailAddress"
                 android:paddingStart="16dp"
-                android:hint="email"
                 android:theme="@style/text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewEntrar" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewEntrar"
+                tools:ignore="TextContrastCheck" />
 
             <EditText
                 android:id="@+id/editTextTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginTop="24dp"
+                android:background="@drawable/shape_outline"
                 android:ems="10"
+                android:hint="palavra-chave"
                 android:inputType="textPassword"
                 android:paddingStart="16dp"
-                android:hint="palavra-chave"
-                android:background="@drawable/shape_outline"
                 android:theme="@style/text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/textViewPergunta1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="Esqueceu a palavra-passe?"
                 android:theme="@style/text_light"
@@ -105,7 +108,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textViewPergunta1"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <Button
                 android:id="@+id/buttonEntrar"
@@ -123,7 +127,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginBottom="24dp"
                 android:text="Ainda não tem conta?"
                 android:theme="@style/text_light"
@@ -140,7 +144,8 @@
                 android:text="@string/criar_conta"
                 android:theme="@style/text_light_green"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView3" />
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                tools:ignore="TouchTargetSizeCheck" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
