@@ -3,14 +3,11 @@ const router = express.Router();
 
 const eventoController = require('../controllers/eventoController')
 
-router.post('/', eventoController.postEvento)
-
-router.get('/', eventoController.getEvento)
-
-router.put('/', eventoController.putEvento)
-
-router.delete('/', eventoController.deleteEvento)
-
-router.get('/tipoEvento', eventoController.getTipoEvento)
+router.get('/', eventoController.get)
+router.get('/:id', eventoController.get)
+router.post('/', eventoController.post)
+router.put('/:id', eventoController.editar)
+router.delete('/:id', eventoController.delete)
+router.get('/tipos', eventoController.tipos)
 
 module.exports = router;
