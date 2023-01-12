@@ -55,15 +55,12 @@ app.use(
         path: [
             { url: '/utilizador', methods: ['POST'] },
             { url: '/utilizador/login', methods: ['GET'] },
-            { url: '/utilizador/tipos', methods: ['GET'] },
-            { url: '/utilizador/all', methods: ['GET'] },
-            { url: '/utilizador/bulk', methods: ['POST'] },
-            { url: '/pontoInteresse', method: ['GET'] },
-            { url: '/pontoInteresse/tipoPontosInteresse', method: ['GET'] },
-            
-            // para os scans feitos fora da app, nao precisam de auth porque são redirecionados para o micro site
+
+            // ? para os scans feitos fora da app, nao precisam de auth porque são redirecionados para o micro site
             { url: /^\/scan/, method: ['GET'] },
 
+            // ? para cenas que nos ajudam em modo dev
+            // ? os controllers devolvem 403 se estiver em prod
             { url: /^\/dev/ },
 
             // { url: /^\// },

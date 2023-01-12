@@ -24,8 +24,8 @@ module.exports = {
 
     get: async (req, res) => {
         // * filtros
+        const id = req.params?.id ?? 0
         const nome = req.query?.nome ?? '%'
-        const ponto_interesse_id = req.params?.id ?? 0
         const tipo_interesse_id = req.query?.tipo_interesse_id ?? 0
         const freguesia_id = req.query?.freguesia_id ?? 0
         const agente_turistico_id = req.query?.agente_turistico_id ?? 0
@@ -47,8 +47,8 @@ module.exports = {
         await ponto_interesse
             .findAndCountAll({
                 where: {
-                    id: !!+ponto_interesse_id ?
-                        +ponto_interesse_id :
+                    id: !!+id ?
+                        +id :
                         { [Op.ne]: 0 },
                     nome: {
                         [Op.iLike]: '%' + nome + '%'
@@ -136,14 +136,12 @@ module.exports = {
                 paranoid: !!incluir_eliminados || !!so_eliminados ? false : true // caso um ou outro seja true, traz PIs eliminados
             })
             .then(output => {
-                // caso não tenha encontrado, 404
-                if (!output.count)
-                    return res.status(404).json({ msg: 'Não existem pontos de interesse que correspondam aos filtros solicitados' })
-
-                return res.status(200).json({ data: output.rows, count: output.count })
+                return !output.count ?
+                    res.status(404).json({ msg: 'Não existem pontos de interesse que correspondam aos filtros solicitados.' }) :
+                    res.status(200).json({ data: output.rows, count: output.count })
             })
             .catch(error => {
-                res.status(400).json({ msg: 'Ocorreu um erro no pedido de pontos de interesse' })
+                res.status(400).json({ msg: 'Ocorreu um erro no pedido de pontos de interesse.' })
                 dev.error({ error })
                 return
             })
@@ -151,7 +149,7 @@ module.exports = {
 
     post: async (req, res) => {
         if (req.auth.tipo === 1)
-            return res.status(401).json({ msg: 'Sem autorização para criar Pontos de Interesse' })
+            return res.status(401).json({ msg: 'Sem autorização para criar Pontos de Interesse.' })
 
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
@@ -166,8 +164,8 @@ module.exports = {
                 freguesia_id: freguesia_id,
                 tipo_interesse_id: tipo_interesse_id,
             })
-            .then(output => { 
-                return res.status(200).json({ msg: 'Ponto de interesse criado.', ponto_interesse: output }) 
+            .then(output => {
+                return res.status(200).json({ msg: 'Ponto de interesse criado.', ponto_interesse: output })
             })
             .catch(error => {
                 res.status(400).json({ error })
@@ -203,22 +201,17 @@ module.exports = {
                 descricao: descricao,
                 freguesia_id: freguesia_id,
                 tipo_interesse_id: tipo_interesse_id
-            }, {
-                where: {
-                    id: +id,
-                    agente_turistico_id: req.auth.id
-                }
             })
             .then(output => {
                 return !output[0] ?
-                    res.status(404).json({ msg: 'Ponto de interesse não atualizado.' }) :
-                    res.status(200).json({ msg: 'Ponto de interesse atualizado.', pontoInteresse: output })
+                    res.status(400).json({ msg: 'Ponto de interesse não atualizado.' }) :
+                    res.status(200).json({ msg: 'Ponto de interesse atualizado.', ponto_interesse: output[0] })
             })
             .catch(error => {
                 res.status(400).json({ error })
                 dev.error(error)
                 return
-            });
+            })
     },
 
     mudar_agente: async (req, res) => {
@@ -236,13 +229,11 @@ module.exports = {
 
 
         await _pi
-            .update(
-                { agente_turistico_id: +agente_id }
-            )
+            .update({ agente_turistico_id: +agente_id })
             .then(output => {
                 return !output[0] ?
                     res.status(400).json({ msg: 'Ponto de interesse não atualizado.' }) :
-                    res.status(200).json({ msg: 'Ponto de interesse atualizado.', ponto_interesse: output })
+                    res.status(200).json({ msg: 'Ponto de interesse atualizado.', ponto_interesse: output[0] })
             })
             .catch(error => {
                 res.status(400).json({ error })
@@ -280,7 +271,6 @@ module.exports = {
             })
     },
 
-    // todo
     delete: async (req, res) => {
         if (req.auth.tipo === 1)
             return res.status(401).json({ msg: 'Visitantes não podem eliminar pontos de interesse' })
@@ -309,8 +299,8 @@ module.exports = {
     tipos: async (req, res) => {
         await tipo_interesse
             .findAll()
-            .then(output => { 
-                return res.status(200).json({ tipos_interesse: output }) 
+            .then(output => {
+                return res.status(200).json({ tipos_interesse: output })
             })
             .catch(error => {
                 res.status(400).json({ error })

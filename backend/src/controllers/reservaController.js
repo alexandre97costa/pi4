@@ -201,10 +201,18 @@ module.exports = {
             return res.status(401).json({ msg: 'Não és o autor desta reserva' })
 
         // ✅ tudo gucci, siga pra vinho
-        await reserva
-            .destroy({ where: { id: reserva_id } })
-            .then(result => { return res.status(200).json(result == 1 ? 'Reserva eliminada' : 'Reserva não eliminada') })
-            .catch(error => { return res.status(400).json(error) })
+        await _reserva
+            .destroy()
+            .then(output => {
+                return !output ?
+                    res.status(400).json({ msg: 'Reserva não eliminada' }) :
+                    res.status(200).json({ msg: 'Reserva eliminada' })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
 
     },
 

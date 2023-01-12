@@ -61,25 +61,51 @@ module.exports = {
         });
     },
 
-    // todo: atualizar estes controllers todos
     get: async (req, res) => {
+        // * filtros
+        const id = req.params?.id ?? 0
+        const nome = req.query?.nome ?? '%'
+        const tipo_utilizador_id = req.query?.tipo_utilizador_id ?? 0
+
+        // * ordenação e paginação
+        const order = req.query?.order ?? 'nome'
+        const direction = req.query?.direction ?? 'asc'
+        const offset = req.query?.offset ?? 0
+        const limit = req.query?.limit ?? 0
+
+
         await utilizador
-            .findAll({
-                attributes: ['nome', 'email', 'password', 'data_nascimento', 'updated_at'],
+            .findAndCountAll({
+                where: {
+                    id: !!+id ?
+                        +id :
+                        { [Op.ne]: 0 },
+                    nome: {
+                        [Op.iLike]: '%' + nome + '%'
+                    },
+                    tipo_utilizador_id: !!+tipo_utilizador_id ?
+                        +tipo_utilizador_id :
+                        { [Op.ne]: 0 },
+                },
                 include: {
                     model: tipo_utilizador,
                     attributes: ['nome', 'observacoes']
-                }
+                },
+                attributes: { exclude: ['password'] },
+                order: [[order, direction]],
+                offset: offset,
+                limit: !!limit ? limit : null,
             })
-            .then(data => { res.status(200).json({ data }) })
-            .catch(e => { dev.error(e); res.status(400).json({ e }) })
-    },
-
-    tipos: async (req, res) => {
-        await tipo_utilizador
-            .findAll({ attributes: ['id', 'nome', 'observacoes'], order: [['id', 'ASC']] })
-            .then(data => { res.status(200).json({ data }) })
-            .catch(e => { dev.error(e); res.status(400).json({ e }) })
+            .then(output => {
+                return !output.count ?
+                    res.status(404).json({ msg: 'Não existem pontos de interesse que correspondam aos filtros solicitados.' }) :
+                    res.status(200).json({ data: output.rows, count: output.count })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(e)
+                return
+            })
     },
 
     post: async (req, res) => {
@@ -113,10 +139,10 @@ module.exports = {
                 // em prod, todos os utilizadores começam como visitantes
                 tipo_utilizador_id: process.env.MODE == "dev" ? +tipo : 1
             })
-            .then(data => {
+            .then(output => {
                 return res.status(200).json({
                     msg: 'Utilizador registado com sucesso!',
-                    data
+                    user: output
                 })
             })
             .catch(error => {
@@ -142,66 +168,127 @@ module.exports = {
     },
 
     editar: async (req, res) => {
-        // todo ainda não está feito
-        if (
-            !req.body.email ||
-            !req.body.tipo_utilizador_id
-        ) {
-            return res.status(400).json({ msg: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.' })
-        }
+        const { id } = req.params
+        //! Para eu nao andar aqui com cenas, na app manda tudo
+        //! Manda o valor que já lá estava se não foi mudado
+        const { nome, email, data_nascimento } = req.body
+
+        // verificar se o utilizador realmente existe
+        const _utilizador = await utilizador.findByPk(id)
+        if (_utilizador === null)
+            return res.status(404).json({ msg: 'O utilizador fornecido não existe ou foi eliminado.' })
+
+        // cada utilizador só se pode editar a si mesmo
+        if (req.auth.id !== id)
+            return res.status(401).json({ msg: 'Só podesatualizar as tuas próprias informações' })
+
+        await _utilizador
+            .update({
+                nome: nome,
+                email: email,
+                data_nascimento: data_nascimento
+            })
+            .then(output => {
+                return !output[0] ?
+                    res.status(400).json({ msg: 'Utilizador não atualizado.' }) :
+                    res.status(200).json({ msg: 'Utilizador atualizado.', utilizador: output[0] })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
     },
 
     mudar_tipo: async (req, res) => {
-        if (
-            !req.body.email ||
-            !req.body.tipo_utilizador_id
-        ) {
-            return res.status(400).json({ msg: 'Faltam dados! É preciso email e o id do novo tipo de utilizador.' })
-        }
+        // apenas admins e responsaveis podem mudar tipos
+        if (req.auth.tipo !== 3 || req.auth.tipo !== 4)
+            return res.status(401).json({ msg: 'Apenas administradores e responsáveis podem mudar o tipo de utilizador.' })
 
-        const email = req.body.email
-        const tipo_utilizador_id = req.body.tipo_utilizador_id
+        // nao podes mudar o tipo a ti mesmo
+        if (req.params.id === req.auth.id)
+            return res.status(401).json({ msg: 'Não podes mudar o teu próprio tipo de utilizador.' })
 
-        await utilizador
-            .findOne({ where: { email: email } })
-            .then(async found => {
-                if (!!found) {
-                    await found
-                        .update({ tipo_utilizador_id: tipo_utilizador_id })
-                        .then(data => {
-                            return res.status(200).json({
-                                msg: 'Tipo de utilizador atualizado.',
-                                data
-                            })
-                        })
-                }
-                else {
-                    return res.status(404).json({ msg: 'Utilizador não encontrado.' })
-                }
+        if (!req.body.novo_tipo)
+            return res.status(400).json({ msg: 'Falta o novo tipo de utilizador' })
+
+        const { id } = req.params
+        const { novo_tipo } = req.body
+
+        // verificar se o utilizador realmente existe
+        const _utilizador = await utilizador.findByPk(id)
+        if (_utilizador === null)
+            return res.status(404).json({ msg: 'O utilizador fornecido não existe ou foi eliminado.' })
+
+        await _utilizador
+            .update({ tipo_utilizador_id: +novo_tipo })
+            .then(output => {
+                return !output[0] ?
+                    res.status(400).json({ msg: 'Utilizador não atualizado.' }) :
+                    res.status(200).json({ msg: 'Utilizador atualizado.', utilizador: output[0] })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
             })
     },
 
     delete: async (req, res) => {
-        if (!req.body.email) {
-            return res.json({ msg: 'Faltam dados! É preciso email.' })
+
+        const { id } = req.params
+
+        // os visitantes e agentes só se podem eliminar a si mesmos
+        if (
+            req.auth.id !== id && (
+                req.auth.tipo === 1 ||
+                req.auth.tipo === 2
+            )) {
+            return res.status(401).json({ msg: 'Não podes eliminar outros utilizadores.' })
         }
 
-        const email = req.body.email
+        // verificar se o utilizador realmente existe
+        const _utilizador = await utilizador.findByPk(id)
+        if (_utilizador === null)
+            return res.status(404).json({ msg: 'O utilizador fornecido não existe ou já foi eliminado.' })
 
-        await utilizador
-            .findOne({ where: { email: email } })
-            .then(async found => {
-                if (!!found) {
-                    await utilizador
-                        .destroy({ where: { email: email } })
-                        .then(destroyed => {
-                            return res.json({ msg: 'Utilizador eliminado.' })
-                        })
-                }
-                else {
-                    return res.json({ msg: 'Utilizador não encontrado.' })
-                }
+        // responsaveis so podem eliminar agentes e visitantes
+        if (
+            req.auth.tipo === 3 && (
+                _utilizador.tipo_utilizador_id !== 1 &&
+                _utilizador.tipo_utilizador_id !== 2
+            )) {
+            return res.status(401).json({ msg: 'Só podes eliminar agentes e visitantes.' })
+        }
+
+        // admins nao podem eliminar admins
+        if (req.auth.tipo === 3 && _utilizador.tipo_utilizador_id === 4)
+            return res.status(401).json({ msg: 'Não podes eliminar administradores.' })
+
+        // ✅ tudo gucci, siga pra vinho
+        await _utilizador.destroy()
+            .then(output => {
+                return !output ?
+                    res.status(400).json({ msg: 'Utilizador não elimininado.' }) :
+                    res.status(200).json({ msg: 'Utilizador elimininado.' })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
             })
 
+
+    },
+
+    tipos: async (req, res) => {
+        await tipo_utilizador
+            .findAll({ attributes: ['id', 'nome', 'observacoes'], order: [['id', 'ASC']] })
+            .then(output => { res.status(200).json({ tipos: output }) })
+            .catch(e => {
+                res.status(400).json({ error })
+                dev.error(e)
+                return
+            })
     },
 }
