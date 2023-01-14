@@ -2,11 +2,10 @@ package pi4.main.Activitys.Recompensa
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import pi4.main.Classes.Points
-import pi4.main.Classes.StartActivitys
-import pi4.main.MainActivity
 import pi4.main.R
 
 class ActivityVoucherInformacoes : AppCompatActivity() {
@@ -32,17 +31,19 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
     fun resgatar() {
         val btnResgatar = findViewById<Button>(R.id.btnResgatar)
 
-        StartActivitys(this).buttonGoTo(btnResgatar, MainActivity())
+        btnResgatar.setOnClickListener {
+            findViewById<View>(R.id.includeRecompensaInfoOff).visibility = View.GONE
+            findViewById<View>(R.id.includeRecompensaInfoOn).visibility = View.VISIBLE
+            btnResgatar.visibility = View.GONE
+        }
     }
 
     fun confirmPoints() {
         val buttonResgatar = findViewById<Button>(R.id.btnResgatar)
 
-        val background = arrayListOf<Int>(R.drawable.shape_gray)
-
         if(points < pointsVoucher) {
             buttonResgatar.isEnabled = false
-            buttonResgatar.setBackgroundResource(background[0])
+            buttonResgatar.setBackgroundResource(R.drawable.shape_gray.toInt())
         }
     }
 }

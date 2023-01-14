@@ -14,6 +14,10 @@ class StartActivitys(context: Context) {
         this.context = context
     }
 
+    fun buttonGoToSemListener(activity: Activity) {
+        context.startActivity(Intent(context, activity::class.java))
+    }
+
     fun buttonGoTo(button: Button, activity: Activity) {
         button.setOnClickListener {
             context.startActivity(Intent(context, activity::class.java))
