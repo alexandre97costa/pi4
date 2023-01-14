@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import pi4.main.Activitys.Evento.ActivityEventoDetalhe
 import pi4.main.Classes.Points
+import pi4.main.Classes.StartActivitys
 import pi4.main.R
 
 class ActivityPontoInteresseDetalhe : AppCompatActivity() {
@@ -16,6 +17,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
         loadPoints()
         recital()
+        maisComentarios()
     }
 
     private fun loadPoints() {
@@ -27,10 +29,14 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
     }
 
     fun recital() {
-        val recital = findViewById<CardView>(R.id.cardEvento)
+        val cardRecital = findViewById<CardView>(R.id.cardEvento)
 
-        recital.setOnClickListener{
-            startActivity(Intent(this, ActivityEventoDetalhe::class.java))
-        }
+        StartActivitys(this).cardGoTo(cardRecital, ActivityEventoDetalhe())
+    }
+
+    fun maisComentarios() {
+        val verMais = findViewById<TextView>(R.id.textViewVerMaisComentarios)
+
+        StartActivitys(this).textViewGoTo(verMais, ActivityComentarios())
     }
 }

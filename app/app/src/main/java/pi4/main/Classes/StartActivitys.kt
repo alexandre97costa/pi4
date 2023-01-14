@@ -4,8 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import com.google.android.material.circularreveal.CircularRevealLinearLayout
 
 class StartActivitys(context: Context) {
     private val context: Context
@@ -32,6 +34,12 @@ class StartActivitys(context: Context) {
 
     fun cardGoTo(cardView: CardView, activity: Activity) {
         cardView.setOnClickListener {
+            context.startActivity(Intent(context, activity::class.java))
+        }
+    }
+
+    fun LinearLayoutGoTo(linearLayout: LinearLayout, activity: Activity) {
+        linearLayout.setOnClickListener {
             context.startActivity(Intent(context, activity::class.java))
         }
     }

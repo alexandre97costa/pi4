@@ -24,7 +24,21 @@ class ActivityHistoricoReserva : AppCompatActivity() {
             estado = "pendente"
         )
 
+        val reserva2 = Historico(
+            titulo = "Recital das Aves",
+            data = "27/12/2022",
+            estado = "rejeitado"
+        )
+
+        val reserva3 = Historico(
+            titulo = "Recital das Aves",
+            data = "27/12/2022",
+            estado = "valido"
+        )
+
         arrayFinal.add(reserva1)
+        arrayFinal.add(reserva2)
+        arrayFinal.add(reserva3)
 
         val customAdapter = SetAdapterCardHistoricoReservas(this, arrayFinal)
         val listView = findViewById<ListView>(R.id.listViewHistoricoReservas)
