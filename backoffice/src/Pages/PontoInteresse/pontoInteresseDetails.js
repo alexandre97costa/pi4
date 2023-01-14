@@ -149,7 +149,7 @@ export default function PontoInteresseDetails(props) {
                     <p className="fs-5 text-body fw-light">Vista Geral</p>
                 </div>
                 <div className='col-6 mt-4 mb-3 text-end'>
-                    <Link to={''} type="button" className="btn btn-primary">Editar Detalhes</Link>
+                    <Link to={''} type="button" className="btn btn-primary">Editar Informações</Link>
                 </div>
                 <div className='col-12 col-md-4'>
                     <CardDetails info={pontoInteresseDetails} />
@@ -166,7 +166,7 @@ export default function PontoInteresseDetails(props) {
 
                 {itens.map((item, index) => {
                     return (
-                        <div key={index} className="col-12 col-sm-6 col-md-3">
+                        <div key={index} className="col-12 col-sm-6 col-md-4">
                             <ConfirmarReservas
                                 nomePontoInteresse={item.nomePontoInteresse}
                                 nomeEvento={item.nomeEvento}
