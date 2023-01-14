@@ -3,13 +3,11 @@ package pi4.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import pi4.main.Fragments.FragmentPerfil
 import pi4.main.Fragments.FragmentPontoInteresse
 import pi4.main.Fragments.FragmentRecompensa
-import pi4.main.Fragments.FragmentRecompensaJaResgatada
 import pi4.main.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

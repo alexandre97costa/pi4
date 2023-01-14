@@ -1,6 +1,5 @@
 package pi4.main.Fragments
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,12 +9,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.ficha8.Req
 import com.google.android.material.tabs.TabLayout
-import org.json.JSONObject
-import pi4.main.Activitys.Historico.ActivityHistoricoPontos
 import pi4.main.Classes.PontoInteresse
 import pi4.main.R
 import pi4.main.Adapter.SetAdapterCard
@@ -30,6 +25,7 @@ class FragmentPontoInteresse() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         callAdapterCards("Todos")
         createCategoriasTab()
         loadPoints()
@@ -60,44 +56,13 @@ class FragmentPontoInteresse() : Fragment() {
     private fun loadPoints() {
         val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
 
-        val pontos = Points(998, textView, requireContext())
-
-        pontos.loadPontos()
+        Points(998, textView, requireContext()).loadPontos()
     }
 
     private fun createCategoriasTab() {
         val tab = requireView().findViewById<TabLayout>(R.id.includedMenuCategoria)
 
-        val arrayText = arrayListOf<String>("Todos", "Praias", "Jardim", "Monumentos", "Museu", "Restaurante")
-        val arrayIconsNotFill = arrayListOf<Int>(R.drawable.location_notfill)
-        val arrayIconsFill = arrayListOf<Int>(R.drawable.location_fill)
-
-        val categorias = CategoriaLista(arrayIconsNotFill, arrayIconsFill, arrayText)
-        categorias.insertCategorias(tab)
-
-        createCategoriaListener(tab, categorias)
-    }
-
-    private fun createCategoriaListener(tabLayout: TabLayout, categoria: CategoriaLista) {
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                // Handle tab select
-                categoria.changeIconOnSelected(tab, tab.id)
-                callAdapterCards(tab.text.toString())
-                Toast.makeText(requireContext(), "onTabSelected: ${tab.text}" , Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                // Handle tab unselect
-                categoria.changeIconUnSelected(tab, tab.id)
-                Toast.makeText(requireContext(),"${tab.id}", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                // Handle tab reselect
-            }
-        })
+        CategoriaLista(tab, requireContext())
     }
 
     private fun callAdapterCards(categoria:String) {
