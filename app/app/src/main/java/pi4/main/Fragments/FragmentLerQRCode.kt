@@ -1,7 +1,9 @@
 package pi4.main.Fragments
 
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,16 +16,17 @@ import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
+import pi4.main.MainActivity
 import pi4.main.R
 
 private const val CAMARA_REQUEST_CODE = 101
 
-class FragmentQrCode : Fragment() {
+class FragmentLerQRCode() : Fragment() {
 
     private lateinit var codeScanner: CodeScanner
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_qr_code, container, false)
+        return inflater.inflate(R.layout.fragment_ler_q_r_code, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,10 +52,14 @@ class FragmentQrCode : Fragment() {
         codeScanner.decodeCallback = DecodeCallback {
             requireActivity().runOnUiThread {
                 Toast.makeText(requireContext(), "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
+
+                Handler().postDelayed({
+                    startActivity(Intent(requireContext(), MainActivity::class.java))
+                }, 2000)
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
-           requireActivity().runOnUiThread {
+            requireActivity().runOnUiThread {
                 Toast.makeText(requireContext(), "Camera initialization error: ${it.message}", Toast.LENGTH_LONG).show()
             }
         }
