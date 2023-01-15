@@ -11,7 +11,7 @@ export default function ModalNewPontoInteresse(props) {
     const [localizacao, setLocalizacao] = useState("")
     const [cp, setCP] = useState("")
     const [contacto, setContacto] = useState("")
-    const [pontos, setPontos] = useState("")
+    const [pontos, setPontos] = useState(0)
     const [descricao, setDescricao] = useState("")
     const [tipo, setTipo] = useState(0)
     const [baseDadosTipo, setBaseDadosTipo] = useState([])
@@ -82,7 +82,7 @@ export default function ModalNewPontoInteresse(props) {
 
                                 <Input className="input-group mt-4" id="contacto" placeholder="Contacto" onchange={(value) => setContacto(value.target.value)} />
 
-                                <Input className="input-group mt-4" id="numeroPontos" placeholder="Número de Pontos" onchange={(value) => setPontos(value.target.value)} />
+                                <Input className="input-group mt-4" id="numeroPontos" type="number" placeholder="Número de Pontos" onchange={(value) => setPontos(value.target.value)} />
 
                                 <textarea className="form-control mt-4" placeholder="Descrição" id="descricao" rows="3" onChange={(value) => setDescricao(value.target.value)} />
 
