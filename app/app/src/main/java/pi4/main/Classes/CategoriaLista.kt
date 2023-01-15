@@ -9,7 +9,7 @@ class CategoriaLista(tabLayout: TabLayout, context: Context) {
     private val tabLayout: TabLayout
     private val context: Context
 
-    private val arrayTexto = arrayListOf<String>("Todos", "Praias", "Jardim", "Monumentos", "Museu", "Restaurante")
+    private val arrayTexto = arrayListOf<String>("Todos", "Paisagem", "Museu", "Religião", "Bar/Discoteca", "Desporto", "Comércio", "Natureza", "Restauração", "Praia")
     private val arrayIconsNotFill = arrayListOf<Int>(R.drawable.location_notfill)
     private val arrayIconsFill = arrayListOf<Int>(R.drawable.location_fill)
 

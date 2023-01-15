@@ -75,7 +75,7 @@ class FragmentPontoInteresse() : Fragment() {
             nome = "Jardim das Mães",
             morada =  "Largo Maj. Teles 6, 3500-212 Viseu",
             descricao = "Um jardim muito bonito",
-            tipo_interesse = "Jardim",
+            tipo_interesse = "Paisagem",
             freguesia_municipio = "Viseu",
             num_pontos = "10 pts",
             avg_avaliacao = 4.8f,
