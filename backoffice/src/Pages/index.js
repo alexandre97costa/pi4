@@ -31,10 +31,11 @@ import Vouchers from './ResponsavelRegiao/Vouchers/vouchers'
 import ListaRecompensas from './ResponsavelRegiao/Recompensas/listaRecompensas'
 import ValidarRecompensas from  './ResponsavelRegiao/Recompensas/validarRecompensas'
 import Agentes from "./ResponsavelRegiao/Agentes/agentes"
+import ValidarAgentesTuristicos from "./ResponsavelRegiao/Agentes/validarAgentesTuristicos"
 
 
 
 
-const Pages = {Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico, AdicionarConteudo, HomeAgenteTuristico, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil, PontoInteresse, DetalhesUtilizador, PontoInteresseDetails, Recompensa, Eventos, HomeAdmin, EventosResponsavelRegiao, ReservasEvento, ValidarPontoInteresse, HomeResponsavelRegiao, Vouchers, ListaRecompensas, ValidarRecompensas, Agentes}
+const Pages = {Teste, Login, Microsite, VantagensAplicacao, DescarregarApp, GerirFooter, GerirMenu, HeroBanner, PublicidadeAgenteTuristico, AdicionarConteudo, HomeAgenteTuristico, Utilizadores, ListaRegiao, RecuperarPass, EditarPasse, EditarPerfil, PontoInteresse, DetalhesUtilizador, PontoInteresseDetails, Recompensa, Eventos, HomeAdmin, EventosResponsavelRegiao, ReservasEvento, ValidarPontoInteresse, HomeResponsavelRegiao, Vouchers, ListaRecompensas, ValidarRecompensas, Agentes, ValidarAgentesTuristicos}
 
 export default Pages

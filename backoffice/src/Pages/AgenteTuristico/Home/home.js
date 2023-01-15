@@ -7,7 +7,7 @@ import CardReservas from '../../../Components/Cards/CardReservas';
 import ModalValidar from '../../../Components/Modais/ModalValidar';
 import GraficoHorizontal from '../../../Components/GraficoHorizontal';
 import ModalNewPontoInteresse from '../../../Components/Modais/ModalNewPontoInteresse';
-import ValidarPontoInteresse from '../../ResponsavelRegiao/ValidarPontoInteresse/ValidarPontoInteresse';
+import BotaoDashboard from '../../../Components/BotaoDashboard';
 
 export default function Home() {
     const [codeReserva, setCodeReserva] = useState("")
@@ -118,6 +118,21 @@ export default function Home() {
 
                     <ModalNewPontoInteresse idModal="NewPontoInteresse" title="Adicionar Ponto de Interesse" onSubmit={(value) => setCodePontoInteresse(value)} onClick={() => adicionarPontoInteresse()} />
                 </div>
+
+                <div className='row'>
+                    <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
+                        <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-agentes h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Adicionar Ponto de interesse"/>
+                    </div>
+
+                    <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
+                        <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-regiao h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Responsáveis de Região"/>
+                    </div>
+
+                    <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
+                        <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-primary h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Visitantes"/>
+                    </div>
+                </div>
+
                 <div className='col-12 mt-5'>
                     <p className="fs-5 text-body fw-light">Confirmar Reservas<i className="bi bi-box-arrow-up-right ps-2"></i></p>
                 </div>
@@ -126,7 +141,7 @@ export default function Home() {
             <div className='row'>
                 {teste.map((item, index) => {
                     return (
-                        <div key={index} className="col-12 col-sm-6 col-md-4 mb-4">
+                        <div key={index} className="col-12 col-sm-7 col-md-6 mb-4">
                             <CardReservas
                                 nomePontoInteresse={item.nomePontoInteresse}
                                 nomeEvento={item.nomeEvento}

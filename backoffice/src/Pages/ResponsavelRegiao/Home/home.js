@@ -66,30 +66,27 @@ export default function Home() {
 
     return (
         <div className="row">
-            <div className='col-12 mt-5'>
+            <div className='col-12 mt-4'>
                 <p className="fs-5 text-body fw-light">Ações Rápidas</p>
             </div>
 
-            <div className='row row-cols-4 gt-4'>
-                <div className='col pb-3 col-sm-3 mb-sm-0 text-break  text-center'>
-                    <BotaoDashboard to="/responsavel-regiao/agentes" colorBotao="btn-agentes h-100 text-white fw-bold text-center py-5 w-100 h-100 text-uppercase" texto="AGENTES TURÍSTICOS" />
-                </div>
 
-                <div className='col pb-3 col-sm-3 mb-sm-0 text-break  text-center'>
-                    <BotaoDashboard to="/consultar-pontos-interesse" colorBotao="btn-regiao h-100 text-white fw-bold py-5 w-100 h-100 text-uppercase" texto="Pontos de Interesse" />
-                </div>
+            <div className='col-12 col-md-4'>
+                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-light btn-lg" icon="bi-journal-check" texto="Atribuição de Perfil"/>
+            </div>
+            <div className='col-12 m-2'>
+                
+            </div>
+            <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
+                <BotaoDashboard to="/consultar-pontos-interesse" colorBotao="btn-regiao h-100 text-white fw-bold py-5 w-100 h-100 text-uppercase" texto="Pontos de Interesse" />
+            </div>
 
-                <div className='col pb-3 col-sm-3 mb-sm-0 text-break  text-center'>
-                    <BotaoDashboard to="/responsavel-regiao/lista-eventos" colorBotao="btn-primary h-100 text-white fw-bold py-5 w-100 h-100 text-uppercase" texto="Eventos" />
-                </div>
+            <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
+                <BotaoDashboard to="/responsavel-regiao/lista-eventos" colorBotao="btn-primary h-100 text-white fw-bold py-5 w-100 h-100 text-uppercase" texto="Eventos" />
+            </div>
 
-                <div className='col pb-3 col-sm-3 mb-sm-0 text-break  text-center'>
-                    <BotaoDashboard to="/responsavel-regiao/lista-vouchers" colorBotao="btn-agentes h-100 text-white fw-bold py-5 w-100 h-100 text-uppercase" texto="Vouchers" />
-                </div>
-
-                <div className='col b-3 col-sm-3 mb-sm-0 text-break  text-center'>
-                    <BotaoDashboard to="/responsavel-regiao/lista-recompensas" colorBotao="btn-regiao h-100 text-white fw-bold py-5 w-100 h-100 text-uppercase" texto="Recompensas" />
-                </div>
+            <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
+                <BotaoDashboard to="/responsavel-regiao/lista-vouchers" colorBotao="btn-agentes h-100 text-white fw-bold py-5 w-100 h-100 text-uppercase" texto="Vouchers" />
             </div>
 
             <div className='row mt-5'>
