@@ -114,9 +114,9 @@ export default function Home() {
                     <ModalValidar idModal="validarReserva" title="Validar Reserva" onSubmit={(value) => setCodeReserva(value)} onClick={() => validarReserva()} />
                 </div>
                 <div className='col-12 col-md-3'>
-                    <button className="btn btn-light btn-lg shadow text-break rounded-3" data-bs-toggle="modal" data-bs-target="#validarReserva">Adicionar Ponto de Interesse<i className="bi bi-journal-check ps-2"></i></button>
+                    <button className="btn btn-light btn-lg shadow text-break rounded-3" data-bs-toggle="modal" data-bs-target="#NewPontoInteresse">Adicionar Ponto de Interesse<i className="bi bi-journal-check ps-2"></i></button>
 
-                    <ModalNewPontoInteresse idModal="NewPontoInteresse" title="Adicionar Ponto de Interesse" onSubmit={(value) => setCodePontoInteresse(value)} onClick={() => adicionarPontoInteresse()} />
+                    <ModalNewPontoInteresse idModal="NewPontoInteresse"/>
                 </div>
 
                 <div className='row'>
@@ -141,7 +141,7 @@ export default function Home() {
             <div className='row'>
                 {teste.map((item, index) => {
                     return (
-                        <div key={index} className="col-12 col-sm-7 col-md-6 mb-4">
+                        <div key={index} className="col-12 col-sm-7 col-md-5 mb-4">
                             <CardReservas
                                 nomePontoInteresse={item.nomePontoInteresse}
                                 nomeEvento={item.nomeEvento}
