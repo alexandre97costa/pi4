@@ -89,9 +89,9 @@ module.exports = {
         const required_params = [
             'nome',
             'descricao',
-            'num_pontos',
-            'num_vagas',
-            'num_horas',
+            'pontos',
+            'vagas',
+            'horas_duracao',
             'ponto_interesse_id',
             'tipo_evento_id'
         ]
@@ -99,7 +99,7 @@ module.exports = {
         if (!check_all_required)
             return res.status(400).json({ msg: 'Faltam dados para poder criar o evento.' })
 
-        const { nome, descricao, num_pontos, num_vagas, num_horas, ponto_interesse_id, tipo_evento_id } = req.body
+        const { nome, descricao, pontos, vagas, horas_duracao, ponto_interesse_id, tipo_evento_id } = req.body
 
         // so para pontos de interesse que lhe pertencem
         const pis_agente = await ponto_interesse.findAll({ where: { agente_turistico_id: req.auth.id } })
@@ -112,9 +112,9 @@ module.exports = {
             .create({
                 nome: nome,
                 descricao: descricao,
-                num_pontos: num_pontos,
-                num_vagas: num_vagas,
-                num_horas: num_horas,
+                pontos: pontos,
+                vagas: vagas,
+                horas_duracao: horas_duracao,
                 ponto_interesse_id: ponto_interesse_id,
                 tipo_evento_id: tipo_evento_id,
             })
@@ -137,9 +137,9 @@ module.exports = {
         const required_params = [
             'nome',
             'descricao',
-            'num_pontos',
-            'num_vagas',
-            'num_horas',
+            'pontos',
+            'vagas',
+            'horas_duracao',
             'ponto_interesse_id',
             'tipo_evento_id'
         ]
@@ -148,7 +148,7 @@ module.exports = {
             return res.status(400).json({ msg: 'Faltam dados para poder editar o evento.' })
 
         const { id } = req.params
-        const { num_pontos, nome, descricao, num_vagas, ponto_interesse_id, tipo_evento_id } = req.body
+        const { pontos, nome, descricao, vagas, ponto_interesse_id, tipo_evento_id } = req.body
 
         // verificar se o evento existe
         const _evento = await evento.findByPk(+id)
@@ -175,9 +175,9 @@ module.exports = {
             .update({
                 nome: nome,
                 descricao: descricao,
-                num_vagas: num_vagas,
-                num_pontos: num_pontos,
-                num_horas: num_horas,
+                vagas: vagas,
+                pontos: pontos,
+                horas_duracao: horas_duracao,
                 ponto_interesse_id: ponto_interesse_id,
                 tipo_evento_id: tipo_evento_id
             })

@@ -4684,7 +4684,7 @@ SELECT setval('municipio_id_seq', 309, true);
 SELECT setval('freguesia_id_seq', 4290, true);
 
 -- pontos de interesse ficticios
-insert into ponto_interesse(id, nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, validado, created_at, updated_at, deleted_at, freguesia_id, agente_turistico_id, tipo_interesse_id, count_scans, avg_avaliacao, codigo_uuid) values
+insert into ponto_interesse(id, nome, morada, codigo_postal, telemovel, pontos, descricao, validado, created_at, updated_at, deleted_at, freguesia_id, agente_turistico_id, tipo_interesse_id, count_scans, avg_avaliacao, codigo_uuid) values
 -- viseu
 (1, 'Jardim das Mães', 'Largo Major Teles n6', '3500-212', 123456789, 10, 'Jardim em homenagem a todas as mães, localizado no centro da cidade com passeios em caminhos de pedra', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 1, 1, 1, 0, 0.00, '3594dcfc-d56c-4c2b-8361-7916af7de03e'),
 (2, 'Sé Catedral de Viseu', 'Adro da Sé', '3500-195', 123456789, 10, 'Também designada por Igreja Paroquial de Santa Maria está classificada como Monumento Nacional desde 1910', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 2, 1, 2, 0, 0.00, '2c075663-07a1-4eb2-8d4d-339015644943'),
@@ -4757,7 +4757,7 @@ insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_a
 -- sequencia tipo_evento
 SELECT setval('tipo_evento_id_seq', 10, true);
 
-insert into evento(id, nome, num_pontos, num_horas, descricao, num_vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id, codigo_uuid) values 
+insert into evento(id, nome, pontos, horas_duracao, descricao, vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id, codigo_uuid) values 
 (1, 'Noite Mágica no Palha Club',  50,  3, 'Dresscode: Roupa branca',       200,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4, '05f8ad77-b0b0-40b4-a37f-ed080007e422'),
 (2, 'Glow Run',                    100, 9, 'Corrida de Pós Coloridos',      150,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 40, 5, '949aa71d-8cee-4ebc-a049-f0215e48eca8'),
 (3, 'Visita Museu',                50,  8, 'Veja as reliquias guardadas',   25,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  3, 2, '1d8c321b-0136-4b47-bced-4af3e4b4d145'),
@@ -4773,8 +4773,8 @@ SELECT setval('evento_id_seq', 11, true);
 
 -- todo: sequencias daqui pra baixo
 insert into scan_evento(id, created_at, updated_at, deleted_at, evento_id, visitante_id, pontos_recebidos) values 
-(1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1, 1, (select num_pontos from evento where id=1)),
-(2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2, 1, (select num_pontos from evento where id=2));
+(1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1, 1, (select pontos from evento where id=1)),
+(2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2, 1, (select pontos from evento where id=2));
 -- sequencia scan_ponto_interesse
 SELECT setval('scan_ponto_interesse_id_seq', 3, true);
 
@@ -4790,7 +4790,7 @@ INSERT INTO sessao (id, data_hora, inicio_evento, fim_evento, evento_id, created
 -- sequencia sessao
 SELECT setval('sessao_id_seq', 9, true);
 
-insert into reserva (id, nome, num_pessoas, validado, confirmado, codigo_confirmacao, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
+insert into reserva (id, nome, pessoas, validado, confirmado, codigo_confirmacao, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
 (1, 'João da Silva',    2, true, true,  'G0001', 'Sem observações', 1, 3,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (2, 'Miguel Valente',   4, true, false, 'D0002', 'Sem observações', 2, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (3, 'Raquel Almeida',   1, true, false, 'E0003', 'Sem observações', 3, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -4806,7 +4806,7 @@ insert into comentario_avaliacao (id, visitante_id, ponto_interesse_id, comentar
 SELECT setval('comentario_avaliacao_id_seq', 3, true);
 
 -- aqui temos de rever é necessario observacoes e descricao?
-insert into recompensa(id, validado, titulo, descricao, num_pontos, observacoes, created_at, updated_at, deleted_at) VALUES
+insert into recompensa(id, validado, titulo, descricao, pontos, observacoes, created_at, updated_at, deleted_at) VALUES
 (1, false, 'Caneca turística', 'Caneca turística com o logotipo da cidade', 100, 'Caneca turística com o logotipo da cidade', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (2, false, 'Café', 'Um café sabe sempre bem', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (3, false, 'Voucher para jantar', 'Voucher para jantar para 2 pessoas', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);

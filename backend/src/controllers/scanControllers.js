@@ -38,7 +38,7 @@ module.exports = {
             .create({
                 visitante_id: u.id,
                 ponto_interesse_id: pi.id,
-                pontos_recebidos: pi.num_pontos,
+                pontos_recebidos: pi.pontos,
             })
             .then(data => res.status(200).json(data))
             .catch(e => res.status(400).json(e))
@@ -57,7 +57,7 @@ module.exports = {
 
         // o scan foi feito fora de horas?
         // - apanhamos as sessoes todas do evento
-        // - calculamos o intervalo de horas (com o ev.num_horas)
+        // - calculamos o intervalo de horas (com o ev.horas_duracao)
         // - comparamos com a data atual
 
         const sessoes = await sessao.findAll({ where: { evento_id: ev.id } })
@@ -70,7 +70,7 @@ module.exports = {
         sessoes.forEach(sessao => {
             let agora = new Date()
             let inicio_sessao = sessao.dataValues.data_hora
-            let fim_sessao = new Date(new Date(inicio_sessao).setHours(inicio_sessao.getHours() + ev.num_horas))
+            let fim_sessao = new Date(new Date(inicio_sessao).setHours(inicio_sessao.getHours() + ev.horas_duracao))
 
             if (inicio_sessao <= agora && fim_sessao >= agora)
                 dentroDeUmaSessao = true
@@ -85,7 +85,7 @@ module.exports = {
             .create({
                 visitante_id: u.id,
                 evento_id: ev.id,
-                pontos_recebidos: ev.num_pontos
+                pontos_recebidos: ev.pontos
             })
             .then(data => res.status(200).json(data))
             .catch(e => res.status(400).json(e))

@@ -60,7 +60,7 @@ module.exports = {
                     nome: {
                         [Op.iLike]: '%' + nome + '%'
                     },
-                    num_pessoas: !!maxPessoas ?
+                    pessoas: !!maxPessoas ?
                         { [Op.between]: [minPessoas, maxPessoas] } :
                         { [Op.gte]: minPessoas },
                     // os visitantes (tipo 1) só podem ver as suas próprias reservas
@@ -137,7 +137,7 @@ module.exports = {
         // body tem que ter estes params
         const required_params = [
             'nome',
-            'num_pessoas',
+            'pessoas',
             'visitante_id',
             'sessao_id',
             'observacoes'
@@ -146,12 +146,12 @@ module.exports = {
         if (!check_all_required)
             return res.status(400).json({ msg: 'Faltam dados para poder criar a reserva.' })
 
-        const { nome, num_pessoas, visitante_id, sessao_id, observacoes } = req.body
+        const { nome, pessoas, visitante_id, sessao_id, observacoes } = req.body
 
         await reserva
             .create({
                 nome: nome,
-                num_pessoas: num_pessoas,
+                pessoas: pessoas,
                 visitante_id: visitante_id,
                 sessao_id: sessao_id,
                 observacoes: observacoes
@@ -170,10 +170,10 @@ module.exports = {
         if (req.auth.tipo !== 1)
             return res.status(401).json({ msg: 'Apenas visitantes podem mudar as vagas da sua reserva' })
 
-        if (!req.params.id || !req.body.num_pessoas_novo)
+        if (!req.params.id || !req.body.pessoas_novo)
             return res.status(400).json({ msg: 'Faltam dados! É preciso identificar a reserva e o novo numero de pessoas.' })
 
-        const { num_pessoas_novo } = req.body
+        const { pessoas_novo } = req.body
         const { id } = req.params
 
         // procurar se a reserva existe e se é do visitante que as pediu
@@ -186,7 +186,7 @@ module.exports = {
             return res.status(401).json({ msg: 'Só podes mudar as tuas próprias reservas' })
 
         await _reserva
-            .update({ num_pessoas: +num_pessoas_novo })
+            .update({ pessoas: +pessoas_novo })
             .then(output => { return res.status(200).json(output) })
             .catch(error => {
                 res.status(400).json({ error })

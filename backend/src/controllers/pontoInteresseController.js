@@ -156,8 +156,8 @@ module.exports = {
             'descricao', 
             'morada', 
             'codigo_postal', 
-            'num_telemovel', 
-            'num_pontos', 
+            'telemovel', 
+            'pontos', 
             'freguesia_id', 
             'tipo_interesse_id'
         ]
@@ -165,15 +165,15 @@ module.exports = {
         if (!check_all_required)
             return res.status(400).json({msg: 'Faltam dados para poder criar o ponto de interesse.'})
             
-        const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
+        const { nome, morada, codigo_postal, telemovel, pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
         await ponto_interesse
             .create({
                 nome: nome,
                 morada: morada,
                 codigo_postal: codigo_postal,
-                num_telemovel: num_telemovel,
-                num_pontos: num_pontos,
+                telemovel: telemovel,
+                pontos: pontos,
                 descricao: descricao,
                 freguesia_id: freguesia_id,
                 tipo_interesse_id: tipo_interesse_id,
@@ -198,8 +198,8 @@ module.exports = {
             'descricao', 
             'morada', 
             'codigo_postal', 
-            'num_telemovel', 
-            'num_pontos', 
+            'telemovel', 
+            'pontos', 
             'freguesia_id', 
             'tipo_interesse_id'
         ]
@@ -208,7 +208,7 @@ module.exports = {
             return res.status(400).json({msg: 'Faltam dados para poder editar o ponto de interesse.'})
             
         const { id } = req.params
-        const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
+        const { nome, morada, codigo_postal, telemovel, pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
         // verificar se o pi existe
         const _pi = await ponto_interesse.findByPk(+id)
@@ -225,8 +225,8 @@ module.exports = {
                 nome: nome,
                 morada: morada,
                 codigo_postal: codigo_postal,
-                num_telemovel: num_telemovel,
-                num_pontos: num_pontos,
+                telemovel: telemovel,
+                pontos: pontos,
                 descricao: descricao,
                 freguesia_id: freguesia_id,
                 tipo_interesse_id: tipo_interesse_id

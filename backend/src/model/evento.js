@@ -11,19 +11,19 @@ module.exports = (sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            num_pontos: {
+            pontos: {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
-            num_vagas: {
+            vagas: {
                 type: DataTypes.INTEGER,
                 defaultValue: 0,
                 allowNull: false
             },
-            // num_horas: quantas horas demora o evento.
+            // horas_duracao: quantas horas demora o evento.
             // É usado juntamente com a data/hora das sessoes
             // para determinar se um scan a este evento é válido
-            num_horas: { 
+            horas_duracao: { 
                 type: DataTypes.INTEGER,
                 defaultValue: 1,
                 allowNull: false
