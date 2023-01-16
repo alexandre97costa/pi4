@@ -66,8 +66,6 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
     }
 
     fun eventListener(cardView: CardView, mensagem:String) {
-        val startActivity = StartActivitys(context)
-
-        startActivity.cardGoTo(cardView, ActivityPontoInteresseDetalhe())
+        StartActivitys(context).cardGoTo(cardView, ActivityPontoInteresseDetalhe())
     }
 }
