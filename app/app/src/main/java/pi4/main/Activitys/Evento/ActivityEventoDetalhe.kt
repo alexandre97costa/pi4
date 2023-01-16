@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import pi4.main.Classes.StartActivitys
 import pi4.main.MainActivity
 import pi4.main.R
 
@@ -13,6 +15,7 @@ class ActivityEventoDetalhe : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evento_detalhe)
 
+        previous()
         reservar()
     }
 
@@ -22,5 +25,11 @@ class ActivityEventoDetalhe : AppCompatActivity() {
         btnReservar.setOnClickListener {
             startActivity(Intent(this, ActivityEventoReserva::class.java))
         }
+    }
+
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 }

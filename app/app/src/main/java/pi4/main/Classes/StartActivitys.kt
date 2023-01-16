@@ -8,12 +8,19 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import com.google.android.material.circularreveal.CircularRevealLinearLayout
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class StartActivitys(context: Context) {
     private val context: Context
 
     init {
         this.context = context
+    }
+
+    fun floatingPreviousActivity(floatingActionButton: FloatingActionButton, activity: Activity) {
+        floatingActionButton.setOnClickListener{
+            activity.finish()
+        }
     }
 
     fun buttonGoToSemListener(activity: Activity) {
