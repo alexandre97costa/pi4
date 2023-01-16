@@ -1,6 +1,5 @@
-
 var sequelize = require('../config/Database')
-const { Op } = require("sequelize")
+const { Op } = require('sequelize')
 const { dev: devClass } = require('../_dev/dev');
 const dev = new devClass;
 // * Como usar o Op:
@@ -33,89 +32,197 @@ module.exports = {
     // todo: estes controllers todos 😭
 
     get: async (req, res) => {
+        // * filtros
         const { id } = req.params
-        let tipoEventoId = req.query?.tipoEventoId ?? 0
-        let pontoInteresseId = req.query?.pontoInteresseId ?? 0
+        const nome_desc = req.query?.nome_desc ?? '' // pesquisa nos dois
+        const tipo_evento_id = req.query?.tipo_evento_id ?? 0
+        const ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
+        const codigo_uuid = req.query?.codigo_uuid ?? ''
+
+        // * ordenação e paginação
+        const order = req.query?.order ?? 'nome'
+        const direction = req.query?.direction ?? 'asc'
+        const offset = req.query?.offset ?? 0
+        const limit = req.query?.limit ?? 0
 
         await evento
-            .findAll({
+            .findAndCountAll({
                 where: {
-                    tipo_evento_id: !!+tipoEventoId ? tipoEventoId : { [Op.ne]: 0 },
-                    ponto_interesse_id: !!+pontoInteresseId ? pontoInteresseId : { [Op.ne]: 0 }
+                    id: !!+id ?
+                        id :
+                        { [Op.ne]: 0 },
+                    nome: { [Op.iLike]: '%' + nome_desc + '%' },
+                    descricao: { [Op.iLike]: '%' + nome_desc + '%' },
+                    tipo_evento_id: !!+tipo_evento_id ?
+                        tipo_evento_id :
+                        { [Op.ne]: 0 },
+                    ponto_interesse_id: !!+ponto_interesse_id ?
+                        ponto_interesse_id :
+                        { [Op.ne]: 0 },
+                    codigo_uuid: { [Op.iLike]: '%' + codigo_uuid + '%' },
                 },
                 include: {
                     all: true
-                }
+                },
+                order: [[order, direction]],
+                offset: offset,
+                limit: !!limit ? limit : null,
             })
             .then(output => {
-                if (!output[0])
-                    return res.status(404).json("Evento's não foram encontrados")
-                res.status(200).json({ evento: output })
+                return !output.count ?
+                    res.status(404).json({ msg: 'Não existem eventos que correspondam aos filtros solicitados.' }) :
+                    res.status(200).json({ data: output.rows, count: output.count })
             })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+            .catch(error => {
+                res.status(400).json({ msg: 'Ocorreu um erro no pedido de eventos.' })
+                dev.error({ error })
+                return
+            })
     },
 
     post: async (req, res) => {
-        const { num_pontos, nome, descricao, num_vagas, ponto_interesse_id, tipo_evento_id } = req.body
+        // so agentes
+        if (req.auth.tipo !== 2)
+            return res.status(401).json({ msg: 'Sem autorização para criar eventos.' })
+
+        // o body tem todos os parametros necessarios?
+        const required_params = [
+            'nome',
+            'descricao',
+            'num_pontos',
+            'num_vagas',
+            'num_horas',
+            'ponto_interesse_id',
+            'tipo_evento_id'
+        ]
+        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
+        if (!check_all_required)
+            return res.status(400).json({ msg: 'Faltam dados para poder criar o evento.' })
+
+        const { nome, descricao, num_pontos, num_vagas, num_horas, ponto_interesse_id, tipo_evento_id } = req.body
+
+        // so para pontos de interesse que lhe pertencem
+        const pis_agente = await ponto_interesse.findAll({ where: { agente_turistico_id: req.auth.id } })
+        const pi_valido = pis_agente.find(pi => pi.id === ponto_interesse_id)
+        if (!pi_valido)
+            return res.status(404).json({ msg: 'O ponto de interesse fornecido não existe ou não te pertence.' })
+
 
         await evento
             .create({
-                num_pontos: num_pontos,
                 nome: nome,
                 descricao: descricao,
+                num_pontos: num_pontos,
                 num_vagas: num_vagas,
+                num_horas: num_horas,
                 ponto_interesse_id: ponto_interesse_id,
                 tipo_evento_id: tipo_evento_id,
             })
-            .then(output => { res.status(200).json({ evento: output }) })
-            .catch(error => { res.status(400); throw new Error(error); });
+            .then(output => {
+                return res.status(200).json({ msg: 'Evento criado.', evento: output })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            });
     },
 
     editar: async (req, res) => {
-        let eventoId = req.query?.eventoId ?? 0
+        // so agentes podem editar
+        if (req.auth.tipo !== 2)
+            return res.status(401).json({ msg: 'Sem autorização para editar eventos.' })
 
-        if (!eventoId)
-            return res.status(400).json("Input invalido")
+        // precisa de todos os params no body
+        const required_params = [
+            'nome',
+            'descricao',
+            'num_pontos',
+            'num_vagas',
+            'num_horas',
+            'ponto_interesse_id',
+            'tipo_evento_id'
+        ]
+        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
+        if (!check_all_required)
+            return res.status(400).json({ msg: 'Faltam dados para poder editar o evento.' })
 
+        const { id } = req.params
         const { num_pontos, nome, descricao, num_vagas, ponto_interesse_id, tipo_evento_id } = req.body
 
-        await evento
-            .update({
-                num_pontos: num_pontos,
-                nome: nome,
-                descricao: descricao,
-                num_vagas: num_vagas,
-                ponto_interesse_id: ponto_interesse_id,
-                tipo_evento_id: tipo_evento_id
-            }, {
-                where: {
-                    id: eventoId
+        // verificar se o evento existe
+        const _evento = await evento.findByPk(+id)
+        if (_evento === null) return res.status(404).json({ msg: 'O evento fornecido não existe ou foi eliminado.' })
+
+        // verificar se o evento pertence ao agente que o está a editar
+        const eventos_agente = await utilizador
+            .findOne({
+                where: { id: req.auth.id },
+                include: {
+                    model: ponto_interesse,
+                    include: evento
                 }
             })
             .then(output => {
-                if (!output[0])
-                    return res.status(404).json("Evento não existe")
-                res.status(200).json({ pontoInteresse: output })
+                return output?.pontos_interesse.map(pi => pi?.eventos).flat(2)
             })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+
+        const evento_correto = eventos_agente.find(evento => evento.id = id)
+        if (evento_correto === undefined)
+            return res.status(401).json({ msg: 'Não podes editar um evento que não te pertence.' })
+
+        await _evento
+            .update({
+                nome: nome,
+                descricao: descricao,
+                num_vagas: num_vagas,
+                num_pontos: num_pontos,
+                num_horas: num_horas,
+                ponto_interesse_id: ponto_interesse_id,
+                tipo_evento_id: tipo_evento_id
+            })
+            .then(output => {
+                return !output[0] ?
+                    res.status(400).json({ msg: 'Evento não atualizado' }) :
+                    res.status(200).json({ msg: 'Evento atualizado', evento: output[0] })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
     },
 
     delete: async (req, res) => {
-        let eventoId = req.query?.eventoId ?? 0
 
-        if (!eventoId)
-            return res.status(400).json("Input invalido")
+        // apenas agentes podem eliminar eventos
+        if (req.auth.tipo !== 2)
+            res.status(401).json({ msg: 'Apenas agentes podem eliminar eventos.' })
 
-        await evento
-            .destroy({
-                where: { id: eventoId }
-            })
+        const { id } = req.params
+
+        // verificar se o evento existe
+        const _evento = await evento.findByPk(+id)
+        if (_evento === null)
+            return res.status(404).json({ msg: 'Esse evento não existe.' })
+
+        // só o proprietario do evento é que pode eliminar
+        const _pi = await ponto_interesse.findOne({ where: { id: _evento.ponto_interesse_id } })
+        if (req.auth.id !== _pi.agente_turistico_id)
+            return res.status(401).json({ msg: 'Só podes eliminar eventos dos quais és proprietário.' })
+
+        await _evento
+            .destroy()
             .then(output => {
-                if (!output)
-                    return res.status(404).json("Evento não existe")
-                res.status(200).json({ evento: output })
+                return !output ?
+                    res.status(400).json({ msg: 'Evento não eliminado' }) :
+                    res.status(200).json({ msg: 'Evento eliminado' })
             })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
     },
 
     tipos: async (req, res) => {

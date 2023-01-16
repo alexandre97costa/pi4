@@ -23,14 +23,13 @@ module.exports = {
     scan_ponto_interesse: async (req, res) => {
         // Não permitir scans de utilizadores que não sejam visitantes
         if (req.auth.tipo !== 1)
-            return res.status(401).json('Só visitantes é que podem carimbar Pontos de Interesse')
-
+            return res.status(401).json('Apenas visitantes podem carimbar pontos de interesse')
 
         const pi = await ponto_interesse.findOne({ where: { codigo_uuid: req.params.codigo } })
 
         // não encontrou o PI
         if (pi === null)
-            return res.status(404).json('Esse Ponto de Interesse não existe. Talvez tenha sido eliminado?')
+            return res.status(404).json('Esse ponto de interesse não existe ou foi eliminado.')
 
         const u = await utilizador.findOne({ where: { email: req.auth.email } })
 
@@ -92,4 +91,7 @@ module.exports = {
             .catch(e => res.status(400).json(e))
 
     },
+
+    // todo: historico de pontos de interesse
+
 }

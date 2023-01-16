@@ -17,14 +17,12 @@ module.exports = {
 
     login: async (req, res) => {
 
-        let email = req.body?.email
-        let password = req.body?.password
-        let longExp = req.body?.longExp
+        const required_params = ['email', 'password']
+        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
+        if (!check_all_required)
+            return res.status(400).json({msg: 'Faltam dados para poder fazer o login (email+password).'})
 
-        // 🚨 guard clauses
-
-        if (!email) return res.status(403).json({ msg: 'Email necessário!' })
-        if (!password) return res.status(403).json({ msg: 'Password necessária!' })
+        const { email, password } = req.body
 
         const user = await utilizador
             .findOne({ where: { email: email } })
@@ -56,7 +54,7 @@ module.exports = {
         }
 
         return res.status(200).json({
-            msg: 'Autenticação realizada com sucesso!',
+            msg: 'Bem vindo ' + user.nome + '! 🤩',
             token: jwt.sign(token, secret, options)
         });
     },
@@ -109,20 +107,18 @@ module.exports = {
     },
 
     post: async (req, res) => {
-        if (
-            !req.body.nome ||
-            !req.body.email ||
-            !req.body.data_nasc ||
-            !req.body.password
-        ) {
-            return res.status(400).json({ msg: 'Faltam dados!' })
-        }
 
-        const nome = req.body.nome
-        const email = req.body.email.trim() ?? ""
-        const data_nasc = req.body.data_nasc
-        const password = req.body.password
-        const tipo = req.body?.tipo ?? 1
+        const required_params = [
+            'nome',
+            'email',
+            'data_nasc',
+            'password'
+        ]
+        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
+        if (!check_all_required)
+            return res.status(400).json({msg: 'Faltam dados para poder criar o utilizador.'})
+
+        const { nome, email, data_nasc, password, tipo } = req.body
 
         const utilizadorJaExiste = await utilizador.findOne({ where: { email: email } })
 

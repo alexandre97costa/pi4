@@ -1,4 +1,3 @@
-
 var sequelize = require('../config/Database')
 const { Op } = require('sequelize')
 const { dev: devClass } = require('../_dev/dev');
@@ -25,13 +24,14 @@ module.exports = {
     get: async (req, res) => {
         // * filtros
         const id = req.params?.id ?? 0
-        const nome = req.query?.nome ?? '%'
+        const nome_desc = req.query?.nome_desc ?? '' // pesquisa nos dois
         const tipo_interesse_id = req.query?.tipo_interesse_id ?? 0
         const freguesia_id = req.query?.freguesia_id ?? 0
         const agente_turistico_id = req.query?.agente_turistico_id ?? 0
         const distrito_id = req.query?.distrito_id ?? 0
         const min_scans = req.query?.min_scans ?? 0
         const min_aval = req.query?.min_aval ?? 0
+        // todo: pontos
 
         // * ordenação e paginação
         const order = req.query?.order ?? 'nome'
@@ -50,9 +50,8 @@ module.exports = {
                     id: !!+id ?
                         +id :
                         { [Op.ne]: 0 },
-                    nome: {
-                        [Op.iLike]: '%' + nome + '%'
-                    },
+                    nome: { [Op.iLike]: '%' + nome_desc + '%' },
+                    descricao: { [Op.iLike]: '%' + nome_desc + '%' },
                     tipo_interesse_id: !!+tipo_interesse_id ?
                         +tipo_interesse_id :
                         { [Op.ne]: 0 },
@@ -149,8 +148,23 @@ module.exports = {
 
     post: async (req, res) => {
         if (req.auth.tipo === 1)
-            return res.status(401).json({ msg: 'Sem autorização para criar Pontos de Interesse.' })
+            return res.status(401).json({ msg: 'Sem autorização para criar pontos de interesse.' })
 
+        // o body tem que ter todos os coises
+        const required_params = [
+            'nome', 
+            'descricao', 
+            'morada', 
+            'codigo_postal', 
+            'num_telemovel', 
+            'num_pontos', 
+            'freguesia_id', 
+            'tipo_interesse_id'
+        ]
+        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
+        if (!check_all_required)
+            return res.status(400).json({msg: 'Faltam dados para poder criar o ponto de interesse.'})
+            
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
         await ponto_interesse
@@ -178,6 +192,21 @@ module.exports = {
         if (req.auth.tipo === 1)
             return res.status(401).json({ msg: 'Sem autorização para alterar informação do Ponto de Interesse' })
 
+        // o body tem que ter todos os coises
+        const required_params = [
+            'nome', 
+            'descricao', 
+            'morada', 
+            'codigo_postal', 
+            'num_telemovel', 
+            'num_pontos', 
+            'freguesia_id', 
+            'tipo_interesse_id'
+        ]
+        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
+        if (!check_all_required)
+            return res.status(400).json({msg: 'Faltam dados para poder editar o ponto de interesse.'})
+            
         const { id } = req.params
         const { nome, morada, codigo_postal, num_telemovel, num_pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
