@@ -54,11 +54,17 @@ export default function ModalAddEvento(props) {
 
                             <Input className="input-group" id="nomeEvento" placeholder="Nome do Evento" onchange={(value) => setNomeEvento(value.target.value)} />
 
-                            <Input className="input-group mt-4" id="dataEvento" placeholder="dd-mm-aaaa" pattern="^(0?[1-9]|1[0-2])[-](0?[1-9]|[12]\d|3[01])[-](19|20)\d{2}$" onchange={(value) =>{
+                            <Input className="input-group mt-4" id="dataEvento" placeholder=" Data de ínicio (dd-mm-aaaa)" pattern="^(0?[1-9]|1[0-2])[-](0?[1-9]|[12]\d|3[01])[-](19|20)\d{2}$" onchange={(value) =>{
                                 const regex = /^(0?[1-9]|1[0-2])[-](0?[1-9]|[12]\d|3[01])[-](19|20)\d{2}$/
                                 if(regex.test(value.target.value))
                                     setDataEvento(value.target.value)
                             }} />
+
+                            <Input className="input-group mt-4" id="dataEvento" type="date" placeholder=" Data de fim (dd-mm-aaaa)" onchange={(value) =>{
+                                    setDataEvento(value.target.value)
+                            }} />
+
+                            <Input className="input-group mt-4" type="time" id="horaEvento" placeholder="Hora do ínicio do evento" onchange={(value) => setLimitePessoas(value.target.value)} />
 
                             <Input className="input-group mt-4" type="number" id="limitePessoas" placeholder="Limite de pessoas" min="1" onchange={(value) => setLimitePessoas(value.target.value)} />
 
