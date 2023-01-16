@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import pi4.main.Classes.Points
+import pi4.main.Classes.Utilizador
 import pi4.main.R
 
 class ActivityEventoReserva : AppCompatActivity() {
@@ -20,8 +22,14 @@ class ActivityEventoReserva : AppCompatActivity() {
         //+1 devido a margem de erro de 1
         numeroMaximoPessoas = 10 + 1
         numeroPessoas()
-
+        loadPoints()
         buttonReservar()
+    }
+
+    private fun loadPoints() {
+        val textView = findViewById<TextView>(R.id.scoreUtilizador)
+
+        Points(Utilizador().pontos.toInt(), textView, this).loadPontos()
     }
 
     //Vai buscar as informações sobre a reserva do cliente

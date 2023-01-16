@@ -5,16 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
 import pi4.main.Activitys.Recompensa.ActivityVoucherInformacoes
-import pi4.main.Classes.CategoriaLista
-import pi4.main.Classes.Points
-import pi4.main.Classes.StartActivitys
+import pi4.main.Adapter.SetAdapterCardRecompensa
+import pi4.main.Classes.*
 import pi4.main.R
 
 class FragmentRecompensa : Fragment() {
@@ -29,7 +28,7 @@ class FragmentRecompensa : Fragment() {
         loadPoints()
         createCategoriasTab()
         buttonJaResgatado()
-        exemploRecompensa()
+        callAdapterCards()
     }
 
     private fun buttonJaResgatado() {
@@ -46,7 +45,7 @@ class FragmentRecompensa : Fragment() {
     private fun loadPoints() {
         val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(998, textView, requireContext()).loadPontos()
+        Points(Utilizador().pontos.toInt(), textView, requireContext()).loadPontos()
     }
 
     private fun createCategoriasTab() {
@@ -55,9 +54,26 @@ class FragmentRecompensa : Fragment() {
         CategoriaLista(tab, requireContext())
     }
 
-    private fun exemploRecompensa() {
-        val cardRecompensa = requireView().findViewById<CardView>(R.id.cardViewRecompensa)
+    private fun callAdapterCards() {
+        val arrayFinal: ArrayList<RecompensaCurta> = arrayListOf()
 
-        StartActivitys(requireContext()).cardGoTo(cardRecompensa, ActivityVoucherInformacoes())
+        val objectExemplo = RecompensaCurta(
+            pontos = "80",
+            recompensa = "Pizza Grátis",
+            categoria = "Restauração"
+        )
+
+        val objectExemplo2 = RecompensaCurta(
+            pontos = "100",
+            recompensa = "Café Grátis com direito a tudo incluido",
+            categoria = "Comércio"
+        )
+
+        arrayFinal.add(objectExemplo)
+        arrayFinal.add(objectExemplo2)
+
+        val customAdapter = SetAdapterCardRecompensa(requireContext(), arrayFinal, false)
+        val listView = requireView().findViewById<ListView>(R.id.listViewRecompensas)
+        listView.adapter = customAdapter
     }
 }

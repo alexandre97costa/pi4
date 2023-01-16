@@ -24,6 +24,10 @@ class Points(pontos: Int, textView: TextView, context: Context) {
         textView.setText("$pontos pts")
     }
 
+    fun loadPontosPontoInteresseCurto() {
+        textView.setText("$pontos")
+    }
+
     private fun startActivityHistorico() {
         StartActivitys(context).textViewGoTo(textView, ActivityHistoricoPontos())
     }

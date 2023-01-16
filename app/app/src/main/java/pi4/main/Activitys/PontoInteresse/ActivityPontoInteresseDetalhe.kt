@@ -1,6 +1,5 @@
 package pi4.main.Activitys.PontoInteresse
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView

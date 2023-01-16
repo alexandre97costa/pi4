@@ -12,15 +12,17 @@
         android:id="@+id/cardViewRecompensa"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="4dp"
         android:background="@color/whiteTranparent"
-        app:cardCornerRadius="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
         android:elevation="5dp"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cardContraint"
@@ -29,7 +31,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/colorContraint"
-                android:layout_width="wrap_content"
+                android:layout_width="90dp"
                 android:layout_height="match_parent"
                 android:background="@color/greenPrincipal"
                 android:paddingStart="10dp"
@@ -39,19 +41,37 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/recompensaspontos"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans_semibold"
-                    android:text="80 pts"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="30sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/recompensaspontos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="800"
+                        android:textAlignment="center"
+                        android:theme="@style/tittle_principal_white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textViewPTS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="Pts"
+                        android:textColor="@color/white"
+                        android:theme="@style/text_light"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/recompensaspontos"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -75,10 +95,13 @@
 
 
                     <TextView
-                        android:id="@+id/pontoInteresse"
+                        android:id="@+id/recompensa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pizza gratis"
+                        android:ellipsize="end"
+                        android:maxLength="18"
+                        android:maxLines="1"
+                        android:text="Pizza gratishkjhjhjhjk"
                         android:theme="@style/tittle_principal_black" />
 
                     <TextView
@@ -101,7 +124,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
                         <ImageView
-                            android:id="@+id/imageView9"
+                            android:id="@+id/imageViewIconTermos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -110,14 +133,14 @@
                             app:srcCompat="@drawable/store" />
 
                         <TextView
-                            android:id="@+id/textView11"
+                            android:id="@+id/textViewTermos"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:text="Só em lojas aderentes"
                             android:theme="@style/text_light"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/imageView9"
+                            app:layout_constraintStart_toEndOf="@+id/imageViewIconTermos"
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -126,7 +149,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ImageView
-                android:id="@+id/imageView14"
+                android:id="@+id/imageViewSeta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"

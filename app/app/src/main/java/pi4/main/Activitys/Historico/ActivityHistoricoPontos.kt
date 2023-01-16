@@ -3,6 +3,7 @@ package pi4.main.Activitys.Historico
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import pi4.main.Classes.Utilizador
 import pi4.main.R
 
 class ActivityHistoricoPontos : AppCompatActivity() {
@@ -16,6 +17,6 @@ class ActivityHistoricoPontos : AppCompatActivity() {
     fun loadPontos() {
         val pontosPlace = findViewById<TextView>(R.id.textViewPontosUtilizador)
 
-        pontosPlace.text = "998"
+        pontosPlace.text = Utilizador().pontos
     }
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import pi4.main.Classes.Points
+import pi4.main.Classes.Utilizador
 import pi4.main.R
 
 class ActivityVoucherInformacoes : AppCompatActivity() {
@@ -24,8 +25,7 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
     private fun loadPoints() {
         val textView = findViewById<TextView>(R.id.scoreUtilizador)
 
-        points = 998
-        Points(points, textView, this).loadPontos()
+        Points(Utilizador().pontos.toInt(), textView, this).loadPontos()
     }
 
     fun resgatar() {

@@ -16,6 +16,7 @@ import pi4.main.R
 import pi4.main.Adapter.SetAdapterCard
 import pi4.main.Classes.CategoriaLista
 import pi4.main.Classes.Points
+import pi4.main.Classes.Utilizador
 
 class FragmentPontoInteresse() : Fragment() {
 
@@ -56,7 +57,7 @@ class FragmentPontoInteresse() : Fragment() {
     private fun loadPoints() {
         val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(998, textView, requireContext()).loadPontos()
+        Points(Utilizador().pontos.toInt(), textView, requireContext()).loadPontos()
     }
 
     private fun createCategoriasTab() {
