@@ -168,7 +168,7 @@
                     android:background="@drawable/shape_outline"
                     android:ems="10"
                     android:hint="telefone"
-                    android:inputType="textPersonName"
+                    android:inputType="phone"
                     android:paddingStart="10dp"
                     android:theme="@style/text_input"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -196,11 +196,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/textViewnumeroPessoas">
 
                     <Button
-                        android:id="@+id/maisButton"
+                        android:id="@+id/menosButton"
                         android:layout_width="34dp"
                         android:layout_height="34dp"
                         android:background="@drawable/shape_green"
-                        android:text="+"
+                        android:text="-"
                         android:theme="@style/tittle_principal_white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -214,16 +214,16 @@
                         android:text="1"
                         android:theme="@style/tittle_principal_black"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/maisButton"
+                        app:layout_constraintStart_toEndOf="@+id/menosButton"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <Button
-                        android:id="@+id/menosButton"
+                        android:id="@+id/maisButton"
                         android:layout_width="34dp"
                         android:layout_height="34dp"
                         android:layout_marginStart="16dp"
                         android:background="@drawable/shape_green"
-                        android:text="-"
+                        android:text="+"
                         android:theme="@style/tittle_principal_white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textViewNumeroPessoas"

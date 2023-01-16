@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.card.MaterialCardView
 import com.squareup.picasso.Picasso
 import pi4.main.Activitys.PontoInteresse.ActivityPontoInteresseDetalhe
+import pi4.main.Classes.Points
 import pi4.main.Classes.PontoInteresse
 import pi4.main.Classes.StartActivitys
 import pi4.main.R
@@ -54,7 +55,8 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
         categoria.text = recipe.tipo_interesse
         local.text = recipe.freguesia_municipio
         rating.text = recipe.avg_avaliacao.toString()
-        score.text = recipe.num_pontos
+
+        Points(recipe.num_pontos.toInt(), score, context).loadPontosPontoInteresse()
 
         val card = rowView.findViewById<MaterialCardView>(R.id.card)
 

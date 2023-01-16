@@ -73,6 +73,7 @@
         android:divider="@null"
         android:dividerHeight="10dp"
         android:fadeScrollbars="false"
+        android:scrollbars="none"
         android:smoothScrollbar="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

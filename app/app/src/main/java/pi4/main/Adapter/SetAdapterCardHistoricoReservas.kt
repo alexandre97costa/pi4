@@ -7,16 +7,12 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import com.google.android.material.card.MaterialCardView
-import pi4.main.Activitys.Historico.ActivityHistoricoReserva
 import pi4.main.Activitys.Historico.ActivityInfoHistoricoEvento
-import pi4.main.Activitys.PontoInteresse.ActivityPontoInteresseDetalhe
-import pi4.main.Classes.Historico
+import pi4.main.Classes.HistoricoReservas
 import pi4.main.Classes.StartActivitys
 import pi4.main.R
 
-class SetAdapterCardHistoricoReservas(private val context: Context, private val data:ArrayList<Historico>): BaseAdapter() {
+class SetAdapterCardHistoricoReservas(private val context: Context, private val data:ArrayList<HistoricoReservas>): BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -39,7 +35,7 @@ class SetAdapterCardHistoricoReservas(private val context: Context, private val 
         val dataReserva = rowView.findViewById<TextView>(R.id.textViewDataReserva)
         val estadoReserva = rowView.findViewById<TextView>(R.id.textViewEstadoReserva)
 
-        val recipe = getItem(position) as Historico
+        val recipe = getItem(position) as HistoricoReservas
 
         tituloReserva.text = recipe.titulo
         dataReserva.text = recipe.data

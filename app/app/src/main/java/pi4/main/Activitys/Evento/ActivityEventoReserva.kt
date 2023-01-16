@@ -79,7 +79,7 @@ class ActivityEventoReserva : AppCompatActivity() {
         }
 
         if(numeroPessoas == numeroMaximoPessoas) {
-            Toast.makeText(this, "Número maximo de pessoas atingido", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Número máximo de pessoas atingido", Toast.LENGTH_SHORT).show()
             return false
         }
 

@@ -23,9 +23,9 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
     private fun loadPoints() {
         val textView = findViewById<TextView>(R.id.scoreUtilizador)
 
-        val pontos = Points(998, textView, this)
+        val pontos = Points(10, textView, this)
 
-        pontos.loadPontos()
+        pontos.loadPontosPontoInteresse()
     }
 
     fun recital() {

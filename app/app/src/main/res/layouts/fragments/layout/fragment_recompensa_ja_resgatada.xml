@@ -81,6 +81,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/includedMenuCategoria">
 
+            <ListView
+                android:id="@+id/listViewRecompensasJaResgatadas"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="32dp"
+                android:divider="@null"
+                android:dividerHeight="10dp"
+                android:fadeScrollbars="false"
+                android:smoothScrollbar="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <include
                 layout="@layout/card_recompensa"
                 android:layout_width="match_parent"

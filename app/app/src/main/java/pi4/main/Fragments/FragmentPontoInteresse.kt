@@ -77,7 +77,7 @@ class FragmentPontoInteresse() : Fragment() {
             descricao = "Um jardim muito bonito",
             tipo_interesse = "Paisagem",
             freguesia_municipio = "Viseu",
-            num_pontos = "10 pts",
+            num_pontos = "10",
             avg_avaliacao = 4.8f,
             count_scans = 2,
             agente_turistico = "José"
