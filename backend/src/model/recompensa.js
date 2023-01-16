@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            num_pontos: {
+            pontos: {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
