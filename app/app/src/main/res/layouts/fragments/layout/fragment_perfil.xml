@@ -14,13 +14,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ticket" />
-
-    <include
-        android:id="@+id/include3"
-        layout="@layout/background_degrade"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        app:srcCompat="@drawable/globo" />
 
     <TextView
         android:id="@+id/textView"
@@ -47,7 +41,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/montanhas"
+            android:src="@drawable/icon_utilizador"
             android:scaleType="centerCrop"/>
 
     </androidx.cardview.widget.CardView>
@@ -174,6 +168,12 @@
                         android:drawableTint="@color/white"
                         android:paddingStart="16dp"
                         android:drawablePadding="24dp" />
+
+                    <include
+                        android:id="@+id/include3"
+                        layout="@layout/background_degrade"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
                 </LinearLayout>
             </ScrollView>
 

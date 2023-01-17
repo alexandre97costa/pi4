@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import pi4.main.Classes.StartActivitys
 import pi4.main.MainActivity
 import pi4.main.R
 
@@ -14,6 +16,7 @@ class ActivityNovaPasseword : AppCompatActivity() {
         setContentView(R.layout.activity_nova_passeword)
 
         guardar()
+        previous()
     }
 
     fun guardar() {
@@ -25,5 +28,11 @@ class ActivityNovaPasseword : AppCompatActivity() {
 
             startActivity(Intent(this, MainActivity::class.java))
         }
+    }
+
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 }

@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Activitys.Passeword.ActivityRecuperarPasseword
 import pi4.main.Classes.StartActivitys
 import pi4.main.MainActivity
@@ -19,6 +20,7 @@ class ActivityEditarPerfil : AppCompatActivity() {
         loadPerfil()
         editarPasseword()
         guardar()
+        previous()
     }
 
     fun loadPerfil() {
@@ -45,5 +47,11 @@ class ActivityEditarPerfil : AppCompatActivity() {
 
             StartActivitys(this).buttonGoToSemListener(MainActivity())
         }
+    }
+
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 }

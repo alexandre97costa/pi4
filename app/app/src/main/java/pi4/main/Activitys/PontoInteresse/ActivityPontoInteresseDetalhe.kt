@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Activitys.Evento.ActivityEventoDetalhe
 import pi4.main.Classes.Points
 import pi4.main.Classes.StartActivitys
@@ -17,6 +18,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
         loadPoints()
         recital()
         maisComentarios()
+        previous()
     }
 
     private fun loadPoints() {
@@ -37,5 +39,11 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
         val verMais = findViewById<TextView>(R.id.textViewVerMaisComentarios)
 
         StartActivitys(this).textViewGoTo(verMais, ActivityComentarios())
+    }
+
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 }

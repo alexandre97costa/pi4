@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Activitys.Passeword.ActivityRecuperarPasseword
+import pi4.main.Classes.StartActivitys
 import pi4.main.MainActivity
 import pi4.main.R
 
@@ -17,6 +19,7 @@ class ActivityLogin : AppCompatActivity() {
         login()
         criarConta()
         recuperar()
+        previous()
     }
 
     fun login() {
@@ -41,5 +44,11 @@ class ActivityLogin : AppCompatActivity() {
         textViewCriarRecuperarPasseword.setOnClickListener{
             startActivity(Intent(this, ActivityRecuperarPasseword::class.java))
         }
+    }
+
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 }

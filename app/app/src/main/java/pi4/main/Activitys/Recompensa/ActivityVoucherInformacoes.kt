@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Classes.Points
+import pi4.main.Classes.StartActivitys
 import pi4.main.Classes.Utilizador
 import pi4.main.R
 
@@ -20,6 +22,7 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
         loadPoints()
         resgatar()
         confirmPoints()
+        previous()
     }
 
     private fun loadPoints() {
@@ -45,5 +48,11 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
             buttonResgatar.isEnabled = false
             buttonResgatar.setBackgroundResource(R.drawable.shape_gray.toInt())
         }
+    }
+
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 }

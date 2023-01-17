@@ -8,7 +8,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Classes.Points
+import pi4.main.Classes.StartActivitys
 import pi4.main.Classes.Utilizador
 import pi4.main.R
 
@@ -24,6 +26,7 @@ class ActivityEventoReserva : AppCompatActivity() {
         numeroPessoas()
         loadPoints()
         buttonReservar()
+        previous()
     }
 
     private fun loadPoints() {
@@ -92,5 +95,11 @@ class ActivityEventoReserva : AppCompatActivity() {
         }
 
         return true
+    }
+
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 }

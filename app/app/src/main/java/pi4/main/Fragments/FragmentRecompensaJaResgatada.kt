@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import pi4.main.Adapter.SetAdapterCardRecompensa
-import pi4.main.Classes.CategoriaLista
-import pi4.main.Classes.Points
-import pi4.main.Classes.RecompensaCurta
-import pi4.main.Classes.Utilizador
+import pi4.main.Classes.*
 import pi4.main.R
 
 class FragmentRecompensaJaResgatada : Fragment() {
@@ -26,6 +24,7 @@ class FragmentRecompensaJaResgatada : Fragment() {
 
         loadPoints()
         callAdapterCards()
+        previous()
     }
 
     private fun loadPoints() {
@@ -55,5 +54,11 @@ class FragmentRecompensaJaResgatada : Fragment() {
         val customAdapter = SetAdapterCardRecompensa(requireContext(), arrayFinal, true)
         val listView = requireView().findViewById<ListView>(R.id.listViewRecompensasJaResgatadas)
         listView.adapter = customAdapter
+    }
+
+    fun previous() {
+        val floatingButton = requireView().findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(requireContext()).floatingPreviousActivity(floatingButton, requireActivity())
     }
 }
