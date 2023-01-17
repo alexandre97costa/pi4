@@ -15,7 +15,11 @@ export default function App() {
 			</Routes>
 
 			<Routes>
-				<Route path='/politica-cookies' element={<Pages.PoliticaCookies />} />
+				<Route path='/termos-utilizacao' element={<Pages.TermosUtilizacacao />} />
+			</Routes>
+
+			<Routes>
+				<Route path='/politicas-privacidade' element={<Pages.PoliticasPrivaciade />} />
 			</Routes>
 
 		</Router>

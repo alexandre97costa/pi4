@@ -1,6 +1,7 @@
 import Index from "./Index/index";
-import PoliticaCookies from "./Index/PoliticaCookies";
+import TermosUtilizacacao from "./Index/TermosUtilizacacao";
+import PoliticasPrivaciade from "./Index/PoliticasPrivacidade";
 
-const Pages = {Index, PoliticaCookies}
+const Pages = {Index, TermosUtilizacacao, PoliticasPrivaciade}
 
 export default Pages

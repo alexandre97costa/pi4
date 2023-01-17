@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 
 import Footer from "../../Components/Footer";
 import Navbar from "../../Components/Navbar";
-import Cookies from "../../Components/CardCookies";
+import Termos from "../../Components/CardTermos";
 
-export default function PoliticaCookies(props) {
+export default function TermosUtilizacao(props) {
     return (
         <>
           <div className="container">
@@ -14,7 +14,7 @@ export default function PoliticaCookies(props) {
             <div className="row gy-5">
     
               <div className='col-12'>
-                <Cookies/>
+                <Termos/>
               </div>
     
             </div>

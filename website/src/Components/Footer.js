@@ -9,13 +9,14 @@ export default function Footer() {
       <footer className="row pt-5">
 
         <div className="col-3 ps-5">
+          <p className="text-light">Contactos</p>
           <Link to="https://www.youtube.com/?reload=9&hl=pt-PT&gl=PT" className="btn btn-outline-light bi bi-facebook me-md-3" />
           <Link to="/" className="btn btn-outline-light bi bi-instagram me-md-3" />
           <Link to="/" className="btn btn-outline-light bi bi-twitter me-md-3" />
         </div>
 
         <div className="col-6 pb-3">
-          <Link to="/" className="stretched-link text-light">Política de cookies</Link> <br />
+          <Link to="/" className="stretched-link text-light">Termos de Utilização</Link> <br />
           <Link to="/" className="stretched-link text-light">Política de privacidade</Link>
         </div>
 
