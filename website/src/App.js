@@ -9,9 +9,16 @@ import Pages from './Pages';
 export default function App() {
 	return (
 		<Router>
+
 			<Routes>
 				<Route path='/' element={<Pages.Index />} />
 			</Routes>
+
+			<Routes>
+				<Route path='/politica-cookies' element={<Pages.PoliticaCookies />} />
+			</Routes>
+
 		</Router>
+		
 	);
 }

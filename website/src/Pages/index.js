@@ -1,3 +1,6 @@
 import Index from "./Index/index";
+import PoliticaCookies from "./Index/PoliticaCookies";
 
-export default { Index }
+const Pages = {Index, PoliticaCookies}
+
+export default Pages
