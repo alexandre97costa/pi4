@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.budiyev.android.codescanner.CodeScannerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scannerCode"
+    app:autoFocusButtonColor="@color/white"
+    app:autoFocusButtonVisible="true"
+    app:flashButtonColor="@color/white"
+    app:flashButtonVisible="true"
+    app:maskVisible="false"
+    app:frameCornersRadius="12dp" >
+
+</com.budiyev.android.codescanner.CodeScannerView>

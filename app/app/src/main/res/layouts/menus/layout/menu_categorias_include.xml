@@ -12,6 +12,7 @@
     app:tabIndicatorColor="@color/greenPrincipal"
     app:tabSelectedTextColor="@color/greenPrincipal"
     app:tabTextColor="@color/greenPrincipal"
+    tools:viewBindingIgnore="true"
     app:tabIndicatorAnimationMode="linear"
     app:tabMode="scrollable"
     tools:ignore="SpeakableTextPresentCheck">

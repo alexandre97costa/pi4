@@ -54,7 +54,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
-                        android:layout_width="240dp"
+                        android:layout_width="270dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:padding="16dp">
@@ -98,47 +98,19 @@
                         android:layout_height="match_parent"
                         android:layout_marginEnd="16dp">
 
-                        <ImageView
-                            android:id="@+id/star"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/rating"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.181"
-                            app:srcCompat="@drawable/star" />
-
-                        <TextView
-                            android:id="@+id/rating"
-                            android:layout_width="24dp"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/open_sans_bold"
-                            android:text="4.5"
-                            android:textColor="@color/greenPrincipal"
-                            android:textSize="16dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/points"
-                            app:layout_constraintStart_toEndOf="@+id/star"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias="0.22" />
-
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/points"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0"
-                            app:layout_constraintStart_toEndOf="@+id/rating"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_bias=".2">
+                            app:layout_constraintTop_toTopOf="parent">
 
                             <com.google.android.material.card.MaterialCardView
                                 android:id="@+id/cardPontos"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="24dp"
+                                android:layout_marginBottom="4dp"
                                 android:paddingStart="16dp"
                                 android:paddingEnd="16dp"
                                 android:textAlignment="center"
@@ -161,11 +133,18 @@
                                     android:text="x pts"
                                     android:textAlignment="center"
                                     android:textColor="@color/white"
-                                    android:textSize="14dp" />
+                                    android:textSize="16dp" />
 
                             </com.google.android.material.card.MaterialCardView>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <include
+                            layout="@layout/rating_ponto_interesse"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/points" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

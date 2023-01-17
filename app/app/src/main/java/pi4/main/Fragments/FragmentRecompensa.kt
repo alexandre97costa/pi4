@@ -1,17 +1,19 @@
 package pi4.main.Fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
-import pi4.main.Activitys.Historico.ActivityHistoricoPontos
-import pi4.main.Classes.CategoriaLista
-import pi4.main.Classes.Points
+import pi4.main.Activitys.Recompensa.ActivityVoucherInformacoes
+import pi4.main.Adapter.SetAdapterCardRecompensa
+import pi4.main.Classes.*
 import pi4.main.R
 
 class FragmentRecompensa : Fragment() {
@@ -22,54 +24,56 @@ class FragmentRecompensa : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        createCategoriasTab()
+
         loadPoints()
+        createCategoriasTab()
+        buttonJaResgatado()
+        callAdapterCards()
+    }
+
+    private fun buttonJaResgatado() {
+        val button = requireView().findViewById<ConstraintLayout>(R.id.constraintLayoutJaResgatado)
+
+        button.setOnClickListener {
+            val fragmentManager:FragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainer, FragmentRecompensaJaResgatada())
+            fragmentTransaction.commit()
+        }
     }
 
     private fun loadPoints() {
         val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
 
-        val pontos = Points(998)
-
-        pontos.loadPontos(textView)
-
-        textView.setOnClickListener{
-            startActivity(Intent(requireContext(), ActivityHistoricoPontos::class.java))
-        }
+        Points(Utilizador().pontos.toInt(), textView, requireContext()).loadPontos()
     }
 
     private fun createCategoriasTab() {
         val tab = requireView().findViewById<TabLayout>(R.id.includedMenuCategoria)
 
-        val arrayText = arrayListOf<String>("Todos", "Praias", "Jardim", "Monumentos", "Museu", "Restaurante")
-        val arrayIconsNotFill = arrayListOf<Int>(R.drawable.location_notfill)
-        val arrayIconsFill = arrayListOf<Int>(R.drawable.location_fill)
-
-        val categorias = CategoriaLista(arrayIconsNotFill, arrayIconsFill, arrayText)
-        categorias.insertCategorias(tab)
-
-        createCategoriaListener(tab, categorias)
+        CategoriaLista(tab, requireContext())
     }
 
-    private fun createCategoriaListener(tabLayout: TabLayout, categoria: CategoriaLista) {
-        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+    private fun callAdapterCards() {
+        val arrayFinal: ArrayList<RecompensaCurta> = arrayListOf()
 
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                // Handle tab select
-                categoria.changeIconOnSelected(tab, tab.id)
-                Toast.makeText(requireContext(), "onTabSelected: ${tab.text}" , Toast.LENGTH_SHORT).show()
-            }
+        val objectExemplo = RecompensaCurta(
+            pontos = "80",
+            recompensa = "Pizza Grátis",
+            categoria = "Restauração"
+        )
 
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                // Handle tab unselect
-                categoria.changeIconUnSelected(tab, tab.id)
-                Toast.makeText(requireContext(),"${tab.id}", Toast.LENGTH_SHORT).show()
-            }
+        val objectExemplo2 = RecompensaCurta(
+            pontos = "100",
+            recompensa = "Café Grátis com direito a tudo incluido",
+            categoria = "Comércio"
+        )
 
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                // Handle tab reselect
-            }
-        })
+        arrayFinal.add(objectExemplo)
+        arrayFinal.add(objectExemplo2)
+
+        val customAdapter = SetAdapterCardRecompensa(requireContext(), arrayFinal, false)
+        val listView = requireView().findViewById<ListView>(R.id.listViewRecompensas)
+        listView.adapter = customAdapter
     }
-
 }
