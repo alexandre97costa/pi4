@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
-            vagas: {
+            lotacao: {
                 type: DataTypes.INTEGER,
                 defaultValue: 0,
                 allowNull: false
