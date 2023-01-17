@@ -4819,11 +4819,11 @@ insert into ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, c
  -- sequencia ponto_interesse_recompensa
 SELECT setval('ponto_interesse_recompensa_id_seq', 3, true);
 
-insert into voucher (id, data_compra, data_validade, data_usado, usado, recompensa_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
-(1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, FALSE, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(2, CURRENT_DATE, CURRENT_DATE + INTERVAL '3', NULL, FALSE, 2, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(3, CURRENT_DATE, CURRENT_DATE + INTERVAL '2', NULL, FALSE, 3, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(4, CURRENT_DATE, CURRENT_DATE + INTERVAL '6', NULL, FALSE, 1, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+insert into voucher (id, data_compra, data_validade, data_usado, pontos_gastos, recompensa_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
+(1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, 10, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, CURRENT_DATE, CURRENT_DATE + INTERVAL '3', NULL, 20, 2, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(3, CURRENT_DATE, CURRENT_DATE + INTERVAL '2', NULL, 30, 3, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(4, CURRENT_DATE, CURRENT_DATE + INTERVAL '6', NULL, 40, 1, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
  -- sequencia voucher
 SELECT setval('voucher_id_seq', 5, true);
 

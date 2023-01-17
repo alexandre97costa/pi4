@@ -16,20 +16,21 @@ const {
 
 module.exports = {
     anonymousScan: async (req, res) => {
-        res.status(200).json(req.params.codigo)
-        // res.status(302).redirect('https://google.com')
+        // !
+        // todo: mudar o redirect
+        res.status(302).redirect('https://google.com')
     },
 
     scan_ponto_interesse: async (req, res) => {
         // Não permitir scans de utilizadores que não sejam visitantes
         if (req.auth.tipo !== 1)
-            return res.status(401).json('Apenas visitantes podem carimbar pontos de interesse')
+            return res.status(401).json({ msg: 'Apenas visitantes podem carimbar pontos de interesse.' })
 
         const pi = await ponto_interesse.findOne({ where: { codigo_uuid: req.params.codigo } })
 
         // não encontrou o PI
         if (pi === null)
-            return res.status(404).json('Esse ponto de interesse não existe ou foi eliminado.')
+            return res.status(404).json({ msg: 'Esse ponto de interesse não existe ou foi eliminado.' })
 
         const u = await utilizador.findOne({ where: { email: req.auth.email } })
 
@@ -64,7 +65,7 @@ module.exports = {
 
         // se nao houver sessoes para o evento
         if (!sessoes.length)
-            return res.status(400).json('Esse Evento não tem sessões, logo não pode ser carimbado.')
+            return res.status(400).json({ msg: 'Esse Evento não tem sessões, logo não pode ser carimbado.' })
 
         let dentroDeUmaSessao = false
         sessoes.forEach(sessao => {
@@ -77,7 +78,7 @@ module.exports = {
         })
 
         if (!dentroDeUmaSessao)
-            return res.status(400).json('Não está a decorrer nenhuma sessão para este evento')
+            return res.status(400).json({ msg: 'Não está a decorrer nenhuma sessão para este evento.' })
 
         const u = await utilizador.findOne({ where: { email: req.auth.email } })
 

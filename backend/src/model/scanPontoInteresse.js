@@ -14,14 +14,20 @@ module.exports = (sequelize) => {
             paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
             timestamps: true, // created_at, updated_at, e deleted_at
             hooks: {
-                afterCreate: async (ppi) => {
+                afterCreate: async (spi) => {
                     // incrementa o count_scans do PI correspondente
                     await sequelize.models.ponto_interesse
-                        .increment('count_scans', { where: { id: ppi.ponto_interesse_id } })
+                        .increment('count_scans', { where: { id: spi.ponto_interesse_id } })
                         .then(result => {
                             console.log('PI #' + result[0][0][0].id + ' -> count_scans atualizado')
                         })
                         .catch(e => console.error(e))
+
+                    // adiciona os pontos ao utilizador
+                    await sequelize.models.utilizador.increment(
+                        { pontos: spi.pontos_recebidos },
+                        { where: { id: spi.visitante_id } }
+                    )
                 }
             }
         }
