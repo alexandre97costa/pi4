@@ -36,7 +36,7 @@ insert into utilizador(id, nome, email, password, data_nascimento, created_at, u
 (21, 'Rodrigo Parente',     'parentinho@gmail.com',             'parentao',                      '2007-10-12',     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1);
 
 -- sequencia utilizador
-SELECT setval('utilizador_id_seq', 22, true);
+SELECT setval('utilizador_id_seq', 21, true);
 
 insert into tipo_interesse(id, nome, observacoes, created_at, updated_at, deleted_at) values
 (1, 'Paisagem', 	'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -49,7 +49,7 @@ insert into tipo_interesse(id, nome, observacoes, created_at, updated_at, delete
 (8, 'Restauração',  'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (9, 'Praia', 		'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 -- sequencia tipo_interesse
-SELECT setval('tipo_interesse_id_seq', 10, true);
+SELECT setval('tipo_interesse_id_seq', 9, true);
 
 insert into distrito(id, nome, created_at, updated_at, deleted_at, responsavel_regiao_id) values
 (1, 'Aveiro',               CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1),
@@ -4679,9 +4679,9 @@ insert into freguesia(id, nome, created_at, updated_at, deleted_at, municipio_id
 -- para transformar o nome das freguesias para PascalCase
 update freguesia set nome = initcap(nome);
 -- sequencia locais
-SELECT setval('distrito_id_seq', 23, true);
-SELECT setval('municipio_id_seq', 309, true);
-SELECT setval('freguesia_id_seq', 4290, true);
+SELECT setval('distrito_id_seq', 22, true);
+SELECT setval('municipio_id_seq', 308, true);
+SELECT setval('freguesia_id_seq', 4289, true);
 
 -- pontos de interesse ficticios
 insert into ponto_interesse(id, nome, morada, codigo_postal, telemovel, pontos, descricao, validado, created_at, updated_at, deleted_at, freguesia_id, agente_turistico_id, tipo_interesse_id, count_scans, avg_avaliacao, codigo_uuid) values
@@ -4755,7 +4755,7 @@ insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_a
 (8, 'Restauração',  'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (9, 'Praia', 		'Nenhuma observação', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 -- sequencia tipo_evento
-SELECT setval('tipo_evento_id_seq', 10, true);
+SELECT setval('tipo_evento_id_seq', 9, true);
 
 insert into evento(id, nome, pontos, horas_duracao, descricao, vagas, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id, codigo_uuid) values 
 (1, 'Noite Mágica no Palha Club',  50,  3, 'Dresscode: Roupa branca',       200,    CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4, '05f8ad77-b0b0-40b4-a37f-ed080007e422'),
@@ -4769,14 +4769,14 @@ insert into evento(id, nome, pontos, horas_duracao, descricao, vagas, created_at
 (9, 'Tarde de Animação Infantil',  75,  2, 'O seu filho merece uma tarde de animação',   400,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  9, 7, '107b7d59-e596-43b6-a26e-6abc990c4335'),
 (10, 'Prova de Vinhos',            50,  4, 'Teste o seu palato nesta prova de vinhos',   5,     CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  32, 8, '06183bff-5079-4754-b70a-9dd4003ee603');
 -- sequencia evento
-SELECT setval('evento_id_seq', 11, true);
+SELECT setval('evento_id_seq', 10, true);
 
 -- todo: sequencias daqui pra baixo
 insert into scan_evento(id, created_at, updated_at, deleted_at, evento_id, visitante_id, pontos_recebidos) values 
 (1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1, 1, (select pontos from evento where id=1)),
 (2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2, 1, (select pontos from evento where id=2));
 -- sequencia scan_ponto_interesse
-SELECT setval('scan_ponto_interesse_id_seq', 3, true);
+SELECT setval('scan_ponto_interesse_id_seq', 2, true);
 
 INSERT INTO sessao (id, data_hora, inicio_evento, fim_evento, evento_id, created_at, updated_at, deleted_at) VALUES 
 (1, '2023-01-05 17:00:00', false, false, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -4797,13 +4797,13 @@ insert into reserva (id, nome, pessoas, validado, confirmado, codigo_confirmacao
 (4, 'Rita Pinho',       3, true, false, 'K0004', 'Sem observações', 4, 4,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (5, 'Tânia Mota',       2, true, false, 'M0005', 'Sem observações', 5, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 -- sequencia reserva
-SELECT setval('reserva_id_seq', 4, true);
+SELECT setval('reserva_id_seq', 5, true);
 
 insert into comentario_avaliacao (id, visitante_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at) VALUES 
 (1, 1, 4, 'Adorei a minha visita ao jardim zoológico!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (2, 1, 1, 'Gostei muito do ponto de interesse!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 -- sequencia comentario_avaliacao
-SELECT setval('comentario_avaliacao_id_seq', 3, true);
+SELECT setval('comentario_avaliacao_id_seq', 2, true);
 
 -- aqui temos de rever é necessario observacoes e descricao?
 insert into recompensa(id, validado, titulo, descricao, pontos, observacoes, created_at, updated_at, deleted_at) VALUES
@@ -4811,13 +4811,13 @@ insert into recompensa(id, validado, titulo, descricao, pontos, observacoes, cre
 (2, false, 'Café', 'Um café sabe sempre bem', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (3, false, 'Voucher para jantar', 'Voucher para jantar para 2 pessoas', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 -- sequencia recompensa
-SELECT setval('recompensa_id_seq', 4, true);
+SELECT setval('recompensa_id_seq', 3, true);
 
 insert into ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, created_at, updated_at, deleted_at) VALUES
  (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
  (2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
  -- sequencia ponto_interesse_recompensa
-SELECT setval('ponto_interesse_recompensa_id_seq', 3, true);
+SELECT setval('ponto_interesse_recompensa_id_seq', 2, true);
 
 insert into voucher (id, data_compra, data_validade, data_usado, pontos_gastos, recompensa_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
 (1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, 10, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -4825,7 +4825,7 @@ insert into voucher (id, data_compra, data_validade, data_usado, pontos_gastos, 
 (3, CURRENT_DATE, CURRENT_DATE + INTERVAL '2', NULL, 30, 3, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (4, CURRENT_DATE, CURRENT_DATE + INTERVAL '6', NULL, 40, 1, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
  -- sequencia voucher
-SELECT setval('voucher_id_seq', 5, true);
+SELECT setval('voucher_id_seq', 4, true);
 
 insert into imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted_at) VALUES 
 (1, 'URL DA IMAGEM', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -4833,7 +4833,7 @@ insert into imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted
 (3, 'URL DA IMAGEM', 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (4, 'URL DA IMAGEM', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 -- sequencia imagem
-SELECT setval('imagem_id_seq', 5, true);
+SELECT setval('imagem_id_seq', 4, true);
 
 insert into candidatura_at (id, localidade_at, texto_candidatura, estado, observacoes, distrito_id, visitante_id, created_at, updated_at, deleted_at) VALUES
 (1, 'Aveiro', 'Gostaria de apresentar a minha candidatura para ser um agente turístico em Lisboa', TRUE, 'Não tenho observações', 1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -4851,6 +4851,6 @@ insert into scan_ponto_interesse values
 (7, 70, current_timestamp, current_timestamp, null, 7 , 2),
 (8, 80, current_timestamp, current_timestamp, null, 8 , 1);
 -- sequencia scan_ponto_interesse
-SELECT setval('scan_ponto_interesse_id_seq', 9, true);
+SELECT setval('scan_ponto_interesse_id_seq', 8, true);
 
 select 'Todos os dados inseridos com sucesso!';

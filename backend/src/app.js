@@ -33,15 +33,15 @@ app.use(interceptor((req, res) => {
                 '\x1b[30m\x1b[45m ' + req.method +
                 ' \x1b[0m ' + req.baseUrl + req._parsedUrl.pathname +
                 ' \x1b[33m' + res.statusCode +
-                
+
                 // params
-                (Object.keys(req.params).length !== 0 ? '\n\x1b[35m⤷ params \x1b[30m' + JSON.stringify(req.params).replaceAll('"','\'') : '') +
+                (Object.keys(req.params).length !== 0 ? '\n\x1b[35m⤷ params \x1b[30m' + JSON.stringify(req.params).replaceAll('"', '\'') : '') +
                 // query
                 (!!req._parsedUrl.query ? '\n\x1b[35m⤷ query \x1b[30m' + req._parsedUrl.query.replaceAll('&', ' ') : '') +
                 // body
-                (!!req._body ? '\n\x1b[35m⤷ body \x1b[30m' + JSON.stringify(req.body).replaceAll('"','\'') : '') +
+                (!!req._body ? '\n\x1b[35m⤷ body \x1b[30m' + JSON.stringify(req.body).replaceAll('"', '\'') : '') +
                 '\x1b[0m');
-            
+
             send(body);
         }
     }
@@ -57,7 +57,7 @@ app.use(
             { url: '/utilizador/login', methods: ['GET'] },
 
             // ? para os scans feitos fora da app, nao precisam de auth porque são redirecionados para o micro site
-            { url: /^\/scan/, method: ['GET'] },
+            { url: /^\/scan/, methods: ['GET'] },
 
             // ? para cenas que nos ajudam em modo dev
             // ? os controllers devolvem 403 se estiver em prod
@@ -69,9 +69,11 @@ app.use(
 );
 // tratamento de erros do validate_jwt
 app.use(function (e, req, res, next) {
-    (e.name === 'UnauthorizedError') ?
-        res.status(e.status).json(e.inner) :
-        next(e);
+    if (e.name === 'UnauthorizedError')
+        return res.status(e.status).json({ msg: e.inner.message })
+
+    console.log(e)
+    next(e);
 });
 
 //* Rotas
@@ -114,8 +116,8 @@ async function init() {
     await assertDatabaseConnectionOk();
     app.listen(port, () => {
         (process.env.MODE === "dev") ?
-        console.log('\x1b[30mBackend online! \x1b[0m\x1b[34m▶ http://localhost:' + port + '\x1b[0m\n') :
-        console.log('\x1b[30mBackend online!\x1b[0m\n')
+            console.log('\x1b[30mBackend online! \x1b[0m\x1b[34m▶ http://localhost:' + port + '\x1b[0m\n') :
+            console.log('\x1b[30mBackend online!\x1b[0m\n')
     });
 }
 init();
