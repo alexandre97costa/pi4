@@ -18,6 +18,7 @@ const pontoInteresseRoutes = require('./routes/ponto_interesse')
 const eventoRoutes = require('./routes/evento')
 const reservaRoutes = require('./routes/reserva')
 const scanRoutes = require('./routes/scan')
+const recompensaRoutes = require('./routes/recompensa')
 
 const devRoutes = require('./routes/dev')
 
@@ -82,6 +83,7 @@ app.use('/pi', pontoInteresseRoutes)
 app.use('/evento', eventoRoutes)
 app.use('/reserva', reservaRoutes)
 app.use('/scan', scanRoutes)
+app.use('/recompensa', recompensaRoutes)
 
 app.use('/dev', devRoutes)
 

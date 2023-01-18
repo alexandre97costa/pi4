@@ -31,10 +31,7 @@ const {
 
 
 module.exports = {
-
-    // todo: estes controllers todos
-
-    get: async (req, res) => { //✅
+    get: async (req, res) => {
         // * filtros
         const id = req.params?.id ?? 0
         const titulo_desc = req.query?.titulo_desc ?? '%'
