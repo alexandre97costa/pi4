@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import Footer from "../../Components/Footer";
 import Navbar from "../../Components/Navbar";
-import Termos from "../../Components/CardTermos";
+import Contactos from "../../Components/CardContactos";
 import Voltar from "../../Components/BotaoVoltar";
 
 export default function TermosUtilizacao(props) {
@@ -16,7 +16,7 @@ export default function TermosUtilizacao(props) {
             <div className="row gy-5">
     
               <div className='col-12'>
-                <Termos/>
+                <Contactos/>
               </div>
     
             </div>

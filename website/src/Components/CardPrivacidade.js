@@ -6,7 +6,7 @@ export default function CardPrivacidade(props) {
   return (
     <>
       <div className="text-center">
-        <h1>Politicas de Privacidade</h1>
+        <h1>Políticas de Privacidade</h1>
         <div className="pt-3">
           <p className="w-50 mx-auto">
             Quando aceita o nossos serviços, está a confiar as suas informações
@@ -35,8 +35,9 @@ export default function CardPrivacidade(props) {
             aria-expanded="false"
             aria-controls="collapseExample"
           />
+          <i className="d-flex mx-auto link-dark text-decoration-none pb-2 border-primary w-75"/>
         </div>
-        <div className="pt-3">
+        <div className="pt-5">
           <h5>Itens que vôce cria ou nos fornece?</h5>
           <p className="w-75 mx-auto">
             Ao criar uma conta na nossa aplicação, você fornece informações
@@ -55,8 +56,9 @@ export default function CardPrivacidade(props) {
             aria-expanded="false"
             aria-controls="collapseExample"
           />
+          <i className="d-flex mx-auto link-dark text-decoration-none pb-2 border-primary w-75"/>
         </div>
-        <div className="pt-3">
+        <div className="pt-5">
           <h5>As suas informações de localização</h5>
           <p className="w-75 mx-auto">
             Quando você usa os nossos serviços, coletamos informações sobre sua
@@ -76,9 +78,10 @@ export default function CardPrivacidade(props) {
             aria-expanded="false"
             aria-controls="collapseExample"
           />
+          <i className="d-flex mx-auto link-dark text-decoration-none pb-2 border-primary w-75"/>
         </div>
         <div className="collapse" id="collapseExample6">
-          <div className="pt-3">
+          <div className="pt-5">
             <h5>Usamos os dados para criar serviços melhores</h5>
             <p className="w-75 mx-auto">
               Como: <br />
@@ -105,6 +108,7 @@ export default function CardPrivacidade(props) {
               aria-controls="collapseExample"
             />
           </div>
+          <i className="d-flex mx-auto link-dark text-decoration-none pb-2 border-primary w-75"/>
         </div>
 
         <div className="text-center pt-5">

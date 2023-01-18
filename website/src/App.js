@@ -22,6 +22,10 @@ export default function App() {
 				<Route path='/politicas-privacidade' element={<Pages.PoliticasPrivaciade />} />
 			</Routes>
 
+			<Routes>
+				<Route path='/contactos' element={<Pages.Contactos />} />
+			</Routes>
+
 		</Router>
 		
 	);

@@ -34,6 +34,7 @@ export default function CardTermos(props) {
             aria-expanded="false"
             aria-controls="collapseExample"
           />
+          <i className="d-flex mx-auto link-dark text-decoration-none pb-2 border-primary w-75"/>
         </div>
         <div className="pt-3">
           <h5>O que esperamos de si?</h5>
@@ -53,12 +54,13 @@ export default function CardTermos(props) {
             aria-expanded="false"
             aria-controls="collapseExample"
           />
+          <i className="d-flex mx-auto link-dark text-decoration-none pb-2 border-primary w-75"/>
         </div>
         <div className="pt-3">
           <h5>Idade minima obrigatória</h5>
           <p className="w-75 mx-auto">
           Se a sua idade for inferior a 13 anos de idade , 
-          tem de ter autorização de um dos pais ou do tutor legal para utilizar uma Conta Google. 
+          tem de ter autorização de um dos pais ou do tutor legal para utilizar uma conta. 
           Peça a um dos pais ou ao tutor legal para ler os presentes termos consigo.
           </p>
           <div className="collapse" id="collapseExample3">
@@ -75,6 +77,7 @@ export default function CardTermos(props) {
             aria-expanded="false"
             aria-controls="collapseExample"
           />
+          <i className="d-flex mx-auto link-dark text-decoration-none pb-2 border-primary w-75"/>
         </div>
       </CardBackground>
     </>
