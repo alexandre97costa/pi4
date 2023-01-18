@@ -28,13 +28,13 @@ export default function CardTermos(props) {
               placeholder="E-mail"
             />
           </div>
-          <div className=" mb-4">
-            <input
+          <div className="form-floating mb-4">
+            <textarea
               id="input-text"
               type="text"
-              className="p-3 rounded-3 form-border-primary imput-lg"
-              rows="5"
+              className="p-3 w-75 rounded-3 form-border-primary imput-lg"
               placeholder="Texto..."
+              rows="6"
             />
           </div>
           <button

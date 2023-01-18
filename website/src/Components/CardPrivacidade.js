@@ -1,8 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import CardBackground from "./CardBackground";
 
 export default function CardPrivacidade(props) {
+
+  const [active, setActive] = useState(false);
+  const handleClick = () => {
+    setActive(!active);
+  };
+
   return (
     <>
       <div className="text-center">
@@ -119,11 +125,13 @@ export default function CardPrivacidade(props) {
             data-bs-target="#collapseExample6"
             aria-expanded="false"
             aria-controls="collapseExample6"
+            onClick={handleClick}
           >
-            Ver mais
+             { active ? "Ver menos" : "Ver mais"}
           </button>
         </div>
       </CardBackground>
     </>
   );
+
 }

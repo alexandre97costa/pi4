@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import CardBackground from "./CardBackground";
 
 export default function CardTermos(props) {
+
   return (
     <>
       <div className="text-center">
