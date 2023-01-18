@@ -1,8 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState} from "react";
 
 import CardBackground from "./CardBackground";
 
 export default function CardTermos(props) {
+
+  const [active1, setActive1] = useState(false);
+  const handleClick1 = () => {
+    setActive1(!active1);
+  };
+
+  const [active2, setActive2] = useState(false);
+  const handleClick2 = () => {
+    setActive2(!active2);
+  };
+
+  const [active3, setActive3] = useState(false);
+  const handleClick3 = () => {
+    setActive3(!active3);
+  };
 
   return (
     <>
@@ -28,12 +43,13 @@ export default function CardTermos(props) {
             </p>
           </div>
           <a
-            className="btn bi bi-chevron-down"
+            className={active1? "btn bi bi-chevron-up" :"btn bi bi-chevron-down"}
             data-bs-toggle="collapse"
             href="#collapseExample1"
             role="button"
             aria-expanded="false"
             aria-controls="collapseExample"
+            onClick={handleClick1}
           />
           <i className="d-flex mx-auto link-dark text-decoration-none pb-2 border-primary w-75"/>
         </div>
@@ -48,12 +64,13 @@ export default function CardTermos(props) {
             </p>
           </div>
           <a
-            className="btn bi bi-chevron-down"
+            className={active2? "btn bi bi-chevron-up" :"btn bi bi-chevron-down"}
             data-bs-toggle="collapse"
             href="#collapseExample2"
             role="button"
             aria-expanded="false"
             aria-controls="collapseExample"
+            onClick={handleClick2}
           />
           <i className="d-flex mx-auto link-dark text-decoration-none pb-2 border-primary w-75"/>
         </div>
@@ -71,12 +88,13 @@ export default function CardTermos(props) {
             </p>
           </div>
           <a
-            className="btn bi bi-chevron-down"
+            className={active3? "btn bi bi-chevron-up" :"btn bi bi-chevron-down"}
             data-bs-toggle="collapse"
             href="#collapseExample3"
             role="button"
             aria-expanded="false"
             aria-controls="collapseExample"
+            onClick={handleClick3}
           />
           <i className="d-flex mx-auto link-dark text-decoration-none pb-2 border-primary w-75"/>
         </div>
