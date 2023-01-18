@@ -24,10 +24,10 @@ function applyExtraSetup(sequelize) {
     // relações (por ordem alfabetica)
 
     candidatura_at.belongsTo(distrito, { foreignKey: 'distrito_id' })
-    candidatura_at.belongsTo(utilizador, { foreignKey: 'visitante_id' })
+    candidatura_at.belongsTo(utilizador, { foreignKey: 'visitante_id',  onDelete: 'CASCADE'})
 
-    comentario_avaliacao.belongsTo(utilizador, { foreignKey: 'visitante_id' })
-    comentario_avaliacao.belongsTo(ponto_interesse, { foreignKey: 'ponto_interesse_id' })
+    comentario_avaliacao.belongsTo(utilizador, { foreignKey: 'visitante_id',  onDelete: 'CASCADE' })
+    comentario_avaliacao.belongsTo(ponto_interesse, { foreignKey: 'ponto_interesse_id',  onDelete: 'CASCADE' })
 
     distrito.hasMany(candidatura_at, { foreignKey: 'distrito_id' })
     distrito.hasMany(municipio, { foreignKey: 'distrito_id' })
@@ -37,37 +37,29 @@ function applyExtraSetup(sequelize) {
     evento.hasMany(sessao, { foreignKey: 'evento_id' })
 
 
-    evento.belongsTo(ponto_interesse, { 
-        foreignKey: 'ponto_interesse_id',
-        constraints: false,
-        hooks: true
-    })
+    evento.belongsTo(ponto_interesse, { foreignKey: 'ponto_interesse_id', onDelete: 'CASCADE' })
 
     evento.belongsTo(tipo_evento, { foreignKey: 'tipo_evento_id' })
 
     freguesia.hasMany(ponto_interesse, { foreignKey: 'freguesia_id' })
-    freguesia.belongsTo(municipio, { foreignKey: 'municipio_id' })
+    freguesia.belongsTo(municipio, { foreignKey: 'municipio_id', onDelete: 'CASCADE' })
 
-    imagem.belongsTo(ponto_interesse, { foreignKey: 'ponto_interesse_id' })
+    imagem.belongsTo(ponto_interesse, { foreignKey: 'ponto_interesse_id', onDelete: 'CASCADE' })
 
     municipio.hasMany(freguesia, { foreignKey: 'municipio_id' })
-    municipio.belongsTo(distrito, { foreignKey: 'distrito_id' })
+    municipio.belongsTo(distrito, { foreignKey: 'distrito_id', onDelete: 'CASCADE' })
 
-    ponto_interesse.hasMany(evento, { 
-        foreignKey: 'ponto_interesse_id',
-        onDelete: 'cascade',
-        hooks: true,
-    })
+    ponto_interesse.hasMany(evento, {  foreignKey: 'ponto_interesse_id' })
     ponto_interesse.hasMany(imagem, { foreignKey: 'ponto_interesse_id' })
     ponto_interesse.hasMany(comentario_avaliacao, { foreignKey: 'ponto_interesse_id' })
     ponto_interesse.hasMany(scan_ponto_interesse, { foreignKey: 'ponto_interesse_id' })
     ponto_interesse.hasMany(ponto_interesse_recompensa, { foreignKey: 'ponto_interesse_id', as: 'recompensas_associadas' })
     ponto_interesse.belongsTo(freguesia, { foreignKey: 'freguesia_id' })
-    ponto_interesse.belongsTo(utilizador, { foreignKey: 'agente_turistico_id', as: 'agente_turistico' })
+    ponto_interesse.belongsTo(utilizador, { foreignKey: 'agente_turistico_id', as: 'agente_turistico', onDelete: 'CASCADE' })
     ponto_interesse.belongsTo(tipo_interesse, { foreignKey: 'tipo_interesse_id' })
 
-    ponto_interesse_recompensa.belongsTo(ponto_interesse, { foreignKey: 'ponto_interesse_id', as: 'ponto_interesse' })
-    ponto_interesse_recompensa.belongsTo(recompensa, { foreignKey: 'recompensa_id', as: 'recompensa' })
+    ponto_interesse_recompensa.belongsTo(ponto_interesse, { foreignKey: 'ponto_interesse_id', as: 'ponto_interesse', onDelete: 'CASCADE' })
+    ponto_interesse_recompensa.belongsTo(recompensa, { foreignKey: 'recompensa_id', as: 'recompensa', onDelete: 'CASCADE' })
 
     scan_evento.belongsTo(evento, { foreignKey: 'evento_id' })
     scan_evento.belongsTo(utilizador, { foreignKey: 'visitante_id' })
@@ -79,11 +71,11 @@ function applyExtraSetup(sequelize) {
     recompensa.hasMany(ponto_interesse_recompensa, { foreignKey: 'recompensa_id', as: 'pontos_aderentes' })
     recompensa.belongsTo(tipo_interesse, { foreignKey: 'tipo_interesse_id' })
 
-    reserva.belongsTo(utilizador, { foreignKey: 'visitante_id' })
-    reserva.belongsTo(sessao, { foreignKey: 'sessao_id' })
+    reserva.belongsTo(utilizador, { foreignKey: 'visitante_id', onDelete: 'CASCADE' })
+    reserva.belongsTo(sessao, { foreignKey: 'sessao_id', onDelete: 'CASCADE' })
 
     sessao.hasMany(reserva, { foreignKey: 'sessao_id' })
-    sessao.belongsTo(evento, { foreignKey: 'evento_id' })
+    sessao.belongsTo(evento, { foreignKey: 'evento_id', onDelete: 'CASCADE' })
 
     tipo_evento.hasMany(evento, { foreignKey: 'tipo_evento_id' })
 
@@ -102,8 +94,8 @@ function applyExtraSetup(sequelize) {
     utilizador.hasMany(distrito, { foreignKey: 'responsavel_regiao_id' })
     utilizador.belongsTo(tipo_utilizador, { foreignKey: 'tipo_utilizador_id' })
 
-    voucher.belongsTo(utilizador, { foreignKey: 'visitante_id' })
-    voucher.belongsTo(recompensa, { foreignKey: 'recompensa_id' })
+    voucher.belongsTo(utilizador, { foreignKey: 'visitante_id', onDelete: 'CASCADE' })
+    voucher.belongsTo(recompensa, { foreignKey: 'recompensa_id', onDelete: 'CASCADE' })
 
 }
 
