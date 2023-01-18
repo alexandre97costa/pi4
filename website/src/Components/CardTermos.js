@@ -57,7 +57,7 @@ export default function CardTermos(props) {
         <div className="pt-3">
           <h5>Idade minima obrigatória</h5>
           <p className="w-75 mx-auto">
-          Se a sua idade for inferior a 16 anos de idade , 
+          Se a sua idade for inferior a 13 anos de idade , 
           tem de ter autorização de um dos pais ou do tutor legal para utilizar uma Conta Google. 
           Peça a um dos pais ou ao tutor legal para ler os presentes termos consigo.
           </p>
