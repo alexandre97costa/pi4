@@ -1,5 +1,5 @@
 
-var sequelize = require('../config/Database')
+var sequelize = require('../config/database')
 const { Op } = require("sequelize")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')

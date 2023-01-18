@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const u = require('../controllers/utilizadorController')
+const u = require('../controllers/recompensa')
 
 router.get('/login', u.login)
 

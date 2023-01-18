@@ -6,20 +6,20 @@ const { expressjwt: validate_jwt } = require('express-jwt');
 const app = express()
 app.set('port', process.env.PORT || 4001)
 const port = app.get('port')
-const sequelize = require('./config/Database')
+const sequelize = require('./config/database')
 sequelize.sync(
     { alter: true }
 )
 const { dev: devClass } = require('./_dev/dev')
 const dev = new devClass;
 
-const utilizadorRoutes = require('./routes/utilizadorRoutes')
-const pontoInteresseRoutes = require('./routes/pontoInteresseRoutes')
-const eventoRoutes = require('./routes/eventoRoutes')
-const reservaRoutes = require('./routes/reservaRoutes')
-const scanRoutes = require('./routes/scanRoutes')
+const utilizadorRoutes = require('./routes/utilizador')
+const pontoInteresseRoutes = require('./routes/ponto_interesse')
+const eventoRoutes = require('./routes/evento')
+const reservaRoutes = require('./routes/reserva')
+const scanRoutes = require('./routes/scan')
 
-const devRoutes = require('./routes/devRoutes')
+const devRoutes = require('./routes/dev')
 
 //* Middlewares
 app.use(cors());

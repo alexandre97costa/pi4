@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pi = require('../controllers/pontoInteresseController')
+const pi = require('../controllers/ponto_interesse')
 
 router.get('/', pi.get)
 router.get('/:id', pi.get)

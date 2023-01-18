@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const r = require('../controllers/reservaController')
+const r = require('../controllers/reserva')
 
 router.get('/', r.get)
 router.get('/:id', r.get)

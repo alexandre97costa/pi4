@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const eventoController = require('../controllers/eventoController')
+const eventoController = require('../controllers/evento')
 
 router.get('/', eventoController.get)
 router.get('/:id', eventoController.get)
