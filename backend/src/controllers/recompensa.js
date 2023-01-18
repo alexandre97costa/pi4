@@ -7,63 +7,44 @@ const { dev: devClass } = require('../_dev/dev')
 const dev = new devClass;
 require('dotenv').config()
 const {
+    candidatura_at,
+    comentario_avaliacao,
+    distrito,
+    evento,
+    freguesia,
+    imagem,
+    municipio,
+    ponto_interesse,
+    ponto_interesse_recompensa,
+    pontos_evento,
+    pontos_ponto_interesse,
+    recompensa,
+    reserva,
+    sessao,
+    tipo_evento,
+    tipo_interesse,
     tipo_utilizador,
-    utilizador
+    utilizador,
+    voucher
 } = sequelize.models
 // * no final, podem-se apagar os que não estão a ser usados
 
 
 module.exports = {
 
-    login: async (req, res) => {
+    // todo: estes controllers todos
 
-        const required_params = ['email', 'password']
-        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
-        if (!check_all_required)
-            return res.status(400).json({msg: 'Faltam dados para poder fazer o login (email+password).'})
-
-        const { email, password } = req.body
-
-        const user = await utilizador
-            .findOne({ where: { email: email } })
-            .then(response => { return response?.dataValues })
-
-        if (!user) return res.status(400).json({ msg: 'Utilizador não encontrado' })
-
-        const passwordMatch = bcrypt.compareSync(password, user.password);
-        if (!passwordMatch) return res.status(400).json({ msg: 'Password errada' })
-
-        // ✅ a partir daqui já verificámos que tudo está bem, siga mandar o token
-
-        dev.verbose(user)
-
-        const token = {
-            id: user.id,
-            nome: user.nome,
-            email: user.email,
-            tipo: user.tipo_utilizador_id
-        }
-
-        const secret = process.env.JWT_SECRET
-
-        const options = {
-            algorithm: process.env.JWT_ALGORITHM,
-            expiresIn: process.env.MODE === "dev" ?
-                259200 :    // 3 dias
-                900         // 15 minutos
-        }
-
-        return res.status(200).json({
-            msg: 'Bem vindo ' + user.nome + '! 🤩',
-            token: jwt.sign(token, secret, options)
-        });
-    },
-
-    get: async (req, res) => {
+    get: async (req, res) => { //✅
         // * filtros
         const id = req.params?.id ?? 0
-        const nome = req.query?.nome ?? '%'
-        const tipo_utilizador_id = req.query?.tipo_utilizador_id ?? 0
+        const titulo_desc = req.query?.titulo_desc ?? '%'
+        const min_pontos = req.query?.min_pontos ?? 0
+        const max_pontos = req.query?.max_pontos ?? 0
+        const tipo_interesse_id = req.query?.tipo_interesse_id ?? 0
+        const validado = !!(req.query?.validado ?? true)         // True: Só recompensas validadas; False: Só recompensas por validar
+
+        // ? a recompensa não tem ponto de interesse, tem que se filtrar pela associação
+        const ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
 
         // * ordenação e paginação
         const order = req.query?.order ?? 'nome'
@@ -71,32 +52,41 @@ module.exports = {
         const offset = req.query?.offset ?? 0
         const limit = req.query?.limit ?? 0
 
-
-        await utilizador
+        await recompensa
             .findAndCountAll({
                 where: {
                     id: !!+id ?
                         +id :
                         { [Op.ne]: 0 },
-                    nome: {
-                        [Op.iLike]: '%' + nome + '%'
-                    },
-                    tipo_utilizador_id: !!+tipo_utilizador_id ?
-                        +tipo_utilizador_id :
+                    titulo: { [Op.iLike]: '%' + titulo_desc + '%' },
+                    descricao: { [Op.iLike]: '%' + titulo_desc + '%' },
+                    pontos: !!max_pontos ? // basta ver se o max foi mexido, o min é wtv
+                        { [Op.between]: [+min_pontos, +max_pontos] } :
+                        { [Op.ne]: -1 },
+                    tipo_interesse_id: !!+tipo_interesse_id ?
+                        +tipo_interesse_id :
                         { [Op.ne]: 0 },
+                    validado: validado
                 },
-                include: {
-                    model: tipo_utilizador,
-                    attributes: ['nome', 'observacoes']
-                },
-                attributes: { exclude: ['password'] },
+                include: [
+                    {
+                        model: ponto_interesse_recompensa,
+                        required: true,
+                        attributes: ['ponto_interesse_id'],
+                        where: {
+                            ponto_interesse_id: !!ponto_interesse_id ?
+                                +ponto_interesse_id :
+                                { [Op.ne]: 0 }
+                        }
+                    }
+                ],
                 order: [[order, direction]],
                 offset: offset,
                 limit: !!limit ? limit : null,
             })
             .then(output => {
                 return !output.count ?
-                    res.status(404).json({ msg: 'Não existem pontos de interesse que correspondam aos filtros solicitados.' }) :
+                    res.status(404).json({ msg: 'Não existem recompensas que correspondam aos filtros solicitados.' }) :
                     res.status(200).json({ data: output.rows, count: output.count })
             })
             .catch(error => {
@@ -104,90 +94,67 @@ module.exports = {
                 dev.error(e)
                 return
             })
+
     },
 
     post: async (req, res) => {
+        // apenas agentes e responsaveis podem criar recompensas
+        if (req.auth.tipo !== 2 || req.auth.tipo !== 3)
+            return res.status(401).json({ msg: 'Sem autorização para criar recompensas.' })
 
         const required_params = [
-            'nome',
-            'email',
-            'data_nasc',
-            'password'
+            'titulo',
+            'descricao',
+            'pontos',
+            'tipo_interesse_id'
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
-            return res.status(400).json({msg: 'Faltam dados para poder criar o utilizador.'})
+            return res.status(400).json({ msg: 'Faltam dados para poder criar a recompensa.' })
 
-        const { nome, email, data_nasc, password, tipo } = req.body
+        const { titulo, descricao, pontos, tipo_interesse_id } = req.body
 
-        const utilizadorJaExiste = await utilizador.findOne({ where: { email: email } })
-
-        if (utilizadorJaExiste)
-            return res.status(400).json({ msg: 'Utilizador com esse email já existe.' })
-
-        await utilizador
+        await recompensa
             .create({
-                nome: nome,
-                email: email,
-                data_nascimento: data_nasc,
-                password: password,
-                // em dev, pode-se criar um user que nao seja visitante logo à partida
-                // em prod, todos os utilizadores começam como visitantes
-                tipo_utilizador_id: process.env.MODE == "dev" ? +tipo : 1
+                titulo: titulo,
+                descricao: descricao,
+                pontos: pontos,
+                tipo_interesse_id: tipo_interesse_id
             })
             .then(output => {
                 return res.status(200).json({
-                    msg: 'Utilizador registado com sucesso!',
-                    user: output
+                    msg: 'Recompensa criada.',
+                    recompensa: output
                 })
             })
             .catch(error => {
-                console.log(error)
-
-                // se for por causa de validações do sequelize, manda a msg
-                if (error.name === "SequelizeValidationError") {
-                    return res.status(400).json({
-                        msg: error.errors.length === 1 ?
-                            error.errors[0].message :
-                            Array.from(error.errors, e => { return e.message })
-                    })
-                }
-                // se for qualquer outra coisa, manda o servidor abaixo (para sermos informados do erro) 
-                else {
-                    res.status(400).json({ msg: error })
-                    dev.error(error)
-                    return
-                }
-            })
-
-
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            });
     },
 
-    editar: async (req, res) => {
+    validar: async (req, res) => {
+        if (req.auth.tipo !== 3)
+            return res.status(401).json({ msg: 'Apenas responsáveis de região podem validar recompensas.' })
+
+        if (!req.body.hasOwnProperty('validado'))
+            return res.status(400).json({ msg: 'Faltam dados para validar a recompensa.' })
+
         const { id } = req.params
-        //! Para eu nao andar aqui com cenas, na app manda tudo
-        //! Manda o valor que já lá estava se não foi mudado
-        const { nome, email, data_nascimento } = req.body
+        const { validado } = req.body
 
-        // verificar se o utilizador realmente existe
-        const _utilizador = await utilizador.findByPk(id)
-        if (_utilizador === null)
-            return res.status(404).json({ msg: 'O utilizador fornecido não existe ou foi eliminado.' })
+        // verificar se a recompensa realmente existe
+        const _recompensa = await recompensa.findByPk(id)
+        if (_recompensa === null)
+            return res.status(404).json({ msg: 'A recompensa fornecida não existe ou foi eliminada.' })
 
-        // cada utilizador só se pode editar a si mesmo
-        if (req.auth.id !== id)
-            return res.status(401).json({ msg: 'Só podesatualizar as tuas próprias informações' })
-
-        await _utilizador
-            .update({
-                nome: nome,
-                email: email,
-                data_nascimento: data_nascimento
-            })
+        await _recompensa
+            .update({ validado: !!validado })
             .then(output => {
                 return !output[0] ?
-                    res.status(400).json({ msg: 'Utilizador não atualizado.' }) :
-                    res.status(200).json({ msg: 'Utilizador atualizado.', utilizador: output[0] })
+                    res.status(400).json({ msg: 'Recompensa não atualizada.' }) :
+                    res.status(200).json({ msg: 'Recompensa atualizada.', recompensa: output[0] })
             })
             .catch(error => {
                 res.status(400).json({ error })
@@ -196,32 +163,38 @@ module.exports = {
             })
     },
 
-    mudar_tipo: async (req, res) => {
-        // apenas admins e responsaveis podem mudar tipos
-        if (req.auth.tipo !== 3 || req.auth.tipo !== 4)
-            return res.status(401).json({ msg: 'Apenas administradores e responsáveis podem mudar o tipo de utilizador.' })
+    editar: async (req, res) => {
+        if (req.auth.tipo !== 3)
+            return res.status(401).json({ msg: 'Apenas responsáveis de região podem editar recompensas.' })
 
-        // nao podes mudar o tipo a ti mesmo
-        if (req.params.id === req.auth.id)
-            return res.status(401).json({ msg: 'Não podes mudar o teu próprio tipo de utilizador.' })
+        const required_params = [
+            'titulo',
+            'descricao',
+            'pontos',
+            'tipo_interesse_id'
+        ]
+        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
+        if (!check_all_required)
+            return res.status(400).json({ msg: 'Faltam dados para poder criar a recompensa.' })
 
-        if (!req.body.novo_tipo)
-            return res.status(400).json({ msg: 'Falta o novo tipo de utilizador' })
+        const { titulo, descricao, pontos, tipo_interesse_id } = req.body
 
-        const { id } = req.params
-        const { novo_tipo } = req.body
+        // verificar se a recompensa realmente existe
+        const _recompensa = await recompensa.findByPk(id)
+        if (_recompensa === null)
+            return res.status(404).json({ msg: 'A recompensa fornecida não existe ou foi eliminada.' })
 
-        // verificar se o utilizador realmente existe
-        const _utilizador = await utilizador.findByPk(id)
-        if (_utilizador === null)
-            return res.status(404).json({ msg: 'O utilizador fornecido não existe ou foi eliminado.' })
-
-        await _utilizador
-            .update({ tipo_utilizador_id: +novo_tipo })
+        await _recompensa
+            .update({
+                titulo: titulo,
+                descricao: descricao,
+                pontos: pontos,
+                tipo_interesse_id: tipo_interesse_id
+            })
             .then(output => {
                 return !output[0] ?
-                    res.status(400).json({ msg: 'Utilizador não atualizado.' }) :
-                    res.status(200).json({ msg: 'Utilizador atualizado.', utilizador: output[0] })
+                    res.status(400).json({ msg: 'Recompensa não atualizada.' }) :
+                    res.status(200).json({ msg: 'Recompensa atualizada.', recompensa: output[0] })
             })
             .catch(error => {
                 res.status(400).json({ error })
@@ -231,59 +204,25 @@ module.exports = {
     },
 
     delete: async (req, res) => {
+        if (req.auth.tipo !== 3)
+            return res.status(401).json({ msg: 'Apenas responsáveis de região podem editar recompensas.' })
 
         const { id } = req.params
 
-        // os visitantes e agentes só se podem eliminar a si mesmos
-        if (
-            req.auth.id !== id && (
-                req.auth.tipo === 1 ||
-                req.auth.tipo === 2
-            )) {
-            return res.status(401).json({ msg: 'Não podes eliminar outros utilizadores.' })
-        }
+        // verificar se a recompensa realmente existe
+        const _recompensa = await recompensa.findByPk(id)
+        if (_recompensa === null)
+            return res.status(404).json({ msg: 'A recompensa fornecida não existe ou foi eliminada.' })
 
-        // verificar se o utilizador realmente existe
-        const _utilizador = await utilizador.findByPk(id)
-        if (_utilizador === null)
-            return res.status(404).json({ msg: 'O utilizador fornecido não existe ou já foi eliminado.' })
-
-        // responsaveis so podem eliminar agentes e visitantes
-        if (
-            req.auth.tipo === 3 && (
-                _utilizador.tipo_utilizador_id !== 1 &&
-                _utilizador.tipo_utilizador_id !== 2
-            )) {
-            return res.status(401).json({ msg: 'Só podes eliminar agentes e visitantes.' })
-        }
-
-        // admins nao podem eliminar admins
-        if (req.auth.tipo === 3 && _utilizador.tipo_utilizador_id === 4)
-            return res.status(401).json({ msg: 'Não podes eliminar administradores.' })
-
-        // ✅ tudo gucci, siga pra vinho
-        await _utilizador.destroy()
+        await _recompensa.destroy()
             .then(output => {
                 return !output ?
-                    res.status(400).json({ msg: 'Utilizador não elimininado.' }) :
-                    res.status(200).json({ msg: 'Utilizador elimininado.' })
+                    res.status(400).json({ msg: 'Recompensa não elimininada.' }) :
+                    res.status(200).json({ msg: 'Recompensa elimininada.' })
             })
             .catch(error => {
                 res.status(400).json({ error })
                 dev.error(error)
-                return
-            })
-
-
-    },
-
-    tipos: async (req, res) => {
-        await tipo_utilizador
-            .findAll({ attributes: ['id', 'nome', 'observacoes'], order: [['id', 'ASC']] })
-            .then(output => { res.status(200).json({ tipos: output }) })
-            .catch(e => {
-                res.status(400).json({ error })
-                dev.error(e)
                 return
             })
     },

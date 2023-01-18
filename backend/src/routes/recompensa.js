@@ -1,16 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const u = require('../controllers/recompensa')
+const r = require('../controllers/recompensa')
 
-router.get('/login', u.login)
-
-router.get('/', u.get)
-router.get('/:id', u.get)
-router.post('/', u.post)
-router.put('/:id', u.editar)
-router.patch('/:id', u.mudar_tipo)
-router.delete('/:id', u.delete)
-
-router.get('/tipos', u.tipos)
+router.get('/', r.get)
+router.get('/:id', r.get)
+router.post('/', r.post)
+router.put('/:id', r.editar)
+router.delete('/:id', r.delete)
 
 module.exports = router;

@@ -152,19 +152,19 @@ module.exports = {
 
         // o body tem que ter todos os coises
         const required_params = [
-            'nome', 
-            'descricao', 
-            'morada', 
-            'codigo_postal', 
-            'telemovel', 
-            'pontos', 
-            'freguesia_id', 
+            'nome',
+            'descricao',
+            'morada',
+            'codigo_postal',
+            'telemovel',
+            'pontos',
+            'freguesia_id',
             'tipo_interesse_id'
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
-            return res.status(400).json({msg: 'Faltam dados para poder criar o ponto de interesse.'})
-            
+            return res.status(400).json({ msg: 'Faltam dados para poder criar o ponto de interesse.' })
+
         const { nome, morada, codigo_postal, telemovel, pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 
         await ponto_interesse
@@ -179,7 +179,10 @@ module.exports = {
                 tipo_interesse_id: tipo_interesse_id,
             })
             .then(output => {
-                return res.status(200).json({ msg: 'Ponto de interesse criado.', ponto_interesse: output })
+                return res.status(200).json({
+                    msg: 'Ponto de interesse criado.',
+                    ponto_interesse: output
+                })
             })
             .catch(error => {
                 res.status(400).json({ error })
@@ -194,19 +197,19 @@ module.exports = {
 
         // o body tem que ter todos os coises
         const required_params = [
-            'nome', 
-            'descricao', 
-            'morada', 
-            'codigo_postal', 
-            'telemovel', 
-            'pontos', 
-            'freguesia_id', 
+            'nome',
+            'descricao',
+            'morada',
+            'codigo_postal',
+            'telemovel',
+            'pontos',
+            'freguesia_id',
             'tipo_interesse_id'
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
-            return res.status(400).json({msg: 'Faltam dados para poder editar o ponto de interesse.'})
-            
+            return res.status(400).json({ msg: 'Faltam dados para poder editar o ponto de interesse.' })
+
         const { id } = req.params
         const { nome, morada, codigo_postal, telemovel, pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
 

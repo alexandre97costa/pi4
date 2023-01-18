@@ -4,10 +4,6 @@ module.exports = (sequelize) => {
     sequelize.define('recompensa',
         {
             // validado???
-            validado: {
-                type: DataTypes.BOOLEAN,
-                allowNull: false
-            },
             titulo: {
                 type: DataTypes.STRING,
                 allowNull: false
@@ -20,6 +16,7 @@ module.exports = (sequelize) => {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
+            validado: DataTypes.BOOLEAN,
             observacoes: DataTypes.STRING
         },
         {

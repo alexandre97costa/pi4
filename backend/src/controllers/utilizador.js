@@ -87,6 +87,7 @@ module.exports = {
                 },
                 include: {
                     model: tipo_utilizador,
+                    require: true,
                     attributes: ['nome', 'observacoes']
                 },
                 attributes: { exclude: ['password'] },
@@ -165,8 +166,16 @@ module.exports = {
 
     editar: async (req, res) => {
         const { id } = req.params
-        //! Para eu nao andar aqui com cenas, na app manda tudo
-        //! Manda o valor que já lá estava se não foi mudado
+        
+        const required_params = [
+            'nome',
+            'email',
+            'data_nascimento'
+        ]
+        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
+        if (!check_all_required)
+            return res.status(400).json({msg: 'Faltam dados para poder editar o utilizador.'})
+
         const { nome, email, data_nascimento } = req.body
 
         // verificar se o utilizador realmente existe
@@ -273,8 +282,6 @@ module.exports = {
                 dev.error(error)
                 return
             })
-
-
     },
 
     tipos: async (req, res) => {
