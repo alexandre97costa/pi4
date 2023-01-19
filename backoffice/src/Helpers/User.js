@@ -19,16 +19,22 @@ export default function User() {
     return (
         <div className='col-2 d-flex justify-content-between  position-absolute top-0 end-0  mt-3 me-4 py-2 px-3 ' >
             <div className="dropdown w-100">
-                <button className="btn btn-light bg-white border rounded-4 shadow dropdown-toggle d-flex justify-content-between align-items-center w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button className="btn btn-light bg-white border rounded-4 shadow dropdown-toggle d-flex justify-content-between align-items-center w-100" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
                     <span>{nome}</span>
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end rounded-4 shadow">
-                    <li>
-                        <Link className="dropdown-item rounded-3" path="">
+                    
+                    <li className='dropstart'>
+                        <Link className="dropdown-item rounded-3 dropdown-toggle" data-bs-toggle="dropdown" path="#">
                             <i className='bi bi-person me-2'></i>
                             <span>Ver perfil</span>
                         </Link>
+                        <ul className='dropdown-menu'>
+                            <li><Link path="#" className='dropdown-item'>Editar Perfil</Link></li>
+                            <li><Link path="#" className='dropdown-item'>Editar Password</Link></li>                            
+                        </ul>
                     </li>
+ 
                     <li>
                         <button onClick={e => {
                             auth.logout();
