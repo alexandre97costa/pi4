@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.tabs.TabLayout
 import pi4.main.Adapter.SetAdapterCardRecompensa
 import pi4.main.Classes.*
 import pi4.main.R
@@ -59,6 +58,11 @@ class FragmentRecompensaJaResgatada : Fragment() {
     fun previous() {
         val floatingButton = requireView().findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
 
-        StartActivitys(requireContext()).floatingPreviousActivity(floatingButton, requireActivity())
+        floatingButton.setOnClickListener{
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainer, FragmentRecompensa())
+            fragmentTransaction.commit()
+        }
     }
 }

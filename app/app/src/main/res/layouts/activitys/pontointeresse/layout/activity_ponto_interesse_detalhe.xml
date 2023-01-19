@@ -182,22 +182,14 @@
 
 
                 <LinearLayout
-                    android:id="@+id/linearLayout5"
+                    android:id="@+id/linearLayoutEventos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintEvento">
-
-                    <include
-                        android:id="@+id/cardRecitalAves"
-                        layout="@layout/card_evento"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/constraintEvento" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout13"
@@ -206,7 +198,7 @@
                     android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayoutEventos">
 
                     <ImageView
                         android:id="@+id/imageView6"
@@ -264,14 +256,19 @@
                         android:clickable="true"/>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <include
-                    layout="@layout/card_comentario"
+                <LinearLayout
+                    android:id="@+id/linearLayoutComentarios"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:scrollbars="none"
+                    android:smoothScrollbar="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout13" />
+                    app:layout_constraintTop_toBottomOf="parent"
+                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

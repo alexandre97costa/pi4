@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
-import pi4.main.Activitys.Recompensa.ActivityVoucherInformacoes
 import pi4.main.Adapter.SetAdapterCardRecompensa
-import pi4.main.Classes.*
+import pi4.main.Classes.CategoriaLista
+import pi4.main.Classes.Points
+import pi4.main.Classes.RecompensaCurta
+import pi4.main.Classes.Utilizador
 import pi4.main.R
 
 class FragmentRecompensa : Fragment() {
@@ -69,8 +70,15 @@ class FragmentRecompensa : Fragment() {
             categoria = "Comércio"
         )
 
+        val objectExemplo3 = RecompensaCurta(
+            pontos = "40",
+            recompensa = "Café Grátis com direito a tudo incluido",
+            categoria = "Comércio"
+        )
+
         arrayFinal.add(objectExemplo)
         arrayFinal.add(objectExemplo2)
+        arrayFinal.add(objectExemplo3)
 
         val customAdapter = SetAdapterCardRecompensa(requireContext(), arrayFinal, false)
         val listView = requireView().findViewById<ListView>(R.id.listViewRecompensas)

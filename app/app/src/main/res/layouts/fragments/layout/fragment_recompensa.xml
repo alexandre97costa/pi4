@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/malas"
-        android:scaleType="centerCrop"/>
+        android:scaleType="center"/>
 
     <include
         layout="@layout/background_degrade"
@@ -102,6 +102,7 @@
                 android:dividerHeight="10dp"
                 android:fadeScrollbars="false"
                 android:smoothScrollbar="true"
+                android:scrollbars="none"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

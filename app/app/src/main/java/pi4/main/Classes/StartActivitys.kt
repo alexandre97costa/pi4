@@ -45,6 +45,13 @@ class StartActivitys(context: Context) {
         }
     }
 
+    fun cardRecompensaGoTo(cardView: CardView, flag: Boolean ,activity: Activity) {
+        cardView.setOnClickListener {
+            context.startActivity(Intent(context, activity::class.java)
+                .putExtra("flag", flag))
+        }
+    }
+
     fun LinearLayoutGoTo(linearLayout: LinearLayout, activity: Activity) {
         linearLayout.setOnClickListener {
             context.startActivity(Intent(context, activity::class.java))

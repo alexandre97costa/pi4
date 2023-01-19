@@ -12,23 +12,38 @@ import pi4.main.Classes.Utilizador
 import pi4.main.R
 
 class ActivityVoucherInformacoes : AppCompatActivity() {
-    private var points: Int = 0
-    private var pointsVoucher: Int = 80
+    private var pointsVoucher: Int = 40
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_voucher_informacoes)
 
         loadPoints()
-        resgatar()
-        confirmPoints()
         previous()
+
+        if (verificarSeJaFoiResgatado())
+            includeRecompensaInfoOn()
+        else {
+            confirmPoints()
+            resgatar()
+        }
     }
 
     private fun loadPoints() {
         val textView = findViewById<TextView>(R.id.scoreUtilizador)
 
         Points(Utilizador().pontos.toInt(), textView, this).loadPontos()
+    }
+
+    private fun verificarSeJaFoiResgatado(): Boolean {
+        //Se vier true então ja é resgatado
+        return intent.getBooleanExtra("flag", false)
+    }
+
+    private fun includeRecompensaInfoOn() {
+        findViewById<View>(R.id.includeRecompensaInfoOff).visibility = View.GONE
+        findViewById<View>(R.id.includeRecompensaInfoOn).visibility = View.VISIBLE
+        findViewById<Button>(R.id.btnResgatar).visibility = View.GONE
     }
 
     fun resgatar() {
@@ -44,7 +59,7 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
     fun confirmPoints() {
         val buttonResgatar = findViewById<Button>(R.id.btnResgatar)
 
-        if(points < pointsVoucher) {
+        if(Utilizador().pontos.toInt() < pointsVoucher) {
             buttonResgatar.isEnabled = false
             buttonResgatar.setBackgroundResource(R.drawable.shape_gray.toInt())
         }

@@ -22,6 +22,8 @@ class PontoInteresse(
     var avg_avaliacao:Float
     var count_scans:Int
     var agente_turistico: String
+    var listaEventos: ArrayList<Eventos> = arrayListOf()
+    var listaComentarios: ArrayList<Comentarios> = arrayListOf()
 
     init {
         this.image_url = image_url
@@ -34,5 +36,55 @@ class PontoInteresse(
         this.avg_avaliacao = avg_avaliacao
         this.count_scans = count_scans
         this.agente_turistico = agente_turistico
+    }
+
+    fun loadEventos(pontoInteresseId: String) {
+        //pedido api
+        this.listaEventos.add(
+            Eventos(
+                "1",
+            "Recital dos passaros",
+                "24/12/2022",
+            "Uma cena muito secante",
+            20,
+            26,
+            3,
+            "Museu"
+            )
+        )
+        this.listaEventos.add(Eventos(
+            "2",
+            "Recital dos cães",
+            "22/01/2023",
+            "Uma cena muito, muito secante",
+            15,
+            22,
+            1,
+            "Museu"
+        ))
+    }
+
+    fun loadComentarios(pontoInteresseId: String) {
+        //pedido api
+        this.listaComentarios.add(Comentarios(
+            "Joaquim Sousa",
+            "Um sitio incrivel",
+            "4.1"
+        ))
+        this.listaComentarios.add(Comentarios(
+            "Maria Amalia",
+            "Um sitio impecavel",
+            "4.9"
+        ))
+        this.listaComentarios.add(Comentarios(
+            "Jocas",
+            "Um sitio que nunca vou esquecer",
+            "4.87"
+        ))
+        this.listaComentarios.add(Comentarios(
+            "Mara",
+            "Um sitio para voltar",
+            "3.2"
+        ))
     }
 }

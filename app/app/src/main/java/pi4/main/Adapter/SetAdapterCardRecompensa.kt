@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import pi4.main.Activitys.Recompensa.ActivityVoucherInformacoes
@@ -51,6 +52,8 @@ class SetAdapterCardRecompensa(private val context: Context, private val data:Ar
         if(jaResgatado == false)
             if(detectPointsUtilizador(rowView, background, recompensa, categoria, recipe.pontos.toInt()))
                 eventListener(card)
+            else
+                pontosInsuficientes(card)
 
         if(jaResgatado == true)
             eventListener(card)
@@ -61,23 +64,32 @@ class SetAdapterCardRecompensa(private val context: Context, private val data:Ar
     fun detectPointsUtilizador(rowView: View, background: ConstraintLayout, recompensa: TextView, categoria: TextView ,pontosRecompensa: Int): Boolean {
         val pontosUtilizador = Utilizador().pontos.toInt()
 
-        if(pontosRecompensa > pontosUtilizador) {
-            background.setBackgroundColor(R.color.gray.toInt())
-            recompensa.setTextColor(R.color.gray.toInt())
-            categoria.setTextColor(R.color.gray.toInt())
-
-            rowView.findViewById<ImageView>(R.id.imageViewIconTermos).setImageTintList(
-                ColorStateList.valueOf(R.color.gray.toInt()))
-            rowView.findViewById<ImageView>(R.id.imageViewSeta).setImageTintList(
-                ColorStateList.valueOf(R.color.gray.toInt()))
-            rowView.findViewById<TextView>(R.id.textViewTermos).setTextColor(R.color.gray.toInt())
-            return false
-        }
+        if(pontosRecompensa > pontosUtilizador)
+            return setLayoutColors(rowView, background, recompensa, categoria)
 
         return true
     }
 
+    private fun setLayoutColors(rowView: View, background: ConstraintLayout, recompensa: TextView, categoria: TextView): Boolean {
+        val colorGray = R.color.gray.toInt()
+
+        background.setBackgroundColor(colorGray)
+        recompensa.setTextColor(colorGray)
+        categoria.setTextColor(colorGray)
+        rowView.findViewById<ImageView>(R.id.imageViewIconTermos).setImageTintList(ColorStateList.valueOf(colorGray))
+        rowView.findViewById<ImageView>(R.id.imageViewSeta).setImageTintList(ColorStateList.valueOf(colorGray))
+        rowView.findViewById<TextView>(R.id.textViewTermos).setTextColor(colorGray)
+
+        return false
+    }
+
+    private fun pontosInsuficientes(cardView: CardView) {
+        cardView.setOnClickListener{
+            Toast.makeText(context, "Pontos insuficientes", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     fun eventListener(cardView: CardView) {
-        StartActivitys(context).cardGoTo(cardView, ActivityVoucherInformacoes())
+        StartActivitys(context).cardRecompensaGoTo(cardView, jaResgatado ,ActivityVoucherInformacoes())
     }
 }
