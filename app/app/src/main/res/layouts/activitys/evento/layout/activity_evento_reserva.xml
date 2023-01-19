@@ -110,14 +110,14 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/pontoInteresse"
+                        android:id="@+id/textViewPontoInteresse"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Recital das aves"
                         android:theme="@style/tittle_principal_black" />
 
                     <TextView
-                        android:id="@+id/categoria"
+                        android:id="@+id/textViewCategoria"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
@@ -126,7 +126,7 @@
                         android:theme="@style/tittle_secundario_black" />
 
                     <TextView
-                        android:id="@+id/local"
+                        android:id="@+id/textViewMorada"
                         android:layout_width="240dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"

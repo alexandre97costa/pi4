@@ -85,7 +85,7 @@
                     app:srcCompat="@drawable/star" />
 
                 <TextView
-                    android:id="@+id/textView20"
+                    android:id="@+id/textViewAvalicao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -105,11 +105,11 @@
                     android:text="|"
                     android:textColor="@color/greenPrincipal"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView20"
+                    app:layout_constraintStart_toEndOf="@+id/textViewAvalicao"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/textViewComentarios"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
