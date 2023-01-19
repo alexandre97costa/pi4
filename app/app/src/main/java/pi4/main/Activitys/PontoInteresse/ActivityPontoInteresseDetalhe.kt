@@ -2,6 +2,7 @@ package pi4.main.Activitys.PontoInteresse
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.BaseAdapter
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.TextView
@@ -9,6 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.marginEnd
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.tabs.TabLayout
 import pi4.main.Activitys.Evento.ActivityEventoDetalhe
 import pi4.main.Adapter.SetAdapterCardComentarios
 import pi4.main.Adapter.SetAdapterCardEvento
@@ -73,7 +75,11 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
     fun callAdatperComentario() {
         val customAdapter = SetAdapterCardComentarios(this, pontoInteresse.listaComentarios)
         val linearLayout = findViewById<LinearLayout>(R.id.linearLayoutComentarios)
-        //linearLayout.adapter = customAdapter
+
+        val limite = 3
+
+        for (i in 0..limite - 1)
+            linearLayout.addView(customAdapter.getView(i, linearLayout, linearLayout))
     }
 
     fun loadEventos() {
@@ -84,9 +90,9 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
     fun callAdapterEvento() {
         val customAdapter = SetAdapterCardEvento(this, pontoInteresse.listaEventos)
-        val linearLayout = findViewById<LinearLayout>(R.id.linearLayoutEventos)
+        val tabLayout = findViewById<TabLayout>(R.id.tabLayoutEventos)
 
-        linearLayout.addView(customAdapter.getView(0, linearLayout, linearLayout))
-        linearLayout.addView(customAdapter.getView(1, linearLayout, linearLayout))
+        for (i in 0..customAdapter.count - 1)
+            tabLayout.addTab(tabLayout.newTab().setCustomView(customAdapter.getView(i, tabLayout, tabLayout)))
     }
 }
