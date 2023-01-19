@@ -186,6 +186,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
                     android:layout_marginTop="8dp"
+                    app:tabPaddingStart="0dp"
                     app:tabMode="scrollable"
                     app:tabIndicator="@null"
                     tools:ignore="SpeakableTextPresentCheck"

@@ -39,9 +39,9 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
         setContentView(R.layout.activity_ponto_interesse_detalhe)
 
         loadPoints()
-        maisComentarios()
         loadComentarios()
         loadEventos()
+        maisComentarios()
         previous()
     }
 
@@ -57,7 +57,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
     fun maisComentarios() {
         val verMais = findViewById<TextView>(R.id.textViewVerMaisComentarios)
 
-        StartActivitys(this).textViewGoTo(verMais, ActivityComentarios())
+        StartActivitys(this).textViewComentariosGoTo(verMais, ActivityComentarios(), pontoInteresse.nome)
     }
 
     fun previous() {

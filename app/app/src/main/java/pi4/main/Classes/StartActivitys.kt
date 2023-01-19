@@ -39,6 +39,13 @@ class StartActivitys(context: Context) {
         }
     }
 
+    fun textViewComentariosGoTo(textView: TextView, activity: Activity, pontoInteresseId: String) {
+        textView.setOnClickListener {
+            context.startActivity(Intent(context, activity::class.java)
+                .putExtra("pontoInteresseId", pontoInteresseId))
+        }
+    }
+
     fun cardGoTo(cardView: CardView, activity: Activity) {
         cardView.setOnClickListener {
             context.startActivity(Intent(context, activity::class.java))
