@@ -3,22 +3,22 @@ export const menu = [
     [
         {
             text: "Dashboard",
-            path: "/",
+            path: "/agente-turistico/dashboard",
             icon: "speedometer2"
         },
         {
-            text: "Pontos de Interesse",
+            text: "/agente-turistico/ponto-interesse",
             path: "/2",
             icon: "geo-alt"
         },
         {
             text: "Eventos",
-            path: "/3",
+            path: "/agente-turistico/eventos",
             icon: "calendar4-event"
         },
         {
             text: "Recompensas",
-            path: "/4",
+            path: "/agente-turistico/recompensas",
             icon: "gift"
         }
     ],
@@ -26,7 +26,7 @@ export const menu = [
     [
         {
             text: "Dashboard",
-            path: "/",
+            path: "/responsavel-regiao/dashboard",
             icon: "speedometer2"
         },
         {
@@ -36,7 +36,7 @@ export const menu = [
         },
         {
             text: "Pontos de Interesse",
-            path: "/3",
+            path: "/responsavel-regiao/consultar-pontos-interesse",
             icon: "geo-alt"
         },
         {
@@ -50,7 +50,7 @@ export const menu = [
             icon: "calendar4-event"
         },
         {
-            text: "Recompensas",
+            text: "/responsavel-regiao/lista-recompensas",
             path: "/6",
             icon: "gift"
         }
@@ -59,12 +59,12 @@ export const menu = [
     [
         {
             text: "Dashboard",
-            path: "/",
+            path: "/admin/dashboard",
             icon: "speedometer2"
         },
         {
             text: "Utilizadores",
-            path: "/2",
+            path: "/admin/lista-utilizadores",
             icon: "speedometer2"
         },
         {
@@ -78,18 +78,13 @@ export const menu = [
             icon: "calendar4-event"
         },
         {
-            text: "Rservas",
-            path: "/5",
-            icon: "calendar4-event"
-        },
-        {
             text: "Recompensas",
             path: "/6",
             icon: "gift"
         },
         {
             text: "Microsite",
-            path: "/7",
+            path: "admin/microsite",
             icon: "gift"
         }
     ]
