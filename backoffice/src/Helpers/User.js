@@ -25,13 +25,13 @@ export default function User() {
                 <ul className="dropdown-menu dropdown-menu-end rounded-4 shadow">
                     
                     <li>
-                        <Link className="dropdown-item rounded-3 ">
+                        <h6 className="dropdown-header rounded-3 text-dark">
                             <i className='bi bi-person me-2'></i>
                             <span>Ver perfil</span>
-                        </Link>
+                        </h6>
                         <ul className='dropdown-submenu'>
-                            <li><Link to="#" className='dropdown-item'>Editar Perfil</Link></li>
-                            <li><Link to="#" className='dropdown-item'>Editar Password</Link></li>                            
+                            <li><Link to="#" className='dropdown-item rounded-3'>Editar Perfil</Link></li>
+                            <li><Link to="#" className='dropdown-item rounded-3'>Editar Password</Link></li>                            
                         </ul>
                     </li>
  
