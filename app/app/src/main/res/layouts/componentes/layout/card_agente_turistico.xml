@@ -40,7 +40,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/textViewTituloAgenteTuristico"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Nome e Apelido"
@@ -53,7 +53,7 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/textViewNomeAgenteTuristico"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Agente Turístico"
@@ -62,7 +62,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/textViewTituloAgenteTuristico" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

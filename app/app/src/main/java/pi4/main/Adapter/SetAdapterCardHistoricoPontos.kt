@@ -30,7 +30,7 @@ class SetAdapterCardHistoricoPontos(private val context: Context, private val da
 
         val pontoInteresse = rowView.findViewById<TextView>(R.id.textViewPontoInteresse)
         val data = rowView.findViewById<TextView>(R.id.textViewData)
-        val pontos = rowView.findViewById<TextView>(R.id.textViewPontos)
+        val pontos = rowView.findViewById<TextView>(R.id.textViewPontosPontoInteresse)
 
         val recipe = getItem(position) as HistoricoPontos
 

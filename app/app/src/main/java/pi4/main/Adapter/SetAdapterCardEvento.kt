@@ -35,7 +35,7 @@ class SetAdapterCardEvento(private val context: Context, private val data:ArrayL
         val nome = rowView.findViewById<TextView>(R.id.textViewNome)
         val data = rowView.findViewById<TextView>(R.id.textViewData)
         val horas = rowView.findViewById<TextView>(R.id.textViewhoras)
-        val pontos = rowView.findViewById<TextView>(R.id.textViewPontos)
+        val pontos = rowView.findViewById<TextView>(R.id.textViewPontosEvento)
 
         val card = rowView.findViewById<CardView>(R.id.cardEvento)
 

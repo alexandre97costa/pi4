@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textViewNome"
+                    android:id="@+id/textViewNomeEvento"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -60,7 +60,7 @@
                         app:tint="@color/white" />
 
                     <TextView
-                        android:id="@+id/textViewData"
+                        android:id="@+id/textViewDataEvento"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -81,7 +81,7 @@
                     android:layout_marginTop="4dp">
 
                     <ImageView
-                        android:id="@+id/imageViewData"
+                        android:id="@+id/textViewData"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +91,7 @@
                         app:tint="@color/white" />
 
                     <TextView
-                        android:id="@+id/textViewhoras"
+                        android:id="@+id/textViewHorasEvento"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -100,11 +100,11 @@
                         android:textColor="@color/white"
                         android:textSize="14dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/imageViewData"
+                        app:layout_constraintStart_toEndOf="@+id/textViewData"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textViewPontos"
+                        android:id="@+id/textViewPontosEvento"
                         android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:background="@drawable/shape_outline_white"
@@ -115,7 +115,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@+id/textViewhoras"
+                        app:layout_constraintStart_toEndOf="@+id/textViewHorasEvento"
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -40,9 +40,9 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
 
         //Variaveis do layout
         val imagemPontoInteresse = rowView.findViewById<ImageView>(R.id.imagemPontoInteresse)
-        val pontoInteresse = rowView.findViewById<TextView>(R.id.pontoInteresse)
+        val pontoInteresse = rowView.findViewById<TextView>(R.id.textViewPontoInteresse)
         val categoria = rowView.findViewById<TextView>(R.id.categoria)
-        val local = rowView.findViewById<TextView>(R.id.local)
+        val local = rowView.findViewById<TextView>(R.id.textViewLocal)
         val rating = rowView.findViewById<TextView>(R.id.rating)
         val score = rowView.findViewById<TextView>(R.id.score)
 

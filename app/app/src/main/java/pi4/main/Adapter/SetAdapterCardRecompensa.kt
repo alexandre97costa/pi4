@@ -38,8 +38,8 @@ class SetAdapterCardRecompensa(private val context: Context, private val data:Ar
 
         val background = rowView.findViewById<ConstraintLayout>(R.id.colorContraint)
         val pontos = rowView.findViewById<TextView>(R.id.recompensaspontos)
-        val recompensa = rowView.findViewById<TextView>(R.id.recompensa)
-        val categoria = rowView.findViewById<TextView>(R.id.categoria)
+        val recompensa = rowView.findViewById<TextView>(R.id.textViewTituloRecompensa)
+        val categoria = rowView.findViewById<TextView>(R.id.textViewCategoriaRecompensa)
 
         val recipe = getItem(position) as RecompensaCurta
 
