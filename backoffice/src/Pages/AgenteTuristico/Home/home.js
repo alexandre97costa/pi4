@@ -119,20 +119,6 @@ export default function Home() {
                     <ModalNewPontoInteresse idModal="NewPontoInteresse"/>
                 </div>
 
-                <div className='row'>
-                    <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
-                        <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-agentes h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Adicionar Ponto de interesse"/>
-                    </div>
-
-                    <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
-                        <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-regiao h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Responsáveis de Região"/>
-                    </div>
-
-                    <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
-                        <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-primary h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Visitantes"/>
-                    </div>
-                </div>
-
                 <div className='col-12 mt-5'>
                     <p className="fs-5 text-body fw-light">Confirmar Reservas<i className="bi bi-box-arrow-up-right ps-2"></i></p>
                 </div>

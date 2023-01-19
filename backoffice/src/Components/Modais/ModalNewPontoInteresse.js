@@ -98,7 +98,7 @@ export default function ModalNewPontoInteresse(props) {
                         </div>
                         <div className="modal-footer">
                             <Botao className="btn-secondary" dismiss="modal" texto="Fechar" onClick={() => dismissToast()} />
-                            <Botao texto="Validar" onClick={() => axiosPost()} />
+                            <Botao texto="Enviar" onClick={() => axiosPost()} />
 
                             <ToastContainer />
                         </div>
