@@ -11,10 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
 import pi4.main.Adapter.SetAdapterCardRecompensa
-import pi4.main.Classes.CategoriaLista
-import pi4.main.Classes.Points
-import pi4.main.Classes.RecompensaCurta
-import pi4.main.Classes.Utilizador
+import pi4.main.Classes.*
 import pi4.main.R
 
 class FragmentRecompensa : Fragment() {
@@ -56,21 +53,21 @@ class FragmentRecompensa : Fragment() {
     }
 
     private fun callAdapterCards() {
-        val arrayFinal: ArrayList<RecompensaCurta> = arrayListOf()
+        val arrayFinal: ArrayList<Recompensa> = arrayListOf()
 
-        val objectExemplo = RecompensaCurta(
+        val objectExemplo = Recompensa(
             pontos = "80",
             recompensa = "Pizza Grátis",
             categoria = "Restauração"
         )
 
-        val objectExemplo2 = RecompensaCurta(
+        val objectExemplo2 = Recompensa(
             pontos = "100",
             recompensa = "Café Grátis com direito a tudo incluido",
             categoria = "Comércio"
         )
 
-        val objectExemplo3 = RecompensaCurta(
+        val objectExemplo3 = Recompensa(
             pontos = "40",
             recompensa = "Café Grátis com direito a tudo incluido",
             categoria = "Comércio"

@@ -12,6 +12,7 @@ class PontoInteresse(
     count_scans: Int,
     agente_turistico: String
 ) {
+    var id: String
     var image_url:String
     var nome:String
     var morada: String
@@ -26,6 +27,7 @@ class PontoInteresse(
     var listaComentarios: ArrayList<Comentarios> = arrayListOf()
 
     init {
+        this.id = "1"
         this.image_url = image_url
         this.nome = nome
         this.morada = morada

@@ -12,13 +12,10 @@ import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import pi4.main.Activitys.Recompensa.ActivityVoucherInformacoes
-import pi4.main.Classes.Points
-import pi4.main.Classes.RecompensaCurta
-import pi4.main.Classes.StartActivitys
-import pi4.main.Classes.Utilizador
+import pi4.main.Classes.*
 import pi4.main.R
 
-class SetAdapterCardRecompensa(private val context: Context, private val data:ArrayList<RecompensaCurta>, private val jaResgatado: Boolean): BaseAdapter() {
+class SetAdapterCardRecompensa(private val context: Context, private val data:ArrayList<Recompensa>, private val jaResgatado: Boolean): BaseAdapter() {
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getCount(): Int {
@@ -41,7 +38,7 @@ class SetAdapterCardRecompensa(private val context: Context, private val data:Ar
         val recompensa = rowView.findViewById<TextView>(R.id.recompensa)
         val categoria = rowView.findViewById<TextView>(R.id.categoria)
 
-        val recipe = getItem(position) as RecompensaCurta
+        val recipe = getItem(position) as Recompensa
 
         Points(recipe.pontos.toInt(), pontos, context).loadPontosPontoInteresseCurto()
         recompensa.text = recipe.recompensa

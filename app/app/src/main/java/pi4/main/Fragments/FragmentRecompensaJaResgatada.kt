@@ -33,15 +33,15 @@ class FragmentRecompensaJaResgatada : Fragment() {
     }
 
     private fun callAdapterCards() {
-        val arrayFinal: ArrayList<RecompensaCurta> = arrayListOf()
+        val arrayFinal: ArrayList<Recompensa> = arrayListOf()
 
-        val objectExemplo = RecompensaCurta(
+        val objectExemplo = Recompensa(
             pontos = "100",
             recompensa = "Pizza Grátis",
             categoria = "Restauração"
         )
 
-        val objectExemplo2 = RecompensaCurta(
+        val objectExemplo2 = Recompensa(
             pontos = "52",
             recompensa = "Cinema Grátis",
             categoria = "Comércio"
