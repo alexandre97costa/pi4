@@ -71,6 +71,40 @@ end$$;
 call mostrar_nome_data_ultimo();
 
 
+-- igual ao anterior porém apanha o scan mais recente pela data de criação em vez do id
+-- criação do procedure
+create or replace procedure mostrar_nome_data_ultimo()
+language plpgsql
+
+as $$
+
+declare
+-- declaração da variável record
+    resulte record;
+
+begin
+
+
+-- select onde será guardada a informação na variável resulte
+    select p.*, t.nome into strict resulte from scan_ponto_interesse p
+    inner join utilizador t on p.visitante_id = t.id
+    where p.created_at = (select max(created_at) from scan_ponto_interesse)
+	limit 1;
+
+-- impressão do resultado requerido anteriormente
+    raise notice 'Data: %, Utilizador: %', resulte.created_at, resulte.nome;
+
+-- verificação de dados e erros
+    exception
+        when no_data_found then
+        raise exception 'Não existem dados';
+        when others then 
+        raise exception 'Existem erros';
+		
+end$$;
+call mostrar_nome_data_ultimo();
+
+
 
 --------------------------------------------------------------------------------
 -- Triggers

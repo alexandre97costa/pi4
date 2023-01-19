@@ -15,7 +15,7 @@ export default function CardReservas(props) {
                     </div>
 
                     <div className='col-7 text-end'>
-                        <Botao to="/agente-turistico/lista-utilizadores" className="btn-outline-success btn-sm me-2 mb-3"  texto="Lista de reservas"/>
+                        <Botao to="/admin/lista-utilizadores" className="btn-outline-success btn-sm me-2 mb-5"  texto="Lista de reservas"/>
                     </div>
                     
                 </div>

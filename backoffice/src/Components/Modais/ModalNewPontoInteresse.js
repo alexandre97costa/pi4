@@ -78,9 +78,9 @@ export default function ModalNewPontoInteresse(props) {
 
                                 <Input className="input-group mt-4" id="localizacao" placeholder="Morada" onchange={(value) => setLocalizacao(value.target.value)} />
 
-                                <Input className="input-group mt-4" id="codigoPostal" placeholder="Código Postal" onchange={(value) => setCP(value.target.value)} />
+                                <Input className="input-group mt-4" id="codigoPostal" type="number" placeholder="Código Postal" onchange={(value) => setCP(value.target.value)} />
 
-                                <Input className="input-group mt-4" id="contacto" placeholder="Contacto" onchange={(value) => setContacto(value.target.value)} />
+                                <Input className="input-group mt-4" id="contacto" type="number" placeholder="Contacto" onchange={(value) => setContacto(value.target.value)} />
 
                                 <Input className="input-group mt-4" id="numeroPontos" type="number" placeholder="Número de Pontos" onchange={(value) => setPontos(value.target.value)} />
 
