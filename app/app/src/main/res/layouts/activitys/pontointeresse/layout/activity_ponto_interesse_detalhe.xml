@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -180,16 +181,18 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-                <LinearLayout
-                    android:id="@+id/linearLayoutEventos"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayoutEventos"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="130dp"
                     android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
+                    app:tabMode="scrollable"
+                    app:tabIndicator="@null"
+                    tools:ignore="SpeakableTextPresentCheck"
+                    tools:viewBindingIgnore="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/constraintEvento" />
+                    app:layout_constraintTop_toBottomOf="@+id/constraintEvento"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout13"
@@ -198,7 +201,7 @@
                     android:layout_marginTop="32dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayoutEventos">
+                    app:layout_constraintTop_toBottomOf="@+id/tabLayoutEventos">
 
                     <ImageView
                         android:id="@+id/imageView6"
@@ -261,13 +264,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:scrollbars="none"
-                    android:smoothScrollbar="true"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    android:nestedScrollingEnabled="false"
-                    android:orientation="vertical" />
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout13" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
