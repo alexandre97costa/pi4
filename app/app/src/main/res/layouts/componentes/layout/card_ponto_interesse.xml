@@ -62,7 +62,7 @@
                         <!-- Title, secondary and supporting text -->
 
                         <TextView
-                            android:id="@+id/textViewPontoInteresse"
+                            android:id="@+id/pontoInteresse"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/open_sans_semibold"
@@ -71,7 +71,7 @@
                             android:textSize="20sp" />
 
                         <TextView
-                            android:id="@+id/textViewCategoria"
+                            android:id="@+id/categoria"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
@@ -82,7 +82,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/textViewLocal"
+                            android:id="@+id/local"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
@@ -99,7 +99,7 @@
                         android:layout_marginEnd="16dp">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:id="@+id/textViewRating"
+                            android:id="@+id/points"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintEnd_toEndOf="parent"

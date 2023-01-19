@@ -14,6 +14,7 @@
         android:layout_height="100dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="4dp"
         android:background="@color/whiteTranparent"
         android:elevation="5dp"
         app:cardCornerRadius="12dp"
@@ -94,7 +95,7 @@
 
 
                     <TextView
-                        android:id="@+id/textViewTituloRecompensa"
+                        android:id="@+id/recompensa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
@@ -104,7 +105,7 @@
                         android:theme="@style/tittle_principal_black" />
 
                     <TextView
-                        android:id="@+id/textViewCategoriaRecompensa"
+                        android:id="@+id/categoria"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"

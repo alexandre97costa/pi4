@@ -61,14 +61,14 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textViewNomePontoInteresse"
+                    android:id="@+id/pontoInteresse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Jardim das Mães"
                     android:theme="@style/tittle_principal_black" />
 
                 <TextView
-                    android:id="@+id/texViewCategoria"
+                    android:id="@+id/categoria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
@@ -78,7 +78,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textViewLocal"
+                    android:id="@+id/local"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
