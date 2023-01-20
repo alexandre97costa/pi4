@@ -1,4 +1,6 @@
 export const menu = [
+
+    
     // agente turistico
     [
         {
@@ -7,18 +9,18 @@ export const menu = [
             icon: "speedometer2"
         },
         {
-            text: "/agente-turistico/ponto-interesse",
-            path: "/2",
+            text: "Pontos de Interesse",
+            path: "/pontos-interesse",
             icon: "geo-alt"
         },
         {
             text: "Eventos",
-            path: "/agente-turistico/eventos",
+            path: "/eventos",
             icon: "calendar4-event"
         },
         {
             text: "Recompensas",
-            path: "/agente-turistico/recompensas",
+            path: "recompensas",
             icon: "gift"
         }
     ],
@@ -69,22 +71,22 @@ export const menu = [
         },
         {
             text: "Pontos de Interesse",
-            path: "/3",
+            path: "/pontos-interesse",
             icon: "geo-alt"
         },
         {
             text: "Eventos",
-            path: "/4",
+            path: "/eventos",
             icon: "calendar4-event"
         },
         {
             text: "Recompensas",
-            path: "/6",
+            path: "/recompensas",
             icon: "gift"
         },
         {
             text: "Microsite",
-            path: "admin/microsite",
+            path: "/admin/microsite",
             icon: "gift"
         }
     ]

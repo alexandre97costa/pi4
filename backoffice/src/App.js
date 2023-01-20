@@ -284,7 +284,7 @@ export default function App() {
           }
         />
         <Route
-          path="/agente-turistico/ponto-interesse"
+          path="/pontos-interesse"
           element={
             <ProtectedRoute>
               <Pagina title="Lista Pontos Interesse">
@@ -306,7 +306,7 @@ export default function App() {
         />
 
         <Route
-          path="/agente-turistico/ponto-interesse-details"
+          path="/ponto-interesse-details"
           element={
             <ProtectedRoute>
               <Pagina title="Ponto Interesse">
@@ -317,7 +317,7 @@ export default function App() {
         />
 
         <Route
-          path="/agente-turistico/eventos"
+          path="/eventos"
           element={
             <ProtectedRoute>
               <Pagina title="Eventos">
@@ -328,7 +328,7 @@ export default function App() {
         />
 
         <Route
-          path="/agente-turistico/recompensas"
+          path="/recompensas"
           element={
             <ProtectedRoute>
               <Pagina title="Recompensas">

@@ -40,7 +40,8 @@ export default function Home() {
         "89",
         "46"
     ]
-
+    
+    
     const datasets = [{
         label: "Utilizadores",
         data: dataUtilizadores,
@@ -75,7 +76,7 @@ export default function Home() {
                 </div>
 
                 <div className='col-4 col-md-2'>
-                    <BotaoDashboard to="/microsite" colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Página Web"/>
+                    <BotaoDashboard to="/admin/microsite" colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Página Web"/>
                 </div>
 
                 <div className='col-4 col-md-2'>
@@ -87,15 +88,15 @@ export default function Home() {
                 </div>
 
                 <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-2 text-center'>
-                    <BotaoDashboard to="/utilizadores" colorBotao="btn-agentes h-100 text-white fw-bold py-5 w-100 h-100" texto="Agentes Turísticos"/>
+                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-agentes h-100 text-white fw-bold py-5 w-100 h-100" texto="Agentes Turísticos"/>
                 </div>
 
                 <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-2 text-center'>
-                    <BotaoDashboard to="/utilizadores" colorBotao="btn-regiao h-100 text-white fw-bold py-5 w-100 h-100" texto="Responsáveis de Região"/>
+                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-regiao h-100 text-white fw-bold py-5 w-100 h-100" texto="Responsáveis de Região"/>
                 </div>
 
                 <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-2 text-center'>
-                    <BotaoDashboard to="/utilizadores" colorBotao="btn-primary h-100 text-white fw-bold py-5 w-100 h-100" texto="Visitantes"/>
+                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-primary h-100 text-white fw-bold py-5 w-100 h-100" texto="Visitantes"/>
                 </div>
 
                 <div className='col-12 mt-5'>
