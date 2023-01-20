@@ -1,26 +1,131 @@
 package pi4.main.Classes
 
-class Utilizador() {
-    var nome: String = ""
-    var email: String = ""
-    var pontos: String = ""
+class Utilizador(
+    id: String,
+    nome: String,
+    email: String,
+    pontos: String
+) {
+    private var id: String
+    private var nome: String
+    private var email: String
+    private var pontos: String
+    //Criação das listas
     var listaHistoricoPontos: ArrayList<HistoricoPontos> = arrayListOf()
+    var listaHistoricoVisitas: ArrayList<HistoricoVisitas> = arrayListOf()
+    var listaHistoricoReservas: ArrayList<HistoricoReservas> = arrayListOf()
+    var listaRecompensasJaResgatadas: ArrayList<Recompensa> = arrayListOf()
 
+    //TEMOS SEMPRE DE AO CHAMAR A CLASS MANDAR ESTE ELEMENTOS
     init {
-        //Mudar!!!!!!! temos de tirar isto se n vai estar sempre a fazer pedidos api
-        getUtilizador(1)
+        this.id = id
+        this.nome = nome
+        this.email = email
+        this.pontos = pontos
     }
 
-    //Fazer o pedido api
-    fun getUtilizador(id: Int) {
-        this.nome = "Rúben Cabelos"
-        this.email = "rubenzinho@gmail.com"
-        this.pontos = "50"
+    //GET VARIAVEIS SENSIVEIS DO UTILIZADOR
+    fun getId(): String {
+        return this.id
+    }
+    fun getNome(): String {
+        return this.nome
+    }
+
+    fun getEmail(): String {
+        return this.email
+    }
+
+    fun getPontos(): String {
+        return this.pontos
+    }
+
+    //SET VARIAVEIS SENSIVEIS DO UTILIZADOR
+    fun setNome(nome: String) {
+        this.nome = nome
+    }
+
+    fun setEmail(email: String) {
+        this.email = email
+    }
+
+    //PEDIDO API
+    fun getUtilizador(id: String) {
+        //Pedido API do utilizador
+    }
+
+    fun getRecompensasJaResgatadas(id: String) {
+        //limpar arrayList antes de fazer um pedido API
+        listaRecompensasJaResgatadas.clear()
+
+        //exemplo de pedido API
+        this.listaRecompensasJaResgatadas.add(
+            Recompensa(
+                "1",
+                "Café frio",
+                "Este café vale ZERO",
+                "59",
+                "Comércio"
+            )
+        )
+    }
+
+    fun getHistocoReservas(id: String) {
+        //Limpar o arrayList antes de fazer um novo pedido API
+        listaHistoricoReservas.clear()
+
+        //Exemplo de pedido API
+        this.listaHistoricoReservas.add(
+            HistoricoReservas(
+                "Jocas",
+                "valido",
+                "24/12/2022"
+            )
+        )
+        this.listaHistoricoReservas.add(
+            HistoricoReservas(
+                "José",
+                "pendente",
+                "19/01/2023"
+            )
+        )
+    }
+
+    fun getListaHistoricoVisitas(id: String) {
+        //limpar o arrayList antes de um novo pedido API
+        listaHistoricoVisitas.clear()
+
+        //exemplo de pedido API
+        this.listaHistoricoVisitas.add(
+            HistoricoVisitas(
+                "1",
+                "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/aa/c9/2d/camara-municipal-de-viseu.jpg?w=1200&h=-1&s=1",
+                "Camara de Viseu",
+                "Rossio",
+                "Museu"
+            )
+        )
+        this.listaHistoricoVisitas.add(
+            HistoricoVisitas(
+                "2",
+                "https://upload.wikimedia.org/wikipedia/commons/7/7c/Praia_da_Rocha%2C_Portim%C3%A3o_2.jpg",
+                "Praia da Rocha",
+                "Portimão",
+                "Praia"
+            )
+        )
+    }
+
+    fun getListaHistoricoPontos(id: String) {
+        //Limpar o arrayList antes de um pedido API
+        listaHistoricoPontos.clear()
+
+        //exemplo de pedido API
         this.listaHistoricoPontos.add(
             HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10", "positivo"
+                "Jardim das mães",
+                "24/12/2022",
+                "10", "positivo"
             ))
         this.listaHistoricoPontos.add(HistoricoPontos(
             "Jardim das mães",
@@ -34,78 +139,5 @@ class Utilizador() {
             "10",
             "negativo"
         ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-
     }
 }

@@ -1,5 +1,6 @@
 package pi4.main.Activitys.PontoInteresse
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.BaseAdapter
@@ -15,49 +16,37 @@ import pi4.main.Activitys.Evento.ActivityEventoDetalhe
 import pi4.main.Adapter.SetAdapterCardComentarios
 import pi4.main.Adapter.SetAdapterCardEvento
 import pi4.main.Adapter.SetAdapterCardRecompensa
+import pi4.main.Classes.Gestor
 import pi4.main.Classes.Points
 import pi4.main.Classes.PontoInteresse
 import pi4.main.Classes.StartActivitys
 import pi4.main.R
 
 class ActivityPontoInteresseDetalhe : AppCompatActivity() {
-    val pontoInteresse = PontoInteresse(
-        "",
-        "Jardim das mães",
-        "jardim da cidade",
-        "Um jardim muito bonito",
-        "Jardim",
-        "Viseu",
-        "17",
-        4.7f,
-        12,
-        "Joaquim",
-    )
+    private val gestor = Gestor()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ponto_interesse_detalhe)
 
-        loadPoints()
+        //Get Info Ponto interesse
+        getExtraIntent()
+
+        //Function de botões
+        previous()
+        maisComentarios()
+
+        //Carregar o valor dos pontos de interesse
+        loadPointsPontoInteresse()
+
+        //Carregar informação do ponto de interesse
         loadComentarios()
         loadEventos()
-        maisComentarios()
-        previous()
     }
 
-    private fun loadPoints() {
-        val textView = findViewById<TextView>(R.id.scoreUtilizador)
-
-        val pontos = Points(10, textView, this)
-
-        pontos.loadPontosPontoInteresse()
-    }
-
-
-    fun maisComentarios() {
-        val verMais = findViewById<TextView>(R.id.textViewVerMaisComentarios)
-
-        StartActivitys(this).textViewComentariosGoTo(verMais, ActivityComentarios(), pontoInteresse.nome)
+    fun getExtraIntent() {
+        val id = intent.getStringExtra("pontoInteresseId").toString()
+        gestor.getPontoInteresseId(id)
     }
 
     fun previous() {
@@ -66,30 +55,46 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
         StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 
+    fun loadPointsPontoInteresse() {
+        //Quantos pontos o utilizador ganha naquele sitio
+        val textView = findViewById<TextView>(R.id.scoreUtilizador)
+
+        val pontos = Points(gestor.pontoInteresse.getNumPontos().toInt(), textView, this)
+
+        pontos.loadPontosPontoInteresse()
+    }
+
+    fun maisComentarios() {
+        val verMais = findViewById<TextView>(R.id.textViewVerMaisComentarios)
+
+        startActivity(Intent(this, ActivityComentarios::class.java)
+            .putExtra("pontoInteresseId", gestor.pontoInteresse.getId()))
+    }
+
     fun loadComentarios() {
-        pontoInteresse.loadComentarios("1")
+        gestor.pontoInteresse.getLimitComentarios(gestor.pontoInteresse.getId())
 
         callAdatperComentario()
     }
 
     fun callAdatperComentario() {
-        val customAdapter = SetAdapterCardComentarios(this, pontoInteresse.listaComentarios)
+        //Mandamos aqui a lista de comentarios <pontoInteresse.listaComentarios>
+        val customAdapter = SetAdapterCardComentarios(this, gestor.pontoInteresse.listaComentarios)
         val linearLayout = findViewById<LinearLayout>(R.id.linearLayoutComentarios)
 
-        val limite = 3
-
-        for (i in 0..limite - 1)
+        for (i in 0..customAdapter.count - 1)
             linearLayout.addView(customAdapter.getView(i, linearLayout, linearLayout))
     }
 
     fun loadEventos() {
-        pontoInteresse.loadEventos("1")
+        gestor.pontoInteresse.getEventos(gestor.pontoInteresse.getId())
 
         callAdapterEvento()
     }
 
     fun callAdapterEvento() {
-        val customAdapter = SetAdapterCardEvento(this, pontoInteresse.listaEventos)
+        //Mandamos aqui a lista de comentarios <pontoInteresse.listaEventos>
+        val customAdapter = SetAdapterCardEvento(this, gestor.pontoInteresse.listaEventos)
         val tabLayout = findViewById<TabLayout>(R.id.tabLayoutEventos)
 
         for (i in 0..customAdapter.count - 1)

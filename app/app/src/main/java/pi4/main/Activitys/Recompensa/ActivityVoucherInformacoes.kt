@@ -32,7 +32,7 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
     private fun loadPoints() {
         val textView = findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(Utilizador().pontos.toInt(), textView, this).loadPontos()
+        //Points(Utilizador().pontos.toInt(), textView, this).loadPontos()
     }
 
     private fun verificarSeJaFoiResgatado(): Boolean {
@@ -59,15 +59,14 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
     fun confirmPoints() {
         val buttonResgatar = findViewById<Button>(R.id.btnResgatar)
 
-        if(Utilizador().pontos.toInt() < pointsVoucher) {
-            buttonResgatar.isEnabled = false
-            buttonResgatar.setBackgroundResource(R.drawable.shape_gray.toInt())
+        //if(Utilizador().pontos.toInt() < pointsVoucher) {
+            //buttonResgatar.isEnabled = false
+        // buttonResgatar.setBackgroundResource(R.drawable.shape_gray.toInt())
         }
     }
 
     fun previous() {
-        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+        //val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
 
-        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
+        //StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
-}

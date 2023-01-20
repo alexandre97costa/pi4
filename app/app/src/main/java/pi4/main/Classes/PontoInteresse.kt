@@ -1,6 +1,7 @@
 package pi4.main.Classes
 
 class PontoInteresse(
+    id: String,
     image_url:String,
     nome:String,
     morada: String,
@@ -9,25 +10,26 @@ class PontoInteresse(
     freguesia_municipio:String,
     num_pontos:String,
     avg_avaliacao:Float,
-    count_scans: Int,
     agente_turistico: String
 ) {
-    var id: String
-    var image_url:String
-    var nome:String
-    var morada: String
-    var descricao: String
-    var tipo_interesse:String
-    var freguesia_municipio:String
-    var num_pontos:String
-    var avg_avaliacao:Float
-    var count_scans:Int
-    var agente_turistico: String
+    private var id: String
+    private var image_url: String
+    private var nome: String
+    private var morada: String
+    private var descricao: String
+    private var tipo_interesse:String
+    private var freguesia_municipio:String
+    private var num_pontos: String
+    private var avg_avaliacao: Float
+    private var agente_turistico: String
+
+    //criação das listas
     var listaEventos: ArrayList<Eventos> = arrayListOf()
     var listaComentarios: ArrayList<Comentarios> = arrayListOf()
 
+    //TEMOS SEMPRE DE AO CHAMAR A CLASS MANDAR ESTE ELEMENTOS
     init {
-        this.id = "1"
+        this.id = id
         this.image_url = image_url
         this.nome = nome
         this.morada = morada
@@ -36,18 +38,63 @@ class PontoInteresse(
         this.freguesia_municipio = freguesia_municipio
         this.num_pontos = num_pontos
         this.avg_avaliacao = avg_avaliacao
-        this.count_scans = count_scans
         this.agente_turistico = agente_turistico
     }
 
-    fun loadEventos(pontoInteresseId: String) {
-        //pedido api
+    //GET DADOS SENSIVEIS DO PONTO DE INTERESSE
+    fun getId(): String {
+        return this.id
+    }
+
+    fun getImageUrl(): String {
+        return this.image_url
+    }
+
+    fun getNome(): String {
+        return this.nome
+    }
+
+    fun getMorada(): String {
+        return this.morada
+    }
+
+    fun getDescricao(): String {
+        return this.descricao
+    }
+
+    fun getTipoInteresse(): String {
+        return this.tipo_interesse
+    }
+
+    fun getFreguesia(): String {
+        return this.freguesia_municipio
+    }
+
+    fun getNumPontos(): String {
+        return this.num_pontos
+    }
+
+    fun getAvgAvalicao(): Float {
+        return this.avg_avaliacao
+    }
+
+    fun getAgenteTuristico(): String {
+        return this.agente_turistico
+    }
+
+    //PEDIDOS API
+    fun getEventos(id: String) {
+        //limpar arrayList antes de fazer o pedido API
+        listaEventos.clear()
+
+        //exemplo pedido api
         this.listaEventos.add(
             Eventos(
                 "1",
             "Recital dos passaros",
                 "24/12/2022",
             "Uma cena muito secante",
+                "Rossio",
             20,
             26,
             3,
@@ -59,6 +106,7 @@ class PontoInteresse(
             "Recital dos cães",
             "22/01/2023",
             "Uma cena muito, muito secante",
+            "Rossio",
             15,
             22,
             1,
@@ -66,8 +114,17 @@ class PontoInteresse(
         ))
     }
 
-    fun loadComentarios(pontoInteresseId: String) {
-        //pedido api
+    fun getDetailsEvento(idEvento: String): Eventos {
+        //Fazer pedido API
+        //Exemplo de return
+        return listaEventos[idEvento.toInt()]
+    }
+
+    fun getAllComentarios(id: String) {
+        //Limpar arrayList antes de fazer um pedido API
+        listaComentarios.clear()
+
+        //exemplo pedido api
         this.listaComentarios.add(Comentarios(
             "Joaquim Sousa",
             "Um sitio incrivel",
@@ -87,6 +144,21 @@ class PontoInteresse(
             "Mara",
             "Um sitio para voltar",
             "3.2"
+        ))
+    }
+
+    fun getLimitComentarios(id: String) {
+        listaComentarios.clear()
+
+        this.listaComentarios.add(Comentarios(
+            "Joaquim Sousa",
+            "Um sitio incrivel",
+            "4.1"
+        ))
+        this.listaComentarios.add(Comentarios(
+            "Maria Amalia",
+            "Um sitio impecavel",
+            "4.9"
         ))
     }
 }

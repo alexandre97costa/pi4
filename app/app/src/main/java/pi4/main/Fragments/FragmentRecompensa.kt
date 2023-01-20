@@ -15,6 +15,7 @@ import pi4.main.Classes.*
 import pi4.main.R
 
 class FragmentRecompensa : Fragment() {
+    private val gestor = Gestor()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_recompensa, container, false)
@@ -24,9 +25,17 @@ class FragmentRecompensa : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         loadPoints()
+
         createCategoriasTab()
+
         buttonJaResgatado()
         callAdapterCards()
+    }
+
+    private fun loadPoints() {
+        val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
+
+        Points(gestor.utilizador.getPontos().toInt(), textView, requireContext()).loadPontos()
     }
 
     private fun buttonJaResgatado() {
@@ -40,12 +49,6 @@ class FragmentRecompensa : Fragment() {
         }
     }
 
-    private fun loadPoints() {
-        val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
-
-        Points(Utilizador().pontos.toInt(), textView, requireContext()).loadPontos()
-    }
-
     private fun createCategoriasTab() {
         val tab = requireView().findViewById<TabLayout>(R.id.includedMenuCategoria)
 
@@ -53,31 +56,9 @@ class FragmentRecompensa : Fragment() {
     }
 
     private fun callAdapterCards() {
-        val arrayFinal: ArrayList<Recompensa> = arrayListOf()
+        gestor.getAllRecompensas()
 
-        val objectExemplo = Recompensa(
-            pontos = "80",
-            recompensa = "Pizza Grátis",
-            categoria = "Restauração"
-        )
-
-        val objectExemplo2 = Recompensa(
-            pontos = "100",
-            recompensa = "Café Grátis com direito a tudo incluido",
-            categoria = "Comércio"
-        )
-
-        val objectExemplo3 = Recompensa(
-            pontos = "40",
-            recompensa = "Café Grátis com direito a tudo incluido",
-            categoria = "Comércio"
-        )
-
-        arrayFinal.add(objectExemplo)
-        arrayFinal.add(objectExemplo2)
-        arrayFinal.add(objectExemplo3)
-
-        val customAdapter = SetAdapterCardRecompensa(requireContext(), arrayFinal, false)
+        val customAdapter = SetAdapterCardRecompensa(requireContext(), gestor.listaRecompensa, false)
         val listView = requireView().findViewById<ListView>(R.id.listViewRecompensas)
         listView.adapter = customAdapter
     }

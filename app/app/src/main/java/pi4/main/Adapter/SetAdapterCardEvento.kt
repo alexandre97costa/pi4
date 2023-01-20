@@ -52,6 +52,6 @@ class SetAdapterCardEvento(private val context: Context, private val data:ArrayL
     }
 
     private fun addEventListener(id: String, cardView: CardView) {
-        StartActivitys(context).cardGoTo(cardView, ActivityEventoDetalhe())
+        StartActivitys(context).cardEventoGoTo(cardView, ActivityEventoDetalhe(), id)
     }
 }

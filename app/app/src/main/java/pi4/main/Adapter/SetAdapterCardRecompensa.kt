@@ -18,6 +18,8 @@ import pi4.main.R
 class SetAdapterCardRecompensa(private val context: Context, private val data:ArrayList<Recompensa>, private val jaResgatado: Boolean): BaseAdapter() {
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
+    private val gestor = Gestor()
+
     override fun getCount(): Int {
         return data.size
     }
@@ -41,7 +43,7 @@ class SetAdapterCardRecompensa(private val context: Context, private val data:Ar
         val recipe = getItem(position) as Recompensa
 
         Points(recipe.pontos.toInt(), pontos, context).loadPontosPontoInteresseCurto()
-        recompensa.text = recipe.recompensa
+        recompensa.text = recipe.nomeRecompesa
         categoria.text = recipe.categoria
 
         val card = rowView.findViewById<CardView>(R.id.cardViewRecompensa)
@@ -59,7 +61,7 @@ class SetAdapterCardRecompensa(private val context: Context, private val data:Ar
     }
 
     fun detectPointsUtilizador(rowView: View, background: ConstraintLayout, recompensa: TextView, categoria: TextView ,pontosRecompensa: Int): Boolean {
-        val pontosUtilizador = Utilizador().pontos.toInt()
+        val pontosUtilizador = gestor.utilizador.getPontos().toInt()
 
         if(pontosRecompensa > pontosUtilizador)
             return setLayoutColors(rowView, background, recompensa, categoria)

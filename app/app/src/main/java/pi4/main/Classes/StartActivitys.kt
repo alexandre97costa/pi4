@@ -52,6 +52,13 @@ class StartActivitys(context: Context) {
         }
     }
 
+    fun cardEventoGoTo(cardView: CardView, activity: Activity, eventoId: String) {
+        cardView.setOnClickListener {
+            context.startActivity(Intent(context, activity::class.java)
+                .putExtra("eventoId", eventoId))
+        }
+    }
+
     fun cardRecompensaGoTo(cardView: CardView, flag: Boolean ,activity: Activity) {
         cardView.setOnClickListener {
             context.startActivity(Intent(context, activity::class.java)

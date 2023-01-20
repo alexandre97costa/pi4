@@ -37,7 +37,7 @@ class SetAdapterCardHistoricoReservas(private val context: Context, private val 
 
         val recipe = getItem(position) as HistoricoReservas
 
-        tituloReserva.text = recipe.titulo
+        tituloReserva.text = recipe.nome
         dataReserva.text = recipe.data
         estadoReserva.text = recipe.estado
 
@@ -50,7 +50,7 @@ class SetAdapterCardHistoricoReservas(private val context: Context, private val 
 
         val linerLayout = rowView.findViewById<LinearLayout>(R.id.linearLayoutHistoricoReserva)
 
-        eventListener(linerLayout, recipe.titulo)
+        eventListener(linerLayout, recipe.nome)
 
         return rowView
     }

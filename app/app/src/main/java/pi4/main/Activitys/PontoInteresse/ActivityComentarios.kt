@@ -5,55 +5,47 @@ import android.os.Bundle
 import android.widget.ListView
 import android.widget.TextView
 import pi4.main.Adapter.SetAdapterCardComentarios
+import pi4.main.Classes.Gestor
 import pi4.main.Classes.Points
 import pi4.main.Classes.PontoInteresse
 import pi4.main.Classes.Utilizador
 import pi4.main.R
 
 class ActivityComentarios : AppCompatActivity() {
-    var pontoInteresseId: String = ""
-
-    val pontoInteresse = PontoInteresse(
-        "",
-        "Jardim das mães",
-        "jardim da cidade",
-        "Um jardim muito bonito",
-        "Jardim",
-        "Viseu",
-        "17",
-        4.7f,
-        12,
-        "Joaquim",
-    )
+    private val gestor = Gestor()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comentarios)
 
+        intentPutExtra()
         loadPoints()
-        pontoInteresseId = intentGet()
+
         getComentarios()
     }
 
     private fun loadPoints() {
         val textView = findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(Utilizador().pontos.toInt(), textView, this).loadPontos()
+        Points(gestor.utilizador.getPontos().toInt(), textView, this).loadPontos()
     }
 
 
-    fun intentGet(): String {
-        return intent.getStringExtra("pontoInteresseId").toString()
+    fun intentPutExtra() {
+        val id = intent.getStringExtra("pontoInteresseId").toString()
+
+        gestor.getPontoInteresseId(id)
     }
 
     fun getComentarios() {
         //pedido API
-        pontoInteresse.loadComentarios(pontoInteresseId)
+        gestor.pontoInteresse.getAllComentarios(gestor.pontoInteresse.getId())
+
         callAdapter()
     }
 
     fun callAdapter() {
-        val customAdapter = SetAdapterCardComentarios(this, pontoInteresse.listaComentarios)
+        val customAdapter = SetAdapterCardComentarios(this, gestor.pontoInteresse.listaComentarios)
         val listView = findViewById<ListView>(R.id.listViewComentarios)
         listView.adapter = customAdapter
     }

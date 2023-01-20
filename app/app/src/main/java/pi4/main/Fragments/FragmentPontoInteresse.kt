@@ -11,14 +11,12 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
-import pi4.main.Classes.PontoInteresse
 import pi4.main.R
 import pi4.main.Adapter.SetAdapterCard
-import pi4.main.Classes.CategoriaLista
-import pi4.main.Classes.Points
-import pi4.main.Classes.Utilizador
+import pi4.main.Classes.*
 
 class FragmentPontoInteresse() : Fragment() {
+    private val gestor = Gestor()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_ponto_interesse, container, false)
@@ -27,9 +25,10 @@ class FragmentPontoInteresse() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loadPoints()
+
         callAdapterCards("Todos")
         createCategoriasTab()
-        loadPoints()
         searchBar()
     }
 
@@ -57,7 +56,7 @@ class FragmentPontoInteresse() : Fragment() {
     private fun loadPoints() {
         val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(Utilizador().pontos.toInt(), textView, requireContext()).loadPontos()
+        Points(gestor.utilizador.getPontos().toInt(), textView, requireContext()).loadPontos()
     }
 
     private fun createCategoriasTab() {
@@ -69,24 +68,8 @@ class FragmentPontoInteresse() : Fragment() {
     private fun callAdapterCards(categoria:String) {
         //val arrayFinal: ArrayList<PontoInteresse> = stringRequestPontosInteresse(categoria)
 
-        var arrayFinal:ArrayList<PontoInteresse> = arrayListOf()
-
-        val objetoExemplo = PontoInteresse(
-            image_url = "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit",
-            nome = "Jardim das Mães",
-            morada =  "Largo Maj. Teles 6, 3500-212 Viseu",
-            descricao = "Um jardim muito bonito",
-            tipo_interesse = "Paisagem",
-            freguesia_municipio = "Viseu",
-            num_pontos = "10",
-            avg_avaliacao = 4.8f,
-            count_scans = 2,
-            agente_turistico = "José"
-        )
-
-        arrayFinal.add(objetoExemplo)
-
-        val customAdapter = SetAdapterCard(requireContext(), arrayFinal)
+        gestor.getPontosInteresseAPI()
+        val customAdapter = SetAdapterCard(requireContext(), gestor.listaPontosInteresse)
         val listView = requireView().findViewById<ListView>(R.id.listView)
         listView.adapter = customAdapter
 

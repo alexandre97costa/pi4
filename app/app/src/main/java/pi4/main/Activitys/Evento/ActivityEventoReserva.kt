@@ -9,21 +9,26 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import pi4.main.Classes.Points
-import pi4.main.Classes.StartActivitys
-import pi4.main.Classes.Utilizador
+import pi4.main.Classes.*
 import pi4.main.R
 
 class ActivityEventoReserva : AppCompatActivity() {
-    var numeroMaximoPessoas: Int? = null
+    private val gestor = Gestor() //O gestor contem as informações do utilizador
+    private lateinit var eventoDetails: Eventos
+    private lateinit var pontoInteresse: PontoInteresse
+    private var numeroMaximoPessoas: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_evento_reserva)
 
+        getIntentExtra()
+
         //+1 devido a margem de erro de 1
         numeroMaximoPessoas = 10 + 1
         numeroPessoas()
+
+        //Function buttons
         loadPoints()
         buttonReservar()
         previous()
@@ -32,7 +37,7 @@ class ActivityEventoReserva : AppCompatActivity() {
     private fun loadPoints() {
         val textView = findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(Utilizador().pontos.toInt(), textView, this).loadPontos()
+        Points(gestor.utilizador.getPontos().toInt(), textView, this).loadPontos()
     }
 
     //Vai buscar as informações sobre a reserva do cliente
@@ -40,16 +45,20 @@ class ActivityEventoReserva : AppCompatActivity() {
         val buttonReservar = findViewById<Button>(R.id.buttonReservar)
 
         buttonReservar.setOnClickListener {
-            val editTextNome = findViewById<EditText>(R.id.editTextTextNome)
-            val editTextTelefone = findViewById<EditText>(R.id.editTextTextTelefone)
-            val textViewNumeroPessoas = findViewById<TextView>(R.id.textViewNumeroPessoas)
-
-            Log.i("Nome:", editTextNome.text.toString())
-            Log.i("Telefone:", editTextTelefone.text.toString())
-            Log.i("NumeroPessoas:", textViewNumeroPessoas.text.toString())
+            postReservaAPI()
 
             startActivity(Intent(this, ActivityReservaEnviada::class.java))
         }
+    }
+
+    fun postReservaAPI() {
+        val editTextNome = findViewById<EditText>(R.id.editTextTextNome)
+        val editTextTelefone = findViewById<EditText>(R.id.editTextTextTelefone)
+        val textViewNumeroPessoas = findViewById<TextView>(R.id.textViewNumeroPessoas)
+
+        Log.i("Nome:", editTextNome.text.toString())
+        Log.i("Telefone:", editTextTelefone.text.toString())
+        Log.i("NumeroPessoas:", textViewNumeroPessoas.text.toString())
     }
 
     fun numeroPessoas() {
@@ -101,5 +110,22 @@ class ActivityEventoReserva : AppCompatActivity() {
         val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
 
         StartActivitys(this).floatingPreviousActivity(floatingButton, this)
+    }
+
+    fun getIntentExtra() {
+        eventoDetails = intent.getSerializableExtra("evento") as Eventos
+        pontoInteresse = intent.getSerializableExtra("pontoInteresse") as PontoInteresse
+
+        loadInfoEvento()
+    }
+
+    fun loadInfoEvento() {
+        val nomeEvento = findViewById<TextView>(R.id.textViewEvento)
+        val categoria = findViewById<TextView>(R.id.textViewCategoria)
+        val morada = findViewById<TextView>(R.id.textViewMorada)
+
+        nomeEvento.text = eventoDetails.nome
+        categoria.text = eventoDetails.tipoEvento
+        morada.text = pontoInteresse.getMorada()
     }
 }
