@@ -4,8 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import pi4.main.Classes.StartActivitys
 import pi4.main.MainActivity
 import pi4.main.R
 

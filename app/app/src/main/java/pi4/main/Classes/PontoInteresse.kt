@@ -83,7 +83,7 @@ class PontoInteresse(
     }
 
     //PEDIDOS API
-    fun getEventos(id: String) {
+    fun getEventos(id: String) { //id -> pontoInteresseId
         //limpar arrayList antes de fazer o pedido API
         listaEventos.clear()
 
@@ -114,10 +114,10 @@ class PontoInteresse(
         ))
     }
 
-    fun getDetailsEvento(idEvento: String): Eventos {
+    fun getDetailsEvento(eventoId: String): Eventos {
         //Fazer pedido API
         //Exemplo de return
-        return listaEventos[idEvento.toInt()]
+        return listaEventos[eventoId.toInt()]
     }
 
     fun getAllComentarios(id: String) {

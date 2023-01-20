@@ -5,14 +5,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import pi4.main.Classes.*
-import pi4.main.MainActivity
+import pi4.main.Classes.Eventos
+import pi4.main.Classes.Gestor
+import pi4.main.Classes.Points
+import pi4.main.Classes.StartActivitys
 import pi4.main.R
 
 class ActivityEventoDetalhe : AppCompatActivity() {
     private lateinit var eventoId: String
+    private lateinit var pontoInteresseId: String
     private lateinit var eventoDetails: Eventos
     private val gestor = Gestor()
 
@@ -51,7 +53,10 @@ class ActivityEventoDetalhe : AppCompatActivity() {
     }
 
     fun getDetailsEvento() {
-        eventoDetails = gestor.pontoInteresse.listaEventos[eventoId.toInt()]
+        //Load ponto Interesse para atualizar informação
+        gestor.getPontoInteresseId("1")
+
+        eventoDetails = gestor.pontoInteresse.getDetailsEvento(eventoId)
 
         loadInformacao()
     }

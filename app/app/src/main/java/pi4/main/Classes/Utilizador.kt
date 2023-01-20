@@ -70,25 +70,56 @@ class Utilizador(
         )
     }
 
+    fun getRecompensasJaResgatadasDetails(id: String): Recompensa {
+        getRecompensasJaResgatadas(this.id)
+
+        return listaRecompensasJaResgatadas[id.toInt()-1]
+    }
+
     fun getHistocoReservas(id: String) {
         //Limpar o arrayList antes de fazer um novo pedido API
         listaHistoricoReservas.clear()
 
+        val eventoTeste = Eventos(
+            "1",
+            "Recital das Aves",
+            "25/10/2022",
+            "Um recital seca",
+            "Rossio",
+            10,
+            2,
+            10,
+            "Comércio"
+        )
+
         //Exemplo de pedido API
         this.listaHistoricoReservas.add(
             HistoricoReservas(
-                "Jocas",
+                "1",
+                "Rubenzinho",
+                "910933857",
+                "2",
                 "valido",
-                "24/12/2022"
+                eventoTeste,
+                "1"
             )
         )
         this.listaHistoricoReservas.add(
             HistoricoReservas(
+                "2",
                 "José",
+                "910933857",
+                "10",
                 "pendente",
-                "19/01/2023"
+                eventoTeste,
+                "1"
             )
         )
+    }
+
+    fun getReservaDetails(id: String): HistoricoReservas {
+        //Pedido API
+        return listaHistoricoReservas[id.toInt() - 1]
     }
 
     fun getListaHistoricoVisitas(id: String) {
@@ -125,7 +156,8 @@ class Utilizador(
             HistoricoPontos(
                 "Jardim das mães",
                 "24/12/2022",
-                "10", "positivo"
+                "10",
+                "positivo"
             ))
         this.listaHistoricoPontos.add(HistoricoPontos(
             "Jardim das mães",

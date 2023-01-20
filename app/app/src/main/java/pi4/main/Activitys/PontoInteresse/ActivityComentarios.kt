@@ -7,8 +7,6 @@ import android.widget.TextView
 import pi4.main.Adapter.SetAdapterCardComentarios
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.Points
-import pi4.main.Classes.PontoInteresse
-import pi4.main.Classes.Utilizador
 import pi4.main.R
 
 class ActivityComentarios : AppCompatActivity() {

@@ -1,6 +1,7 @@
 package pi4.main.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
@@ -50,12 +51,12 @@ class SetAdapterCardRecompensa(private val context: Context, private val data:Ar
 
         if(jaResgatado == false)
             if(detectPointsUtilizador(rowView, background, recompensa, categoria, recipe.pontos.toInt()))
-                eventListener(card)
+                eventListener(card, recipe.id)
             else
                 pontosInsuficientes(card)
 
         if(jaResgatado == true)
-            eventListener(card)
+            eventListener(card, recipe.id)
 
         return rowView
     }
@@ -88,7 +89,11 @@ class SetAdapterCardRecompensa(private val context: Context, private val data:Ar
         }
     }
 
-    fun eventListener(cardView: CardView) {
-        StartActivitys(context).cardRecompensaGoTo(cardView, jaResgatado ,ActivityVoucherInformacoes())
+    fun eventListener(cardView: CardView, recompensaId: String) {
+        cardView.setOnClickListener {
+            context.startActivity(Intent(context, ActivityVoucherInformacoes::class.java)
+                .putExtra("flag", jaResgatado)
+                .putExtra("recompensaId", recompensaId))
+        }
     }
 }

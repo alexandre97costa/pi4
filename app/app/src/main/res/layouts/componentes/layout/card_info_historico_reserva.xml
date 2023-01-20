@@ -213,7 +213,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayoutLugares">
 
                 <ImageView
-                    android:id="@+id/imageViewIcon"
+                    android:id="@+id/imageViewIconEstado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -230,7 +230,7 @@
                     android:textColor="@color/yellow"
                     android:theme="@style/tittle_secundario_black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageViewIcon"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewIconEstado"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

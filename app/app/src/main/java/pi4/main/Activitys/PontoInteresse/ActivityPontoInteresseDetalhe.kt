@@ -3,22 +3,15 @@ package pi4.main.Activitys.PontoInteresse
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.BaseAdapter
+import android.util.Log
 import android.widget.LinearLayout
-import android.widget.ListView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.core.view.marginEnd
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
-import pi4.main.Activitys.Evento.ActivityEventoDetalhe
 import pi4.main.Adapter.SetAdapterCardComentarios
 import pi4.main.Adapter.SetAdapterCardEvento
-import pi4.main.Adapter.SetAdapterCardRecompensa
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.Points
-import pi4.main.Classes.PontoInteresse
 import pi4.main.Classes.StartActivitys
 import pi4.main.R
 
@@ -46,6 +39,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
     fun getExtraIntent() {
         val id = intent.getStringExtra("pontoInteresseId").toString()
+
         gestor.getPontoInteresseId(id)
     }
 
@@ -67,8 +61,10 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
     fun maisComentarios() {
         val verMais = findViewById<TextView>(R.id.textViewVerMaisComentarios)
 
-        startActivity(Intent(this, ActivityComentarios::class.java)
-            .putExtra("pontoInteresseId", gestor.pontoInteresse.getId()))
+        verMais.setOnClickListener{
+            startActivity(Intent(this, ActivityComentarios::class.java)
+                .putExtra("pontoInteresseId", gestor.pontoInteresse.getId()))
+        }
     }
 
     fun loadComentarios() {

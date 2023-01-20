@@ -2,8 +2,19 @@ package pi4.main.Classes
 
 class Gestor() {
     val utilizador: Utilizador
+    var pontoInteresse: PontoInteresse = PontoInteresse(
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        0f,
+        ""
+    )
     val listaPontosInteresse: ArrayList<PontoInteresse> = arrayListOf()
-    lateinit var pontoInteresse: PontoInteresse
     val listaRecompensa: ArrayList<Recompensa> = arrayListOf()
 
     init {
@@ -41,7 +52,7 @@ class Gestor() {
             "Um jardim lindo",
             "Paisagem",
             "Viseu",
-            "12",
+            "20",
             4.2f,
             "Roberto"
         ))
@@ -54,13 +65,14 @@ class Gestor() {
             "Um jardim lindo",
             "Paisagem",
             "Viseu",
-            "12",
+            "25",
             4.2f,
             "Roberto"
         ))
     }
 
     fun getPontoInteresseId(id: String) {
+        getPontosInteresseAPI()
         pontoInteresse = listaPontosInteresse[id.toInt()]
     }
 
@@ -76,17 +88,29 @@ class Gestor() {
             ))
         listaRecompensa.add(Recompensa(
             "2",
-            "Pizza Gratis",
+            "Café Gratis",
             "Pizza incrivel gratis",
             "100",
             "Restaurante",
         ))
         listaRecompensa.add(Recompensa(
             "3",
-            "Pizza Gratis",
+            "Cinema Gratis",
             "Pizza incrivel gratis",
             "10",
             "Restaurante",
         ))
+        listaRecompensa.add(Recompensa(
+            "4",
+            "Pizza Gratis",
+            "Pizza incrivel gratis",
+            "200",
+            "Restaurante",
+        ))
+    }
+
+    fun getRecompensaId(id: String): Recompensa {
+        getAllRecompensas()
+        return listaRecompensa[id.toInt() - 1]
     }
 }

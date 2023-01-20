@@ -2,6 +2,7 @@ package pi4.main.Activitys.Historico
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Classes.Gestor
@@ -11,6 +12,7 @@ import pi4.main.R
 class ActivityInfoHistoricoEvento : AppCompatActivity() {
     private val gestor = Gestor()
     private lateinit var eventoId: String
+    private lateinit var pontoInteresseId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,21 +30,19 @@ class ActivityInfoHistoricoEvento : AppCompatActivity() {
     }
 
     fun getPutExtra() {
-        eventoId = intent.getStringExtra("eventoId").toString()
+        pontoInteresseId = intent.getStringExtra("pontoInteresseId").toString()
+        eventoId = intent.getStringExtra("reservaId").toString()
     }
 
     fun callEventoDetails() {
         gestor.getUtilizadorAPI()
+        gestor.utilizador.getHistocoReservas(gestor.utilizador.getId())
 
-        for (i in 0..gestor.listaPontosInteresse.size)
-            for(j in 0..gestor.listaPontosInteresse[i].listaEventos.size)
-                if (gestor.listaPontosInteresse[i].listaEventos[j].id == eventoId) {
-                    loadInfo(j)
-                }
+        loadInfo()
     }
 
-    fun loadInfo(index: Int) {
-        val nome = findViewById<TextView>(R.id.textViewNomeEvento)
+    fun loadInfo() {
+        val nomeEvento = findViewById<TextView>(R.id.textViewNomeEvento)
         val categoria = findViewById<TextView>(R.id.textViewCategoria)
         val morada = findViewById<TextView>(R.id.textViewMorada)
         val nomeReserva = findViewById<TextView>(R.id.textViewNomeReserva)
@@ -51,8 +51,22 @@ class ActivityInfoHistoricoEvento : AppCompatActivity() {
         val hora = findViewById<TextView>(R.id.textViewhoras)
         val numeroPessoas = findViewById<TextView>(R.id.textViewLugares)
 
-        nome.text = gestor.utilizador.listaHistoricoReservas[index].nome
-        categoria.text = gestor.utilizador.
+        val estado = findViewById<TextView>(R.id.textViewEstado)
+        val iconEstado = findViewById<ImageView>(R.id.imageViewIconEstado)
 
+        if(gestor.utilizador.getReservaDetails(eventoId).getEstado() == "valido") {
+            estado.text = "Valido"
+            estado.setTextColor(R.color.greenPrincipal.toInt())
+            iconEstado.setImageResource(R.drawable.verified_40px)
+        }
+
+        nomeEvento.text = gestor.utilizador.getReservaDetails(eventoId).getEvento().nome
+        //categoria.text = gestor.utilizador.
+        morada.text = gestor.utilizador.getReservaDetails(eventoId).getEvento().morada
+        nomeReserva.text = gestor.utilizador.getReservaDetails(eventoId).getNome()
+        telefone.text = gestor.utilizador.getReservaDetails(eventoId).getTelefone()
+        data.text = gestor.utilizador.getReservaDetails(eventoId).getEvento().data
+        hora.text = gestor.utilizador.getReservaDetails(eventoId).getEvento().numHoras.toString()
+        numeroPessoas.text = gestor.utilizador.getReservaDetails(eventoId).getNumeroPessoas()
     }
 }
