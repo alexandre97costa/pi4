@@ -13,14 +13,15 @@ sequelize.sync(
 const { dev: devClass } = require('./_dev/dev')
 const dev = new devClass;
 
-const utilizadorRoutes = require('./routes/utilizador')
-const pontoInteresseRoutes = require('./routes/ponto_interesse')
-const eventoRoutes = require('./routes/evento')
-const reservaRoutes = require('./routes/reserva')
-const scanRoutes = require('./routes/scan')
-const recompensaRoutes = require('./routes/recompensa')
+const dev_routes = require('./routes/dev')
 
-const devRoutes = require('./routes/dev')
+const evento_routes = require('./routes/evento')
+const ponto_interesse_routes = require('./routes/ponto_interesse')
+const recompensa_routes = require('./routes/recompensa')
+const reserva_routes = require('./routes/reserva')
+const scan_routes = require('./routes/scan')
+const utilizador_routes = require('./routes/utilizador')
+const voucher_routes = require('./routes/voucher')
 
 //* Middlewares
 app.use(cors());
@@ -78,14 +79,15 @@ app.use(function (e, req, res, next) {
 });
 
 //* Rotas
-app.use('/utilizador', utilizadorRoutes)
-app.use('/pi', pontoInteresseRoutes)
-app.use('/evento', eventoRoutes)
-app.use('/reserva', reservaRoutes)
-app.use('/scan', scanRoutes)
-app.use('/recompensa', recompensaRoutes)
+app.use('/evento', evento_routes)
+app.use('/pi', ponto_interesse_routes)
+app.use('/recompensa', recompensa_routes)
+app.use('/reserva', reserva_routes)
+app.use('/scan', scan_routes)
+app.use('/utilizador', utilizador_routes)
+app.use('/voucher', voucher_routes)
 
-app.use('/dev', devRoutes)
+app.use('/dev', dev_routes)
 
 // Rota de Introdução
 app.use('/', (req, res) => {

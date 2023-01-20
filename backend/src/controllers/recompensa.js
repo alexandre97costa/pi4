@@ -44,7 +44,7 @@ module.exports = {
         const ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
 
         // * ordenação e paginação
-        const order = req.query?.order ?? 'nome'
+        const order = req.query?.order ?? 'titulo'
         const direction = req.query?.direction ?? 'asc'
         const offset = req.query?.offset ?? 0
         const limit = req.query?.limit ?? 0
@@ -68,7 +68,8 @@ module.exports = {
                 include: [
                     {
                         model: ponto_interesse_recompensa,
-                        required: true,
+                        as: 'pontos_aderentes',
+                        // required: true,
                         attributes: ['ponto_interesse_id'],
                         where: {
                             ponto_interesse_id: !!ponto_interesse_id ?
@@ -88,7 +89,7 @@ module.exports = {
             })
             .catch(error => {
                 res.status(400).json({ error })
-                dev.error(e)
+                dev.error({ error })
                 return
             })
 

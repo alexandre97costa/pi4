@@ -1,6 +1,6 @@
 
 var sequelize = require('../config/database')
-const { Op } = require("sequelize")
+const { Op, where } = require("sequelize")
 const { dev: devClass } = require('../_dev/dev')
 const dev = new devClass;
 // * Como usar o Op:
@@ -30,174 +30,121 @@ const {
 
 
 module.exports = {
-    // todo: estes controllers todos
-
     get: async (req, res) => {
-        /*
+
         // * filtros
-        let nome = req.query?.nome ?? '%'
-        let reserva_id = req.params?.id ?? 0
-        let visitante_id = req.query?.visitante_id ?? 0
-        let sessao_id = req.query?.sessao_id ?? 0
-        let evento_id = req.query?.evento_id ?? 0
-        let ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
-        let minPessoas = req.query?.minPessoas ?? 0
-        let maxPessoas = req.query?.maxPessoas ?? 0
-        let validado = !!(req.query?.validado ?? true)
-        let confirmado = !!(req.query?.confirmado ?? true)
+        const id = req.params?.id ?? 0
+        const visitante_id = req.query?.visitante_id ?? 0
+        const recompensa_id = req.query?.recompensa_id ?? 0
+        const tipo_interesse_id = req.query?.tipo_interesse_id ?? 0
+        const usado = !!req.query?.usado
 
         // * ordenação e paginação
-        let order = req.query?.order ?? 'nome'
-        let direction = req.query?.direction ?? 'asc'
-        let offset = req.query?.offset ?? 0
-        let limit = req.query?.limit ?? 0
+        const order = req.query?.order ?? 'id'
+        const direction = req.query?.direction ?? 'asc'
+        const offset = req.query?.offset ?? 0
+        const limit = req.query?.limit ?? 0
 
-        await reserva
+
+        await voucher
             .findAndCountAll({
                 where: {
-                    id: !!+reserva_id ?
-                        +reserva_id :
+                    id: !!+id ?
+                        +id :
                         { [Op.ne]: 0 },
-                    nome: {
-                        [Op.iLike]: '%' + nome + '%'
-                    },
-                    pessoas: !!maxPessoas ?
-                        { [Op.between]: [minPessoas, maxPessoas] } :
-                        { [Op.gte]: minPessoas },
-                    // os visitantes (tipo 1) só podem ver as suas próprias reservas
-                    visitante_id: (req.auth.tipo === 1) ?
-                        req.auth.id :
+                    visitante_id: !!+visitante_id ?
+                        +visitante_id :
                         { [Op.ne]: 0 },
-                    validado,
-                    confirmado,
+                    recompensa_id: !!+recompensa_id ?
+                        +recompensa_id :
+                        { [Op.ne]: 0 },
+                    data_usado: usado ?
+                        { [Op.ne]: null } :
+                        {
+                            [Op.or]: {
+                                [Op.ne]: null,
+                                [Op.eq]: null
+                            }
+                        },
                 },
                 include: [
                     {
-                        model: utilizador,
+                        model: recompensa,
                         required: true,
-                        attributes: ['nome'],
-                        where: {
-                            id: !!+visitante_id ?
-                                +visitante_id :
-                                { [Op.ne]: 0 }
-                        }
-                    }, {
-                        model: sessao,
-                        required: true,
-                        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
-                        where: {
-                            id: !!+sessao_id ?
-                                +sessao_id :
-                                { [Op.ne]: 0 }
-                        },
-                        include: {
-                            model: evento,
-                            required: true,
-                            attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
-                            where: {
-                                id: !!+evento_id ?
-                                    +evento_id :
-                                    { [Op.ne]: 0 }
-                            },
-                            include: {
-                                model: ponto_interesse,
+                        attributes: ['titulo', 'descricao', 'pontos', 'tipo_interesse_id'],
+                        include: [
+                            {
+                                model: tipo_interesse,
                                 required: true,
-                                attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
+                                attributes: ['nome'],
                                 where: {
-                                    id: !!+ponto_interesse_id ?
-                                        +ponto_interesse_id :
+                                    id: !!+tipo_interesse_id ?
+                                        +tipo_interesse_id :
                                         { [Op.ne]: 0 }
                                 }
+                            }, {
+                                model: ponto_interesse_recompensa,
+                                as: 'pontos_aderentes',
+                                attributes: ['ponto_interesse_id'],
+                                include: {
+                                    model: ponto_interesse,
+                                    as: 'ponto_interesse',
+                                    attributes: ['nome'],
+                                }
                             }
-                        }
+                        ]
+                    }, {
+                        model: utilizador,
+                        as: 'visitante',
+                        attributes: ['nome', 'email'],
                     }
                 ],
+                attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt'] },
                 order: [[order, direction]],
                 offset,
                 limit: !!limit ? limit : null
             })
             .then(output => {
-                // caso nao tenha encontrado reservas, 404
-                if (!output.count)
-                    return res.status(404).json({ msg: 'Não existem reservas que correspondam aos filtros solicitados' })
-
-                return res.status(200).json({ data: output.rows, count: output.count })
+                return !output.count ?
+                    res.status(404).json({ msg: 'Não existem vouchers que correspondam aos filtros solicitados.' }) :
+                    res.status(200).json({ data: output.rows, count: output.count })
             })
             .catch(error => {
-                res.status(400).json({ msg: 'Ocorreu um erro no pedido de reservas' })
+                res.status(400).json({ msg: 'Ocorreu um erro no pedido de reservas.' })
                 dev.error(error)
                 return
             })
-            */
     },
 
     post: async (req, res) => {
-        /*
+
         if (req.auth.tipo !== 1)
-            return res.status(401).json({ msg: 'Apenas visitantes podem colocar reservas' })
+            return res.status(401).json({ msg: 'Apenas visitantes podem resgatar vouchers.' })
 
-        // body tem que ter estes params
-        const required_params = [
-            'nome',
-            'pessoas',
-            'visitante_id',
-            'sessao_id',
-            'observacoes'
-        ]
-        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
-        if (!check_all_required)
-            return res.status(400).json({ msg: 'Faltam dados para poder criar a reserva.' })
+        // o voucher precisa de visitante + recompensa.
+        // o visitante vem no auth, a recompensa vem no body
 
-        const { nome, pessoas, visitante_id, sessao_id, observacoes } = req.body
+        if (!req.body.hasOwnProperty('recompensa_id'))
+            return res.status(400).json({ msg: 'É necessário o id da recompensa para resgatar um voucher.' })
 
-        await reserva
+        const { recompensa_id } = req.body
+
+        // verificar se a recompensa existe realmente
+        const _recompensa = await recompensa.findByPk(recompensa_id)
+        if (_recompensa === null)
+            return res.status(404).json({ msg: 'A recompensa fornecida não existe ou foi eliminada.' })
+
+        await voucher
             .create({
-                nome: nome,
-                pessoas: pessoas,
-                visitante_id: visitante_id,
-                sessao_id: sessao_id,
-                observacoes: observacoes
+                visitante_id: req.auth.id,
+                recompensa_id: recompensa_id,
+                pontos_gastos: _recompensa.pontos
             })
-            .then(output => { return res.status(200).json({ reserva: output }) })
+            .then(output => { return res.status(200).json({ voucher: output }) })
             .catch(error => {
                 res.status(400).json({ error })
                 dev.error(error)
                 return
             })
-            */
-    },
-
-    delete: async (req, res) => {
-        /*
-        // * 🚨 guard clauses
-        // tem que ser visitante, logo à partida
-        if (req.auth.tipo !== 1)
-            return res.status(401).json({ msg: 'Apenas visitantes podem eliminar reservas' })
-
-        const { id } = req.params
-        
-        // verificar se a reserva existe
-        const _reserva = await reserva.findByPk(+id)
-        if (_reserva === null)
-            return res.status(404).json({ msg: 'Essa reserva não existe' })
-
-        //só o dono da reserva é que pode eliminar
-        if (_reserva.dataValues.visitante_id !== req.auth.id)
-            return res.status(401).json({ msg: 'Não és o autor desta reserva' })
-
-        // ✅ tudo gucci, siga pra vinho
-        await _reserva
-            .destroy()
-            .then(output => {
-                return !output ?
-                    res.status(400).json({ msg: 'Reserva não eliminada' }) :
-                    res.status(200).json({ msg: 'Reserva eliminada' })
-            })
-            .catch(error => {
-                res.status(400).json({ error })
-                dev.error(error)
-                return
-            })
-            */
-    },
+    }
 }

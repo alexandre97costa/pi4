@@ -94,7 +94,7 @@ function applyExtraSetup(sequelize) {
     utilizador.hasMany(distrito, { foreignKey: 'responsavel_regiao_id' })
     utilizador.belongsTo(tipo_utilizador, { foreignKey: 'tipo_utilizador_id' })
 
-    voucher.belongsTo(utilizador, { foreignKey: 'visitante_id', onDelete: 'CASCADE' })
+    voucher.belongsTo(utilizador, { foreignKey: 'visitante_id', as: 'visitante', onDelete: 'CASCADE' })
     voucher.belongsTo(recompensa, { foreignKey: 'recompensa_id', onDelete: 'CASCADE' })
 
 }

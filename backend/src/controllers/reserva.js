@@ -116,15 +116,13 @@ module.exports = {
                 limit: !!limit ? limit : null
             })
             .then(output => {
-                // caso nao tenha encontrado reservas, 404
-                if (!output.count)
-                    return res.status(404).json({ msg: 'Não existem reservas que correspondam aos filtros solicitados' })
-
-                return res.status(200).json({ data: output.rows, count: output.count })
+                return !output.count ?
+                    res.status(404).json({ msg: 'Não existem reservas que correspondam aos filtros solicitados.' }) :
+                    res.status(200).json({ data: output.rows, count: output.count })
             })
             .catch(error => {
-                res.status(400).json({ msg: 'Ocorreu um erro no pedido de reservas' })
-                dev.error(error)
+                res.status(400).json({ msg: 'Ocorreu um erro no pedido de reservas.' })
+                dev.error({ error })
                 return
             })
     },
