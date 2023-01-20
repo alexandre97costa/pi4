@@ -37,7 +37,6 @@ module.exports = {
         const nome_desc = req.query?.nome_desc ?? '' // pesquisa nos dois
         const tipo_evento_id = req.query?.tipo_evento_id ?? 0
         const ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
-        const codigo_uuid = req.query?.codigo_uuid ?? ''
 
         // * ordenação e paginação
         const order = req.query?.order ?? 'nome'
@@ -58,12 +57,21 @@ module.exports = {
                         { [Op.ne]: 0 },
                     ponto_interesse_id: !!+ponto_interesse_id ?
                         ponto_interesse_id :
-                        { [Op.ne]: 0 },
-                    codigo_uuid: { [Op.iLike]: '%' + codigo_uuid + '%' },
+                        { [Op.ne]: 0 }
                 },
-                include: {
-                    all: true
-                },
+                include: [
+                    {
+                        model: tipo_evento,
+                        attributes: ['nome']
+                    }, {
+                        model: ponto_interesse,
+                        attributes: ['nome']
+                    }, {
+                        model: sessao,
+                        attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt', 'evento_id'] }
+                    }
+                ],
+                attributes: { exclude: ['codigo_uuid'] },
                 order: [[order, direction]],
                 offset: offset,
                 limit: !!limit ? limit : null,
