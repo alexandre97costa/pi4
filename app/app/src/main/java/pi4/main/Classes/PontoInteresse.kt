@@ -98,7 +98,8 @@ class PontoInteresse(
             20,
             26,
             3,
-            "Museu"
+            "Museu",
+                "1"
             )
         )
         this.listaEventos.add(Eventos(
@@ -110,14 +111,15 @@ class PontoInteresse(
             15,
             22,
             1,
-            "Museu"
+            "Museu",
+            "1"
         ))
     }
 
     fun getDetailsEvento(eventoId: String): Eventos {
         //Fazer pedido API
         //Exemplo de return
-        return listaEventos[eventoId.toInt()]
+        return listaEventos[eventoId.toInt() - 1]
     }
 
     fun getAllComentarios(id: String) {

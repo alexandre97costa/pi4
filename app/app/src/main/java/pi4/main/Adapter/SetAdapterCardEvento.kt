@@ -48,15 +48,16 @@ class SetAdapterCardEvento(private val context: Context, private val data:ArrayL
         data.text = recipe.data
         horas.text = "${recipe.numHoras}hrs"
 
-        addEventListener(recipe.id, card)
+        addEventListener(recipe.id, recipe.pontoInteresseId,card)
 
         return rowView
     }
 
-    private fun addEventListener(id: String, cardView: CardView) {
+    private fun addEventListener(id: String, pontoInteresseId: String, cardView: CardView) {
         cardView.setOnClickListener{
             context.startActivity(Intent(context, ActivityEventoDetalhe::class.java)
-                .putExtra("eventoId", id))
+                .putExtra("eventoId", id)
+                .putExtra("pontoInteresseId", pontoInteresseId))
         }
     }
 }

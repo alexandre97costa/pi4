@@ -50,11 +50,14 @@ class ActivityEventoDetalhe : AppCompatActivity() {
 
     fun getIntentExtra() {
         eventoId = intent.getStringExtra("eventoId").toString()
+        pontoInteresseId = intent.getStringExtra("pontoInteresseId").toString()
     }
 
     fun getDetailsEvento() {
         //Load ponto Interesse para atualizar informação
-        gestor.getPontoInteresseId("1")
+        gestor.getPontoInteresseId(pontoInteresseId)
+        //Load eventos todos daquele evento (isto ira sair)
+        gestor.pontoInteresse.getEventos(pontoInteresseId)
 
         eventoDetails = gestor.pontoInteresse.getDetailsEvento(eventoId)
 
@@ -73,7 +76,7 @@ class ActivityEventoDetalhe : AppCompatActivity() {
         descricao.text = eventoDetails.descricao
         Points(eventoDetails.numPontos, pontos, this).loadPontosPorExtenso()
         data.text = eventoDetails.data
-        horas.text = eventoDetails.numHoras.toString()
+        horas.text = "${eventoDetails.numHoras.toString()} hrs"
         lugares.text = eventoDetails.numVagas.toString()
     }
 }

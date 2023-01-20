@@ -89,7 +89,8 @@ class Utilizador(
             10,
             2,
             10,
-            "Comércio"
+            "Comércio",
+            "1"
         )
 
         //Exemplo de pedido API
