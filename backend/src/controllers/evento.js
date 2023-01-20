@@ -57,7 +57,8 @@ module.exports = {
                         { [Op.ne]: 0 },
                     ponto_interesse_id: !!+ponto_interesse_id ?
                         ponto_interesse_id :
-                        { [Op.ne]: 0 }
+                        { [Op.ne]: 0 },
+                    deletedAt: { [Op.eq]: null } // apenas eventos que não foram eliminados
                 },
                 include: [
                     {
