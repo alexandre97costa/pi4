@@ -46,6 +46,17 @@ module.exports = (sequelize) => {
                         msg: 'Precisa de ter mais de 13 anos para se resgistar.'
                     }
                 }
+            },
+            pontos: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0,
+                validate: {
+                    min: { 
+                        args: 0,
+                        msg: 'Os pontos não podem ser negativos.'
+                    }
+                }
             }
         },
         {

@@ -1,4 +1,4 @@
-var sequelize = require('../config/Database')
+var sequelize = require('../config/database')
 const { Op } = require('sequelize')
 const { dev: devClass } = require('../_dev/dev');
 const dev = new devClass;
@@ -16,21 +16,21 @@ const {
 
 module.exports = {
     anonymousScan: async (req, res) => {
-        res.status(200).json(req.params.codigo)
-        // res.status(302).redirect('https://google.com')
+        // !
+        // todo: mudar o redirect
+        res.status(302).redirect('https://google.com')
     },
 
     scan_ponto_interesse: async (req, res) => {
         // Não permitir scans de utilizadores que não sejam visitantes
         if (req.auth.tipo !== 1)
-            return res.status(401).json('Só visitantes é que podem carimbar Pontos de Interesse')
-
+            return res.status(401).json({ msg: 'Apenas visitantes podem carimbar pontos de interesse.' })
 
         const pi = await ponto_interesse.findOne({ where: { codigo_uuid: req.params.codigo } })
 
         // não encontrou o PI
         if (pi === null)
-            return res.status(404).json('Esse Ponto de Interesse não existe. Talvez tenha sido eliminado?')
+            return res.status(404).json({ msg: 'Esse ponto de interesse não existe ou foi eliminado.' })
 
         const u = await utilizador.findOne({ where: { email: req.auth.email } })
 
@@ -39,7 +39,7 @@ module.exports = {
             .create({
                 visitante_id: u.id,
                 ponto_interesse_id: pi.id,
-                pontos_recebidos: pi.num_pontos,
+                pontos_recebidos: pi.pontos,
             })
             .then(data => res.status(200).json(data))
             .catch(e => res.status(400).json(e))
@@ -58,27 +58,27 @@ module.exports = {
 
         // o scan foi feito fora de horas?
         // - apanhamos as sessoes todas do evento
-        // - calculamos o intervalo de horas (com o ev.num_horas)
+        // - calculamos o intervalo de horas (com o ev.horas_duracao)
         // - comparamos com a data atual
 
         const sessoes = await sessao.findAll({ where: { evento_id: ev.id } })
 
         // se nao houver sessoes para o evento
         if (!sessoes.length)
-            return res.status(400).json('Esse Evento não tem sessões, logo não pode ser carimbado.')
+            return res.status(400).json({ msg: 'Esse Evento não tem sessões, logo não pode ser carimbado.' })
 
         let dentroDeUmaSessao = false
         sessoes.forEach(sessao => {
             let agora = new Date()
             let inicio_sessao = sessao.dataValues.data_hora
-            let fim_sessao = new Date(new Date(inicio_sessao).setHours(inicio_sessao.getHours() + ev.num_horas))
+            let fim_sessao = new Date(new Date(inicio_sessao).setHours(inicio_sessao.getHours() + ev.horas_duracao))
 
             if (inicio_sessao <= agora && fim_sessao >= agora)
                 dentroDeUmaSessao = true
         })
 
         if (!dentroDeUmaSessao)
-            return res.status(400).json('Não está a decorrer nenhuma sessão para este evento')
+            return res.status(400).json({ msg: 'Não está a decorrer nenhuma sessão para este evento.' })
 
         const u = await utilizador.findOne({ where: { email: req.auth.email } })
 
@@ -86,10 +86,13 @@ module.exports = {
             .create({
                 visitante_id: u.id,
                 evento_id: ev.id,
-                pontos_recebidos: ev.num_pontos
+                pontos_recebidos: ev.pontos
             })
             .then(data => res.status(200).json(data))
             .catch(e => res.status(400).json(e))
 
     },
+
+    // todo: historico de pontos de interesse
+
 }

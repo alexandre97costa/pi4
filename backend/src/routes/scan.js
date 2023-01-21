@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const scanControllers = require('../controllers/scanControllers')
+const scanControllers = require('../controllers/scan')
 
 // * para quando se faz scan fora da app
 router.get('/i/:codigo', scanControllers.anonymousScan)
