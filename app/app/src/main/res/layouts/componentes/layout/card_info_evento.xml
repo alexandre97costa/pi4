@@ -39,7 +39,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/categoria"
+                android:id="@+id/textViewDescricao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -56,20 +56,20 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/categoria">
+                app:layout_constraintTop_toBottomOf="@+id/textViewDescricao">
 
                 <ImageView
                     android:id="@+id/imageView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView11"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewPontos"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/wallet" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/textViewPontos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -102,7 +102,7 @@
                     app:srcCompat="@drawable/calendar" />
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/textViewData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -133,7 +133,7 @@
                     app:srcCompat="@drawable/clock" />
 
                 <TextView
-                    android:id="@+id/textViewhoras"
+                    android:id="@+id/textViewHoras"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -163,7 +163,7 @@
                     app:srcCompat="@drawable/chair" />
 
                 <TextView
-                    android:id="@+id/textViewLogares"
+                    android:id="@+id/textViewLugares"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"

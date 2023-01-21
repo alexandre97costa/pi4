@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.*
 import com.google.android.material.card.MaterialCardView
 import com.squareup.picasso.Picasso
 import pi4.main.Activitys.PontoInteresse.ActivityPontoInteresseDetalhe
@@ -49,23 +50,26 @@ class SetAdapterCard(private val context: Context, private val data:ArrayList<Po
         //Elemento do array
         val recipe = getItem(position) as PontoInteresse
 
-        Picasso.get().load(recipe.image_url).into(imagemPontoInteresse)
-        imagemPontoInteresse.contentDescription = recipe.nome
-        pontoInteresse.text = recipe.nome
-        categoria.text = recipe.tipo_interesse
-        local.text = recipe.freguesia_municipio
-        rating.text = recipe.avg_avaliacao.toString()
+        Picasso.get().load(recipe.getImageUrl()).into(imagemPontoInteresse)
+        imagemPontoInteresse.contentDescription = recipe.getNome()
+        pontoInteresse.text = recipe.getNome()
+        categoria.text = recipe.getTipoInteresse()
+        local.text = recipe.getFreguesia()
+        rating.text = recipe.getAvgAvalicao().toString()
 
-        Points(recipe.num_pontos.toInt(), score, context).loadPontosPontoInteresse()
+        Points(recipe.getNumPontos().toInt(), score, context).loadPontosPontoInteresse()
 
         val card = rowView.findViewById<MaterialCardView>(R.id.card)
 
-        eventListener(card, recipe.nome)
+        eventListener(card, recipe.getId())
 
         return rowView
     }
 
-    fun eventListener(cardView: CardView, mensagem:String) {
-        StartActivitys(context).cardGoTo(cardView, ActivityPontoInteresseDetalhe())
+    fun eventListener(cardView: CardView, id: String) {
+        cardView.setOnClickListener {
+            context.startActivity(Intent(context, ActivityPontoInteresseDetalhe::class.java)
+                .putExtra("pontoInteresseId", id))
+        }
     }
 }

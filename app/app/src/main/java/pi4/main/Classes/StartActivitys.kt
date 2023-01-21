@@ -39,9 +39,30 @@ class StartActivitys(context: Context) {
         }
     }
 
+    fun textViewComentariosGoTo(textView: TextView, activity: Activity, pontoInteresseId: String) {
+        textView.setOnClickListener {
+            context.startActivity(Intent(context, activity::class.java)
+                .putExtra("pontoInteresseId", pontoInteresseId))
+        }
+    }
+
     fun cardGoTo(cardView: CardView, activity: Activity) {
         cardView.setOnClickListener {
             context.startActivity(Intent(context, activity::class.java))
+        }
+    }
+
+    fun cardEventoGoTo(cardView: CardView, activity: Activity, eventoId: String) {
+        cardView.setOnClickListener {
+            context.startActivity(Intent(context, activity::class.java)
+                .putExtra("eventoId", eventoId))
+        }
+    }
+
+    fun cardRecompensaGoTo(cardView: CardView, flag: Boolean ,activity: Activity) {
+        cardView.setOnClickListener {
+            context.startActivity(Intent(context, activity::class.java)
+                .putExtra("flag", flag))
         }
     }
 

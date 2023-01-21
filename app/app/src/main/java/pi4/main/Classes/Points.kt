@@ -20,12 +20,23 @@ class Points(pontos: Int, textView: TextView, context: Context) {
         startActivityHistorico()
     }
 
+    fun loadPontosPorExtenso() {
+        textView.setText("$pontos pontos")
+    }
+
     fun loadPontosPontoInteresse() {
         textView.setText("$pontos pts")
     }
 
     fun loadPontosPontoInteresseCurto() {
         textView.setText("$pontos")
+    }
+
+    fun loadPontosPontoInteresseHistorico(sentido: String) {
+        if(sentido == "positivo")
+            return textView.setText("+$pontos pts")
+
+        textView.setText("-$pontos pts")
     }
 
     private fun startActivityHistorico() {

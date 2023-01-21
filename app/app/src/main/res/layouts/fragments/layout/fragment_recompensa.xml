@@ -15,8 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pizza"
-        android:scaleType="centerCrop"/>
+        app:srcCompat="@drawable/malas"
+        android:scaleType="center"/>
 
     <include
         layout="@layout/background_degrade"
@@ -26,8 +26,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteX="-118dp"
+        tools:layout_editor_absoluteY="46dp">
 
         <include
             android:id="@+id/include"
@@ -55,7 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:layout_marginEnd="26dp"
+            android:layout_marginEnd="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -63,12 +63,24 @@
                 android:id="@+id/iconJaResgatado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/history"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/pastasmall_fill"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/iconJaResgatado2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/circulo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/greenPrincipal" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <include
@@ -101,6 +113,7 @@
                 android:divider="@null"
                 android:dividerHeight="10dp"
                 android:fadeScrollbars="false"
+                android:scrollbars="none"
                 android:smoothScrollbar="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -108,6 +121,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -12,7 +12,7 @@
         android:layout_marginStart="40dp"
         app:cardCornerRadius="14dp"
         app:cardElevation="10dp"
-        app:contentPadding="10dp"
+        app:contentPadding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,7 +27,6 @@
                 android:id="@+id/textViewNomeEvento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Recital das Aves"
                 android:theme="@style/tittle_principal_black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +72,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textViewMorada" />
 
             <TextView
-                android:id="@+id/textViewNomeAgenteTurisitico"
+                android:id="@+id/textViewNomeReserva"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -94,7 +93,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewNomeAgenteTurisitico" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewNomeReserva" />
 
             <TextView
                 android:id="@+id/textViewNumeroTelefone"
@@ -130,7 +129,7 @@
                     app:srcCompat="@drawable/calendar" />
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/textViewData"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -213,7 +212,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayoutLugares">
 
                 <ImageView
-                    android:id="@+id/imageViewIcon"
+                    android:id="@+id/imageViewIconEstado"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -230,7 +229,7 @@
                     android:textColor="@color/yellow"
                     android:theme="@style/tittle_secundario_black"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageViewIcon"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewIconEstado"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 

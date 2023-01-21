@@ -1,6 +1,7 @@
 package pi4.main.Adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,27 +38,30 @@ class SetAdapterCardHistoricoReservas(private val context: Context, private val 
 
         val recipe = getItem(position) as HistoricoReservas
 
-        tituloReserva.text = recipe.titulo
-        dataReserva.text = recipe.data
-        estadoReserva.text = recipe.estado
+        tituloReserva.text = recipe.getNome()
+        dataReserva.text = recipe.getEvento().data
+        estadoReserva.text = recipe.getEstado()
 
-        if(recipe.estado === "pendente")
+        if(recipe.getEstado() === "pendente")
             rowView.setBackgroundResource(R.drawable.shape_yellow)
-        if(recipe.estado === "rejeitado")
+        if(recipe.getEstado() === "rejeitado")
             rowView.setBackgroundResource(R.drawable.shape_red)
-        if(recipe.estado === "valido")
+        if(recipe.getEstado() === "valido")
             rowView.setBackgroundResource(R.drawable.shape_green)
 
         val linerLayout = rowView.findViewById<LinearLayout>(R.id.linearLayoutHistoricoReserva)
 
-        eventListener(linerLayout, recipe.titulo)
+        eventListener(linerLayout, recipe.getId(), recipe.getPontoInteresseId())
 
         return rowView
     }
 
-    fun eventListener(linerLayout: LinearLayout, mensagem:String) {
-        val startActivity = StartActivitys(context)
+    fun eventListener(linerLayout: LinearLayout, reservaId:String, pontoInteresseId: String) {
+        linerLayout.setOnClickListener{
+            context.startActivity(Intent(context, ActivityInfoHistoricoEvento::class.java)
+                .putExtra("pontoInteresseId", pontoInteresseId)
+                .putExtra("reservaId", reservaId))
+        }
 
-        startActivity.LinearLayoutGoTo(linerLayout, ActivityInfoHistoricoEvento())
     }
 }
