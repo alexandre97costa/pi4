@@ -15,8 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/pizza"
-        android:scaleType="centerCrop"/>
+        app:srcCompat="@drawable/malas"
+        android:scaleType="center"/>
 
     <include
         layout="@layout/background_degrade"
@@ -26,10 +26,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteX="-118dp"
+        tools:layout_editor_absoluteY="46dp">
 
         <include
+            android:id="@+id/include"
             layout="@layout/card_pontos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,12 +50,46 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutJaResgatado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iconJaResgatado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/pastasmall_fill"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/white" />
+
+            <ImageView
+                android:id="@+id/iconJaResgatado2"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/circulo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/greenPrincipal" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <include
             android:id="@+id/includedMenuCategoria"
-            layout="@layout/menu_categorias_include"
+            layout="@layout/menu_categorias_include_white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout11"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -62,23 +97,31 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout11"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="180dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/shape_corner_top"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/includedMenuCategoria">
 
-            <include
-                layout="@layout/card_recompensa"
+            <ListView
+                android:id="@+id/listViewRecompensas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="24dp"
+                android:divider="@null"
+                android:dividerHeight="10dp"
+                android:fadeScrollbars="false"
+                android:scrollbars="none"
+                android:smoothScrollbar="true"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

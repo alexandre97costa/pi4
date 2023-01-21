@@ -1,16 +1,19 @@
 package pi4.main.Adapter
 
 import android.content.Context
-import android.graphics.Color
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.LinearLayout
 import android.widget.TextView
-import pi4.main.Classes.Historico
+import pi4.main.Activitys.Historico.ActivityInfoHistoricoEvento
+import pi4.main.Classes.HistoricoReservas
+import pi4.main.Classes.StartActivitys
 import pi4.main.R
 
-class SetAdapterCardHistoricoReservas(private val context: Context, private val data:ArrayList<Historico>): BaseAdapter() {
+class SetAdapterCardHistoricoReservas(private val context: Context, private val data:ArrayList<HistoricoReservas>): BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -27,27 +30,38 @@ class SetAdapterCardHistoricoReservas(private val context: Context, private val 
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val rowView = inflater.inflate(R.layout.card_historico, parent, false)
+        val rowView = inflater.inflate(R.layout.card_historico_reserva, parent, false)
 
         val tituloReserva = rowView.findViewById<TextView>(R.id.textViewTituloReserva)
         val dataReserva = rowView.findViewById<TextView>(R.id.textViewDataReserva)
         val estadoReserva = rowView.findViewById<TextView>(R.id.textViewEstadoReserva)
 
-        val recipe = getItem(position) as Historico
+        val recipe = getItem(position) as HistoricoReservas
 
-        tituloReserva.text = recipe.titulo
-        dataReserva.text = recipe.data
-        estadoReserva.text = recipe.estado
+        tituloReserva.text = recipe.getNome()
+        dataReserva.text = recipe.getEvento().data
+        estadoReserva.text = recipe.getEstado()
 
-        if(recipe.estado === "pendente")
+        if(recipe.getEstado() === "pendente")
             rowView.setBackgroundResource(R.drawable.shape_yellow)
-        if(recipe.estado === "rejeitado")
+        if(recipe.getEstado() === "rejeitado")
             rowView.setBackgroundResource(R.drawable.shape_red)
-        if(recipe.estado === "valido")
+        if(recipe.getEstado() === "valido")
             rowView.setBackgroundResource(R.drawable.shape_green)
 
-        estadoReserva.text = recipe.estado
+        val linerLayout = rowView.findViewById<LinearLayout>(R.id.linearLayoutHistoricoReserva)
+
+        eventListener(linerLayout, recipe.getId(), recipe.getPontoInteresseId())
 
         return rowView
+    }
+
+    fun eventListener(linerLayout: LinearLayout, reservaId:String, pontoInteresseId: String) {
+        linerLayout.setOnClickListener{
+            context.startActivity(Intent(context, ActivityInfoHistoricoEvento::class.java)
+                .putExtra("pontoInteresseId", pontoInteresseId)
+                .putExtra("reservaId", reservaId))
+        }
+
     }
 }

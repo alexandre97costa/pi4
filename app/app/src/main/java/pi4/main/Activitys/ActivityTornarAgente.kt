@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import pi4.main.Classes.StartActivitys
 import pi4.main.MainActivity
 import pi4.main.R
 
@@ -19,6 +21,7 @@ class ActivityTornarAgente : AppCompatActivity() {
         setContentView(R.layout.activity_tornar_agente)
 
         guardar()
+        previous()
 
         val arraylist = ArrayList<String>()
 
@@ -53,5 +56,11 @@ class ActivityTornarAgente : AppCompatActivity() {
             Toast.makeText(this, "Pedido efetuado com sucesso", Toast.LENGTH_SHORT).show()
             startActivity(Intent(this, MainActivity::class.java))
         }
+    }
+
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 }

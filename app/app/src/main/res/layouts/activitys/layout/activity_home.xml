@@ -15,7 +15,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo_branco" />
+        app:srcCompat="@drawable/logo_branco"
+        tools:ignore="ImageContrastCheck"
+        android:contentDescription="My green trip" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -40,7 +42,8 @@
             android:theme="@style/text_button_white"
             app:layout_constraintBottom_toTopOf="@+id/buttonCriar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="TextContrastCheck" />
 
         <Button
             android:id="@+id/buttonCriar"
@@ -54,7 +57,8 @@
             android:theme="@style/text_button_black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="TextContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

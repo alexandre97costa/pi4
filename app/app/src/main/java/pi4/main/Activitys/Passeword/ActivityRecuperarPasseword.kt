@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import pi4.main.Classes.StartActivitys
 import pi4.main.R
 
 class ActivityRecuperarPasseword : AppCompatActivity() {
@@ -12,6 +14,7 @@ class ActivityRecuperarPasseword : AppCompatActivity() {
         setContentView(R.layout.activity_recuperar_passeword)
 
         reenviar()
+        previous()
     }
 
     fun reenviar() {
@@ -20,5 +23,11 @@ class ActivityRecuperarPasseword : AppCompatActivity() {
         buttonConfirmar.setOnClickListener {
             startActivity(Intent(this, ActivityNovaPasseword::class.java))
         }
+    }
+
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 }
