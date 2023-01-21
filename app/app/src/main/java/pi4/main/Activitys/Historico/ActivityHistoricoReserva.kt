@@ -11,11 +11,10 @@ import pi4.main.Adapter.SetAdapterCardHistoricoReservas
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.HistoricoReservas
 import pi4.main.Classes.StartActivitys
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityHistoricoReserva : AppCompatActivity() {
-    private val gestor = Gestor()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historico_reserva)
@@ -26,9 +25,9 @@ class ActivityHistoricoReserva : AppCompatActivity() {
 
     fun historicoReservasCard() {
         //Fazer pedido API
-        gestor.utilizador.getHistocoReservas(gestor.utilizador.getId())
+        UserManager.getUtilizador()!!.getHistocoReservas(UserManager.getUtilizador()!!.getId())
 
-        val customAdapter = SetAdapterCardHistoricoReservas(this, gestor.utilizador.listaHistoricoReservas)
+        val customAdapter = SetAdapterCardHistoricoReservas(this, UserManager.getUtilizador()!!.listaHistoricoReservas)
         val listView = findViewById<ListView>(R.id.listViewHistoricoReservas)
         listView.adapter = customAdapter
     }

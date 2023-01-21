@@ -41,7 +41,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
     fun getExtraIntent() {
         val id = intent.getStringExtra("pontoInteresseId").toString()
 
-        gestor.getPontoInteresseId(id)
+        gestor.getPontoInteresseId(id, this)
     }
 
     fun previous() {

@@ -1,6 +1,7 @@
 package pi4.main.Object
 
 import android.content.Context
+import android.util.Log
 import com.example.ficha8.Req
 import org.json.JSONObject
 import pi4.main.Classes.Utilizador
@@ -13,7 +14,7 @@ object UserManager {
     }
 
     fun loginUtilizador(email: String, password: String, context: Context) {
-        //Cria as varivais para enviar para API
+        //Cria os filtros para enviar para API
         val queryParams = JSONObject("""{}""")
         val requestBody = JSONObject()
         requestBody.put("email", email)
@@ -32,6 +33,8 @@ object UserManager {
                 token
             )
         })
+
+        Log.i("utilizador", this.getUtilizador()!!.getToken())
     }
 
     fun postUtilizador(nome: String, email: String, password: String, context: Context) {

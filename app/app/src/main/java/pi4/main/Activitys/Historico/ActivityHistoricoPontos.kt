@@ -10,6 +10,7 @@ import pi4.main.Adapter.SetAdapterCardRecompensa
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.StartActivitys
 import pi4.main.Classes.Utilizador
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityHistoricoPontos : AppCompatActivity() {
@@ -28,7 +29,7 @@ class ActivityHistoricoPontos : AppCompatActivity() {
     fun loadPontos() {
         val pontosPlace = findViewById<TextView>(R.id.textViewPontosUtilizador)
 
-        pontosPlace.text = gestor.utilizador.getPontos()
+        pontosPlace.text = UserManager.getUtilizador()!!.getPontos()
     }
 
     fun previous() {
@@ -39,9 +40,9 @@ class ActivityHistoricoPontos : AppCompatActivity() {
 
     fun loadHistoricoPontos() {
         //Fazer pedido API
-        gestor.utilizador.getListaHistoricoPontos(gestor.utilizador.getId())
+        UserManager.getUtilizador()!!.getListaHistoricoPontos(UserManager.getUtilizador()!!.getId())
 
-        val customAdapter = SetAdapterCardHistoricoPontos(this, gestor.utilizador.listaHistoricoPontos)
+        val customAdapter = SetAdapterCardHistoricoPontos(this,  UserManager.getUtilizador()!!.listaHistoricoPontos)
         val listView = findViewById<ListView>(R.id.listViewHistoricoPontos)
         listView.adapter = customAdapter
     }

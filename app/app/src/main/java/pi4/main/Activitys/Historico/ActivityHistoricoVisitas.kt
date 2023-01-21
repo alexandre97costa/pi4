@@ -9,11 +9,10 @@ import pi4.main.Classes.Gestor
 import pi4.main.Classes.HistoricoVisitas
 import pi4.main.Classes.PontoInteresse
 import pi4.main.Classes.StartActivitys
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityHistoricoVisitas : AppCompatActivity() {
-    private val gestor = Gestor()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historico_visitas)
@@ -23,9 +22,9 @@ class ActivityHistoricoVisitas : AppCompatActivity() {
     }
 
     fun callAdapterCards() {
-        gestor.utilizador.getListaHistoricoVisitas(gestor.utilizador.getId())
+        UserManager.getUtilizador()!!.getListaHistoricoVisitas(UserManager.getUtilizador()!!.getId())
 
-        val customAdapter = SetAdapterCardHistoricoVisitas(this, gestor.utilizador.listaHistoricoVisitas)
+        val customAdapter = SetAdapterCardHistoricoVisitas(this, UserManager.getUtilizador()!!.listaHistoricoVisitas)
         val listView = findViewById<ListView>(R.id.listViewHistoricoVisitas)
         listView.adapter = customAdapter
     }

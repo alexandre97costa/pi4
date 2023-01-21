@@ -13,6 +13,7 @@ import pi4.main.Classes.Eventos
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.Points
 import pi4.main.Classes.StartActivitys
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityEventoReserva : AppCompatActivity() {
@@ -28,6 +29,7 @@ class ActivityEventoReserva : AppCompatActivity() {
 
         getIntentExtra()
         loadEventoAPI()
+
         //+1 devido a margem de erro de 1
         numeroPessoas()
 
@@ -40,7 +42,7 @@ class ActivityEventoReserva : AppCompatActivity() {
     private fun loadPoints() {
         val textView = findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(gestor.utilizador.getPontos().toInt(), textView, this).loadPontos()
+        Points(UserManager.getUtilizador()!!.getPontos().toInt(), textView, this).loadPontos()
     }
 
     //Vai buscar as informações sobre a reserva do cliente
@@ -122,7 +124,8 @@ class ActivityEventoReserva : AppCompatActivity() {
 
     fun loadEventoAPI() {
         //Load ponto Interesse para atualizar informação
-        gestor.getPontoInteresseId(pontoInteresseId)
+        gestor.getPontoInteresseId(pontoInteresseId, this)
+
         //Load eventos todos daquele evento (isto ira sair)
         gestor.pontoInteresse.getEventos(pontoInteresseId)
 

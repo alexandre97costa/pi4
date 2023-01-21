@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.StartActivitys
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityInfoHistoricoEvento : AppCompatActivity() {
@@ -36,8 +37,8 @@ class ActivityInfoHistoricoEvento : AppCompatActivity() {
     }
 
     fun callEventoDetails() {
-        gestor.getUtilizadorAPI()
-        gestor.utilizador.getHistocoReservas(gestor.utilizador.getId())
+        gestor.getAllPontosInteresse(this)
+        UserManager.getUtilizador()!!.getHistocoReservas(UserManager.getUtilizador()!!.getId())
 
         loadInfo()
     }
@@ -55,20 +56,20 @@ class ActivityInfoHistoricoEvento : AppCompatActivity() {
         val estado = findViewById<TextView>(R.id.textViewEstado)
         val iconEstado = findViewById<ImageView>(R.id.imageViewIconEstado)
 
-        if(gestor.utilizador.getReservaDetails(eventoId).getEstado() == "valido") {
+        if(UserManager.getUtilizador()!!.getReservaDetails(eventoId).getEstado() == "valido") {
             estado.text = "Validado"
             estado.setTextColor(ContextCompat.getColor(this, R.color.greenPrincipal))
             iconEstado.setImageResource(R.drawable.verified_40px)
             iconEstado.setColorFilter(ContextCompat.getColor(this,R.color.greenPrincipal))
         }
 
-        nomeEvento.text = gestor.utilizador.getReservaDetails(eventoId).getEvento().nome
+        nomeEvento.text = UserManager.getUtilizador()!!.getReservaDetails(eventoId).getEvento().nome
         //categoria.text = gestor.utilizador.getReservaDetails(eventoId).get
-        morada.text = gestor.utilizador.getReservaDetails(eventoId).getEvento().morada
-        nomeReserva.text = gestor.utilizador.getReservaDetails(eventoId).getNome()
-        telefone.text = gestor.utilizador.getReservaDetails(eventoId).getTelefone()
-        data.text = gestor.utilizador.getReservaDetails(eventoId).getEvento().data
-        hora.text = gestor.utilizador.getReservaDetails(eventoId).getEvento().numHoras.toString()
-        numeroPessoas.text = gestor.utilizador.getReservaDetails(eventoId).getNumeroPessoas()
+        morada.text = UserManager.getUtilizador()!!.getReservaDetails(eventoId).getEvento().morada
+        nomeReserva.text = UserManager.getUtilizador()!!.getReservaDetails(eventoId).getNome()
+        telefone.text = UserManager.getUtilizador()!!.getReservaDetails(eventoId).getTelefone()
+        data.text = UserManager.getUtilizador()!!.getReservaDetails(eventoId).getEvento().data
+        hora.text = UserManager.getUtilizador()!!.getReservaDetails(eventoId).getEvento().numHoras.toString()
+        numeroPessoas.text = UserManager.getUtilizador()!!.getReservaDetails(eventoId).getNumeroPessoas()
     }
 }

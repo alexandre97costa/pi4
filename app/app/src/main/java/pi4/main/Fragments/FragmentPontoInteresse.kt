@@ -69,7 +69,7 @@ class FragmentPontoInteresse() : Fragment() {
     private fun callAdapterCards(categoria:String) {
         //val arrayFinal: ArrayList<PontoInteresse> = stringRequestPontosInteresse(categoria)
 
-        gestor.getPontosInteresseAPI(requireContext())
+        gestor.getAllPontosInteresse(requireContext())
 
         val customAdapter = SetAdapterCard(requireContext(), gestor.listaPontosInteresse)
         val listView = requireView().findViewById<ListView>(R.id.listView)

@@ -3,6 +3,7 @@ package pi4.main.Activitys.Login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -62,6 +63,9 @@ class ActivityLogin : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.editTextTextPersonName)
         val passeword = findViewById<EditText>(R.id.editTextTextPassword)
 
-        UserManager.loginUtilizador(email.toString(), passeword.toString(), this)
+        Log.i("email", email.text.toString())
+        Log.i("passeword", passeword.text.toString())
+
+        UserManager.loginUtilizador(email.text.toString(), passeword.text.toString(), this)
     }
 }

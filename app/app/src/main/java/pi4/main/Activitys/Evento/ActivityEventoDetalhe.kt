@@ -56,7 +56,7 @@ class ActivityEventoDetalhe : AppCompatActivity() {
 
     fun getDetailsEvento() {
         //Load ponto Interesse para atualizar informação
-        gestor.getPontoInteresseId(pontoInteresseId)
+        gestor.getPontoInteresseId(pontoInteresseId, this)
         //Load eventos todos daquele evento (isto ira sair)
         gestor.pontoInteresse.getEventos(pontoInteresseId)
 

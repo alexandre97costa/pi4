@@ -6,6 +6,9 @@ import org.json.JSONObject
 import pi4.main.Object.UserManager
 
 class Gestor() {
+    val listaPontosInteresse: ArrayList<PontoInteresse> = arrayListOf()
+    val listaRecompensa: ArrayList<Recompensa> = arrayListOf()
+
     var pontoInteresse: PontoInteresse = PontoInteresse(
         "",
         "",
@@ -18,12 +21,15 @@ class Gestor() {
         0f,
         ""
     )
+    var recompensa: Recompensa = Recompensa(
+        "",
+        "",
+        "",
+        "",
+        ""
+    )
 
-    val listaPontosInteresse: ArrayList<PontoInteresse> = arrayListOf()
-    val listaRecompensa: ArrayList<Recompensa> = arrayListOf()
-
-
-    fun getPontosInteresseAPI(context: Context) {
+    fun getAllPontosInteresse(context: Context) {
         //Para termos acerteza que não temos informação duplicada
         listaPontosInteresse.clear()
 
@@ -31,63 +37,91 @@ class Gestor() {
         val queryParams = JSONObject("""{}""")
         val requestBody = JSONObject("""{}""")
         Req().GET("/pi", queryParams, requestBody, context, UserManager.getUtilizador()!!.getToken() ,then = { res ->
-            res.getJSONArray("data")
-        })
+            val data = res.getJSONArray("data")
 
-        listaPontosInteresse.add(PontoInteresse(
-             "1",
-             "https://previews.123rf.com/images/dudlajzov/dudlajzov2001/dudlajzov200100241/138309426-viseu-portugal-may-20-2019-view-of-a-park-jardim-das-maes-in-viseu-portugal.jpg",
-             "Jardim das Mães",
-             "Largo do Rossio",
-             "Um jardim lindo",
-             "Paisagem",
-             "Viseu",
-             "12",
-             4.2f,
-             "Roberto"
-        ))
+            for (i in 0..data.length()) {
+                val objectRes = data.getJSONObject(i)
+
+                listaPontosInteresse.add(PontoInteresse(
+                    objectRes.getString("id"),
+                    objectRes.getJSONArray("imagens").getString( 0), //img
+                    objectRes.getString("nome"),
+                    objectRes.getString("morada"),
+                    objectRes.getString("descricao"),
+                    objectRes.getJSONObject("tipo_interesse").getString("nome"), //tipo
+                    objectRes.getJSONObject("freguesia").getString("nome"), //freguesia
+                    objectRes.getString("pontos"),
+                    objectRes.getDouble("avg_avaliacao").toFloat(),
+                    objectRes.getJSONObject("agente_turistico").getString("nome") //agente
+                ))
+            }
+        })
     }
 
     fun getPontoInteresseId(id: String, context: Context) {
-        getPontosInteresseAPI(context)
-        pontoInteresse = listaPontosInteresse[id.toInt() - 1]
+        val queryParams = JSONObject("""{}""")
+        val requestBody = JSONObject("""{}""")
+        val path = "/pi/${id}"
+
+        Req().GET(path, queryParams, requestBody, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
+            val data = res.getJSONArray("data")
+            val objectRes = data.getJSONObject(0)
+
+            pontoInteresse = PontoInteresse(
+                objectRes.getString("id"),
+                objectRes.getJSONArray("imagens").getString( 0), //img
+                objectRes.getString("nome"),
+                objectRes.getString("morada"),
+                objectRes.getString("descricao"),
+                objectRes.getJSONObject("tipo_interesse").getString("nome"), //tipo
+                objectRes.getJSONObject("freguesia").getString("nome"), //freguesia
+                objectRes.getString("pontos"),
+                objectRes.getDouble("avg_avaliacao").toFloat(),
+                objectRes.getJSONObject("agente_turistico").getString("nome") //agente
+            )
+        })
     }
 
-    fun getAllRecompensas() {
-        //Fazer pedido API
-        listaRecompensa.add(
-            Recompensa(
-            "1",
-            "Pizza Gratis",
-            "Pizza incrivel gratis",
-            "120",
-            "Restaurante",
+    fun getAllRecompensas(context: Context) {
+        //Para termos acerteza que não temos informação duplicada
+        listaRecompensa.clear()
+
+        //Pedido API
+        val queryParams = JSONObject("""{}""")
+        val requestBody = JSONObject("""{}""")
+        Req().GET("/recompensa", queryParams, requestBody, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
+            val data = res.getJSONArray("data")
+
+            for (i in 0..data.length()) {
+                val objectRes = data.getJSONObject(i)
+
+                listaRecompensa.add(Recompensa(
+                    objectRes.getString("id"),
+                    objectRes.getString("titulo"),
+                    objectRes.getString("descricao"),
+                    objectRes.getString("pontos"),
+                    "Paisagem" //Mandar categoria
+                ))
+            }
+        })
+    }
+
+    fun getRecompensaId(id: String, context: Context) {
+        val queryParams = JSONObject("""{}""")
+        val requestBody = JSONObject("""{}""")
+        val path = "/recompensa/${id}"
+
+        Req().GET(path, queryParams, requestBody, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
+            val data = res.getJSONArray("data")
+            val objectRes = data.getJSONObject(0)
+
+            listaRecompensa.add(Recompensa(
+                objectRes.getString("id"),
+                objectRes.getString("titulo"),
+                objectRes.getString("descricao"),
+                objectRes.getString("pontos"),
+                "Paisagem" //Mandar categoria
             ))
-        listaRecompensa.add(Recompensa(
-            "2",
-            "Café Gratis",
-            "Pizza incrivel gratis",
-            "100",
-            "Restaurante",
-        ))
-        listaRecompensa.add(Recompensa(
-            "3",
-            "Cinema Gratis",
-            "Pizza incrivel gratis",
-            "10",
-            "Restaurante",
-        ))
-        listaRecompensa.add(Recompensa(
-            "4",
-            "Pizza Gratis",
-            "Pizza incrivel gratis",
-            "200",
-            "Restaurante",
-        ))
-    }
-
-    fun getRecompensaId(id: String): Recompensa {
-        getAllRecompensas()
-        return listaRecompensa[id.toInt() - 1]
+        })
     }
 }

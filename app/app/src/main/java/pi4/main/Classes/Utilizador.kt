@@ -1,5 +1,7 @@
 package pi4.main.Classes
 
+import com.example.ficha8.Req
+
 class Utilizador(
     id: String,
     nome: String,
@@ -68,7 +70,7 @@ class Utilizador(
     }
 
     //PEDIDO API
-    fun getRecompensasJaResgatadas(id: String) {
+    fun getRecompensasJaResgatadas(utilizadorId: String) {
         //limpar arrayList antes de fazer um pedido API
         listaRecompensasJaResgatadas.clear()
 

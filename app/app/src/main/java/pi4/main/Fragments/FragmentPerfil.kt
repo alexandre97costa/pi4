@@ -13,6 +13,7 @@ import pi4.main.Activitys.Historico.ActivityHistoricoReserva
 import pi4.main.Activitys.Historico.ActivityHistoricoVisitas
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.StartActivitys
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class FragmentPerfil : Fragment() {
@@ -33,8 +34,8 @@ class FragmentPerfil : Fragment() {
         val nome = requireView().findViewById<TextView>(R.id.textViewNomeUtilizador)
         val email = requireView().findViewById<TextView>(R.id.textViewEmailUtilizador)
 
-        nome.text = gestor.utilizador.getNome()
-        email.text = gestor.utilizador.getEmail()
+        nome.text = UserManager.getUtilizador()!!.getNome()
+        email.text = UserManager.getUtilizador()!!.getEmail()
     }
 
     fun activitysButton() {

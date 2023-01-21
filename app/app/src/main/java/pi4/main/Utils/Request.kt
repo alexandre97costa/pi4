@@ -3,6 +3,7 @@ package com.example.ficha8
 import android.content.Context
 import android.util.Log
 import com.android.volley.Request
+import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONException
@@ -41,7 +42,6 @@ class Req {
     }
 
     fun GET(path:String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String ,then: (response:JSONObject) -> Unit) {
-
         val url = BackendURL + path + queryParamsToString(queryParams)
         Log.i("Request GET", url)
         val request = JsonObjectRequest(
@@ -55,7 +55,7 @@ class Req {
             { error -> error.printStackTrace() }
         )
         if(token != "")
-            request.headers["Authorization"] = "Bearer $token}"
+            request.headers["Authorization"] = "Bearer {$token}"
 
         AddToQueue(request, context)
     }
@@ -72,12 +72,12 @@ class Req {
             { error -> error.printStackTrace()}
         )
         if(token != "")
-            request.headers["Authorization"] = "Bearer $token}"
+            request.headers["Authorization"] = "Bearer {$token}"
 
         AddToQueue(request, context)
     }
 
-    fun PUT(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
+    fun PUT(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String, then: (response:JSONObject) -> Unit) {
         val request = JsonObjectRequest(
             Request.Method.PUT,
             BackendURL + path + queryParamsToString(queryParams),
@@ -88,10 +88,12 @@ class Req {
             },
             { error -> error.printStackTrace()}
         )
+        if(token != "")
+            request.headers["Authorization"] = "Bearer {$token}"
         AddToQueue(request, context)
     }
 
-    fun PATCH(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
+    fun PATCH(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String, then: (response:JSONObject) -> Unit) {
         val request = JsonObjectRequest(
             Request.Method.PATCH,
             BackendURL + path + queryParamsToString(queryParams),
@@ -102,10 +104,12 @@ class Req {
             },
             { error -> error.printStackTrace()}
         )
+        if(token != "")
+            request.headers["Authorization"] = "Bearer {$token}"
         AddToQueue(request, context)
     }
 
-    fun DELETE(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
+    fun DELETE(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String, then: (response:JSONObject) -> Unit) {
         val request = JsonObjectRequest(
             Request.Method.DELETE,
             BackendURL + path + queryParamsToString(queryParams),
@@ -116,6 +120,8 @@ class Req {
             },
             { error -> error.printStackTrace()}
         )
+        if(token != "")
+            request.headers["Authorization"] = "Bearer {$token}"
         AddToQueue(request, context)
     }
 }
