@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.StartActivitys
@@ -56,8 +57,9 @@ class ActivityInfoHistoricoEvento : AppCompatActivity() {
 
         if(gestor.utilizador.getReservaDetails(eventoId).getEstado() == "valido") {
             estado.text = "Valido"
-            estado.setTextColor(R.color.greenPrincipal.toInt())
+            estado.setTextColor(ContextCompat.getColor(this, R.color.greenPrincipal))
             iconEstado.setImageResource(R.drawable.verified_40px)
+            iconEstado.setColorFilter(ContextCompat.getColor(this,R.color.greenPrincipal))
         }
 
         nomeEvento.text = gestor.utilizador.getReservaDetails(eventoId).getEvento().nome
