@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 
 --Script de criação dos restantes objetos lógicos (triggers, procedimento armazenado e
 --função). No caso do procedimento armazenado, o script deve ainda incluir as instruções
@@ -6,6 +6,7 @@
 --DML que os ativam. Em ambos os casos (PA e triggers), o script deve ainda conter as
 --consultas SQL que permitem averiguar o correto funcionamento desses objetos lógicos.
 
+----------------------------------------------------------------------------------------------
 
 -- Função 
 
@@ -37,7 +38,7 @@ end$$;
 select * from todos_agentes(2);
 
 
---------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 -- Procedimento
 
 -- criação do procedure
@@ -70,7 +71,7 @@ begin
 end$$;
 call mostrar_nome_data_ultimo();
 
-
+--
 -- igual ao anterior porém apanha o scan mais recente pela data de criação em vez do id
 -- criação do procedure
 create or replace procedure mostrar_nome_data_ultimo()

@@ -44,12 +44,19 @@ from scan_evento
 group by evento_id
 
 
---melhorar este mais complexo diz o prof 
+-- esta query agrupa os utilizadores conforme o seu id do tipo de utilizador, contando quando existem em cada tipo, visitantes, administradores, responsaveis de regiao e agentes
 select tipo_utilizador_id, COUNT(*)
 from utilizador
 group by tipo_utilizador_id
 order by tipo_utilizador_id ASC
 
+-- conta os pontos de interesse que foram validados e agrupa-os conforme o numero de pontos 
+-- que correspondem, restringi-mos de modo a só mostrar os nomes que terminem em o e ordenar de forma ascendente
+select num_pontos, count(validado) AS " Pontos de interesse validados "
+from ponto_interesse
+where nome like '%o'
+group by num_pontos
+order by num_pontos ASC
 
 
 
@@ -63,18 +70,17 @@ from ponto_interesse
 where num_pontos = 10
 
 -- média da avaliação deixada nos comentários
-select round(AVG(avaliacao),2) 
+select round(AVG(avaliacao),2) AS "Média da Avaliação"
 from comentario_avaliacao 
 
 -- através desta query conseguimos saber o total de pontos que a aplicação oferece na soma de todos os eventos, o mesmo dá para fazer para os pontos de interesse
-select SUM(num_pontos) 
+select SUM(num_pontos) AS "Total de pontos que a aplicação oferece"
 from evento	
 
 -- com esta query sabemos quantos tipo de utilizadores diferentes temos registados na base de dados
-select COUNT(DISTINCT tipo_utilizador_id) 
+select COUNT(DISTINCT tipo_utilizador_id) As "Tipos de utilizadores diferentes"
 from utilizador
 
-select COUNT(tipo_utilizador_id) from utilizador where tipo_utilizador_id = 3
 
 
 -- Menos interessante soma o numero de pontos dos eventos que terminar com  a letra a 
