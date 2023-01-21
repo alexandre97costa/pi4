@@ -11,11 +11,10 @@ import pi4.main.Activitys.Passeword.ActivityRecuperarPasseword
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.StartActivitys
 import pi4.main.MainActivity
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityEditarPerfil : AppCompatActivity() {
-    private val gestor = Gestor()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_perfil)
@@ -30,8 +29,8 @@ class ActivityEditarPerfil : AppCompatActivity() {
         val nome = findViewById<EditText>(R.id.editTextTextPersonName)
         val email = findViewById<EditText>(R.id.editTextTextEmailAddress)
 
-        nome.setText(gestor.utilizador.getNome())
-        email.setText(gestor.utilizador.getEmail())
+        nome.setText(UserManager.getUtilizador()?.getNome() ?: "Nome vazio")
+        email.setText(UserManager.getUtilizador()?.getEmail() ?: "Email vazio")
     }
 
     fun editarPasseword() {

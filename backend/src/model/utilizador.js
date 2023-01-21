@@ -53,7 +53,7 @@ module.exports = (sequelize) => {
                 defaultValue: 0,
                 validate: {
                     min: { 
-                        args: 0,
+                        args: -1,
                         msg: 'Os pontos não podem ser negativos.'
                     }
                 }

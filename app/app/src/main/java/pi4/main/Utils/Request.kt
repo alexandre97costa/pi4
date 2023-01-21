@@ -40,7 +40,7 @@ class Req {
         return returnString;
     }
 
-    fun GET(path:String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
+    fun GET(path:String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String ,then: (response:JSONObject) -> Unit) {
 
         val url = BackendURL + path + queryParamsToString(queryParams)
         Log.i("Request GET", url)
@@ -54,10 +54,13 @@ class Req {
             },
             { error -> error.printStackTrace() }
         )
+        if(token != "")
+            request.headers["Authorization"] = "Bearer $token}"
+
         AddToQueue(request, context)
     }
 
-    fun POST(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
+    fun POST(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String ,then: (response:JSONObject) -> Unit) {
         val request = JsonObjectRequest(
             Request.Method.POST,
             BackendURL + path + queryParamsToString(queryParams),
@@ -68,6 +71,9 @@ class Req {
             },
             { error -> error.printStackTrace()}
         )
+        if(token != "")
+            request.headers["Authorization"] = "Bearer $token}"
+
         AddToQueue(request, context)
     }
 

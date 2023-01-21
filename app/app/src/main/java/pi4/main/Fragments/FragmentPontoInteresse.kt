@@ -14,6 +14,7 @@ import com.google.android.material.tabs.TabLayout
 import pi4.main.R
 import pi4.main.Adapter.SetAdapterCard
 import pi4.main.Classes.*
+import pi4.main.Object.UserManager
 
 class FragmentPontoInteresse() : Fragment() {
     private val gestor = Gestor()
@@ -56,7 +57,7 @@ class FragmentPontoInteresse() : Fragment() {
     private fun loadPoints() {
         val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(gestor.utilizador.getPontos().toInt(), textView, requireContext()).loadPontos()
+        Points(UserManager.getUtilizador()?.getPontos()?.toInt() ?: 0, textView, requireContext()).loadPontos()
     }
 
     private fun createCategoriasTab() {
@@ -68,7 +69,8 @@ class FragmentPontoInteresse() : Fragment() {
     private fun callAdapterCards(categoria:String) {
         //val arrayFinal: ArrayList<PontoInteresse> = stringRequestPontosInteresse(categoria)
 
-        gestor.getPontosInteresseAPI()
+        gestor.getPontosInteresseAPI(requireContext())
+
         val customAdapter = SetAdapterCard(requireContext(), gestor.listaPontosInteresse)
         val listView = requireView().findViewById<ListView>(R.id.listView)
         listView.adapter = customAdapter

@@ -1,7 +1,11 @@
 package pi4.main.Classes
 
+import android.content.Context
+import com.example.ficha8.Req
+import org.json.JSONObject
+import pi4.main.Object.UserManager
+
 class Gestor() {
-    val utilizador: Utilizador
     var pontoInteresse: PontoInteresse = PontoInteresse(
         "",
         "",
@@ -14,24 +18,23 @@ class Gestor() {
         0f,
         ""
     )
+
     val listaPontosInteresse: ArrayList<PontoInteresse> = arrayListOf()
     val listaRecompensa: ArrayList<Recompensa> = arrayListOf()
 
-    init {
-        this.utilizador = getUtilizadorAPI()
-    }
 
-    fun getUtilizadorAPI(): Utilizador {
-        return Utilizador(
-            "1",
-            "Rúben Cabelos",
-            "rubenzinho@gmail.com",
-            "121"
-        )
-    }
+    fun getPontosInteresseAPI(context: Context) {
+        //Para termos acerteza que não temos informação duplicada
+        listaPontosInteresse.clear()
 
-    fun getPontosInteresseAPI() {
-         listaPontosInteresse.add(PontoInteresse(
+        //Pedido API
+        val queryParams = JSONObject("""{}""")
+        val requestBody = JSONObject("""{}""")
+        Req().GET("/pi", queryParams, requestBody, context, UserManager.getUtilizador()!!.getToken() ,then = { res ->
+            res.getJSONArray("data")
+        })
+
+        listaPontosInteresse.add(PontoInteresse(
              "1",
              "https://previews.123rf.com/images/dudlajzov/dudlajzov2001/dudlajzov200100241/138309426-viseu-portugal-may-20-2019-view-of-a-park-jardim-das-maes-in-viseu-portugal.jpg",
              "Jardim das Mães",
@@ -42,37 +45,11 @@ class Gestor() {
              "12",
              4.2f,
              "Roberto"
-         ))
-
-        listaPontosInteresse.add(PontoInteresse(
-            "2",
-            "https://previews.123rf.com/images/dudlajzov/dudlajzov2001/dudlajzov200100241/138309426-viseu-portugal-may-20-2019-view-of-a-park-jardim-das-maes-in-viseu-portugal.jpg",
-            "Jardim das Mães",
-            "Largo do Rossio",
-            "Um jardim lindo",
-            "Museu",
-            "Viseu",
-            "20",
-            4.2f,
-            "Roberto"
-        ))
-
-        listaPontosInteresse.add(PontoInteresse(
-            "3",
-            "https://previews.123rf.com/images/dudlajzov/dudlajzov2001/dudlajzov200100241/138309426-viseu-portugal-may-20-2019-view-of-a-park-jardim-das-maes-in-viseu-portugal.jpg",
-            "Jardim das Mães",
-            "Largo do Rossio",
-            "Um jardim lindo",
-            "Paisagem",
-            "Viseu",
-            "25",
-            4.2f,
-            "Roberto"
         ))
     }
 
-    fun getPontoInteresseId(id: String) {
-        getPontosInteresseAPI()
+    fun getPontoInteresseId(id: String, context: Context) {
+        getPontosInteresseAPI(context)
         pontoInteresse = listaPontosInteresse[id.toInt() - 1]
     }
 

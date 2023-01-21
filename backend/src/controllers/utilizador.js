@@ -41,6 +41,7 @@ module.exports = {
             id: user.id,
             nome: user.nome,
             email: user.email,
+            pontos: user.pontos,
             tipo: user.tipo_utilizador_id
         }
 
@@ -55,7 +56,8 @@ module.exports = {
 
         return res.status(200).json({
             msg: 'Bem vindo ' + user.nome + '! 🤩',
-            token: jwt.sign(token, secret, options)
+            token: jwt.sign(token, secret, options),
+            user: token
         });
     },
 
