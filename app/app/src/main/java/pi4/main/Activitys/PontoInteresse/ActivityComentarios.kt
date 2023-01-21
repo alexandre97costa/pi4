@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
 import android.widget.TextView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Adapter.SetAdapterCardComentarios
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.Points
+import pi4.main.Classes.StartActivitys
 import pi4.main.R
 
 class ActivityComentarios : AppCompatActivity() {
@@ -18,6 +20,7 @@ class ActivityComentarios : AppCompatActivity() {
 
         intentPutExtra()
         loadPoints()
+        previous()
 
         getComentarios()
     }
@@ -28,6 +31,11 @@ class ActivityComentarios : AppCompatActivity() {
         Points(gestor.utilizador.getPontos().toInt(), textView, this).loadPontos()
     }
 
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
+    }
 
     fun intentPutExtra() {
         val id = intent.getStringExtra("pontoInteresseId").toString()
