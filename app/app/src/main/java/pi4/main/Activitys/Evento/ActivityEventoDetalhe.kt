@@ -44,7 +44,8 @@ class ActivityEventoDetalhe : AppCompatActivity() {
         //Fazer pedido API
         btnReservar.setOnClickListener {
             startActivity(Intent(this, ActivityEventoReserva::class.java)
-                .putExtra("evento", eventoDetails as java.io.Serializable))
+                .putExtra("eventoId", eventoId)
+                .putExtra("pontoInteresseId", pontoInteresseId))
         }
     }
 

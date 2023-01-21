@@ -31,6 +31,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
         //Carregar o valor dos pontos de interesse
         loadPointsPontoInteresse()
+        loadInfoPontoInteresse()
 
         //Carregar informação do ponto de interesse
         loadComentarios()
@@ -56,6 +57,22 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
         val pontos = Points(gestor.pontoInteresse.getNumPontos().toInt(), textView, this)
 
         pontos.loadPontosPontoInteresse()
+    }
+
+    fun loadInfoPontoInteresse() {
+        val nomePontoInteresse = findViewById<TextView>(R.id.textViewNomePontoInteresse)
+        val categoria = findViewById<TextView>(R.id.textViewCategoria)
+        val morada = findViewById<TextView>(R.id.textView_morada)
+        val descricao = findViewById<TextView>(R.id.textView_txt_descricao)
+        val agenteTuristico = findViewById<TextView>(R.id.textViewNomeAgenteTuristico)
+        val ratign = findViewById<TextView>(R.id.rating)
+
+        nomePontoInteresse.text = gestor.pontoInteresse.getNome()
+        categoria.text = gestor.pontoInteresse.getTipoInteresse()
+        morada.text = gestor.pontoInteresse.getMorada()
+        descricao.text = gestor.pontoInteresse.getDescricao()
+        agenteTuristico.text = gestor.pontoInteresse.getAgenteTuristico()
+        ratign.text = gestor.pontoInteresse.getAvgAvalicao().toString()
     }
 
     fun maisComentarios() {

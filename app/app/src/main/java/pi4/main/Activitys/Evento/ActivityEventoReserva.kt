@@ -9,13 +9,17 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import pi4.main.Classes.*
+import pi4.main.Classes.Eventos
+import pi4.main.Classes.Gestor
+import pi4.main.Classes.Points
+import pi4.main.Classes.StartActivitys
 import pi4.main.R
 
 class ActivityEventoReserva : AppCompatActivity() {
     private val gestor = Gestor() //O gestor contem as informações do utilizador
     private lateinit var eventoDetails: Eventos
-    private lateinit var pontoInteresse: PontoInteresse
+    private lateinit var eventoId: String
+    private lateinit var pontoInteresseId: String
     private var numeroMaximoPessoas: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,9 +27,8 @@ class ActivityEventoReserva : AppCompatActivity() {
         setContentView(R.layout.activity_evento_reserva)
 
         getIntentExtra()
-
+        loadEventoAPI()
         //+1 devido a margem de erro de 1
-        numeroMaximoPessoas = 10 + 1
         numeroPessoas()
 
         //Function buttons
@@ -113,8 +116,19 @@ class ActivityEventoReserva : AppCompatActivity() {
     }
 
     fun getIntentExtra() {
-        eventoDetails = intent.getSerializableExtra("evento") as Eventos
-        pontoInteresse = intent.getSerializableExtra("pontoInteresse") as PontoInteresse
+        eventoId = intent.getStringExtra("eventoId").toString()
+        pontoInteresseId = intent.getStringExtra("pontoInteresseId").toString()
+    }
+
+    fun loadEventoAPI() {
+        //Load ponto Interesse para atualizar informação
+        gestor.getPontoInteresseId(pontoInteresseId)
+        //Load eventos todos daquele evento (isto ira sair)
+        gestor.pontoInteresse.getEventos(pontoInteresseId)
+
+        eventoDetails = gestor.pontoInteresse.getDetailsEvento(eventoId)
+
+        numeroMaximoPessoas = eventoDetails.numVagas + 1
 
         loadInfoEvento()
     }
@@ -126,6 +140,6 @@ class ActivityEventoReserva : AppCompatActivity() {
 
         nomeEvento.text = eventoDetails.nome
         categoria.text = eventoDetails.tipoEvento
-        morada.text = pontoInteresse.getMorada()
+        morada.text = eventoDetails.morada
     }
 }
