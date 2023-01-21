@@ -56,14 +56,14 @@ class ActivityInfoHistoricoEvento : AppCompatActivity() {
         val iconEstado = findViewById<ImageView>(R.id.imageViewIconEstado)
 
         if(gestor.utilizador.getReservaDetails(eventoId).getEstado() == "valido") {
-            estado.text = "Valido"
+            estado.text = "Validado"
             estado.setTextColor(ContextCompat.getColor(this, R.color.greenPrincipal))
             iconEstado.setImageResource(R.drawable.verified_40px)
             iconEstado.setColorFilter(ContextCompat.getColor(this,R.color.greenPrincipal))
         }
 
         nomeEvento.text = gestor.utilizador.getReservaDetails(eventoId).getEvento().nome
-        //categoria.text = gestor.utilizador.
+        //categoria.text = gestor.utilizador.getReservaDetails(eventoId).get
         morada.text = gestor.utilizador.getReservaDetails(eventoId).getEvento().morada
         nomeReserva.text = gestor.utilizador.getReservaDetails(eventoId).getNome()
         telefone.text = gestor.utilizador.getReservaDetails(eventoId).getTelefone()
