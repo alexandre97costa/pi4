@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
                     }
                 }
             },
-            num_telemovel: {
+            telemovel: {
                 type: DataTypes.STRING(50),
                 allowNull: false,
                 validate: {
@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
                     }
                 }
             },
-            num_pontos: {
+            pontos: {
                 type: DataTypes.INTEGER,
                 allowNull: false
             },
