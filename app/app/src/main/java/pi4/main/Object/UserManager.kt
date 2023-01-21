@@ -32,9 +32,10 @@ object UserManager {
                 user.getString("pontos"),
                 token
             )
+
+            Log.i("utilizador", this.getUtilizador()!!.getToken())
         })
 
-        Log.i("utilizador", this.getUtilizador()!!.getToken())
     }
 
     fun postUtilizador(nome: String, email: String, password: String, context: Context) {
