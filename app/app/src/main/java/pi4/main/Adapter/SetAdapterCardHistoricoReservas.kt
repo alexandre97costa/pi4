@@ -38,7 +38,7 @@ class SetAdapterCardHistoricoReservas(private val context: Context, private val 
         val recipe = getItem(position) as Reservas
 
         tituloReserva.text = recipe.getNome()
-        dataReserva.text = recipe.getEvento().data
+        dataReserva.text = recipe.getNomeEvento()
         estadoReserva.text = recipe.getEstado()
 
         if(recipe.getEstado() === "pendente")
@@ -50,15 +50,14 @@ class SetAdapterCardHistoricoReservas(private val context: Context, private val 
 
         val linerLayout = rowView.findViewById<LinearLayout>(R.id.linearLayoutHistoricoReserva)
 
-        eventListener(linerLayout, recipe.getId(), recipe.getPontoInteresseId())
+        eventListener(linerLayout, recipe.getId())
 
         return rowView
     }
 
-    fun eventListener(linerLayout: LinearLayout, reservaId:String, pontoInteresseId: String) {
+    fun eventListener(linerLayout: LinearLayout, reservaId:String) {
         linerLayout.setOnClickListener{
             context.startActivity(Intent(context, ActivityInfoHistoricoEvento::class.java)
-                .putExtra("pontoInteresseId", pontoInteresseId)
                 .putExtra("reservaId", reservaId))
         }
 

@@ -11,10 +11,7 @@ import com.google.android.material.tabs.TabLayout
 import org.json.JSONObject
 import pi4.main.Adapter.SetAdapterCardComentarios
 import pi4.main.Adapter.SetAdapterCardEvento
-import pi4.main.Classes.Eventos
-import pi4.main.Classes.Gestor
-import pi4.main.Classes.Points
-import pi4.main.Classes.StartActivitys
+import pi4.main.Classes.*
 import pi4.main.Object.UserManager
 import pi4.main.R
 
@@ -97,6 +94,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
         Req.GET("/evento", queryParams, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
             val data = res.optJSONArray("data")
+            val ListaSessoesVazia:ArrayList<Sessao> = ArrayList()
 
             // adicionar eventos à lista
             if (data != null) {
@@ -106,13 +104,11 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
                     listaEventos.add(Eventos(
                         objectRes.optInt("id").toString(),
                         objectRes.optString("nome"),
-                        "data",
                         objectRes.optString("descricao"),
-                        "morada", //tem de mandar mais informacao
                         objectRes.optInt("pontos"),
                         objectRes.optInt("lotacao"),
-                        objectRes.optInt("horas_duracao"),
                         objectRes.optJSONObject("tipo_evento").optString("nome"),
+                        ListaSessoesVazia,
                         id //tem de mandar o id do ponto de interesse
                     ))
                 }

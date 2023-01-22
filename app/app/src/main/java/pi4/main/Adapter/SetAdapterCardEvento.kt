@@ -45,8 +45,8 @@ class SetAdapterCardEvento(private val context: Context, private val data:ArrayL
 
         Points(recipe.numPontos, pontos, context).loadPontosPontoInteresse()
         nome.text = recipe.nome
-        data.text = recipe.data
-        horas.text = "${recipe.numHoras}hrs"
+        data.text = "data"
+        horas.text = "horas"
 
         addEventListener(recipe.id, recipe.pontoInteresseId,card)
 
