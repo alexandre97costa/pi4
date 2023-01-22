@@ -147,7 +147,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
     }
 
     fun loadEventos2() {
-        gestor.pontoInteresse.getEventos(gestor.pontoInteresse.getId(), this)
+        //gestor.pontoInteresse.getEventos(gestor.pontoInteresse.getId(), this)
 
         callAdapterEvento()
     }

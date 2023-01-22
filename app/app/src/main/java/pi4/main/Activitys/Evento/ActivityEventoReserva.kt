@@ -124,10 +124,10 @@ class ActivityEventoReserva : AppCompatActivity() {
 
     fun loadEventoAPI() {
         //Load ponto Interesse para atualizar informação
-        gestor.getPontoInteresseId(pontoInteresseId, this)
+        //gestor.getPontoInteresseId(pontoInteresseId, this)
 
         //Load eventos todos daquele evento (isto ira sair)
-        gestor.pontoInteresse.getEventos(pontoInteresseId, this)
+        //gestor.pontoInteresse.getEventos(pontoInteresseId, this)
 
         eventoDetails = gestor.pontoInteresse.getDetailsEvento(eventoId)
 
@@ -143,6 +143,6 @@ class ActivityEventoReserva : AppCompatActivity() {
 
         nomeEvento.text = eventoDetails.nome
         categoria.text = eventoDetails.tipoEvento
-        morada.text = eventoDetails.morada
+        // morada.text = eventoDetails.morada
     }
 }
