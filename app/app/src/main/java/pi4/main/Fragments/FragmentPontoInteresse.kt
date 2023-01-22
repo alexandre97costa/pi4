@@ -66,7 +66,7 @@ class FragmentPontoInteresse() : Fragment() {
         CategoriaLista(tab, requireContext())
     }
 
-    private fun callAdapterCards(categoria:String) {
+     fun callAdapterCards(categoria:String) {
         val listView = requireView().findViewById<ListView>(R.id.listView)
 
         gestor.getAllPontosInteresse(requireContext(), listView, true)

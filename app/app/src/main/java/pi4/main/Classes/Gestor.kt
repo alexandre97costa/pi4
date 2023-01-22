@@ -45,8 +45,8 @@ class Gestor() {
         Req.GET("/pi", queryParams, context, UserManager.getUtilizador()!!.getToken() ,then = { res ->
             val data = res.optJSONArray("data")
 
-            for (i in 0..data.length() - 1) {
-                val objectRes = data.optJSONObject(i)
+            for (i in 0..data!!.length() - 1) {
+                val objectRes = data!!.optJSONObject(i)
 
                 listaPontosInteresse.add(PontoInteresse(
                     objectRes.optInt("id").toString(),
@@ -54,11 +54,11 @@ class Gestor() {
                     objectRes.optString("nome"),
                     objectRes.optString("morada"),
                     objectRes.optString("descricao"),
-                    objectRes.optJSONObject("tipo_interesse").optString("nome"), //tipo
+                    objectRes!!.optJSONObject("tipo_interesse")!!.optString("nome"), //tipo
                     objectRes.optJSONObject("freguesia").optString("nome"), //freguesia
                     objectRes.optInt("pontos").toString(),
                     objectRes.optDouble("avg_avaliacao").toFloat(),
-                    objectRes.optJSONObject("agente_turistico").optString("nome") //agente
+                    objectRes!!.optJSONObject("agente_turistico")!!.optString("nome") //agente
                 ))
             }
 

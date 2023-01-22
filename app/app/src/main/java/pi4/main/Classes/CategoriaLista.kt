@@ -3,6 +3,7 @@ package pi4.main.Classes
 import android.content.Context
 import android.widget.Toast
 import com.google.android.material.tabs.TabLayout
+import pi4.main.Fragments.FragmentPontoInteresse
 import pi4.main.R
 
 class CategoriaLista(tabLayout: TabLayout, context: Context) {
@@ -31,7 +32,7 @@ class CategoriaLista(tabLayout: TabLayout, context: Context) {
         createCategoriaListener()
     }
 
-    private fun createCategoriaListener() {
+    fun createCategoriaListener() {
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
             override fun onTabSelected(tab: TabLayout.Tab) {
