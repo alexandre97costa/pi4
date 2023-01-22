@@ -34,22 +34,22 @@ module.exports = {
     // qualquer utilizador registado pode aceder a reservas
     get: async (req, res) => {
         // * filtros
-        let nome = req.query?.nome ?? '%'
-        let reserva_id = req.params?.id ?? 0
-        let visitante_id = req.query?.visitante_id ?? 0
-        let sessao_id = req.query?.sessao_id ?? 0
-        let evento_id = req.query?.evento_id ?? 0
-        let ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
-        let minPessoas = req.query?.minPessoas ?? 0
-        let maxPessoas = req.query?.maxPessoas ?? 0
-        let validado = !!(req.query?.validado ?? true)
-        let confirmado = !!(req.query?.confirmado ?? true)
+        const nome = req.query?.nome ?? '%'
+        const reserva_id = req.params?.id ?? 0
+        const visitante_id = req.query?.visitante_id ?? 0
+        const sessao_id = req.query?.sessao_id ?? 0
+        const evento_id = req.query?.evento_id ?? 0
+        const ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
+        const minPessoas = req.query?.minPessoas ?? 0
+        const maxPessoas = req.query?.maxPessoas ?? 0
+        const validado = !!(req.query?.validado ?? true)
+        const confirmado = !!(req.query?.confirmado ?? true)
 
         // * ordenação e paginação
-        let order = req.query?.order ?? 'nome'
-        let direction = req.query?.direction ?? 'asc'
-        let offset = req.query?.offset ?? 0
-        let limit = req.query?.limit ?? 0
+        const order = req.query?.order ?? 'nome'
+        const direction = req.query?.direction ?? 'asc'
+        const offset = req.query?.offset ?? 0
+        const limit = req.query?.limit ?? 0
 
         await reserva
             .findAndCountAll({
@@ -67,8 +67,8 @@ module.exports = {
                     visitante_id: (req.auth.tipo === 1) ?
                         req.auth.id :
                         { [Op.ne]: 0 },
-                    validado,
-                    confirmado,
+                    validado: validado,
+                    confirmado: confirmado,
                 },
                 include: [
                     {

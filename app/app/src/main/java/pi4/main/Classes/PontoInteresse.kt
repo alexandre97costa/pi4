@@ -112,7 +112,7 @@ class PontoInteresse(
                     objectRes.optInt("pontos"),
                     objectRes.optInt("lotacao"),
                     objectRes.optInt("horas_duracao"),
-                    objectRes.optJSONObject("tipo_evento").optString("nomr"),
+                    objectRes.optJSONObject("tipo_evento").optString("nome"),
                     "1" //tem de mandar o id do ponto de interesse
                 ))
             }

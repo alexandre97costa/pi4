@@ -333,15 +333,13 @@ module.exports = {
 
     tipos: async (req, res) => {
         await tipo_interesse
-            .findAll()
-            .then(output => {
-                return res.status(200).json({ tipos_interesse: output })
-            })
+            .findAll({ attributes: ['id','nome'] })
+            .then(output => { return res.status(200).json({ tipos_interesse: output }) })
             .catch(error => {
                 res.status(400).json({ error })
                 dev(error)
                 return
-            });
+            })
     },
 
 
