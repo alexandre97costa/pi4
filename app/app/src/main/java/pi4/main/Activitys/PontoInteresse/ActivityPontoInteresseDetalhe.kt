@@ -146,18 +146,4 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
             linearLayout.addView(customAdapter.getView(i, linearLayout, linearLayout))
     }
 
-    fun loadEventos2() {
-        gestor.pontoInteresse.getEventos(gestor.pontoInteresse.getId(), this)
-
-        callAdapterEvento()
-    }
-
-    fun callAdapterEvento() {
-        //Mandamos aqui a lista de comentarios <pontoInteresse.listaEventos>
-        val customAdapter = SetAdapterCardEvento(this, gestor.pontoInteresse.listaEventos)
-        val tabLayout = findViewById<TabLayout>(R.id.tabLayoutEventos)
-
-        for (i in 0..customAdapter.count - 1)
-            tabLayout.addTab(tabLayout.newTab().setCustomView(customAdapter.getView(i, tabLayout, tabLayout)))
-    }
 }

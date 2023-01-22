@@ -90,35 +90,6 @@ class PontoInteresse(
     }
 
     //PEDIDOS API
-    fun getEventos(id: String, context: Context) { //id -> pontoInteresseId
-        //limpar arrayList antes de fazer o pedido API
-        listaEventos.clear()
-
-        val queryParams = JSONObject()
-        queryParams.put("ponto_interesse_id", id)
-
-        Req.GET("/evento", queryParams, context, UserManager.getUtilizador()!!.getPontos(), then = { res ->
-            val data = res.optJSONArray("data")
-
-            for (i in 0..data.length() - 1) {
-                val objectRes = data.optJSONObject(i)
-
-                this.listaEventos.add(Eventos(
-                    objectRes.optInt("id").toString(),
-                    objectRes.optString("nome"),
-                    objectRes.optJSONObject("sessao").optString("data_hora"),
-                    objectRes.optString("descricao"),
-                    "", //tem de mandar mais informacao
-                    objectRes.optInt("pontos"),
-                    objectRes.optInt("lotacao"),
-                    objectRes.optInt("horas_duracao"),
-                    objectRes.optJSONObject("tipo_evento").optString("nome"),
-                    "1" //tem de mandar o id do ponto de interesse
-                ))
-            }
-        })
-    }
-
     fun getDetailsEvento(eventoId: String): Eventos {
         //Fazer pedido API
         //Exemplo de return

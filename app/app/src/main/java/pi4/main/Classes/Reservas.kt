@@ -1,12 +1,14 @@
 package pi4.main.Classes
 
-class Reservas(id:String, nomeReserva: String, numeroPessoas: String, validado: Boolean, nomeEvento: String, dataCompletaEvento: String, codigo: String) {
+class Reservas(id:String, nomeReserva: String, numeroPessoas: String, validado: Boolean, nomeEvento: String, dataCompletaEvento: String, pontoInteresseId: String, codigo: String) {
     private val id: String
     private val nomeReserva: String
     private val numeroPessoas: String
     private val estado:String
     private val nomeEvento: String
     private val dataEvento: String
+    private val horaEvento: String
+    private val pontoInteresseId: String
     private val codigo: String
 
     init {
@@ -16,6 +18,8 @@ class Reservas(id:String, nomeReserva: String, numeroPessoas: String, validado: 
         this.estado = getValidado(validado)
         this.nomeEvento = nomeEvento
         this.dataEvento = splitDataCompleta(dataCompletaEvento)
+        this.horaEvento = splitHoraCompleta(dataCompletaEvento)
+        this.pontoInteresseId = pontoInteresseId
         this.codigo = codigo
     }
 
@@ -44,6 +48,14 @@ class Reservas(id:String, nomeReserva: String, numeroPessoas: String, validado: 
         return this.dataEvento
     }
 
+    fun getHoraEvento(): String {
+        return this.horaEvento
+    }
+
+    fun getPontoInteresseId(): String {
+        return this.pontoInteresseId
+    }
+
     fun getCodigo(): String {
         return this.codigo
     }
@@ -57,6 +69,15 @@ class Reservas(id:String, nomeReserva: String, numeroPessoas: String, validado: 
 
     private fun splitDataCompleta(data: String): String {
         return data.split("T")[0]
+    }
+
+    private fun splitHoraCompleta(data: String): String {
+        val primeiraParte = data.split("T")[1]
+
+        val hora = primeiraParte.split(":")[0]
+        val minutos = primeiraParte.split(":")[1]
+
+        return "${hora}h ${minutos}min"
     }
 
 }
