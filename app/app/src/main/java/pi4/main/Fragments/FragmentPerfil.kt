@@ -17,8 +17,6 @@ import pi4.main.Object.UserManager
 import pi4.main.R
 
 class FragmentPerfil : Fragment() {
-    private val gestor = Gestor()
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_perfil, container, false)
     }

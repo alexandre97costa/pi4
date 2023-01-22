@@ -9,11 +9,10 @@ import android.widget.BaseAdapter
 import android.widget.LinearLayout
 import android.widget.TextView
 import pi4.main.Activitys.Historico.ActivityInfoHistoricoEvento
-import pi4.main.Classes.HistoricoReservas
-import pi4.main.Classes.StartActivitys
+import pi4.main.Classes.Reservas
 import pi4.main.R
 
-class SetAdapterCardHistoricoReservas(private val context: Context, private val data:ArrayList<HistoricoReservas>): BaseAdapter() {
+class SetAdapterCardHistoricoReservas(private val context: Context, private val data:ArrayList<Reservas>): BaseAdapter() {
 
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
@@ -36,7 +35,7 @@ class SetAdapterCardHistoricoReservas(private val context: Context, private val 
         val dataReserva = rowView.findViewById<TextView>(R.id.textViewDataReserva)
         val estadoReserva = rowView.findViewById<TextView>(R.id.textViewEstadoReserva)
 
-        val recipe = getItem(position) as HistoricoReservas
+        val recipe = getItem(position) as Reservas
 
         tituloReserva.text = recipe.getNome()
         dataReserva.text = recipe.getEvento().data

@@ -1,9 +1,5 @@
 package pi4.main.Classes
 
-import android.content.Context
-import com.example.ficha8.Req
-import org.json.JSONObject
-
 class Utilizador(
     id: String,
     nome: String,
@@ -21,8 +17,10 @@ class Utilizador(
     //Criação das listas
     var listaHistoricoPontos: ArrayList<HistoricoPontos> = arrayListOf()
     var listaHistoricoVisitas: ArrayList<HistoricoVisitas> = arrayListOf()
-    var listaHistoricoReservas: ArrayList<HistoricoReservas> = arrayListOf()
+    var listaHistoricoReservas: ArrayList<Reservas> = arrayListOf()
     var listaRecompensasJaResgatadas: ArrayList<Recompensa> = arrayListOf()
+
+    lateinit var reservaInfo: Reservas
 
     //TEMOS SEMPRE DE AO CHAMAR A CLASS MANDAR ESTE ELEMENTOS
     init {
@@ -94,54 +92,7 @@ class Utilizador(
         return listaRecompensasJaResgatadas[id.toInt()-1]
     }
 
-    fun getHistocoReservas(context: Context) {
-        //Limpar o arrayList antes de fazer um novo pedido API
-        listaHistoricoReservas.clear()
-
-        //Pedido API
-        val queryParams = JSONObject("""{}""")
-
-        Req.GET("/reserva", queryParams, context, this.token, then = { res ->
-            val data  = res.getJSONArray("data")
-
-            for (i in 0..data.length()) {
-                val objectRes = data.getJSONObject(i)
-
-                this.listaHistoricoReservas.add(HistoricoReservas(
-                        objectRes.getString("id"),
-                        objectRes.getString("nome"),
-                        "",
-                        objectRes.getString("pessoas"),
-                        getValidado(objectRes.getString("validado").toBoolean()),
-                        createEvento(objectRes.getJSONObject("sessao")),
-                        objectRes.getJSONObject("sessao").getJSONObject("evento").getString("ponto_interesse_id")
-                ))
-            }
-        })
-    }
-
-    private fun createEvento(sessaoEvento: JSONObject): Eventos {
-        return Eventos(
-            sessaoEvento.getJSONObject("evento").getString("id"),
-            sessaoEvento.getJSONObject("evento").getString("nome"),
-            sessaoEvento.getString("data_hora"), //terá de ser fazer um split?
-            sessaoEvento.getJSONObject("evento").getString("descricao"),
-            sessaoEvento.getJSONObject("evento").getJSONObject("ponto_interesse").getString("morada"),
-            sessaoEvento.getJSONObject("evento").getString("pontos").toInt(),
-            sessaoEvento.getString("vagas").toInt(), //não será mais seguro entrar no objeto evento e ir buscar a informacao da lotação
-            sessaoEvento.getString("data_hora").toInt(), //Será necessario mudar para string maybe (fazer split),
-            "",
-            ""
-        )
-    }
-    private fun getValidado(validado: Boolean): String {
-        if (validado)
-            return "Validado"
-
-        return "Pendente"
-    }
-
-    fun getReservaDetails(id: String): HistoricoReservas {
+    fun getReservaDetails(id: String): Reservas {
         //Pedido API
         return listaHistoricoReservas[id.toInt() - 1]
     }
