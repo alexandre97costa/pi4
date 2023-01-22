@@ -72,6 +72,7 @@ module.exports = {
                         attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt', 'evento_id'] }
                     }
                 ],
+                distinct: true,
                 attributes: { exclude: ['codigo_uuid'] },
                 order: [[order, direction]],
                 offset: offset,

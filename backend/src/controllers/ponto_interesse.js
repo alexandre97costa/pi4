@@ -131,6 +131,7 @@ module.exports = {
                         attributes: ['blob', 'url'],
                     }
                 ],
+                distinct: true,
                 order: [[order, direction]],
                 offset: offset,
                 limit: !!limit ? limit : null,

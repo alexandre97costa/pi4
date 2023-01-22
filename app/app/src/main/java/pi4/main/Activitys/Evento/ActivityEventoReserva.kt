@@ -127,7 +127,7 @@ class ActivityEventoReserva : AppCompatActivity() {
         gestor.getPontoInteresseId(pontoInteresseId, this)
 
         //Load eventos todos daquele evento (isto ira sair)
-        gestor.pontoInteresse.getEventos(pontoInteresseId)
+        gestor.pontoInteresse.getEventos(pontoInteresseId, this)
 
         eventoDetails = gestor.pontoInteresse.getDetailsEvento(eventoId)
 

@@ -37,7 +37,7 @@ class ActivityInfoHistoricoEvento : AppCompatActivity() {
     }
 
     fun callEventoDetails() {
-        gestor.getAllPontosInteresse(this)
+        // gestor.getAllPontosInteresse(this)
         UserManager.getUtilizador()!!.getHistocoReservas(this)
 
         loadInfo()

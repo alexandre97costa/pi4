@@ -74,15 +74,16 @@ class Gestor() {
         listView.adapter = customAdapter
     }
 
-    fun getPontoInteresseId(id: String, context: Context) {
+    fun getPontoInteresse(id: String, context: Context) {
         val queryParams = JSONObject("""{}""")
         val path = "/pi/${id}"
+        var objectRes:JSONObject
 
         Req.GET(path, queryParams, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
             val data = res.getJSONArray("data")
-            val objectRes = data.getJSONObject(0)
+            objectRes = data.getJSONObject(0)
 
-            pontoInteresse = PontoInteresse(
+            var pi = PontoInteresse(
                 objectRes.getString("id"),
                 objectRes.getJSONArray("imagens").getString( 0), //img
                 objectRes.getString("nome"),
@@ -94,7 +95,9 @@ class Gestor() {
                 objectRes.getDouble("avg_avaliacao").toFloat(),
                 objectRes.getJSONObject("agente_turistico").getString("nome") //agente
             )
+
         })
+
     }
 
     fun getAllRecompensas(context: Context) {
