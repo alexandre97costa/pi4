@@ -74,7 +74,10 @@ object Req {
         ) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
-                headers["Authorization"] = "Bearer $token"
+
+                if(token.isNotEmpty())
+                    headers["Authorization"] = "Bearer $token"
+
                 return headers
             }
         }
@@ -96,7 +99,7 @@ object Req {
         Log.i("path", path)
         Log.i("request body\n", requestBody.toString(2))
 
-        val request = JsonObjectRequest(
+        val request = object : JsonObjectRequest(
             Request.Method.POST,
             BackendURL + path + queryParamsToString(queryParams),
             requestBody,
@@ -114,15 +117,22 @@ object Req {
 
                 Log.i("{${error.networkResponse.statusCode}}","{${error.networkResponse}}")
             }
-        )
-        if(token != "")
-            request.headers["Authorization"] = "Bearer {$token}"
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+
+                if(token.isNotEmpty())
+                    headers["Authorization"] = "Bearer $token"
+
+                return headers
+            }
+        }
 
         AddToQueue(request, context)
     }
 
     fun PUT(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String, then: (response:JSONObject) -> Unit) {
-        val request = JsonObjectRequest(
+        val request = object : JsonObjectRequest(
             Request.Method.PUT,
             BackendURL + path + queryParamsToString(queryParams),
             requestBody,
@@ -131,14 +141,22 @@ object Req {
                 then(res)
             },
             { error -> error.printStackTrace()}
-        )
-        if(token != "")
-            request.headers["Authorization"] = "Bearer {$token}"
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+
+                if(token.isNotEmpty())
+                    headers["Authorization"] = "Bearer $token"
+
+                return headers
+            }
+        }
+
         AddToQueue(request, context)
     }
 
     fun PATCH(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String, then: (response:JSONObject) -> Unit) {
-        val request = JsonObjectRequest(
+        val request = object : JsonObjectRequest(
             Request.Method.PATCH,
             BackendURL + path + queryParamsToString(queryParams),
             requestBody,
@@ -147,14 +165,22 @@ object Req {
                 then(res)
             },
             { error -> error.printStackTrace()}
-        )
-        if(token != "")
-            request.headers["Authorization"] = "Bearer {$token}"
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+
+                if(token.isNotEmpty())
+                    headers["Authorization"] = "Bearer $token"
+
+                return headers
+            }
+        }
+
         AddToQueue(request, context)
     }
 
     fun DELETE(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String, then: (response:JSONObject) -> Unit) {
-        val request = JsonObjectRequest(
+        val request = object : JsonObjectRequest(
             Request.Method.DELETE,
             BackendURL + path + queryParamsToString(queryParams),
             requestBody,
@@ -163,9 +189,17 @@ object Req {
                 then(res)
             },
             { error -> error.printStackTrace()}
-        )
-        if(token != "")
-            request.headers["Authorization"] = "Bearer {$token}"
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+
+                if(token.isNotEmpty())
+                    headers["Authorization"] = "Bearer $token"
+
+                return headers
+            }
+        }
+
         AddToQueue(request, context)
     }
 }

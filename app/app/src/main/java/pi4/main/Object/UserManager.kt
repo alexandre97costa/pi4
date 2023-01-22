@@ -3,7 +3,6 @@ package pi4.main.Object
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import androidx.core.content.ContextCompat.startActivity
 import com.example.ficha8.Req
 import org.json.JSONObject
 import pi4.main.Classes.Utilizador
