@@ -236,8 +236,13 @@ module.exports = {
     },
 
     tipos: async (req, res) => {
-        await tipo_evento.findAll()
-            .then(output => { res.status(200).json({ tipoEvento: output }) })
-            .catch(error => { res.status(400).json(error); throw new Error(error); });
+        await tipo_evento
+            .findAll({ attributes: ['id', 'nome'] })
+            .then(output => { return res.status(200).json({ tipos_evento: output }) })
+            .catch(error => { 
+                res.status(400).json({ error })
+                dev(error)
+                return
+            })
     }
 }

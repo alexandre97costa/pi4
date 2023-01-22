@@ -1,6 +1,16 @@
 package pi4.main.Classes
 
-class Eventos(id: String, nome: String, data: String ,descricao: String, morada: String ,numPontos: Int, numVagas: Int, numHoras: Int, tipoEvento: String, pontoInteresseId: String) {
+class Eventos(
+    id: String,
+    nome: String,
+    data: String ,
+    descricao: String,
+    morada: String ,
+    numPontos: Int,
+    numVagas: Int,
+    numHoras: Int,
+    tipoEvento: String,
+    pontoInteresseId: String) {
     val id: String
     val nome: String
     val descricao: String

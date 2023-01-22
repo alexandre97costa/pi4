@@ -11,6 +11,7 @@ import com.google.android.material.tabs.TabLayout
 import org.json.JSONObject
 import pi4.main.Adapter.SetAdapterCardComentarios
 import pi4.main.Adapter.SetAdapterCardEvento
+import pi4.main.Classes.Eventos
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.Points
 import pi4.main.Classes.StartActivitys
@@ -89,11 +90,41 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
     fun loadEventos(id:String) {
         val tabLayout = findViewById<TabLayout>(R.id.tabLayoutEventos)
+        val listaEventos: ArrayList<Eventos> = arrayListOf()
+
+        val queryParams = JSONObject()
+        queryParams.put("ponto_interesse_id", id)
+
+        Req.GET("/evento", queryParams, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
+            val data = res.optJSONArray("data")
+
+            // adicionar eventos à lista
+            if (data != null) {
+                for (i in 0..data.length() - 1) {
+                    val objectRes = data.optJSONObject(i)
+
+                    listaEventos.add(Eventos(
+                        objectRes.optInt("id").toString(),
+                        objectRes.optString("nome"),
+                        "data",
+                        objectRes.optString("descricao"),
+                        "morada", //tem de mandar mais informacao
+                        objectRes.optInt("pontos"),
+                        objectRes.optInt("lotacao"),
+                        objectRes.optInt("horas_duracao"),
+                        objectRes.optJSONObject("tipo_evento").optString("nome"),
+                        id //tem de mandar o id do ponto de interesse
+                    ))
+                }
+            }
+
+            // meter os eventos no tab layout
+            val customAdapter = SetAdapterCardEvento(this, listaEventos)
+            for (i in 0..customAdapter.count - 1)
+                tabLayout.addTab(tabLayout.newTab().setCustomView(customAdapter.getView(i, tabLayout, tabLayout)))
+        })
+
     }
-    
-
-
-
 
     fun maisComentarios() {
         val verMais = findViewById<TextView>(R.id.textViewVerMaisComentarios)
