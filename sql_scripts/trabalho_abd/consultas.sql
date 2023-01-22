@@ -147,16 +147,16 @@ order by 1 asc, 2 asc, 3 asc, 4 asc
 
 
 ----------------------------------------------------------------------------------------------------------------
--- Sub consultas
--- ATENCAO ISTO ESTA MAL 
---O objetivo da seguinte subconsulta é encontrar o utilizador que fez a reserva com o maior num de pessoas, neste caso que levou o maior número de pessoas com ele a um evento
+-- Sub consultas 
+-- O objetivo da seguinte subconsulta é encontrar o utilizador que fez a reserva com o maior num de pessoas, neste caso que levou o maior número de pessoas com ele a um evento
 
-SELECT utilizador.id, utilizador.nome, reserva.num_pessoas, evento.nome, evento.num_pontos
-FROM utilizador, reserva, evento, sessao
+SELECT utilizador.id, utilizador.nome, reserva.num_pessoas
+FROM utilizador, reserva, evento
 WHERE utilizador.id = reserva.visitante_id
-AND reserva.sessao_id = sessao_id
 AND reserva.num_pessoas = (SELECT MAX(num_pessoas)
-					FROM reserva)
+						  FROM reserva)
+						  LIMIT 1
+						  
 -- Através desta subconsulta, conseguimos saber qual foi o utilizador que obteve mais pontos com o scan ao ponto de interesse
 SELECT utilizador.id, utilizador.nome, utilizador.data_nascimento, scan_ponto_interesse.pontos_recebidos
 FROM utilizador, scan_ponto_interesse
