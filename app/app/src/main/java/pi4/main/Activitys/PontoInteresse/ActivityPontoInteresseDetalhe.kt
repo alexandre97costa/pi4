@@ -3,7 +3,6 @@ package pi4.main.Activitys.PontoInteresse
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -100,7 +99,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
     }
 
     fun loadEventos() {
-        gestor.pontoInteresse.getEventos(gestor.pontoInteresse.getId())
+        gestor.pontoInteresse.getEventos(gestor.pontoInteresse.getId(), this)
 
         callAdapterEvento()
     }

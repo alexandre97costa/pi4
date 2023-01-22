@@ -41,7 +41,7 @@ class ActivityComentarios : AppCompatActivity() {
     fun intentPutExtra() {
         val id = intent.getStringExtra("pontoInteresseId").toString()
 
-        gestor.getPontoInteresseId(id, this)
+        //gestor.getPontoInteresseId(id, this)
     }
 
     fun getComentarios() {

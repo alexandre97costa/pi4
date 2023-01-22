@@ -59,7 +59,7 @@ module.exports = {
         return res.status(200).json({
             msg: 'Bem vindo ' + user.nome + '! 🤩',
             token: jwt.sign(token, secret, options),
-            user: token
+            user: user.id
         });
     },
 

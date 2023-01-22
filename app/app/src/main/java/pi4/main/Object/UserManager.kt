@@ -27,20 +27,36 @@ object UserManager {
 
         Req.POST("/utilizador/login", queryParams, requestBody, context, "", then = { response ->
             val token = response.optString("token")
-            val user = response.optJSONObject("user")
+            val user = response.optString("user")
 
             this.utilizador = Utilizador(
-                user.optString("id"),
-                user.optString("nome"),
-                user.optString("email"),
+                user,
+                "",
+                "",
                 password,
-                user.optString("pontos"),
+                "",
                 token
             )
 
-            Log.i("token", this.getUtilizador()!!.getToken())
+            val path = "/utilizador/${this.utilizador!!.getId()}"
 
-            context.startActivity(Intent(context, MainActivity::class.java))
+            Req.GET(path, queryParams, context, this.utilizador!!.getToken(), then = { res ->
+                val data = res.optJSONArray("data")
+                val user = data.optJSONObject(0)
+
+                this.utilizador = Utilizador(
+                    user.optString("id"),
+                    user.optString("nome"),
+                    user.optString("email"),
+                    password,
+                    user.optString("pontos"),
+                    token
+                )
+
+                Log.i("utilizador", this.utilizador!!.getNome())
+
+                context.startActivity(Intent(context, MainActivity::class.java))
+            })
         })
     }
 
@@ -58,15 +74,15 @@ object UserManager {
             val user = res.getJSONObject("user")
 
             this.utilizador = Utilizador(
-                user.getString("id"),
-                user.getString("nome"),
-                user.getString("email"),
+                user.optString("id"),
+                user.optString("nome"),
+                user.optString("email"),
                 password,
-                user.getString("pontos"),
+                user.optString("pontos"),
                 ""
             )
-        })
 
-        loginUtilizador(utilizador!!.getEmail(), password, context)
+            loginUtilizador(utilizador!!.getEmail(), password, context)
+        })
     }
 }

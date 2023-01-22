@@ -2,6 +2,7 @@ package com.example.ficha8
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import com.android.volley.AuthFailureError
 import com.android.volley.Header
 import com.android.volley.Request
@@ -43,6 +44,7 @@ object Req {
                     "UTF-8"
                 )
         }
+
         return returnString;
     }
 
@@ -67,7 +69,7 @@ object Req {
                 then(res)
             },
             { error ->
-                Log.i("caralho", "esta merda não deu")
+                Log.i("ERRO GET", "DEU MAL")
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -103,6 +105,13 @@ object Req {
                 then(res)
             },
             { error ->
+                if(error.networkResponse.statusCode == 404)
+                    Toast.makeText(context, "Utilizador não foi encontrado", Toast.LENGTH_SHORT).show()
+                if(error.networkResponse.statusCode == 401)
+                    Toast.makeText(context, "Sem autorização", Toast.LENGTH_SHORT).show()
+                if(error.networkResponse.statusCode == 400)
+                    Toast.makeText(context, "Input introduzido invalido", Toast.LENGTH_SHORT).show()
+
                 Log.i("{${error.networkResponse.statusCode}}","{${error.networkResponse}}")
             }
         )

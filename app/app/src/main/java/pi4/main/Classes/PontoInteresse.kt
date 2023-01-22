@@ -1,5 +1,12 @@
 package pi4.main.Classes
 
+import android.content.Context
+import com.example.ficha8.Req
+import com.google.android.material.tabs.TabLayout
+import org.json.JSONObject
+import pi4.main.Adapter.SetAdapterCardEvento
+import pi4.main.Object.UserManager
+
 class PontoInteresse(
     id: String,
     image_url:String,
@@ -83,37 +90,33 @@ class PontoInteresse(
     }
 
     //PEDIDOS API
-    fun getEventos(id: String) { //id -> pontoInteresseId
+    fun getEventos(id: String, context: Context) { //id -> pontoInteresseId
         //limpar arrayList antes de fazer o pedido API
         listaEventos.clear()
 
-        //exemplo pedido api
-        this.listaEventos.add(
-            Eventos(
-                "1",
-            "Recital dos passaros",
-                "24/12/2022",
-            "Uma cena muito secante",
-                "Rossio",
-            20,
-            26,
-            3,
-            "Museu",
-                "1"
-            )
-        )
-        this.listaEventos.add(Eventos(
-            "2",
-            "Recital dos cães",
-            "22/01/2023",
-            "Uma cena muito, muito secante",
-            "Rossio",
-            15,
-            22,
-            1,
-            "Museu",
-            "1"
-        ))
+        val queryParams = JSONObject()
+        queryParams.put("ponto_interesse_id", id)
+
+        Req.GET("/evento", queryParams, context, UserManager.getUtilizador()!!.getPontos(), then = { res ->
+            val data = res.optJSONArray("data")
+
+            for (i in 0..data.length() - 1) {
+                val objectRes = data.optJSONObject(i)
+
+                this.listaEventos.add(Eventos(
+                    objectRes.optInt("id").toString(),
+                    objectRes.optString("nome"),
+                    objectRes.optJSONObject("sessao").optString("data_hora"),
+                    objectRes.optString("descricao"),
+                    "", //tem de mandar mais informacao
+                    objectRes.optInt("pontos"),
+                    objectRes.optInt("lotacao"),
+                    objectRes.optInt("horas_duracao"),
+                    objectRes.optJSONObject("tipo_evento").optString("nomr"),
+                    "1" //tem de mandar o id do ponto de interesse
+                ))
+            }
+        })
     }
 
     fun getDetailsEvento(eventoId: String): Eventos {
@@ -150,7 +153,9 @@ class PontoInteresse(
     }
 
     fun getLimitComentarios(id: String) {
+        //Limpar antes de começar para termos acerteza que não tem informação nenhuma anterior
         listaComentarios.clear()
+
 
         this.listaComentarios.add(Comentarios(
             "Joaquim Sousa",

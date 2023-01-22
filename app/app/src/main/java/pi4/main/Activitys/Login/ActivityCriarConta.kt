@@ -21,18 +21,21 @@ class ActivityCriarConta : AppCompatActivity() {
         setContentView(R.layout.activity_criar_conta)
 
         //Button actions
-        btnCriar()
+        btnCriarConta()
         btnPrevious()
 
         //Para criar conta
-        criarConta()
+        btnLogin()
     }
 
-    fun btnCriar() {
+    fun btnCriarConta() {
         val buttonCriar = findViewById<Button>(R.id.buttonCriar)
 
         buttonCriar.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            if (terms() == false)
+                return@setOnClickListener Toast.makeText(this, "Necessita de aceitar os termos",Toast.LENGTH_SHORT).show()
+
+            postUtilizador()
         }
     }
 
@@ -42,15 +45,10 @@ class ActivityCriarConta : AppCompatActivity() {
         StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 
-    fun criarConta() {
+    fun btnLogin() {
         val textViewEntrar = findViewById<TextView>(R.id.textViewEntrar)
 
         textViewEntrar.setOnClickListener{
-            if (terms() == false)
-                return@setOnClickListener Toast.makeText(this, "Necessita de aceitar os termos",Toast.LENGTH_SHORT).show()
-
-            getEditText()
-
             startActivity(Intent(this, ActivityLogin::class.java))
         }
     }
@@ -61,11 +59,11 @@ class ActivityCriarConta : AppCompatActivity() {
         return terms.isChecked
     }
 
-    fun getEditText() {
+    fun postUtilizador() {
         val nome = findViewById<EditText>(R.id.editTextTextPersonName)
         val email = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val passeword = findViewById<EditText>(R.id.editTextTextPassword)
 
-        UserManager.postUtilizador(nome.toString(), email.toString(), passeword.toString(), this)
+        UserManager.postUtilizador(nome.text.toString(), email.text.toString(), passeword.text.toString(), this)
     }
 }
