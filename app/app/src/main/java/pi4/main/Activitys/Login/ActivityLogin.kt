@@ -64,7 +64,7 @@ class ActivityLogin : AppCompatActivity() {
         val passeword = findViewById<EditText>(R.id.editTextTextPassword)
 
         Log.i("email", email.text.toString())
-        Log.i("passeword", passeword.text.toString())
+        Log.i("password", passeword.text.toString())
 
         UserManager.loginUtilizador(email.text.toString(), passeword.text.toString(), this)
     }

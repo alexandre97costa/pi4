@@ -25,7 +25,7 @@ class ActivityHistoricoReserva : AppCompatActivity() {
 
     fun historicoReservasCard() {
         //Fazer pedido API
-        UserManager.getUtilizador()!!.getHistocoReservas(UserManager.getUtilizador()!!.getId())
+        UserManager.getUtilizador()!!.getHistocoReservas(this)
 
         val customAdapter = SetAdapterCardHistoricoReservas(this, UserManager.getUtilizador()!!.listaHistoricoReservas)
         val listView = findViewById<ListView>(R.id.listViewHistoricoReservas)

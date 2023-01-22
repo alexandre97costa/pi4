@@ -6,12 +6,12 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import org.json.JSONException
 import org.json.JSONObject
 import pi4.main.Utils.BackendURL
+import java.nio.charset.Charset
 
 
-class Req {
+object Req {
     fun AddToQueue(request:JsonObjectRequest, context: Context) {
         val queue = Volley.newRequestQueue(context)
         queue.add(request)
@@ -41,7 +41,14 @@ class Req {
         return returnString;
     }
 
-    fun GET(path:String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String ,then: (response:JSONObject) -> Unit) {
+    fun GET(
+        path:String,
+        queryParams: JSONObject,
+        requestBody:JSONObject,
+        context: Context,
+        token: String,
+        then: (res:JSONObject) -> Unit
+    ) {
         val url = BackendURL + path + queryParamsToString(queryParams)
         Log.i("Request GET", url)
         val request = JsonObjectRequest(
@@ -52,7 +59,9 @@ class Req {
                 Log.i("Request GET\n", res.toString(2))
                 then(res)
             },
-            { error -> error.printStackTrace() }
+            { error ->
+                Log.i("caralho", "esta merda não deu")
+            }
         )
         if(token != "")
             request.headers["Authorization"] = "Bearer {$token}"
@@ -60,19 +69,33 @@ class Req {
         AddToQueue(request, context)
     }
 
-    fun POST(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String ,then: (response:JSONObject) -> Unit) {
+    fun POST(
+        path: String,
+        queryParams: JSONObject,
+        requestBody:JSONObject,
+        context: Context,
+        token: String,
+        //then: (res:JSONObject) -> Unit
+    ) {
+        Log.i("request body\n", requestBody.toString(2))
+
         val request = JsonObjectRequest(
             Request.Method.POST,
             BackendURL + path + queryParamsToString(queryParams),
             requestBody,
             { res ->
-                Log.i("Request POST\n", res.toString(2))
-                then(res)
+                Log.i("dentro do post","estamos cá dentrooooo")
+                // Log.i("Request POST\n", res.toString(2))
+                // then(res)
             },
-            { error -> error.printStackTrace()}
+            { error ->
+                Log.i("dentro dela","estamos cá dentrooooo (do erro)")
+            }
         )
+        /*
         if(token != "")
             request.headers["Authorization"] = "Bearer {$token}"
+        */
 
         AddToQueue(request, context)
     }

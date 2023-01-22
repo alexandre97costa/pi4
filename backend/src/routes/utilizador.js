@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const u = require('../controllers/utilizador')
 
-router.get('/login', u.login)
+router.post('/login', u.login)
 
 router.get('/', u.get)
 router.get('/:id', u.get)

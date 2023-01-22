@@ -19,8 +19,10 @@ module.exports = {
 
         const required_params = ['email', 'password']
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
-        if (!check_all_required)
-            return res.status(400).json({msg: 'Faltam dados para poder fazer o login (email+password).'})
+        if (!check_all_required) {
+            dev.log('Faltam dados para poder fazer o login (email+password).')
+            return res.status(269).json({msg: 'Faltam dados para poder fazer o login (email+password).'})
+        }
 
         const { email, password } = req.body
 
@@ -28,10 +30,10 @@ module.exports = {
             .findOne({ where: { email: email } })
             .then(response => { return response?.dataValues })
 
-        if (!user) return res.status(400).json({ msg: 'Utilizador não encontrado' })
+        if (!user) return res.status(269).json({ msg: 'Utilizador não encontrado' })
 
         const passwordMatch = bcrypt.compareSync(password, user.password);
-        if (!passwordMatch) return res.status(400).json({ msg: 'Password errada' })
+        if (!passwordMatch) return res.status(269).json({ msg: 'Password errada' })
 
         // ✅ a partir daqui já verificámos que tudo está bem, siga mandar o token
 

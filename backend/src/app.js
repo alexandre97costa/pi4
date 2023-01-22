@@ -56,7 +56,7 @@ app.use(
     }).unless({
         path: [
             { url: '/utilizador', methods: ['POST'] },
-            { url: '/utilizador/login', methods: ['GET'] },
+            { url: '/utilizador/login', methods: ['POST'] },
 
             // ? para os scans feitos fora da app, nao precisam de auth porque são redirecionados para o micro site
             { url: /^\/scan/, methods: ['GET'] },
