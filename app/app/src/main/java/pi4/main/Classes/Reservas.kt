@@ -77,7 +77,7 @@ class Reservas(id:String, nomeReserva: String, numeroPessoas: String, validado: 
         val hora = primeiraParte.split(":")[0]
         val minutos = primeiraParte.split(":")[1]
 
-        return "${hora}h ${minutos}min"
+        return "${hora}h${minutos}"
     }
 
 }

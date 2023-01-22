@@ -77,7 +77,7 @@ class ActivityInfoHistoricoEvento : AppCompatActivity() {
             nomeReserva.text = UserManager.getUtilizador()!!.reservaInfo.getNome()
             dataEvento.text = UserManager.getUtilizador()!!.reservaInfo.getDataEvento()
             horaEvento.text = UserManager.getUtilizador()!!.reservaInfo.getHoraEvento()
-            numeroPessoas.text = UserManager.getUtilizador()!!.reservaInfo.getNumeroPessoas()
+            numeroPessoas.text = "${UserManager.getUtilizador()!!.reservaInfo.getNumeroPessoas()} pessoas"
 
             btnGoPontoInteresse()
         })
