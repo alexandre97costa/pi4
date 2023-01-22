@@ -1,6 +1,7 @@
 package pi4.main.Activitys.Login
 
 import android.content.Intent
+import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,7 +10,6 @@ import android.widget.EditText
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Activitys.Passeword.ActivityRecuperarPasseword
-import pi4.main.Classes.Gestor
 import pi4.main.Classes.StartActivitys
 import pi4.main.MainActivity
 import pi4.main.Object.UserManager
@@ -54,8 +54,7 @@ class ActivityLogin : AppCompatActivity() {
 
         buttonLogin.setOnClickListener {
             getEditText()
-
-            startActivity(Intent(this, MainActivity::class.java))
+            //startActivity(Intent(this, MainActivity::class.java))
         }
     }
 

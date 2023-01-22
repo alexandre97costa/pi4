@@ -100,9 +100,8 @@ class Utilizador(
 
         //Pedido API
         val queryParams = JSONObject("""{}""")
-        val requestBody = JSONObject("""{}""")
 
-        Req().GET("/reserva", queryParams, requestBody, context, this.token, then = { res ->
+        Req.GET("/reserva", queryParams, context, this.token, then = { res ->
             val data  = res.getJSONArray("data")
 
             for (i in 0..data.length()) {

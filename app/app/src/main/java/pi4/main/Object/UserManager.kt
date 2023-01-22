@@ -1,10 +1,13 @@
 package pi4.main.Object
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
 import com.example.ficha8.Req
 import org.json.JSONObject
 import pi4.main.Classes.Utilizador
+import pi4.main.MainActivity
 
 object UserManager {
     private var utilizador: Utilizador? = null
@@ -17,40 +20,28 @@ object UserManager {
         //Cria os filtros para enviar para API
         val queryParams = JSONObject("""{}""")
         val requestBody = JSONObject()
+
+        //Adiciona elementos para o requestBody
         requestBody.put("email", email)
         requestBody.put("password", password)
-        Log.i("request body\n", requestBody.toString(2))
 
-        Req.POST("/utilizador/login", queryParams, requestBody, context, "")
-        /*
-        , then = { response ->
-
-
-            Log.i("caralho", response.toString(2))
-
+        Req.POST("/utilizador/login", queryParams, requestBody, context, "", then = { response ->
             val token = response.optString("token")
             val user = response.optJSONObject("user")
 
-            try {
-                this.utilizador = Utilizador(
-                    user.getString("id"),
-                    user.getString("nome"),
-                    user.getString("email"),
-                    password,
-                    user.getString("pontos"),
-                    token
-                )
+            this.utilizador = Utilizador(
+                user.optString("id"),
+                user.optString("nome"),
+                user.optString("email"),
+                password,
+                user.optString("pontos"),
+                token
+            )
 
-                Log.i("utilizador", this.getUtilizador().toString())
-                Log.i("utilizador", this.getUtilizador()!!.getToken())
-            } catch (e:Error) {
-                Log.i("erro", e.toString())
-            }
+            Log.i("token", this.getUtilizador()!!.getToken())
 
-
+            context.startActivity(Intent(context, MainActivity::class.java))
         })
-        *
-         */
     }
 
     fun postUtilizador(nome: String, email: String, password: String, context: Context) {
@@ -63,9 +54,7 @@ object UserManager {
         requestBody.put("password", password)
         requestBody.put("tipo", 1)//Só criar utilizadores do tipo = 1
 
-        Req.POST("/utilizador", queryParams, requestBody, context, "")
-        /*
-        , then = { res ->
+        Req.POST("/utilizador", queryParams, requestBody, context, "", then = { res ->
             val user = res.getJSONObject("user")
 
             this.utilizador = Utilizador(
@@ -77,8 +66,6 @@ object UserManager {
                 ""
             )
         })
-        *
-         */
 
         loginUtilizador(utilizador!!.getEmail(), password, context)
     }

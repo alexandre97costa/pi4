@@ -2,13 +2,18 @@ package com.example.ficha8
 
 import android.content.Context
 import android.util.Log
+import com.android.volley.AuthFailureError
+import com.android.volley.Header
 import com.android.volley.Request
 import com.android.volley.Response
+import com.android.volley.toolbox.HurlStack
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import okhttp3.Headers
 import org.json.JSONObject
 import pi4.main.Utils.BackendURL
 import java.nio.charset.Charset
+import kotlin.math.log
 
 
 object Req {
@@ -44,17 +49,19 @@ object Req {
     fun GET(
         path:String,
         queryParams: JSONObject,
-        requestBody:JSONObject,
         context: Context,
         token: String,
         then: (res:JSONObject) -> Unit
     ) {
+        val queue = Volley.newRequestQueue(context)
+
         val url = BackendURL + path + queryParamsToString(queryParams)
         Log.i("Request GET", url)
-        val request = JsonObjectRequest(
+
+        val request = object : JsonObjectRequest(
             Request.Method.GET,
             url,
-            requestBody,
+            null,
             { res ->
                 Log.i("Request GET\n", res.toString(2))
                 then(res)
@@ -62,12 +69,19 @@ object Req {
             { error ->
                 Log.i("caralho", "esta merda não deu")
             }
-        )
-        if(token != "")
-            request.headers["Authorization"] = "Bearer {$token}"
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+                headers["Authorization"] = "Bearer $token"
+                return headers
+            }
+        }
 
-        AddToQueue(request, context)
+        Log.i("header", request.headers.toString())
+
+        queue.add(request)
     }
+
 
     fun POST(
         path: String,
@@ -75,8 +89,9 @@ object Req {
         requestBody:JSONObject,
         context: Context,
         token: String,
-        //then: (res:JSONObject) -> Unit
+        then: (res:JSONObject) -> Unit
     ) {
+        Log.i("path", path)
         Log.i("request body\n", requestBody.toString(2))
 
         val request = JsonObjectRequest(
@@ -84,18 +99,15 @@ object Req {
             BackendURL + path + queryParamsToString(queryParams),
             requestBody,
             { res ->
-                Log.i("dentro do post","estamos cá dentrooooo")
-                // Log.i("Request POST\n", res.toString(2))
-                // then(res)
+                Log.i("POST","ENTRAMOS")
+                then(res)
             },
             { error ->
-                Log.i("dentro dela","estamos cá dentrooooo (do erro)")
+                Log.i("{${error.networkResponse.statusCode}}","{${error.networkResponse}}")
             }
         )
-        /*
         if(token != "")
             request.headers["Authorization"] = "Bearer {$token}"
-        */
 
         AddToQueue(request, context)
     }
