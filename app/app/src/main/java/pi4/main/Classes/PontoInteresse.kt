@@ -90,8 +90,6 @@ class PontoInteresse(
     }
 
     //PEDIDOS API
-
-
     fun getDetailsEvento(eventoId: String): Eventos {
         //Fazer pedido API
         //Exemplo de return

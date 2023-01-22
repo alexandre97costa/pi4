@@ -1,14 +1,17 @@
 package pi4.main.Activitys.Historico
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.example.ficha8.Req
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONObject
-import pi4.main.Classes.Eventos
+import pi4.main.Activitys.PontoInteresse.ActivityPontoInteresseDetalhe
 import pi4.main.Classes.Reservas
 import pi4.main.Classes.StartActivitys
 import pi4.main.Object.UserManager
@@ -35,9 +38,11 @@ class ActivityInfoHistoricoEvento : AppCompatActivity() {
 
     fun loadInfoHistoricoReserva() {
         getPutExtra()
+
         val nomeEvento = findViewById<TextView>(R.id.textViewNomeEvento)
         val nomeReserva = findViewById<TextView>(R.id.textViewNomeReserva)
         val dataEvento = findViewById<TextView>(R.id.textViewData)
+        val horaEvento = findViewById<TextView>(R.id.textViewhoras)
         val numeroPessoas = findViewById<TextView>(R.id.textViewLugares)
 
         val estado = findViewById<TextView>(R.id.textViewEstado)
@@ -49,28 +54,42 @@ class ActivityInfoHistoricoEvento : AppCompatActivity() {
             val data = res.optJSONArray("data")
             val objectRes = data.getJSONObject(0)
 
-            UserManager.getUtilizador()!!.listaHistoricoReservas.add(Reservas(
+            UserManager.getUtilizador()!!.reservaInfo = Reservas(
                 objectRes.optInt("id").toString(),
                 objectRes.optString("nome"),
                 objectRes.optString("pessoas"),
                 objectRes.optBoolean("validado"),
                 objectRes.optJSONObject("sessao").optJSONObject("evento").optString("nome"),
                 objectRes.optJSONObject("sessao").optString("data_hora"),
+                objectRes.optJSONObject("sessao").optJSONObject("evento").optJSONObject("ponto_interesse").optString("id"),
                 objectRes.optString("codigo_confirmacao")
-            ))
+            )
 
-            if(UserManager.getUtilizador()!!.getReservaDetails(eventoId).getEstado() == "valido") {
-                estado.text = "Validado"
+            Log.i("estadoReserva", UserManager.getUtilizador()!!.reservaInfo.getEstado())
+            if(UserManager.getUtilizador()!!.reservaInfo.getEstado() == "Validado") {
+                estado.text = UserManager.getUtilizador()!!.reservaInfo.getCodigo()
                 estado.setTextColor(ContextCompat.getColor(this, R.color.greenPrincipal))
                 iconEstado.setImageResource(R.drawable.verified_40px)
                 iconEstado.setColorFilter(ContextCompat.getColor(this,R.color.greenPrincipal))
             }
 
-            //nomeEvento.text = UserManager.getUtilizador()!!.getReservaDetails(eventoId).getEvento().nome
-            //nomeReserva.text = UserManager.getUtilizador()!!.getReservaDetails(eventoId).getNome()
-            //dataEvento.text = UserManager.getUtilizador()!!.getReservaDetails(eventoId).getEvento().data
-            //numeroPessoas.text = UserManager.getUtilizador()!!.getReservaDetails(eventoId).getNumeroPessoas()
+            nomeEvento.text = UserManager.getUtilizador()!!.reservaInfo.getNomeEvento()
+            nomeReserva.text = UserManager.getUtilizador()!!.reservaInfo.getNome()
+            dataEvento.text = UserManager.getUtilizador()!!.reservaInfo.getDataEvento()
+            horaEvento.text = UserManager.getUtilizador()!!.reservaInfo.getHoraEvento()
+            numeroPessoas.text = "${UserManager.getUtilizador()!!.reservaInfo.getNumeroPessoas()} pessoas"
+
+            btnGoPontoInteresse()
         })
+    }
+
+    fun btnGoPontoInteresse() {
+        val btn = findViewById<Button>(R.id.btnGoPontoInteresse)
+
+        btn.setOnClickListener {
+            startActivity(Intent(this, ActivityPontoInteresseDetalhe::class.java)
+                .putExtra("pontoInteresseId", UserManager.getUtilizador()!!.reservaInfo.getPontoInteresseId()))
+        }
     }
 
     fun getPutExtra() {

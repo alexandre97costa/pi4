@@ -41,11 +41,9 @@ class SetAdapterCardHistoricoReservas(private val context: Context, private val 
         dataReserva.text = recipe.getNomeEvento()
         estadoReserva.text = recipe.getEstado()
 
-        if(recipe.getEstado() === "pendente")
+        if(recipe.getEstado() === "Pendente")
             rowView.setBackgroundResource(R.drawable.shape_yellow)
-        if(recipe.getEstado() === "rejeitado")
-            rowView.setBackgroundResource(R.drawable.shape_red)
-        if(recipe.getEstado() === "valido")
+        if(recipe.getEstado() === "Valido")
             rowView.setBackgroundResource(R.drawable.shape_green)
 
         val linerLayout = rowView.findViewById<LinearLayout>(R.id.linearLayoutHistoricoReserva)

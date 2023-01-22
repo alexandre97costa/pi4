@@ -34,7 +34,7 @@ class ActivityHistoricoReserva : AppCompatActivity() {
         Req.GET("/reserva", queryParams, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
             val data  = res.getJSONArray("data")
 
-            for (i in 0..data.length()) {
+            for (i in 0..data.length() - 1) {
                 val objectRes = data.getJSONObject(i)
 
                 UserManager.getUtilizador()!!.listaHistoricoReservas.add(Reservas(
@@ -44,6 +44,7 @@ class ActivityHistoricoReserva : AppCompatActivity() {
                     objectRes.optBoolean("validado"),
                     objectRes.optJSONObject("sessao").optJSONObject("evento").optString("nome"),
                     objectRes.optJSONObject("sessao").optString("data_hora"),
+                    objectRes.optJSONObject("sessao").optJSONObject("evento").optJSONObject("ponto_interesse").optString("id"),
                     objectRes.optString("codigo_confirmacao")
                 ))
             }

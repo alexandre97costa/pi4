@@ -66,9 +66,7 @@ module.exports = {
                     // os visitantes (tipo 1) só podem ver as suas próprias reservas
                     visitante_id: (req.auth.tipo === 1) ?
                         req.auth.id :
-                        { [Op.ne]: 0 },
-                    validado: validado,
-                    confirmado: confirmado,
+                        { [Op.ne]: 0 }
                 },
                 include: [
                     {
