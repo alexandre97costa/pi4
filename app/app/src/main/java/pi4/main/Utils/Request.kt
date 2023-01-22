@@ -69,7 +69,9 @@ object Req {
                 then(res)
             },
             { error ->
-                Log.i("ERRO GET", "DEU MAL")
+                if(error.networkResponse.statusCode == 404)
+                    Toast.makeText(context, "Não foi encontrado informação", Toast.LENGTH_SHORT).show()
+                Log.i("${error.networkResponse.statusCode}", "${error.networkResponse}")
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
