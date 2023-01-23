@@ -1,36 +1,39 @@
 CREATE SEQUENCE tipo_evento_id_seq;
 CREATE TABLE tipo_evento (
-	id	 			PRIMARY KEY DEFAULT nextval('tipo_evento_id_seq'),
+	id	 			INTEGER NOT NULL DEFAULT nextval('tipo_evento_id_seq'),
 	nome			VARCHAR(255) NOT NULL,
 	observacoes		VARCHAR(255),
 	created_at		TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at		TIMESTAMP NOT NULL DEFAULT NOW(),
 	deleted_at		TIMESTAMP DEFAULT NULL,
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE tipo_interesse_id_seq;
 CREATE TABLE tipo_interesse (
-	id 				PRIMARY KEY DEFAULT nextval('tipo_interesse_id_seq'),
+	id 				INTEGER NOT NULL DEFAULT nextval('tipo_interesse_id_seq'),
 	nome			VARCHAR(255) NOT NULL,
 	observacoes	 	VARCHAR(255),
 	created_at		TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at		TIMESTAMP NOT NULL DEFAULT NOW(),
 	deleted_at		TIMESTAMP DEFAULT NULL,
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE tipo_utilizador_id_seq;
 CREATE TABLE tipo_utilizador (
-	id	 			PRIMARY KEY DEFAULT nextval('tipo_utilizador_id_seq'),
+	id	 			INTEGER NOT NULL DEFAULT nextval('tipo_utilizador_id_seq'),
 	nome			VARCHAR(255) NOT NULL,
 	observacoes		VARCHAR(255),
 	created_at		TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at		TIMESTAMP NOT NULL DEFAULT NOW(),
 	deleted_at		TIMESTAMP DEFAULT NULL,
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE utilizador_id_seq;
 CREATE TABLE utilizador (
-	id					PRIMARY KEY DEFAULT nextval('utilizador_id_seq'),
+	id					INTEGER NOT NULL DEFAULT nextval('utilizador_id_seq'),
 	nome				VARCHAR(255) NOT NULL,
 	email				VARCHAR(100) NOT NULL,
 	password			VARCHAR(512) NOT NULL,
@@ -42,11 +45,12 @@ CREATE TABLE utilizador (
 	tipo_utilizador_id 	INTEGER NOT NULL,
 
 	CONSTRAINT tipo_utilizador FOREIGN KEY(tipo_utilizador_id) REFERENCES tipo_utilizador(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE distrito_id_seq;
 CREATE TABLE distrito (
-	id					PRIMARY KEY DEFAULT nextval('distrito_id_seq'),
+	id					INTEGER NOT NULL DEFAULT nextval('distrito_id_seq'),
 	nome				VARCHAR(255) NOT NULL,
 	created_at			TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at			TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -54,11 +58,12 @@ CREATE TABLE distrito (
 	responsavel_regiao_id 	INTEGER NOT NULL,
 
 	CONSTRAINT responsavel_regiao FOREIGN KEY(responsavel_regiao_id) REFERENCES utilizador(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE municipio_id_seq;
 CREATE TABLE municipio (
-	id				PRIMARY KEY DEFAULT nextval('municipio_id_seq'),
+	id				INTEGER NOT NULL DEFAULT nextval('municipio_id_seq'),
 	nome			VARCHAR(255) NOT NULL,
 	created_at		TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at		TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -66,11 +71,12 @@ CREATE TABLE municipio (
 	distrito_id 	INTEGER NOT NULL,
 
 	CONSTRAINT distrito FOREIGN KEY(distrito_id) REFERENCES distrito(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE freguesia_id_seq;
 CREATE TABLE freguesia (
-	id				PRIMARY KEY DEFAULT nextval('freguesia_id_seq'),
+	id				INTEGER NOT NULL DEFAULT nextval('freguesia_id_seq'),
 	nome			VARCHAR(255) NOT NULL,
 	created_at		TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at		TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -78,11 +84,12 @@ CREATE TABLE freguesia (
 	municipio_id 	INTEGER NOT NULL,	
 
 	CONSTRAINT municipio FOREIGN KEY(municipio_id) REFERENCES municipio(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE ponto_interesse_id_seq;
 CREATE TABLE ponto_interesse (
-	id					PRIMARY KEY DEFAULT nextval('ponto_interesse_id_seq'),
+	id					INTEGER NOT NULL DEFAULT nextval('ponto_interesse_id_seq'),
 	nome				VARCHAR(255) NOT NULL,
 	morada				VARCHAR(255) NOT NULL,
 	codigo_postal		VARCHAR(8) NOT NULL,
@@ -102,12 +109,13 @@ CREATE TABLE ponto_interesse (
 
 	CONSTRAINT freguesia FOREIGN KEY(freguesia_id) REFERENCES freguesia(id),
 	CONSTRAINT tipo_interesse FOREIGN KEY(tipo_interesse_id) REFERENCES tipo_interesse(id),
-	CONSTRAINT agente_turistico FOREIGN KEY(agente_turistico_id) REFERENCES agente_turistico(id),
+	CONSTRAINT agente_turistico FOREIGN KEY(agente_turistico_id) REFERENCES utilizador(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE scan_ponto_interesse_id_seq;
 CREATE TABLE scan_ponto_interesse (
-	id 					PRIMARY KEY DEFAULT nextval('scan_ponto_interesse_id_seq'),
+	id 					INTEGER NOT NULL DEFAULT nextval('scan_ponto_interesse_id_seq'),
 	created_at			TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at			TIMESTAMP NOT NULL DEFAULT NOW(),
 	deleted_at			TIMESTAMP DEFAULT NULL,
@@ -116,11 +124,12 @@ CREATE TABLE scan_ponto_interesse (
 
 	CONSTRAINT ponto_interesse FOREIGN KEY(ponto_interesse_id) REFERENCES ponto_interesse(id),
 	CONSTRAINT visitante FOREIGN KEY(visitante_id) REFERENCES utilizador(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE evento_id_seq;
 CREATE TABLE evento (
-	id					PRIMARY KEY DEFAULT nextval('evento_id_seq'),
+	id					INTEGER NOT NULL DEFAULT nextval('evento_id_seq'),
 	nome				VARCHAR(255) NOT NULL,
 	descricao			VARCHAR(255) NOT NULL,
 	pontos		  		INTEGER NOT NULL,
@@ -134,11 +143,12 @@ CREATE TABLE evento (
 
 	CONSTRAINT ponto_interesse FOREIGN KEY(ponto_interesse_id) REFERENCES ponto_interesse(id),
 	CONSTRAINT tipo FOREIGN KEY(tipo_evento_id) REFERENCES tipo_evento(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE scan_evento_id_seq;
 CREATE TABLE scan_evento (
-	id 					PRIMARY KEY DEFAULT nextval('scan_evento_id_seq'),
+	id 					INTEGER NOT NULL DEFAULT nextval('scan_evento_id_seq'),
 	pontos_recebidos	INTEGER NOT NULL,
 	created_at			TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at			TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -148,11 +158,12 @@ CREATE TABLE scan_evento (
 
 	CONSTRAINT evento FOREIGN KEY(evento_id) REFERENCES evento(id),
 	CONSTRAINT visitante FOREIGN KEY(visitante_id) REFERENCES utilizador(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE sessao_id_seq;
 CREATE TABLE sessao (
-	id				PRIMARY KEY DEFAULT nextval('sessao_id_seq'),
+	id				INTEGER NOT NULL DEFAULT nextval('sessao_id_seq'),
 	data_hora	 	TIMESTAMP NOT NULL,
 	inicio_evento	BOOLEAN,
 	fim_evento	 	BOOLEAN,
@@ -163,11 +174,12 @@ CREATE TABLE sessao (
 	evento_id 		INTEGER NOT NULL,
 
 	CONSTRAINT evento FOREIGN KEY(evento_id) REFERENCES evento(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE reserva_id_seq;
 CREATE TABLE reserva (
-	id					PRIMARY KEY DEFAULT nextval('reserva_id_seq'),
+	id					INTEGER NOT NULL DEFAULT nextval('reserva_id_seq'),
 	nome				VARCHAR(255) NOT NULL,
 	pessoas				INTEGER NOT NULL,
 	validado			BOOLEAN NOT NULL DEFAULT FALSE,
@@ -182,11 +194,12 @@ CREATE TABLE reserva (
 
 	CONSTRAINT sessao FOREIGN KEY(sessao_id) REFERENCES sessao(id),
 	CONSTRAINT visitante FOREIGN KEY(visitante_id) REFERENCES utilizador(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE recompensa_id_seq;
 CREATE TABLE recompensa (
-	id					PRIMARY KEY DEFAULT nextval('recompensa_id_seq'),
+	id					INTEGER NOT NULL DEFAULT nextval('recompensa_id_seq'),
 	validado			BOOLEAN NOT NULL DEFAULT FALSE,
 	titulo				VARCHAR(255) NOT NULL,
 	descricao			VARCHAR(255) NOT NULL,
@@ -198,11 +211,12 @@ CREATE TABLE recompensa (
 	tipo_interesse_id 	INTEGER NOT NULL,
 
 	CONSTRAINT tipo_interesse FOREIGN KEY(tipo_interesse_id) REFERENCES tipo_interesse(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE ponto_interesse_recompensa_id_seq;
 CREATE TABLE ponto_interesse_recompensa (
-	id 					PRIMARY KEY DEFAULT nextval('ponto_interesse_recompensa_id_seq'),
+	id 					INTEGER NOT NULL DEFAULT nextval('ponto_interesse_recompensa_id_seq'),
 	created_at			TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at			TIMESTAMP NOT NULL DEFAULT NOW(),
 	deleted_at			TIMESTAMP DEFAULT NULL,
@@ -211,11 +225,12 @@ CREATE TABLE ponto_interesse_recompensa (
 
 	CONSTRAINT ponto_interesse FOREIGN KEY(ponto_interesse_id) REFERENCES ponto_interesse(id),
 	CONSTRAINT recompensa FOREIGN KEY(recompensa_id) REFERENCES recompensa(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE imagem_id_seq;
 CREATE TABLE imagem (
-	id 					PRIMARY KEY DEFAULT nextval('imagem_id_seq'),
+	id 					INTEGER NOT NULL DEFAULT nextval('imagem_id_seq'),
 	blob	 			BYTEA,
 	url					VARCHAR(255),
 	created_at			TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -224,11 +239,12 @@ CREATE TABLE imagem (
 	ponto_interesse_id 	INTEGER NOT NULL,
 
 	CONSTRAINT ponto_interesse FOREIGN KEY(ponto_interesse_id) REFERENCES ponto_interesse(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE candidatura_at_id_seq;
 CREATE TABLE candidatura_at (
-	id					PRIMARY KEY DEFAULT nextval('candidatura_at_id_seq'),
+	id					INTEGER NOT NULL DEFAULT nextval('candidatura_at_id_seq'),
 	localidade_at		VARCHAR(50) NOT NULL,
 	texto_candidatura	VARCHAR(512) NOT NULL,
 	estado				BOOLEAN,
@@ -241,11 +257,12 @@ CREATE TABLE candidatura_at (
 
 	CONSTRAINT distrito FOREIGN KEY(distrito_id) REFERENCES distrito(id),
 	CONSTRAINT visitante FOREIGN KEY(visitante_id) REFERENCES utilizador(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE comentario_avaliacao_id_seq;
 CREATE TABLE comentario_avaliacao (
-	id					PRIMARY KEY DEFAULT nextval('comentario_avaliacao_id_seq'),
+	id					INTEGER NOT NULL DEFAULT nextval('comentario_avaliacao_id_seq'),
 	comentario 			VARCHAR(255),
 	avaliacao 			INTEGER NOT NULL,
 	created_at			TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -256,18 +273,20 @@ CREATE TABLE comentario_avaliacao (
 
 	CONSTRAINT visitante FOREIGN KEY(visitante_id) REFERENCES utilizador(id),
 	CONSTRAINT ponto_interesse FOREIGN KEY(ponto_interesse_id) REFERENCES ponto_interesse(id),
+	PRIMARY KEY(id)
 );
 
 CREATE SEQUENCE voucher_id_seq_id_seq;
 CREATE TABLE voucher (
-	id				PRIMARY KEY DEFAULT nextval('voucher_id_seq_id_seq'),
+	id				INTEGER NOT NULL DEFAULT nextval('voucher_id_seq_id_seq'),
 	data_compra		DATE NOT NULL,
 	data_validade	DATE NOT NULL,
 	data_usado		TIMESTAMP,
-	pontos_gastos	INTEGER NOT NULL
+	pontos_gastos	INTEGER NOT NULL,
 	created_at		TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at		TIMESTAMP NOT NULL DEFAULT NOW(),
 	deleted_at		TIMESTAMP DEFAULT NULL,
 	recompensa_id 	INTEGER NOT NULL,
 	utilizador_id 	INTEGER NOT NULL,
+	PRIMARY KEY(id)
 );
