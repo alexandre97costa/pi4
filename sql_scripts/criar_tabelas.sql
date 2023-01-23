@@ -116,6 +116,7 @@ CREATE TABLE ponto_interesse (
 CREATE SEQUENCE scan_ponto_interesse_id_seq;
 CREATE TABLE scan_ponto_interesse (
 	id 					INTEGER NOT NULL DEFAULT nextval('scan_ponto_interesse_id_seq'),
+	pontos_recebidos	INTEGER NOT NULL,
 	created_at			TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at			TIMESTAMP NOT NULL DEFAULT NOW(),
 	deleted_at			TIMESTAMP DEFAULT NULL,
@@ -134,6 +135,7 @@ CREATE TABLE evento (
 	descricao			VARCHAR(255) NOT NULL,
 	pontos		  		INTEGER NOT NULL,
 	lotacao				INTEGER NOT NULL DEFAULT 0,
+	horas_duracao		INTEGER NOT NULL,
 	codigo_uuid			UUID,
 	created_at			TIMESTAMP NOT NULL DEFAULT NOW(),
 	updated_at			TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -276,9 +278,9 @@ CREATE TABLE comentario_avaliacao (
 	PRIMARY KEY(id)
 );
 
-CREATE SEQUENCE voucher_id_seq_id_seq;
+CREATE SEQUENCE voucher_id_seq;
 CREATE TABLE voucher (
-	id				INTEGER NOT NULL DEFAULT nextval('voucher_id_seq_id_seq'),
+	id				INTEGER NOT NULL DEFAULT nextval('voucher_id_seq'),
 	data_compra		DATE NOT NULL,
 	data_validade	DATE NOT NULL,
 	data_usado		TIMESTAMP,
@@ -287,6 +289,9 @@ CREATE TABLE voucher (
 	updated_at		TIMESTAMP NOT NULL DEFAULT NOW(),
 	deleted_at		TIMESTAMP DEFAULT NULL,
 	recompensa_id 	INTEGER NOT NULL,
-	utilizador_id 	INTEGER NOT NULL,
+	visitante_id 	INTEGER NOT NULL,
+
+	CONSTRAINT recompensa FOREIGN KEY(recompensa_id) REFERENCES recompensa(id),
+	CONSTRAINT visitante FOREIGN KEY(visitante_id) REFERENCES utilizador(id),
 	PRIMARY KEY(id)
 );
