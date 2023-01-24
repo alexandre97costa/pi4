@@ -9,7 +9,8 @@ router.put('/:id', pi.editar)
 router.patch('/:id/agente/:agente_id', pi.mudar_agente)
 router.patch('/:id/estado/:novo_estado', pi.mudar_estado)
 router.delete('/:id', pi.delete)
-router.get('/tipos', pi.tipos)
+
+// os tipos estao no routes/tipos
 
 router.get('/test_aval', pi.test_aval)
 router.get('/test_img', pi.test_img)
