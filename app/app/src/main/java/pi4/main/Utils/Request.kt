@@ -1,20 +1,14 @@
 package com.example.ficha8
 
 import android.content.Context
+import android.net.ConnectivityManager
 import android.util.Log
 import android.widget.Toast
-import com.android.volley.AuthFailureError
-import com.android.volley.Header
 import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.HurlStack
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import okhttp3.Headers
 import org.json.JSONObject
 import pi4.main.Utils.BackendURL
-import java.nio.charset.Charset
-import kotlin.math.log
 
 
 object Req {
@@ -55,6 +49,12 @@ object Req {
         token: String,
         then: (res:JSONObject) -> Unit
     ) {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+
+        if (networkInfo == null || !networkInfo.isConnected)
+            return Toast.makeText(context, "Sem conexão a internet", Toast.LENGTH_SHORT).show()
+
         val queue = Volley.newRequestQueue(context)
 
         val url = BackendURL + path + queryParamsToString(queryParams)
@@ -98,6 +98,13 @@ object Req {
         token: String,
         then: (res:JSONObject) -> Unit
     ) {
+
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+
+        if (networkInfo == null || !networkInfo.isConnected)
+            return Toast.makeText(context, "Sem conexão a internet", Toast.LENGTH_SHORT).show()
+
         Log.i("path", path)
         Log.i("request body\n", requestBody.toString(2))
 
@@ -134,6 +141,12 @@ object Req {
     }
 
     fun PUT(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String, then: (response:JSONObject) -> Unit) {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+
+        if (networkInfo == null || !networkInfo.isConnected)
+            return Toast.makeText(context, "Sem conexão a internet", Toast.LENGTH_SHORT).show()
+
         val request = object : JsonObjectRequest(
             Request.Method.PUT,
             BackendURL + path + queryParamsToString(queryParams),
@@ -158,6 +171,12 @@ object Req {
     }
 
     fun PATCH(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String, then: (response:JSONObject) -> Unit) {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+
+        if (networkInfo == null || !networkInfo.isConnected)
+            return Toast.makeText(context, "Sem conexão a internet", Toast.LENGTH_SHORT).show()
+
         val request = object : JsonObjectRequest(
             Request.Method.PATCH,
             BackendURL + path + queryParamsToString(queryParams),
