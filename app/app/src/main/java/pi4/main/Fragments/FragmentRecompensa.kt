@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
 import pi4.main.Adapter.SetAdapterCardRecompensa
 import pi4.main.Classes.*
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class FragmentRecompensa : Fragment() {
@@ -35,7 +36,7 @@ class FragmentRecompensa : Fragment() {
     private fun loadPoints() {
         val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(gestor.utilizador.getPontos().toInt(), textView, requireContext()).loadPontos()
+        Points(UserManager.getUtilizador()!!.getPontos().toInt(), textView, requireContext()).loadPontos()
     }
 
     private fun buttonJaResgatado() {
@@ -56,7 +57,7 @@ class FragmentRecompensa : Fragment() {
     }
 
     private fun callAdapterCards() {
-        gestor.getAllRecompensas()
+        gestor.getAllRecompensas(requireContext())
 
         val customAdapter = SetAdapterCardRecompensa(requireContext(), gestor.listaRecompensa, false)
         val listView = requireView().findViewById<ListView>(R.id.listViewRecompensas)

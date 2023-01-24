@@ -9,6 +9,7 @@ import pi4.main.Adapter.SetAdapterCardComentarios
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.Points
 import pi4.main.Classes.StartActivitys
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityComentarios : AppCompatActivity() {
@@ -28,7 +29,7 @@ class ActivityComentarios : AppCompatActivity() {
     private fun loadPoints() {
         val textView = findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(gestor.utilizador.getPontos().toInt(), textView, this).loadPontos()
+        Points(UserManager.getUtilizador()!!.getPontos().toInt(), textView, this).loadPontos()
     }
 
     fun previous() {
@@ -40,7 +41,7 @@ class ActivityComentarios : AppCompatActivity() {
     fun intentPutExtra() {
         val id = intent.getStringExtra("pontoInteresseId").toString()
 
-        gestor.getPontoInteresseId(id)
+        //gestor.getPontoInteresseId(id, this)
     }
 
     fun getComentarios() {

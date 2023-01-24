@@ -9,6 +9,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.Points
 import pi4.main.Classes.StartActivitys
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityVoucherInformacoes : AppCompatActivity() {
@@ -43,7 +44,7 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
     private fun loadPoints() {
         val textView = findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(gestor.utilizador.getPontos().toInt(), textView, this).loadPontos()
+        Points(UserManager.getUtilizador()!!.getPontos().toInt(), textView, this).loadPontos()
     }
 
     private fun verificarSeJaFoiResgatado(): Boolean {
@@ -70,7 +71,7 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
     fun confirmPoints() {
         val buttonResgatar = findViewById<Button>(R.id.btnResgatar)
 
-        if(gestor.utilizador.getPontos().toInt() < pointsVoucher) {
+        if(UserManager.getUtilizador()!!.getPontos().toInt() < pointsVoucher) {
             buttonResgatar.isEnabled = false
         buttonResgatar.setBackgroundResource(R.drawable.shape_gray.toInt())
         }
@@ -84,7 +85,7 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
 
     fun loadInformacaoOn() {
         //Faz um pedido API ja com as novas informações
-        val recompensa = gestor.getRecompensaId(recompensaId)
+        gestor.getRecompensaId(recompensaId, this)
 
         //val recompensa = gestor.utilizador.getRecompensasJaResgatadasDetails(recompensaId)
 
@@ -93,20 +94,20 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
         val pontos = findViewById<TextView>(R.id.textViewPontosOn)
         val codigo = findViewById<TextView>(R.id.textViewCodigo)
 
-        titulo.text = recompensa.nomeRecompesa
-        descricao.text = recompensa.descricao
-        pontos.text = "${recompensa.pontos} pontos"
+        titulo.text = gestor.recompensa.nomeRecompesa
+        descricao.text = gestor.recompensa.descricao
+        pontos.text = "${gestor.recompensa.pontos} pontos"
     }
 
     fun loadInformacaoOff() {
-        val recompensa = gestor.getRecompensaId(recompensaId)
+        val recompensa = gestor.getRecompensaId(recompensaId, this)
 
         val titulo = findViewById<TextView>(R.id.textViewTitulo)
         val descricao = findViewById<TextView>(R.id.textViewDescricao)
         val pontos = findViewById<TextView>(R.id.textViewPontos)
 
-        titulo.text = recompensa.nomeRecompesa
-        descricao.text = recompensa.descricao
-        pontos.text = "${recompensa.pontos} pontos"
+        titulo.text = gestor.recompensa.nomeRecompesa
+        descricao.text = gestor.recompensa.descricao
+        pontos.text = "${gestor.recompensa.pontos} pontos"
     }
 }

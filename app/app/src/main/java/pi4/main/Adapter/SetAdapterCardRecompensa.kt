@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import pi4.main.Activitys.Recompensa.ActivityVoucherInformacoes
 import pi4.main.Classes.*
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class SetAdapterCardRecompensa(private val context: Context, private val data:ArrayList<Recompensa>, private val jaResgatado: Boolean): BaseAdapter() {
@@ -62,7 +63,7 @@ class SetAdapterCardRecompensa(private val context: Context, private val data:Ar
     }
 
     fun detectPointsUtilizador(rowView: View, background: ConstraintLayout, recompensa: TextView, categoria: TextView ,pontosRecompensa: Int): Boolean {
-        val pontosUtilizador = gestor.utilizador.getPontos().toInt()
+        val pontosUtilizador = UserManager.getUtilizador()!!.getPontos().toInt()
 
         if(pontosRecompensa > pontosUtilizador)
             return setLayoutColors(rowView, background, recompensa, categoria)

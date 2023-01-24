@@ -33,6 +33,8 @@ module.exports = {
         const min_aval = req.query?.min_aval ?? 0
         // todo: pontos
 
+        dev.log(id)
+
         // * ordenação e paginação
         const order = req.query?.order ?? 'nome'
         const direction = req.query?.direction ?? 'asc'
@@ -129,6 +131,7 @@ module.exports = {
                         attributes: ['blob', 'url'],
                     }
                 ],
+                distinct: true,
                 order: [[order, direction]],
                 offset: offset,
                 limit: !!limit ? limit : null,
@@ -330,15 +333,13 @@ module.exports = {
 
     tipos: async (req, res) => {
         await tipo_interesse
-            .findAll()
-            .then(output => {
-                return res.status(200).json({ tipos_interesse: output })
-            })
+            .findAll({ attributes: ['id','nome'] })
+            .then(output => { return res.status(200).json({ tipos_interesse: output }) })
             .catch(error => {
                 res.status(400).json({ error })
                 dev(error)
                 return
-            });
+            })
     },
 
 

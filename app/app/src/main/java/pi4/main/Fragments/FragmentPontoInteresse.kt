@@ -14,6 +14,7 @@ import com.google.android.material.tabs.TabLayout
 import pi4.main.R
 import pi4.main.Adapter.SetAdapterCard
 import pi4.main.Classes.*
+import pi4.main.Object.UserManager
 
 class FragmentPontoInteresse() : Fragment() {
     private val gestor = Gestor()
@@ -56,7 +57,7 @@ class FragmentPontoInteresse() : Fragment() {
     private fun loadPoints() {
         val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(gestor.utilizador.getPontos().toInt(), textView, requireContext()).loadPontos()
+        Points(UserManager.getUtilizador()?.getPontos()?.toInt() ?: 0, textView, requireContext()).loadPontos()
     }
 
     private fun createCategoriasTab() {
@@ -65,60 +66,9 @@ class FragmentPontoInteresse() : Fragment() {
         CategoriaLista(tab, requireContext())
     }
 
-    private fun callAdapterCards(categoria:String) {
-        //val arrayFinal: ArrayList<PontoInteresse> = stringRequestPontosInteresse(categoria)
-
-        gestor.getPontosInteresseAPI()
-        val customAdapter = SetAdapterCard(requireContext(), gestor.listaPontosInteresse)
+     fun callAdapterCards(categoria:String) {
         val listView = requireView().findViewById<ListView>(R.id.listView)
-        listView.adapter = customAdapter
 
-        /*fun ResponseToArrayList(res:JSONObject){
-            arrayFinal = res
-                .getJSONArray("data")
-                .let { 0.until(it.length()).map { i -> it.optJSONObject(i) } }
-                .map { pi -> PontoInteresse(
-                    // image_url
-                    // pi.getJSONArray("imagens").getJSONObject(0).getString("url")
-                    // todo failsafe de quando nao ha imagens no array
-                    "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit",
-                    // nome
-                    pi.getString("nome"),
-                    // morada
-                    pi.getString("morada"),
-                    // descricao
-                    pi.getString("descricao"),
-                    // tipo_interesse
-                    pi.getJSONObject("tipo_interesse").getString("nome"),
-                    // freguesia_municipio
-                    pi.getJSONObject("freguesia").getString("nome") + ", " +
-                            pi.getJSONObject("freguesia").getJSONObject("municipio").getString("nome"),
-                    // pontos
-                    pi.getInt("num_pontos").toString() + " pts",
-                    // avg_avaliacao
-                    pi.getDouble("avg_avaliacao").toFloat(),
-                    // count_scans
-                    pi.getInt("count_scans"),
-                    // agente_turistico
-                    pi.getJSONObject("agente_turistico").getString("nome")
-                ) }
-                .toCollection(ArrayList())
-
-            val customAdapter = SetAdapterCard(requireContext(), arrayFinal)
-            val listView = requireView().findViewById<ListView>(R.id.listView)
-            listView.adapter = customAdapter
-        }
-
-        // todo: filtros
-        val queryParams = JSONObject("""{}""")
-        val requestBody = JSONObject("""{}""")
-
-        Req().GET("/pontoInteresse", queryParams, requestBody, requireContext(), then = { res ->
-            ResponseToArrayList(res)
-        })
-
-        // val image = "https://images.trvl-media.com/lodging/13000000/12950000/12943100/12943018/ffe84ff0.jpg?impolicy=resizecrop&rw=670&ra=fit"
-        // val image2 = "https://blog.emania.com.br/wp-content/uploads/2016/02/direitos-autorais-e-de-imagem.jpg" */
-
+        gestor.getAllPontosInteresse(requireContext(), listView, true)
     }
 }

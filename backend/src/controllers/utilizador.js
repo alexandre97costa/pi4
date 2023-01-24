@@ -19,8 +19,10 @@ module.exports = {
 
         const required_params = ['email', 'password']
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
-        if (!check_all_required)
+        if (!check_all_required) {
+            dev.log('Faltam dados para poder fazer o login (email+password).')
             return res.status(400).json({msg: 'Faltam dados para poder fazer o login (email+password).'})
+        }
 
         const { email, password } = req.body
 
@@ -28,10 +30,10 @@ module.exports = {
             .findOne({ where: { email: email } })
             .then(response => { return response?.dataValues })
 
-        if (!user) return res.status(400).json({ msg: 'Utilizador não encontrado' })
+        if (!user) return res.status(404).json({ msg: 'Utilizador não encontrado' })
 
         const passwordMatch = bcrypt.compareSync(password, user.password);
-        if (!passwordMatch) return res.status(400).json({ msg: 'Password errada' })
+        if (!passwordMatch) return res.status(406).json({ msg: 'Password errada' })
 
         // ✅ a partir daqui já verificámos que tudo está bem, siga mandar o token
 
@@ -41,6 +43,7 @@ module.exports = {
             id: user.id,
             nome: user.nome,
             email: user.email,
+            pontos: user.pontos,
             tipo: user.tipo_utilizador_id
         }
 
@@ -55,7 +58,8 @@ module.exports = {
 
         return res.status(200).json({
             msg: 'Bem vindo ' + user.nome + '! 🤩',
-            token: jwt.sign(token, secret, options)
+            token: jwt.sign(token, secret, options),
+            user: user.id
         });
     },
 

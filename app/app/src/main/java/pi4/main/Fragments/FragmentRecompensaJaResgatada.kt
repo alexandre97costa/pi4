@@ -10,11 +10,10 @@ import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Adapter.SetAdapterCardRecompensa
 import pi4.main.Classes.*
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class FragmentRecompensaJaResgatada : Fragment() {
-    private val gestor = Gestor()
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_recompensa_ja_resgatada, container, false)
     }
@@ -30,14 +29,14 @@ class FragmentRecompensaJaResgatada : Fragment() {
     private fun loadPoints() {
         val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
 
-        Points(gestor.utilizador.getPontos().toInt(), textView, requireContext()).loadPontos()
+        Points(UserManager.getUtilizador()!!.getPontos().toInt(), textView, requireContext()).loadPontos()
     }
 
     private fun callAdapterCards() {
         //Pedido API para ver as recompensas que o utilizador tem
-        gestor.utilizador.getRecompensasJaResgatadas(gestor.utilizador.getId())
+        UserManager.getUtilizador()!!.getRecompensasJaResgatadas(UserManager.getUtilizador()!!.getId())
 
-        val customAdapter = SetAdapterCardRecompensa(requireContext(), gestor.utilizador.listaRecompensasJaResgatadas, true)
+        val customAdapter = SetAdapterCardRecompensa(requireContext(), UserManager.getUtilizador()!!.listaRecompensasJaResgatadas, true)
         val listView = requireView().findViewById<ListView>(R.id.listViewRecompensasJaResgatadas)
         listView.adapter = customAdapter
     }

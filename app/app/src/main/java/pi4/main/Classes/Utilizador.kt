@@ -4,24 +4,32 @@ class Utilizador(
     id: String,
     nome: String,
     email: String,
-    pontos: String
+    passeword: String,
+    pontos: String,
+    token: String
 ) {
     private var id: String
     private var nome: String
     private var email: String
+    private var passeword: String
     private var pontos: String
+    private var token: String
     //Criação das listas
     var listaHistoricoPontos: ArrayList<HistoricoPontos> = arrayListOf()
     var listaHistoricoVisitas: ArrayList<HistoricoVisitas> = arrayListOf()
-    var listaHistoricoReservas: ArrayList<HistoricoReservas> = arrayListOf()
+    var listaHistoricoReservas: ArrayList<Reservas> = arrayListOf()
     var listaRecompensasJaResgatadas: ArrayList<Recompensa> = arrayListOf()
+
+    lateinit var reservaInfo: Reservas
 
     //TEMOS SEMPRE DE AO CHAMAR A CLASS MANDAR ESTE ELEMENTOS
     init {
         this.id = id
         this.nome = nome
         this.email = email
+        this.passeword = passeword
         this.pontos = pontos
+        this.token = token
     }
 
     //GET VARIAVEIS SENSIVEIS DO UTILIZADOR
@@ -36,8 +44,20 @@ class Utilizador(
         return this.email
     }
 
+    fun getPasseword(): String {
+        return this.passeword
+    }
+
     fun getPontos(): String {
         return this.pontos
+    }
+
+    fun getToken(): String {
+        return this.token
+    }
+
+    fun setToken(token: String) {
+        this.token = token
     }
 
     //SET VARIAVEIS SENSIVEIS DO UTILIZADOR
@@ -50,11 +70,7 @@ class Utilizador(
     }
 
     //PEDIDO API
-    fun getUtilizador(id: String) {
-        //Pedido API do utilizador
-    }
-
-    fun getRecompensasJaResgatadas(id: String) {
+    fun getRecompensasJaResgatadas(utilizadorId: String) {
         //limpar arrayList antes de fazer um pedido API
         listaRecompensasJaResgatadas.clear()
 
@@ -76,49 +92,7 @@ class Utilizador(
         return listaRecompensasJaResgatadas[id.toInt()-1]
     }
 
-    fun getHistocoReservas(id: String) {
-        //Limpar o arrayList antes de fazer um novo pedido API
-        listaHistoricoReservas.clear()
-
-        val eventoTeste = Eventos(
-            "1",
-            "Recital das Aves",
-            "25/10/2022",
-            "Um recital seca",
-            "Rossio",
-            10,
-            2,
-            10,
-            "Comércio",
-            "1"
-        )
-
-        //Exemplo de pedido API
-        this.listaHistoricoReservas.add(
-            HistoricoReservas(
-                "1",
-                "Rubenzinho",
-                "910933857",
-                "2",
-                "valido",
-                eventoTeste,
-                "1"
-            )
-        )
-        this.listaHistoricoReservas.add(
-            HistoricoReservas(
-                "2",
-                "José",
-                "910933857",
-                "10",
-                "pendente",
-                eventoTeste,
-                "1"
-            )
-        )
-    }
-
-    fun getReservaDetails(id: String): HistoricoReservas {
+    fun getReservaDetails(id: String): Reservas {
         //Pedido API
         return listaHistoricoReservas[id.toInt() - 1]
     }
