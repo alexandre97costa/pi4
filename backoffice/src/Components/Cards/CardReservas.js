@@ -5,9 +5,22 @@ import Botao from '../Botao'
 export default function CardReservas(props) {
     return (
         <div className="card border border-0 rounded-4 shadow">
+                
+            <div className="col-12">
+                <div className='row align-items-center py-3'>
+                    
+                    <div className='col-5'>
+                        <p className="fs-6 text-success mx-2 mt-2">{props.nomePontoInteresse}</p>
+                        <p className="fs-5 mx-2">{props.nomeEvento}</p>
+                    </div>
 
-            <p className="fs-6 text-success mx-2 mt-2">{props.nomePontoInteresse}</p>
-            <p className="fs-5 mx-2">{props.nomeEvento}</p>
+                    <div className='col-7 text-end'>
+                        <Botao to="/admin/lista-utilizadores" className="btn-outline-success btn-sm me-2 mb-5"  texto="Lista de reservas"/>
+                    </div>
+                    
+                </div>
+            </div>
+
 
             <div className="container">
                 <div className="row">

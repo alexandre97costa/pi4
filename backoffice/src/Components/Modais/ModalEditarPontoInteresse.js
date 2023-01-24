@@ -48,15 +48,15 @@ export default function ModalNewPontoInteresse(props) {
 
     function axiosPost() {
         if(!nome)
-            return toast.error("Introduza um nome")
+            return toast.error("Editar um nome")
         if(!localizacao)
-            return toast.error("Introduza uma localização")
+            return toast.error("Editar uma localização")
         if(!cp)
-            return toast.error("Introduza um código postal")
+            return toast.error("Editar um código postal")
         if(!contacto)
-            return toast.error("Introduza um contacto")
+            return toast.error("Editar um contacto")
         if(!pontos)
-            return toast.error("Introduza o número de pontos")
+            return toast.error("Editar o número de pontos")
         if(!tipo)
             return toast.error("Selecione um tipo de interesse")
 
@@ -69,7 +69,7 @@ export default function ModalNewPontoInteresse(props) {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Adicionar ponto de interesse</h1>
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Editar ponto de interesse</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => dismissToast()}></button>
                         </div>
                         <div className="modal-body">
