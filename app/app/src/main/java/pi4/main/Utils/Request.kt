@@ -69,9 +69,12 @@ object Req {
                 then(res)
             },
             { error ->
-                if(error.networkResponse.statusCode == 404)
-                    Toast.makeText(context, "Não foi encontrado informação", Toast.LENGTH_SHORT).show()
-                Log.i("${error.networkResponse.statusCode}", "${error.networkResponse}")
+                error.printStackTrace()
+
+                if (JSONObject(String(error.networkResponse.data)).optString("msg") == null)
+                    Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show()
+                else
+                    Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -105,9 +108,6 @@ object Req {
         if (networkInfo == null || !networkInfo.isConnected)
             return Toast.makeText(context, "Sem conexão a internet", Toast.LENGTH_SHORT).show()
 
-        Log.i("path", path)
-        Log.i("request body\n", requestBody.toString(2))
-
         val request = object : JsonObjectRequest(
             Request.Method.POST,
             BackendURL + path + queryParamsToString(queryParams),
@@ -117,14 +117,12 @@ object Req {
                 then(res)
             },
             { error ->
-                if(error.networkResponse.statusCode == 404)
-                    Toast.makeText(context, "Utilizador não foi encontrado", Toast.LENGTH_SHORT).show()
-                if(error.networkResponse.statusCode == 401)
-                    Toast.makeText(context, "Sem autorização", Toast.LENGTH_SHORT).show()
-                if(error.networkResponse.statusCode == 400)
-                    Toast.makeText(context, "Input introduzido invalido", Toast.LENGTH_SHORT).show()
+                error.printStackTrace()
 
-                Log.i("{${error.networkResponse.statusCode}}","{${error.networkResponse}}")
+                if (JSONObject(String(error.networkResponse.data)).optString("msg") == null)
+                    Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show()
+                else
+                    Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -155,7 +153,14 @@ object Req {
                 Log.i("Request PUT\n", res.toString(2))
                 then(res)
             },
-            { error -> error.printStackTrace()}
+            { error ->
+                error.printStackTrace()
+
+                if (JSONObject(String(error.networkResponse.data)).optString("msg") == null)
+                    Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show()
+                else
+                    Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+            }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
@@ -185,7 +190,14 @@ object Req {
                 Log.i("Request PATCH\n", res.toString(2))
                 then(res)
             },
-            { error -> error.printStackTrace()}
+            { error ->
+                error.printStackTrace()
+
+                if (JSONObject(String(error.networkResponse.data)).optString("msg") == null)
+                    Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show()
+                else
+                    Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+            }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
@@ -209,7 +221,14 @@ object Req {
                 Log.i("Request DELETE\n", res.toString(2))
                 then(res)
             },
-            { error -> error.printStackTrace()}
+            { error ->
+                error.printStackTrace()
+
+                if (JSONObject(String(error.networkResponse.data)).optString("msg") == null)
+                    Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show()
+                else
+                    Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+            }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()

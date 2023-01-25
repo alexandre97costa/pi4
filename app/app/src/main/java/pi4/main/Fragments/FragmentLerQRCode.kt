@@ -16,7 +16,10 @@ import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
+import com.example.ficha8.Req
+import org.json.JSONObject
 import pi4.main.MainActivity
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 private const val CAMARA_REQUEST_CODE = 101
@@ -53,9 +56,12 @@ class FragmentLerQRCode() : Fragment() {
             requireActivity().runOnUiThread {
                 Toast.makeText(requireContext(), "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
 
-                Handler().postDelayed({
+                val queryParams = JSONObject("""{}""")
+                val requestBody = JSONObject("""{}""")
+
+                Req.POST(it.text, queryParams, requestBody, requireContext(), UserManager.getUtilizador()!!.getToken(), then = { res ->
                     startActivity(Intent(requireContext(), MainActivity::class.java))
-                }, 2000)
+                })
             }
         }
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import com.example.ficha8.Req
+import kotlinx.coroutines.*
 import org.json.JSONObject
 import pi4.main.Classes.Utilizador
 import pi4.main.MainActivity
@@ -13,6 +14,54 @@ object UserManager {
 
     fun getUtilizador(): Utilizador? {
         return this.utilizador
+    }
+
+    suspend fun atualizarUtillizador(context: Context): Deferred<Unit> {
+        return GlobalScope.async(Dispatchers.IO) {
+            Log.d("atualizarUtillizador", "1")
+
+            val deferred = CompletableDeferred<Unit>()
+
+            //Cria os filtros para enviar para API
+            val queryParams = JSONObject("""{}""")
+            val requestBody = JSONObject()
+
+            //Adiciona elementos para o requestBody
+            requestBody.put("email", utilizador!!.getEmail())
+            requestBody.put("password", utilizador!!.getPasseword())
+
+            Req.POST("/utilizador/login", queryParams, requestBody, context, "", then = { response ->
+                val token = response.optString("token")
+                val user = response.optString("user")
+
+                utilizador = Utilizador(
+                    user,
+                    "",
+                    "",
+                    utilizador!!.getPasseword(),
+                    "",
+                    token
+                )
+
+                val path = "/utilizador/${utilizador!!.getId()}"
+
+                Req.GET(path, queryParams, context, utilizador!!.getToken(), then = { res ->
+                    val data = res.optJSONArray("data")
+                    val user = data.optJSONObject(0)
+
+                    utilizador = Utilizador(
+                        user.optString("id"),
+                        user.optString("nome"),
+                        user.optString("email"),
+                        utilizador!!.getPasseword(),
+                        user.optString("pontos"),
+                        token
+                    )
+                    Log.i("utilizador", utilizador!!.getNome())
+                    deferred.complete(Unit)
+                })
+            })
+        }
     }
 
     fun loginUtilizador(email: String, password: String, context: Context) {
@@ -52,7 +101,7 @@ object UserManager {
                     token
                 )
 
-                Log.i("utilizador", this.utilizador!!.getNome())
+                Log.i("UserManagerUtilizador", this.utilizador!!.getNome())
 
                 context.startActivity(Intent(context, MainActivity::class.java))
             })
