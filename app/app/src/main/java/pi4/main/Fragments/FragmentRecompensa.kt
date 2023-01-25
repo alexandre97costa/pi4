@@ -10,6 +10,9 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import pi4.main.Adapter.SetAdapterCardRecompensa
 import pi4.main.Classes.*
 import pi4.main.Object.UserManager
@@ -25,7 +28,10 @@ class FragmentRecompensa : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadPoints()
+        GlobalScope.launch(Dispatchers.Main) {
+            UserManager.atualizarUtillizador(requireContext()).await()
+            loadPoints()
+        }
 
         createCategoriasTab()
 

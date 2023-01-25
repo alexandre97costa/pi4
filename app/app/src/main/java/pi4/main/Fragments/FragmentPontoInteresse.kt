@@ -11,6 +11,9 @@ import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayout
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import pi4.main.R
 import pi4.main.Adapter.SetAdapterCard
 import pi4.main.Classes.*
@@ -26,7 +29,10 @@ class FragmentPontoInteresse() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadPoints()
+        GlobalScope.launch(Dispatchers.Main) {
+            UserManager.atualizarUtillizador(requireContext()).await()
+            loadPoints()
+        }
 
         callAdapterCards("Todos")
         createCategoriasTab()

@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import pi4.main.Adapter.SetAdapterCardRecompensa
 import pi4.main.Classes.*
 import pi4.main.Object.UserManager
@@ -21,7 +24,11 @@ class FragmentRecompensaJaResgatada : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        loadPoints()
+        GlobalScope.launch(Dispatchers.Main) {
+            UserManager.atualizarUtillizador(requireContext()).await()
+            loadPoints()
+        }
+
         callAdapterCards()
         previous()
     }
