@@ -100,25 +100,29 @@ class Gestor() {
 
     }
 
-    fun getAllRecompensas(context: Context) {
+    fun getAllRecompensas(context: Context, listView: ListView, listarRecompensa: Boolean) {
         //Para termos acerteza que não temos informação duplicada
         listaRecompensa.clear()
 
         //Pedido API
         val queryParams = JSONObject("""{}""")
 
+        Log.i("Token GET PONTOS", UserManager.getUtilizador()!!.getToken())
+
         Req.GET("/recompensa", queryParams, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
             val data = res.optJSONArray("data")
+            objectRes = data.getJSONObject(0)
 
-            for (i in 0..data.length()) {
-                val objectRes = data.optJSONObject(i)
+            for (i in 0..data!!.length() - 1) {
+                val objectRes = data!!.optJSONObject(i)
 
                 listaRecompensa.add(Recompensa(
                     objectRes.optString("id"),
                     objectRes.optString("titulo"),
                     objectRes.optString("descricao"),
                     objectRes.optString("pontos"),
-                    "Paisagem" //Mandar categoria
+                    objectRes.getString("observacoes"),
+
                 ))
             }
         })
