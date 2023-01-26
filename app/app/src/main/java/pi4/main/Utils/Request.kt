@@ -71,10 +71,13 @@ object Req {
             { error ->
                 error.printStackTrace()
 
-                if (JSONObject(String(error.networkResponse.data)).optString("msg") == null)
-                    Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show()
-                else
+                try {
+                    error.printStackTrace()
+
                     Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+                } catch (erro: Exception) {
+                    Toast.makeText(context, "Erro ao comunicar com o servidor", Toast.LENGTH_SHORT).show()
+                }
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -86,8 +89,6 @@ object Req {
                 return headers
             }
         }
-
-        Log.i("header", request.headers.toString())
 
         queue.add(request)
     }
@@ -117,12 +118,13 @@ object Req {
                 then(res)
             },
             { error ->
-                error.printStackTrace()
+                try {
+                    error.printStackTrace()
 
-                if (JSONObject(String(error.networkResponse.data)).optString("msg") == null)
-                    Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show()
-                else
                     Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+                } catch (erro: Exception) {
+                    Toast.makeText(context, "Erro ao comunicar com o servidor", Toast.LENGTH_SHORT).show()
+                }
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -154,12 +156,13 @@ object Req {
                 then(res)
             },
             { error ->
-                error.printStackTrace()
+                try {
+                    error.printStackTrace()
 
-                if (JSONObject(String(error.networkResponse.data)).optString("msg") == null)
-                    Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show()
-                else
                     Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+                } catch (erro: Exception) {
+                    Toast.makeText(context, "Erro ao comunicar com o servidor", Toast.LENGTH_SHORT).show()
+                }
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -191,12 +194,13 @@ object Req {
                 then(res)
             },
             { error ->
-                error.printStackTrace()
+                try {
+                    error.printStackTrace()
 
-                if (JSONObject(String(error.networkResponse.data)).optString("msg") == null)
-                    Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show()
-                else
                     Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+                } catch (erro: Exception) {
+                    Toast.makeText(context, "Erro ao comunicar com o servidor", Toast.LENGTH_SHORT).show()
+                }
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -222,12 +226,13 @@ object Req {
                 then(res)
             },
             { error ->
-                error.printStackTrace()
+                try {
+                    error.printStackTrace()
 
-                if (JSONObject(String(error.networkResponse.data)).optString("msg") == null)
-                    Toast.makeText(context, "Erro", Toast.LENGTH_SHORT).show()
-                else
                     Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+                } catch (erro: Exception) {
+                    Toast.makeText(context, "Erro ao comunicar com o servidor", Toast.LENGTH_SHORT).show()
+                }
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {

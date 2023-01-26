@@ -49,10 +49,6 @@ module.exports = {
         const offset = req.query?.offset ?? 0
         const limit = req.query?.limit ?? 0
 
-        dev.log(id)
-        dev.log(tipo_interesse_id)
-        dev.log(validado)
-
         await recompensa
             .findAndCountAll({
                 where: {
@@ -87,7 +83,6 @@ module.exports = {
                 limit: !!limit ? limit : null,
             })
             .then(output => {
-                dev.log(output)
                 return !output.count ?
                     res.status(404).json({ msg: 'Não existem recompensas que correspondam aos filtros solicitados.' }) :
                     res.status(200).json({ data: output.rows, count: output.count })

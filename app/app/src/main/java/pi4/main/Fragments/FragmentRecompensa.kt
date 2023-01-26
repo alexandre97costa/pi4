@@ -1,6 +1,7 @@
 package pi4.main.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -32,7 +33,6 @@ class FragmentRecompensa : Fragment() {
             UserManager.atualizarUtillizador(requireContext()).await()
             loadPoints()
         }
-
         createCategoriasTab()
 
         buttonJaResgatado()
@@ -63,10 +63,8 @@ class FragmentRecompensa : Fragment() {
     }
 
     private fun callAdapterCards() {
-        gestor.getAllRecompensas(requireContext())
-
-        val customAdapter = SetAdapterCardRecompensa(requireContext(), gestor.listaRecompensa, false)
         val listView = requireView().findViewById<ListView>(R.id.listViewRecompensas)
-        listView.adapter = customAdapter
+
+        gestor.getAllRecompensas(requireContext(), listView)
     }
 }

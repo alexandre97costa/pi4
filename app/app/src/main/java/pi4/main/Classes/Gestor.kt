@@ -4,8 +4,10 @@ import android.content.Context
 import android.util.Log
 import android.widget.ListView
 import com.example.ficha8.Req
+import kotlinx.coroutines.*
 import org.json.JSONObject
 import pi4.main.Adapter.SetAdapterCard
+import pi4.main.Adapter.SetAdapterCardRecompensa
 import pi4.main.Object.UserManager
 import pi4.main.R
 
@@ -100,7 +102,7 @@ class Gestor() {
 
     }
 
-    fun getAllRecompensas(context: Context) {
+    fun getAllRecompensas(context: Context, listView: ListView) {
         //Para termos acerteza que não temos informação duplicada
         listaRecompensa.clear()
 
@@ -110,17 +112,23 @@ class Gestor() {
         Req.GET("/recompensa", queryParams, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
             val data = res.optJSONArray("data")
 
-            for (i in 0..data.length()) {
+            Log.e("data", data.toString())
+
+            for (i in 0..data.length() - 1) {
                 val objectRes = data.optJSONObject(i)
+                Log.e("objeto", objectRes.toString())
 
                 listaRecompensa.add(Recompensa(
-                    objectRes.optString("id"),
+                    objectRes.optInt("id").toString(),
                     objectRes.optString("titulo"),
                     objectRes.optString("descricao"),
-                    objectRes.optString("pontos"),
+                    objectRes.optInt("pontos").toString(),
                     "Paisagem" //Mandar categoria
                 ))
             }
+
+            val customAdapter = SetAdapterCardRecompensa(context, listaRecompensa, false)
+            listView.adapter = customAdapter
         })
     }
 
