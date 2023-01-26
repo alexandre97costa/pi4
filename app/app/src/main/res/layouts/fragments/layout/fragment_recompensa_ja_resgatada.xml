@@ -23,9 +23,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButtonReturn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:tint="@color/backgroundColor"
+        app:backgroundTint="#00FFFFFF"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="?attr/actionModeCloseDrawable" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <include
             layout="@layout/card_pontos"
@@ -48,30 +63,37 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewjaResgatadas"
+            android:id="@+id/textView28"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
             android:layout_marginTop="8dp"
-            android:text="Já resgatadas"
+            android:text="Já resgatado"
             android:theme="@style/breadcrumb_secundario_white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout11"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="180dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="32dp"
             android:background="@drawable/shape_corner_top"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/textView28">
 
-            <include
-                layout="@layout/card_recompensa"
+            <ListView
+                android:id="@+id/listViewRecompensasJaResgatadas"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="32dp"
+                android:divider="@null"
+                android:dividerHeight="10dp"
+                android:fadeScrollbars="false"
+                android:smoothScrollbar="true"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

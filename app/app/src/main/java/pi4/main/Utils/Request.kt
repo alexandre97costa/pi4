@@ -1,16 +1,17 @@
 package com.example.ficha8
 
 import android.content.Context
+import android.net.ConnectivityManager
 import android.util.Log
+import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
-import org.json.JSONException
 import org.json.JSONObject
 import pi4.main.Utils.BackendURL
 
 
-class Req {
+object Req {
     fun AddToQueue(request:JsonObjectRequest, context: Context) {
         val queue = Volley.newRequestQueue(context)
         queue.add(request)
@@ -37,42 +38,116 @@ class Req {
                     "UTF-8"
                 )
         }
+
         return returnString;
     }
 
-    fun GET(path:String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
+    fun GET(
+        path:String,
+        queryParams: JSONObject,
+        context: Context,
+        token: String,
+        then: (res:JSONObject) -> Unit
+    ) {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+
+        if (networkInfo == null || !networkInfo.isConnected)
+            return Toast.makeText(context, "Sem conexão a internet", Toast.LENGTH_SHORT).show()
+
+        val queue = Volley.newRequestQueue(context)
 
         val url = BackendURL + path + queryParamsToString(queryParams)
         Log.i("Request GET", url)
-        val request = JsonObjectRequest(
+
+        val request = object : JsonObjectRequest(
             Request.Method.GET,
             url,
-            requestBody,
+            null,
             { res ->
                 Log.i("Request GET\n", res.toString(2))
                 then(res)
             },
-            { error -> error.printStackTrace() }
-        )
-        AddToQueue(request, context)
+            { error ->
+                if(error.networkResponse.statusCode == 404)
+                    Toast.makeText(context, "Não foi encontrado informação", Toast.LENGTH_SHORT).show()
+                Log.i("${error.networkResponse.statusCode}", "${error.networkResponse}")
+            }
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+
+                if(token.isNotEmpty())
+                    headers["Authorization"] = "Bearer $token"
+
+                return headers
+            }
+        }
+
+        Log.i("header", request.headers.toString())
+
+        queue.add(request)
     }
 
-    fun POST(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
-        val request = JsonObjectRequest(
+
+    fun POST(
+        path: String,
+        queryParams: JSONObject,
+        requestBody:JSONObject,
+        context: Context,
+        token: String,
+        then: (res:JSONObject) -> Unit
+    ) {
+
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+
+        if (networkInfo == null || !networkInfo.isConnected)
+            return Toast.makeText(context, "Sem conexão a internet", Toast.LENGTH_SHORT).show()
+
+        Log.i("path", path)
+        Log.i("request body\n", requestBody.toString(2))
+
+        val request = object : JsonObjectRequest(
             Request.Method.POST,
             BackendURL + path + queryParamsToString(queryParams),
             requestBody,
             { res ->
-                Log.i("Request POST\n", res.toString(2))
+                Log.i("POST","ENTRAMOS")
                 then(res)
             },
-            { error -> error.printStackTrace()}
-        )
+            { error ->
+                if(error.networkResponse.statusCode == 404)
+                    Toast.makeText(context, "Utilizador não foi encontrado", Toast.LENGTH_SHORT).show()
+                if(error.networkResponse.statusCode == 401)
+                    Toast.makeText(context, "Sem autorização", Toast.LENGTH_SHORT).show()
+                if(error.networkResponse.statusCode == 400)
+                    Toast.makeText(context, "Input introduzido invalido", Toast.LENGTH_SHORT).show()
+
+                Log.i("{${error.networkResponse.statusCode}}","{${error.networkResponse}}")
+            }
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+
+                if(token.isNotEmpty())
+                    headers["Authorization"] = "Bearer $token"
+
+                return headers
+            }
+        }
+
         AddToQueue(request, context)
     }
 
-    fun PUT(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
-        val request = JsonObjectRequest(
+    fun PUT(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String, then: (response:JSONObject) -> Unit) {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+
+        if (networkInfo == null || !networkInfo.isConnected)
+            return Toast.makeText(context, "Sem conexão a internet", Toast.LENGTH_SHORT).show()
+
+        val request = object : JsonObjectRequest(
             Request.Method.PUT,
             BackendURL + path + queryParamsToString(queryParams),
             requestBody,
@@ -81,12 +156,28 @@ class Req {
                 then(res)
             },
             { error -> error.printStackTrace()}
-        )
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+
+                if(token.isNotEmpty())
+                    headers["Authorization"] = "Bearer $token"
+
+                return headers
+            }
+        }
+
         AddToQueue(request, context)
     }
 
-    fun PATCH(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
-        val request = JsonObjectRequest(
+    fun PATCH(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String, then: (response:JSONObject) -> Unit) {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+
+        if (networkInfo == null || !networkInfo.isConnected)
+            return Toast.makeText(context, "Sem conexão a internet", Toast.LENGTH_SHORT).show()
+
+        val request = object : JsonObjectRequest(
             Request.Method.PATCH,
             BackendURL + path + queryParamsToString(queryParams),
             requestBody,
@@ -95,12 +186,22 @@ class Req {
                 then(res)
             },
             { error -> error.printStackTrace()}
-        )
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+
+                if(token.isNotEmpty())
+                    headers["Authorization"] = "Bearer $token"
+
+                return headers
+            }
+        }
+
         AddToQueue(request, context)
     }
 
-    fun DELETE(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, then: (response:JSONObject) -> Unit) {
-        val request = JsonObjectRequest(
+    fun DELETE(path: String, queryParams: JSONObject, requestBody:JSONObject, context: Context, token: String, then: (response:JSONObject) -> Unit) {
+        val request = object : JsonObjectRequest(
             Request.Method.DELETE,
             BackendURL + path + queryParamsToString(queryParams),
             requestBody,
@@ -109,7 +210,17 @@ class Req {
                 then(res)
             },
             { error -> error.printStackTrace()}
-        )
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String, String>()
+
+                if(token.isNotEmpty())
+                    headers["Authorization"] = "Bearer $token"
+
+                return headers
+            }
+        }
+
         AddToQueue(request, context)
     }
 }

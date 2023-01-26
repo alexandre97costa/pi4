@@ -4,7 +4,7 @@ const { applyExtraSetup } = require('./extra-setup.js');
 const sequelize = new Sequelize(
     'pi4',              // nome da db
     'postgres',         // user
-    'R7220810',         // pass
+    'ola',         // pass
     {
         host: 'localhost',
         port: '5432',
@@ -36,23 +36,23 @@ const sequelize = new Sequelize(
 
 // traz as tabelas todas
 const models = [
-    require('../model/candidaturaAT'),
-    require('../model/comentarioAvaliacao'),
+    require('../model/candidatura_at'),
+    require('../model/comentario_avaliacao'),
     require('../model/distrito'),
     require('../model/evento'),
     require('../model/freguesia'),
     require('../model/imagem'),
     require('../model/municipio'),
-    require('../model/pontoInteresse'),
-    require('../model/pontoInteresseRecompensa'),
-    require('../model/scanEvento'),
-    require('../model/scanPontoInteresse'),
+    require('../model/ponto_interesse'),
+    require('../model/ponto_interesse_recompensa'),
+    require('../model/scan_evento'),
+    require('../model/scan_ponto_interesse'),
     require('../model/recompensa'),
     require('../model/reserva'),
     require('../model/sessao'),
-    require('../model/tipoEvento'),
-    require('../model/tipoInteresse'),
-    require('../model/tipoUtilizador'),
+    require('../model/tipo_evento'),
+    require('../model/tipo_interesse'),
+    require('../model/tipo_utilizador'),
     require('../model/utilizador'),
     require('../model/voucher')
 ]

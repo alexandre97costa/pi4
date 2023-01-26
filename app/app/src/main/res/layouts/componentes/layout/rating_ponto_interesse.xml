@@ -17,6 +17,7 @@
         android:id="@+id/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:text="4.5"
         android:theme="@style/tittle_secundario_green"
         app:layout_constraintStart_toEndOf="@+id/star"

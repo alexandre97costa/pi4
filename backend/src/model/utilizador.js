@@ -46,6 +46,17 @@ module.exports = (sequelize) => {
                         msg: 'Precisa de ter mais de 13 anos para se resgistar.'
                     }
                 }
+            },
+            pontos: {
+                type: DataTypes.INTEGER,
+                allowNull: false,
+                defaultValue: 0,
+                validate: {
+                    min: { 
+                        args: -1,
+                        msg: 'Os pontos não podem ser negativos.'
+                    }
+                }
             }
         },
         {
@@ -64,9 +75,6 @@ module.exports = (sequelize) => {
                                 return word[0].toUpperCase() + word.substring(1, word.length)
                             })
                             .join(' ');
-
-                    // por defeito, todos os users começam como visitante
-                    utilizador.tipo_utilizador_id = 1
 
                     // encriptar password
                     return bcrypt.hash(utilizador.password, 10)

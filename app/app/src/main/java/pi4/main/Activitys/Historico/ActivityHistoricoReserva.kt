@@ -2,9 +2,16 @@ package pi4.main.Activitys.Historico
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ListView
+import com.example.ficha8.Req
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.json.JSONObject
 import pi4.main.Adapter.SetAdapterCardHistoricoReservas
-import pi4.main.Classes.Historico
+import pi4.main.Classes.Eventos
+import pi4.main.Classes.Reservas
+import pi4.main.Classes.StartActivitys
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityHistoricoReserva : AppCompatActivity() {
@@ -12,22 +19,45 @@ class ActivityHistoricoReserva : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_historico_reserva)
 
-        historicoReservasCard()
+        previous()
+
+        //Pedido API
+        loadHistoricoReservasCard()
     }
 
-    fun historicoReservasCard() {
-        val arrayFinal = arrayListOf<Historico>()
+    fun loadHistoricoReservasCard() {
+        UserManager.getUtilizador()!!.listaHistoricoReservas.clear()
 
-        val reserva1 = Historico(
-            titulo = "Recital das Aves",
-            data = "27/12/2022",
-            estado = "pendente"
-        )
+        //Madar o id do utilizador
+        val queryParams = JSONObject("""{}""")
 
-        arrayFinal.add(reserva1)
+        Req.GET("/reserva", queryParams, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
+            val data  = res.getJSONArray("data")
 
-        val customAdapter = SetAdapterCardHistoricoReservas(this, arrayFinal)
-        val listView = findViewById<ListView>(R.id.listViewHistoricoReservas)
-        listView.adapter = customAdapter
+            for (i in 0..data.length() - 1) {
+                val objectRes = data.getJSONObject(i)
+
+                UserManager.getUtilizador()!!.listaHistoricoReservas.add(Reservas(
+                    objectRes.optInt("id").toString(),
+                    objectRes.optString("nome"),
+                    objectRes.optString("pessoas"),
+                    objectRes.optBoolean("validado"),
+                    objectRes.optJSONObject("sessao").optJSONObject("evento").optString("nome"),
+                    objectRes.optJSONObject("sessao").optString("data_hora"),
+                    objectRes.optJSONObject("sessao").optJSONObject("evento").optJSONObject("ponto_interesse").optString("id"),
+                    objectRes.optString("codigo_confirmacao")
+                ))
+            }
+
+            val customAdapter = SetAdapterCardHistoricoReservas(this, UserManager.getUtilizador()!!.listaHistoricoReservas)
+            val listView = findViewById<ListView>(R.id.listViewHistoricoReservas)
+            listView.adapter = customAdapter
+        })
+    }
+
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 }

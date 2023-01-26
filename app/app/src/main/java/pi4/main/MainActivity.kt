@@ -1,14 +1,10 @@
 package pi4.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import pi4.main.Fragments.FragmentPerfil
-import pi4.main.Fragments.FragmentPontoInteresse
-import pi4.main.Fragments.FragmentRecompensa
-import pi4.main.Fragments.FragmentRecompensaJaResgatada
+import pi4.main.Fragments.*
 import pi4.main.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -37,8 +33,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.qrCodeMenu -> {
-                    replaceFragment(FragmentPontoInteresse())
-                    Toast.makeText(this, "qrCodeMenu", Toast.LENGTH_SHORT).show()
+                    replaceFragment(FragmentLerQRCode())
                     true
                 }
                 R.id.contaMenu -> {

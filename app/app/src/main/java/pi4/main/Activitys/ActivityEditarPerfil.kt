@@ -1,13 +1,17 @@
 package pi4.main.Activitys
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pi4.main.Activitys.Passeword.ActivityRecuperarPasseword
+import pi4.main.Classes.Gestor
+import pi4.main.Classes.StartActivitys
 import pi4.main.MainActivity
+import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityEditarPerfil : AppCompatActivity() {
@@ -15,26 +19,39 @@ class ActivityEditarPerfil : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_perfil)
 
+        loadPerfil()
         editarPasseword()
         guardar()
+        previous()
+    }
+
+    fun loadPerfil() {
+        val nome = findViewById<EditText>(R.id.editTextTextPersonName)
+        val email = findViewById<EditText>(R.id.editTextTextEmailAddress)
+
+        nome.setText(UserManager.getUtilizador()?.getNome() ?: "Nome vazio")
+        email.setText(UserManager.getUtilizador()?.getEmail() ?: "Email vazio")
     }
 
     fun editarPasseword() {
         val textViewEditarPasseword = findViewById<TextView>(R.id.textViewEditar)
 
-        textViewEditarPasseword.setOnClickListener{
-            startActivity(Intent(this, ActivityRecuperarPasseword::class.java))
-        }
+        StartActivitys(this).textViewGoTo(textViewEditarPasseword, ActivityRecuperarPasseword())
     }
 
     fun guardar() {
         val buttonGuardar = findViewById<Button>(R.id.buttonGuardar)
 
         buttonGuardar.setOnClickListener {
+            Toast.makeText(this, "Perfil atualizada", Toast.LENGTH_SHORT).show()
 
-            Toast.makeText(this, "Passeword atualizada", Toast.LENGTH_SHORT).show()
-
-            startActivity(Intent(this, MainActivity::class.java))
+            StartActivitys(this).buttonGoToSemListener(MainActivity())
         }
+    }
+
+    fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 }
