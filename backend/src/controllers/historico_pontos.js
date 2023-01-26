@@ -90,23 +90,8 @@ module.exports = {
                     boolean: true
                 }
             })
-        ]
+        ].sort((a, b) => { return b.data - a.data }) // uma vénia a quem inventou o ISO 8601
 
         return res.status(200).json({ output })
-
-
-
-        /*
-            .then(output => {
-                return !output.count ?
-                    res.status(404).json({ msg: 'Não existem eventos que correspondam aos filtros solicitados.' }) :
-                    res.status(200).json({ data: output.rows, count: output.count })
-            })
-            .catch(error => {
-                res.status(400).json({ msg: 'Ocorreu um erro no pedido de eventos.' })
-                dev.error({ error })
-                return
-            })
-        */
     }
 }
