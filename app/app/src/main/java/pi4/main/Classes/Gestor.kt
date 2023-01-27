@@ -35,12 +35,14 @@ class Gestor() {
         ""
     )
 
-    fun getAllPontosInteresse(context: Context, listView: ListView, listarPontosInteresse: Boolean) {
+    fun getAllPontosInteresse(context: Context, listView: ListView, listarPontosInteresse: Boolean, nome: String, categoriaId: String) {
         //Para termos acerteza que não temos informação duplicada
         listaPontosInteresse.clear()
 
         //Pedido API
         val queryParams = JSONObject("""{}""")
+        queryParams.put("nome_desc", nome)
+        queryParams.put("", categoriaId)
 
         Log.i("Token GET PONTOS", UserManager.getUtilizador()!!.getToken())
 
@@ -102,7 +104,7 @@ class Gestor() {
 
     }
 
-    fun getAllRecompensas(context: Context, listView: ListView) {
+    fun fragmentRecompensasListar(context: Context, listView: ListView) {
         //Para termos acerteza que não temos informação duplicada
         listaRecompensa.clear()
 
@@ -112,11 +114,8 @@ class Gestor() {
         Req.GET("/recompensa", queryParams, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
             val data = res.optJSONArray("data")
 
-            Log.e("data", data.toString())
-
             for (i in 0..data.length() - 1) {
                 val objectRes = data.optJSONObject(i)
-                Log.e("objeto", objectRes.toString())
 
                 listaRecompensa.add(Recompensa(
                     objectRes.optInt("id").toString(),

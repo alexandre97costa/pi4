@@ -16,6 +16,10 @@ object UserManager {
         return this.utilizador
     }
 
+    fun setUtilizador(utilizador: Utilizador) {
+        this.utilizador = utilizador
+    }
+
     suspend fun atualizarUtillizador(context: Context): Deferred<Unit> {
         return GlobalScope.async(Dispatchers.IO) {
             Log.d("atualizarUtillizador", "1")

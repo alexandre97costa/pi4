@@ -1,6 +1,7 @@
 package com.example.ficha8
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.util.Log
 import android.widget.Toast
@@ -9,6 +10,9 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 import pi4.main.Utils.BackendURL
+import java.net.MalformedURLException
+import java.net.URISyntaxException
+import java.net.UnknownHostException
 
 
 object Req {

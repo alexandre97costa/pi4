@@ -10,10 +10,12 @@ import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.example.ficha8.Req
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import pi4.main.R
 import pi4.main.Adapter.SetAdapterCard
 import pi4.main.Classes.*
@@ -29,14 +31,64 @@ class FragmentPontoInteresse() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        GlobalScope.launch(Dispatchers.Main) {
-            UserManager.atualizarUtillizador(requireContext()).await()
-            loadPoints()
-        }
+        loginUtilizador()
+    }
 
-        callAdapterCards("Todos")
-        createCategoriasTab()
-        searchBar()
+    private fun loginUtilizador() {
+        val queryParams = JSONObject("""{}""")
+        val requestBody = JSONObject()
+
+        //Adiciona elementos para o requestBody
+        requestBody.put("email", UserManager.getUtilizador()!!.getEmail())
+        requestBody.put("password", UserManager.getUtilizador()!!.getPasseword())
+
+        //LOGIN
+        Req.POST("/utilizador/login", queryParams, requestBody, requireContext(), "", then = { response ->
+            val token = response.optString("token")
+            val user = response.optString("user")
+
+            UserManager.setUtilizador(Utilizador(
+                user,
+                "",
+                "",
+                UserManager.getUtilizador()!!.getPasseword(),
+                "",
+                token
+            ))
+
+            atualizarUtilizador()
+        })
+    }
+
+    private fun atualizarUtilizador() {
+        val queryParams = JSONObject("""{}""")
+        val path = "/utilizador/${UserManager.getUtilizador()!!.getId()}"
+
+        Req.GET(path, queryParams, requireContext(), UserManager.getUtilizador()!!.getToken(), then = { res ->
+            val data = res.optJSONArray("data")
+            val user = data.optJSONObject(0)
+
+            UserManager.setUtilizador(Utilizador(
+                user.optString("id"),
+                user.optString("nome"),
+                user.optString("email"),
+                UserManager.getUtilizador()!!.getPasseword(),
+                user.optString("pontos"),
+                UserManager.getUtilizador()!!.getToken()
+            ))
+
+            //ESPAÇO PARA CONTINUAR A PAGINA
+            loadPoints()
+            searchBar()
+            createCategoriasTab()
+            callAdapterCards("", "")
+        })
+    }
+
+    private fun loadPoints() {
+        val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
+
+        Points(UserManager.getUtilizador()?.getPontos()?.toInt() ?: 0, textView, requireContext()).loadPontos()
     }
 
     private fun searchBar() {
@@ -53,17 +105,11 @@ class FragmentPontoInteresse() : Fragment() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if(textInputEditText.text.toString() != "")
-                    callAdapterCards(textInputEditText.text.toString())
+                    callAdapterCards("" ,textInputEditText.text.toString())
                 else
-                    callAdapterCards("Todos")
+                    callAdapterCards("", "")
             }
         })
-    }
-
-    private fun loadPoints() {
-        val textView = requireView().findViewById<TextView>(R.id.scoreUtilizador)
-
-        Points(UserManager.getUtilizador()?.getPontos()?.toInt() ?: 0, textView, requireContext()).loadPontos()
     }
 
     private fun createCategoriasTab() {
@@ -72,9 +118,9 @@ class FragmentPontoInteresse() : Fragment() {
         CategoriaLista(tab, requireContext())
     }
 
-     fun callAdapterCards(categoria:String) {
+    private fun callAdapterCards(categoriaId:String, nome: String) {
         val listView = requireView().findViewById<ListView>(R.id.listView)
 
-        gestor.getAllPontosInteresse(requireContext(), listView, true)
+        gestor.getAllPontosInteresse(requireContext(), listView, true, nome, categoriaId)
     }
 }

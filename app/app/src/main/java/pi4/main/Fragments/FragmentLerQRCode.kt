@@ -12,6 +12,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.budiyev.android.codescanner.AutoFocusMode
 import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
@@ -19,9 +22,11 @@ import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.example.ficha8.Req
 import org.json.JSONObject
+import pi4.main.Activitys.QrCode.ConfirmaQR
 import pi4.main.MainActivity
 import pi4.main.Object.UserManager
 import pi4.main.R
+import pi4.main.Utils.BackendURL
 
 private const val CAMARA_REQUEST_CODE = 101
 
@@ -55,18 +60,39 @@ class FragmentLerQRCode() : Fragment() {
         // Callbacks
         codeScanner.decodeCallback = DecodeCallback {
             requireActivity().runOnUiThread {
-                Toast.makeText(requireContext(), "Scan result: ${it.text}", Toast.LENGTH_LONG).show()
-
                 val queryParams = JSONObject("""{}""")
                 val requestBody = JSONObject("""{}""")
 
                 Log.i("path", it.text)
+                Log.i("token", UserManager.getUtilizador()!!.getToken())
 
-                Req.POST(it.text, queryParams, requestBody, requireContext(), UserManager.getUtilizador()!!.getToken(), then = { res ->
-                    startActivity(Intent(requireContext(), MainActivity::class.java))
-                })
+
+                val request = object : JsonObjectRequest(
+                    Request.Method.POST,
+                    BackendURL + it.text,
+                    requestBody,
+                    { res ->
+                        startActivity(Intent(requireContext(), ConfirmaQR::class.java))
+                    }, { error ->
+                        Toast.makeText(requireContext(), "BAD URL", Toast.LENGTH_SHORT).show()
+                        //startActivity(Intent(requireContext(), ConfirmaQR::class.java))
+                    }
+                ) {
+                    override fun getHeaders(): MutableMap<String, String> {
+                        val headers = HashMap<String, String>()
+
+                        if(UserManager.getUtilizador()!!.getToken().isNotEmpty())
+                            headers["Authorization"] = "Bearer ${UserManager.getUtilizador()!!.getToken()}"
+
+                        return headers
+                    }
+                }
+
+                val queue = Volley.newRequestQueue(context)
+                queue.add(request)
             }
         }
+
         codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
             requireActivity().runOnUiThread {
                 Toast.makeText(requireContext(), "Camera initialization error: ${it.message}", Toast.LENGTH_LONG).show()
