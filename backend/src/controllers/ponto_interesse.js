@@ -52,8 +52,10 @@ module.exports = {
                     id: !!+id ?
                         +id :
                         { [Op.ne]: 0 },
-                    nome: { [Op.iLike]: '%' + nome_desc + '%' },
-                    descricao: { [Op.iLike]: '%' + nome_desc + '%' },
+                    [Op.or]: [
+                        { nome: { [Op.iLike]: '%' + nome_desc + '%' } },
+                        { descricao: { [Op.iLike]: '%' + nome_desc + '%' } }
+                    ],
                     tipo_interesse_id: !!+tipo_interesse_id ?
                         +tipo_interesse_id :
                         { [Op.ne]: 0 },
@@ -333,7 +335,7 @@ module.exports = {
 
     tipos: async (req, res) => {
         await tipo_interesse
-            .findAll({ attributes: ['id','nome'] })
+            .findAll({ attributes: ['id', 'nome'] })
             .then(output => { return res.status(200).json({ tipos_interesse: output }) })
             .catch(error => {
                 res.status(400).json({ error })
@@ -342,9 +344,62 @@ module.exports = {
             })
     },
 
+    comentarios_avaliacoes: async (req, res) => {
+
+        const { id } = req.params
+
+        await comentario_avaliacao
+            .findAll({ where: { ponto_interesse_id: id }, attributes: ['comentario', 'avaliacao', 'created_at'] })
+            .then(output => { return res.status(200).json({ comentarios_avaliacoes: output }) })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev(error)
+                return
+            })
+    },
+
+    post_comentario_avaliacao: async (req, res) => {
+
+        if (req.auth.tipo !== 1)
+            return res.status(401).json({ msg: 'Sem autorização para comentar ou avaliar pontos de interesse.' })
+
+        // o body tem que ter todos os coises
+        const required_params = [
+            'comentario',
+            'avaliacao'
+        ]
+        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
+        if (!check_all_required)
+            return res.status(400).json({ msg: 'Faltam dados para poder comentar/avaliar o ponto de interesse.' })
+
+        const { comentario, avaliacao } = req.body
+        const { id } = req.params
+
+        // verificar se o ponto de interesse existe realmente
+        const _pi = await ponto_interesse.findByPk(+id)
+        if (_pi === null) return res.status(404).json({ msg: 'O ponto de interesse não existe' })
+
+        await comentario_avaliacao
+            .create({
+                comentario: comentario,
+                avaliacao: avaliacao,
+                visitante_id: req.auth.id,
+                ponto_interesse_id: id
+            })
+            .then(output => {
+                return res.status(200).json({
+                    msg: 'Comentário/avaliação criado.',
+                    comentario_avaliacao: output
+                })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            });
+    },
 
     // * testes
-
 
     test_aval: async (req, res) => {
         await comentario_avaliacao
