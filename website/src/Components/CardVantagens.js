@@ -4,6 +4,8 @@ import CardBackground from './CardBackground';
 import CardVantagensConteudo from './CardVantagensConteudo';
 
 import svgCalendario from "../Assets/svg/calendar-week.svg";
+import svgVerificado from "../Assets/svg/verificado.svg";
+import svgPontos from "../Assets/svg/pontos.svg";
 
 export default function CardVantagens() {
     const vantagens = [{
@@ -11,10 +13,10 @@ export default function CardVantagens() {
         cardTexto: "Faça as reservas dos pontos turísticos que lhe interessem.", imagem: svgCalendario
     }, {
         cardTitulo: "Junte e troque pontos",
-        cardTexto: "Ganhe pontos e troque por reservas se forma a ser favorecido.", imagem: svgCalendario
+        cardTexto: "Ganhe pontos e troque por reservas se forma a ser favorecido.", imagem: svgPontos
     }, {
         cardTitulo: "Torne-se membro",
-        cardTexto: "Torne-se um agente turístico e promova o seu estabelecimento.", imagem: svgCalendario
+        cardTexto: "Torne-se um agente turístico e promova o seu estabelecimento.", imagem: svgVerificado
     }]
 
     useEffect(() => {

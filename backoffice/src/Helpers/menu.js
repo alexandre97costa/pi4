@@ -78,7 +78,7 @@ export const menu = [
             icon: "calendar4-event"
         },
         {
-            text: "Rservas",
+            text: "Reservas",
             path: "/5",
             icon: "calendar4-event"
         },
