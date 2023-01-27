@@ -40,8 +40,7 @@ export default function Home() {
         "89",
         "46"
     ]
-    
-    
+
     const datasets = [{
         label: "Utilizadores",
         data: dataUtilizadores,
@@ -67,40 +66,40 @@ export default function Home() {
     return (
         <>
             <div className="row">
-                <div className='col-12 mt-5'>
+                <div className='col-12 mt-4'>
                     <p className="fs-5 text-body fw-light">Ações Rápidas</p>
                 </div>
 
-                <div className='col-4 col-md-2'>
-                    <BotaoDashboard colorBotao="btn-light btn-lg" icon="bi-journal-check" texto="Atribuição de Perfil"/>
+                <div className='col-12 col-md-3'>
+                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-light btn-lg" icon="bi-journal-check" texto="Atribuição de Perfil"/>
                 </div>
 
-                <div className='col-4 col-md-2'>
+                <div className='col-12 col-md-3'>
                     <BotaoDashboard to="/admin/microsite" colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Página Web"/>
                 </div>
 
-                <div className='col-4 col-md-2'>
-                    <BotaoDashboard colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Regiões Web"/>
+                <div className='col-12 col-md-3'>
+                    <BotaoDashboard to="/admin/lista-regiao" colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Regiões"/>
                 </div>
 
                 <div className='col-12 mt-5'>
-                    <p className="fs-5 text-body fw-light">Lista de Regiões</p>
+                    <p className="fs-5 text-body fw-light">Lista de Utilizadores</p>
                 </div>
 
-                <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-2 text-center'>
-                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-agentes h-100 text-white fw-bold py-5 w-100 h-100" texto="Agentes Turísticos"/>
+                <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
+                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-agentes h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Agentes Turísticos"/>
                 </div>
 
-                <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-2 text-center'>
-                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-regiao h-100 text-white fw-bold py-5 w-100 h-100" texto="Responsáveis de Região"/>
+                <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
+                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-regiao h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Responsáveis de Região"/>
                 </div>
 
-                <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-2 text-center'>
-                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-primary h-100 text-white fw-bold py-5 w-100 h-100" texto="Visitantes"/>
+                <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
+                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-primary h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Visitantes"/>
                 </div>
 
                 <div className='col-12 mt-5'>
-                    <p className="fs-5 text-body fw-light">Logins Utilizadores</p>
+                    <p className="fs-5 text-body fw-light mt-5">Logins Utilizadores</p>
                 </div>
 
                 <div className='col-12 col-md-10'>

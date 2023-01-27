@@ -2,6 +2,7 @@
 class dev {
     error(e) {
         if (process.env.MODE === 'dev') {
+            console.error(e)
             throw new Error(e)
         } else {
             console.error('dev error', e)

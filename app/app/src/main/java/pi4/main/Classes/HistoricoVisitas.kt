@@ -1,14 +1,16 @@
 package pi4.main.Classes
 
-class HistoricoVisitas(image_url: String, nome: String, morada: String, tipoInteresse: String) {
+class HistoricoVisitas(id: String, image_url: String, nomePontoInteresse: String, morada: String, tipoInteresse: String) {
+    val id: String
     val image_url: String
-    val nome: String
+    val nomePontoInteresse: String
     val morada: String
     val tipoInteresse: String
 
     init {
+        this.id = id
         this.image_url = image_url
-        this.nome = nome
+        this.nomePontoInteresse = nomePontoInteresse
         this.morada = morada
         this.tipoInteresse = tipoInteresse
     }

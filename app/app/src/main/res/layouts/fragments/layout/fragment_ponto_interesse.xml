@@ -71,7 +71,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:divider="@null"
-        android:dividerHeight="10dp"
         android:fadeScrollbars="false"
         android:scrollbars="none"
         android:smoothScrollbar="true"

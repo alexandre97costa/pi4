@@ -39,7 +39,7 @@ class SetAdapterCardHistoricoVisitas(private val context: Context, private val d
         val recipe = getItem(position) as HistoricoVisitas
 
         Picasso.get().load(recipe.image_url).into(imagem)
-        nome.text = recipe.nome
+        nome.text = recipe.nomePontoInteresse
         categoria.text = recipe.tipoInteresse
         local.text = recipe.morada
 

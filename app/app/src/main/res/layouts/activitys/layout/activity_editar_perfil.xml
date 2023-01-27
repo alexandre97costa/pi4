@@ -81,20 +81,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editTextfoto"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/shape_outline"
-                android:hint=" fotografia.jpg"
-                android:inputType="textPersonName"
-                android:paddingStart="16dp"
-                android:theme="@style/text_input"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
-
-            <EditText
                 android:id="@+id/editTextTextEmailAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -107,7 +93,7 @@
                 android:theme="@style/text_input"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextfoto" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
             <TextView
                 android:id="@+id/textView4"

@@ -28,7 +28,7 @@ class ActivityHome : AppCompatActivity() {
     }
 
     fun criarConta() {
-        val buttonCriar =findViewById<Button>(R.id.buttonCriar)
+        val buttonCriar = findViewById<Button>(R.id.buttonCriar)
 
         buttonCriar.setOnClickListener {
             startActivity(Intent(this, ActivityCriarConta::class.java))

@@ -22,7 +22,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-
         <Route
           path="/login"
           element={
@@ -197,11 +196,11 @@ export default function App() {
         />
 
         <Route
-          path="/responsavel-regiao/consultar-pontos-interesse"
+          path="/consultar-pontos-interesse"
           element={
             <ProtectedRoute>
               <Pagina title="Pontos de Interesse">
-                <Pages.PontosInteresse tipoUtilizador="Responsavel Regiao" />
+                <Pages.PontoInteresse tipoUtilizador="Responsavel Regiao" />
               </Pagina>
             </ProtectedRoute>
           }
@@ -219,11 +218,44 @@ export default function App() {
         />
 
         <Route
+          path="/responsavel-regiao/validar-pontos-interesse"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Validar Pontos de Interesse">
+                <Pages.ValidarPontoInteresse tipoUtilizador="Responsavel Regiao" />
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/responsavel-regiao/lista-regiao"
           element={
             <ProtectedRoute>
               <Pagina title="Lista Região">
                 <Pages.ListaRegiao />
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/responsavel-regiao/lista-eventos"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Lista Eventos">
+                <Pages.EventosResponsavelRegiao />
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/responsavel-regiao/lista-reservas-eventos"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Reservas ao evento">
+                <Pages.ReservasEvento />
               </Pagina>
             </ProtectedRoute>
           }
@@ -274,6 +306,28 @@ export default function App() {
         />
 
         <Route
+          path="/responsavel-regiao/agentes"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Lista de Agentes Turísticos">
+                <Pages.Agentes />
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/responsavel-regiao/validar-agentes-turisticos"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Validar Agentes Turísticos">
+                <Pages.ValidarAgentesTuristicos />
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
           path="/agente-turistico/dashboard"
           element={
             <ProtectedRoute>
@@ -310,7 +364,7 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Pagina title="Ponto Interesse">
-                <Pages.PontoInteresseDetails tipoUtilizador='Agente Turistico'/>
+                <Pages.PontoInteresseDetails tipoUtilizador="Agente Turistico" />
               </Pagina>
             </ProtectedRoute>
           }
