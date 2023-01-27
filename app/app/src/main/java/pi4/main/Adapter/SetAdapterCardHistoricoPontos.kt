@@ -37,7 +37,7 @@ class SetAdapterCardHistoricoPontos(private val context: Context, private val da
         Points(recipe.pontos.toInt(), pontos, context).loadPontosPontoInteresseHistorico(recipe.sentido)
         data.text = recipe.data
 
-        if(recipe.sentido == "positivo") {
+        if(recipe.sentido == true) {
             pontoInteresse.setTextColor(ContextCompat.getColor(context, R.color.greenPrincipal))
             pontos.setTextColor(ContextCompat.getColor(context, R.color.greenPrincipal))
         } else {

@@ -1,5 +1,16 @@
 package pi4.main.Classes
 
+import SetAdapterCardHistoricoPontos
+import android.content.Context
+import android.util.Log
+import android.widget.ListView
+import com.example.ficha8.Req
+import org.json.JSONObject
+import pi4.main.Adapter.SetAdapterCardHistoricoVisitas
+import pi4.main.Adapter.SetAdapterCardRecompensa
+import pi4.main.Object.UserManager
+import pi4.main.R
+
 class Utilizador(
     id: String,
     nome: String,
@@ -70,25 +81,34 @@ class Utilizador(
     }
 
     //PEDIDO API
-    fun getRecompensasJaResgatadas(utilizadorId: String) {
+    fun getRecompensasJaResgatadas(context: Context, listView: ListView) {
         //limpar arrayList antes de fazer um pedido API
         listaRecompensasJaResgatadas.clear()
 
-        //exemplo de pedido API
-        this.listaRecompensasJaResgatadas.add(
-            Recompensa(
-                "1",
-                "Café frio",
-                "Este café vale ZERO",
-                "59",
-                "Comércio"
-            )
-        )
+        val queryParams = JSONObject("""{}""")
+        queryParams.put("visitante_id", id)
+
+        Req.GET("/voucher", queryParams, context, token, then = { res ->
+            val data = res.optJSONArray("data")
+
+            for (i in 0..data.length() - 1) {
+                val objectRes = data.optJSONObject(i)
+
+                listaRecompensasJaResgatadas.add(Recompensa(
+                    objectRes.optInt("id").toString(),
+                    objectRes.optJSONObject("recompensa").optString("titulo"),
+                    objectRes.optJSONObject("recompensa").optString("descricao"),
+                    objectRes.optJSONObject("recompensa").optInt("pontos").toString(),
+                    objectRes.optJSONObject("recompensa").optJSONObject("tipo_interesse").optString("nome")
+                ))
+            }
+
+            val customAdapter = SetAdapterCardRecompensa(context, listaRecompensasJaResgatadas, true)
+            listView.adapter = customAdapter
+        })
     }
 
     fun getRecompensasJaResgatadasDetails(id: String): Recompensa {
-        getRecompensasJaResgatadas(this.id)
-
         return listaRecompensasJaResgatadas[id.toInt()-1]
     }
 
@@ -122,29 +142,31 @@ class Utilizador(
         )
     }
 
-    fun getListaHistoricoPontos(id: String) {
-        //Limpar o arrayList antes de um pedido API
+    fun getListaHistoricoPontos(context: Context, listView: ListView) {
         listaHistoricoPontos.clear()
 
-        //exemplo de pedido API
-        this.listaHistoricoPontos.add(
-            HistoricoPontos(
-                "Jardim das mães",
-                "24/12/2022",
-                "10",
-                "positivo"
-            ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "positivo"
-        ))
-        this.listaHistoricoPontos.add(HistoricoPontos(
-            "Jardim das mães",
-            "24/12/2022",
-            "10",
-            "negativo"
-        ))
+        val path = "/historico_pontos/" + UserManager.getUtilizador()!!.getId()
+        val queryParams = JSONObject("""{}""")
+
+        Req.GET(path, queryParams, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
+
+            Log.i("Visitas", res.optString("output"))
+
+            val data = res.optJSONArray("output")
+
+            for (i in 0..data.length() - 1) {
+                val objectRes = data.getJSONObject(i)
+
+                listaHistoricoPontos.add(HistoricoPontos(
+                    objectRes.optString("nome"),
+                    objectRes.optString("data"),
+                    objectRes.optInt("pontos").toString(),
+                    objectRes.optBoolean("boolean")
+                ))
+            }
+
+            val customAdapter = SetAdapterCardHistoricoPontos(context, listaHistoricoPontos)
+            listView.adapter = customAdapter
+        })
     }
 }
