@@ -44,22 +44,22 @@ export default function Home() {
     const datasets = [{
         label: "Utilizadores",
         data: dataUtilizadores,
-        backgroundColor: "#BACC6A",
+        backgroundColor: "#d6ffab",
         borderRadius: borderRadius
     }, {
         label: "Agente Turistico",
         data: dataAgenteTuristico,
-        backgroundColor: "#BACC6A",
+        backgroundColor: "#BCD067",
         borderRadius: borderRadius,
     }, {
         label: "Responsavel de Região",
         data: dataResponsavelRegiao,
-        backgroundColor: "#BACC6A",
+        backgroundColor: "#80b155",
         borderRadius: borderRadius,
     }, {
         label: "Administrador",
         data: dataAdmin,
-        backgroundColor: "#BACC6A",
+        backgroundColor: "#729d4c",
         borderRadius: borderRadius,
     }]
 

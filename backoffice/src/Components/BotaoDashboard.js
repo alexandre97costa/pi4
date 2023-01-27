@@ -7,6 +7,6 @@ export default function BotaoDashboard(props) {
             return(<i className={"bi me-3 " + props.icon} />)
     }
     return (
-        <Link to={props.to} className={'btn shadow text-break rounded-3 mt-4 ' + props.colorBotao}>{teste()}{props.texto}</Link>
+        <Link to={props.to} className={'btn shadow text-break rounded-3 mx-auto ' + props.colorBotao}>{teste()}{props.texto}</Link>
     );
 }
