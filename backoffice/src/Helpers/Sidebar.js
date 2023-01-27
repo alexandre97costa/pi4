@@ -22,8 +22,8 @@ export default function Sidebar(props) {
 
     useEffect(() => {
         axios
-            .get(ip + '/user/tipos', auth.header())
-            .then(response => setTipos(response.data.data))
+            .get(ip + '/tipos/utilizador', auth.header())
+            .then(response => setTipos(response.data.tipos))
             .catch(e => dev.error(e.message))
     }, [])
 

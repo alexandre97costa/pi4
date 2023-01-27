@@ -11,6 +11,6 @@ router.put('/:id', u.editar)
 router.patch('/:id', u.mudar_tipo)
 router.delete('/:id', u.delete)
 
-router.get('/tipos', u.tipos)
+// tipos estão no route/tipos
 
 module.exports = router;

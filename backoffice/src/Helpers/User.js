@@ -8,13 +8,12 @@ export default function User() {
     const [nome, setNome] = useState('A carregar...')
 
     // async function fetchName() {
-    //     await auth
-    //     .getCurrentUser()
-    //     .then(user => setNome(user.nome))
-    //     .catch(error => { setNome('Oops!'); dev.log(error) })
+    //     const user = await auth.getCurrentUser()
+    //     if (user !== null)
+    //         setNome(user.nome)
     // }
 
-    // useEffect(() => { fetchName() }, [])
+    useEffect(() => { setNome(auth.getUser().nome) }, [])
 
     return (
         <div className='col-2 d-flex justify-content-between  position-absolute top-0 end-0  mt-3 me-4 py-2 px-3 ' >

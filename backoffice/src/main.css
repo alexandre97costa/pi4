@@ -85,11 +85,11 @@
 
 /* background */
 .bg-primary {
-    background-color: var(--pi4-primary-transparent)!important;
+    background-color: var(--pi4-primary)!important;
 }
 
-.bg-primary-no-transparent {
-    background-color: var(--pi4-primary)!important;
+.bg-primary-transparent {
+    background-color: var(--pi4-primary-transparent)!important;
 }
 
 .color-text{

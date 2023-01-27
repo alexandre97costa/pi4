@@ -11,9 +11,7 @@ export default function Pagina(props) {
         <div className='container-fluid position-relative'>
             <div className='row'>
                 <Sidebar/>
-
-                {/* Content */}
-                          
+                         
                 <div className='col-12 col-md-10 bg-light overflow-auto' style={{ maxHeight: '100vh' }}>          
                     
                     <div className='container-fluid py-3'>
