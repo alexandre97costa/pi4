@@ -3,22 +3,22 @@ export const menu = [
     [
         {
             text: "Dashboard",
-            path: "/",
+            path: "/agente-turistico/dashboard",
             icon: "speedometer2"
         },
         {
             text: "Pontos de Interesse",
-            path: "/2",
+            path: "/pontos-interesse",
             icon: "geo-alt"
         },
         {
             text: "Eventos",
-            path: "/3",
+            path: "/eventos",
             icon: "calendar4-event"
         },
         {
             text: "Recompensas",
-            path: "/4",
+            path: "recompensas",
             icon: "gift"
         }
     ],
@@ -26,32 +26,33 @@ export const menu = [
     [
         {
             text: "Dashboard",
-            path: "/",
-            icon: "speedometer2"
-        },
-        {
-            text: "Agentes Turísticos",
-            path: "/2",
+            path: "/responsavel-regiao/dashboard",
             icon: "speedometer2"
         },
         {
             text: "Pontos de Interesse",
-            path: "/3",
+            path: "/responsavel-regiao/consultar-pontos-interesse",
             icon: "geo-alt"
         },
         {
+            text: "Agentes Turísticos",
+            path: "/responsavel-regiao/agentes",
+            icon: "speedometer2"
+        },
+
+        {
             text: "Eventos",
-            path: "/4",
+            path: "/responsavel-regiao/lista-eventos",
             icon: "calendar4-event"
         },
         {
             text: "Reservas",
-            path: "/5",
+            path: "/responsavel-regiao/lista-reservas-eventos",
             icon: "calendar4-event"
         },
         {
             text: "Recompensas",
-            path: "/6",
+            path: "/responsavel-regiao/lista-recompensas",
             icon: "gift"
         }
     ],
@@ -59,37 +60,27 @@ export const menu = [
     [
         {
             text: "Dashboard",
-            path: "/",
-            icon: "speedometer2"
-        },
-        {
-            text: "Utilizadores",
-            path: "/2",
+            path: "/admin/dashboard",
             icon: "speedometer2"
         },
         {
             text: "Pontos de Interesse",
-            path: "/3",
+            path: "/pontos-interesse",
             icon: "geo-alt"
         },
         {
-            text: "Eventos",
-            path: "/4",
-            icon: "calendar4-event"
+            text: "Utilizadores",
+            path: "/admin/lista-utilizadores",
+            icon: "speedometer2"
         },
         {
-            text: "Reservas",
-            path: "/5",
-            icon: "calendar4-event"
-        },
-        {
-            text: "Recompensas",
-            path: "/6",
-            icon: "gift"
+            text: "Região",
+            path: "/admin/lista-regiao",
+            icon: "geo-fill"
         },
         {
             text: "Microsite",
-            path: "/7",
+            path: "/admin/microsite",
             icon: "gift"
         }
     ]
