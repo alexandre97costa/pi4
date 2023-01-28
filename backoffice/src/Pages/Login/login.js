@@ -95,30 +95,32 @@ export default function Login(props) {
                 </div>
             </div>
 
-            <div className='position-absolute ps-3 pt-2 top-0 start-0'>
-                Entrar como:
-                <button
-                    type='button'
-                    className='btn btn-light w-100 shadow mb-3 mt-2 d-flex justify-content-center gap-3'
-                    onClick={e => submit('admin@email.com', 'password')}
-                >
-                    Admin
-                </button>
-                <button
-                    type='button'
-                    className='btn btn-light w-100 shadow mb-3 d-flex justify-content-center gap-3'
-                    onClick={e => submit('responsavel@email.com', 'password')}
-                >
-                    Responsavel
-                </button>
-                <button
-                    type='button'
-                    className='btn btn-light w-100 shadow mb-3 d-flex justify-content-center gap-3'
-                    onClick={e => submit('agente@email.com', 'password')}
-                >
-                    Agente
-                </button>
-            </div>
+            {dev_mode &&
+                <div className='position-absolute ps-3 pt-2 top-0 start-0'>
+                    Entrar como:
+                    <button
+                        type='button'
+                        className='btn btn-light w-100 shadow mb-3 mt-2 d-flex justify-content-center gap-3'
+                        onClick={e => submit('admin@email.com', 'password')}
+                    >
+                        Admin
+                    </button>
+                    <button
+                        type='button'
+                        className='btn btn-light w-100 shadow mb-3 d-flex justify-content-center gap-3'
+                        onClick={e => submit('responsavel@email.com', 'password')}
+                    >
+                        Responsavel
+                    </button>
+                    <button
+                        type='button'
+                        className='btn btn-light w-100 shadow mb-3 d-flex justify-content-center gap-3'
+                        onClick={e => submit('agente@email.com', 'password')}
+                    >
+                        Agente
+                    </button>
+                </div>
+            }
         </div>
     );
 }

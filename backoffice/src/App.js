@@ -11,14 +11,15 @@ import Pagina from "./Helpers/Pagina";
 import Pages from "./Pages/index";
 
 export default function App() {
-  useEffect(() => {
-    dev.log("✅ App()");
-    dev.log(
-      "%cÉ normal que as mensagens apareçam 2x!",
-      "background-color: brown; color: gold; padding: 0 0.5rem;",
-      "\nhttps://reactjs.org/docs/strict-mode.html"
-    );
-  }, []);
+	
+	useEffect(() => {
+		dev.log('✅ App()');
+		dev.log(
+			'%cÉ normal que as mensagens apareçam 2x!',
+			'background-color: brown; color: gold; padding: 0 0.5rem;',
+			'\nhttps://reactjs.org/docs/strict-mode.html'
+		);
+	}, []);
 
   return (
     <BrowserRouter>
