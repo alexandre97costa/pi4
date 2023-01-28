@@ -12,6 +12,10 @@ router.delete('/:id', pi.delete)
 
 // tipos estão no route/tipos
 
+router.get('/:id/comentarios_avaliacoes', pi.comentarios_avaliacoes)
+router.post('/:id/comentario_avaliacao', pi.post_comentario_avaliacao)
+
+
 router.get('/test_aval', pi.test_aval)
 router.get('/test_img', pi.test_img)
 router.get('/test_ppi', pi.test_ppi)

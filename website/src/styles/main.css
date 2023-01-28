@@ -66,9 +66,24 @@
     background-color: var(--pi4-base-microsite)!important;
 }
 
+/* separador */
+.border-primary {
+    border-bottom: 1px solid var(--pi4-primary)!important;
+  }
+
+/* form border */
+.form-border-primary {
+    border: 1px solid var(--pi4-primary)!important;
+  }
+
+
+/* icon voltar cor e tamanho*/
+.icon-voltar{
+    font-size: 30px;
+    color: black;
+}
 
 /* texto cor */
-
 .text-primary {
     color: var(--pi4-primary)!important;
 }
