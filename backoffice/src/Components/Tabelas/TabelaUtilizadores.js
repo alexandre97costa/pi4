@@ -1,40 +1,23 @@
 import React, { useEffect, useState } from 'react';
-
+import axios from 'axios'
 import CardForm from '../CardForm';
 import ModalSelectCategoria from '../Modais/ModalSelectCategoria';
+import auth from '../../Auth/auth.service';
+
+const ip = process.env.REACT_APP_IP
 
 export default function TabelaUtilizadores(props) {
     const [utilizadores, setUtilizadores] = useState([])
 
-    const utilizador = [{
-        id: 1,
-        nome: "Manuel Antonio",
-        regiao: "Viseu",
-        tipoUtilizador: "Visitante"
-    }, {
-        id: 2,
-        nome: "Manuel Jeremias",
-        regiao: "Viseu",
-        tipoUtilizador: "Responsável Região"
-    }, {
-        id: 3,
-        nome: "Manuel Antonio Cartão",
-        regiao: "Viseu",
-        tipoUtilizador: "Responsável Região"
-    }, {
-        id: 4,
-        nome: "Manuel Antonio",
-        regiao: "Viseu",
-        tipoUtilizador: "Agente Turístico"
-    }, {
-        id: 5,
-        nome: "Manuel Antonio",
-        regiao: "Viseu",
-        tipoUtilizador: "Visitante"
-    }]
 
     useEffect(() => {
-        setUtilizadores(utilizador)
+        axios
+            .get(ip + '/utilizador', auth.header())
+            .then(output => {
+                console.log(output)
+                setUtilizadores(output.data?.data ?? [])
+            })
+            .catch(error => console.error(error))
     }, [])
 
     function changeClassCategoria(tipoUtilizador) {
@@ -48,7 +31,6 @@ export default function TabelaUtilizadores(props) {
 
     function axiosDelete(index) {
         //Aqui fazemos o pedido axios pra dar delete a utilizador
-        console.log("Delete id: " + utilizador[index].id + " com o nome: " + utilizador[index].nome)
     }
 
     return (
@@ -64,36 +46,21 @@ export default function TabelaUtilizadores(props) {
                     </thead>
 
                     <tbody className='table-group-divider'>
-                        {utilizadores.map((item, index) => {
-                            if (item.tipoUtilizador == props.tipoTabela)
-                                return (
-                                    <tr key={index} className="h-5-5rem">
-                                        <td className='text-start w-33'>{item.nome}</td>
-                                        <td className='w-33'>
-                                            <div className={changeClassCategoria(item.tipoUtilizador)}>{item.tipoUtilizador}</div>
-                                        </td>
-                                        <td className='w-33'>
-                                            <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
-                                            <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
-                                            <ModalSelectCategoria idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} id={item.id} />
-                                        </td>
-                                    </tr>
-                                )
-
-                            if (!props.tipoTabela)
-                                return (
-                                    <tr key={index} className="h-5-5rem">
-                                        <td className='text-start w-33'>{item.nome}</td>
-                                        <td className='w-33'>
-                                            <div className={changeClassCategoria(item.tipoUtilizador)}>{item.tipoUtilizador}</div>
-                                        </td>
-                                        <td className='w-33'>
-                                            <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
-                                            <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
-                                            <ModalSelectCategoria idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} id={item.id} />
-                                        </td>
-                                    </tr>
-                                )
+                        {utilizadores.length !== 0 &&
+                            utilizadores.map((item, index) => {
+                            return (
+                                <tr key={index} className="h-5-5rem">
+                                    <td className='text-start w-33'>{item.nome}</td>
+                                    <td className='w-33'>
+                                        <div className={changeClassCategoria(item.tipoUtilizador)}>{item.tipoUtilizador}</div>
+                                    </td>
+                                    <td className='w-33'>
+                                        <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
+                                        <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
+                                        <ModalSelectCategoria idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} id={item.id} />
+                                    </td>
+                                </tr>
+                            )
                         })}
                     </tbody>
                 </table>

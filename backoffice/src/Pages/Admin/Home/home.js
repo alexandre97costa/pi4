@@ -81,8 +81,8 @@ export default function Home() {
                     <p className="fs-5 text-body fw-light">Lista de Utilizadores</p>
                 </div>
 
-                <BotaoDashboard to="/utilizadores" class="btn-primary h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Visitantes" />
-                <BotaoDashboard to="/utilizadores" class="btn-agentes h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Agentes Turísticos" />
+                <BotaoDashboard to="/utilizadores" class="btn-agentes h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Visitantes" />
+                <BotaoDashboard to="/utilizadores" class="btn-primary h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Agentes Turísticos" />
                 <BotaoDashboard to="/utilizadores" class="btn-regiao h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Responsáveis de Região" />
                 <BotaoDashboard to="/utilizadores" class="btn-secondary h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Administradores" />
             

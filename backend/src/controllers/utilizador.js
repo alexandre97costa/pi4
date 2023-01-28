@@ -21,13 +21,13 @@ module.exports = {
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required) {
             dev.log('Faltam dados para poder fazer o login (email+password).')
-            return res.status(400).json({msg: 'Faltam dados para poder fazer o login (email+password).'})
+            return res.status(400).json({ msg: 'Faltam dados para poder fazer o login.', required_params })
         }
 
         const { email, password } = req.body
 
         const user = await utilizador
-            .findOne({ where: { email: email } })
+            .findOne({ where: { email: email }, include: { model: tipo_utilizador, attributes: ['nome'] } })
             .then(response => { return response?.dataValues })
 
         if (!user) return res.status(404).json({ msg: 'Utilizador não encontrado' })
@@ -44,7 +44,8 @@ module.exports = {
             nome: user.nome,
             email: user.email,
             pontos: user.pontos,
-            tipo: user.tipo_utilizador_id
+            tipo: user.tipo_utilizador_id,
+            tipo_nome: user.tipo_utilizador.nome
         }
 
         const secret = process.env.JWT_SECRET
@@ -121,7 +122,7 @@ module.exports = {
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
-            return res.status(400).json({msg: 'Faltam dados para poder criar o utilizador.'})
+            return res.status(400).json({ msg: 'Faltam dados para poder criar o utilizador.' })
 
         const { nome, email, data_nasc, password, tipo } = req.body
 
@@ -170,7 +171,7 @@ module.exports = {
 
     editar: async (req, res) => {
         const { id } = req.params
-        
+
         const required_params = [
             'nome',
             'email',
@@ -178,7 +179,7 @@ module.exports = {
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
-            return res.status(400).json({msg: 'Faltam dados para poder editar o utilizador.'})
+            return res.status(400).json({ msg: 'Faltam dados para poder editar o utilizador.' })
 
         const { nome, email, data_nascimento } = req.body
 

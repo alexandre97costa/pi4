@@ -71,7 +71,11 @@ class auth {
     // 2 = agente turistico
     // 3 = responsavel de regiao
     // 4 = administrador
-    getTipo() { return JSON.parse(localStorage?.getItem('utilizador'))?.tipo ?? 0 }
+    getTipo() { return {
+        id: JSON.parse(localStorage?.getItem('utilizador'))?.tipo ?? 0,
+        nome: JSON.parse(localStorage?.getItem('utilizador'))?.tipo_nome ?? '...' 
+    }
+    }
 
     valid() {
         const now = Math.floor(Date.now() / 1000)

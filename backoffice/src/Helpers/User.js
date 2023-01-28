@@ -37,29 +37,6 @@ export default function User() {
                             <span>Logout</span>
                         </button>
                     </li>
-
-
-
-                    <li><hr className='dropdown-divider' /></li>
-                    <li><h6 className="dropdown-header text-danger">Só pra desenvolvimento</h6></li>
-                    <li>
-                        <Link className="dropdown-item rounded-3" path="">
-                            <i className='bi bi-lightning-charge-fill text-warning me-2'></i>
-                            <span>Administrador</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className="dropdown-item rounded-3" path="">
-                            <i className='bi bi-lightning-charge-fill text-warning me-2'></i>
-                            <span>Responsável de Região</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className="dropdown-item rounded-3" path="">
-                            <i className='bi bi-lightning-charge-fill text-warning me-2'></i>
-                            <span>Agente Turístico</span>
-                        </Link>
-                    </li>
                 </ul>
             </div>
         </div>
