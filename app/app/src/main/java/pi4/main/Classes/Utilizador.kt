@@ -87,7 +87,6 @@ class Utilizador(
 
         val queryParams = JSONObject("""{}""")
         queryParams.put("visitante_id", id)
-        queryParams.put("usado", false)
 
         Req.GET("/voucher", queryParams, context, token, then = { res ->
             val data = res.optJSONArray("data")
@@ -99,7 +98,7 @@ class Utilizador(
                     objectRes.optInt("id").toString(),
                     objectRes.optJSONObject("recompensa").optString("titulo"),
                     objectRes.optJSONObject("recompensa").optString("descricao"),
-                    objectRes.optJSONObject("recompensa").optInt("pontos").toString(),
+                    objectRes.optInt("pontos_gastos").toString(),
                     objectRes.optJSONObject("recompensa").optJSONObject("tipo_interesse").optString("nome")
                 ))
             }
