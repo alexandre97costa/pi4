@@ -76,6 +76,10 @@ module.exports = {
                                 +ponto_interesse_id :
                                 { [Op.ne]: 0 }
                         }
+                    },
+                    {
+                        model: tipo_interesse,
+                        attributes: ['nome']
                     }
                 ],
                 order: [[order, direction]],
