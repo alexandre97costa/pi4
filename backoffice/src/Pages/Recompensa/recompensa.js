@@ -4,6 +4,7 @@ import CardRecompensa from '../../Components/Cards/CardRecompensa';
 import CardAdd from '../../Components/Cards/CardAdd';
 import CardListaRecompensas from '../../Components/Cards/CardListaRecompensas';
 import GraficoHorizontal from '../../Components/GraficoHorizontal';
+import VisibleTo from "../../Helpers/VisibleTo";
 
 //Imagem exemplo
 import coffe from '../../Assets/Images/logo.png'
@@ -92,6 +93,7 @@ export default function Recompensa() {
                 <p className="fs-5 text-body fw-light">Recompensas</p>
             </div>
 
+            <VisibleTo tipo='2'>
             <div className='col-12 col-md-3'>
                 <CardAdd
                     title='Adicionar Recompensa'
@@ -99,6 +101,8 @@ export default function Recompensa() {
                     nomeModal='addRecompensa'
                 />
             </div>
+            </VisibleTo>
+            
 
             {recompensa.map((item, index) => {
                 return (
