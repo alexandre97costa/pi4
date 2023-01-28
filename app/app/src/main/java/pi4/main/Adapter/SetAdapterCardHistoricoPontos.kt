@@ -34,6 +34,7 @@ class SetAdapterCardHistoricoPontos(private val context: Context, private val da
 
         val recipe = getItem(position) as HistoricoPontos
 
+        pontoInteresse.text = recipe.pontoInteresse
         Points(recipe.pontos.toInt(), pontos, context).loadPontosPontoInteresseHistorico(recipe.sentido)
         data.text = recipe.data
 
