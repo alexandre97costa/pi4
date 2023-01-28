@@ -30,7 +30,7 @@ const {
 
 module.exports = {
 
-    get: async (req, res) => {
+    get_pontos_todos: async (req, res) => {
         // este controller nao precisa de filtros nenhuns, só do id do utilizador
 
         // precisa de scans a eventos, pontos de interesse, e recompensas
@@ -91,6 +91,51 @@ module.exports = {
                 }
             })
         ].sort((a, b) => { return b.data - a.data }) // uma vénia a quem inventou o ISO 8601
+
+        return res.status(200).json({ output })
+    },
+
+    get_pontos_interesse: async (req, res) => {
+        // este controller nao precisa de filtros nenhuns, só do id do utilizador
+
+        // juntar tudo numa array com objectos que contenham       
+        /*
+            id
+            nome
+            morada
+            tipo interesse (texto)
+            imagem (url)
+        */
+
+        const { id } = req.params
+
+        const _scan_pi = await scan_ponto_interesse.findAll({
+            where: { visitante_id: id },
+            attributes: ['created_at'],
+            order: [['created_at', 'desc']],
+            include: {
+                model: ponto_interesse, 
+                attributes: ['id', 'nome', 'morada'],
+                required: true,
+                include: [
+                    { model: tipo_interesse, attributes: ['nome'] },
+                    { model: imagem, attributes: ['url']}
+                ]
+            }
+        })
+
+        const output = [
+            ..._scan_pi.map(p => {
+                dev.log(p)
+                return {
+                    id: p.ponto_interesse.id,
+                    nome: p.dataValues.ponto_interesse.nome,
+                    morada: p.dataValues.ponto_interesse.morada,
+                    tipo_interesse: p.dataValues.ponto_interesse.tipo_interesse.nome,
+                    imagem: p.dataValues.ponto_interesse?.imagens[0]?.url ?? ''
+                }
+            })
+        ]
 
         return res.status(200).json({ output })
     }
