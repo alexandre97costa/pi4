@@ -2,43 +2,94 @@ package pi4.main.Activitys.Recompensa
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import com.example.ficha8.Req
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import pi4.main.Classes.Gestor
-import pi4.main.Classes.Points
-import pi4.main.Classes.StartActivitys
+import org.json.JSONObject
+import pi4.main.Classes.*
 import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityVoucherInformacoes : AppCompatActivity() {
-    private val gestor = Gestor()
     private lateinit var recompensaId: String
-
-    val pointsVoucher = 40
+    private val gestor = Gestor()
+    private var pointsVoucher: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_voucher_informacoes)
 
+        loginUtilizador()
         getRecompensaId()
-        loadPoints()
         previous()
+    }
 
-        loadInformacaoOn()
-        loadInformacaoOff()
+    private fun loginUtilizador() {
+        val queryParams = JSONObject("""{}""")
+        val requestBody = JSONObject()
 
-        if (verificarSeJaFoiResgatado())
-            includeRecompensaInfoOn()
-        else {
-            confirmPoints()
-            resgatar()
-        }
+        //Adiciona elementos para o requestBody
+        requestBody.put("email", UserManager.getUtilizador()!!.getEmail())
+        requestBody.put("password", UserManager.getUtilizador()!!.getPasseword())
+
+        //LOGIN
+        Req.POST("/utilizador/login", queryParams, requestBody, this, "", then = { response ->
+            val token = response.optString("token")
+            val user = response.optString("user")
+
+            UserManager.setUtilizador(Utilizador(
+                user,
+                "",
+                "",
+                UserManager.getUtilizador()!!.getPasseword(),
+                "",
+                token
+            ))
+
+            atualizarUtilizador()
+        })
     }
 
     private fun getRecompensaId() {
         recompensaId = intent.getStringExtra("recompensaId").toString()
+    }
+
+    private fun previous() {
+        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
+        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
+    }
+
+    private fun atualizarUtilizador() {
+        val queryParams = JSONObject("""{}""")
+        val path = "/utilizador/${UserManager.getUtilizador()!!.getId()}"
+
+        Req.GET(path, queryParams, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
+            val data = res.optJSONArray("data")
+            val user = data.optJSONObject(0)
+
+            UserManager.setUtilizador(Utilizador(
+                user.optString("id"),
+                user.optString("nome"),
+                user.optString("email"),
+                UserManager.getUtilizador()!!.getPasseword(),
+                user.optString("pontos"),
+                UserManager.getUtilizador()!!.getToken()
+            ))
+
+            //ESPAÇO PARA CONTINUAR A PAGINA
+            loadPoints()
+
+            if (verificarSeJaFoiResgatado()) {
+                includeRecompensaInfoOn()
+                loadInformacaoOn()
+            }
+            else
+                loadInformacaoOff()
+        })
     }
 
     private fun loadPoints() {
@@ -58,56 +109,130 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
         findViewById<Button>(R.id.btnResgatar).visibility = View.GONE
     }
 
-    fun resgatar() {
+    private fun loadInformacaoOn() {
+        val titulo = findViewById<TextView>(R.id.textViewTituloOn)
+        val descricao = findViewById<TextView>(R.id.textViewDescricaoOn)
+        val pontos = findViewById<TextView>(R.id.textViewPontosOn)
+        val codigo = findViewById<TextView>(R.id.textViewCodigo)
+
+        val queryParams = JSONObject("""{}""")
+        val path = "/voucher/${recompensaId}"
+
+        Req.GET(path, queryParams, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
+            val data = res.getJSONArray("data")
+            val objectRes = data.getJSONObject(0)
+
+            titulo.text = objectRes.optJSONObject("recompensa").getString("titulo")
+            descricao.text = objectRes.optJSONObject("recompensa").getString("descricao")
+            pontos.text = "${objectRes.optJSONObject("recompensa").optInt("pontos").toString()} pontos"
+            codigo.text = "123456"
+        })
+    }
+
+    private fun loadInformacaoOff() {
+        val titulo = findViewById<TextView>(R.id.textViewTitulo)
+        val descricao = findViewById<TextView>(R.id.textViewDescricao)
+        val pontos = findViewById<TextView>(R.id.textViewPontos)
+
+        val queryParams = JSONObject("""{}""")
+        val path = "/recompensa/${recompensaId}"
+
+        Req.GET(path, queryParams, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
+            val data = res.getJSONArray("data")
+            val objectRes = data.getJSONObject(0)
+
+            val recompensa = Recompensa(
+                objectRes.optInt("id").toString(),
+                objectRes.getString("titulo"),
+                objectRes.getString("descricao"),
+                objectRes.optInt("pontos").toString(),
+                objectRes.optJSONObject("tipo_interesse").optString("nome")
+            )
+
+            pointsVoucher = recompensa.pontos.toInt()
+
+            titulo.text = recompensa.nomeRecompesa
+            descricao.text = recompensa.descricao
+            pontos.text = "${recompensa.pontos} pontos"
+
+            confirmPoints()
+        })
+    }
+
+    private fun confirmPoints() {
+        val buttonResgatar = findViewById<Button>(R.id.btnResgatar)
+
+        Log.i("PontosRecompensa", pointsVoucher.toString())
+        Log.i("PontosUtilizador", UserManager.getUtilizador()!!.getPontos())
+
+        if(UserManager.getUtilizador()!!.getPontos().toInt() < pointsVoucher) {
+            buttonResgatar.isEnabled = false
+            return buttonResgatar.setBackgroundResource(R.drawable.shape_gray.toInt())
+        }
+
+        btnResgatar()
+    }
+
+    private fun btnResgatar() {
         val btnResgatar = findViewById<Button>(R.id.btnResgatar)
 
         btnResgatar.setOnClickListener {
             findViewById<View>(R.id.includeRecompensaInfoOff).visibility = View.GONE
             findViewById<View>(R.id.includeRecompensaInfoOn).visibility = View.VISIBLE
             btnResgatar.visibility = View.GONE
+            postRecompensa()
         }
     }
 
-    fun confirmPoints() {
-        val buttonResgatar = findViewById<Button>(R.id.btnResgatar)
+    private fun postRecompensa() {
+        val queryParams = JSONObject("""{}""")
+        val requestBody = JSONObject()
+        requestBody.put("recompensa_id", recompensaId)
 
-        if(UserManager.getUtilizador()!!.getPontos().toInt() < pointsVoucher) {
-            buttonResgatar.isEnabled = false
-        buttonResgatar.setBackgroundResource(R.drawable.shape_gray.toInt())
-        }
+        Req.POST("/voucher", queryParams, requestBody, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
+            val queryParamsLogin = JSONObject("""{}""")
+            val requestBodyLogin = JSONObject()
+
+            //Adiciona elementos para o requestBody
+            requestBodyLogin.put("email", UserManager.getUtilizador()!!.getEmail())
+            requestBodyLogin.put("password", UserManager.getUtilizador()!!.getPasseword())
+
+            //LOGIN
+            Req.POST("/utilizador/login", queryParamsLogin, requestBodyLogin, this, "", then = { response ->
+                val token = response.optString("token")
+                val user = response.optString("user")
+
+                UserManager.setUtilizador(Utilizador(
+                    user,
+                    "",
+                    "",
+                    UserManager.getUtilizador()!!.getPasseword(),
+                    "",
+                    token
+                ))
+
+                val queryParamsAtualizar = JSONObject("""{}""")
+                val path = "/utilizador/${UserManager.getUtilizador()!!.getId()}"
+
+                Req.GET(path, queryParamsAtualizar, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
+                    val data = res.optJSONArray("data")
+                    val user = data.optJSONObject(0)
+
+                    UserManager.setUtilizador(Utilizador(
+                        user.optString("id"),
+                        user.optString("nome"),
+                        user.optString("email"),
+                        UserManager.getUtilizador()!!.getPasseword(),
+                        user.optString("pontos"),
+                        UserManager.getUtilizador()!!.getToken()
+                    ))
+
+                    //ESPAÇO PARA CONTINUAR A PAGINA
+                    loadPoints()
+                })
+            })
+        })
     }
 
-    fun previous() {
-        val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
 
-        StartActivitys(this).floatingPreviousActivity(floatingButton, this)
-    }
-
-    fun loadInformacaoOn() {
-        //Faz um pedido API ja com as novas informações
-        gestor.getRecompensaId(recompensaId, this)
-
-        //val recompensa = gestor.utilizador.getRecompensasJaResgatadasDetails(recompensaId)
-
-        val titulo = findViewById<TextView>(R.id.textViewTituloOn)
-        val descricao = findViewById<TextView>(R.id.textViewDescricaoOn)
-        val pontos = findViewById<TextView>(R.id.textViewPontosOn)
-        val codigo = findViewById<TextView>(R.id.textViewCodigo)
-
-        titulo.text = gestor.recompensa.nomeRecompesa
-        descricao.text = gestor.recompensa.descricao
-        pontos.text = "${gestor.recompensa.pontos} pontos"
-    }
-
-    fun loadInformacaoOff() {
-        val recompensa = gestor.getRecompensaId(recompensaId, this)
-
-        val titulo = findViewById<TextView>(R.id.textViewTitulo)
-        val descricao = findViewById<TextView>(R.id.textViewDescricao)
-        val pontos = findViewById<TextView>(R.id.textViewPontos)
-
-        titulo.text = gestor.recompensa.nomeRecompesa
-        descricao.text = gestor.recompensa.descricao
-        pontos.text = "${gestor.recompensa.pontos} pontos"
-    }
 }

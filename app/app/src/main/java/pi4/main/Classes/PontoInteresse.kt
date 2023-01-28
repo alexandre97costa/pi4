@@ -1,12 +1,5 @@
 package pi4.main.Classes
 
-import android.content.Context
-import com.example.ficha8.Req
-import com.google.android.material.tabs.TabLayout
-import org.json.JSONObject
-import pi4.main.Adapter.SetAdapterCardEvento
-import pi4.main.Object.UserManager
-
 class PontoInteresse(
     id: String,
     image_url:String,

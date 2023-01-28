@@ -27,6 +27,7 @@ class Gestor() {
         0f,
         ""
     )
+
     var recompensa: Recompensa = Recompensa(
         "",
         "",
@@ -128,24 +129,6 @@ class Gestor() {
 
             val customAdapter = SetAdapterCardRecompensa(context, listaRecompensa, false)
             listView.adapter = customAdapter
-        })
-    }
-
-    fun getRecompensaId(id: String, context: Context) {
-        val queryParams = JSONObject("""{}""")
-        val path = "/recompensa/${id}"
-
-        Req.GET(path, queryParams, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
-            val data = res.getJSONArray("data")
-            val objectRes = data.getJSONObject(0)
-
-            listaRecompensa.add(Recompensa(
-                objectRes.getString("id"),
-                objectRes.getString("titulo"),
-                objectRes.getString("descricao"),
-                objectRes.getString("pontos"),
-                "Paisagem" //Mandar categoria
-            ))
         })
     }
 }
