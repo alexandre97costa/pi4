@@ -105,8 +105,14 @@ module.exports = {
         // o voucher precisa de visitante + recompensa.
         // o visitante vem no auth, a recompensa vem no body
 
-        if (!req.body.hasOwnProperty('recompensa_id'))
-            return res.status(400).json({ msg: 'É necessário o id da recompensa para resgatar um voucher.' })
+        // o body tem que ter todos os coises
+        const required_params = [
+            'recompensa_id',
+            'data_validade'
+        ]
+        const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
+        if (!check_all_required)
+            return res.status(400).json({ msg: 'Faltam dados para poder criar o voucher.', required_params })
 
         const { recompensa_id } = req.body
 
