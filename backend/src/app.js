@@ -23,7 +23,7 @@ const scan_routes = require('./routes/scan')
 const tipos_routes = require('./routes/tipos')
 const utilizador_routes = require('./routes/utilizador')
 const voucher_routes = require('./routes/voucher')
-const historico_pontos_routes = require('./routes/historico_pontos')
+const historico_routes = require('./routes/historico')
 
 //* Middlewares
 app.use(cors());
@@ -89,7 +89,7 @@ app.use('/scan', scan_routes)
 app.use('/tipos', tipos_routes)
 app.use('/utilizador', utilizador_routes)
 app.use('/voucher', voucher_routes)
-app.use('/historico_pontos', historico_pontos_routes)
+app.use('/historico', historico_routes)
 
 app.use('/dev', dev_routes)
 
