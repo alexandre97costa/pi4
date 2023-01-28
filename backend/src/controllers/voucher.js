@@ -46,12 +46,7 @@ module.exports = {
                         { [Op.ne]: 0 },
                     data_usado: usado ?
                         { [Op.ne]: null } :
-                        {
-                            [Op.or]: {
-                                [Op.ne]: null,
-                                [Op.eq]: null
-                            }
-                        },
+                        { [Op.eq]: null },
                 },
                 include: [
                     {
