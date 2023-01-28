@@ -89,6 +89,7 @@ export default function App() {
           }
         />
 
+		{/* AQUI TEMOS DE FILTRAR OS CONTEUDO QUE APARECEM */}
         <Route
           path="/lista-utilizadores"
           element={
@@ -224,7 +225,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-
+		{/* AQUI NO AT PODE APARECER O BOTÃO ADICIONAR P.I */}
         <Route
           path="/pontos-interesse"
           element={
@@ -244,6 +245,8 @@ export default function App() {
           }
         />
 
+		  {/* aqui no AT E RR pode aparecer as recompensas e os eventos 
+		  + no AT botão para adicionar novas recompensas e evento */}
         <Route
           path="/ponto-interesse-details"
           element={
