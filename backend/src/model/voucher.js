@@ -13,11 +13,14 @@ module.exports = (sequelize) => {
                 allowNull: false
             },
             data_usado: DataTypes.DATE,
-            // todo: definido no controlador
             pontos_gastos: {
                 type: DataTypes.INTEGER,
                 allowNull: false
-            }
+            },
+            codigo_confirmacao: {
+                type: DataTypes.STRING(5),
+                allowNull: false
+            },
         },
         {
             name: { singular: 'voucher', plural: 'vouchers' },
@@ -26,6 +29,14 @@ module.exports = (sequelize) => {
             paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
             timestamps: true, // created_at, updated_at, e deleted_at
             hooks: {
+                beforeCreate: record => {
+                    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    record.dataValues.codigo_confirmacao =
+                        characters.charAt(Math.floor(Math.random() * characters.length))
+                        + record.dataValues.id.slice(-4).padStart(4, '0')
+
+                    // exemplo de resultado final: "F0345"
+                },
                 afterCreate: async v => {
                     // retirar pontos ao utilizador
                     await sequelize.models.utilizador.decrement(
