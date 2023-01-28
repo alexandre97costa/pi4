@@ -87,6 +87,7 @@ class Utilizador(
 
         val queryParams = JSONObject("""{}""")
         queryParams.put("visitante_id", id)
+        queryParams.put("usado", false)
 
         Req.GET("/voucher", queryParams, context, token, then = { res ->
             val data = res.optJSONArray("data")
@@ -145,7 +146,7 @@ class Utilizador(
     fun getListaHistoricoPontos(context: Context, listView: ListView) {
         listaHistoricoPontos.clear()
 
-        val path = "/historico_pontos/" + UserManager.getUtilizador()!!.getId()
+        val path = "/historico/pontos/" + UserManager.getUtilizador()!!.getId()
         val queryParams = JSONObject("""{}""")
 
         Req.GET(path, queryParams, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
