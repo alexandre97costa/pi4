@@ -11,15 +11,15 @@ import Pagina from "./Helpers/Pagina";
 import Pages from "./Pages/index";
 
 export default function App() {
-	
-	useEffect(() => {
-		dev.log('✅ App()');
-		dev.log(
-			'%cÉ normal que as mensagens apareçam 2x!',
-			'background-color: brown; color: gold; padding: 0 0.5rem;',
-			'\nhttps://reactjs.org/docs/strict-mode.html'
-		);
-	}, []);
+
+  useEffect(() => {
+    dev.log('✅ App()');
+    dev.log(
+      '%cÉ normal que as mensagens apareçam 2x!',
+      'background-color: brown; color: gold; padding: 0 0.5rem;',
+      '\nhttps://reactjs.org/docs/strict-mode.html'
+    );
+  }, []);
 
   return (
     <BrowserRouter>
@@ -39,13 +39,13 @@ export default function App() {
             <ProtectedRoute>
               <Pagina title="Editar Palavra-passe">
                 <VisibleTo tipo='2'>
-                <Pages.EditarPasse />
+                  <Pages.EditarPasse />
                 </VisibleTo>
                 <VisibleTo tipo='3'>
-                <Pages.EditarPasse />
+                  <Pages.EditarPasse />
                 </VisibleTo>
                 <VisibleTo tipo='4'>
-                <Pages.EditarPasse />
+                  <Pages.EditarPasse />
                 </VisibleTo>
               </Pagina>
             </ProtectedRoute>
@@ -57,14 +57,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Pagina title="Editar Perfil">
-              <VisibleTo tipo='2'>
-              <Pages.EditarPerfil />
+                <VisibleTo tipo='2'>
+                  <Pages.EditarPerfil />
                 </VisibleTo>
                 <VisibleTo tipo='3'>
-                <Pages.EditarPerfil />
+                  <Pages.EditarPerfil />
                 </VisibleTo>
                 <VisibleTo tipo='4'>
-                <Pages.EditarPerfil />
+                  <Pages.EditarPerfil />
                 </VisibleTo>
               </Pagina>
             </ProtectedRoute>
@@ -90,9 +90,9 @@ export default function App() {
           }
         />
 
-		{/* AQUI TEMOS DE FILTRAR OS CONTEUDO QUE APARECEM */}
+        {/* AQUI TEMOS DE FILTRAR OS CONTEUDO QUE APARECEM */}
         <Route
-          path="/lista-utilizadores"
+          path="/utilizadores"
           element={
             <ProtectedRoute>
               <Pagina title="Lista de Utilizadores">
@@ -226,7 +226,7 @@ export default function App() {
             </ProtectedRoute>
           }
         />
-		{/* AQUI NO AT PODE APARECER O BOTÃO ADICIONAR P.I */}
+        {/* AQUI NO AT PODE APARECER O BOTÃO ADICIONAR P.I */}
         <Route
           path="/pontos-interesse"
           element={
@@ -246,10 +246,10 @@ export default function App() {
           }
         />
 
-		  {/* aqui no AT E RR pode aparecer as recompensas e os eventos 
+        {/* aqui no AT E RR pode aparecer as recompensas e os eventos 
 		  + no AT botão para adicionar novas recompensas e evento */}
         <Route
-          path="/ponto-interesse-details"
+          path="/ponto-interesse-details" // aqui devia ser ponto-interesse/:id
           element={
             <ProtectedRoute>
               <Pagina title="Ponto Interesse">

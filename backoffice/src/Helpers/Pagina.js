@@ -14,9 +14,9 @@ export default function Pagina(props) {
                          
                 <div className='col-12 col-md-10 bg-light overflow-auto' style={{ maxHeight: '100vh' }}>          
                     
-                    <div className='container-fluid py-3'>
-                        <div className='row mb-4'>
-                            <div className='display-6'>
+                    <div className='container'>
+                        <div className='row'>
+                            <div className='display-6 py-4'>
                                 {props.title}
                             </div>
                         </div>

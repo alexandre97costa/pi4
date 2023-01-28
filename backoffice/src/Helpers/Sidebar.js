@@ -30,7 +30,7 @@ export default function Sidebar(props) {
     useEffect(() => { tipos.length !== 0 && getTipoUtilizador() }, [tipos])
 
     return (
-        <div className='bg-dark text-secondary col-2 px-2 vh-100 d-none d-md-block'>
+        <div className='bg-dark text-secondary col-2 px-2 pb-4 vh-100 d-none d-md-block overflow-auto'>
             <div className='d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start'>
 
                 {/* Titulo */}
