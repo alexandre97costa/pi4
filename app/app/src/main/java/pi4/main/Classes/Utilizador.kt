@@ -108,40 +108,6 @@ class Utilizador(
         })
     }
 
-    fun getRecompensasJaResgatadasDetails(id: String): Recompensa {
-        return listaRecompensasJaResgatadas[id.toInt()-1]
-    }
-
-    fun getReservaDetails(id: String): Reservas {
-        //Pedido API
-        return listaHistoricoReservas[id.toInt() - 1]
-    }
-
-    fun getListaHistoricoVisitas(id: String) {
-        //limpar o arrayList antes de um novo pedido API
-        listaHistoricoVisitas.clear()
-
-        //exemplo de pedido API
-        this.listaHistoricoVisitas.add(
-            HistoricoVisitas(
-                "1",
-                "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/aa/c9/2d/camara-municipal-de-viseu.jpg?w=1200&h=-1&s=1",
-                "Camara de Viseu",
-                "Rossio",
-                "Museu"
-            )
-        )
-        this.listaHistoricoVisitas.add(
-            HistoricoVisitas(
-                "2",
-                "https://upload.wikimedia.org/wikipedia/commons/7/7c/Praia_da_Rocha%2C_Portim%C3%A3o_2.jpg",
-                "Praia da Rocha",
-                "Portimão",
-                "Praia"
-            )
-        )
-    }
-
     fun getListaHistoricoPontos(context: Context, listView: ListView) {
         listaHistoricoPontos.clear()
 
@@ -149,13 +115,13 @@ class Utilizador(
         val queryParams = JSONObject("""{}""")
 
         Req.GET(path, queryParams, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
-
-            Log.i("Visitas", res.optString("output"))
-
             val data = res.optJSONArray("output")
 
             for (i in 0..data.length() - 1) {
                 val objectRes = data.getJSONObject(i)
+
+                Log.i("Pontos", objectRes.toString())
+                Log.i("NOME", objectRes.optString("nome"))
 
                 listaHistoricoPontos.add(HistoricoPontos(
                     objectRes.optString("nome"),

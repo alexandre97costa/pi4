@@ -22,6 +22,7 @@ import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.example.ficha8.Req
 import org.json.JSONObject
+import pi4.main.Activitys.QrCode.ActivityRejeitadoQR
 import pi4.main.Activitys.QrCode.ConfirmaQR
 import pi4.main.MainActivity
 import pi4.main.Object.UserManager
@@ -74,8 +75,7 @@ class FragmentLerQRCode() : Fragment() {
                     { res ->
                         startActivity(Intent(requireContext(), ConfirmaQR::class.java))
                     }, { error ->
-                        Toast.makeText(requireContext(), "BAD URL", Toast.LENGTH_SHORT).show()
-                        //startActivity(Intent(requireContext(), ConfirmaQR::class.java))
+                        startActivity(Intent(requireContext(), ActivityRejeitadoQR::class.java))
                     }
                 ) {
                     override fun getHeaders(): MutableMap<String, String> {

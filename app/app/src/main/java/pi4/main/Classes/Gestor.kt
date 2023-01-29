@@ -43,7 +43,7 @@ class Gestor() {
         //Pedido API
         val queryParams = JSONObject("""{}""")
         queryParams.put("nome_desc", nome)
-        queryParams.put("", categoriaId)
+        queryParams.put("tipo_interesse_id", categoriaId)
 
         Log.i("Token GET PONTOS", UserManager.getUtilizador()!!.getToken())
 

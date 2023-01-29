@@ -23,6 +23,12 @@ import pi4.main.Object.UserManager
 
 class FragmentPontoInteresse() : Fragment() {
     private val gestor = Gestor()
+    private var categoriaId: String = ""
+    private var nome: String = ""
+
+    fun setCategoriaId(categoriaId: String) {
+        this.categoriaId = categoriaId
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_ponto_interesse, container, false)
@@ -81,7 +87,7 @@ class FragmentPontoInteresse() : Fragment() {
             loadPoints()
             searchBar()
             createCategoriasTab()
-            callAdapterCards("", "")
+            callAdapterCards()
         })
     }
 
@@ -105,9 +111,9 @@ class FragmentPontoInteresse() : Fragment() {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if(textInputEditText.text.toString() != "")
-                    callAdapterCards("" ,textInputEditText.text.toString())
-                else
-                    callAdapterCards("", "")
+                    nome = textInputEditText.text.toString()
+
+                callAdapterCards()
             }
         })
     }
@@ -118,7 +124,7 @@ class FragmentPontoInteresse() : Fragment() {
         CategoriaLista(tab, requireContext())
     }
 
-    private fun callAdapterCards(categoriaId:String, nome: String) {
+    fun callAdapterCards() {
         val listView = requireView().findViewById<ListView>(R.id.listView)
 
         gestor.getAllPontosInteresse(requireContext(), listView, true, nome, categoriaId)

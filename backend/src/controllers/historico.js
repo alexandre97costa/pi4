@@ -87,7 +87,7 @@ module.exports = {
                     data: v.dataValues.created_at,
                     nome: v.recompensa.titulo,
                     pontos: v.dataValues.pontos_gastos,
-                    boolean: true
+                    boolean: false
                 }
             })
         ].sort((a, b) => { return b.data - a.data }) // uma vénia a quem inventou o ISO 8601

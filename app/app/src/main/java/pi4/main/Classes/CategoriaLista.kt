@@ -38,6 +38,8 @@ class CategoriaLista(tabLayout: TabLayout, context: Context) {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 // Handle tab select
                 changeIconOnSelected(tab, tab.position)
+                FragmentPontoInteresse().setCategoriaId(tab.position.toString())
+                FragmentPontoInteresse().callAdapterCards()
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
