@@ -95,22 +95,22 @@ export default function Home() {
 
                 <BotaoDashboard
                     to="/utilizadores"
-                    class="btn-light btn-agentes btn-lg text-light p-4 w-100 h-100 text-start d-flex align-items-center"
+                    class="btn-light btn-lg bg-visitante text-light p-4 w-100 h-100 text-start d-flex align-items-center"
                     icon="bi-phone fs-3"
                     texto="Visitantes" />
                 <BotaoDashboard
                     to="/utilizadores"
-                    class="btn-primary btn-lg text-light p-4 w-100 h-100 text-start d-flex align-items-center"
+                    class="btn-light btn-lg bg-agente text-light p-4 w-100 h-100 text-start d-flex align-items-center"
                     icon="bi-geo-alt fs-3"
                     texto="Agentes Turísticos" />
                 <BotaoDashboard
                     to="/utilizadores"
-                    class="btn-light btn-regiao btn-lg text-light p-4 w-100 h-100 text-start d-flex align-items-center"
+                    class="btn-light btn-lg bg-responsavel text-light p-4 w-100 h-100 text-start d-flex align-items-center"
                     icon="bi-map fs-3"
                     texto="Responsáveis de Região" />
                 <BotaoDashboard
                     to="/utilizadores"
-                    class="btn-secondary btn-lg text-light p-4 w-100 h-100 text-start d-flex align-items-center"
+                    class="btn-light btn-lg bg-admin text-light p-4 w-100 h-100 text-start d-flex align-items-center"
                     icon="bi-globe2 fs-3"
                     texto="Administradores" />
 
