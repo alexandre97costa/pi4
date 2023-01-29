@@ -3,8 +3,11 @@ package pi4.main.Activitys.PontoInteresse
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.ficha8.Req
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
@@ -62,6 +65,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
         val descricao = findViewById<TextView>(R.id.textView_txt_descricao)
         val agenteTuristico = findViewById<TextView>(R.id.textViewNomeAgenteTuristico)
         val rating = findViewById<TextView>(R.id.rating)
+        val ratingComentarios = findViewById<TextView>(R.id.textViewRatingComentarios)
 
         Req.GET(
             "/pi/${id}",
@@ -79,8 +83,9 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
                 descricao.text = pi_obj.getString("descricao")
                 agenteTuristico.text = pi_obj.getJSONObject("agente_turistico").getString("nome")
                 rating.text = pi_obj.getDouble("avg_avaliacao").toFloat().toString()
+                ratingComentarios.text = pi_obj.getDouble("avg_avaliacao").toFloat().toString()
 
-                // pi_obj.getJSONArray("imagens").getString( 0) //img
+                // pi_obj.getJSONArray("imagens").getString(0) //img
                 // pi_obj.getJSONObject("freguesia").getString("nome") //freguesia
             }
         )
@@ -117,6 +122,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
             // meter os eventos no tab layout
             val customAdapter = SetAdapterCardEvento(this, listaEventos)
+
             for (i in 0..customAdapter.count - 1)
                 tabLayout.addTab(tabLayout.newTab().setCustomView(customAdapter.getView(i, tabLayout, tabLayout)))
         })
@@ -146,8 +152,12 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
                     ))
                 }
 
+                val numeroComentarios = findViewById<TextView>(R.id.textViewNumeroComentarios)
+
                 val customAdapter = SetAdapterCardComentarios(this, listaComentarios)
                 val linearLayout = findViewById<LinearLayout>(R.id.linearLayoutComentarios)
+
+                numeroComentarios.text = "${customAdapter.count} comentários"
 
                 for (i in 0..customAdapter.count - 1)
                     linearLayout.addView(customAdapter.getView(i, linearLayout, linearLayout))
