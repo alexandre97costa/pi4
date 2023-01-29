@@ -11,8 +11,6 @@ import androidx.cardview.widget.CardView
 import pi4.main.Activitys.Evento.ActivityEventoDetalhe
 import pi4.main.Classes.Eventos
 import pi4.main.Classes.Points
-import pi4.main.Classes.PontoInteresse
-import pi4.main.Classes.StartActivitys
 import pi4.main.R
 
 class SetAdapterCardEvento(private val context: Context, private val data:ArrayList<Eventos>): BaseAdapter() {
@@ -36,7 +34,7 @@ class SetAdapterCardEvento(private val context: Context, private val data:ArrayL
 
         val nome = rowView.findViewById<TextView>(R.id.textViewNome)
         val data = rowView.findViewById<TextView>(R.id.textViewData)
-        val horas = rowView.findViewById<TextView>(R.id.textViewhoras)
+        val horas = rowView.findViewById<TextView>(R.id.textViewcategoria)
         val pontos = rowView.findViewById<TextView>(R.id.textViewPontos)
 
         val card = rowView.findViewById<CardView>(R.id.cardEvento)
