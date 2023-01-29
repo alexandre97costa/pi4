@@ -115,21 +115,4 @@ class PontoInteresse(
             "3.2"
         ))
     }
-
-    fun getLimitComentarios(id: String) {
-        //Limpar antes de começar para termos acerteza que não tem informação nenhuma anterior
-        listaComentarios.clear()
-
-
-        this.listaComentarios.add(Comentarios(
-            "Joaquim Sousa",
-            "Um sitio incrivel",
-            "4.1"
-        ))
-        this.listaComentarios.add(Comentarios(
-            "Maria Amalia",
-            "Um sitio impecavel",
-            "4.9"
-        ))
-    }
 }

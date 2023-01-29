@@ -28,6 +28,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
         previous()
         loadPontoInteresse(id)
         loadEventos(id)
+        loadComentarios(id)
 
         /*
         //Get Info Ponto interesse
@@ -122,6 +123,40 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
     }
 
+    fun loadComentarios(id: String) {
+        val queryParams = JSONObject()
+        val path = "/pi/${id}/comentarios_avaliacoes"
+
+        Req.GET(path,
+            queryParams,
+            this,
+            UserManager.getUtilizador()!!.getToken(),
+            then = { res ->
+                val listaComentarios:ArrayList<Comentarios> = ArrayList()
+
+                val data = res.optJSONArray("comentarios_avaliacoes")
+
+                for (i in 0..data.length() - 1) {
+                    val objectRes = data.optJSONObject(i)
+
+                    listaComentarios.add(Comentarios(
+                        "ZÉ",
+                        objectRes.optString("comentario"),
+                        objectRes.optInt("avaliacao").toString()
+                    ))
+                }
+
+                val customAdapter = SetAdapterCardComentarios(this, listaComentarios)
+                val linearLayout = findViewById<LinearLayout>(R.id.linearLayoutComentarios)
+
+                for (i in 0..customAdapter.count - 1)
+                    linearLayout.addView(customAdapter.getView(i, linearLayout, linearLayout))
+
+                maisComentarios()
+        })
+
+    }
+
     fun maisComentarios() {
         val verMais = findViewById<TextView>(R.id.textViewVerMaisComentarios)
 
@@ -129,21 +164,6 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
             startActivity(Intent(this, ActivityComentarios::class.java)
                 .putExtra("pontoInteresseId", gestor.pontoInteresse.getId()))
         }
-    }
-
-    fun loadComentarios() {
-        gestor.pontoInteresse.getLimitComentarios(gestor.pontoInteresse.getId())
-
-        callAdatperComentario()
-    }
-
-    fun callAdatperComentario() {
-        //Mandamos aqui a lista de comentarios <pontoInteresse.listaComentarios>
-        val customAdapter = SetAdapterCardComentarios(this, gestor.pontoInteresse.listaComentarios)
-        val linearLayout = findViewById<LinearLayout>(R.id.linearLayoutComentarios)
-
-        for (i in 0..customAdapter.count - 1)
-            linearLayout.addView(customAdapter.getView(i, linearLayout, linearLayout))
     }
 
     fun loadEventos2() {
