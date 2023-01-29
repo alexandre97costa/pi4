@@ -16,6 +16,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/img11" />
 
+    <include
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        layout="@layout/background_degrade" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
