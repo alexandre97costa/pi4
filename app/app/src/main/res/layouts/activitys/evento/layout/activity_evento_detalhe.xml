@@ -14,12 +14,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/orquestra1" />
+        app:srcCompat="@drawable/degrade" />
 
-    <include
-        layout="@layout/background_degrade"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonReturn"
