@@ -347,12 +347,14 @@ module.exports = {
     comentarios_avaliacoes: async (req, res) => {
 
         const { id } = req.params
+        const limit = req.query?.limit ?? 0
 
         await comentario_avaliacao
             .findAll({
                 where: { ponto_interesse_id: id },
                 attributes: ['comentario', 'avaliacao', 'created_at'],
-                include: { model: utilizador, attributes: ['nome'] }
+                include: { model: utilizador, attributes: ['nome'] },
+                limit: !!limit ? limit : null
             })
             .then(output => {
                 return res.status(200).json({
