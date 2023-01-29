@@ -378,6 +378,9 @@ export default function App() {
                 <VisibleTo tipo="3">
                   <Pages.Recompensa />
                 </VisibleTo>
+                <VisibleTo tipo="4">
+                  <Pages.Recompensa />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
