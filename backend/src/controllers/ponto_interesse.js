@@ -370,7 +370,7 @@ module.exports = {
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
-            return res.status(400).json({ msg: 'Faltam dados para poder comentar/avaliar o ponto de interesse.' })
+            return res.status(400).json({ msg: 'Faltam dados para poder comentar/avaliar o ponto de interesse.', required_params })
 
         const { comentario, avaliacao } = req.body
         const { id } = req.params
