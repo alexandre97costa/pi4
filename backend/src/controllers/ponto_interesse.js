@@ -349,11 +349,27 @@ module.exports = {
         const { id } = req.params
 
         await comentario_avaliacao
-            .findAll({ where: { ponto_interesse_id: id }, attributes: ['comentario', 'avaliacao', 'created_at'] })
-            .then(output => { return res.status(200).json({ comentarios_avaliacoes: output }) })
+            .findAll({
+                where: { ponto_interesse_id: id },
+                attributes: ['comentario', 'avaliacao', 'created_at'],
+                include: { model: utilizador, attributes: ['nome'] }
+            })
+            .then(output => {
+                return res.status(200).json({
+                    comentarios_avaliacoes: output.map(c => {
+                        return {
+                            comentario: c.dataValues.comentario,
+                            avaliacao: c.dataValues.avaliacao,
+                            created_at: c.dataValues.created_at,
+                            nome_visitante: c.utilizador.nome
+                        }
+
+                    })
+                })
+            })
             .catch(error => {
                 res.status(400).json({ error })
-                dev(error)
+                dev.error(error)
                 return
             })
     },
