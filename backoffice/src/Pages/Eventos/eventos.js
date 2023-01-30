@@ -61,7 +61,7 @@ export default function Eventos() {
     const datasets = [{
         label: "Eventos",
         data: dataEventos,
-        backgroundColor: "#BACC6A",
+        backgroundColor: "#d6ffab",
         borderRadius: borderRadius
     }]
 

@@ -45,22 +45,22 @@ export default function Home() {
     const datasets = [{
         label: "Restauração",
         data: dataRestauracao,
-        backgroundColor: "#d6ffab",
+        backgroundColor: "#bacc6a",
         borderRadius: borderRadius
     }, {
         label: "Museus",
         data: dataMuseus,
-        backgroundColor: "#BCD067",
+        backgroundColor: "#80b155",
         borderRadius: borderRadius,
     }, {
         label: "Espaços Verdes",
         data: dataEspacosVerdes,
-        backgroundColor: "#80b155",
+        backgroundColor: "#539477",
         borderRadius: borderRadius,
     }, {
         label: "Feiras",
         data: dataFeiras,
-        backgroundColor: "#729d4c",
+        backgroundColor: "#6c757d",
         borderRadius: borderRadius,
     }]
 
