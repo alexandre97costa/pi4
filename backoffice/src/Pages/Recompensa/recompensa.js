@@ -94,15 +94,15 @@ export default function Recompensa() {
             </div>
 
             <VisibleTo tipo='2'>
-            <div className='col-12 col-md-3'>
-                <CardAdd
-                    title='Adicionar Recompensa'
-                    idModal='AddRecompensa'
-                    nomeModal='addRecompensa'
-                />
-            </div>
+                <div className='col-12 col-md-3'>
+                    <CardAdd
+                        title='Adicionar Recompensa'
+                        idModal='AddRecompensa'
+                        nomeModal='addRecompensa'
+                    />
+                </div>
             </VisibleTo>
-            
+
 
             {recompensa.map((item, index) => {
                 return (

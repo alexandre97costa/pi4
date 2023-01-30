@@ -29,12 +29,12 @@
     background-color: var(--visitante);
 }
 
-.bg-responsavel {
-    background-color: var(--responsavel-regiao);
-}
-
 .bg-agente {
     background-color: var(--agente-turistico);
+}
+
+.bg-responsavel {
+    background-color: var(--responsavel-regiao);
 }
 
 .bg-admin {
