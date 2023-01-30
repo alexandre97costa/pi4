@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
+//import axios from 'axios';
 import CardPontoInteresse from '../../Components/Cards/CardPontoInteresse';
 import CardAdd from '../../Components/Cards/CardAdd';
 
@@ -7,6 +7,9 @@ import CardAdd from '../../Components/Cards/CardAdd';
 import jardimMaes from '../../Assets/Images/jardimMaes.jpg'
 
 export default function PontoInteresse(props) {
+    const [pontos_interesse, setPonto_interesse] = useState([])
+
+    //exemplo
     const itens = [{
         id: 1,
         imagem: jardimMaes,
@@ -28,6 +31,7 @@ export default function PontoInteresse(props) {
         numeroFavoritos: "12",
         numeroCheck: "3"
     }]
+    //acaba exemplo
 
     function tipoUtilizador() {
         if(props.tipoUtilizador === 'Agente Turistico')
@@ -44,6 +48,7 @@ export default function PontoInteresse(props) {
 
     function axiosGetPontosInteresse() {
         //Aqui que fazemos o pedido axios dos pontos de interesse
+        
     }
 
     return (
@@ -51,7 +56,7 @@ export default function PontoInteresse(props) {
             <div className='row pt-5'>
                 { tipoUtilizador() }
 
-                {itens.map((item, index) => {
+                {pontos_interesse.map((item, index) => {
                     return (
                         <div key={index} className='col-12 col-md-3'>
                             <CardPontoInteresse
