@@ -103,7 +103,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
                         objectRes.optInt("lotacao"),
                         objectRes.optJSONObject("tipo_evento").optString("nome"),
                         ListaSessoesVazia,
-                        id //tem de mandar o id do ponto de interesse
+                        objectRes.optString("ponto_interesse_id")
                     ))
                 }
             }
@@ -166,20 +166,5 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
             startActivity(Intent(this, ActivityComentarios::class.java)
                 .putExtra("pontoInteresseId", id))
         }
-    }
-
-    fun loadEventos2() {
-        //gestor.pontoInteresse.getEventos(gestor.pontoInteresse.getId(), this)
-
-        callAdapterEvento()
-    }
-
-    fun callAdapterEvento() {
-        //Mandamos aqui a lista de comentarios <pontoInteresse.listaEventos>
-        val customAdapter = SetAdapterCardEvento(this, gestor.pontoInteresse.listaEventos)
-        val tabLayout = findViewById<TabLayout>(R.id.tabLayoutEventos)
-
-        for (i in 0..customAdapter.count - 1)
-            tabLayout.addTab(tabLayout.newTab().setCustomView(customAdapter.getView(i, tabLayout, tabLayout)))
     }
 }
