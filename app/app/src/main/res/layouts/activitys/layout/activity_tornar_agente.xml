@@ -106,12 +106,29 @@
                 android:id="@+id/textViewQuestao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="24dp"
                 android:text="Ainda tem dúvidas?"
                 android:textColor="@color/black"
                 android:theme="@style/text_light"
-                app:layout_constraintStart_toStartOf="@+id/spinner"
+                app:layout_constraintStart_toStartOf="@+id/editTextTextCandidatura"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextCandidatura" />
+
+            <EditText
+                android:id="@+id/editTextTextCandidatura"
+                android:layout_width="388dp"
+                android:layout_height="75dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/shape_outline"
+
+                android:hint="Texto de candidatura, detalhes sobre o estabelecimento"
+                android:inputType="textPersonName"
+                android:paddingStart="24dp"
+                android:textAlignment="textStart"
+                android:textSize="13sp"
+                android:theme="@style/text_input"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
             <TextView
@@ -119,6 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+
                 android:text="@string/termos_legais"
                 android:textAllCaps="false"
                 android:theme="@style/text_light_green"
