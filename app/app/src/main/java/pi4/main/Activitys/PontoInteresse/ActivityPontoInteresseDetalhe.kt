@@ -32,24 +32,6 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
         loadPontoInteresse(id)
         loadEventos(id)
         loadComentarios(id)
-
-        /*
-        //Get Info Ponto interesse
-        getExtraIntent()
-
-        //Function de botões
-        previous()
-        maisComentarios()
-
-        //Carregar o valor dos pontos de interesse
-        loadPointsPontoInteresse()
-        loadInfoPontoInteresse()
-
-        //Carregar informação do ponto de interesse
-        loadComentarios()
-        loadEventos()
-        *
-         */
     }
 
     fun previous() {
@@ -163,16 +145,16 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
                 for (i in 0..customAdapter.count - 1)
                     linearLayout.addView(customAdapter.getView(i, linearLayout, linearLayout))
 
-                maisComentarios()
+                maisComentarios(id)
         })
     }
 
-    fun maisComentarios() {
+    fun maisComentarios(id: String) {
         val verMais = findViewById<TextView>(R.id.textViewVerMaisComentarios)
 
         verMais.setOnClickListener{
             startActivity(Intent(this, ActivityComentarios::class.java)
-                .putExtra("pontoInteresseId", gestor.pontoInteresse.getId()))
+                .putExtra("pontoInteresseId", id))
         }
     }
 
