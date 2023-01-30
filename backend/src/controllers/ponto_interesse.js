@@ -349,9 +349,14 @@ module.exports = {
         const { id } = req.params
         const limit = req.query?.limit ?? 0
 
+        const avg = await comentario_avaliacao.findOne({
+            where: { ponto_interesse_id: +id },
+            attributes: [[sequelize.fn('AVG', sequelize.col('comentario_avaliacao.avaliacao')), 'avg']]
+        })
+
         await comentario_avaliacao
             .findAndCountAll({
-                where: { ponto_interesse_id: id },
+                where: { ponto_interesse_id: +id },
                 attributes: ['comentario', 'avaliacao', 'created_at'],
                 include: { model: utilizador, attributes: ['nome'] },
                 limit: !!limit ? limit : null
@@ -363,9 +368,11 @@ module.exports = {
                             comentario: c.dataValues.comentario,
                             avaliacao: c.dataValues.avaliacao,
                             created_at: c.dataValues.created_at,
-                            nome_visitante: c.utilizador.nome
+                            nome_visitante: c.utilizador.nome,
+                            
                         }
                     }),
+                    avg,
                     count: output.count
                 })
             })
