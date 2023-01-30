@@ -44,13 +44,39 @@ class ActivityComentarios : AppCompatActivity() {
         StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 
-
-
     private fun getComentarios() {
-        //pedido API
+        val id = intent.getStringExtra("pontoInteresseId").toString()
 
-        callAdapter()
+        val queryParams = JSONObject()
+        val path = "http://192.168.1.254/pi/${id}/comentarios_avaliacoes"
+
+        Req.GET(path,
+            queryParams,
+            this,
+            UserManager.getUtilizador()!!.getToken(),
+            then = { res ->
+                val listaComentarios:ArrayList<Comentarios> = ArrayList()
+
+                val data = res.optJSONArray("comentarios_avaliacoes")
+
+                for (i in 0..data.length() - 1) {
+                    val objectRes = data.optJSONObject(i)
+
+                    listaComentarios.add(
+                        Comentarios(
+                            objectRes.optString("nome_visitante"),
+                            objectRes.optString("comentario"),
+                            objectRes.optInt("avaliacao").toString()
+                        )
+                    )
+                }
+
+                gestor.pontoInteresse.listaComentarios = listaComentarios
+
+                callAdapter()
+            })
     }
+
 
     fun loadComentarios(id: String) {
         val queryParams = JSONObject()
