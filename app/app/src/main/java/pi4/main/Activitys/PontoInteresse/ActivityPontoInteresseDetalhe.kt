@@ -20,18 +20,24 @@ import pi4.main.R
 
 class ActivityPontoInteresseDetalhe : AppCompatActivity() {
     private val gestor = Gestor()
+    private var id: String = ""
+
+    override fun onResume() {
+        super.onResume()
+
+        loadComentarios(id)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ponto_interesse_detalhe)
 
         // id do ponto de interesse
-        val id = intent.getStringExtra("pontoInteresseId").toString()
+        this.id = intent.getStringExtra("pontoInteresseId").toString()
 
         previous()
         loadPontoInteresse(id)
         loadEventos(id)
-        loadComentarios(id)
     }
 
     fun previous() {
@@ -113,7 +119,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
     fun loadComentarios(id: String) {
         val queryParams = JSONObject()
-        queryParams.put("limit", 1)
+        queryParams.put("limit", 4)
         val path = "/pi/${id}/comentarios_avaliacoes"
 
         Req.GET(path,
@@ -122,6 +128,8 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
             UserManager.getUtilizador()!!.getToken(),
             then = { res ->
                 val listaComentarios:ArrayList<Comentarios> = ArrayList()
+
+                listaComentarios.clear()
 
                 val data = res.optJSONArray("comentarios_avaliacoes")
 
@@ -141,6 +149,8 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
                 val linearLayout = findViewById<LinearLayout>(R.id.linearLayoutComentarios)
 
                 numeroComentarios.text = "${res.optInt("count")} comentários"
+
+                linearLayout.removeAllViews()
 
                 for (i in 0..customAdapter.count - 1)
                     linearLayout.addView(customAdapter.getView(i, linearLayout, linearLayout))

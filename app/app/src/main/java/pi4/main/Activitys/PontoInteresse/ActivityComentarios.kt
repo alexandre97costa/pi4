@@ -2,8 +2,13 @@ package pi4.main.Activitys.PontoInteresse
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ListView
+import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import com.example.ficha8.Req
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONObject
@@ -27,6 +32,7 @@ class ActivityComentarios : AppCompatActivity() {
         loadPoints()
         previous()
         loadComentarios()
+        postComentario()
     }
 
     private fun loadPoints() {
@@ -41,7 +47,7 @@ class ActivityComentarios : AppCompatActivity() {
         StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 
-    fun loadComentarios() {
+    private fun loadComentarios() {
         val queryParams = JSONObject("""{}""")
         val path = "/pi/${id}/comentarios_avaliacoes"
 
@@ -72,5 +78,32 @@ class ActivityComentarios : AppCompatActivity() {
                 listView.adapter = customAdapter
 
             })
+    }
+
+    private fun postComentario() {
+        val rating = findViewById<RatingBar>(R.id.ratingBar)
+        val editText = findViewById<EditText>(R.id.editTextComentario)
+
+        val btnPublicar = findViewById<Button>(R.id.buttonPublicar)
+
+        btnPublicar.setOnClickListener {
+            if (editText.text.toString() == "")
+                return@setOnClickListener Toast.makeText(this, "Necissta de introduzir texto no seu comentario", Toast.LENGTH_SHORT).show()
+
+            Log.i("rating", rating.rating.toString())
+            Log.i("comentario", editText.text.toString())
+
+            val queryParams = JSONObject("""{}""")
+            val bodyRequest = JSONObject("""{}""")
+            bodyRequest.put("avaliacao", rating.rating.toInt())
+            bodyRequest.put("comentario", editText.text.toString())
+
+            val path = "/pi/${id}/comentario_avaliacao"
+
+            Req.POST(path, queryParams, bodyRequest, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
+                Toast.makeText(this, "Comentario enviado com sucesso", Toast.LENGTH_SHORT).show()
+                loadComentarios()
+            })
+        }
     }
 }
