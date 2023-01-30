@@ -67,7 +67,7 @@ export default function Recompensa() {
     const datasets = [{
         label: "Recompensa's",
         data: dataVoucher,
-        backgroundColor: "#d6ffab",
+        backgroundColor: "#729d4c",
         borderRadius: borderRadius
     }]
 

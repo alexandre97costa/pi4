@@ -107,7 +107,7 @@ export default function PontoInteresseDetails(props) {
     const datasets = [{
         label: "Visitas",
         data: dataVisitas,
-        backgroundColor: "#d6ffab",
+        backgroundColor: "#729d4c",
         borderRadius: borderRadius
     }]
 
