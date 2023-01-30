@@ -105,12 +105,13 @@ class Gestor() {
 
     }
 
-    fun fragmentRecompensasListar(context: Context, listView: ListView) {
+    fun fragmentRecompensasListar(context: Context, listView: ListView, categoriaId: String) {
         //Para termos acerteza que não temos informação duplicada
         listaRecompensa.clear()
 
         //Pedido API
         val queryParams = JSONObject("""{}""")
+        queryParams.put("tipo_interesse_id", categoriaId)
 
         Req.GET("/recompensa", queryParams, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
             val data = res.optJSONArray("data")
@@ -123,7 +124,7 @@ class Gestor() {
                     objectRes.optString("titulo"),
                     objectRes.optString("descricao"),
                     objectRes.optInt("pontos").toString(),
-                    "Paisagem" //Mandar categoria
+                    objectRes.optJSONObject("tipo_interesse").optString("nome")
                 ))
             }
 
