@@ -131,6 +131,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
     fun loadComentarios(id: String) {
         val queryParams = JSONObject()
+        queryParams.put("limit", 4)
         val path = "/pi/${id}/comentarios_avaliacoes"
 
         Req.GET(path,
@@ -146,7 +147,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
                     val objectRes = data.optJSONObject(i)
 
                     listaComentarios.add(Comentarios(
-                        "ZÉ",
+                        objectRes.optString("nome_visitante"),
                         objectRes.optString("comentario"),
                         objectRes.optInt("avaliacao").toString()
                     ))
