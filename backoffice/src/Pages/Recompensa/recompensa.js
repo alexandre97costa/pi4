@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import CardRecompensa from '../../Components/Cards/CardRecompensa';
 import CardAdd from '../../Components/Cards/CardAdd';
@@ -8,6 +9,10 @@ import VisibleTo from "../../Helpers/VisibleTo";
 
 //Imagem exemplo
 import coffe from '../../Assets/Images/logo.png'
+
+const ip = process.env.REACT_APP_IP
+
+//array das categorias das recompensas 
 
 export default function Recompensa() {
     const recompensas = [{
