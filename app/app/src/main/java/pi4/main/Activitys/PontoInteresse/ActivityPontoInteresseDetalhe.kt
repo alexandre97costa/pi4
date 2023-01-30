@@ -131,7 +131,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
     fun loadComentarios(id: String) {
         val queryParams = JSONObject()
-        queryParams.put("limit", 4)
+        queryParams.put("limit", 1)
         val path = "/pi/${id}/comentarios_avaliacoes"
 
         Req.GET(path,
@@ -158,14 +158,13 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
                 val customAdapter = SetAdapterCardComentarios(this, listaComentarios)
                 val linearLayout = findViewById<LinearLayout>(R.id.linearLayoutComentarios)
 
-                numeroComentarios.text = "${customAdapter.count} comentários"
+                numeroComentarios.text = "${res.optInt("count")} comentários"
 
                 for (i in 0..customAdapter.count - 1)
                     linearLayout.addView(customAdapter.getView(i, linearLayout, linearLayout))
 
                 maisComentarios()
         })
-
     }
 
     fun maisComentarios() {

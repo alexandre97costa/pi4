@@ -19,7 +19,8 @@ class ActivityComentarios : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_comentarios)
 
-        intentPutExtra()
+        val id = intent.getStringExtra("pontoInteresseId").toString()
+
         loadPoints()
         previous()
 
@@ -32,26 +33,19 @@ class ActivityComentarios : AppCompatActivity() {
         Points(UserManager.getUtilizador()!!.getPontos().toInt(), textView, this).loadPontos()
     }
 
-    fun previous() {
+    private fun previous() {
         val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
 
         StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 
-    fun intentPutExtra() {
-        val id = intent.getStringExtra("pontoInteresseId").toString()
-
-        //gestor.getPontoInteresseId(id, this)
-    }
-
-    fun getComentarios() {
+    private fun getComentarios() {
         //pedido API
-        gestor.pontoInteresse.getAllComentarios(gestor.pontoInteresse.getId())
 
         callAdapter()
     }
 
-    fun callAdapter() {
+    private fun callAdapter() {
         val customAdapter = SetAdapterCardComentarios(this, gestor.pontoInteresse.listaComentarios)
         val listView = findViewById<ListView>(R.id.listViewComentarios)
         listView.adapter = customAdapter
