@@ -125,7 +125,7 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
             titulo.text = objectRes.optJSONObject("recompensa").getString("titulo")
             descricao.text = objectRes.optJSONObject("recompensa").getString("descricao")
             pontos.text = "${objectRes.optString("pontos_gastos")} pontos"
-            codigo.text = "123456"
+            codigo.text = objectRes.optString("codigo_confirmacao")
         })
     }
 
