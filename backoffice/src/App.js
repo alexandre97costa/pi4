@@ -48,7 +48,7 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Pagina title="Editar Perfil">
-                  <Pages.EditarPerfil />
+                <Pages.EditarPerfil />
               </Pagina>
             </ProtectedRoute>
           }
@@ -250,6 +250,9 @@ export default function App() {
                 <VisibleTo tipo="3">
                   <Pages.ValidarPontoInteresse />
                 </VisibleTo>
+                <VisibleTo tipo="4">
+                  <Pages.ValidarPontoInteresse />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
@@ -274,6 +277,9 @@ export default function App() {
                 <VisibleTo tipo="3">
                   <Pages.ReservasEvento />
                 </VisibleTo>
+                <VisibleTo tipo="4">
+                  <Pages.ReservasEvento />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
@@ -285,6 +291,9 @@ export default function App() {
             <ProtectedRoute>
               <Pagina title="Lista Vouchers">
                 <VisibleTo tipo="3">
+                  <Pages.Vouchers />
+                </VisibleTo>
+                <VisibleTo tipo="4">
                   <Pages.Vouchers />
                 </VisibleTo>
               </Pagina>
@@ -341,7 +350,7 @@ export default function App() {
         {/* Não sei ate que ponto esta página faz sentido, isto pq n temos muitas infos
          por exemplo do responsavel de regiao e do admin*/}
         <Route
-          path="/agente-turistico/detalhes-utilizador"
+          path="/detalhes-utilizador"
           element={
             <ProtectedRoute>
               <Pagina title="Utilizador">
@@ -372,15 +381,40 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Pagina title="Recompensas">
-                <VisibleTo tipo="2">
-                  <Pages.Recompensa />
+                <Pages.Recompensa />
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/lista-recompensas"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Lista de Recompensas">
+                <VisibleTo tipo='3'>
+                  <Pages.ListaRecompensas />
                 </VisibleTo>
+                <VisibleTo tipo='4'>
+                  <Pages.ListaRecompensas />
+                </VisibleTo>
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/validar-recompensas"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Validar Recompensas">
                 <VisibleTo tipo="3">
-                  <Pages.Recompensa />
+                  <Pages.ValidarRecompensas />
                 </VisibleTo>
                 <VisibleTo tipo="4">
-                  <Pages.Recompensa />
+                  <Pages.ValidarRecompensas />
                 </VisibleTo>
+
               </Pagina>
             </ProtectedRoute>
           }
