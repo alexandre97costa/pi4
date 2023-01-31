@@ -18,6 +18,7 @@ import pi4.main.R
 class ActivityEventoDetalhe : AppCompatActivity() {
     private var eventoId: String = ""
     private lateinit var spinnerDatas: Spinner
+    private var sessaoId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +67,7 @@ class ActivityEventoDetalhe : AppCompatActivity() {
                         val hora = primeiraParte.split(":")[0]
                         val minutos = primeiraParte.split(":")[1]
 
-                        val final = "${evento_obj.optJSONArray("sessoes").optJSONObject(i).optString("data_hora").split("T")[0]} ás ${hora}h${minutos}"
+                        val final = "${evento_obj.optJSONArray("sessoes").optJSONObject(i).optInt("id")}: ${evento_obj.optJSONArray("sessoes").optJSONObject(i).optString("data_hora").split("T")[0]} ás ${hora}h${minutos}"
                         listaDatas.add(final)
                     }
 
@@ -84,10 +85,12 @@ class ActivityEventoDetalhe : AppCompatActivity() {
 
         //Fazer pedido API
         btnReservar.setOnClickListener {
-            Log.i("Spinner", spinnerDatas.selectedItem.toString())
+            sessaoId = spinnerDatas.selectedItem.toString().split(":")[0]
+            Log.i("SpinnerId", sessaoId)
 
             startActivity(Intent(this, ActivityEventoReserva::class.java)
-                .putExtra("eventoId", eventoId))
+                .putExtra("eventoId", eventoId)
+                .putExtra("sessaoId", sessaoId))
         }
     }
 

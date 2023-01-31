@@ -8,7 +8,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.example.ficha8.Req
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import org.json.JSONObject
 import pi4.main.Classes.Eventos
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.Points
@@ -17,10 +19,8 @@ import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityEventoReserva : AppCompatActivity() {
-    private val gestor = Gestor() //O gestor contem as informações do utilizador
-    private lateinit var eventoDetails: Eventos
     private lateinit var eventoId: String
-    private lateinit var pontoInteresseId: String
+    private lateinit var sessaoId: String
     private var numeroMaximoPessoas: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +37,52 @@ class ActivityEventoReserva : AppCompatActivity() {
         loadPoints()
         buttonReservar()
         previous()
+    }
+
+    private fun getIntentExtra() {
+        eventoId = intent.getStringExtra("eventoId").toString()
+        sessaoId = intent.getStringExtra("sessaoId").toString()
+    }
+
+    private fun loadEventoAPI() {
+        Req.GET(
+            "/evento/${eventoId}",
+            JSONObject("""{}"""),
+            this,
+            UserManager.getUtilizador()!!.getToken(),
+            then = { res ->
+
+                val data = res.optJSONArray("data")
+                val sessoes = data.optJSONObject(0).optJSONArray("sessoes")
+
+                for (i in 0..sessoes.length() - 1)
+                    if(sessoes.optJSONObject(i).optInt("id").toString() == sessaoId)
+                        numeroMaximoPessoas = sessoes.optJSONObject(i).optInt("vagas") + 1
+                //numeroMaximoPessoas = eventoDetails.numVagas + 1
+
+
+                val nomeEvento = findViewById<TextView>(R.id.textViewEvento)
+                val categoria = findViewById<TextView>(R.id.textViewCategoria)
+                val morada = findViewById<TextView>(R.id.textViewMorada)
+
+                nomeEvento.text = data.optJSONObject(0).optString("nome")
+                categoria.text = data.optJSONObject(0).optJSONObject("tipo_evento").optString("nome")
+                morada.text = data.optJSONObject(0).optJSONObject("ponto_interesse").optString("morada")
+            }
+        )
+    }
+
+    private fun numeroPessoas() {
+        val buttonMais = findViewById<Button>(R.id.maisButton)
+        val buttonMenos = findViewById<Button>(R.id.menosButton)
+
+        buttonMais.setOnClickListener {
+            actionButton(1)
+        }
+
+        buttonMenos.setOnClickListener {
+            actionButton(-1)
+        }
     }
 
     private fun loadPoints() {
@@ -58,25 +104,10 @@ class ActivityEventoReserva : AppCompatActivity() {
 
     fun postReservaAPI() {
         val editTextNome = findViewById<EditText>(R.id.editTextTextNome)
-        val editTextTelefone = findViewById<EditText>(R.id.editTextTextTelefone)
         val textViewNumeroPessoas = findViewById<TextView>(R.id.textViewNumeroPessoas)
 
         Log.i("Nome:", editTextNome.text.toString())
-        Log.i("Telefone:", editTextTelefone.text.toString())
         Log.i("NumeroPessoas:", textViewNumeroPessoas.text.toString())
-    }
-
-    fun numeroPessoas() {
-        val buttonMais = findViewById<Button>(R.id.maisButton)
-        val buttonMenos = findViewById<Button>(R.id.menosButton)
-
-        buttonMais.setOnClickListener {
-            actionButton(1)
-        }
-
-        buttonMenos.setOnClickListener {
-            actionButton(-1)
-        }
     }
 
     fun actionButton(operation: Int) {
@@ -115,34 +146,5 @@ class ActivityEventoReserva : AppCompatActivity() {
         val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
 
         StartActivitys(this).floatingPreviousActivity(floatingButton, this)
-    }
-
-    fun getIntentExtra() {
-        eventoId = intent.getStringExtra("eventoId").toString()
-        pontoInteresseId = intent.getStringExtra("pontoInteresseId").toString()
-    }
-
-    fun loadEventoAPI() {
-        //Load ponto Interesse para atualizar informação
-        //gestor.getPontoInteresseId(pontoInteresseId, this)
-
-        //Load eventos todos daquele evento (isto ira sair)
-        //gestor.pontoInteresse.getEventos(pontoInteresseId, this)
-
-        eventoDetails = gestor.pontoInteresse.getDetailsEvento(eventoId)
-
-        numeroMaximoPessoas = eventoDetails.numVagas + 1
-
-        loadInfoEvento()
-    }
-
-    fun loadInfoEvento() {
-        val nomeEvento = findViewById<TextView>(R.id.textViewEvento)
-        val categoria = findViewById<TextView>(R.id.textViewCategoria)
-        val morada = findViewById<TextView>(R.id.textViewMorada)
-
-        nomeEvento.text = eventoDetails.nome
-        categoria.text = eventoDetails.tipoEvento
-        // morada.text = eventoDetails.morada
     }
 }

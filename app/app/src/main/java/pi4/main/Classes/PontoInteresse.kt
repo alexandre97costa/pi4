@@ -88,31 +88,4 @@ class PontoInteresse(
         //Exemplo de return
         return listaEventos[eventoId.toInt() - 1]
     }
-
-    fun getAllComentarios(id: String) {
-        //Limpar arrayList antes de fazer um pedido API
-        listaComentarios.clear()
-
-        //exemplo pedido api
-        this.listaComentarios.add(Comentarios(
-            "Joaquim Sousa",
-            "Um sitio incrivel",
-            "4.1"
-        ))
-        this.listaComentarios.add(Comentarios(
-            "Maria Amalia",
-            "Um sitio impecavel",
-            "4.9"
-        ))
-        this.listaComentarios.add(Comentarios(
-            "Jocas",
-            "Um sitio que nunca vou esquecer",
-            "4.87"
-        ))
-        this.listaComentarios.add(Comentarios(
-            "Mara",
-            "Um sitio para voltar",
-            "3.2"
-        ))
-    }
 }
