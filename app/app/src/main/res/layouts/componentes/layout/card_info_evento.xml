@@ -117,7 +117,7 @@
 
             <Spinner
                 android:id="@+id/spinnerData"
-                android:layout_width="306dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/shape_outline"
@@ -141,7 +141,7 @@
 
             <Spinner
                 android:id="@+id/spinnerHora"
-                android:layout_width="306dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/shape_outline"

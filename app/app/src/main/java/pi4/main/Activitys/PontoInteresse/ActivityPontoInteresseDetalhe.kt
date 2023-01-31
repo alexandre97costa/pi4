@@ -93,7 +93,6 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
                 val objectRes = data.optJSONObject(i)
                 val ListaSessoesVazia:ArrayList<Sessao> = ArrayList()
 
-                Log.i("tamanho", objectRes.optJSONArray("sessoes").length().toString())
                 if(objectRes.optJSONArray("sessoes").length() > 0) {
                     ListaSessoesVazia.add(Sessao(
                         objectRes.optJSONArray("sessoes").optJSONObject(0).optInt("id").toString(),
