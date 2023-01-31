@@ -3,6 +3,7 @@ package pi4.main.Activitys.Evento
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
@@ -15,8 +16,8 @@ import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityEventoDetalhe : AppCompatActivity() {
-    private lateinit var eventoId: String
-    private lateinit var pontoInteresseId: String
+    private var eventoId: String = ""
+    private lateinit var spinnerDatas: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +41,7 @@ class ActivityEventoDetalhe : AppCompatActivity() {
         val descricao = findViewById<TextView>(R.id.textViewDescricao)
         val pontos = findViewById<TextView>(R.id.textViewPontos)
         val lugares = findViewById<TextView>(R.id.textViewLugares)
-        val spinnerHoras = findViewById<Spinner>(R.id.spinnerHora)
-        val spinnerDatas = findViewById<Spinner>(R.id.spinnerData)
+        spinnerDatas = findViewById<Spinner>(R.id.spinnerData)
 
         Req.GET(
             "/evento/${id}",
@@ -51,8 +51,9 @@ class ActivityEventoDetalhe : AppCompatActivity() {
             then = { res ->
                 val data = res.optJSONArray("data")
                 val evento_obj = data.getJSONObject(0)
-                val listaHoras:ArrayList<String> = ArrayList()
                 val listaDatas:ArrayList<String> = ArrayList()
+
+                eventoId = evento_obj.optInt("id").toString()
 
                 nomeEvento.text = evento_obj.optString("nome")
                 descricao.text = evento_obj.optString("descricao")
@@ -61,28 +62,19 @@ class ActivityEventoDetalhe : AppCompatActivity() {
 
                 if(evento_obj.optJSONArray("sessoes").length() > 0) {
                     for (i in 0..evento_obj.optJSONArray("sessoes").length() - 1) {
-                        val primeiraParte = evento_obj.optJSONArray("sessoes").optJSONObject(0).optString("data_hora").split("T")[1]
+                        val primeiraParte = evento_obj.optJSONArray("sessoes").optJSONObject(i).optString("data_hora").split("T")[1]
                         val hora = primeiraParte.split(":")[0]
                         val minutos = primeiraParte.split(":")[1]
 
-                        val final = "${hora}h${minutos}"
-                        listaHoras.add(final)
-                        listaDatas.add(
-                            evento_obj.optJSONArray("sessoes").optJSONObject(0).optString("data_hora").split("T")[0]
-                        )
+                        val final = "${evento_obj.optJSONArray("sessoes").optJSONObject(i).optString("data_hora").split("T")[0]} ás ${hora}h${minutos}"
+                        listaDatas.add(final)
                     }
 
-                    val simpleAdapterHoras = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaHoras)
-                    simpleAdapterHoras.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-                    spinnerHoras.adapter = simpleAdapterHoras
-
                     val simpleAdapterDatas = ArrayAdapter(this, android.R.layout.simple_spinner_item, listaDatas)
-                    simpleAdapterHoras.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    simpleAdapterDatas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
                     spinnerDatas.adapter = simpleAdapterDatas
                 }
-
             }
         )
     }
@@ -92,9 +84,10 @@ class ActivityEventoDetalhe : AppCompatActivity() {
 
         //Fazer pedido API
         btnReservar.setOnClickListener {
+            Log.i("Spinner", spinnerDatas.selectedItem.toString())
+
             startActivity(Intent(this, ActivityEventoReserva::class.java)
-                .putExtra("eventoId", eventoId)
-                .putExtra("pontoInteresseId", pontoInteresseId))
+                .putExtra("eventoId", eventoId))
         }
     }
 
