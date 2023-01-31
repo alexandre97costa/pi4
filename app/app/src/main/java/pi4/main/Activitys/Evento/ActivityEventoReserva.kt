@@ -85,32 +85,7 @@ class ActivityEventoReserva : AppCompatActivity() {
         }
     }
 
-    private fun loadPoints() {
-        val textView = findViewById<TextView>(R.id.scoreUtilizador)
-
-        Points(UserManager.getUtilizador()!!.getPontos().toInt(), textView, this).loadPontos()
-    }
-
-    //Vai buscar as informações sobre a reserva do cliente
-    fun buttonReservar() {
-        val buttonReservar = findViewById<Button>(R.id.buttonReservar)
-
-        buttonReservar.setOnClickListener {
-            postReservaAPI()
-
-            startActivity(Intent(this, ActivityReservaEnviada::class.java))
-        }
-    }
-
-    fun postReservaAPI() {
-        val editTextNome = findViewById<EditText>(R.id.editTextTextNome)
-        val textViewNumeroPessoas = findViewById<TextView>(R.id.textViewNumeroPessoas)
-
-        Log.i("Nome:", editTextNome.text.toString())
-        Log.i("NumeroPessoas:", textViewNumeroPessoas.text.toString())
-    }
-
-    fun actionButton(operation: Int) {
+    private fun actionButton(operation: Int) {
         val textViewNumeroPessoas = findViewById<TextView>(R.id.textViewNumeroPessoas)
         var numeroPessoas = textViewNumeroPessoas.text.toString().toInt()
         Log.i("Inicio numeroPessoas: ", numeroPessoas.toString())
@@ -127,7 +102,7 @@ class ActivityEventoReserva : AppCompatActivity() {
             textViewNumeroPessoas.text = numeroPessoas.toString()
     }
 
-    fun verifyNumero(numeroPessoas: Int): Boolean {
+    private fun verifyNumero(numeroPessoas: Int): Boolean {
         //0 devido a margem de erro
         if(numeroPessoas == 0) {
             Toast.makeText(this, "Número minimo de pessoas atingido", Toast.LENGTH_SHORT).show()
@@ -142,7 +117,50 @@ class ActivityEventoReserva : AppCompatActivity() {
         return true
     }
 
-    fun previous() {
+    private fun loadPoints() {
+        val textView = findViewById<TextView>(R.id.scoreUtilizador)
+
+        Points(UserManager.getUtilizador()!!.getPontos().toInt(), textView, this).loadPontos()
+    }
+
+    private fun buttonReservar() {
+        val buttonReservar = findViewById<Button>(R.id.buttonReservar)
+
+        buttonReservar.setOnClickListener {
+            postReservaAPI()
+
+            //startActivity(Intent(this, ActivityReservaEnviada::class.java))
+        }
+    }
+
+    private fun postReservaAPI() {
+        val editTextNome = findViewById<EditText>(R.id.editTextTextNome)
+        val textViewNumeroPessoas = findViewById<TextView>(R.id.textViewNumeroPessoas)
+
+        Log.i("Nome:", editTextNome.text.toString())
+        Log.i("NumeroPessoas:", textViewNumeroPessoas.text.toString())
+
+        val queryParams = JSONObject("""{}""")
+        val requestBody = JSONObject()
+        requestBody.put("nome", editTextNome.text.toString())
+        requestBody.put("pessoas", textViewNumeroPessoas.text.toString())
+        requestBody.put("visitante_id", UserManager.getUtilizador()!!.getId())
+        requestBody.put("sessao_id", sessaoId)
+        requestBody.put("observacoes", "")
+
+        Req.POST(
+            "/reserva",
+            queryParams,
+            requestBody,
+            this,
+            UserManager.getUtilizador()!!.getToken(),
+            then = { res ->
+                startActivity(Intent(this, ActivityReservaEnviada::class.java))
+            }
+        )
+    }
+
+    private fun previous() {
         val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
 
         StartActivitys(this).floatingPreviousActivity(floatingButton, this)
