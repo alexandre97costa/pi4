@@ -4828,12 +4828,86 @@ insert into voucher (id, data_compra, data_validade, data_usado, codigo_confirma
 SELECT setval('voucher_id_seq', 4, true);
 
 insert into imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted_at) VALUES 
-(1, 'URL DA IMAGEM', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(2, 'URL DA IMAGEM', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(3, 'URL DA IMAGEM', 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(4, 'URL DA IMAGEM', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(1, 'http://1.bp.blogspot.com/--CVhklt3QYQ/VjsUH_wK99I/AAAAAAABiWM/y2QdrC63-1g/s1600/Jardim%2Bdas%2BM%25C3%25A3es.jpg', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(2, 'http://www.evasoes.pt/files/2017/05/Adro-da-S%C3%A9-2_resultado.jpg', 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(3, 'https://www.visitviseudaolafoes.pt/wp-content/uploads/2020/07/3a48dc16-884e-453d-bd18-fcff87f086ba.jpg', 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+(4, 'https://images.turismoenportugal.org/Igreja-da-Misericordia-de-Viseu.jpg', 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(5, 'https://www.passaportugal.pt/imagens/V_parque%20do%20fontel%201.jpg', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(6, 'https://neotopografia.projectopatrimonio.com/wp-content/uploads/2019/09/NTGD_2019_0024_0002-1024x768.jpg', 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(7, 'https://upload.wikimedia.org/wikipedia/commons/8/8c/Parque_Cidade_Viseu.jpg', 7, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(8, 'https://www.ecopista-portugal.com/img/tonda/ecopista1.jpg', 8, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(9, 'https://www.cm-viseu.pt/fotos/noticias/parque_santiago_5i3a6548_m_12664353466220986940e6c.jpg', 9, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(10, 'https://turismo.eurodicas.com.br/wp-content/uploads/2020/03/torre-dos-clerigos.jpg', 10, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(11, 'https://descubralisboa.com/wp-content/uploads/2018/08/Ponte-25-de-Abril.jpg', 11, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(12, 'https://upload.wikimedia.org/wikipedia/commons/1/16/Museu_da_Chapelaria_e_Monumento_Unhas_Negras.jpg
+', 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(13, 'https://www.nit.pt/wp-content/uploads/2022/09/6cbdb03ec2d2d03341cda28f798128d6.jpg
+', 13, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(14, 'https://s7a5n8m2.stackpathcdn.com/wp-content/uploads/2015/09/jardim-zoo-lisboa.jpg
+', 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(15, 'https://www.cm-aveiro.pt/thumbs/cmaveiro/uploads/writer_file/image/338/fachada_museu_de_aveiro_mgt_1_1024_2500.jpg
+', 15, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(16, 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Aveiro-Marais_salants-1967_07_29_29.jpg/1200px-Aveiro-Marais_salants-1967_07_29_29.jpg
+', 16, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(17, 'https://cdn.turismoinaveiro.com/wp-content/uploads/visita-marinha-da-noeirinha-praia-aveiro_008.jpg
+', 17, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(18, 'https://www.aveiromag.pt/wp-content/uploads/2022/03/277006217_4912464122165483_2400994046677590010_n.jpg
+', 18 CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(19, 'https://2.bp.blogspot.com/-Yypb6SwoQXk/W4F5pc7-v2I/AAAAAAAAc7o/HOiR7nc-6SMahhOBntfm1GOYmDKkzcTLACLcBGAs/s1600/prais%2Bburgaes%2B%25282%2529.jpg
+', 19, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(20, 'https://www.evasoes.pt/files/2021/10/25252117_BINARY_GL140716MARIAJOAOGALA46-960x640.jpg
+', 20, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(21, 'https://aysa.pt/wp-content/uploads/2021/05/pavilha%CC%83o-ad-modicus-sandim-1.jpg
+', 21, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(22, 'https://media.timeout.com/images/103898499/image.jpg
+', 22, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(23, 'https://upload.wikimedia.org/wikipedia/commons/e/e0/Est%C3%A1dio_do_Drag%C3%A3o_Aerial.jpg
+', 23, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(24, 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Est%C3%A1dio_Alvalade_XXI.jpg
+', 24, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(25, 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Estadio_Benfica_April_2013-1.jpg/800px-Estadio_Benfica_April_2013-1.jpg
+', 25, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(26, 'https://media.timeout.com/images/103562268/image.jpg
+', 26, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(27, 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Castelo_de_Pirescoxe.JPG
+', 27, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(28, 'https://www.visitalgarve.pt/util/imgLoader2.ashx?w=480&h=360&img=/upload_files/client_id_1/website_id_1/Equipamentos/Patrim%C3%B3nio%20Cultural/Tavira/Castelo%20e%20Muralhas%20de%20Tavira/TVR%20Castelo%2005.jpg
+', 28, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(29, 'https://www.info4camper.com/fotos/visitar/pt/large/photos1-773-figueira_da_foz_praia_da_figueira_da_foz_relogio.jpg
+', 29, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(30, 'https://www.cm-mira.pt/system/files/surf_no_crowd_-_praia_de_mira.jpg
+', 30, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(31, 'https://cdn.turismoinaveiro.com/wp-content/uploads/visita-alianca-underground-museum-003.jpg
+', 31, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(32, 'https://www.rotadabairrada.pt/media//experiencias/1228/FOTO99%20(1053%20x%20750).jpg
+', 32, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(33, 'https://www.guiadacidade.pt/assets/capas_poi/capa_14501.jpg
+', 33, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(34, 'https://media-cdn.tripadvisor.com/media/photo-s/25/1a/4a/f0/a-nossa-sala.jpg
+', 34, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(35, 'https://media-cdn.tripadvisor.com/media/photo-s/15/87/08/e9/novidades-a-chegar.jpg
+', 35, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(36, 'https://media-cdn.tripadvisor.com/media/photo-s/12/b4/05/fc/photo2jpg.jpg
+', 36, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(37, 'https://www.lojastavares.pt/wp-content/uploads/2020/03/Lojas-Tavares.png
+', 37, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(38, 'https://10619-2.s.cdn12.com/rests/original/108_507920504.jpg
+', 38, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(39, 'https://montebelohotels.com/assets/Amazonia/Amazonia_Viseu_Restaurante_1.jpg
+', 39, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(40, 'https://upload.wikimedia.org/wikipedia/commons/9/9f/Igreja_da_Miseric%C3%B3rdia_de_Viseu.jpg
+', 40, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(41, 'https://s7a5n8m2.stackpathcdn.com/wp-content/uploads/2019/10/igrejadocarmo3.jpg
+', 41, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(42, 'http://praias.beachcam.pt/media/6756/th_furadouro_.jpg
+', 42, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(43, 'https://www.algarvetips.com/wp-content/uploads/2019/05/Praia-do-Vau-Algarve.jpg
+', 43, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+(44, 'https://www.visitalgarve.pt/util/imgLoader2.ashx?w=480&h=360&img=/upload_files/client_id_1/website_id_1/estadio.jpg
+', 44, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+
 -- sequencia imagem
-SELECT setval('imagem_id_seq', 4, true);
+SELECT setval('imagem_id_seq', 45, true);
 
 insert into candidatura_at (id, localidade_at, texto_candidatura, estado, observacoes, distrito_id, visitante_id, created_at, updated_at, deleted_at) VALUES
 (1, 'Aveiro', 'Gostaria de apresentar a minha candidatura para ser um agente turístico em Lisboa', TRUE, 'Não tenho observações', 1, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
