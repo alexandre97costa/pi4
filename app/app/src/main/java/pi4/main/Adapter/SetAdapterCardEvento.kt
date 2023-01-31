@@ -2,6 +2,7 @@ package pi4.main.Adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,18 +34,26 @@ class SetAdapterCardEvento(private val context: Context, private val data:ArrayL
         val rowView = inflater.inflate(R.layout.card_evento, parent, false)
 
         val nome = rowView.findViewById<TextView>(R.id.textViewNome)
+        val categoria = rowView.findViewById<TextView>(R.id.textViewcategoria)
         val data = rowView.findViewById<TextView>(R.id.textViewData)
-        val horas = rowView.findViewById<TextView>(R.id.textViewcategoria)
         val pontos = rowView.findViewById<TextView>(R.id.textViewPontos)
 
         val card = rowView.findViewById<CardView>(R.id.cardEvento)
 
         val recipe = getItem(position) as Eventos
 
-        Points(recipe.numPontos, pontos, context).loadPontosPontoInteresse()
         nome.text = recipe.nome
-        data.text = "data"
-        horas.text = "horas"
+        categoria.text = recipe.tipoEvento
+
+        Log.i("listaSessao", recipe.listaSessoes.toString())
+
+        if (recipe.listaSessoes.count() != 0)
+            data.text = recipe.listaSessoes[0].data
+        else {
+            data.visibility = View.INVISIBLE
+            rowView.findViewById<TextView>(R.id.textViewMaisData).visibility = View.INVISIBLE
+        }
+        Points(recipe.numPontos, pontos, context).loadPontosPontoInteresse()
 
         addEventListener(recipe.id, recipe.pontoInteresseId,card)
 

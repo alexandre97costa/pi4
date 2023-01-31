@@ -19,13 +19,14 @@ import pi4.main.Object.UserManager
 import pi4.main.R
 
 class ActivityPontoInteresseDetalhe : AppCompatActivity() {
-    private val gestor = Gestor()
     private var id: String = ""
 
     override fun onResume() {
         super.onResume()
 
+        loadPontoInteresse(id)
         loadComentarios(id)
+        loadEventos(id)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +37,6 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
         this.id = intent.getStringExtra("pontoInteresseId").toString()
 
         previous()
-        loadPontoInteresse(id)
-        loadEventos(id)
     }
 
     fun previous() {
@@ -88,24 +87,31 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
         Req.GET("/evento", queryParams, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
             val data = res.optJSONArray("data")
-            val ListaSessoesVazia:ArrayList<Sessao> = ArrayList()
 
             // adicionar eventos à lista
-            if (data != null) {
-                for (i in 0..data.length() - 1) {
-                    val objectRes = data.optJSONObject(i)
+            for (i in 0..data.length() - 1) {
+                val objectRes = data.optJSONObject(i)
+                val ListaSessoesVazia:ArrayList<Sessao> = ArrayList()
 
-                    listaEventos.add(Eventos(
-                        objectRes.optInt("id").toString(),
-                        objectRes.optString("nome"),
-                        objectRes.optString("descricao"),
-                        objectRes.optInt("pontos"),
-                        objectRes.optInt("lotacao"),
-                        objectRes.optJSONObject("tipo_evento").optString("nome"),
-                        ListaSessoesVazia,
-                        objectRes.optString("ponto_interesse_id")
+                Log.i("tamanho", objectRes.optJSONArray("sessoes").length().toString())
+                if(objectRes.optJSONArray("sessoes").length() > 0) {
+                    ListaSessoesVazia.add(Sessao(
+                        objectRes.optJSONArray("sessoes").optJSONObject(0).optInt("id").toString(),
+                        objectRes.optJSONArray("sessoes").optJSONObject(0).optString("data_hora"),
+                        objectRes.optJSONArray("sessoes").optJSONObject(0).optInt("vagas").toString(),
                     ))
                 }
+
+                listaEventos.add(Eventos(
+                    objectRes.optInt("id").toString(),
+                    objectRes.optString("nome"),
+                    objectRes.optString("descricao"),
+                    objectRes.optInt("pontos"),
+                    objectRes.optInt("lotacao"),
+                    objectRes.optJSONObject("tipo_evento").optString("nome"),
+                    ListaSessoesVazia,
+                    objectRes.optString("ponto_interesse_id")
+                ))
             }
 
             // meter os eventos no tab layout
