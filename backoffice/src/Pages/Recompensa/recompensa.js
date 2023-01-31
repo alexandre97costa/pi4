@@ -16,6 +16,11 @@ const ip = process.env.REACT_APP_IP;
 //array das categorias das recompensas
 
 export default function Recompensa() {
+
+  useEffect(() => {
+    axios.get()
+  }, [])
+
   const recompensas = [
     {
       nomeRecompensa: "recompensa 1",
