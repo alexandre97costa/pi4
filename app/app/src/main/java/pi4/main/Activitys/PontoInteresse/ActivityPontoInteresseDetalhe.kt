@@ -3,11 +3,13 @@ package pi4.main.Activitys.PontoInteresse
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.example.ficha8.Req
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
+import com.squareup.picasso.Picasso
 import org.json.JSONObject
 import pi4.main.Adapter.SetAdapterCardComentarios
 import pi4.main.Adapter.SetAdapterCardEvento
@@ -42,6 +44,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
     }
 
     fun loadPontoInteresse(id:String) {
+        val imagem = findViewById<ImageView>(R.id.imageView3)
         val pontos = findViewById<TextView>(R.id.scoreUtilizador)
         val nomePontoInteresse = findViewById<TextView>(R.id.textViewNomePontoInteresse)
         val categoria = findViewById<TextView>(R.id.textViewCategoria)
@@ -60,6 +63,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
                 val data = res.getJSONArray("data")
                 val pi_obj = data.getJSONObject(0)
 
+                Picasso.get().load(pi_obj.getJSONArray("imagens").optJSONObject(0).optString("url")).into(imagem)
                 pontos.text = pi_obj.getString("pontos") + " pts"
                 nomePontoInteresse.text = pi_obj.getString("nome")
                 categoria.text = pi_obj.getJSONObject("tipo_interesse").getString("nome")

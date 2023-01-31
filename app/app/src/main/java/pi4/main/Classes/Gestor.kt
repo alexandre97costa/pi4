@@ -55,7 +55,7 @@ class Gestor() {
 
                 listaPontosInteresse.add(PontoInteresse(
                     objectRes.optInt("id").toString(),
-                    "https://upload.wikimedia.org/wikipedia/commons/7/7c/Praia_da_Rocha%2C_Portim%C3%A3o_2.jpg",//objectRes.getJSONArray("imagens").getString( 0), //img
+                    objectRes.getJSONArray("imagens").optJSONObject(0).optString("url"), //image
                     objectRes.optString("nome"),
                     objectRes.optString("morada"),
                     objectRes.optString("descricao"),
