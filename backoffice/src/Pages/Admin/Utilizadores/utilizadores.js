@@ -37,6 +37,7 @@ export default function Utilizadores() {
 
 	useEffect(() => {
 		getUtilizadores()
+		setOffset(0)
 	}, [tipo, offset]) // ir adicionando aqui os hooks dos filtros
 
 
@@ -49,6 +50,42 @@ export default function Utilizadores() {
 			})
 			.catch(error => console.error(error))
 
+	}
+
+	function tipo_bg(tipo) {
+
+		switch (tipo) {
+			case 'Visitante':
+				return "bg-visitante"
+			case 'Agente Turístico':
+				return "bg-agente"
+			case 'Responsável de Região':
+				return "bg-responsavel"
+			case 'Administrador':
+				return "bg-admin"
+
+			default:
+				return "bg-visitante"
+
+		}
+	}
+
+	function tipo_icon(tipo) {
+
+		switch (tipo) {
+			case 'Visitante':
+				return "bi-phone"
+			case 'Agente Turístico':
+				return "bi-geo-alt"
+			case 'Responsável de Região':
+				return "bi-map"
+			case 'Administrador':
+				return "bi-globe2"
+
+			default:
+				return "bg-visitante"
+
+		}
 	}
 
 	return (
@@ -83,8 +120,8 @@ export default function Utilizadores() {
 													<td className='w-50 '>
 														<div className='d-flex gap-3 w-100'>
 															{/* tipo */}
-															<div className={'px-4 py-2 text-white rounded-2 flex-grow-1 d-flex align-items-center '}>
-																<i className={'bi me-4 fs-5 text-white justify-self-start '}></i>
+															<div className={'px-4 py-2 text-white rounded-2 flex-grow-1 d-flex align-items-center ' + tipo_bg(item.tipo_utilizador.nome)}>
+																<i className={'bi me-4 fs-5 text-white justify-self-start ' + tipo_icon(item.tipo_utilizador.nome)}></i>
 																<span className=''>
 																	{item.tipo_utilizador.nome}
 																</span>
@@ -117,7 +154,7 @@ export default function Utilizadores() {
 						recordsPerPage={limit}
 						recordCount={utilizadoresCount}
 						startIndex={limit - (offset + 1)}
-						onChange={i => setOffset(limit * (i-1))}
+						onChange={i => setOffset(limit * (i - 1))}
 					/>
 				</div>
 			</div>
