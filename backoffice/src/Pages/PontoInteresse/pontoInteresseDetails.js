@@ -7,6 +7,8 @@ import CardRecompensa from '../../Components/Cards/CardRecompensa';
 import CardDetails from '../../Components/Cards/CardDetails';
 import Carousel from '../../Components/Carousel';
 import GraficoHorizontal from '../../Components/GraficoHorizontal';
+import ModalEditarPontoInteresse from '../../Components/Modais/ModalEditarPontoInteresse';
+import ModalEditarAgente from '../../Components/Modais/ModalEditarAgente';
 
 //Imagem exemplo
 import Pancakes from '../../Assets/Images/fotoagente.jpg'
@@ -143,13 +145,19 @@ export default function PontoInteresseDetails(props) {
     }
 
     return (
-        <>
+        <>                
             <div className='row gy-3'>
+            <div className='col-12 mt-5 mb-4'>
+                    <p className="fs-5 text-body fw-light">Ações Rápidas</p>
+                    <button type="button" className="btn btn-light btn-lg shadow mt-3" data-bs-toggle="modal" data-bs-target="#editarAgente"><i className="bi bi-file-earmark me-3"></i>Gerir Agente</button>
+                    <ModalEditarAgente idModal="editarAgente" title="Editar Agente"/>
+                </div>
                 <div className='col-6 mt-4 mb-3'>
                     <p className="fs-5 text-body fw-light">Vista Geral</p>
                 </div>
                 <div className='col-6 mt-4 mb-3 text-end'>
-                    <Link to={''} type="button" className="btn btn-primary">Editar Detalhes</Link>
+                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editarInteresse">Editar Informações</button>
+                    <ModalEditarPontoInteresse idModal="editarInteresse" title="Editar Agente"/>
                 </div>
                 <div className='col-12 col-md-4'>
                     <CardDetails info={pontoInteresseDetails} />
@@ -166,7 +174,7 @@ export default function PontoInteresseDetails(props) {
 
                 {itens.map((item, index) => {
                     return (
-                        <div key={index} className="col-12 col-sm-6 col-md-3">
+                        <div key={index} className="col-12 col-sm-6 col-md-4">
                             <ConfirmarReservas
                                 nomePontoInteresse={item.nomePontoInteresse}
                                 nomeEvento={item.nomeEvento}
@@ -189,7 +197,7 @@ export default function PontoInteresseDetails(props) {
 
                 {recompensa.map((item, index) => {
                     return (
-                        <div key={index} className='col-12 col-sm-6 col-md-3'>
+                        <div key={index} className='col-12 col-sm-6 col-md-3 mb-5'>
                             <CardRecompensa
                                 title={item.title}
                                 pontos={item.pontos}

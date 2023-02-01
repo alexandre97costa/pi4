@@ -66,7 +66,7 @@ module.exports = {
                         attributes: ['nome']
                     }, {
                         model: ponto_interesse,
-                        attributes: ['nome']
+                        attributes: ['nome', 'morada']
                     }, {
                         model: sessao,
                         attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt', 'evento_id'] }

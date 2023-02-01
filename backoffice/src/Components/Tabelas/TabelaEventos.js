@@ -58,7 +58,7 @@ export default function TabelaEventos() {
                                     <td className='text-start w-20'>{item.eventos}</td>
                                     <td className='w-20'>{item.pontoInteresse}</td>
                                     <td className='w-20'>
-                                        <Botao className="btn-outline-primary bi bi-plus-lg" />
+                                        <Botao to="/responsavel-regiao/lista-reservas-eventos" className="btn-outline-primary bi bi-plus-lg" />
                                         <Botao className="btn-outline-danger bi bi-trash-fill ms-md-2" onClick={() => axiosDelete(index)} />
                                     </td>
                                 </tr>

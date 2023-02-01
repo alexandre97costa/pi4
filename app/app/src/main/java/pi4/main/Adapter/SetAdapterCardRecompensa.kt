@@ -20,8 +20,6 @@ import pi4.main.R
 class SetAdapterCardRecompensa(private val context: Context, private val data:ArrayList<Recompensa>, private val jaResgatado: Boolean): BaseAdapter() {
     private val inflater: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-    private val gestor = Gestor()
-
     override fun getCount(): Int {
         return data.size
     }

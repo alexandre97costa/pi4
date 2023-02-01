@@ -48,7 +48,7 @@ export default function PontoInteresse(props) {
 
     return (
         <>
-            <div className='row'>
+            <div className='row pt-5'>
                 { tipoUtilizador() }
 
                 {itens.map((item, index) => {

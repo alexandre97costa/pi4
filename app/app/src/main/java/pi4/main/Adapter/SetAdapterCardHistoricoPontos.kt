@@ -1,4 +1,5 @@
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,16 +35,19 @@ class SetAdapterCardHistoricoPontos(private val context: Context, private val da
 
         val recipe = getItem(position) as HistoricoPontos
 
+        pontoInteresse.text = recipe.pontoInteresse
         Points(recipe.pontos.toInt(), pontos, context).loadPontosPontoInteresseHistorico(recipe.sentido)
         data.text = recipe.data
 
-        if(recipe.sentido == "positivo") {
+        if(recipe.sentido == true) {
             pontoInteresse.setTextColor(ContextCompat.getColor(context, R.color.greenPrincipal))
             pontos.setTextColor(ContextCompat.getColor(context, R.color.greenPrincipal))
         } else {
             pontoInteresse.setTextColor(ContextCompat.getColor(context, R.color.red))
             pontos.setTextColor(ContextCompat.getColor(context, R.color.red))
         }
+
+        Log.i("NomePontoListaPontos", recipe.pontoInteresse)
 
         return rowView
     }

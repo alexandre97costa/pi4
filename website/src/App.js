@@ -9,9 +9,24 @@ import Pages from './Pages';
 export default function App() {
 	return (
 		<Router>
+
 			<Routes>
 				<Route path='/' element={<Pages.Index />} />
 			</Routes>
+
+			<Routes>
+				<Route path='/termos-utilizacao' element={<Pages.TermosUtilizacacao />} />
+			</Routes>
+
+			<Routes>
+				<Route path='/politicas-privacidade' element={<Pages.PoliticasPrivaciade />} />
+			</Routes>
+
+			<Routes>
+				<Route path='/contactos' element={<Pages.Contactos />} />
+			</Routes>
+
 		</Router>
+		
 	);
 }

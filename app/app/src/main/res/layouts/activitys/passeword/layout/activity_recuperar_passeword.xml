@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/caminho"
+        app:srcCompat="@drawable/img7"
         android:scaleType="centerCrop"/>
 
     <include
@@ -88,7 +88,7 @@
                 android:layout_marginTop="32dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:hint="código"
+                android:hint="Código"
                 android:inputType="textPersonName"
                 android:paddingStart="16dp"
                 android:theme="@style/text_input"

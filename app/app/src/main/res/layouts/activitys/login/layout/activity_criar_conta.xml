@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/montanhas"
+        app:srcCompat="@drawable/img6"
         android:scaleType="centerCrop"/>
 
     <include
@@ -37,7 +37,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="231dp"
+        android:layout_marginTop="170dp"
         android:background="@drawable/shape_corner_top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
                 android:layout_marginTop="32dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:hint="nome"
+                android:hint="Nome"
                 android:inputType="textPersonName"
                 android:paddingStart="16dp"
                 android:theme="@style/text_input"
@@ -88,7 +88,7 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:hint="email"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:paddingStart="16dp"
                 android:theme="@style/text_input"
@@ -103,7 +103,7 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:hint="palavra-chave"
+                android:hint="Password"
                 android:inputType="textPassword"
                 android:paddingStart="16dp"
                 android:theme="@style/text_input"
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:buttonTint="@color/greenPrincipal"
-                android:text="aceitar termos"
+                android:text="Aceitar Termos de Utilização"
                 android:theme="@style/text_normal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />

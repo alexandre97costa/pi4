@@ -31,7 +31,7 @@ begin
         select round(avg(ca.avaliacao),1)
         from comentario_avaliacao ca
         group by ca.ponto_interesse_id
-        where ca.ponto_interesse_id = p.id
+        having ca.ponto_interesse_id = p.id
     )
     where p.id = new.ponto_interesse_id;
     return null;

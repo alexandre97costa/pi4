@@ -54,7 +54,7 @@ module.exports = {
 
         // nao encontrou o evento
         if (ev === null)
-            return res.status(404).json('Esse Evento não existe. Talvez tenha sido eliminado?')
+            return res.status(404).json({ msg: 'Esse Evento não existe. Talvez tenha sido eliminado?' })
 
         // o scan foi feito fora de horas?
         // - apanhamos as sessoes todas do evento

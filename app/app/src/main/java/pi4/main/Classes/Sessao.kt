@@ -18,6 +18,11 @@ class Sessao(id: String, dataHora : String, vagas: String) {
     }
 
     private fun splitHora(dataHora: String): String {
-        return dataHora.split("T")[1]
+        val primeiraParte = dataHora.split("T")[1]
+
+        val hora = primeiraParte.split(":")[0]
+        val minutos = primeiraParte.split(":")[1]
+
+        return "${hora}h${minutos}"
     }
 }

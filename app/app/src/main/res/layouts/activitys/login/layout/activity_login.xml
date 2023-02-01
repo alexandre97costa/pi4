@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/imagem_estranha"
+        app:srcCompat="@drawable/img13"
         android:scaleType="centerCrop"/>
 
     <include
@@ -73,7 +73,7 @@
                 android:layout_marginTop="50dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:hint="email"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:paddingStart="16dp"
                 android:theme="@style/text_input"
@@ -89,7 +89,7 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/shape_outline"
                 android:ems="10"
-                android:hint="palavra-chave"
+                android:hint="Password"
                 android:inputType="textPassword"
                 android:paddingStart="16dp"
                 android:theme="@style/text_input"

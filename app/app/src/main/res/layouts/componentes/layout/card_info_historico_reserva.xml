@@ -113,7 +113,7 @@
                     app:srcCompat="@drawable/clock" />
 
                 <TextView
-                    android:id="@+id/textViewhoras"
+                    android:id="@+id/textViewcategoria"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"

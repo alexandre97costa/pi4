@@ -3,10 +3,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="termos_legais"><u>Termos Legais</u></string>
-    <string name="recuperar"><u>recuperar</u></string>
-    <string name="criar_conta"><u>criar conta</u></string>
-    <string name="entrar"><u>entrar</u></string>
-    <string name="reenviar"><u>reenviar</u></string>
-    <string name="editar"><u>editar</u></string>
-    <string name="ver_mais"><u>ver mais</u></string>
+    <string name="recuperar"><u>Recuperar</u></string>
+    <string name="criar_conta"><u>Criar conta</u></string>
+    <string name="entrar"><u>Entrar</u></string>
+    <string name="reenviar"><u>Reenviar</u></string>
+    <string name="editar"><u>Editar</u></string>
+    <string name="ver_mais"><u>Ver Mais</u></string>
 </resources>
