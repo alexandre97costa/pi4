@@ -20,11 +20,12 @@ const ip = process.env.REACT_APP_IP;
 
 export default function PontoInteresseDetails(props) {
 
-  const [evento, setEvento] = useState([]);
+  const [eventos, setEventos] = useState([]);
   const [recompensa, setRecompesa] = useState([]);
+  const [pontoInteresseDetails, setPontoInteresseDetails] = useState([]);
 
   useEffect(() => {
-    axiosGetReservas()
+    axiosGetEventos()
     axiosGetRecompensas()
   }, []);
 
@@ -106,26 +107,6 @@ export default function PontoInteresseDetails(props) {
     },
   ];
 */
-  const pontoInteresseDetails = [
-    {
-      categoria: "Nome",
-      informacao: "Forninho da Mimi",
-    },
-    {
-      categoria: "Descrição",
-      informacao:
-        "m restaurante com 5 estrelas, melhor comida caseira do mundo",
-    },
-    {
-      categoria: "Tipo de Interesse",
-      informacao: "Restaurante",
-    },
-    {
-      categoria: "Avaliação",
-      informacao: "4.3 (52 avaliações)",
-    },
-  ];
-
   const borderRadius = 14;
 
   const dias = ["22/12", "23/12", "24/12", "25/12"];
@@ -141,21 +122,21 @@ export default function PontoInteresseDetails(props) {
     },
   ];
 
-  function axiosGetReservas() {
-    const url = ip + "/r"
+  function axiosGetEventos() {
+    const url = ip + "/"
     console.log(url)
     //Aqui que fazemos o pedido axios das reservas
     axios
     .get(url, auth.header())
     .then((output) => {
       console.log(output);
-      setEvento(output.data?.data ?? []);
+      setEventos(output.data?.data ?? []);
     })
     .catch((error) => console.error(error));
   }
 
   function axiosGetRecompensas() {
-    const url = ip + "/r"
+    const url = ip + "/recompensa"
     console.log(url)
     //Aqui que fazemos o pedido axios das recompesas
     axios
@@ -237,7 +218,7 @@ export default function PontoInteresseDetails(props) {
 
         {tipoUtilizador("evento")}
 
-        {evento.map((item, index) => {
+        {eventos.map((item, index) => {
           return (
             <div key={index} className="col-12 col-sm-6 col-md-4">
               <ConfirmarReservas

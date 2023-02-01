@@ -4,7 +4,7 @@ export default function CardRecompensa(props) {
   return (
     <>
       <div className="d-flex card border-0 rounded-4 shadow h-100 p-4">
-      <button type="button" class="btn btn-outline-danger bi bi-trash3 align-self-end" aria-label="Close"></button>
+      <button type="button" className="btn btn-outline-danger bi bi-trash3 align-self-end" aria-label="Close"></button>
         <img
           src={props.imagem}
           className="img-fluid align-self-center rounded w-50 img-fluid"
