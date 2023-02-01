@@ -369,7 +369,7 @@ export default function App() {
                   <Pages.Eventos />
                 </VisibleTo>
                 <VisibleTo tipo="3">
-                  <Pages.EventosResponsavelRegiao />
+                  <Pages.Eventos />
                 </VisibleTo>
                 <VisibleTo tipo="4">
                   <Pages.Eventos />
