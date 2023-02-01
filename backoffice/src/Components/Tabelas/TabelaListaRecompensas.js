@@ -48,7 +48,6 @@ export default function TabelaListaRecompensas(props) {
     }, [])
 
     function axiosGetRecompensas() {
-
     }
 
     function axiosGetRecompensasPorValidar() {
