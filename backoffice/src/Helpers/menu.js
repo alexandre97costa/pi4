@@ -3,22 +3,22 @@ export const menu = [
     [
         {
             text: "Dashboard",
-            path: "/",
+            path: "/dashboard",
             icon: "speedometer2"
         },
         {
             text: "Pontos de Interesse",
-            path: "/2",
+            path: "/pontos-interesse",
             icon: "geo-alt"
         },
         {
             text: "Eventos",
-            path: "/3",
+            path: "/eventos",
             icon: "calendar4-event"
         },
         {
             text: "Recompensas",
-            path: "/4",
+            path: "/recompensas",
             icon: "gift"
         }
     ],
@@ -26,32 +26,32 @@ export const menu = [
     [
         {
             text: "Dashboard",
-            path: "/",
+            path: "/dashboard",
             icon: "speedometer2"
         },
         {
             text: "Agentes Turísticos",
-            path: "/2",
+            path: "/utilizadores",
             icon: "speedometer2"
         },
         {
             text: "Pontos de Interesse",
-            path: "/3",
+            path: "/pontos-interesse",
             icon: "geo-alt"
         },
         {
             text: "Eventos",
-            path: "/4",
+            path: "/eventos",
             icon: "calendar4-event"
         },
         {
             text: "Reservas",
-            path: "/5",
+            path: "/reservas",
             icon: "calendar4-event"
         },
         {
             text: "Recompensas",
-            path: "/6",
+            path: "/recompensas",
             icon: "gift"
         }
     ],
@@ -59,37 +59,37 @@ export const menu = [
     [
         {
             text: "Dashboard",
-            path: "/",
+            path: "/dashboard",
             icon: "speedometer2"
         },
         {
             text: "Utilizadores",
-            path: "/2",
+            path: "/utilizadores",
             icon: "speedometer2"
         },
         {
             text: "Pontos de Interesse",
-            path: "/3",
+            path: "/pontos-interesse",
             icon: "geo-alt"
         },
         {
             text: "Eventos",
-            path: "/4",
+            path: "/eventos",
             icon: "calendar4-event"
         },
         {
             text: "Reservas",
-            path: "/5",
+            path: "/reservas",
             icon: "calendar4-event"
         },
         {
             text: "Recompensas",
-            path: "/6",
+            path: "/recompensas",
             icon: "gift"
         },
         {
             text: "Microsite",
-            path: "/7",
+            path: "/microsite",
             icon: "gift"
         }
     ]

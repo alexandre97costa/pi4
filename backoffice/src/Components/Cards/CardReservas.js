@@ -1,4 +1,5 @@
 import React from 'react'
+import VisibleTo from '../../Helpers/VisibleTo';
 
 import Botao from '../Botao'
 
@@ -45,10 +46,12 @@ export default function CardReservas(props) {
                                         <div className="text-start text-muted"> {item.dataReserva}<i className="fs-6 bi bi-person" />{item.numeroPessoas}</div>
                                     </div>
 
-                                    <div className="col-7 text-end">
-                                        <Botao className="btn-outline-success btn-sm me-2" texto="Confirmar" onClick={() => console.log(index)} />
-                                        <Botao className="btn-outline-danger btn-sm" texto="Rejeitar" onClick={() => console.log(index)} />
-                                    </div>
+                                    <VisibleTo tipo='2'>
+                                        <div className="col-7 text-end">
+                                            <Botao className="btn-outline-success btn-sm me-2" texto="Confirmar" onClick={() => console.log(index)} />
+                                            <Botao className="btn-outline-danger btn-sm" texto="Rejeitar" onClick={() => console.log(index)} />
+                                        </div>
+                                    </VisibleTo>
 
                                 </div>
                             </div>

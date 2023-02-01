@@ -6,17 +6,18 @@ const ip = process.env.REACT_APP_IP
 class auth {
 
     // tenta fazer login
-    async login(email, password, longExp) {
+    async login(email, password) {
         return await axios
-            .post(ip + '/user/login', { email, password, longExp })
+            .post(ip + '/utilizador/login', { email, password })
             .then(res => {
 
                 // 🚨 guard clauses
                 if (!res.data.token) { return { success: false, message: 'Falha ao receber o token.' } }
                 const payload = jwt_decode(res.data.token)
+                console.log(payload)
                 const token = res.data.token
-                if (payload?.tipo ?? 0 <= 1) { return { success: false, message: 'O Back Office não está disponivel para visitantes.' } }
-                
+                if ((payload?.tipo ?? 0) <= 1) { return { success: false, message: 'O Back Office não está disponivel para visitantes.' } }
+
                 // ✅ all gucci
                 localStorage.setItem('utilizador', JSON.stringify(payload))
                 localStorage.setItem('token', token)
@@ -60,13 +61,21 @@ class auth {
         return user
     }
 
+    getUser() {
+        return JSON.parse(localStorage.getItem('utilizador'))
+    }
+
     // faz logo o trabalho de casa de apanhar só o tipo de user
     // 0 = sem token
     // 1 = visitante
     // 2 = agente turistico
     // 3 = responsavel de regiao
     // 4 = administrador
-    getTipo() { return JSON.parse(localStorage?.getItem('utilizador'))?.tipo ?? 0 }
+    getTipo() { return {
+        id: JSON.parse(localStorage?.getItem('utilizador'))?.tipo ?? 0,
+        nome: JSON.parse(localStorage?.getItem('utilizador'))?.tipo_nome ?? '...' 
+    }
+    }
 
     valid() {
         const now = Math.floor(Date.now() / 1000)

@@ -8,13 +8,12 @@ export default function User() {
     const [nome, setNome] = useState('A carregar...')
 
     // async function fetchName() {
-    //     await auth
-    //     .getCurrentUser()
-    //     .then(user => setNome(user.nome))
-    //     .catch(error => { setNome('Oops!'); dev.log(error) })
+    //     const user = await auth.getCurrentUser()
+    //     if (user !== null)
+    //         setNome(user.nome)
     // }
 
-    // useEffect(() => { fetchName() }, [])
+    useEffect(() => { setNome(auth.getUser().nome) }, [])
 
     return (
         <div className='col-2 d-flex justify-content-between  position-absolute top-0 end-0  mt-3 me-4 py-2 px-3 ' >
@@ -37,29 +36,6 @@ export default function User() {
                             <i className='bi bi-door-open me-2'></i>
                             <span>Logout</span>
                         </button>
-                    </li>
-
-
-
-                    <li><hr className='dropdown-divider' /></li>
-                    <li><h6 className="dropdown-header text-danger">Só pra desenvolvimento</h6></li>
-                    <li>
-                        <Link className="dropdown-item rounded-3" path="">
-                            <i className='bi bi-lightning-charge-fill text-warning me-2'></i>
-                            <span>Administrador</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className="dropdown-item rounded-3" path="">
-                            <i className='bi bi-lightning-charge-fill text-warning me-2'></i>
-                            <span>Responsável de Região</span>
-                        </Link>
-                    </li>
-                    <li>
-                        <Link className="dropdown-item rounded-3" path="">
-                            <i className='bi bi-lightning-charge-fill text-warning me-2'></i>
-                            <span>Agente Turístico</span>
-                        </Link>
                     </li>
                 </ul>
             </div>

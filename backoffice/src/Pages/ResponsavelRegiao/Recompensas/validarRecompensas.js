@@ -9,12 +9,18 @@ export default function ValidarRecompensas() {
 
   return (
     <>
-      <div className="container-fluid">
-        <div className="row">
-          <div className='col-8 col-md-3'>
-            <BotaoDashboard to="/responsavel-regiao/lista-recompensas" colorBotao="btn-light btn-lg" icon="bi-journal-check" texto="Lista de Recompensas" />
-          </div>
+    <div className="row">
+        <div className="col-12 col-md-3 col-sm-12">
+          <BotaoDashboard
+            to="/lista-recompensas"
+            class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
+            icon="bi-card-list fs-2"
+            texto="Lista de Recompensas"
+          />
+        </div>
+      </div>
 
+        <div className="row">
           <div className="col-4 col-md-9 d-flex justify-content-end">
             <Dropdown tipos={tipos} onChange={(value) => console.log(value)} />
           </div>
@@ -25,7 +31,7 @@ export default function ValidarRecompensas() {
             <TabelaListaRecompensas tipoTabela="validar" />
           </div>
         </div>
-      </div>
+
     </>
   );
 }

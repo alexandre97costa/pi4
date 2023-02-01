@@ -66,7 +66,7 @@ export default function Home() {
     const datasets = [{
         label: "Ponto's de Interesse",
         data: dataPontoInteresse,
-        backgroundColor: "#BACC6A",
+        backgroundColor: "#729d4c",
         borderRadius: borderRadius
     }]
 

@@ -9,28 +9,18 @@ const ip = process.env.REACT_APP_IP
 export default function Sidebar(props) {
 
     const location = useLocation()
-    const [tipos, setTipos] = useState([])
     const [tipoUtilizador, setTipoUtilizador] = useState('')
-    const [tipoID, setTipoID] = useState(4)
-
-    function getTipoUtilizador() {
-        // todo: usar getCurrentUser em vez de getTipo (por ser async)
-        let tipoObject = tipos.find(tipo => tipo.id === auth.getTipo())
-        setTipoUtilizador(tipoObject?.nome ?? '...')
-        setTipoID(tipoObject?.id ?? '...')
-    }
+    const [tipoId, setTipoId] = useState(4)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios
-            .get(ip + '/user/tipos', auth.header())
-            .then(response => setTipos(response.data.data))
-            .catch(e => dev.error(e.message))
+        setTipoId(auth.getTipo().id)
+        setTipoUtilizador(auth.getTipo().nome)
+        setLoading(false)
     }, [])
 
-    useEffect(() => { tipos.length !== 0 && getTipoUtilizador() }, [tipos])
-
     return (
-        <div className='bg-dark text-secondary col-2 px-2 vh-100 d-none d-md-block'>
+        <div className='bg-dark text-secondary col-2 px-2 pb-4 vh-100 d-none d-md-block overflow-auto'>
             <div className='d-flex flex-sm-column flex-row flex-grow-1 align-items-center align-items-sm-start'>
 
                 {/* Titulo */}
@@ -44,7 +34,10 @@ export default function Sidebar(props) {
 
                 {/* Lista */}
                 <ul id='menu' className='nav d-flex flex-row flex-sm-column h-100 w-100'>
-                    {menu[tipoID - 2].map((item, index) => {
+                    {loading ?
+                        <div>loading...</div>
+                        :
+                        menu[+tipoId - 2].map((item, index) => {
 
                         return (
                             item.path === location.pathname ?

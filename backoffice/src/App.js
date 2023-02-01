@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navigate, BrowserRouter, Route, Routes } from "react-router-dom";
 import dev from "./Auth/dev";
 import ProtectedRoute from "./Helpers/ProtectedRoute";
+import VisibleTo from "./Helpers/VisibleTo";
 
 import "./main.css";
 
@@ -22,23 +23,13 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/login"
-          element={
-            <ProtectedRoute>
-              <Pages.Login />
-            </ProtectedRoute>
-          }
-        />
+        <Route exact path="/" element={<Navigate to="/dashboard" />} />
+        <Route path="/login" element={<Pages.Login />} />
 
         <Route
           exact
           path="/recuperar-passe"
-          element={
-            <ProtectedRoute>
-              <Pages.RecuperarPass />
-            </ProtectedRoute>
-          }
+          element={<Pages.RecuperarPass />}
         />
 
         <Route
@@ -64,21 +55,30 @@ export default function App() {
         />
 
         <Route
-          path="/admin/dashboard"
+          path="/dashboard"
           element={
             <ProtectedRoute>
               <Pagina title="Dashboard">
-                <Pages.HomeAdmin />
+                <VisibleTo tipo="2">
+                  <Pages.HomeAgenteTuristico />
+                </VisibleTo>
+                <VisibleTo tipo="3">
+                  <Pages.HomeResponsavelRegiao />
+                </VisibleTo>
+                <VisibleTo tipo="4">
+                  <Pages.HomeAdmin />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
+        {/* AQUI TEMOS DE FILTRAR OS CONTEUDO QUE APARECEM */}
         <Route
-          path="/admin/lista-utilizadores"
+          path="/utilizadores"
           element={
             <ProtectedRoute>
-              <Pagina title="Lista de Utilizadores">
+              <Pagina title="Utilizadores">
                 <Pages.Utilizadores />
               </Pagina>
             </ProtectedRoute>
@@ -86,161 +86,180 @@ export default function App() {
         />
 
         <Route
-          path="admin/microsite"
+          path="/microsite"
           element={
             <ProtectedRoute>
               <Pagina title="Gerir Microsite">
-                <Pages.Microsite />
+                <VisibleTo tipo="4">
+                  <Pages.Microsite />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="admin/microsite/hero-banner"
+          path="/microsite/hero-banner"
           element={
             <ProtectedRoute>
               <Pagina title="Hero Banner">
-                <Pages.HeroBanner />
+                <VisibleTo tipo="4">
+                  <Pages.HeroBanner />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="/admin/microsite/descarregar-app"
+          path="/microsite/descarregar-app"
           element={
             <ProtectedRoute>
               <Pagina title="Descarregar App">
-                <Pages.DescarregarApp />
+                <VisibleTo tipo="4">
+                  <Pages.HeroBanner />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="admin/microsite/gerir-footer"
+          path="/microsite/gerir-footer"
           element={
             <ProtectedRoute>
               <Pagina title="Gerir Footer">
-                <Pages.GerirFooter />
+                <VisibleTo tipo="4">
+                  <Pages.GerirFooter />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="admin/microsite/adicionar-conteudo"
+          path="/microsite/adicionar-conteudo"
           element={
             <ProtectedRoute>
               <Pagina title="Adicionar Conteúdo">
-                <Pages.AdicionarConteudo />
+                <VisibleTo tipo="4">
+                  <Pages.AdicionarConteudo />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="admin/microsite/publicidade-agente-turistico"
+          path="/microsite/publicidade-agente-turistico"
           element={
             <ProtectedRoute>
               <Pagina title="Publicidade Agente Turístico">
-                <Pages.PublicidadeAgenteTuristico />
+                <VisibleTo tipo="4">
+                  <Pages.PublicidadeAgenteTuristico />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="admin/microsite/gerir-menu"
+          path="/microsite/gerir-menu"
           element={
             <ProtectedRoute>
               <Pagina title="Gerir Menu">
-                <Pages.GerirMenu />
+                <VisibleTo tipo="4">
+                  <Pages.GerirMenu />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="admin/microsite/vantagens-app"
+          path="/microsite/vantagens-app"
           element={
             <ProtectedRoute>
               <Pagina title="Vantagens Aplicação">
-                <Pages.VantagensAplicacao />
+                <VisibleTo tipo="4">
+                  <Pages.VantagensAplicacao />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="/admin/lista-regiao"
+          path="/regioes"
           element={
             <ProtectedRoute>
               <Pagina title="Lista Região">
-                <Pages.ListaRegiao />
+                <VisibleTo tipo="4">
+                  <Pages.ListaRegiao />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
-
+        {/* AQUI NO AT PODE APARECER O BOTÃO ADICIONAR P.I */}
         <Route
-          path="/responsavel-regiao/dashboard"
-          element={
-            <ProtectedRoute>
-              <Pagina title="Olá, António">
-                <Pages.HomeResponsavelRegiao />
-              </Pagina>
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/consultar-pontos-interesse"
+          path="/pontos-interesse"
           element={
             <ProtectedRoute>
               <Pagina title="Pontos de Interesse">
-                <Pages.PontoInteresse tipoUtilizador="Responsavel Regiao" />
+                <VisibleTo tipo="2">
+                  <Pages.PontoInteresse />
+                </VisibleTo>
+                <VisibleTo tipo="3">
+                  <Pages.PontoInteresse />
+                </VisibleTo>
+                <VisibleTo tipo="4">
+                  <Pages.PontoInteresse />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
+        {/* aqui no AT E RR pode aparecer as recompensas e os eventos 
+		  + no AT botão para adicionar novas recompensas e evento */}
         <Route
-          path="/responsavel-regiao/ponto-interesse-details"
+          path="/ponto-interesse-details" // aqui devia ser ponto-interesse/:id
           element={
             <ProtectedRoute>
               <Pagina title="Ponto Interesse">
-                <Pages.PontoInteresseDetails />
+                <VisibleTo tipo="2">
+                  <Pages.PontoInteresseDetails />
+                </VisibleTo>
+                <VisibleTo tipo="3">
+                  <Pages.PontoInteresseDetails />
+                </VisibleTo>
+                <VisibleTo tipo="4">
+                  <Pages.PontoInteresseDetails />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="/responsavel-regiao/validar-pontos-interesse"
+          path="/validar-pontos-interesse"
           element={
             <ProtectedRoute>
               <Pagina title="Validar Pontos de Interesse">
-                <Pages.ValidarPontoInteresse tipoUtilizador="Responsavel Regiao" />
+                <VisibleTo tipo="3">
+                  <Pages.ValidarPontoInteresse />
+                </VisibleTo>
+                <VisibleTo tipo="4">
+                  <Pages.ValidarPontoInteresse />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="/responsavel-regiao/lista-regiao"
-          element={
-            <ProtectedRoute>
-              <Pagina title="Lista Região">
-                <Pages.ListaRegiao />
-              </Pagina>
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/responsavel-regiao/lista-eventos"
+          path="/lista-eventos"
           element={
             <ProtectedRoute>
               <Pagina title="Lista Eventos">
@@ -251,22 +270,32 @@ export default function App() {
         />
 
         <Route
-          path="/responsavel-regiao/lista-reservas-eventos"
+          path="/lista-reservas-eventos"
           element={
             <ProtectedRoute>
               <Pagina title="Reservas ao evento">
-                <Pages.ReservasEvento />
+                <VisibleTo tipo="3">
+                  <Pages.ReservasEvento />
+                </VisibleTo>
+                <VisibleTo tipo="4">
+                  <Pages.ReservasEvento />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="/responsavel-regiao/lista-vouchers"
+          path="/lista-vouchers"
           element={
             <ProtectedRoute>
               <Pagina title="Lista Vouchers">
-                <Pages.Vouchers />
+                <VisibleTo tipo="3">
+                  <Pages.Vouchers />
+                </VisibleTo>
+                <VisibleTo tipo="4">
+                  <Pages.Vouchers />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
@@ -295,18 +324,7 @@ export default function App() {
         />
 
         <Route
-          path="/responsavel-regiao/detalhes-utilizador"
-          element={
-            <ProtectedRoute>
-              <Pagina title="Detalhes utilizador">
-                <Pages.DetalhesUtilizador />
-              </Pagina>
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/responsavel-regiao/agentes"
+          path="/agentes-turistico"
           element={
             <ProtectedRoute>
               <Pagina title="Lista de Agentes Turísticos">
@@ -317,39 +335,22 @@ export default function App() {
         />
 
         <Route
-          path="/responsavel-regiao/validar-agentes-turisticos"
+          path="/validar-agentes-turisticos"
           element={
             <ProtectedRoute>
               <Pagina title="Validar Agentes Turísticos">
-                <Pages.ValidarAgentesTuristicos />
+                <VisibleTo tipo="3">
+                  <Pages.ValidarAgentesTuristicos />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
+        {/* Não sei ate que ponto esta página faz sentido, isto pq n temos muitas infos
+         por exemplo do responsavel de regiao e do admin*/}
         <Route
-          path="/agente-turistico/dashboard"
-          element={
-            <ProtectedRoute>
-              <Pagina title="Dashboard">
-                <Pages.HomeAgenteTuristico />
-              </Pagina>
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/agente-turistico/ponto-interesse"
-          element={
-            <ProtectedRoute>
-              <Pagina title="Lista Pontos Interesse">
-                <Pages.PontoInteresse tipoUtilizador="Agente Turisitico" />
-              </Pagina>
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/agente-turistico/detalhes-utilizador"
+          path="/detalhes-utilizador"
           element={
             <ProtectedRoute>
               <Pagina title="Utilizador">
@@ -360,29 +361,23 @@ export default function App() {
         />
 
         <Route
-          path="/agente-turistico/ponto-interesse-details"
-          element={
-            <ProtectedRoute>
-              <Pagina title="Ponto Interesse">
-                <Pages.PontoInteresseDetails tipoUtilizador="Agente Turistico" />
-              </Pagina>
-            </ProtectedRoute>
-          }
-        />
-
-        <Route
-          path="/agente-turistico/eventos"
+          path="/eventos"
           element={
             <ProtectedRoute>
               <Pagina title="Eventos">
-                <Pages.Eventos />
+                <VisibleTo tipo="2">
+                  <Pages.Eventos />
+                </VisibleTo>
+                <VisibleTo tipo="3">
+                  <Pages.Eventos />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }
         />
 
         <Route
-          path="/agente-turistico/recompensas"
+          path="/recompensas"
           element={
             <ProtectedRoute>
               <Pagina title="Recompensas">
@@ -391,6 +386,43 @@ export default function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/lista-recompensas"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Lista de Recompensas">
+                <VisibleTo tipo='3'>
+                  <Pages.ListaRecompensas />
+                </VisibleTo>
+                <VisibleTo tipo='4'>
+                  <Pages.ListaRecompensas />
+                </VisibleTo>
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/validar-recompensas"
+          element={
+            <ProtectedRoute>
+              <Pagina title="Validar Recompensas">
+                <VisibleTo tipo="3">
+                  <Pages.ValidarRecompensas />
+                </VisibleTo>
+                <VisibleTo tipo="4">
+                  <Pages.ValidarRecompensas />
+                </VisibleTo>
+
+              </Pagina>
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Fallback: links errados são redirecionados para o dashboard */}
+        {/* Nota: não é preciso ir para o login, a pagina deteta automaticamente se está autenticado e manda para login só se for necessário */}
+        <Route path="*" element={<Navigate to="/dashboard" />} />
       </Routes>
     </BrowserRouter>
   );

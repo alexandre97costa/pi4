@@ -42,67 +42,86 @@ export default function Home() {
     ]
 
     const datasets = [{
-        label: "Utilizadores",
+        label: "Visitantes",
         data: dataUtilizadores,
-        backgroundColor: "#BACC6A",
+        backgroundColor: "#bacc6a",
         borderRadius: borderRadius
     }, {
         label: "Agente Turistico",
         data: dataAgenteTuristico,
-        backgroundColor: "#BACC6A",
+        backgroundColor: "#80b155",
         borderRadius: borderRadius,
     }, {
         label: "Responsavel de Região",
         data: dataResponsavelRegiao,
-        backgroundColor: "#BACC6A",
+        backgroundColor: "#539477",
         borderRadius: borderRadius,
     }, {
         label: "Administrador",
         data: dataAdmin,
-        backgroundColor: "#BACC6A",
+        backgroundColor: "#6c757d",
         borderRadius: borderRadius,
     }]
 
     return (
         <>
-            <div className="row">
-                <div className='col-12 mt-4'>
+            <div className="row row-cols-1 row-cols-md-4 gx-4 mb-5">
+                <div className='col-12 col-md-12'>
                     <p className="fs-5 text-body fw-light">Ações Rápidas</p>
                 </div>
 
-                <div className='col-12 col-md-3'>
-                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-light btn-lg" icon="bi-journal-check" texto="Atribuição de Perfil"/>
-                </div>
+                <BotaoDashboard
+                    to="/utilizadores"
+                    class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
+                    icon="bi-person-check fs-3"
+                    texto="Atribuição de Perfil" />
+                <BotaoDashboard
+                    to="/microsite"
+                    class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
+                    icon="bi-window-sidebar fs-3"
+                    texto="Gerir Micro Site" />
+                <BotaoDashboard
+                    to="/regioes"
+                    class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
+                    icon="bi-map fs-3"
+                    texto="Gerir Regiões" />
 
-                <div className='col-12 col-md-3'>
-                    <BotaoDashboard to="/admin/microsite" colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Página Web"/>
-                </div>
+            </div>
+            <div className="row row-cols-1 row-cols-md-4 gx-4 mb-5">
 
-                <div className='col-12 col-md-3'>
-                    <BotaoDashboard to="/admin/lista-regiao" colorBotao="btn-light btn-lg" icon="bi-file-earmark " texto="Gerir Regiões"/>
-                </div>
-
-                <div className='col-12 mt-5'>
+                <div className='col-12 col-md-12'>
                     <p className="fs-5 text-body fw-light">Lista de Utilizadores</p>
                 </div>
 
-                <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
-                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-agentes h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Agentes Turísticos"/>
+                <BotaoDashboard
+                    to="/utilizadores"
+                    class="btn-light btn-lg bg-visitante text-light p-4 w-100 h-100 text-start d-flex align-items-center"
+                    icon="bi-phone fs-3"
+                    texto="Visitantes" />
+                <BotaoDashboard
+                    to="/utilizadores"
+                    class="btn-light btn-lg bg-agente text-light p-4 w-100 h-100 text-start d-flex align-items-center"
+                    icon="bi-geo-alt fs-3"
+                    texto="Agentes Turísticos" />
+                <BotaoDashboard
+                    to="/utilizadores"
+                    class="btn-light btn-lg bg-responsavel text-light p-4 w-100 h-100 text-start d-flex align-items-center"
+                    icon="bi-map fs-3"
+                    texto="Responsáveis de Região" />
+                <BotaoDashboard
+                    to="/utilizadores"
+                    class="btn-light btn-lg bg-admin text-light p-4 w-100 h-100 text-start d-flex align-items-center"
+                    icon="bi-globe2 fs-3"
+                    texto="Administradores" />
+
+            </div>
+            <div className="row row-cols-1 row-cols-md-4 gx-4 mb-5">
+
+                <div className='col-12 col-md-12'>
+                    <p className="fs-5 text-body fw-light">Logins Utilizadores</p>
                 </div>
 
-                <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
-                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-regiao h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Responsáveis de Região"/>
-                </div>
-
-                <div className='col-12 mb-3 col-sm-4 mb-sm-0 text-break col-md-3 text-center'>
-                    <BotaoDashboard to="/admin/lista-utilizadores" colorBotao="btn-primary h-100 text-white text-uppercase fw-bold py-5 w-100 h-100" texto="Visitantes"/>
-                </div>
-
-                <div className='col-12 mt-5'>
-                    <p className="fs-5 text-body fw-light mt-5">Logins Utilizadores</p>
-                </div>
-
-                <div className='col-12 col-md-10'>
+                <div className='col-12 col-md-12'>
                     <GraficoHorizontal datasets={datasets} data={dias} />
                 </div>
 

@@ -1,44 +1,62 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../Auth/auth.service';
 import dev from '../../Auth/dev';
 import Logo from '../../Assets/Images/logo.png';
 
+const dev_mode = (process.env.REACT_APP_MODE === 'dev')
+
 export default function Login(props) {
 
     const navigate = useNavigate()
     const location = useLocation()
-    let previousPage = location.state.from || "/";
+    let previousPage = location.state?.from ?? '/dashboard';
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [longExp, setLongExp] = useState(false)
+    const [loading, setLoading] = useState(false)
 
-    async function submit() {
+    async function submit(email, password) {
         dev.log('Attempting to login...')
-        let login = await auth.login(email, password, longExp)
+        setLoading(true)
+        let login = await auth.login(email, password)
+
 
         if (login.success) {
             navigate(previousPage)
         } else {
             dev.log(login.message)
+            setLoading(false)
         }
     }
 
+    // //check if the user is already logged in and redirect to dashboard
+    // async function isLoggedIn() {
+    //     const user = await auth.getCurrentUser()
+    //     if (user !== null)
+    //         navigate('/dashboard')
+    // }
+
+    // useEffect(() => {
+    //     const user = auth.getCurrentUser()
+    //     if (user !== null)
+    //         navigate('/dashboard')
+    // }, [])
+
+
 
     return (
-        <div className='container-fluid text-light'>
+        <div className='container-fluid text-light position-relative'>
             <div className='row vh-100'>
-                <div className="col-lg-6 h-100 d-flex align-items-center justify-content-center bg-primary-login">
+                <div className="col-lg-6 h-100 d-flex align-items-center justify-content-center bg-primary">
                     <img src={Logo} className="img-fluid h-25" alt="Logo" />
                 </div>
                 <div className='col-lg-6 h-100 d-flex align-items-center justify-content-center text-dark'>
                     <form onSubmit={e => {
                         e.preventDefault()
-                        submit()
+                        submit(email, password)
                     }} >
                         <p className="text-center  mb-5 color-text fs-1 fw-bold">Iniciar sessão</p>
-                        <label className="fs-5 mb-2 ms-1" htmlFor='input-email'>Email</label>
-                        <div className='form-floating mb-4'>
+                        <div className="form-floating mb-3">
                             <input
                                 id="input-email"
                                 type="text" // ! trocar para email mais tarde
@@ -46,9 +64,9 @@ export default function Login(props) {
                                 placeholder="name@example.com"
                                 onChange={e => { setEmail(e.target.value) }}
                             />
+                            <label htmlFor='input-email'>Email</label>
                         </div>
-                        <label className="fs-5 mb-2 ms-1" htmlFor='input-password'>Password</label>
-                        <div className='form-floating mb-4'>
+                        <div className="form-floating mb-3">
                             <input
                                 id="input-password"
                                 type="password"
@@ -56,32 +74,53 @@ export default function Login(props) {
                                 placeholder="secret!"
                                 onChange={e => { setPassword(e.target.value) }}
                             />
-                        </div>
-                        <div className='form-check mb-4'>
-                            <input
-                                id='input-long-exp'
-                                type='checkbox'
-                                className='form-check-input'
-                                value={longExp}
-                                onChange={e => { setLongExp(e.target.checked) }}
-                            />
-                            <label className='form-check-label text-secondary' htmlFor='input-long-exp'>
-                                Manter-me autorizado por mais tempo (5m)
-                            </label>
+                            <label htmlFor='input-password'>Password</label>
                         </div>
                         <button
                             id='btn-submit'
                             type='submit'
-                            className='btn btn-lg btn-primary w-100 shadow mb-4'
+                            className='btn btn-lg btn-primary w-100 shadow mb-3 d-flex justify-content-center gap-3'
                         >
-                            Entrar
+                            <span>Entrar</span>
+                            {loading &&
+                                <div className="spinner-border text-light" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </div>
+                            }
                         </button>
-                        <p className="">
-                            Esqueceste-te da Palavra-passe? <a href="../recuperar" className="color-text">Recuperar</a>
+                        <p className="text-muted">
+                            Esqueceste-te da Palavra-passe? <a href="../recuperar" className="color-text">Recuperar password</a>
                         </p>
                     </form>
                 </div>
             </div>
+
+            {dev_mode &&
+                <div className='position-absolute ps-3 pt-2 top-0 start-0'>
+                    Entrar como:
+                    <button
+                        type='button'
+                        className='btn btn-light w-100 shadow mb-3 mt-2 d-flex justify-content-center gap-3'
+                        onClick={e => submit('admin@email.com', 'password')}
+                    >
+                        Admin
+                    </button>
+                    <button
+                        type='button'
+                        className='btn btn-light w-100 shadow mb-3 d-flex justify-content-center gap-3'
+                        onClick={e => submit('responsavel@email.com', 'password')}
+                    >
+                        Responsavel
+                    </button>
+                    <button
+                        type='button'
+                        className='btn btn-light w-100 shadow mb-3 d-flex justify-content-center gap-3'
+                        onClick={e => submit('agente@email.com', 'password')}
+                    >
+                        Agente
+                    </button>
+                </div>
+            }
         </div>
     );
 }

@@ -1,100 +1,109 @@
 import React, { useEffect, useState } from 'react';
-
+import axios from 'axios'
 import CardForm from '../CardForm';
 import ModalSelectCategoria from '../Modais/ModalSelectCategoria';
+import auth from '../../Auth/auth.service';
 
-export default function TabelaUtilizadores(props) {
+const ip = process.env.REACT_APP_IP
+
+export default function TabelaUtilizadores({params}) {
     const [utilizadores, setUtilizadores] = useState([])
 
-    const utilizador = [{
-        id: 1,
-        nome: "Manuel Antonio",
-        regiao: "Viseu",
-        tipoUtilizador: "Visitante"
-    }, {
-        id: 2,
-        nome: "Manuel Jeremias",
-        regiao: "Viseu",
-        tipoUtilizador: "Responsável Região"
-    }, {
-        id: 3,
-        nome: "Manuel Antonio Cartão",
-        regiao: "Viseu",
-        tipoUtilizador: "Responsável Região"
-    }, {
-        id: 4,
-        nome: "Manuel Antonio",
-        regiao: "Viseu",
-        tipoUtilizador: "Agente Turístico"
-    }, {
-        id: 5,
-        nome: "Manuel Antonio",
-        regiao: "Viseu",
-        tipoUtilizador: "Visitante"
-    }]
 
     useEffect(() => {
-        setUtilizadores(utilizador)
+        axios
+            .get(ip + '/utilizador' + (params ?? ''), auth.header())
+            .then(output => {
+                console.log(output)
+                setUtilizadores(output.data?.data ?? [])
+            })
+            .catch(error => console.error(error))
     }, [])
 
-    function changeClassCategoria(tipoUtilizador) {
-        if (tipoUtilizador === 'Visitante')
-            return "p-2 text-white w-50 me-auto ms-auto rounded-2 bg-visitante"
-        if (tipoUtilizador === 'Responsável Região')
-            return "p-2 text-white w-50 me-auto ms-auto rounded-2 bg-responsavel"
+    function tipo_bg(tipo) {
 
-        return "p-2 text-white w-50 me-auto ms-auto rounded-2 bg-agente"
+        switch (tipo) {
+            case 'Visitante':
+                return "bg-visitante"
+            case 'Agente Turístico':
+                return "bg-agente"
+            case 'Responsável de Região':
+                return "bg-responsavel"
+            case 'Administrador':
+                return "bg-admin"
+
+            default:
+                return "bg-visitante"
+
+        }
+    }
+
+    function tipo_icon(tipo) {
+
+        switch (tipo) {
+            case 'Visitante':
+                return "bi-phone"
+            case 'Agente Turístico':
+                return "bi-geo-alt"
+            case 'Responsável de Região':
+                return "bi-map"
+            case 'Administrador':
+                return "bi-globe2"
+
+            default:
+                return "bg-visitante"
+
+        }
     }
 
     function axiosDelete(index) {
         //Aqui fazemos o pedido axios pra dar delete a utilizador
-        console.log("Delete id: " + utilizador[index].id + " com o nome: " + utilizador[index].nome)
     }
 
     return (
         <CardForm>
             <div className="table-responsive">
-                <table className="table text-center align-middle">
+                <table className="table text-start align-middle">
                     <thead>
                         <tr>
-                            <th className='text-start fw-normal fs-5' scope="col"># Nome</th>
-                            <th className='fw-normal fs-5' scope="col">Categoria</th>
-                            <th className='fw-normal fs-5' scope="col">Ações</th>
+                            <th className='fw-semibold' scope="col">Nome</th>
+                            <th className='fw-semibold' scope="col">Tipo de Utilizador</th>
                         </tr>
                     </thead>
 
                     <tbody className='table-group-divider'>
-                        {utilizadores.map((item, index) => {
-                            if (item.tipoUtilizador == props.tipoTabela)
+                        {utilizadores.length !== 0 &&
+                            utilizadores.map((item, index) => {
                                 return (
-                                    <tr key={index} className="h-5-5rem">
-                                        <td className='text-start w-33'>{item.nome}</td>
-                                        <td className='w-33'>
-                                            <div className={changeClassCategoria(item.tipoUtilizador)}>{item.tipoUtilizador}</div>
+                                    <tr key={index} className="">
+                                        <td className='text-start w-50'>
+                                            {item.nome}
                                         </td>
-                                        <td className='w-33'>
-                                            <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
-                                            <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
+                                        <td className='w-50 '>
+                                            <div className='d-flex gap-3 w-100'>
+                                                {/* tipo */}
+                                                <div className={'px-4 py-2 text-white rounded-2 flex-grow-1 d-flex align-items-center ' + tipo_bg(item.tipo_utilizador.nome)}>
+                                                    <i className={'bi me-4 fs-5 text-white justify-self-start ' + tipo_icon(item.tipo_utilizador.nome)}></i>
+                                                    <span className=''>
+                                                        {item.tipo_utilizador.nome}
+                                                    </span>
+                                                </div>
+                                                {/* Editar */}
+                                                <button className='btn btn-outline-secondary' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index}>
+                                                    <i className='bi bi-pencil-fill me-2'></i>
+                                                    Mudar tipo
+                                                </button>
+                                                {/* Eliminar */}
+                                                <button className='btn btn-outline-danger' onClick={() => axiosDelete(index)}>
+                                                    <i className='bi bi-trash-fill me-2'></i>
+                                                    Eliminar
+                                                </button>
+                                            </div>
                                             <ModalSelectCategoria idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} id={item.id} />
                                         </td>
                                     </tr>
                                 )
-
-                            if (!props.tipoTabela)
-                                return (
-                                    <tr key={index} className="h-5-5rem">
-                                        <td className='text-start w-33'>{item.nome}</td>
-                                        <td className='w-33'>
-                                            <div className={changeClassCategoria(item.tipoUtilizador)}>{item.tipoUtilizador}</div>
-                                        </td>
-                                        <td className='w-33'>
-                                            <button className='btn btn-outline-warning bi bi-pencil-fill' data-bs-toggle="modal" data-bs-target={"#" + item.nome.replace(/\s+/g, "") + index} />
-                                            <button className='btn btn-outline-danger bi bi-trash-fill ms-md-2' onClick={() => axiosDelete(index)} />
-                                            <ModalSelectCategoria idModal={item.nome.replace(/\s+/g, "") + index} nome={item.nome} regiao={item.regiao} id={item.id} />
-                                        </td>
-                                    </tr>
-                                )
-                        })}
+                            })}
                     </tbody>
                 </table>
             </div>
