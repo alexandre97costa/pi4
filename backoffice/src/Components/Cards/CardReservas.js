@@ -37,6 +37,18 @@ export default function CardReservas(props) {
                         </div>
                     </div>
 
+                    <div className="col">
+                        <p className="fs-6 text-start text-muted mb-1">{props.dataEvento}</p>
+                    </div>
+                    <div className="col">
+                        <p className="fs-6 text-end text-muted mb-1">{props.statusReserva}</p>
+                    </div>
+                    <div className='col-12 mb-4'>
+                        <div className="progress mx-auto w-100">
+                            <div className="progress-bar progress-bar-striped progress-bar bg-success text-align:center" role="progressbar" aria-label="Animated striped example" aria-valuenow={props.valueNow} aria-valuemin="0" aria-valuemax="90" style={{ width: props.valueNow + '%' }}></div>
+                        </div>
+                    </div>
+
                     {props.reservas.map((item, index) => {
                         return (
                             <div key={index} className='col-12 border-top'>
@@ -57,6 +69,7 @@ export default function CardReservas(props) {
                             </div>
                         )
                     })}
+                    
 
                 </div>
             </div>

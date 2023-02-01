@@ -371,6 +371,9 @@ export default function App() {
                 <VisibleTo tipo="3">
                   <Pages.Eventos />
                 </VisibleTo>
+                <VisibleTo tipo="4">
+                  <Pages.Eventos />
+                </VisibleTo>
               </Pagina>
             </ProtectedRoute>
           }

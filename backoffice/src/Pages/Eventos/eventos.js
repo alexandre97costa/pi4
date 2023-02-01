@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'
+import auth from '../../Auth/auth.service';
 
 import CardReservas from '../../Components/Cards/CardReservas';
 import GraficoHorizontal from '../../Components/GraficoHorizontal';
 
+const ip = process.env.REACT_APP_IP
+
 export default function Eventos() {
+
+    const [eventos, setEventos] = useState([])
+
+    useEffect(() => {
+        axiosGetEventos();
+      }, []);
+
+    /*
     const testeReserva1 = [{
         dataReserva: '20 Jan 2023',
         numeroPessoas: '2'
@@ -38,6 +50,7 @@ export default function Eventos() {
         valueNow: '99',
         reservas: testeReserva2
     }]
+    */
 
 
     const borderRadius = 14
@@ -63,7 +76,20 @@ export default function Eventos() {
         data: dataEventos,
         backgroundColor: "#729d4c",
         borderRadius: borderRadius
-    }]
+    }] 
+    
+    function axiosGetEventos(){
+        const url = ip + "/eventoController"/*saber qual a rota*/
+        console.log(url)
+        //Aqui que fazemos o pedido axios dos pontos de interesse
+        axios
+        .get(url, auth.header())
+        .then((output) => {
+            console.log(output);
+            setEventos(output.data?.data ?? []);
+        })
+      .catch((error) => console.error(error));
+    }
 
     return (
         <div className='row'>
@@ -71,7 +97,7 @@ export default function Eventos() {
                 <p className="fs-5 text-body fw-light">Vista Geral</p>
             </div>
 
-            {teste.map((item, index) => {
+            {eventos.map((item, index) => {
                 return (
                     <div key={index} className="col-12 col-sm-6 col-md-3">
                         <CardReservas
