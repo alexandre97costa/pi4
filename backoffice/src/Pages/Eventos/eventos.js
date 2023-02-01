@@ -13,7 +13,7 @@ export default function Eventos() {
 
     useEffect(() => {
         axiosGetEventos();
-      }, []);
+    }, []);
 
     /*
     const testeReserva1 = [{
@@ -77,9 +77,9 @@ export default function Eventos() {
         backgroundColor: "#729d4c",
         borderRadius: borderRadius
     }] 
-    
+
     function axiosGetEventos(){
-        const url = ip + "/eventoController"/*saber qual a rota*/
+        const url = ip + "/evento"/*saber qual a rota*/
         console.log(url)
         //Aqui que fazemos o pedido axios dos pontos de interesse
         axios
