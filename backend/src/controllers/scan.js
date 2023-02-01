@@ -29,6 +29,7 @@ module.exports = {
         const pi = await ponto_interesse.findOne({ where: { codigo_uuid: req.params.codigo } })
 
         // não encontrou o PI
+        console.log(pi)
         if (pi === null)
             return res.status(404).json({ msg: 'Esse ponto de interesse não existe ou foi eliminado.' })
 
