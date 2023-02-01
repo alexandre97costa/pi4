@@ -107,7 +107,7 @@ module.exports = {
             })
             .catch(error => {
                 res.status(400).json({ error })
-                dev.error(e)
+                dev.error(error)
                 return
             })
     },

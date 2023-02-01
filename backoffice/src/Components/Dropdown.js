@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from 'react';
 
 export default function Dropdown(props) {
-    const [select, setSelect] = useState(props.tipos[0])
+    const [selectedItem, setSelectedItem] = useState(props.items[0] ?? '...')
+    const [selectedIndex, setSelectedIndex] = useState(0)
 
     //Passa a deteção do click da categoria
     useEffect(() => {
-        props.onChange(select)
-    }, [select])
+        props.onChange(selectedItem, selectedIndex)
+    }, [selectedItem, selectedIndex])
+    
+    useEffect(() => {
+        setSelectedItem(props.items[0])
+    }, [props.items])
 
     return (
         <div className='dropdown mb-3'>
-            <button className="btn w-100 text-start bg-white border rounded-4 shadow-1 dropdown-toggle me-md-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                {select}
+            <button className="btn w-100 text-start bg-white py-2 border rounded-3 shadow dropdown-toggle d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {selectedItem}
             </button>
-            <ul className='dropdown-menu'>
-                {props.tipos.map((item, index) => {
+            <ul className='dropdown-menu w-100 shadow'>
+                <li className="dropdown-item disabled">Selecione um</li>
+                {props.items.map((item, index) => {
                     return (
-                        <li onClick={(value) => setSelect(value.target.outerText)} key={index} className="dropdown-item">{item}</li>
+                        <li onClick={(value) => { setSelectedItem(item); setSelectedIndex(index) }} key={index} className="dropdown-item">{item}</li>
                     )
                 })}
             </ul>
