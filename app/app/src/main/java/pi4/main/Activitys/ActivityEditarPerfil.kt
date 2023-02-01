@@ -34,18 +34,18 @@ class ActivityEditarPerfil : AppCompatActivity() {
         previous()
     }
 
-    fun loadPerfil() {
+    private fun loadPerfil() {
         nome.setText(UserManager.getUtilizador()?.getNome() ?: "Nome vazio")
         email.setText(UserManager.getUtilizador()?.getEmail() ?: "Email vazio")
     }
 
-    fun editarPasseword() {
+    private fun editarPasseword() {
         val textViewEditarPasseword = findViewById<TextView>(R.id.textViewEditar)
 
         StartActivitys(this).textViewGoTo(textViewEditarPasseword, ActivityRecuperarPasseword())
     }
 
-    fun guardar() {
+    private fun guardar() {
         val buttonGuardar = findViewById<Button>(R.id.buttonGuardar)
 
         buttonGuardar.setOnClickListener {
@@ -61,12 +61,14 @@ class ActivityEditarPerfil : AppCompatActivity() {
             Req.PUT("/utilizador/${UserManager.getUtilizador()!!.getId()}", queryParams, requestBody, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
                 Toast.makeText(this, "Perfil atualizada", Toast.LENGTH_SHORT).show()
 
+                UserManager.getUtilizador()!!.setEmail(email.text.toString())
+                UserManager.getUtilizador()!!.setNome(nome.text.toString())
                 //StartActivitys(this).buttonGoToSemListener(MainActivity())
             })
         }
     }
 
-    fun previous() {
+    private fun previous() {
         val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
 
         StartActivitys(this).floatingPreviousActivity(floatingButton, this)

@@ -40,6 +40,7 @@ class ActivityPontoInteresseDetalhe : AppCompatActivity() {
 
     fun previous() {
         val floatingButton = findViewById<FloatingActionButton>(R.id.floatingActionButtonReturn)
+
         StartActivitys(this).floatingPreviousActivity(floatingButton, this)
     }
 

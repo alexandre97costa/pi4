@@ -71,7 +71,7 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
-                    android:layout_width="0dp"
+                    android:layout_width="265dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
@@ -81,21 +81,21 @@
 
                     <TextView
                         android:id="@+id/textViewNomePontoInteresse"
-                        android:layout_width="280dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nome do Ponto de Interesse"
                         android:theme="@style/tittle_principal_black" />
 
                     <TextView
                         android:id="@+id/textViewCategoria"
-                        android:layout_width="280dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Categoria"
                         android:theme="@style/tittle_secundario_black" />
 
                     <TextView
                         android:id="@+id/textView_morada"
-                        android:layout_width="280dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Morada"
                         android:theme="@style/text_normal" />

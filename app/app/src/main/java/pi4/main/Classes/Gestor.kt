@@ -12,7 +12,6 @@ import pi4.main.Object.UserManager
 import pi4.main.R
 
 class Gestor() {
-    val listaPontosInteresse: ArrayList<PontoInteresse> = arrayListOf()
     val listaRecompensa: ArrayList<Recompensa> = arrayListOf()
 
     var pontoInteresse: PontoInteresse = PontoInteresse(
@@ -37,9 +36,6 @@ class Gestor() {
     )
 
     fun getAllPontosInteresse(context: Context, listView: ListView, listarPontosInteresse: Boolean, nome: String, categoriaId: String) {
-        //Para termos acerteza que não temos informação duplicada
-        listaPontosInteresse.clear()
-
         //Pedido API
         val queryParams = JSONObject("""{}""")
         queryParams.put("nome_desc", nome)
@@ -49,6 +45,8 @@ class Gestor() {
 
         Req.GET("/pi", queryParams, context, UserManager.getUtilizador()!!.getToken() ,then = { res ->
             val data = res.optJSONArray("data")
+
+            var listaPontosInteresse: ArrayList<PontoInteresse> = arrayListOf()
 
             for (i in 0..data!!.length() - 1) {
                 val objectRes = data!!.optJSONObject(i)
@@ -70,39 +68,13 @@ class Gestor() {
             Log.i("pontoInteresse", "${listaPontosInteresse.count()}")
 
             if(listarPontosInteresse)
-                listAllPontosInteresse(context, listView)
+                listAllPontosInteresse(context, listView, listaPontosInteresse)
         })
     }
 
-    private fun listAllPontosInteresse(context: Context, listView: ListView) {
+    private fun listAllPontosInteresse(context: Context, listView: ListView, listaPontosInteresse: ArrayList<PontoInteresse>) {
         val customAdapter = SetAdapterCard(context, listaPontosInteresse)
         listView.adapter = customAdapter
-    }
-
-    fun getPontoInteresse(id: String, context: Context) {
-        val queryParams = JSONObject("""{}""")
-        val path = "/pi/${id}"
-        var objectRes:JSONObject
-
-        Req.GET(path, queryParams, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
-            val data = res.getJSONArray("data")
-            objectRes = data.getJSONObject(0)
-
-            var pi = PontoInteresse(
-                objectRes.getString("id"),
-                objectRes.getJSONArray("imagens").getString( 0), //img
-                objectRes.getString("nome"),
-                objectRes.getString("morada"),
-                objectRes.getString("descricao"),
-                objectRes.getJSONObject("tipo_interesse").getString("nome"), //tipo
-                objectRes.getJSONObject("freguesia").getString("nome"), //freguesia
-                objectRes.getString("pontos"),
-                objectRes.getDouble("avg_avaliacao").toFloat(),
-                objectRes.getJSONObject("agente_turistico").getString("nome") //agente
-            )
-
-        })
-
     }
 
     fun fragmentRecompensasListar(context: Context, listView: ListView, categoriaId: String) {

@@ -33,6 +33,7 @@ module.exports = (sequelize) => {
             timestamps: true, // created_at, updated_at, e deleted_at
             hooks: {
                 beforeCreate: record => {
+                    console.log("beforeCreate Reserva")
                     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     record.dataValues.codigo_confirmacao =
                         characters.charAt(Math.floor(Math.random() * characters.length))

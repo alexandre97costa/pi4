@@ -3,7 +3,6 @@ package pi4.main.Fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,8 +26,8 @@ class FragmentPontoInteresse() : Fragment() {
         return inflater.inflate(R.layout.fragment_ponto_interesse, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
 
         loginUtilizador()
     }
@@ -122,7 +121,7 @@ class FragmentPontoInteresse() : Fragment() {
         )
     }
 
-    fun callAdapterCards() {
+    private fun callAdapterCards() {
         val listView = requireView().findViewById<ListView>(R.id.listView)
 
         gestor.getAllPontosInteresse(requireContext(), listView, true, nome, categoriaId)
