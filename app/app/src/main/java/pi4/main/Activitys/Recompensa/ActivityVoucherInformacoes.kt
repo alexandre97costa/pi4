@@ -15,7 +15,6 @@ import pi4.main.R
 
 class ActivityVoucherInformacoes : AppCompatActivity() {
     private lateinit var recompensaId: String
-    private val gestor = Gestor()
     private var pointsVoucher: Int = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -229,10 +228,10 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
 
                     //ESPAÇO PARA CONTINUAR A PAGINA
                     loadPoints()
+                    includeRecompensaInfoOn()
+                    loadInformacaoOn()
                 })
             })
         })
     }
-
-
 }
