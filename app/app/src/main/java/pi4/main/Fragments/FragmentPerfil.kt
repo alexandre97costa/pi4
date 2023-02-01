@@ -1,5 +1,7 @@
 package pi4.main.Fragments
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -107,6 +109,11 @@ class FragmentPerfil : Fragment() {
         StartActivitys(requireContext()).buttonGoTo(buttonReserva, ActivityHistoricoReserva())
         StartActivitys(requireContext()).buttonGoTo(buttonHistorico, ActivityHistoricoVisitas())
         StartActivitys(requireContext()).buttonGoTo(buttonTornarAgente, ActivityTornarAgente())
+
+        buttonTermos.setOnClickListener {
+            //Mudar o ip para apresentacao
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.80.112:4003/termos-utilizacao")))
+        }
 
     }
 }

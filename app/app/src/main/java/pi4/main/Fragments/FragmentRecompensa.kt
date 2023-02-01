@@ -23,6 +23,7 @@ import pi4.main.R
 
 class FragmentRecompensa : Fragment() {
     private val gestor = Gestor()
+    private var categoriaId: String = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_recompensa, container, false)
@@ -105,12 +106,18 @@ class FragmentRecompensa : Fragment() {
     private fun createCategoriasTab() {
         val tab = requireView().findViewById<TabLayout>(R.id.includedMenuCategoria)
 
-        CategoriaLista(tab, requireContext())
+        CategoriaLista(tab, requireContext()).createCategoriaListener(
+            funcao = {
+                this.categoriaId = it.toString()
+
+                callAdapterCards()
+            }
+        )
     }
 
     private fun callAdapterCards() {
         val listView = requireView().findViewById<ListView>(R.id.listViewRecompensas)
 
-        gestor.fragmentRecompensasListar(requireContext(), listView)
+        gestor.fragmentRecompensasListar(requireContext(), listView, categoriaId)
     }
 }

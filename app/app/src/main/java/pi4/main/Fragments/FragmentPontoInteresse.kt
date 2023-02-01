@@ -12,12 +12,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.ficha8.Req
 import com.google.android.material.tabs.TabLayout
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.json.JSONObject
 import pi4.main.R
-import pi4.main.Adapter.SetAdapterCard
 import pi4.main.Classes.*
 import pi4.main.Object.UserManager
 
@@ -26,16 +22,12 @@ class FragmentPontoInteresse() : Fragment() {
     private var categoriaId: String = ""
     private var nome: String = ""
 
-    fun setCategoriaId(categoriaId: String) {
-        this.categoriaId = categoriaId
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_ponto_interesse, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onResume() {
+        super.onResume()
 
         loginUtilizador()
     }
@@ -110,8 +102,7 @@ class FragmentPontoInteresse() : Fragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if(textInputEditText.text.toString() != "")
-                    nome = textInputEditText.text.toString()
+                nome = textInputEditText.text.toString()
 
                 callAdapterCards()
             }
@@ -121,10 +112,16 @@ class FragmentPontoInteresse() : Fragment() {
     private fun createCategoriasTab() {
         val tab = requireView().findViewById<TabLayout>(R.id.includedMenuCategoria)
 
-        CategoriaLista(tab, requireContext())
+        CategoriaLista(tab, requireContext()).createCategoriaListener(
+            funcao = {
+                this.categoriaId = it.toString()
+
+                callAdapterCards()
+            }
+        )
     }
 
-    fun callAdapterCards() {
+    private fun callAdapterCards() {
         val listView = requireView().findViewById<ListView>(R.id.listView)
 
         gestor.getAllPontosInteresse(requireContext(), listView, true, nome, categoriaId)

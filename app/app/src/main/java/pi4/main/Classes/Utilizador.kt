@@ -26,10 +26,8 @@ class Utilizador(
     private var pontos: String
     private var token: String
     //Criação das listas
-    var listaHistoricoPontos: ArrayList<HistoricoPontos> = arrayListOf()
     var listaHistoricoVisitas: ArrayList<HistoricoVisitas> = arrayListOf()
     var listaHistoricoReservas: ArrayList<Reservas> = arrayListOf()
-    var listaRecompensasJaResgatadas: ArrayList<Recompensa> = arrayListOf()
 
     lateinit var reservaInfo: Reservas
 
@@ -83,13 +81,13 @@ class Utilizador(
     //PEDIDO API
     fun getRecompensasJaResgatadas(context: Context, listView: ListView) {
         //limpar arrayList antes de fazer um pedido API
-        listaRecompensasJaResgatadas.clear()
 
         val queryParams = JSONObject("""{}""")
         queryParams.put("visitante_id", id)
 
         Req.GET("/voucher", queryParams, context, token, then = { res ->
             val data = res.optJSONArray("data")
+            var listaRecompensasJaResgatadas: ArrayList<Recompensa> = arrayListOf()
 
             for (i in 0..data.length() - 1) {
                 val objectRes = data.optJSONObject(i)
@@ -109,13 +107,12 @@ class Utilizador(
     }
 
     fun getListaHistoricoPontos(context: Context, listView: ListView) {
-        listaHistoricoPontos.clear()
-
         val path = "/historico/pontos/" + UserManager.getUtilizador()!!.getId()
         val queryParams = JSONObject("""{}""")
 
         Req.GET(path, queryParams, context, UserManager.getUtilizador()!!.getToken(), then = { res ->
             val data = res.optJSONArray("output")
+            var listaHistoricoPontos: ArrayList<HistoricoPontos> = arrayListOf()
 
             for (i in 0..data.length() - 1) {
                 val objectRes = data.getJSONObject(i)
@@ -130,6 +127,8 @@ class Utilizador(
                     objectRes.optBoolean("boolean")
                 ))
             }
+
+            Log.i("ListaPontos", listaHistoricoPontos.toString())
 
             val customAdapter = SetAdapterCardHistoricoPontos(context, listaHistoricoPontos)
             listView.adapter = customAdapter
