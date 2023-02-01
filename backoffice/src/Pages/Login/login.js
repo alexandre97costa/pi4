@@ -83,8 +83,8 @@ export default function Login(props) {
                         >
                             <span>Entrar</span>
                             {loading &&
-                                <div class="spinner-border text-light" role="status">
-                                    <span class="visually-hidden">Loading...</span>
+                                <div className="spinner-border text-light" role="status">
+                                    <span className="visually-hidden">Loading...</span>
                                 </div>
                             }
                         </button>
