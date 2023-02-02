@@ -1,9 +1,8 @@
 var sequelize = require('../config/database')
 const { Op } = require('sequelize')
-const { dev: devClass } = require('../_dev/dev');
-const dev = new devClass;
-// * Como usar o Op:
-// * https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators
+const { dev: devClass } = require('../_dev/dev')
+const dev = new devClass
+const uuid = require('uuid');
 
 const {
     ponto_interesse,
@@ -26,7 +25,12 @@ module.exports = {
         if (req.auth.tipo !== 1)
             return res.status(401).json({ msg: 'Apenas visitantes podem carimbar pontos de interesse.' })
 
-        const pi = await ponto_interesse.findOne({ where: { codigo_uuid: req.params.codigo } })
+        const { codigo } = req.params
+
+        if (!uuid.validate(codigo))
+            return res.status(400).json({ msg: 'O código não é válido.' })
+
+        const pi = await ponto_interesse.findOne({ where: { codigo_uuid: codigo } })
 
         // não encontrou o PI
         console.log(pi)
@@ -51,7 +55,12 @@ module.exports = {
         if (req.auth.tipo !== 1)
             return res.status(401).json('Só visitantes é que podem carimbar Eventos')
 
-        const ev = await evento.findOne({ where: { codigo_uuid: req.params.codigo } })
+        const { codigo } = req.params
+
+        if (!uuid.validate(codigo))
+            return res.status(400).json({ msg: 'O código não é válido.' })
+
+        const ev = await evento.findOne({ where: { codigo_uuid: codigo } })
 
         // nao encontrou o evento
         if (ev === null)

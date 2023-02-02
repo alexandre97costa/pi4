@@ -210,6 +210,55 @@ module.exports = {
             })
     },
 
+    mudar_pw: async (req, res) => {
+        const { id } = req.params
+
+        if (!req.body.hasOwnProperty('password'))
+            return res.status(400).json({ msg: 'Falta a nova password.' })
+
+        let { password } = req.body
+        password = password.trim()
+
+        // validações de password
+        if (password === "")
+            return res.status(400).json({ msg: 'A nova password não pdoe estar vazia.' })
+
+        if (password.length < 6)
+            return res.status(400).json({ msg: 'A password precisa de ter no minimo 6 carateres.' })
+
+        if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ\d\w@$!%*#?&]{6,}$/.test(password)))
+            return res.status(400).json({ msg: 'A password pode ter letras, numeros, e os carateres especiais: _ @ $ ! % * # ? &.' })
+
+        // validação check, encriptar
+        bcrypt
+        .hash(password, 10)
+        .then(hash => { password = hash })
+        .catch(error => { dev.error(error) })
+
+
+        // verificar se o utilizador realmente existe
+        const _utilizador = await utilizador.findByPk(id)
+        if (_utilizador === null)
+            return res.status(404).json({ msg: 'O utilizador fornecido não existe ou foi eliminado.' })
+
+        // cada utilizador só se pode editar a si mesmo
+        if (+req.auth.id !== +id)
+            return res.status(401).json({ msg: 'Só podes atualizar as tuas próprias informações' })
+
+        await _utilizador
+            .update({ password: password })
+            .then(output => {
+                return !output.dataValues ?
+                    res.status(400).json({ msg: 'Utilizador não atualizado.' }) :
+                    res.status(200).json({ msg: 'Utilizador atualizado.', utilizador: output[0] })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
+    },
+
     mudar_tipo: async (req, res) => {
         // apenas admins e responsaveis podem mudar tipos
         if (req.auth.tipo !== 3 || req.auth.tipo !== 4)
