@@ -17,43 +17,9 @@ const ip = process.env.REACT_APP_IP;
 //array das categorias das recompensas
 
 export default function Recompensa(props) {
-  const [tipos, setTipos] = useState([])
-	const [utilizadores, setUtilizadores] = useState([])
-
   const [recompensas, setRecompensas] = useState([]);
   const [pontoInteresse, setPontoInteresse] = useState([]);
 
-  const [offset, setOffset] = useState(0)
-	const [tipo, setTipo] = useState(3)
-
-  let params = [
-		'?tipo_utilizador_id=' + tipo,
-		'&offset=' + offset
-	]
-
-  useEffect(() => {
-		// tipos
-		axios
-			.get(ip + '/tipos/utilizador', auth.header())
-			.then(output => { setTipos(['Todos', ...output.data?.tipos.map(t => t.nome)] ?? []) })
-
-		getUtilizadores()
-	}, [])
-
-  useEffect(() => {
-		getUtilizadores()
-		setOffset(0)
-	}, [tipo, offset]) // ir adicionando aqui os hooks dos filtros
-
-  async function getUtilizadores() {
-		await axios
-			.get(ip + '/utilizador' + params.join(''), auth.header())
-			.then(output => {
-				setUtilizadores(output.data?.data ?? [])
-			})
-			.catch(error => console.error(error))
-
-	}
 
   useEffect(() => {
     axiosGetRecompensas();
@@ -91,16 +57,6 @@ export default function Recompensa(props) {
   //       </div>
   //   );
   // }
-
-  async function getUtilizadores() {
-		await axios
-			.get(ip + '/utilizador' + params.join(''), auth.header())
-			.then(output => {
-				setUtilizadores(output.data?.data ?? [])
-			})
-			.catch(error => console.error(error))
-
-	}
 
   function axiosGetRecompensas() {
     const url = ip + "/recompensa"
