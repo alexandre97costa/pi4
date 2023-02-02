@@ -14,35 +14,9 @@ export default function Eventos() {
         axiosGetEventos();
     }, []);
 
-    const testeReserva1 = [{
-        dataReserva: '20 Jan 2023',
-        numeroPessoas: '2'
-    }, {
-        dataReserva: '20 Jan 2023',
-        numeroPessoas: '5'
-    }, {
-        dataReserva: '20 Jan 2023',
-        numeroPessoas: '13'
-    }]
-
-    const testeReserva2 = [{
-        dataReserva: '20 Jan 2023',
-        numeroPessoas: '3'
-    }, {
-        dataReserva: '20 Jan 2023',
-        numeroPessoas: '5'
-    }]
-
-
     const borderRadius = 14
 
-    const evento = [
-        "Piquenique a beira mar",
-        "Jogo de futebol",
-        "Visita guida",
-        "Cinema para crianças",
-        "Tour pela cidade"
-    ];
+    const evento = [];
 
     const dataEventos = [
         "12",
@@ -61,21 +35,18 @@ export default function Eventos() {
 
     async function axiosGetEventos() {
         const url = ip + "/evento"/*saber qual a rota*/
-        console.log(url)
-        console.log(auth.header())
 
 		let options = {
 			...auth.header(),
-			params: {
-
-			},
+			params: { },
 		}
 
         await axios
-            .get(url, options)
+            .get(url , options)
             .then((output) => {
                 console.log(output.data.data);
                 setEventos(output.data?.data ?? []);
+                // evento = output.data?.data.nome ?? []
             })
             .catch((error) => console.error(error));
     }
@@ -96,6 +67,7 @@ export default function Eventos() {
                                 sessao={item.sessoes}
                                 lotacao={item.lotacao}
                                 eventoId={item.id}
+                                onChange={() => axiosGetEventos()}
                             />
                         </div>
                     )

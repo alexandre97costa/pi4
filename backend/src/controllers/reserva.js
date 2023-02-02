@@ -42,7 +42,7 @@ module.exports = {
         const ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
         const minPessoas = req.query?.minPessoas ?? 0
         const maxPessoas = req.query?.maxPessoas ?? 0
-        const validado = req.query?.validado ?? ''
+        const validado = req.query?.validado ?? null
         const confirmado = !!(req.query?.confirmado ?? true)
 
         // * ordenação e paginação
@@ -67,9 +67,7 @@ module.exports = {
                     visitante_id: (req.auth.tipo === 1) ?
                         req.auth.id :
                         { [Op.ne]: 0 },
-                    validado: validado ?
-                        validado : 
-                        { [Op.ne]: null }
+                    validado: validado
                 },
                 include: [
                     {
@@ -201,8 +199,11 @@ module.exports = {
         if (req.auth.tipo !== 2)
             return res.status(401).json({ msg: 'Apenas agentes turísticos podem validar reservas.' })
 
-        if (!req.params.id || !req.body.validado)
-            return res.status(400).json({ msg: 'Faltam dados! É preciso identificar a reserva e o novo valor de validação.' })
+        if (!req.params.id)
+            return res.status(400).json({ msg: 'Faltam dados! Id.' })
+
+        if (!req.body.hasOwnProperty('validado'))
+            return res.status(400).json({ msg: 'Faltam dados! validação.' })
 
         const { validado } = req.body
         const { id } = req.params
@@ -211,7 +212,7 @@ module.exports = {
         if (_reserva === null) return res.status(404).json({ msg: 'Essa reserva não existe.' })
 
         // so o agente que é proprietario do ponto de interesse onde decorre o evento é que pode validar
-        const _sessao = await evento.findByPk(_reserva.sessao_id)
+        const _sessao = await sessao.findByPk(_reserva.sessao_id)
         if (_sessao === null) return res.status(404).json({ msg: 'Essa sessão não existe' })
 
         const _evento = await evento.findByPk(_sessao.evento_id)
@@ -227,7 +228,7 @@ module.exports = {
         await _reserva
             .update({ validado: !!validado })
             .then(output => {
-                return !output[0] ?
+                return !output ?
                     res.status(400).json({ msg: 'Reserva não atualizada' }) :
                     res.status(200).json({ msg: 'Reserva atualizada', reserva: output[0] })
             })

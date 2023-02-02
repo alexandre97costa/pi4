@@ -29,9 +29,7 @@ export default function Home() {
 
         let options = {
             ...auth.header(),
-            params: {
-
-            },
+            params: {},
         }
 
         await axios
@@ -63,12 +61,6 @@ export default function Home() {
         backgroundColor: "#729d4c",
         borderRadius: borderRadius
     }]
-
-    function determinarValeuNow(statusReserva) {
-        //Calcular de forma automática a percentagem de ocupação
-        const percentagem = statusReserva.split('/')
-        return '10'
-    }
 
     const toastId = useRef(null)
 
@@ -128,6 +120,7 @@ export default function Home() {
                                 sessao={item.sessoes}
                                 lotacao={item.lotacao}
                                 eventoId={item.id}
+                                onChange={() => axiosGetEventos()}
                             />
                         </div>
                     )

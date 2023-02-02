@@ -14,13 +14,18 @@ export default function CardReservas(props) {
         getReservas()
     }, [])
 
+    useEffect(() => {
+        props.onChange()
+        console.log("Passei aqui")
+    }, [reservas])
+
     async function getReservas() {
         const url = ip + '/reserva'
         let options = {
             ...auth.header(),
             params: {
                 evento_id: props.eventoId,
-                validado: false
+                validado: null
             },
         }
 
@@ -29,25 +34,39 @@ export default function CardReservas(props) {
             .then((output) => {
                 console.log(output.data.data)
                 setReservas(output.data?.data ?? [])
-            }).catch((error) => console.error(error))
+            }).catch((error) => {
+                if(error.response.status === 404)
+                    return setReservas([])
+
+                console.error(error)
+            })
     }
 
     async function postValidar(id) {
         const url = ip + '/reserva/validar/' + id
-        console.log("url: " + url)
+        console.log("post url: " + url)
 
-        let data = {
-            validado: true
-        }
-
-        let options = {
-            ...auth.header(),
-        }
+        let options = { validado: true }
 
         await axios
-            .patch(url, data, options)
+            .patch(url, options, auth.header())
             .then((output) => {
                 console.log(output.data)
+                getReservas()
+            }).catch((error) => console.error(error) )
+    }
+
+    async function deleteReserva(id) {
+        const url = ip + '/reserva/validar/' + id
+        console.log("delete url: " + url)
+
+        let options = { validado: false }
+
+        await axios
+            .patch(url, options, auth.header())
+            .then((output) => {
+                console.log(output.data)
+                getReservas()
             }).catch((error) => console.error(error) )
     }
 
@@ -95,10 +114,9 @@ export default function CardReservas(props) {
                     )
                 })}
 
-
                 {reservas.map((item, index) => {
                     const options = { year: 'numeric', month: 'numeric', day: 'numeric' }
-                    console.log(item)
+
                     return (
                         <div key={index} className='col-12 border-top'>
                             <div className='row align-items-center py-3'>
@@ -110,7 +128,7 @@ export default function CardReservas(props) {
                                 <VisibleTo tipo='2'>
                                     <div className="col-6 text-end">
                                         <Botao className="btn-outline-success btn-sm" texto="Confirmar" onClick={() => postValidar(item.id)} />
-                                        <Botao className="btn-outline-danger btn-sm mt- 0 mt-sm-2 mt-md-0 ms-2" texto="Rejeitar" onClick={() => console.log(index)} />
+                                        <Botao className="btn-outline-danger btn-sm mt- 0 mt-sm-2 mt-md-0 ms-2" texto="Rejeitar" onClick={() => deleteReserva(item.id)} />
                                     </div>
                                 </VisibleTo>
 
