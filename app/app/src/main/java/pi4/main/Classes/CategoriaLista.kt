@@ -28,16 +28,15 @@ class CategoriaLista(tabLayout: TabLayout, context: Context) {
             else //deixa o icon de unselect nos restantes
                 tabLayout.addTab(tabLayout.newTab().setText(arrayTexto[i]).setIcon(arrayIconsNotFill[i]))
         }
-
-        createCategoriaListener()
     }
 
-    fun createCategoriaListener() {
+    fun createCategoriaListener(funcao: (Int) -> Unit) {
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
 
             override fun onTabSelected(tab: TabLayout.Tab) {
                 // Handle tab select
                 changeIconOnSelected(tab, tab.position)
+                funcao(tab.position)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {
@@ -52,12 +51,12 @@ class CategoriaLista(tabLayout: TabLayout, context: Context) {
     }
 
     //Alterar futuramente arrayIconNotFill[0]
-    fun changeIconUnSelected(tabLayout: TabLayout.Tab, index: Int) {
+    private fun changeIconUnSelected(tabLayout: TabLayout.Tab, index: Int) {
         tabLayout.setIcon(arrayIconsNotFill[index])
     }
 
     //Alterar futuramente arrayIconFill[0]
-    fun changeIconOnSelected(tabLayout: TabLayout.Tab, index: Int) {
+    private fun changeIconOnSelected(tabLayout: TabLayout.Tab, index: Int) {
         tabLayout.setIcon(arrayIconsFill[index])
     }
 }

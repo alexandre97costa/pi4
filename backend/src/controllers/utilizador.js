@@ -189,8 +189,8 @@ module.exports = {
             return res.status(404).json({ msg: 'O utilizador fornecido não existe ou foi eliminado.' })
 
         // cada utilizador só se pode editar a si mesmo
-        if (req.auth.id !== id)
-            return res.status(401).json({ msg: 'Só podesatualizar as tuas próprias informações' })
+        if (+req.auth.id !== +id)
+            return res.status(401).json({ msg: 'Só podes atualizar as tuas próprias informações' })
 
         await _utilizador
             .update({
@@ -199,7 +199,7 @@ module.exports = {
                 data_nascimento: data_nascimento
             })
             .then(output => {
-                return !output[0] ?
+                return !output.dataValues ?
                     res.status(400).json({ msg: 'Utilizador não atualizado.' }) :
                     res.status(200).json({ msg: 'Utilizador atualizado.', utilizador: output[0] })
             })

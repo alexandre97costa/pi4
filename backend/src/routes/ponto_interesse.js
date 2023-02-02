@@ -10,7 +10,7 @@ router.patch('/:id/agente/:agente_id', pi.mudar_agente)
 router.patch('/:id/estado/:novo_estado', pi.mudar_estado)
 router.delete('/:id', pi.delete)
 
-// tipos estão no route/tipos
+// os tipos estao no routes/tipos
 
 router.get('/:id/comentarios_avaliacoes', pi.comentarios_avaliacoes)
 router.post('/:id/comentario_avaliacao', pi.post_comentario_avaliacao)

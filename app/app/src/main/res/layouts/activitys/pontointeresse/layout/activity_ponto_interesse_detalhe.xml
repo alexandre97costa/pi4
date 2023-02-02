@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    android:backgroundTint="@color/backgroundColor"
     android:scrollbars="none">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor"
+        android:backgroundTint="@color/backgroundColor">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -16,14 +20,13 @@
             android:layout_height="290dp"
             android:cropToPadding="false"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ponto_interesse_exemplo" />
+            app:srcCompat="@drawable/img1" />
 
         <include
+            android:id="@+id/include5"
             layout="@layout/background_degrade"
             android:layout_width="match_parent"
             android:layout_height="800dp"
@@ -68,7 +71,7 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayout2"
-                    android:layout_width="0dp"
+                    android:layout_width="265dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
@@ -78,7 +81,7 @@
 
                     <TextView
                         android:id="@+id/textViewNomePontoInteresse"
-                        android:layout_width="280dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nome do Ponto de Interesse"
                         android:theme="@style/tittle_principal_black" />
@@ -170,6 +173,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="16dp"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/include4">
@@ -190,7 +194,8 @@
                     android:id="@+id/tabLayoutEventos"
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
+                    android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintEvento"
@@ -220,7 +225,7 @@
                         app:srcCompat="@drawable/star" />
 
                     <TextView
-                        android:id="@+id/textView20"
+                        android:id="@+id/textViewRatingComentarios"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -240,11 +245,11 @@
                         android:text="|"
                         android:textColor="@color/greenPrincipal"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView20"
+                        app:layout_constraintStart_toEndOf="@+id/textViewRatingComentarios"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView23"
+                        android:id="@+id/textViewNumeroComentarios"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -270,8 +275,11 @@
                     android:id="@+id/linearLayoutComentarios"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout13" />

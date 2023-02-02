@@ -29,6 +29,7 @@ module.exports = {
         const pi = await ponto_interesse.findOne({ where: { codigo_uuid: req.params.codigo } })
 
         // não encontrou o PI
+        console.log(pi)
         if (pi === null)
             return res.status(404).json({ msg: 'Esse ponto de interesse não existe ou foi eliminado.' })
 
@@ -54,7 +55,7 @@ module.exports = {
 
         // nao encontrou o evento
         if (ev === null)
-            return res.status(404).json('Esse Evento não existe. Talvez tenha sido eliminado?')
+            return res.status(404).json({ msg: 'Esse Evento não existe. Talvez tenha sido eliminado?' })
 
         // o scan foi feito fora de horas?
         // - apanhamos as sessoes todas do evento
@@ -88,11 +89,31 @@ module.exports = {
                 evento_id: ev.id,
                 pontos_recebidos: ev.pontos
             })
-            .then(data => res.status(200).json(data))
-            .catch(e => res.status(400).json(e))
+            .then(data => { return res.status(200).json(data) })
+            .catch(e => { return res.status(400).json(e) })
 
     },
 
     // todo: historico de pontos de interesse
+    historico: async (req, res) => {
+
+        if (!req.paras.visitante_id)
+            return res.status(400).json({ msg: 'Falta o visitante_id.' })
+
+        const { visitante_id } = req.params
+
+        await scan_ponto_interesse
+            .findAndCountAll({ where: { visitante_id: visitante_id } })
+            .then(data => {
+                return !output.count ?
+                    res.status(404).json({ msg: 'Ainda não fizeste scans a pontos de interesse.' }) :
+                    res.status(200).json({ data: output.rows, count: output.count })
+            })
+            .catch(error => {
+                res.status(400).json({ msg: 'Ocorreu um erro no pedido do teu histórico de scans.' })
+                dev.error({ error })
+                return
+            })
+    }
 
 }

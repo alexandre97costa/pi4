@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/orquestra1" />
+        app:srcCompat="@drawable/img16" />
 
     <include
         android:id="@+id/include2"
@@ -160,21 +160,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-                <EditText
-                    android:id="@+id/editTextTextTelefone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/shape_outline"
-                    android:ems="10"
-                    android:hint="telefone"
-                    android:inputType="phone"
-                    android:paddingStart="10dp"
-                    android:theme="@style/text_input"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextNome" />
-
                 <TextView
                     android:id="@+id/textViewnumeroPessoas"
                     android:layout_width="match_parent"
@@ -184,7 +169,7 @@
                     android:theme="@style/tittle_principal_black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextTelefone" />
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextNome" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayout15"
@@ -283,6 +268,7 @@
                     android:background="@drawable/shape_green"
                     android:text="Reservar"
                     android:theme="@style/text_button_white"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/card_view" />
