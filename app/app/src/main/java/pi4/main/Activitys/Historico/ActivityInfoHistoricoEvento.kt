@@ -42,7 +42,7 @@ class ActivityInfoHistoricoEvento : AppCompatActivity() {
         val nomeEvento = findViewById<TextView>(R.id.textViewNomeEvento)
         val nomeReserva = findViewById<TextView>(R.id.textViewNomeReserva)
         val dataEvento = findViewById<TextView>(R.id.textViewData)
-        val horaEvento = findViewById<TextView>(R.id.textViewhoras)
+        val horaEvento = findViewById<TextView>(R.id.textViewcategoria)
         val numeroPessoas = findViewById<TextView>(R.id.textViewLugares)
 
         val estado = findViewById<TextView>(R.id.textViewEstado)

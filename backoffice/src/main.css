@@ -103,6 +103,21 @@
     box-shadow: var(--pi4-primary-box-shadow);
 }
 
+.form-control:focus,
+.dropdown-toggle.show {
+    color: #212529;
+    background-color: #fff;
+    border-color: var(--pi4-primary);
+    outline: 0;
+    box-shadow: var(--pi4-primary-box-shadow);
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: var(--bs-white);
+    text-decoration: none;
+    background-color: var(--pi4-primary);
+}
+
 
 /* background */
 .bg-primary {

@@ -347,13 +347,38 @@ module.exports = {
     comentarios_avaliacoes: async (req, res) => {
 
         const { id } = req.params
+        const limit = req.query?.limit ?? 0
+
+        const avg = await comentario_avaliacao.findOne({
+            where: { ponto_interesse_id: +id },
+            attributes: [[sequelize.fn('AVG', sequelize.col('comentario_avaliacao.avaliacao')), 'avg']]
+        })
 
         await comentario_avaliacao
-            .findAll({ where: { ponto_interesse_id: id }, attributes: ['comentario', 'avaliacao', 'created_at'] })
-            .then(output => { return res.status(200).json({ comentarios_avaliacoes: output }) })
+            .findAndCountAll({
+                where: { ponto_interesse_id: +id },
+                attributes: ['comentario', 'avaliacao', 'created_at'],
+                include: { model: utilizador, attributes: ['nome'] },
+                limit: !!limit ? limit : null
+            })
+            .then(output => {
+                return res.status(200).json({
+                    comentarios_avaliacoes: output.rows.map(c => {
+                        return {
+                            comentario: c.dataValues.comentario,
+                            avaliacao: c.dataValues.avaliacao,
+                            created_at: c.dataValues.created_at,
+                            nome_visitante: c.utilizador.nome,
+                            
+                        }
+                    }),
+                    avg,
+                    count: output.count
+                })
+            })
             .catch(error => {
                 res.status(400).json({ error })
-                dev(error)
+                dev.error(error)
                 return
             })
     },

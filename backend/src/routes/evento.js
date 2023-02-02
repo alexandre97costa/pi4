@@ -9,6 +9,6 @@ router.post('/', eventoController.post)
 router.put('/:id', eventoController.editar)
 router.delete('/:id', eventoController.delete)
 
-// tipos estão no route/tipos
+// os tipos estao no routes/tipos
 
 module.exports = router;

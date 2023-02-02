@@ -1,12 +1,5 @@
 package pi4.main.Classes
 
-import android.content.Context
-import com.example.ficha8.Req
-import com.google.android.material.tabs.TabLayout
-import org.json.JSONObject
-import pi4.main.Adapter.SetAdapterCardEvento
-import pi4.main.Object.UserManager
-
 class PontoInteresse(
     id: String,
     image_url:String,
@@ -94,49 +87,5 @@ class PontoInteresse(
         //Fazer pedido API
         //Exemplo de return
         return listaEventos[eventoId.toInt() - 1]
-    }
-
-    fun getAllComentarios(id: String) {
-        //Limpar arrayList antes de fazer um pedido API
-        listaComentarios.clear()
-
-        //exemplo pedido api
-        this.listaComentarios.add(Comentarios(
-            "Joaquim Sousa",
-            "Um sitio incrivel",
-            "4.1"
-        ))
-        this.listaComentarios.add(Comentarios(
-            "Maria Amalia",
-            "Um sitio impecavel",
-            "4.9"
-        ))
-        this.listaComentarios.add(Comentarios(
-            "Jocas",
-            "Um sitio que nunca vou esquecer",
-            "4.87"
-        ))
-        this.listaComentarios.add(Comentarios(
-            "Mara",
-            "Um sitio para voltar",
-            "3.2"
-        ))
-    }
-
-    fun getLimitComentarios(id: String) {
-        //Limpar antes de começar para termos acerteza que não tem informação nenhuma anterior
-        listaComentarios.clear()
-
-
-        this.listaComentarios.add(Comentarios(
-            "Joaquim Sousa",
-            "Um sitio incrivel",
-            "4.1"
-        ))
-        this.listaComentarios.add(Comentarios(
-            "Maria Amalia",
-            "Um sitio impecavel",
-            "4.9"
-        ))
     }
 }

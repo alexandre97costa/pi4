@@ -10,7 +10,18 @@ module.exports = (sequelize) => {
             },
             data_validade: {
                 type: DataTypes.DATEONLY,
-                allowNull: false
+                allowNull: false,
+                defaultValue: () => {
+                    let date = new Date()
+                    let nova = new Date(date.setDate(date.getDate() + 10))
+
+                    const year = nova.getFullYear()
+                    const month = nova.getMonth() + 1
+                    const day = nova.getDate()
+
+
+                    return year + '-' + month + '-' + day
+                }
             },
             data_usado: DataTypes.DATE,
             pontos_gastos: {
@@ -19,7 +30,8 @@ module.exports = (sequelize) => {
             },
             codigo_confirmacao: {
                 type: DataTypes.STRING(5),
-                allowNull: false
+                allowNull: false,
+                defaultValue: 'A0000'
             },
         },
         {
@@ -29,15 +41,16 @@ module.exports = (sequelize) => {
             paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
             timestamps: true, // created_at, updated_at, e deleted_at
             hooks: {
-                beforeCreate: record => {
-                    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    record.dataValues.codigo_confirmacao =
-                        characters.charAt(Math.floor(Math.random() * characters.length))
-                        + record.dataValues.id.slice(-4).padStart(4, '0')
-
-                    // exemplo de resultado final: "F0345"
-                },
                 afterCreate: async v => {
+                    // alterar o codigo de confirmação
+                    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+                    console.log(v.id)
+
+                    v.codigo_confirmacao =
+                        characters.charAt(Math.floor(Math.random() * characters.length))
+                        + v.id.toString().slice(-4).padStart(4, '0')
+
                     // retirar pontos ao utilizador
                     await sequelize.models.utilizador.decrement(
                         { pontos: v.pontos_gastos },

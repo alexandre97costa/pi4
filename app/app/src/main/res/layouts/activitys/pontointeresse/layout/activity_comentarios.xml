@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ponto_interesse_exemplo" />
+        app:srcCompat="@drawable/degrade" />
 
     <include
         layout="@layout/background_degrade"
@@ -103,7 +103,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView23"
+                android:id="@+id/textViewNumeroComentarios"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -133,8 +133,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="8dp"
-            android:progressTint="@color/greenPrincipal"
+            android:numStars="5"
+            android:stepSize="1"
             android:progressBackgroundTint="@color/gray"
+            android:progressTint="@color/greenPrincipal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -149,10 +151,11 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/shape_outline"
-            android:paddingStart="16dp"
             android:hint="Deixe um comentário..."
+            android:paddingStart="16dp"
             android:theme="@style/text_input"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 

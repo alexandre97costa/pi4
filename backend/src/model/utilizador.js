@@ -29,9 +29,14 @@ module.exports = (sequelize) => {
                 allowNull: false,
                 validate: {
                     notNull: { msg: 'A password não pode estar vazia.' },
-                    len: {
-                        args: [6, 30],
-                        msg: 'A password tem que conter entre 6 e 30 caracteres.'
+                    notEmpty: { msg: 'A password não pode estar vazia.' },
+                    min: {
+                        args: [6],
+                        msg: 'A password precisa de ter no minimo 6 carateres'
+                    },
+                    is: {
+                        args: ['^[A-Za-zÀ-ÖØ-öø-ÿ\d\w@$!%*#?&]{6,}$'],
+                        msg: 'A password pode ter letras, numeros, e os carateres especiais: _ @ $ ! % * # ? &.'
                     }
                 }
             },

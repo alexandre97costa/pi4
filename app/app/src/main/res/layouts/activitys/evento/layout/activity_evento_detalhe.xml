@@ -14,12 +14,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:scaleType="centerCrop"
-        app:srcCompat="@drawable/orquestra1" />
+        app:srcCompat="@drawable/degrade" />
 
-    <include
-        layout="@layout/background_degrade"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButtonReturn"
@@ -73,9 +70,9 @@
             android:id="@+id/btnReserva"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/shape_green"
             android:text="reservar"
             android:theme="@style/text_button_white"
