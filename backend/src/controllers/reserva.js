@@ -42,7 +42,7 @@ module.exports = {
         const ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
         const minPessoas = req.query?.minPessoas ?? 0
         const maxPessoas = req.query?.maxPessoas ?? 0
-        const validado = !!(req.query?.validado ?? true)
+        const validado = req.query?.validado ?? ''
         const confirmado = !!(req.query?.confirmado ?? true)
 
         // * ordenação e paginação
@@ -66,7 +66,10 @@ module.exports = {
                     // os visitantes (tipo 1) só podem ver as suas próprias reservas
                     visitante_id: (req.auth.tipo === 1) ?
                         req.auth.id :
-                        { [Op.ne]: 0 }
+                        { [Op.ne]: 0 },
+                    validado: validado ?
+                        validado : 
+                        { [Op.ne]: null }
                 },
                 include: [
                     {

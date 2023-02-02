@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import auth from '../../../Auth/auth.service';
+import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,47 +9,39 @@ import CardReservas from '../../../Components/Cards/CardReservas';
 import ModalValidar from '../../../Components/Modais/ModalValidar';
 import GraficoHorizontal from '../../../Components/GraficoHorizontal';
 import ModalNewPontoInteresse from '../../../Components/Modais/ModalNewPontoInteresse';
-import BotaoDashboard from '../../../Components/BotaoDashboard';
+
+const ip = process.env.REACT_APP_IP
 
 export default function Home() {
     const [codeReserva, setCodeReserva] = useState("")
     const [codeVoucher, setCodeVoucher] = useState("")
     const [codePontoInteresse, setCodePontoInteresse] = useState("")
+    const [eventos, setEventos] = useState([])
 
-    const testeReserva1 = [{
-        dataReserva: '20 Jan 2023',
-        numeroPessoas: '2'
-    }, {
-        dataReserva: '20 Jan 2023',
-        numeroPessoas: '5'
-    }, {
-        dataReserva: '20 Jan 2023',
-        numeroPessoas: '13'
-    }]
+    useEffect(() => {
+        axiosGetEventos();
+    }, [])
 
-    const testeReserva2 = [{
-        dataReserva: '20 Jan 2023',
-        numeroPessoas: '3'
-    }, {
-        dataReserva: '20 Jan 2023',
-        numeroPessoas: '5'
-    }]
+    async function axiosGetEventos() {
+        const url = ip + "/evento"/*saber qual a rota*/
+        console.log(url)
+        console.log(auth.header())
 
-    const teste = [{
-        nomePontoInteresse: 'Ponto de Interesse',
-        nomeEvento: 'Evento X',
-        dataEvento: "20 Jan 2023",
-        statusReserva: "20/30",
-        valueNow: '85',
-        reservas: testeReserva1
-    }, {
-        nomePontoInteresse: 'Ponto de Interesse',
-        nomeEvento: 'Evento X',
-        dataEvento: "21 Jan 2023",
-        statusReserva: "8/9",
-        valueNow: '99',
-        reservas: testeReserva2
-    }]
+        let options = {
+            ...auth.header(),
+            params: {
+
+            },
+        }
+
+        await axios
+            .get(url, options)
+            .then((output) => {
+                console.log(output.data.data);
+                setEventos(output.data?.data ?? []);
+            })
+            .catch((error) => console.error(error));
+    }
 
     const borderRadius = 14
 
@@ -79,23 +73,23 @@ export default function Home() {
     const toastId = useRef(null)
 
     function validarVoucher() {
-        if(!codeVoucher)
+        if (!codeVoucher)
             return toast.warning("Introduza um codigo")
         toast.success("Voucher validado")
     }
 
     function validarReserva() {
-        if(!codeReserva)
+        if (!codeReserva)
             return toast.warning("Introduza um codigo")
         toast.success("Reserva validada")
     }
 
     function adicionarPontoInteresse() {
-        if(!codePontoInteresse)
+        if (!codePontoInteresse)
             return toast.warning("Introduza as informações")
         toast.success("Ponto de Interesse enviado com sucesso")
     }
-    
+
 
     return (
         <>
@@ -116,7 +110,7 @@ export default function Home() {
                 <div className='col-12 col-md-3'>
                     <button className="btn btn-light btn-lg shadow text-break rounded-3" data-bs-toggle="modal" data-bs-target="#NewPontoInteresse">Adicionar Ponto de Interesse<i className="bi bi-journal-check ps-2"></i></button>
 
-                    <ModalNewPontoInteresse idModal="NewPontoInteresse"/>
+                    <ModalNewPontoInteresse idModal="NewPontoInteresse" />
                 </div>
 
                 <div className='col-12 mt-5'>
@@ -124,20 +118,18 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className='row'>
-                {teste.map((item, index) => {
+            <div className='row gy-4 mt-0'>
+                {eventos.map((item, index) => {
                     return (
-                        <div key={index} className="col-12 col-sm-7 col-md-5 mb-4">
+                        <div key={index} className="col-12 col-sm-6 col-md-4">
                             <CardReservas
-                                nomePontoInteresse={item.nomePontoInteresse}
-                                nomeEvento={item.nomeEvento}
-                                dataEvento={item.dataEvento}
-                                statusReserva={item.statusReserva}
-                                valueNow={item.valueNow}
-                                reservas={item.reservas}
+                                nomePontoInteresse={item.ponto_interesse.nome}
+                                nomeEvento={item.nome}
+                                sessao={item.sessoes}
+                                lotacao={item.lotacao}
+                                eventoId={item.id}
                             />
                         </div>
-
                     )
                 })}
             </div>
