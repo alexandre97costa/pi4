@@ -38,7 +38,7 @@ module.exports = {
         const min_pontos = req.query?.min_pontos ?? 0
         const max_pontos = req.query?.max_pontos ?? 0
         const tipo_interesse_id = req.query?.tipo_interesse_id ?? 0
-        const validado = !!(req.query?.validado ?? true)         // True: Só recompensas validadas; False: Só recompensas por validar
+        const validado = req.query?.validado ?? true       // True: Só recompensas validadas; False: Só recompensas por validar
 
         // ? a recompensa não tem ponto de interesse, tem que se filtrar pela associação
         const ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
@@ -49,8 +49,6 @@ module.exports = {
         const offset = req.query?.offset ?? 0
         const limit = req.query?.limit ?? 0
 
-        dev.log(id)
-        dev.log(tipo_interesse_id)
         dev.log(validado)
 
         await recompensa
@@ -91,7 +89,6 @@ module.exports = {
                 limit: !!limit ? limit : null,
             })
             .then(output => {
-                dev.log(output)
                 return !output.count ?
                     res.status(404).json({ msg: 'Não existem recompensas que correspondam aos filtros solicitados.' }) :
                     res.status(200).json({ data: output.rows, count: output.count })

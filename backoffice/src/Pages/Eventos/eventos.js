@@ -78,17 +78,17 @@ export default function Eventos() {
         borderRadius: borderRadius
     }] 
 
-    function axiosGetEventos(){
+    async function axiosGetEventos(){
         const url = ip + "/evento"/*saber qual a rota*/
         console.log(url)
         //Aqui que fazemos o pedido axios dos pontos de interesse
-        axios
+        await axios
         .get(url, auth.header())
         .then((output) => {
             console.log(output.data.data);
             setEventos(output.data?.data ?? []);
         })
-      .catch((error) => console.error(error));
+        .catch((error) => console.error(error));
     }
 
     return (
@@ -98,15 +98,16 @@ export default function Eventos() {
             </div>
 
             {eventos.map((item, index) => {
+                console.log(item)
                 return (
                     <div key={index} className="col-12 col-sm-6 col-md-3">
                         <CardReservas
-                            nomePontoInteresse={item.nomePontoInteresse}
-                            nomeEvento={item.nomeEvento}
-                            dataEvento={item.dataEvento}
-                            statusReserva={item.statusReserva}
-                            valueNow={item.valueNow}
-                            reservas={item.reservas}
+                            nomePontoInteresse={item.ponto_interesse.nome}
+                            nomeEvento={item.nome}
+                            //dataEvento={item.dataEvento}
+                            //statusReserva={item.statusReserva}
+                            valueNow={item.lotacao}
+                            reservas={item.lotacao}
                         />
                     </div>
                 )
