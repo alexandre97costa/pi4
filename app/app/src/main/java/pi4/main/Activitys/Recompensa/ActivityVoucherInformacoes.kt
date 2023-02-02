@@ -84,7 +84,7 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
 
             if (verificarSeJaFoiResgatado()) {
                 includeRecompensaInfoOn()
-                loadInformacaoOn()
+                loadInformacaoOn(this.recompensaId)
             }
             else
                 loadInformacaoOff()
@@ -108,7 +108,7 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
         findViewById<Button>(R.id.btnResgatar).visibility = View.GONE
     }
 
-    private fun loadInformacaoOn() {
+    private fun loadInformacaoOn(recompensaId: String) {
         val titulo = findViewById<TextView>(R.id.textViewTituloOn)
         val descricao = findViewById<TextView>(R.id.textViewDescricaoOn)
         val pontos = findViewById<TextView>(R.id.textViewPontosOn)
@@ -192,6 +192,10 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
             val queryParamsLogin = JSONObject("""{}""")
             val requestBodyLogin = JSONObject()
 
+            val dataVoucher = res.optJSONObject("voucher")
+
+            Log.i("Resposta", dataVoucher.toString())
+
             //Adiciona elementos para o requestBody
             requestBodyLogin.put("email", UserManager.getUtilizador()!!.getEmail())
             requestBodyLogin.put("password", UserManager.getUtilizador()!!.getPasseword())
@@ -229,7 +233,7 @@ class ActivityVoucherInformacoes : AppCompatActivity() {
                     //ESPAÇO PARA CONTINUAR A PAGINA
                     loadPoints()
                     includeRecompensaInfoOn()
-                    loadInformacaoOn()
+                    loadInformacaoOn(dataVoucher.optInt("id").toString())
                 })
             })
         })
