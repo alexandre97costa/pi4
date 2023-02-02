@@ -7,79 +7,62 @@ import CardListaRecompensas from "../../Components/Cards/CardListaRecompensas";
 import GraficoHorizontal from "../../Components/GraficoHorizontal";
 import VisibleTo from "../../Helpers/VisibleTo";
 import BotaoDashboard from "../../Components/BotaoDashboard";
+import auth from "../../Auth/auth.service";
 
 //Imagem exemplo
-import coffe from "../../Assets/Images/logo.png";
+//import coffe from "../../Assets/Images/logo.png";
 
 const ip = process.env.REACT_APP_IP;
 
 //array das categorias das recompensas
 
-export default function Recompensa() {
+export default function Recompensa(props) {
+  const [tipos, setTipos] = useState([])
+	const [utilizadores, setUtilizadores] = useState([])
+
+  const [recompensas, setRecompensas] = useState([]);
+  const [pontoInteresse, setPontoInteresse] = useState([]);
+
+  const [offset, setOffset] = useState(0)
+	const [tipo, setTipo] = useState(3)
+
+  let params = [
+		'?tipo_utilizador_id=' + tipo,
+		'&offset=' + offset
+	]
 
   useEffect(() => {
-    axios.get()
-  }, [])
+		// tipos
+		axios
+			.get(ip + '/tipos/utilizador', auth.header())
+			.then(output => { setTipos(['Todos', ...output.data?.tipos.map(t => t.nome)] ?? []) })
 
-  const recompensas = [
-    {
-      nomeRecompensa: "recompensa 1",
-    },
-    {
-      nomeRecompensa: "recompensa 2",
-    },
-    {
-      nomeRecompensa: "recompensa 3",
-    },
-    {
-      nomeRecompensa: "recompensa 4",
-    },
-  ];
+		getUtilizadores()
+	}, [])
 
-  const recompensas2 = [
-    {
-      nomeRecompensa: "recompensa 1",
-    },
-    {
-      nomeRecompensa: "recompensa 2",
-    },
-    {
-      nomeRecompensa: "recompensa 3",
-    },
-  ];
+  useEffect(() => {
+		getUtilizadores()
+		setOffset(0)
+	}, [tipo, offset]) // ir adicionando aqui os hooks dos filtros
 
-  const teste = [
-    {
-      pontoInteresse: recompensas,
-    },
-    {
-      pontoInteresse: recompensas2,
-    },
-  ];
+  async function getUtilizadores() {
+		await axios
+			.get(ip + '/utilizador' + params.join(''), auth.header())
+			.then(output => {
+				setUtilizadores(output.data?.data ?? [])
+			})
+			.catch(error => console.error(error))
 
-  const recompensa = [
-    {
-      title: "Açucar grátis na compra do café",
-      pontos: "100 Pontos",
-      imagem: coffe,
-    },
-    {
-      title: "Açucar grátis na compra do café",
-      pontos: "1000 Pontos",
-      imagem: coffe,
-    },
-    {
-      title: "Açucar grátis na compra do café",
-      pontos: "10 Pontos",
-      imagem: coffe,
-    },
-    {
-      title: "Açucar grátis na compra do café",
-      pontos: "10 Pontos",
-      imagem: coffe,
-    },
-  ];
+	}
 
+  useEffect(() => {
+    axiosGetRecompensas();
+    axiosPostRecompensas();
+    axiosDeleteRecompensas();
+    axiosGetPontoInteresse();
+  }, []);
+
+  // //ver o que é isto
   const borderRadius = 14;
 
   const voucher = ["Desconto de 50% na Pizza", "Café Gratis"];
@@ -94,6 +77,82 @@ export default function Recompensa() {
       borderRadius: borderRadius,
     },
   ];
+  // //até aqui
+
+  // function tipoUtilizador() {
+  //   if (props.tipoUtilizador === "Agente Turistico")
+  //   return(
+  //     <div className="col-6 col-md-3">
+  //         <CardAdd
+  //           title="Adicionar Recompensa"
+  //           idModal="AddRecompensa"
+  //           nomeModal="newRecompensa"
+  //         />
+  //       </div>
+  //   );
+  // }
+
+  async function getUtilizadores() {
+		await axios
+			.get(ip + '/utilizador' + params.join(''), auth.header())
+			.then(output => {
+				setUtilizadores(output.data?.data ?? [])
+			})
+			.catch(error => console.error(error))
+
+	}
+
+  function axiosGetRecompensas() {
+    const url = ip + "/recompensa"
+    console.log(url)
+    //Aqui que fazemos o pedido axios das recompensas
+    axios
+      .get(url, auth.header())
+      .then((output) => {
+        console.log(output.data);
+        setRecompensas(output.data?.data ?? []);
+      })
+      .catch((error) => console.error(error));
+  }
+
+  function axiosPostRecompensas() {
+    axios
+      .post(ip, {
+        // no exemplo que vi ele ia buscar as infos tinha isto title:"ksdksdnfs" body:"skdjsjdf"
+      })
+      .then((response) => {
+        setRecompensas(response.data);
+      });
+  }
+  if (!axiosPostRecompensas) return "Não Adiciona!"
+
+  function axiosDeleteRecompensas() {
+    const url = ip + "/recompensa"
+    console.log(url)
+    axios
+    .delete(url, auth.header)
+    .then(() => {
+      alert("Recompensa Eliminada!");
+      setRecompensas(null)
+    });
+  }
+  if (!axiosDeleteRecompensas) return "Não eliminada!"
+
+  function axiosGetPontoInteresse() {
+    const url = ip + "/pi"
+    console.log(url)
+    //Aqui que fazemos o pedido axios dos pontos de interesse
+    axios
+      .get(url, auth.header())
+      .then((output) => {
+        console.log(output.data);
+        setPontoInteresse(output.data?.data ?? []);
+      })
+      .catch((error) => console.error(error));
+  }
+
+  // o put já não vai acontecer pois n? já não é suposto editar ? é para confirmar
+
 
   return (
     <div className="row gy-3">
@@ -132,8 +191,8 @@ export default function Recompensa() {
         <div className="col-12">
           <p className="fs-5 text-body fw-light">Vista Geral</p>
         </div>
-
-        {teste.map((item, index) => {
+        {/* vai devolver uma lista de recompensas de X ponto de interesse */}
+        {pontoInteresse.map((item, index) => {
           return (
             <div key={index} className="col-12 col-sm-8 col-md-4">
               <CardListaRecompensas
@@ -147,7 +206,7 @@ export default function Recompensa() {
         <div className="col-12 mt-5">
           <p className="fs-5 text-body fw-light">Recompensas</p>
         </div>
-
+        {/* apenas visivel para o AT */}
         <VisibleTo tipo="2">
           <div className="col-12 col-md-3">
             <CardAdd
@@ -158,7 +217,8 @@ export default function Recompensa() {
           </div>
         </VisibleTo>
 
-        {recompensa.map((item, index) => {
+        {/*  vai retornar um compoenente sempre com os itens das recompensas */}
+        {recompensas.map((item, index) => {
           return (
             <div key={index} className="col-12 col-sm-6 col-md-3">
               <CardRecompensa
@@ -169,11 +229,10 @@ export default function Recompensa() {
             </div>
           );
         })}
-
+        {/*  Grafico */}
         <div className="col-12 mt-5">
           <p className="fs-5 text-body fw-light">Recompensas Resgatadas</p>
         </div>
-
         <div className="col-12 col-md-10">
           <GraficoHorizontal datasets={datasets} data={voucher} />
         </div>
