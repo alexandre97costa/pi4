@@ -4,10 +4,13 @@ import auth from '../../../Auth/auth.service';
 
 import Dropdown from '../../../Components/Dropdown';
 import Pagination from '../../../Components/Pagination';
+import Input from '../../../Components/Input';
 import CardForm from '../../../Components/CardForm';
 import ModalSelectCategoria from '../../../Components/Modais/ModalSelectCategoria';
+import dev from '../../../Auth/dev';
 
 const ip = process.env.REACT_APP_IP
+const maxRecords = process.env.REACT_APP_MAX_RECORDS
 
 export default function Utilizadores() {
 
@@ -15,15 +18,14 @@ export default function Utilizadores() {
 	const [utilizadores, setUtilizadores] = useState([])
 	const [utilizadoresCount, setUtilizadoresCount] = useState(0)
 
-	const [limit, setLimit] = useState(5)
-	const [offset, setOffset] = useState(0)
-	const [tipo, setTipo] = useState(3)
+	// filtros
+	const [tipo, setTipo] = useState(0)
+	const [nome, setNome] = useState('')
 
-	let params = [
-		'?tipo_utilizador_id=' + tipo,
-		'&offset=' + offset,
-		'&limit=' + limit
-	]
+	// pagination
+	const [limit, setLimit] = useState(maxRecords)
+	const [offset, setOffset] = useState(0)
+
 
 	useEffect(() => {
 		// tipos
@@ -36,19 +38,35 @@ export default function Utilizadores() {
 
 
 	useEffect(() => {
-		getUtilizadores()
-		setOffset(0)
-	}, [tipo, offset]) // ir adicionando aqui os hooks dos filtros
+		setOffset(0) // volta à primeira pagina
+		getUtilizadores() // re
+	}, [nome, tipo, offset]) // ir adicionando aqui os hooks dos filtros
 
 
 	async function getUtilizadores() {
+
+		let options = {
+			...auth.header(),
+			params: {
+				tipo_utilizador_id: tipo,
+				nome,
+				offset,
+				limit
+			},
+		}
+
 		await axios
-			.get(ip + '/utilizador' + params.join(''), auth.header())
+			.get(ip + '/utilizador', options)
 			.then(output => {
 				setUtilizadores(output.data?.data ?? [])
 				setUtilizadoresCount(output.data?.count ?? 10)
 			})
-			.catch(error => console.error(error))
+			.catch(error => {
+				if (error.response.status === 404) {
+					setUtilizadores([])
+					setUtilizadoresCount(0)
+				}
+			})
 
 	}
 
@@ -90,16 +108,14 @@ export default function Utilizadores() {
 
 	return (
 		<>
-			<div className='row gap-3 mb-4'>
-				<div className='col-12'>Filtros:</div>
-				<div className='col-3'>
-					<Dropdown items={tipos} onChange={(item, index) => setTipo(index)} />
-				</div>
+			<div className='row row-cols-4 gap-0 mb-3'>
+				<Input label='Nome' onChange={e => setNome(e.target.value)} />
+				<Dropdown items={tipos} onChange={(item, index) => setTipo(index)} />
 			</div>
 			<div className='row mb-4'>
 				<div className='col-12'>
 					{/* tabela */}
-					<CardForm>
+					<CardForm className='py-2'>
 						<div className='table-responsive'>
 							<table className='table text-start align-middle'>
 								<thead>
@@ -110,7 +126,7 @@ export default function Utilizadores() {
 								</thead>
 
 								<tbody className='table-group-divider'>
-									{utilizadores.length !== 0 &&
+									{utilizadores.length !== 0 ?
 										utilizadores.map((item, index) => {
 											return (
 												<tr key={index} className=''>
@@ -141,7 +157,14 @@ export default function Utilizadores() {
 													</td>
 												</tr>
 											)
-										})}
+										})
+										:
+										<tr>
+											<div className='pt-3 text-muted fw-light fst-italic'>
+												Não existem utilizadores que correspondam aos filtros inseridos.
+											</div>
+										</tr>
+									}
 								</tbody>
 							</table>
 						</div>
@@ -151,7 +174,6 @@ export default function Utilizadores() {
 			<div className='row mb-5 justify-content-end'>
 				<div className='col-3 d-flex justify-content-end'>
 					<Pagination
-						recordsPerPage={limit}
 						recordCount={utilizadoresCount}
 						startIndex={limit - (offset + 1)}
 						onChange={i => setOffset(limit * (i - 1))}
