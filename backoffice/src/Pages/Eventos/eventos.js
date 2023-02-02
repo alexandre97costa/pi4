@@ -15,7 +15,7 @@ export default function Eventos() {
         axiosGetEventos();
     }, []);
 
-    /*
+    
     const testeReserva1 = [{
         dataReserva: '20 Jan 2023',
         numeroPessoas: '2'
@@ -50,7 +50,7 @@ export default function Eventos() {
         valueNow: '99',
         reservas: testeReserva2
     }]
-    */
+    
 
 
     const borderRadius = 14
@@ -85,7 +85,7 @@ export default function Eventos() {
         axios
         .get(url, auth.header())
         .then((output) => {
-            console.log(output);
+            console.log(output.data.data);
             setEventos(output.data?.data ?? []);
         })
       .catch((error) => console.error(error));
