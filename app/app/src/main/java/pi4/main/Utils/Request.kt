@@ -1,6 +1,7 @@
 package com.example.ficha8
 
 import android.content.Context
+import android.content.Intent
 import android.net.ConnectivityManager
 import android.util.Log
 import android.widget.Toast
@@ -9,6 +10,9 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
 import pi4.main.Utils.BackendURL
+import java.net.MalformedURLException
+import java.net.URISyntaxException
+import java.net.UnknownHostException
 
 
 object Req {
@@ -69,9 +73,15 @@ object Req {
                 then(res)
             },
             { error ->
-                if(error.networkResponse.statusCode == 404)
-                    Toast.makeText(context, "Não foi encontrado informação", Toast.LENGTH_SHORT).show()
-                Log.i("${error.networkResponse.statusCode}", "${error.networkResponse}")
+                error.printStackTrace()
+
+                try {
+                    error.printStackTrace()
+
+                    Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+                } catch (erro: Exception) {
+                    Toast.makeText(context, "Erro ao comunicar com o servidor", Toast.LENGTH_SHORT).show()
+                }
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -83,8 +93,6 @@ object Req {
                 return headers
             }
         }
-
-        Log.i("header", request.headers.toString())
 
         queue.add(request)
     }
@@ -105,9 +113,6 @@ object Req {
         if (networkInfo == null || !networkInfo.isConnected)
             return Toast.makeText(context, "Sem conexão a internet", Toast.LENGTH_SHORT).show()
 
-        Log.i("path", path)
-        Log.i("request body\n", requestBody.toString(2))
-
         val request = object : JsonObjectRequest(
             Request.Method.POST,
             BackendURL + path + queryParamsToString(queryParams),
@@ -117,14 +122,13 @@ object Req {
                 then(res)
             },
             { error ->
-                if(error.networkResponse.statusCode == 404)
-                    Toast.makeText(context, "Utilizador não foi encontrado", Toast.LENGTH_SHORT).show()
-                if(error.networkResponse.statusCode == 401)
-                    Toast.makeText(context, "Sem autorização", Toast.LENGTH_SHORT).show()
-                if(error.networkResponse.statusCode == 400)
-                    Toast.makeText(context, "Input introduzido invalido", Toast.LENGTH_SHORT).show()
+                try {
+                    error.printStackTrace()
 
-                Log.i("{${error.networkResponse.statusCode}}","{${error.networkResponse}}")
+                    Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+                } catch (erro: Exception) {
+                    Toast.makeText(context, "Erro ao comunicar com o servidor", Toast.LENGTH_SHORT).show()
+                }
             }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
@@ -155,7 +159,15 @@ object Req {
                 Log.i("Request PUT\n", res.toString(2))
                 then(res)
             },
-            { error -> error.printStackTrace()}
+            { error ->
+                try {
+                    error.printStackTrace()
+
+                    Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+                } catch (erro: Exception) {
+                    Toast.makeText(context, "Erro ao comunicar com o servidor", Toast.LENGTH_SHORT).show()
+                }
+            }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
@@ -185,7 +197,15 @@ object Req {
                 Log.i("Request PATCH\n", res.toString(2))
                 then(res)
             },
-            { error -> error.printStackTrace()}
+            { error ->
+                try {
+                    error.printStackTrace()
+
+                    Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+                } catch (erro: Exception) {
+                    Toast.makeText(context, "Erro ao comunicar com o servidor", Toast.LENGTH_SHORT).show()
+                }
+            }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
@@ -209,7 +229,15 @@ object Req {
                 Log.i("Request DELETE\n", res.toString(2))
                 then(res)
             },
-            { error -> error.printStackTrace()}
+            { error ->
+                try {
+                    error.printStackTrace()
+
+                    Toast.makeText(context, JSONObject(String(error.networkResponse.data)).optString("msg"), Toast.LENGTH_SHORT).show()
+                } catch (erro: Exception) {
+                    Toast.makeText(context, "Erro ao comunicar com o servidor", Toast.LENGTH_SHORT).show()
+                }
+            }
         ) {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()

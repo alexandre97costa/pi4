@@ -17,7 +17,8 @@ module.exports = (sequelize) => {
             },
             codigo_confirmacao: {
                 type: DataTypes.STRING(5),
-                allowNull: false
+                allowNull: false,
+                defaultValue: 'A0000'
             },
             confirmado: {
                 type: DataTypes.BOOLEAN,
@@ -32,11 +33,12 @@ module.exports = (sequelize) => {
             paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
             timestamps: true, // created_at, updated_at, e deleted_at
             hooks: {
-                beforeCreate: record => {
+                afterCreate: record => {
+                    console.log("beforeCreate Reserva")
                     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     record.dataValues.codigo_confirmacao =
                         characters.charAt(Math.floor(Math.random() * characters.length))
-                        + record.dataValues.id.slice(-4).padStart(4, '0')
+                        + record.dataValues.id.toString().slice(-4).padStart(4, '0')
 
                     // exemplo de resultado final: "F0345"
                 }

@@ -13,7 +13,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/globo" />
+        app:srcCompat="@drawable/img8" />
 
     <TextView
         android:id="@+id/textView"
@@ -68,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="70dp"
-                android:text="Rúben Rebelo"
+                android:text="Nome Utilizador"
                 android:textAlignment="center"
                 android:theme="@style/tittle_principal_black"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +80,7 @@
                 android:theme="@style/text_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="rebelo84@gmail.com"
+                android:text="utilizador@email.com"
                 android:textAlignment="center"
                 app:layout_constraintTop_toBottomOf="@+id/textViewNomeUtilizador" />
 

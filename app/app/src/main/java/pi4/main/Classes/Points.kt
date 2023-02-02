@@ -32,8 +32,8 @@ class Points(pontos: Int, textView: TextView, context: Context) {
         textView.setText("$pontos")
     }
 
-    fun loadPontosPontoInteresseHistorico(sentido: String) {
-        if(sentido == "positivo")
+    fun loadPontosPontoInteresseHistorico(sentido: Boolean) {
+        if(sentido == true)
             return textView.setText("+$pontos pts")
 
         textView.setText("-$pontos pts")

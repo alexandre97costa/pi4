@@ -12,7 +12,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/trip"
+        app:srcCompat="@drawable/img16"
         android:scaleType="centerCrop"/>
 
     <include

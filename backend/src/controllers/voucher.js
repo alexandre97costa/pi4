@@ -107,8 +107,7 @@ module.exports = {
 
         // o body tem que ter todos os coises
         const required_params = [
-            'recompensa_id',
-            'data_validade'
+            'recompensa_id'
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
