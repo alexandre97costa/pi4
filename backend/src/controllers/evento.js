@@ -44,60 +44,6 @@ module.exports = {
         const offset = req.query?.offset ?? 0
         const limit = req.query?.limit ?? 0
 
-        // se o user for agente, mandar-lhe só os eventos dele
-        if (req.auth.tipo === 2) {
-            await evento
-                .findAndCountAll({
-                    where: {
-                        id: !!+id ?
-                            id :
-                            { [Op.ne]: 0 },
-                        [Op.or]: [
-                            { nome: { [Op.iLike]: '%' + nome_desc + '%' } },
-                            { descricao: { [Op.iLike]: '%' + nome_desc + '%' } }
-                        ],
-                        tipo_evento_id: !!+tipo_evento_id ?
-                            tipo_evento_id :
-                            { [Op.ne]: 0 },
-                        ponto_interesse_id: !!+ponto_interesse_id ?
-                            ponto_interesse_id :
-                            { [Op.ne]: 0 },
-                        deletedAt: { [Op.eq]: null } // apenas eventos que não foram eliminados
-                    },
-                    include: [
-                        {
-                            model: tipo_evento,
-                            attributes: ['nome']
-                        }, {
-                            model: ponto_interesse,
-                            attributes: ['nome', 'morada'],
-                            required: true,
-                            where: { visitante_id: req.auth.id } // trazer só eventos de PIs deste agente
-                        }, {
-                            model: sessao,
-                            attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt', 'evento_id'] }
-                        }
-                    ],
-                    distinct: true,
-                    attributes: { exclude: ['codigo_uuid'] },
-                    order: [[order, direction]],
-                    offset: offset,
-                    limit: !!limit ? limit : null,
-                })
-                .then(output => {
-                    return !output.count ?
-                        res.status(404).json({ msg: 'Não existem eventos que correspondam aos filtros solicitados.' }) :
-                        res.status(200).json({ data: output.rows, count: output.count })
-                })
-                .catch(error => {
-                    res.status(400).json({ msg: 'Ocorreu um erro no pedido de eventos.' })
-                    dev.error({ error })
-                    return
-                })
-
-            return
-        }
-
         await evento
             .findAndCountAll({
                 where: {
@@ -121,12 +67,20 @@ module.exports = {
                         model: tipo_evento,
                         attributes: ['nome']
                     }, {
-                        model: ponto_interesse,
-                        attributes: ['nome', 'morada']
-                    }, {
                         model: sessao,
                         attributes: { exclude: ['createdAt', 'updatedAt', 'deletedAt', 'evento_id'] }
-                    }
+                    },
+                    (req.auth.tipo === 2) ? // se for agente, manda-lhe só eventos dos seus PIs
+                        {
+                            model: ponto_interesse,
+                            attributes: ['nome', 'morada'],
+                            required: true,
+                            where: { agente_turistico_id: req.auth.id }
+                        } :
+                        {
+                            model: ponto_interesse,
+                            attributes: ['nome', 'morada']
+                        }
                 ],
                 distinct: true,
                 attributes: { exclude: ['codigo_uuid'] },
