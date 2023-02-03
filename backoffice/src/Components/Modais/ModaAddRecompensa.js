@@ -1,17 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
+import auth from "../../Auth/auth.service";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Botao from '../Botao';
 import Input from '../Input';
+import axios from 'axios';
+import Dropdown from '../Dropdown';
+
+const ip = process.env.REACT_APP_IP;
 
 export default function ModalAddRecompensa(props) {
     const [nomeRecompensa, setNomeRecompensa] = useState("")
     const [numeroPontos, setNumeroPontos] = useState(0)
-    const [url, setUrl] = useState("")
     const [descricao, setDescricao] = useState("")
-    const [observacao, setObservacao] = useState("")
+    const [pontoInteresse, setPontoInteresse] = useState([])
+
+    useEffect(() => {
+        getPontosInteresseAxios()
+    }, [])
 
     const toastId = useRef(null)
 
@@ -19,7 +27,7 @@ export default function ModalAddRecompensa(props) {
         toast.dismiss(toastId.current)
     }
 
-    function axiosPost() {
+    async function axiosPost() {
         if (!nomeRecompensa) {
             return toast.error("Introduza um nome a recompensa")
         }
@@ -29,27 +37,43 @@ export default function ModalAddRecompensa(props) {
         if (!numeroPontos) {
             return toast.error("Introduza o número de pontos")
         }
-        if (!url) {
-            return toast.error("Introduza um url")
-        }
-        if (!observacao) {
-            return toast.error("Introduza uma observação")
-        }
 
-        toast.success("Recompensa adicionada com sucesso")
-
-        console.log(nomeRecompensa)
-        console.log(numeroPontos)
+        const url = ip + "/pi"
         console.log(url)
+
+        let options = {
+            titulo: nomeRecompensa,
+            descricao: descricao,
+            pontos: numeroPontos,
+            tipo_interesse_id: ''
+        }
+
+        await axios
+            .post(url, options, auth.header())
+            .then((output) => {
+                console.log(output)
+                toast.success("Recompensa adicionada com sucesso")
+            }).catch((error) => console.error(error))
     }
 
-    useEffect(() => {
-        console.log("Supostamente so 1 vez")
-    }, [])
+    async function getPontosInteresseAxios() {
+        const url = ip + "/pi"
+        console.log(url)
 
-    useEffect(() => {
-        console.log("Supostamente so quando o numero de pontos muda")
-    }, [numeroPontos])
+        let options = {
+            ...auth.header(),
+            params: {
+                agente_turistico_id: auth.getUser().id,
+                order: 'id'
+            }
+        }
+
+        await axios
+            .get(url, options)
+            .then((output) => {
+                setPontoInteresse([...output.data?.data.map(data => data.id + ' ' + data.nome)])
+            }).catch((error) => console.error(error))
+    }
 
     return (
         <div className='row align-self-center'>
@@ -62,15 +86,13 @@ export default function ModalAddRecompensa(props) {
                         </div>
                         <div className="modal-body">
 
-                            <Input className="input-group" id="nomeRecompensa" placeholder="Nome da Recompensa" value={nomeRecompensa} onchange={(value) => setNomeRecompensa(value.target.value)} />
+                            <Input className="input-group" id="nomeRecompensa" label="Nome da Recompensa" value={nomeRecompensa} onchange={(value) => setNomeRecompensa(value.target.value)} />
 
                             <textarea className="form-control mt-4" placeholder="Descrição da recompensa" id="descricao" rows="3" onChange={(value) => setDescricao(value.target.value)} />
 
-                            <Input className="input-group mt-4" type="number" id="numeroPontos" value={numeroPontos} placeholder="Número de Pontos" min="1" onchange={(value) => setNumeroPontos(value.target.value)} />
+                            <Input className="input-group mt-4" type="number" id="numeroPontos" value={numeroPontos} label="Número de Pontos" min="1" onchange={(value) => setNumeroPontos(value.target.value)} />
 
-                            <Input className="input-group mt-4" id="urlImagem" placeholder="Url da imagem" onchange={(value) => setUrl(value.target.value)} />
-
-                            <textarea className="form-control mt-4" placeholder="Observações, onde pode ser utilizada a recompensa" id="observacao" rows="3" onChange={(value) => setObservacao(value.target.value)} />
+                            <Dropdown items={pontoInteresse} onChange={(item, index) => console.log(item)} />
 
                         </div>
                         <div className="modal-footer">

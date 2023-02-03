@@ -69,6 +69,24 @@ export default function Recompensa() {
     const url = ip + "/pi"
     console.log(url)
 
+    //Só vai buscar no caso de ser um agente turistico os seus pontos de interesse
+    if (auth.getUser().tipo === 2) {
+      let options = {
+        ...auth.header(),
+        params: {
+          agente_turistico_id: auth.getUser().id
+        }
+      }
+
+      return await axios
+        .get(url, options)
+        .then((output) => {
+          console.log(output.data);
+          setPontoInteresse(output.data?.data ?? []);
+        })
+        .catch((error) => console.error(error));
+    }
+
     await axios
       .get(url, auth.header())
       .then((output) => {
@@ -87,7 +105,6 @@ export default function Recompensa() {
         setRecompensas(response.data);
       });
   }
-  if (!axiosPostRecompensas) return "Não Adiciona!"
 
   async function axiosDeleteRecompensas() {
     const url = ip + "/recompensa"
@@ -99,7 +116,6 @@ export default function Recompensa() {
         setRecompensas(null)
       });
   }
-  if (!axiosDeleteRecompensas) return "Não eliminada!"
 
 
   // o put já não vai acontecer pois n? já não é suposto editar ? é para confirmar
@@ -147,9 +163,8 @@ export default function Recompensa() {
           <p className="fs-5 text-body fw-light">Vista Geral</p>
         </div>
 
-        {/* vai devolver uma lista de recompensas de X ponto de interesse */}
         {pontoInteresse.map((item, index) => {
-          if(!!item.recompensas_associadas.length) {
+          if (!!item.recompensas_associadas.length) {
             return (
               <div key={index} className="col-12 col-sm-6 col-md-4">
                 <CardListaRecompensas
@@ -178,7 +193,7 @@ export default function Recompensa() {
 
         {/*  vai retornar um compoenente sempre com os itens das recompensas */}
         {recompensas.map((item, index) => {
-          console.log(item)
+          // console.log(item)
           return (
             <div key={index} className="col-12 col-sm-6 col-md-3">
               <CardRecompensa
@@ -194,6 +209,7 @@ export default function Recompensa() {
         <div className="col-12 mt-5">
           <p className="fs-5 text-body fw-light">Recompensas Resgatadas</p>
         </div>
+        
         <div className="col-12 col-md-10">
           <GraficoHorizontal datasets={datasets} data={voucher} />
         </div>

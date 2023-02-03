@@ -12,7 +12,7 @@ export default function Input(props) {
                     pattern={props.pattern}
                     defaultValue={props.value}
                     min={props.min}
-                    max={props.max}
+                    max={props.max} 
                     onChange={e => props.onChange(e)}
                     required={props.required}
                 />
