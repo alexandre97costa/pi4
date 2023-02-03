@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import auth from "../../Auth/auth.service";
 
@@ -9,6 +9,9 @@ import GraficoHorizontal from "../../Components/GraficoHorizontal";
 import VisibleTo from "../../Helpers/VisibleTo";
 import BotaoDashboard from "../../Components/BotaoDashboard";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ip = process.env.REACT_APP_IP;
 
 //array das categorias das recompensas
@@ -16,6 +19,8 @@ const ip = process.env.REACT_APP_IP;
 export default function Recompensa() {
   const [recompensas, setRecompensas] = useState([]);
   const [pontoInteresse, setPontoInteresse] = useState([]);
+
+  const toastId = useRef(null)
 
   useEffect(() => {
     axiosGetRecompensas();
@@ -59,10 +64,13 @@ export default function Recompensa() {
     await axios
       .get(url, auth.header())
       .then((output) => {
-        console.log(output.data);
         setRecompensas(output.data?.data ?? []);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        if(error.response.status === 404)
+          return toast.warning(error.response.data.msg)
+        console.log(error)
+      });
   }
 
   async function axiosGetPontoInteresse() {
@@ -81,7 +89,6 @@ export default function Recompensa() {
       return await axios
         .get(url, options)
         .then((output) => {
-          console.log(output.data);
           setPontoInteresse(output.data?.data ?? []);
         })
         .catch((error) => console.error(error));
@@ -90,7 +97,6 @@ export default function Recompensa() {
     await axios
       .get(url, auth.header())
       .then((output) => {
-        console.log(output.data);
         setPontoInteresse(output.data?.data ?? []);
       })
       .catch((error) => console.error(error));
@@ -112,7 +118,7 @@ export default function Recompensa() {
     await axios
       .delete(url, auth.header)
       .then(() => {
-        alert("Recompensa Eliminada!");
+        toast.success("Recompensa Eliminada!")
         setRecompensas(null)
       });
   }
@@ -178,6 +184,7 @@ export default function Recompensa() {
 
         <div className="col-12 mt-5">
           <p className="fs-5 text-body fw-light">Recompensas</p>
+          <ToastContainer />
         </div>
 
         {/* apenas visivel para o AT */}
@@ -209,7 +216,7 @@ export default function Recompensa() {
         <div className="col-12 mt-5">
           <p className="fs-5 text-body fw-light">Recompensas Resgatadas</p>
         </div>
-        
+
         <div className="col-12 col-md-10">
           <GraficoHorizontal datasets={datasets} data={voucher} />
         </div>

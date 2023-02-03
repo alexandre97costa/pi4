@@ -103,7 +103,7 @@ module.exports = {
 
     post: async (req, res) => {
         // apenas agentes e responsaveis podem criar recompensas
-        if (req.auth.tipo !== 2 || req.auth.tipo !== 3)
+        if (req.auth.tipo === 1 || req.auth.tipo === 4)
             return res.status(401).json({ msg: 'Sem autorização para criar recompensas.' })
 
         const required_params = [

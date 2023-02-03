@@ -15,10 +15,16 @@ export default function ModalAddRecompensa(props) {
     const [nomeRecompensa, setNomeRecompensa] = useState("")
     const [numeroPontos, setNumeroPontos] = useState(0)
     const [descricao, setDescricao] = useState("")
+
+    const [tipo, setTipo] = useState([])
+    const [selectTipo, setSelectTipo] = useState('')
+
     const [pontoInteresse, setPontoInteresse] = useState([])
+    const [selectPontoInteresse, setSelectPontoInteresse] = useState('')
 
     useEffect(() => {
         getPontosInteresseAxios()
+        getTiposAxios()
     }, [])
 
     const toastId = useRef(null)
@@ -37,15 +43,19 @@ export default function ModalAddRecompensa(props) {
         if (!numeroPontos) {
             return toast.error("Introduza o número de pontos")
         }
+        if (!selectPontoInteresse) {
+            return toast.error("Introduza o Ponto de Interesse")
+        }
 
-        const url = ip + "/pi"
+        const url = ip + "/recompensa"
         console.log(url)
 
         let options = {
             titulo: nomeRecompensa,
             descricao: descricao,
             pontos: numeroPontos,
-            tipo_interesse_id: ''
+            tipo_interesse_id: selectTipo.split(' ')[0],
+            // ponto_interesse_id: selectPontoInteresse.split(' ')[0]
         }
 
         await axios
@@ -53,7 +63,13 @@ export default function ModalAddRecompensa(props) {
             .then((output) => {
                 console.log(output)
                 toast.success("Recompensa adicionada com sucesso")
-            }).catch((error) => console.error(error))
+            }).catch((error) => {
+                if(error.response.status === 401)
+                    return toast.warning(error.response.data.msg)
+
+                toast.warning(error.response.data.msg)
+                console.error(error)
+            })
     }
 
     async function getPontosInteresseAxios() {
@@ -72,7 +88,26 @@ export default function ModalAddRecompensa(props) {
             .get(url, options)
             .then((output) => {
                 setPontoInteresse([...output.data?.data.map(data => data.id + ' ' + data.nome)])
-            }).catch((error) => console.error(error))
+            }).catch((error) => {
+                if(error.response.status === 404)
+                    return toast.warning(error.response.data.msg)
+                console.error(error)
+            })
+    }
+
+    async function getTiposAxios() {
+        const url = ip + "/tipos/pi"
+        console.log(url)
+
+        await axios
+            .get(url, auth.header())
+            .then((output) => {
+                setTipo([...output.data?.tipos_interesse.map(data => data.id + ' ' + data.nome)])
+            }).catch((error) => {
+                console.error(error)
+                if(error.response.status === 404)
+                    return toast.warning(error.response.data.msg)
+            })
     }
 
     return (
@@ -86,13 +121,15 @@ export default function ModalAddRecompensa(props) {
                         </div>
                         <div className="modal-body">
 
-                            <Input className="input-group" id="nomeRecompensa" label="Nome da Recompensa" value={nomeRecompensa} onchange={(value) => setNomeRecompensa(value.target.value)} />
+                            <Input className="input-group" id="nomeRecompensa" label="Nome da Recompensa" value={nomeRecompensa} onChange={(value) => setNomeRecompensa(value.target.value)} />
 
                             <textarea className="form-control mt-4" placeholder="Descrição da recompensa" id="descricao" rows="3" onChange={(value) => setDescricao(value.target.value)} />
 
-                            <Input className="input-group mt-4" type="number" id="numeroPontos" value={numeroPontos} label="Número de Pontos" min="1" onchange={(value) => setNumeroPontos(value.target.value)} />
+                            <Input className="input-group mt-4" type="number" id="numeroPontos" value={numeroPontos} label="Número de Pontos" min="1" onChange={(value) => setNumeroPontos(value.target.value)} />
 
-                            <Dropdown items={pontoInteresse} onChange={(item, index) => console.log(item)} />
+                            <Dropdown items={pontoInteresse} onChange={(item, index) => setSelectPontoInteresse(item)} />
+
+                            <Dropdown items={tipo} onChange={(item, index) => setSelectTipo(item)} />
 
                         </div>
                         <div className="modal-footer">
