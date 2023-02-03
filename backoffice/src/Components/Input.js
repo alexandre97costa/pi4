@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 export default function Input(props) {
     return (
         <div className='col'>
-            <div class="form-floating w-100 mb-3">
+            <div className="form-floating w-100 mb-3">
                 <input
                     id={props.id}
                     type={!!props.type ? props.type : 'text'}
@@ -16,7 +16,7 @@ export default function Input(props) {
                     onChange={e => props.onChange(e)}
                     required={props.required}
                 />
-                <label for={props.id}>{props?.label ?? 'props.label'}</label>
+                <label htmlFor={props.id}>{props?.label ?? 'props.label'}</label>
             </div>
         </div>
     )

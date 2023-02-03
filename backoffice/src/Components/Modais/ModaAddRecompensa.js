@@ -48,10 +48,6 @@ export default function ModalAddRecompensa(props) {
     }, [])
 
     useEffect(() => {
-        console.log("Supostamente sempre")
-    })
-
-    useEffect(() => {
         console.log("Supostamente so quando o numero de pontos muda")
     }, [numeroPontos])
 
