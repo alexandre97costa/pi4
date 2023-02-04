@@ -79,7 +79,7 @@ export default function Recompensa() {
 
     //Só vai buscar no caso de ser um agente turistico os seus pontos de interesse
     if (auth.getUser().tipo === 2) {
-      let options = {
+      let optionsAT = {
         ...auth.header(),
         params: {
           agente_turistico_id: auth.getUser().id,
@@ -88,16 +88,23 @@ export default function Recompensa() {
       }
 
       return await axios
-        .get(url, options)
+        .get(url, optionsAT)
         .then((output) => {
-          // console.log(output.data)
+          console.log(output.data)
           setPontoInteresse(output.data?.data ?? []);
         })
         .catch((error) => console.error(error));
     }
 
+    let options = {
+      ...auth.header(),
+      params: {
+        order: 'id'
+      }
+    }
+
     await axios
-      .get(url, auth.header())
+      .get(url, options)
       .then((output) => {
         setPontoInteresse(output.data?.data ?? []);
       })
@@ -171,6 +178,7 @@ export default function Recompensa() {
         </div>
 
         {pontoInteresse.map((item, index) => {
+          console.log(!!item.recompensas_associadas.length)
           if (!!item.recompensas_associadas.length) {
             return (
               <div key={index} className="col-12 col-sm-6 col-md-4">
