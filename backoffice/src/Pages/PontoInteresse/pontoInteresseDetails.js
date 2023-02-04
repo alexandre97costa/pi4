@@ -246,7 +246,7 @@ export default function PontoInteresseDetails(props) {
           return (
             <div key={index} className="col-12 col-sm-6 col-md-3 mb-5">
               <CardRecompensa
-                title={item.title}
+                title={item.titulo}
                 pontos={item.pontos}
                 imagem={item.imagem}
               />

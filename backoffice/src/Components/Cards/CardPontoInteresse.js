@@ -16,7 +16,7 @@ export default function CardPontoInteresse(props) {
   }
 
   return (
-    <div className="card border-0 rounded-4 shadow">
+    <div className="card border-0 rounded-4 shadow mb-4">
       <img src={props.imagem} className="card-img-top" />
 
       <div className="card-body p-3">
@@ -28,9 +28,9 @@ export default function CardPontoInteresse(props) {
 
         <div className="fs-4 text-center mb-4">
           <i className="bi bi-qr-code-scan text-success px-2">{props.numeroScans}</i>
-          <i className="bi bi-chat text-primary px-2">{props.numeroComentarios}</i>
+          {/* <i className="bi bi-chat text-primary px-2">{props.numeroComentarios}</i> */}
           <i className="bi bi-star text-warning px-2">{props.numeroFavoritos}</i>
-          <i className="bi bi-journal-check text-info px-2">{props.numeroCheck}</i>
+          {/* <i className="bi bi-journal-check text-info px-2">{props.numeroCheck}</i> */}
         </div>
 
         {chooseTipoCartao(props.tipo)}

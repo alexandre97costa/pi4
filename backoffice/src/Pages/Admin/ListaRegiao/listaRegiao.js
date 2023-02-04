@@ -11,7 +11,7 @@ export default function ListaRegiao() {
       <div className="container-fluid">
         <div className="row justify-content-end">
           <div className="col-4 col-md-2">
-            <Dropdown tipos={tipos} onChange={(value) => console.log(value)} />
+            <Dropdown items={tipos} onChange={(value) => console.log(value)} />
           </div>
         </div>
 

@@ -1,22 +1,29 @@
 import React, { useEffect, useRef, useState } from 'react';
-
+import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Botao from '../Botao';
+import auth from "../../Auth/auth.service";
+
+const ip = process.env.REACT_APP_IP;
 
 export default function TabelaEditarAgente(props) {
     const [utilizadores, setUtilizadores] = useState([])
 
     const toastId = useRef(null)
 
-    const utilizador = [{
-        id: 1,
-        nome: "Manuel Antonio",
-        localidade: "Viseu",
-    }]
-
     function axiosGetResponsaveisRegiao() {
         //Pedido api
+        const url = ip + "/utilizador"
+        console.log(url)
+        //Aqui que fazemos o pedido axios dos pontos de interesse
+        axios
+          .get(url, auth.header())
+          .then((output) => {
+            console.log(output.data);
+            setUtilizadores(output.data?.data ?? []);
+          })
+          .catch((error) => console.error(error));
     }
 
     function axiosPost() {
@@ -24,7 +31,7 @@ export default function TabelaEditarAgente(props) {
     }
 
     useEffect(() => {
-        setUtilizadores(utilizador)
+        axiosGetResponsaveisRegiao()
     }, [])
 
     return (

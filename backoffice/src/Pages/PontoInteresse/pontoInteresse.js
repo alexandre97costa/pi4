@@ -16,32 +16,6 @@ export default function PontoInteresse(props) {
     axiosGetPontosInteresse();
   }, []);
 
-  //exemplo
-  /*const itens = [
-    {
-      id: 1,
-      imagem: jardimMaes,
-      title: "Nome do Local Turístico",
-      subTitle: "Categoria",
-      morada: "Morada",
-      numeroScans: "10",
-      numeroComentarios: "2200",
-      numeroFavoritos: "1209",
-      numeroCheck: "123",
-    },
-    {
-      id: 2,
-      imagem: jardimMaes,
-      title: "Nome do Local Turístico",
-      subTitle: "Categoria",
-      morada: "Morada",
-      numeroScans: "1",
-      numeroComentarios: "22",
-      numeroFavoritos: "12",
-      numeroCheck: "3",
-    },
-  ];*/
-  //acaba exemplo
 
   function tipoUtilizador() {
     if (props.tipoUtilizador === "Agente Turistico")
@@ -78,15 +52,15 @@ export default function PontoInteresse(props) {
           return (
             <div key={index} className="col-12 col-md-3">
               <CardPontoInteresse
-                id = {item.id}
-                imagem={item.imagem}
+                id_ponto_interesse={item.id}
+                imagem={item.imagens[0].url}  
                 nome={item.nome}
-                categoria={item.subTitle}
+                categoria={item.tipo_interesse.nome}
                 morada={item.morada}
-                numeroScans={item.numeroScans}
-                numeroComentarios={item.numeroComentarios}
-                numeroFavoritos={item.numeroFavoritos}
-                numeroCheck={item.numeroCheck}
+                numeroScans={item.count_scans}
+                //numeroComentarios={item.tipo_interesse.observacoes}
+                numeroFavoritos={item.avg_avaliacao}
+                //numeroCheck={item.validado}
               />
             </div>
           );
