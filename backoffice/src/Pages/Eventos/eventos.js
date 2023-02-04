@@ -3,7 +3,8 @@ import axios from 'axios'
 import auth from '../../Auth/auth.service';
 
 import CardReservas from '../../Components/Cards/CardReservas';
-import ModalAddEvento from  '../../Components/Modais/ModalAddEvento'
+import ModalAddEvento from '../../Components/Modais/ModalAddEvento'
+import VisibleTo from '../../Helpers/VisibleTo';
 
 const ip = process.env.REACT_APP_IP
 
@@ -32,16 +33,18 @@ export default function Eventos() {
     }
 
     return (
-        <div className='row'>
-            <div className='col-12 mt-2'>
-                <p className="fs-5 text-body fw-light">Ações Rápidas</p>
-            </div>
+        <div className='row mb-4'>
+            <VisibleTo tipo="2">
+                <div className='col-12 mt-2'>
+                    <p className="fs-5 text-body fw-light">Ações Rápidas</p>
+                </div>
 
-            <div className='col-12 col-md-3'>
-                <button className="btn btn-light btn-lg shadow text-break rounded-3 mb-5" data-bs-toggle="modal" data-bs-target="#NewEvento">Adicionar Evento<i className="bi bi-journal-check ps-2"></i></button>
+                <div className='col-12 col-md-3'>
+                    <button className="btn btn-light btn-lg shadow text-break rounded-3 mb-5" data-bs-toggle="modal" data-bs-target="#NewEvento">Adicionar Evento<i className="bi bi-journal-check ps-2"></i></button>
 
-                <ModalAddEvento idModal="NewEvento" onChange={() => axiosGetEventos()}/>
-            </div>
+                    <ModalAddEvento idModal="NewEvento" onChange={() => axiosGetEventos()} />
+                </div>
+            </VisibleTo>
 
 
             <div className='col-12'>

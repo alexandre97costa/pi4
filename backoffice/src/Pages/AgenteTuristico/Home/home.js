@@ -29,7 +29,10 @@ export default function Home() {
 
         let options = {
             ...auth.header(),
-            params: {},
+            params: {
+                limit: 3,
+                order: 'id'
+            },
         }
 
         await axios
