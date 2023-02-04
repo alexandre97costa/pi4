@@ -20,42 +20,10 @@ export default function Recompensa() {
   const [recompensas, setRecompensas] = useState([]);
   const [pontoInteresse, setPontoInteresse] = useState([]);
 
-  const toastId = useRef(null)
-
   useEffect(() => {
     axiosGetRecompensas();
     axiosGetPontoInteresse();
   }, []);
-
-  // //ver o que é isto
-  const borderRadius = 14;
-
-  const voucher = ["Desconto de 50% na Pizza", "Café Gratis"];
-
-  const dataVoucher = ["452", "531"];
-
-  const datasets = [
-    {
-      label: "Recompensa's",
-      data: dataVoucher,
-      backgroundColor: "#729d4c",
-      borderRadius: borderRadius,
-    },
-  ];
-  // //até aqui
-
-  // function tipoUtilizador() {
-  //   if (props.tipoUtilizador === "Agente Turistico")
-  //   return(
-  //     <div className="col-6 col-md-3">
-  //         <CardAdd
-  //           title="Adicionar Recompensa"
-  //           idModal="AddRecompensa"
-  //           nomeModal="newRecompensa"
-  //         />
-  //       </div>
-  //   );
-  // }
 
   async function axiosGetRecompensas() {
     const url = ip + "/recompensa"
@@ -193,15 +161,6 @@ export default function Recompensa() {
             </div>
           );
         })}
-
-        {/*  Grafico */}
-        <div className="col-12 mt-5">
-          <p className="fs-5 text-body fw-light">Recompensas Resgatadas</p>
-        </div>
-
-        <div className="col-12 col-md-10">
-          <GraficoHorizontal datasets={datasets} data={voucher} />
-        </div>
       </div>
     </div>
   );

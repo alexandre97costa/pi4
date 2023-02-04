@@ -121,12 +121,12 @@ module.exports = {
 
         const { nome, descricao, pontos, vagas, horas_duracao, ponto_interesse_id, tipo_evento_id } = req.body
 
+        console.log(req.auth.id)
         // so para pontos de interesse que lhe pertencem
         const pis_agente = await ponto_interesse.findAll({ where: { agente_turistico_id: req.auth.id } })
-        const pi_valido = pis_agente.find(pi => pi.id === ponto_interesse_id)
+        const pi_valido = pis_agente.find(pi => +pi.id === +ponto_interesse_id)
         if (!pi_valido)
             return res.status(404).json({ msg: 'O ponto de interesse fornecido não existe ou não te pertence.' })
-
 
         await evento
             .create({

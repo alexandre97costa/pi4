@@ -99,7 +99,7 @@ export default function Home() {
 
                     <ModalValidar idModal="validarReserva" title="Validar Reserva" onSubmit={(value) => setCodeReserva(value)} onClick={() => validarReserva()} />
                 </div>
-                <div className='col-12 col-md-3'>
+                <div className='col-12 col-md-4'>
                     <button className="btn btn-light btn-lg shadow text-break rounded-3" data-bs-toggle="modal" data-bs-target="#NewPontoInteresse">Adicionar Ponto de Interesse<i className="bi bi-journal-check ps-2"></i></button>
 
                     <ModalNewPontoInteresse idModal="NewPontoInteresse" />

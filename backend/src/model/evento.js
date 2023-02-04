@@ -44,8 +44,6 @@ module.exports = (sequelize) => {
                     console.log(item)
                     console.log("----------------")
                     console.log(index)
-                    console.log("----------------")
-                    console.log(sequelize)
                 }
             }
         }

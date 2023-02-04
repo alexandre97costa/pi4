@@ -64,7 +64,7 @@ export default function ModalAddRecompensa(props) {
                 console.log(output)
                 toast.success("Recompensa adicionada com sucesso")
             }).catch((error) => {
-                if(error.response.status === 401)
+                if (error.response.status === 401)
                     return toast.warning(error.response.data.msg)
 
                 toast.warning(error.response.data.msg)
@@ -89,7 +89,7 @@ export default function ModalAddRecompensa(props) {
             .then((output) => {
                 setPontoInteresse([...output.data?.data.map(data => data.id + ' ' + data.nome)])
             }).catch((error) => {
-                if(error.response.status === 404)
+                if (error.response.status === 404)
                     return toast.warning(error.response.data.msg)
                 console.error(error)
             })
@@ -105,7 +105,7 @@ export default function ModalAddRecompensa(props) {
                 setTipo([...output.data?.tipos_interesse.map(data => data.id + ' ' + data.nome)])
             }).catch((error) => {
                 console.error(error)
-                if(error.response.status === 404)
+                if (error.response.status === 404)
                     return toast.warning(error.response.data.msg)
             })
     }
