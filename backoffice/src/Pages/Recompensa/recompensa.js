@@ -111,30 +111,6 @@ export default function Recompensa() {
       .catch((error) => console.error(error));
   }
 
-  async function axiosPostRecompensas() {
-    await axios
-      .post(ip, {
-        // no exemplo que vi ele ia buscar as infos tinha isto title:"ksdksdnfs" body:"skdjsjdf"
-      })
-      .then((response) => {
-        setRecompensas(response.data);
-      });
-  }
-
-  async function axiosDeleteRecompensas() {
-    const url = ip + "/recompensa"
-    console.log(url)
-    await axios
-      .delete(url, auth.header)
-      .then(() => {
-        toast.success("Recompensa Eliminada!")
-        setRecompensas(null)
-      });
-  }
-
-  // o put já não vai acontecer pois n? já não é suposto editar ? é para confirmar
-
-
   return (
     <div className="row gy-3">
 
@@ -178,7 +154,6 @@ export default function Recompensa() {
         </div>
 
         {pontoInteresse.map((item, index) => {
-          console.log(!!item.recompensas_associadas.length)
           if (!!item.recompensas_associadas.length) {
             return (
               <div key={index} className="col-12 col-sm-6 col-md-4">
@@ -192,7 +167,7 @@ export default function Recompensa() {
         })}
 
         <div className="col-12 mt-5">
-          <p className="fs-5 text-body fw-light">Recompensas</p>
+          <p className="fs-5 text-body fw-light">Recompensas Já Validadas</p>
           <ToastContainer />
         </div>
 

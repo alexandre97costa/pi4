@@ -6,24 +6,20 @@ import VisibleTo from '../../Helpers/VisibleTo';
 import Botao from '../Botao';
 import CardForm from '../CardForm';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ip = process.env.REACT_APP_IP;
 
 export default function CardListaRecompensas(props) {
-    async function axiosDelete(id) {
-        const url = ip + "/recompensa/" + id
-        console.log(url)
-
-        await axios
-            .delete(url, auth.header)
-            .then((output) => {
-                console.log(output)
-            }).catch((error) => console.log(error))
+    async function axiosRemoveRecompensaPontoInteresse(id) {
+        toast.success("Recompensa Eliminada " + id)
     }
-
 
     return (
         <CardForm>
             <p className="card-title fs-5 text-success">{props.nomePontoInteresse}</p>
+            <ToastContainer />
 
             {props.recompensas.map((item, index) => {
                 return (
@@ -33,7 +29,7 @@ export default function CardListaRecompensas(props) {
                         </div>
                         <VisibleTo tipo="2">
                             <div className='col-7 text-end pe-0'>
-                                <Botao className="btn-outline-danger btn-sm" texto="Eliminar" onClick={() => axiosDelete(item.id)} />
+                                <Botao className="btn-outline-danger btn-sm" texto="Eliminar" onClick={() => axiosRemoveRecompensaPontoInteresse(item.id)} />
                             </div>
                         </VisibleTo>
                     </div>

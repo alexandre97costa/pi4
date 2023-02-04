@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect, useState }  from "react";
+import axios from "axios";
+import auth from '../../../Auth/auth.service'
 
 import Dropdown from "../../../Components/Dropdown";
 import TabelaListaRecompensas from "../../../Components/Tabelas/TabelaListaRecompensas";
 import BotaoDashboard from "../../../Components/BotaoDashboard";
 
-export default function ListaRecompensas() {
-  const tipos = ["Todas", "A", "B", "C"];
+const ip = process.env.REACT_APP_IP;
 
+export default function ListaRecompensas() {
+  const [tipos, setTipos] = useState([])
+  const [selectTipo, setSelectTipo] = useState('')
+
+  useEffect(() => {
+    axios
+    .get(ip + '/tipos/pi', auth.header())
+    .then(output => { setTipos(['Todos', ...output.data?.tipos_interesse.map(t => t.nome)] ?? []) }).catch((error)=> console.log(error))
+  }, [])
+  
   return (
     <>
       <div className="row">
@@ -20,13 +31,13 @@ export default function ListaRecompensas() {
         </div>
 
         <div className="col-4 col-md-9 d-flex justify-content-end">
-          <Dropdown items={tipos} onChange={(value) => console.log(value)} />
+          <Dropdown items={tipos} onChange={(value, index) => setSelectTipo(index)} />
         </div>
       </div>
 
       <div className="row">
         <div className="col-12">
-          <TabelaListaRecompensas />
+          <TabelaListaRecompensas tipo_id={selectTipo} />
         </div>
       </div>
     </>

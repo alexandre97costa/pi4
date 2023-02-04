@@ -14,19 +14,25 @@ export default function TabelaListaRecompensas(props) {
     const [listaRecompensas, setListaRecompensas] = useState([])
 
     useEffect(() => {
-        console.log("componente")
         if (props.tipoTabela === 'validar')
             axiosGetRecompensasPorValidar()
         if (!props.tipoTabela)
             axiosGetRecompensas()
-    }, [])
+    }, [props.tipo_id])
 
     async function axiosGetRecompensas() {
         const url = ip + "/recompensa"
-        console.log(url)
+        console.log("axiosGetRecompensas: " + url)
+
+        let options = {
+            ...auth.header(),
+            params: {
+                tipo_interesse_id: props.tipo_id
+            }
+        }
 
         await axios
-            .get(url, auth.header())
+            .get(url, options)
             .then((output) => {
                 console.log(output.data.data)
                 setListaRecompensas(output.data?.data ?? []);
@@ -42,13 +48,13 @@ export default function TabelaListaRecompensas(props) {
 
     async function axiosGetRecompensasPorValidar() {
         const url = ip + "/recompensa"
-        console.log(url)
+        console.log("axiosGetRecompensasPorValidar: " + url)
 
         let options = {
             ...auth.header(),
             params: {
                 validado: false,
-                // tipo_interesse_id: 
+                tipo_interesse_id: props.tipo_id
             }
         }
 
@@ -134,7 +140,6 @@ export default function TabelaListaRecompensas(props) {
                             <th className='fw-normal fs-5' scope="col">Pontos</th>
                             <th className='fw-normal fs-5' scope="col">Ações</th>
                         </tr>
-                        <ToastContainer />
                     </thead>
 
                     <tbody className='table-group-divider'>
@@ -165,6 +170,7 @@ export default function TabelaListaRecompensas(props) {
                         })}
                     </tbody>
                 </table>
+                <ToastContainer />
             </div>
         </CardForm>
     );
