@@ -1,196 +1,120 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-
+import auth from "../../Auth/auth.service";
+import VisibleTo from "../../Helpers/VisibleTo";
 import axios from "axios";
+
 import ConfirmarReservas from "../../Components/Cards/CardReservas";
 import CardAdd from "../../Components/Cards/CardAdd";
 import CardRecompensa from "../../Components/Cards/CardRecompensa";
 import CardDetails from "../../Components/Cards/CardDetails";
 import Carousel from "../../Components/Carousel";
-import GraficoHorizontal from "../../Components/GraficoHorizontal";
 import ModalEditarPontoInteresse from "../../Components/Modais/ModalEditarPontoInteresse";
 import ModalEditarAgente from "../../Components/Modais/ModalEditarAgente";
-import auth from "../../Auth/auth.service";
-
-//Imagem exemplo
-import Pancakes from "../../Assets/Images/fotoagente.jpg";
-import coffe from "../../Assets/Images/logo.png";
 
 const ip = process.env.REACT_APP_IP;
 
-export default function PontoInteresseDetails(props) {
-
+export default function PontoInteresseDetails() {
   const [eventos, setEventos] = useState([]);
   const [recompensa, setRecompesa] = useState([]);
   const [pontoInteresseDetails, setPontoInteresseDetails] = useState([]);
+  const [imagens, setImagens] = useState([]);
 
-  const {id_ponto_interesse} = useParams();
+
+  const { id_ponto_interesse } = useParams();
 
   useEffect(() => {
-    console.log(id_ponto_interesse)
+    axiosGetPontoInteresse()
     axiosGetEventos()
     axiosGetRecompensas()
   }, []);
 
-  const imagens = [
-    {
-      imagem: Pancakes,
-    },
-    {
-      imagem: Pancakes,
-    },
-  ];
+  async function axiosGetPontoInteresse() {
+    const url = ip + "/pi/" + id_ponto_interesse
 
-  const testeReserva1 = [
-    {
-      dataReserva: "20 Jan 2023",
-      numeroPessoas: "2",
-    },
-    {
-      dataReserva: "20 Jan 2023",
-      numeroPessoas: "5",
-    },
-    {
-      dataReserva: "20 Jan 2023",
-      numeroPessoas: "13",
-    },
-  ];
-
-  const testeReserva2 = [
-    {
-      dataReserva: "20 Jan 2023",
-      numeroPessoas: "3",
-    },
-    {
-      dataReserva: "20 Jan 2023",
-      numeroPessoas: "5",
-    },
-  ];
-
-  const itens = [
-    {
-      nomePontoInteresse: "Ponto de Interesse",
-      nomeEvento: "Evento X",
-      dataEvento: "20 Jan 2023",
-      statusReserva: "20/30",
-      valueNow: "85",
-      reservas: testeReserva1,
-    },
-    {
-      nomePontoInteresse: "Ponto de Interesse",
-      nomeEvento: "Evento X",
-      dataEvento: "21 Jan 2023",
-      statusReserva: "8/9",
-      valueNow: "99",
-      reservas: testeReserva2,
-    },
-  ];
-  
-/*
-  const recompensa = [
-    {
-      title: "Açucar grátis na compra do café",
-      pontos: "100 Pontos",
-      imagem: coffe,
-    },
-    {
-      title: "Açucar grátis na compra do café",
-      pontos: "1000 Pontos",
-      imagem: coffe,
-    },
-    {
-      title: "Açucar grátis na compra do café",
-      pontos: "10 Pontos",
-      imagem: coffe,
-    },
-    {
-      title: "Açucar grátis na compra do café",
-      pontos: "10 Pontos",
-      imagem: coffe,
-    },
-  ];
-*/
-  const borderRadius = 14;
-
-  const dias = ["22/12", "23/12", "24/12", "25/12"];
-
-  const dataVisitas = ["100", "134", "108", "85"];
-
-  const datasets = [
-    {
-      label: "Visitas",
-      data: dataVisitas,
-      backgroundColor: "#729d4c",
-      borderRadius: borderRadius,
-    },
-  ];
+    await axios
+      .get(url, auth.header())
+      .then((output) => {
+        setPontoInteresseDetails(output.data?.data ?? []);
+        setImagens(output.data.data[0].imagens)
+      })
+      .catch((error) => console.error(error));
+  }
 
   function axiosGetEventos() {
-    const url = ip + "/"
+    const url = ip + "/eventos"
     console.log(url)
-    //Aqui que fazemos o pedido axios das reservas
+
+    let options = {
+      ...auth.header(),
+      params: {
+        // ponto_interesse_id: id_ponto_interesse
+      }
+    }
+
     axios
-    .get(url, auth.header())
-    .then((output) => {
-      console.log(output);
-      setEventos(output.data?.data ?? []);
-    })
-    .catch((error) => console.error(error));
+      .get(url, options)
+      .then((output) => {
+        console.log(output.data.data);
+        setEventos(output.data?.data ?? []);
+      })
+      .catch((error) => console.error(error));
   }
 
   function axiosGetRecompensas() {
     const url = ip + "/recompensa"
     console.log(url)
-    //Aqui que fazemos o pedido axios das recompesas
-    axios
-    .get(url, auth.header())
-    .then((output) => {
-      console.log(output);
-      setRecompesa(output.data?.data ?? []);
-    })
-    .catch((error) => console.error(error));
-  }
 
-  function tipoUtilizador(card) {
-    if (props.tipoUtilizador === "Agente Turistico") {
-      if (card === "evento")
-        return (
-          <div className="col-12 col-md-3">
-            <CardAdd
-              title="Adicionar Evento"
-              idModal="AddEvento"
-              nomeModal="addEvento"
-            />
-          </div>
-        );
-      if (card === "recompensa")
-        return (
-          <div className="col-12 col-md-3">
-            <CardAdd
-              title="Adicionar Recompensa"
-              idModal="AddRecompensa"
-              nomeModal="addRecompensa"
-            />
-          </div>
-        );
+    let options = {
+      ...auth.header(),
+      params: {
+        // ponto_interesse_id: id_ponto_interesse
+      }
     }
+
+    axios
+      .get(url, options)
+      .then((output) => {
+        console.log(output.data.data);
+        setRecompesa(output.data?.data ?? []);
+      })
+      .catch((error) => console.error(error));
   }
 
   return (
     <>
       <div className="row gy-3">
-        <div className="col-12 mt-5 mb-4">
-          <p className="fs-5 text-body fw-light">Ações Rápidas</p>
-          <button
-            type="button"
-            className="btn btn-light btn-lg shadow mt-3"
-            data-bs-toggle="modal"
-            data-bs-target="#editarAgente"
-          >
-            <i className="bi bi-file-earmark me-3"></i>Gerir Agente
-          </button>
-          <ModalEditarAgente idModal="editarAgente" title="Editar Agente" />
-        </div>
+
+        <VisibleTo tipo={3}>
+          <div className="col-12 mt-5 mb-4">
+            <p className="fs-5 text-body fw-light">Ações Rápidas</p>
+            <button
+              type="button"
+              className="btn btn-light btn-lg shadow mt-3"
+              data-bs-toggle="modal"
+              data-bs-target="#editarAgente"
+            >
+              <i className="bi bi-file-earmark me-3"></i>Gerir Agente
+            </button>
+            <ModalEditarAgente idModal="editarAgente" title="Editar Agente" />
+          </div>
+        </VisibleTo>
+
+        <VisibleTo tipo={4}>
+          <div className="col-12 mt-5 mb-4">
+            <p className="fs-5 text-body fw-light">Ações Rápidas</p>
+            <button
+              type="button"
+              className="btn btn-light btn-lg shadow mt-3"
+              data-bs-toggle="modal"
+              data-bs-target="#editarAgente"
+            >
+              <i className="bi bi-file-earmark me-3"></i>Gerir Agente
+            </button>
+            <ModalEditarAgente idModal="editarAgente" title="Editar Agente" />
+          </div>
+        </VisibleTo>
+
         <div className="col-6 mt-4 mb-3">
           <p className="fs-5 text-body fw-light">Vista Geral</p>
         </div>
@@ -219,7 +143,15 @@ export default function PontoInteresseDetails(props) {
           <p className="fs-5 text-body fw-light">Eventos</p>
         </div>
 
-        {tipoUtilizador("evento")}
+        <VisibleTo tipo={2}>
+          <div className="col-12 col-md-3">
+            <CardAdd
+              title="Adicionar Evento"
+              idModal="AddEvento"
+              nomeModal="addEvento"
+            />
+          </div>
+        </VisibleTo>
 
         {eventos.map((item, index) => {
           return (
@@ -240,7 +172,15 @@ export default function PontoInteresseDetails(props) {
           <p className="fs-5 text-body fw-light">Recompensas</p>
         </div>
 
-        {tipoUtilizador("recompensa")}
+        <VisibleTo tipo={2}>
+          <div className="col-12 col-md-3">
+            <CardAdd
+              title="Adicionar Recompensa"
+              idModal="AddRecompensa"
+              nomeModal="addRecompensa"
+            />
+          </div>
+        </VisibleTo>
 
         {recompensa.map((item, index) => {
           return (
@@ -248,19 +188,11 @@ export default function PontoInteresseDetails(props) {
               <CardRecompensa
                 title={item.titulo}
                 pontos={item.pontos}
-                imagem={item.imagem}
+                categoria={item.tipo_interesse.nome}
               />
             </div>
           );
         })}
-
-        <div className="col-12 mt-5">
-          <p className="fs-5 text-body fw-light">Número de Visitas</p>
-        </div>
-
-        <div className="col-12 col-md-10">
-          <GraficoHorizontal datasets={datasets} data={dias} />
-        </div>
       </div>
     </>
   );

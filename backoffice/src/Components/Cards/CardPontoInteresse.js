@@ -16,7 +16,7 @@ export default function CardPontoInteresse(props) {
   }
 
   return (
-    <div className="card border-0 rounded-4 shadow mb-4">
+    <div className="card border-0 rounded-4 shadow">
       <img src={props.imagem} className="card-img-top" />
 
       <div className="card-body p-3">

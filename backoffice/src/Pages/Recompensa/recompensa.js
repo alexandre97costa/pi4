@@ -5,7 +5,6 @@ import auth from "../../Auth/auth.service";
 import CardRecompensa from "../../Components/Cards/CardRecompensa";
 import CardAdd from "../../Components/Cards/CardAdd";
 import CardListaRecompensas from "../../Components/Cards/CardListaRecompensas";
-import GraficoHorizontal from "../../Components/GraficoHorizontal";
 import VisibleTo from "../../Helpers/VisibleTo";
 import BotaoDashboard from "../../Components/BotaoDashboard";
 

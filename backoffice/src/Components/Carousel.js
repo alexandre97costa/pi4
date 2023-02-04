@@ -8,12 +8,12 @@ export default function Carousel(props) {
                     if (!index)
                         return (
                             <div key={index} className="carousel-item h-100 active">
-                                <img src={item.imagem} className="d-block w-100 h-25rem rounded-4" alt={item.alt} />
+                                <img src={item.url} className="d-block w-100 h-25rem rounded-4" />
                             </div>
                         )
                     return (
                         <div key={index} className="carousel-item h-100">
-                            <img src={item.imagem} className="d-block w-100 h-25rem rounded-4" alt={item.alt} />
+                            <img src={item.url} className="d-block w-100 h-25rem rounded-4" />
                         </div>
                     )
                 })}
