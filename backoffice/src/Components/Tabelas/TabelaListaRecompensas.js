@@ -17,7 +17,28 @@ export default function TabelaListaRecompensas(props) {
         console.log("componente")
         if (props.tipoTabela === 'validar')
             axiosGetRecompensasPorValidar()
+        if (!props.tipoTabela)
+            axiosGetRecompensas()
     }, [])
+
+    async function axiosGetRecompensas() {
+        const url = ip + "/recompensa"
+        console.log(url)
+
+        await axios
+            .get(url, auth.header())
+            .then((output) => {
+                console.log(output.data.data)
+                setListaRecompensas(output.data?.data ?? []);
+            })
+            .catch((error) => {
+                if (error.response.status === 404) {
+                    toast.warning(error.response.data.msg)
+                    return setListaRecompensas([])
+                }
+                console.error(error)
+            });
+    }
 
     async function axiosGetRecompensasPorValidar() {
         const url = ip + "/recompensa"
@@ -55,6 +76,26 @@ export default function TabelaListaRecompensas(props) {
             .then((output) => {
                 toast.success(output.data.msg)
                 axiosGetRecompensasPorValidar()
+            })
+            .catch((error) => {
+                toast.error(error.response.data.msg)
+                console.error(error)
+            });
+    }
+
+    async function axiosInValidar(index) {
+        const url = ip + "/recompensa/" + index
+        console.log(url)
+
+        const data = {
+            validado: false
+        }
+
+        await axios
+            .patch(url, data, auth.header())
+            .then((output) => {
+                toast.success(output.data.msg)
+                axiosGetRecompensas()
             })
             .catch((error) => {
                 toast.error(error.response.data.msg)
@@ -117,7 +158,7 @@ export default function TabelaListaRecompensas(props) {
                                     <td className='w-20 d-none d-md-table-cell'>{item.tipo_interesse.nome}</td>
                                     <td className='w-20'>{item.pontos}</td>
                                     <td className='w-20'>
-                                        <Botao className="btn-outline-danger bi bi-trash-fill ms-md-2" onClick={() => axiosDelete(item.id)} />
+                                        <Botao className="btn-outline-danger bi bi-trash-fill ms-md-2" onClick={() => axiosInValidar(item.id)} />
                                     </td>
                                 </tr>
                             )

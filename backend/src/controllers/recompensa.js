@@ -139,7 +139,7 @@ module.exports = {
     },
 
     validar: async (req, res) => {
-        if (req.auth.tipo !== 3)
+        if (req.auth.tipo === 1 || req.auth.tipo === 2)
             return res.status(401).json({ msg: 'Apenas responsáveis de região podem validar recompensas.' })
 
         if (!req.body.hasOwnProperty('validado'))

@@ -13,14 +13,14 @@ export default function ListaRecompensas() {
         <div className="col-12 col-md-4 col-sm-12">
           <BotaoDashboard
             to="/validar-recompensas"
-            class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
+            class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center mb-5"
             icon="bi-card-checklist fs-3"
             texto="Validar de Recompensas"
           />
         </div>
 
         <div className="col-4 col-md-9 d-flex justify-content-end">
-          <Dropdown tipos={tipos} onChange={(value) => console.log(value)} />
+          <Dropdown items={tipos} onChange={(value) => console.log(value)} />
         </div>
       </div>
 
