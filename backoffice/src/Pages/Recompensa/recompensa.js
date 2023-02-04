@@ -67,7 +67,7 @@ export default function Recompensa() {
         setRecompensas(output.data?.data ?? []);
       })
       .catch((error) => {
-        if(error.response.status === 404)
+        if (error.response.status === 404)
           return toast.warning(error.response.data.msg)
         console.log(error)
       });
@@ -82,13 +82,15 @@ export default function Recompensa() {
       let options = {
         ...auth.header(),
         params: {
-          agente_turistico_id: auth.getUser().id
+          agente_turistico_id: auth.getUser().id,
+          order: 'id'
         }
       }
 
       return await axios
         .get(url, options)
         .then((output) => {
+          // console.log(output.data)
           setPontoInteresse(output.data?.data ?? []);
         })
         .catch((error) => console.error(error));
@@ -122,7 +124,6 @@ export default function Recompensa() {
         setRecompensas(null)
       });
   }
-
 
   // o put já não vai acontecer pois n? já não é suposto editar ? é para confirmar
 
@@ -187,7 +188,6 @@ export default function Recompensa() {
           <ToastContainer />
         </div>
 
-        {/* apenas visivel para o AT */}
         <VisibleTo tipo="2">
           <div className="col-12 col-md-3">
             <CardAdd
@@ -198,7 +198,6 @@ export default function Recompensa() {
           </div>
         </VisibleTo>
 
-        {/*  vai retornar um compoenente sempre com os itens das recompensas */}
         {recompensas.map((item, index) => {
           // console.log(item)
           return (

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import auth from "../../Auth/auth.service";
+import VisibleTo from '../../Helpers/VisibleTo';
 
 import Botao from '../Botao';
 import CardForm from '../CardForm';
@@ -19,6 +20,7 @@ export default function CardListaRecompensas(props) {
             }).catch((error) => console.log(error))
     }
 
+
     return (
         <CardForm>
             <p className="card-title fs-5 text-success">{props.nomePontoInteresse}</p>
@@ -29,9 +31,11 @@ export default function CardListaRecompensas(props) {
                         <div className='col-5 ps-0'>
                             <p className="text-start text-muted">{item.recompensa.titulo}</p>
                         </div>
-                        <div className='col-7 text-end pe-0'>
-                            <Botao className="btn-outline-danger btn-sm" texto="Eliminar" onClick={() => axiosDelete(item.id)} />
-                        </div>
+                        <VisibleTo tipo="2">
+                            <div className='col-7 text-end pe-0'>
+                                <Botao className="btn-outline-danger btn-sm" texto="Eliminar" onClick={() => axiosDelete(item.id)} />
+                            </div>
+                        </VisibleTo>
                     </div>
                 )
             })}

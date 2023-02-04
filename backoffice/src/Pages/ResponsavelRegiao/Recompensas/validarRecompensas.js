@@ -1,45 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import axios from "axios";
-import auth from "../../Auth/auth.service";
+import React from "react";
 
 import Dropdown from "../../../Components/Dropdown";
 import TabelaListaRecompensas from "../../../Components/Tabelas/TabelaListaRecompensas";
 import BotaoDashboard from "../../../Components/BotaoDashboard";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-const ip = process.env.REACT_APP_IP;
-
 export default function ValidarRecompensas() {
   const tipos = ["Todas", "A", "B", "C"]
-
-  useEffect(() => {
-    getRecompensasPorValidar()
-  }, [])
-
-  const toastId = useRef(null)
-
-  async function getRecompensasPorValidar() {
-    const url = ip + "/recompensa"
-    console.log(url)
-
-    //Só vai buscar no caso de ser um agente turistico os seus pontos de interesse
-    if (auth.getUser().tipo === 2) {
-      let options = {
-        ...auth.header(),
-        params: {
-          agente_turistico_id: auth.getUser().id
-        }
-      }
-
-      return await axios
-        .get(url, options)
-        .then((output) => {
-          setPontoInteresse(output.data?.data ?? []);
-        })
-        .catch((error) => console.error(error));
-  }
 
   return (
     <>
@@ -68,7 +34,6 @@ export default function ValidarRecompensas() {
       <div className="row">
         <div className="col-12">
           <TabelaListaRecompensas tipoTabela="validar" />
-          <ToastContainer />
         </div>
       </div>
     </>

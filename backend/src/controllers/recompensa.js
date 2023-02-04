@@ -156,7 +156,7 @@ module.exports = {
         await _recompensa
             .update({ validado: !!validado })
             .then(output => {
-                return !output[0] ?
+                return !output ?
                     res.status(400).json({ msg: 'Recompensa não atualizada.' }) :
                     res.status(200).json({ msg: 'Recompensa atualizada.', recompensa: output[0] })
             })
