@@ -63,7 +63,7 @@ export default function PontoInteresse(props) {
     axios
       .get(url, auth.header())
       .then((output) => {
-        console.log(output);
+        console.log(output.data);
         setPontoInteresse(output.data?.data ?? []);
       })
       .catch((error) => console.error(error));
@@ -78,8 +78,9 @@ export default function PontoInteresse(props) {
           return (
             <div key={index} className="col-12 col-md-3">
               <CardPontoInteresse
+                id = {item.id}
                 imagem={item.imagem}
-                nome={item.title}
+                nome={item.nome}
                 categoria={item.subTitle}
                 morada={item.morada}
                 numeroScans={item.numeroScans}

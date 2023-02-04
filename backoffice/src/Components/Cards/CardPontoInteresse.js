@@ -11,7 +11,7 @@ export default function CardPontoInteresse(props) {
       )
 
     return (
-      <Link to="/ponto-interesse-details"className="btn btn-outline-success w-100">Ver mais detalhes</Link>
+      <Link to={"/ponto-interesse-details/" + props.id_ponto_interesse} className="btn btn-outline-success w-100">Ver mais detalhes</Link>
     )
   }
 

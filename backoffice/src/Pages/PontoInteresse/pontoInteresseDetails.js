@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import axios from "axios";
 import ConfirmarReservas from "../../Components/Cards/CardReservas";
@@ -24,7 +24,10 @@ export default function PontoInteresseDetails(props) {
   const [recompensa, setRecompesa] = useState([]);
   const [pontoInteresseDetails, setPontoInteresseDetails] = useState([]);
 
+  const {id_ponto_interesse} = useParams();
+
   useEffect(() => {
+    console.log(id_ponto_interesse)
     axiosGetEventos()
     axiosGetRecompensas()
   }, []);
