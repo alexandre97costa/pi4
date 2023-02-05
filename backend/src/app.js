@@ -16,6 +16,8 @@ const dev = new devClass;
 const dev_routes = require('./routes/dev')
 
 const evento_routes = require('./routes/evento')
+const historico_routes = require('./routes/historico')
+const local_routes = require('./routes/local')
 const ponto_interesse_routes = require('./routes/ponto_interesse')
 const recompensa_routes = require('./routes/recompensa')
 const reserva_routes = require('./routes/reserva')
@@ -23,7 +25,6 @@ const scan_routes = require('./routes/scan')
 const tipos_routes = require('./routes/tipos')
 const utilizador_routes = require('./routes/utilizador')
 const voucher_routes = require('./routes/voucher')
-const historico_routes = require('./routes/historico')
 
 //* Middlewares
 app.use(cors());
@@ -82,6 +83,8 @@ app.use(function (e, req, res, next) {
 
 //* Rotas
 app.use('/evento', evento_routes)
+app.use('/historico', historico_routes)
+app.use('/local', local_routes)
 app.use('/pi', ponto_interesse_routes)
 app.use('/recompensa', recompensa_routes)
 app.use('/reserva', reserva_routes)
@@ -89,7 +92,6 @@ app.use('/scan', scan_routes)
 app.use('/tipos', tipos_routes)
 app.use('/utilizador', utilizador_routes)
 app.use('/voucher', voucher_routes)
-app.use('/historico', historico_routes)
 
 app.use('/dev', dev_routes)
 
