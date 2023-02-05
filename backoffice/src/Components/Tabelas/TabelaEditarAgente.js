@@ -49,7 +49,6 @@ export default function TabelaEditarAgente() {
                 <thead>
                     <tr>
                         <th className='text-start fw-normal fs-5' scope="col">Nome</th>
-                        <th className='fw-normal fs-5' scope="col">Localidade</th>
                         <th className='fw-normal fs-5' scope="col">Ação</th>
                     </tr>
                 </thead>
@@ -59,7 +58,6 @@ export default function TabelaEditarAgente() {
                         return (
                             <tr key={index} className="h-5-5rem">
                                 <td className='text-start w-33'>{item.nome}</td>
-                                <td className='w-33'>{item.localidade}</td>
                                 <td className='w-33'>
                                     <Botao className="btn-primary w-100" texto="Selecionar" onClick={() => axiosPost()} />
                                 </td>
