@@ -10,23 +10,23 @@ export default function CardDetails(props) {
                             <div key={index}>
                                 <div className='col-12'>
                                     <h5 className="card-title fw-light">Nome</h5>
-                                    <h6 className="card-subtitle mb-4 fs-4">{item.nome}</h6>
+                                    <h6 className="card-subtitle mb-4 fs-5">{item.nome}</h6>
                                 </div>
 
                                 <div className='col-12'>
                                     <h5 className="card-title fw-light">Descricao</h5>
-                                    <h6 className="card-subtitle mb-4 fs-4">{item.descricao}</h6>
+                                    <h6 className="card-subtitle mb-4 fs-5">{item.descricao}</h6>
                                 </div>
 
 
                                 <div className='col-12'>
                                     <h5 className="card-title fw-light">Categoria</h5>
-                                    <h6 className="card-subtitle mb-4 fs-4">{item.tipo_interesse.nome}</h6>
+                                    <h6 className="card-subtitle mb-4 fs-5">{item.tipo_interesse.nome}</h6>
                                 </div>
 
                                 <div className='col-12'>
                                     <h5 className="card-title fw-light">Avaliação</h5>
-                                    <h6 className="card-subtitle mb-4 fs-4">{item.avg_avaliacao}</h6>
+                                    <h6 className="card-subtitle mb-4 fs-5">{item.avg_avaliacao}</h6>
                                 </div>
                             </div>
                         )
