@@ -44,7 +44,7 @@
 - gerir agente: mudar icon
 - gerir agente: tirar coluna da localidade - Feito
 - gerir agente: nao está a fazer o POST
-- sugestao: quando nao ha eventos/recompensas, ter uma frase qualquer a indicar isso (como a tabela de utilizadores tem)
+- sugestao: quando nao ha eventos/recompensas, ter uma frase qualquer a indicar isso (como a tabela de utilizadores tem) - Feito
 
 
 ## Eventos
