@@ -120,7 +120,7 @@ module.exports = {
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
-            return res.status(400).json({ msg: 'Faltam dados para poder criar o evento.' })
+            return res.status(400).json({ msg: 'Faltam dados para poder criar o evento.', required_params })
 
         const { nome, descricao, pontos, vagas, horas_duracao, ponto_interesse_id, tipo_evento_id, data, hora } = req.body
 
@@ -138,14 +138,26 @@ module.exports = {
                 nome: nome,
                 descricao: descricao,
                 pontos: pontos,
-                vagas: vagas,
+                lotacao: +vagas,
                 horas_duracao: horas_duracao,
                 ponto_interesse_id: ponto_interesse_id,
                 tipo_evento_id: tipo_evento_id,
             })
-            .then(output => {
-                
-                return res.status(200).json({ msg: 'Evento criado.', evento: output })
+            .then(async output => {
+                await sessao
+                    .create({
+                        data_hora: timestamp,
+                        vagas: +vagas,
+                        evento_id: output.id
+                    })
+                    .then(output2 => {
+                        return res.status(200).json({ msg: 'Evento criado.', evento: output })
+                    })
+                    .catch(error => {
+                        res.status(400).json({ error })
+                        dev.error(error)
+                        return
+                    })
             })
             .catch(error => {
                 res.status(400).json({ error })
