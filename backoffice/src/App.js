@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navigate, BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navigate, BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import dev from "./Auth/dev";
 import ProtectedRoute from "./Helpers/ProtectedRoute";
 import VisibleTo from "./Helpers/VisibleTo";
@@ -75,7 +75,7 @@ export default function App() {
 
         {/* AQUI TEMOS DE FILTRAR OS CONTEUDO QUE APARECEM */}
         <Route
-          path="/utilizadores"
+          path="/utilizadores/:tipoId"
           element={
             <ProtectedRoute>
               <Pagina title="Utilizadores">

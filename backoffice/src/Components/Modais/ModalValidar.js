@@ -28,7 +28,6 @@ export default function ModalValidar(props) {
                         <div className="modal-footer">
                             <Botao texto="Validar" onClick={() => {
                                 props.onSubmit(code)
-                                props.onClick()
                             }} />
                         </div>
                     </div>

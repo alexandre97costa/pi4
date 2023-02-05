@@ -60,7 +60,9 @@ export default function TabelaReservaEvento(props) {
                     </thead>
 
                     <tbody className='table-group-divider'>
-                        {reservas.map((item, index) => {
+                        
+                    {reservas.length > 0 ? (
+                        reservas.map((item, index) => {
                             const options = { year: 'numeric', month: 'numeric', day: 'numeric' }
                             return (
                                 <tr key={index} className="h-5-5rem">
@@ -70,7 +72,13 @@ export default function TabelaReservaEvento(props) {
                                     <td className='w-20'>{new Date(item.sessao?.data_hora.split('T')[0]).toLocaleDateString(undefined, options)}</td>
                                 </tr>
                             )
-                        })}
+                        })) : (
+                            <tr>
+                              <div className='pt-3 text-muted fw-light fst-italic'>
+                                Não existem reservas no Evento selecionado
+                              </div>
+                            </tr>
+                          )}
                     </tbody>
                 </table>
                 <ToastContainer />

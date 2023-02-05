@@ -15,6 +15,7 @@ router.delete('/:id', pi.delete)
 router.get('/:id/comentarios_avaliacoes', pi.comentarios_avaliacoes)
 router.post('/:id/comentario_avaliacao', pi.post_comentario_avaliacao)
 
+router.post('/:id/associar', pi.associar)
 
 router.get('/test_aval', pi.test_aval)
 router.get('/test_img', pi.test_img)

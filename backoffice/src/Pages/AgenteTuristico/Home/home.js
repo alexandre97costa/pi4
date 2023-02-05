@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BotaoDashboard from '../../../Components/BotaoDashboard';
 
 import CardReservas from '../../../Components/Cards/CardReservas';
 import ModalValidar from '../../../Components/Modais/ModalValidar';
@@ -13,7 +14,6 @@ import ModalNewPontoInteresse from '../../../Components/Modais/ModalNewPontoInte
 const ip = process.env.REACT_APP_IP
 
 export default function Home() {
-    const [codeReserva, setCodeReserva] = useState("")
     const [codeVoucher, setCodeVoucher] = useState("")
     const [codePontoInteresse, setCodePontoInteresse] = useState("")
     const [eventos, setEventos] = useState([])
@@ -73,16 +73,20 @@ export default function Home() {
         toast.success("Voucher validado")
     }
 
-    function validarReserva() {
-        if (!codeReserva)
+    async function validarReserva(code) {
+        if (!code)
             return toast.warning("Introduza um codigo")
-        toast.success("Reserva validada")
-    }
 
-    function adicionarPontoInteresse() {
-        if (!codePontoInteresse)
-            return toast.warning("Introduza as informações")
-        toast.success("Ponto de Interesse enviado com sucesso")
+        const url = "/reserva/confirmar/" + code
+
+        await axios
+            .patch(url, auth.header())
+            .then((output) => {
+                toast.success("Reserva validada")
+            }).catch((error) => {
+                console.log(error)
+                toast.error(error.response.data.msg)
+            })
     }
 
 
@@ -90,20 +94,23 @@ export default function Home() {
         <>
             <div className='row'>
                 <div className='col-12 mt-2'>
-                    <p className="fs-5 text-body fw-light">Ações Rápidas</p>
+                    <p className="fs-5 text-body fw-light ">Ações Rápidas</p>
                 </div>
-                <div className='col-12 col-md-3'>
-                    <button className="btn btn-light btn-lg shadow text-break rounded-3" data-bs-toggle="modal" data-bs-target="#validarVoucher">Validar Voucher<i className="bi bi-cart-check ps-2"></i></button>
+
+                <div className='col-12 col-md-3 '>
+                    <button className="btn btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center shadow text-break rounded-3 border-0" data-bs-toggle="modal" data-bs-target="#validarVoucher"><i className="bi bi-cart-check fs-3 pe-3 "></i> Validar Voucher</button>
 
                     <ModalValidar idModal="validarVoucher" title="Validar Voucher" onSubmit={(value) => setCodeVoucher(value)} onClick={() => validarVoucher()} />
                 </div>
-                <div className='col-12 col-md-3'>
-                    <button className="btn btn-light btn-lg shadow text-break rounded-3" data-bs-toggle="modal" data-bs-target="#validarReserva">Validar Reserva<i className="bi bi-journal-check ps-2"></i></button>
 
-                    <ModalValidar idModal="validarReserva" title="Validar Reserva" onSubmit={(value) => setCodeReserva(value)} onClick={() => validarReserva()} />
+                <div className='col-12 col-md-3'>
+                    <button className="btn btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center shadow text-break rounded-3 border-0" data-bs-toggle="modal" data-bs-target="#validarReserva"><i className="bi bi-journal-check fs-3 pe-3"></i>Validar Reserva</button>
+
+                    <ModalValidar idModal="validarReserva" title="Validar Reserva" onSubmit={(value) => validarReserva(value)} />
                 </div>
+
                 <div className='col-12 col-md-4'>
-                    <button className="btn btn-light btn-lg shadow text-break rounded-3" data-bs-toggle="modal" data-bs-target="#NewPontoInteresse">Adicionar Ponto de Interesse<i className="bi bi-journal-check ps-2"></i></button>
+                    <button className="btn btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center shadow text-break rounded-3 border-0" data-bs-toggle="modal" data-bs-target="#NewPontoInteresse"><i className="bi bi-journal-check fs-3 pe-3"></i>Adicionar Ponto de Interesse</button>
 
                     <ModalNewPontoInteresse idModal="NewPontoInteresse" />
                 </div>
@@ -112,6 +119,9 @@ export default function Home() {
                     <p className="fs-5 text-body fw-light">Confirmar Reservas<i className="bi bi-box-arrow-up-right ps-2"></i></p>
                 </div>
             </div>
+
+
+
 
             <div className='row gy-4 mt-0'>
                 {eventos.map((item, index) => {

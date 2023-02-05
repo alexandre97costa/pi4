@@ -191,7 +191,7 @@ module.exports = {
                 res.status(400).json({ error })
                 dev.error(error)
                 return
-            });
+            })
     },
 
     editar: async (req, res) => {
@@ -368,7 +368,7 @@ module.exports = {
                             avaliacao: c.dataValues.avaliacao,
                             created_at: c.dataValues.created_at,
                             nome_visitante: c.utilizador.nome,
-                            
+
                         }
                     }),
                     avg,
@@ -421,6 +421,42 @@ module.exports = {
                 dev.error(error)
                 return
             });
+    },
+
+    associar: async (req, res) => {
+        // só agentes
+        if (req.auth.tipo !== 2)
+            return res.status(401).json({ msg: 'Apenas agentes podem associar recompensas a pontos de interesse.' })
+
+        if (!req.body.hasOwnProperty('recompensa_id'))
+            return res.status(400).json({ msg: 'Falta o recompensa_id no body.' })
+
+        const { id } = req.params
+        const { recompensa_id } = req.body
+
+        // verificar se o ponto de interese realmente existe
+        const _pi = await ponto_interesse.findByPk(id)
+        if (_pi === null)
+            res.status(404).json({ msg: 'O ponto de interesse fornecido não existe ou foi eliminado.' })
+
+        // a partir daqui, tudo gucci
+
+        await ponto_interesse_recompensa
+            .create({
+                ponto_interesse_id: id,
+                recompensa_id: recompensa_id
+            })
+            .then(output => {
+                return res.status(200).json({
+                    msg: 'Ponto de interesse associado com a recompensa ' + recompensa_id + '.',
+                    ponto_interesse_recompensa: output
+                })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
     },
 
     // * testes
