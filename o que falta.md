@@ -1,5 +1,8 @@
 # Agente
 
+## Dashboard
+- os botoes de açoes rapidas nao estão com o tamanho certo
+
 ## Adicionar PI
 - codigo postal precisa de mudar o tipo e adicionar mais validação
 - Contacto precisa de mais validação (nao pode ter nºs decimais)
@@ -46,3 +49,18 @@
 ## Eventos
 - Os cards podiam ter todos a mesma altura
 
+# Admin
+## Dashboard
+
+- Os botoes de utilizadores podiam mandar para a oagina ja com os filtros
+- os botoes de utilizaodr precisam de ser revistos (cor do hover)
+- gerir regioes: tabela com valroes ficticios
+- gerir regioes: botoes nao funfam
+- grafico nao funfa
+
+## Lista de reservas
+- o link podia ser diferente
+- Coluna "Hora Chegada" mudar para "Hora da Sessão"
+
+## Microsite
+- muito atrasado
