@@ -6,6 +6,8 @@ import CardAdd from '../../Components/Cards/CardAdd';
 import CardPontoInteresse from '../../Components/Cards/CardPontoInteresse';
 import CardDetails from '../../Components/Cards/CardDetails';
 
+import fotoAgente from '../../Assets/Images/fotoagente.jpg'
+
 const ip = process.env.REACT_APP_IP;
 
 export default function DetalhesUtilizador() {

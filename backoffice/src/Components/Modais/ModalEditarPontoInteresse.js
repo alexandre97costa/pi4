@@ -36,7 +36,6 @@ export default function ModalNewPontoInteresse(props) {
         setMorada(props.pontoInteresse?.morada)
         setCodigoPostal(props.pontoInteresse?.codigo_postal)
         setContacto(props.pontoInteresse?.telemovel)
-        console.log(props.pontoInteresse?.tipo_interesse?.nome)
         setSelectTipo(props.pontoInteresse?.tipo_interesse?.id + ' ' + props.pontoInteresse?.tipo_interesse?.nome)
     }
 
@@ -44,14 +43,14 @@ export default function ModalNewPontoInteresse(props) {
         const url = ip + "/tipos/pi"
 
         await axios
-          .get(url, auth.header())
-          .then((output) => {
-            setTipos([selectTipo, ...output.data.tipos_interesse.map(t => t.id + ' ' + t.nome)])
-          })
-          .catch((error) => {
-            toast.error(error.response.data.msg)
-            console.error(error)
-          });
+            .get(url, auth.header())
+            .then((output) => {
+                setTipos([selectTipo, ...output.data.tipos_interesse.map(t => t.id + ' ' + t.nome)])
+            })
+            .catch((error) => {
+                toast.error(error.response.data.msg)
+                console.error(error)
+            });
     }
 
 
@@ -61,6 +60,19 @@ export default function ModalNewPontoInteresse(props) {
     }
 
     function axiosPost() {
+        if (nome === '')
+            return toast.error("Introduza nome ao Ponto de Interesse")
+        if (descricao === '')
+            return toast.error("Introduza uma descrição ao Ponto de Interesse")
+        if (morada === '')
+            return toast.error("Introduza a morada ao Ponto de Interesse")
+        if (codigoPostal === '')
+            return toast.error("Introduza o codigo postal ao Ponto de Interesse")
+        if (contacto === '')
+            return toast.error("Introduza contacto ao Ponto de Interesse")
+        if (selectTipo === '')
+            return toast.error("Selecione um tipo")
+
         toast.success("Ponto de Interesse adicionado com sucesso")
         console.log(props.idPontoInteresse)
     }
@@ -88,7 +100,7 @@ export default function ModalNewPontoInteresse(props) {
 
                                 <textarea className="form-control my-4" placeholder="Descrição" id="descricao" rows="3" defaultValue={descricao} onChange={(value) => setDescricao(value.target.value)} />
 
-                                <Dropdown items={tipos} onChange={(item, index) => console.log(item)}/>
+                                <Dropdown items={tipos} onChange={(item, index) => console.log(item)} />
 
                                 {/* <select className="form-select mt-4" value={tipo} onChange={(value) => setTipo(value.target.value)}>
                                     {baseDadosTipo.map((item, index) => {
