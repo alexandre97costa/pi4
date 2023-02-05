@@ -4,6 +4,7 @@ import auth from '../../Auth/auth.service';
 
 import Botao from '../Botao'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const ip = process.env.REACT_APP_IP
 
@@ -82,7 +83,7 @@ export default function CardReservas(props) {
 
                     <VisibleTo tipo='4'>
                         <div className='col-6 text-end'>
-                            <Botao to="/admin/lista-utilizadores" className="btn-outline-success btn-sm me-2 mb-5" texto="Lista de reservas" />
+                            <Link to={"/lista-reservas-eventos/" + props.eventoId} className="btn btn-outline-success btn-sm me-2 mb-5">Lista de reservas</Link>
                         </div>
                     </VisibleTo>
 

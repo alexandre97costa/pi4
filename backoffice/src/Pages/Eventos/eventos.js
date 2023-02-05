@@ -19,7 +19,7 @@ export default function Eventos() {
     }, []);
 
     async function axiosGetEventos() {
-        const url = ip + "/evento"/*saber qual a rota*/
+        const url = ip + "/evento"
         console.log("foi buscar")
         let options = {
             ...auth.header(),
