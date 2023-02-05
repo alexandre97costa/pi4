@@ -4,7 +4,7 @@ export const menu = [
         {
             text: "Dashboard",
             path: "/dashboard",
-            icon: "speedometer2"
+            icon: ".people"
         },
         {
             text: "Pontos de Interesse",
@@ -27,7 +27,7 @@ export const menu = [
         {
             text: "Dashboard",
             path: "/dashboard",
-            icon: "speedometer2"
+            icon: "people"
         },
         {
             text: "Agentes Turísticos",
