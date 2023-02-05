@@ -10,6 +10,7 @@
 - Há uma textarea sem label, nao faço ideia o que seja
 - Tipo de interesse deve mudar a label para "Tipo de Interesse", e ir buscar os tipos à BD
 - Ao enviar, nao deixa com o erro "Introduza um nome" mesmo quando está tudo preenchido
+- Label do contacto não deve ser incremental - Feito
 
 ## Validar Voucher
 - nao funciona 
