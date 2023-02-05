@@ -75,7 +75,8 @@ export default function PontoInteresse(props) {
 
         {pontosInteresse.map((item, index) => {
           return (
-            <div key={index} className="col-12 col-md-3">
+            <div key={index} className="col-12 col-md-3 d-flex align-items-stretch">
+              
               <CardPontoInteresse
                 id_ponto_interesse={item.id}
                 imagem={item.imagens[0].url}
