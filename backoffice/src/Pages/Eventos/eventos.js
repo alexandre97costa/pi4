@@ -6,6 +6,9 @@ import CardReservas from '../../Components/Cards/CardReservas';
 import ModalAddEvento from '../../Components/Modais/ModalAddEvento'
 import VisibleTo from '../../Helpers/VisibleTo';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const ip = process.env.REACT_APP_IP
 
 export default function Eventos() {
@@ -29,7 +32,11 @@ export default function Eventos() {
                 console.log(output.data.data);
                 setEventos(output.data?.data ?? []);
             })
-            .catch((error) => console.error(error));
+            .catch((error) => {
+                toast.dismiss()
+                toast.warning(error.response.data.msg)
+                console.error(error)
+            });
     }
 
     return (
@@ -67,6 +74,7 @@ export default function Eventos() {
                     )
                 })}
             </div>
+            <ToastContainer />
         </div>
     )
 }

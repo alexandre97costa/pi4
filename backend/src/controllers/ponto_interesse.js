@@ -208,7 +208,6 @@ module.exports = {
             'codigo_postal',
             'telemovel',
             'pontos',
-            'freguesia_id',
             'tipo_interesse_id'
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
@@ -236,7 +235,6 @@ module.exports = {
                 telemovel: telemovel,
                 pontos: pontos,
                 descricao: descricao,
-                freguesia_id: freguesia_id,
                 tipo_interesse_id: tipo_interesse_id
             })
             .then(output => {

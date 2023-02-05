@@ -4,13 +4,16 @@ import auth from "../../Auth/auth.service";
 import VisibleTo from "../../Helpers/VisibleTo";
 import axios from "axios";
 
-import ConfirmarReservas from "../../Components/Cards/CardReservas";
+import CardReservas from "../../Components/Cards/CardReservas";
 import CardAdd from "../../Components/Cards/CardAdd";
 import CardRecompensa from "../../Components/Cards/CardRecompensa";
 import CardDetails from "../../Components/Cards/CardDetails";
 import Carousel from "../../Components/Carousel";
 import ModalEditarPontoInteresse from "../../Components/Modais/ModalEditarPontoInteresse";
 import ModalEditarAgente from "../../Components/Modais/ModalEditarAgente";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ip = process.env.REACT_APP_IP;
 
@@ -20,13 +23,13 @@ export default function PontoInteresseDetails() {
   const [pontoInteresseDetails, setPontoInteresseDetails] = useState([]);
   const [imagens, setImagens] = useState([]);
 
-
   const { id_ponto_interesse } = useParams();
 
   useEffect(() => {
     axiosGetPontoInteresse()
     axiosGetEventos()
     axiosGetRecompensas()
+    console.log("RENDER 1")
   }, []);
 
   async function axiosGetPontoInteresse() {
@@ -38,52 +41,65 @@ export default function PontoInteresseDetails() {
         setPontoInteresseDetails(output.data?.data ?? []);
         setImagens(output.data.data[0].imagens)
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        toast.dismiss()
+        toast.error(error.response.data.msg)
+        console.error(error)
+      });
   }
 
-  function axiosGetEventos() {
-    const url = ip + "/eventos"
+  async function axiosGetEventos() {
+    const url = ip + "/evento"
     console.log(url)
 
     let options = {
       ...auth.header(),
       params: {
-        // ponto_interesse_id: id_ponto_interesse
+        ponto_interesse_id: id_ponto_interesse,
+        limit: 3
       }
     }
 
-    axios
+    await axios
       .get(url, options)
       .then((output) => {
         console.log(output.data.data);
         setEventos(output.data?.data ?? []);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        toast.dismiss()
+        toast.warning(error.response.data.msg)
+        console.error(error)
+      });
   }
 
-  function axiosGetRecompensas() {
+  async function axiosGetRecompensas() {
     const url = ip + "/recompensa"
     console.log(url)
 
     let options = {
       ...auth.header(),
       params: {
-        // ponto_interesse_id: id_ponto_interesse
+        ponto_interesse_id: id_ponto_interesse,
+        limit: 3
       }
     }
 
-    axios
+    await axios
       .get(url, options)
       .then((output) => {
-        console.log(output.data.data);
         setRecompesa(output.data?.data ?? []);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        toast.dismiss()
+        toast.warning(error.response.data.msg)
+        console.error(error)
+      });
   }
 
   return (
     <>
-      <div className="row gy-3">
+      <div className="row gy-3 mb-4">
 
         <VisibleTo tipo={3}>
           <div className="col-12 mt-5 mb-4">
@@ -128,6 +144,7 @@ export default function PontoInteresseDetails() {
             Editar Informações
           </button>
           <ModalEditarPontoInteresse
+            pontoInteresse={pontoInteresseDetails[0]}
             idModal="editarInteresse"
             title="Editar Agente"
           />
@@ -156,13 +173,13 @@ export default function PontoInteresseDetails() {
         {eventos.map((item, index) => {
           return (
             <div key={index} className="col-12 col-sm-6 col-md-4">
-              <ConfirmarReservas
-                nomePontoInteresse={item.nomePontoInteresse}
-                nomeEvento={item.nomeEvento}
-                dataEvento={item.dataEvento}
-                statusReserva={item.statusReserva}
-                valueNow={item.valueNow}
-                reservas={item.reservas}
+              <CardReservas
+                nomePontoInteresse={item.ponto_interesse.nome}
+                nomeEvento={item.nome}
+                sessao={item.sessoes}
+                lotacao={item.lotacao}
+                eventoId={item.id}
+                onChange={() => axiosGetEventos()}
               />
             </div>
           );
@@ -184,7 +201,7 @@ export default function PontoInteresseDetails() {
 
         {recompensa.map((item, index) => {
           return (
-            <div key={index} className="col-12 col-sm-6 col-md-3 mb-5">
+            <div key={index} className="col-12 col-sm-6 col-md-3">
               <CardRecompensa
                 title={item.titulo}
                 pontos={item.pontos}
@@ -194,6 +211,7 @@ export default function PontoInteresseDetails() {
           );
         })}
       </div>
+      <ToastContainer />
     </>
   );
 }
