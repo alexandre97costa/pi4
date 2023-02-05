@@ -7,32 +7,41 @@ import auth from "../../Auth/auth.service";
 
 const ip = process.env.REACT_APP_IP;
 
-export default function TabelaEditarAgente(props) {
+export default function TabelaEditarAgente() {
     const [utilizadores, setUtilizadores] = useState([])
 
-    const toastId = useRef(null)
+    useEffect(() => {
+        axiosGetResponsaveisRegiao()
+    }, [])
 
     function axiosGetResponsaveisRegiao() {
         //Pedido api
         const url = ip + "/utilizador"
         console.log(url)
-        //Aqui que fazemos o pedido axios dos pontos de interesse
+
+        let options = {
+            ...auth.header(),
+            params: {
+                tipo_utilizador_id: 2
+            }
+        }
+
         axios
-          .get(url, auth.header())
+          .get(url, options)
           .then((output) => {
             console.log(output.data);
             setUtilizadores(output.data?.data ?? []);
           })
-          .catch((error) => console.error(error));
+          .catch((error) => {
+            toast.dismiss()
+            toast.warning(error.response.data.msg)
+            console.error(error)
+          });
     }
 
     function axiosPost() {
         return toast.success("Agente editado com sucesso")
     }
-
-    useEffect(() => {
-        axiosGetResponsaveisRegiao()
-    }, [])
 
     return (
         <div className="table-responsive">
@@ -59,16 +68,7 @@ export default function TabelaEditarAgente(props) {
                     })}
                 </tbody>
             </table>
-            <ToastContainer position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss={false}
-                draggable={false}
-                pauseOnHover={false}
-                theme="light" />
+            <ToastContainer />
         </div>
     );
 }

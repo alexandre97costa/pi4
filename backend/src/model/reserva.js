@@ -33,14 +33,13 @@ module.exports = (sequelize) => {
             paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
             timestamps: true, // created_at, updated_at, e deleted_at
             hooks: {
-                afterCreate: record => {
-                    console.log("beforeCreate Reserva")
-                    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                    record.dataValues.codigo_confirmacao =
-                        characters.charAt(Math.floor(Math.random() * characters.length))
-                        + record.dataValues.id.toString().slice(-4).padStart(4, '0')
-
+                afterCreate: async reserva => {
                     // exemplo de resultado final: "F0345"
+                    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                    reserva.codigo_confirmacao =
+                        characters.charAt(Math.floor(Math.random() * characters.length))
+                        + reserva.id.toString().slice(-4).padStart(4, '0')
+                    await reserva.save()
                 }
             }
         }

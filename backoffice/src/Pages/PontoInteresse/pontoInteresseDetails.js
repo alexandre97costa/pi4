@@ -134,27 +134,37 @@ export default function PontoInteresseDetails() {
         <div className="col-6 mt-4 mb-3">
           <p className="fs-5 text-body fw-light">Vista Geral</p>
         </div>
-        <div className="col-6 mt-4 mb-3 text-end">
-          <button
-            type="button"
-            className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#editarInteresse"
-          >
-            Editar Informações
-          </button>
-          <ModalEditarPontoInteresse
-            pontoInteresse={pontoInteresseDetails[0]}
-            idModal="editarInteresse"
-            title="Editar Agente"
-          />
+
+        <VisibleTo tipo={2}>
+          <div className="col-6 mt-4 mb-3 text-end">
+            <button
+              type="button"
+              className="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#editarInteresse"
+            >
+              Editar Informações
+            </button>
+            <ModalEditarPontoInteresse
+              pontoInteresse={pontoInteresseDetails[0]}
+              idModal="editarInteresse"
+              title="Editar Agente"
+              onChange={() => axiosGetPontoInteresse()}
+            />
+          </div>
+        </VisibleTo>
+
+        <div className="col-12">
+          <div className="row">
+            <div className="col-12 col-md-4">
+              <CardDetails info={pontoInteresseDetails} />
+            </div>
+            <div className="col-12 col-md-8">
+              <Carousel id="imagensPontoInteresse" imagens={imagens} />
+            </div>
+          </div>
         </div>
-        <div className="col-12 col-md-4">
-          <CardDetails info={pontoInteresseDetails} />
-        </div>
-        <div className="col-12 col-md-8">
-          <Carousel id="imagensPontoInteresse" imagens={imagens} />
-        </div>
+
 
         <div className="col-12 mt-5 mb-3">
           <p className="fs-5 text-body fw-light">Eventos</p>

@@ -17,6 +17,7 @@ export default function ModalAddEvento(props) {
     const [pontos, setPontos] = useState(0)
     const [vagas, setVagas] = useState(0)
     const [dataEvento, setDataEvento] = useState("")
+    const [horaEvento, setHoraEvento] = useState("")
     const [horas, setHoras] = useState(0)
 
     const [pontoInteresse, setPontoInteresse] = useState([])
@@ -75,6 +76,7 @@ export default function ModalAddEvento(props) {
     }
 
     async function axiosPost() {
+        console.log(horaEvento)
         if (!nomeEvento)
             return toast.error("Introduza um nome a recompensa")
         if (!descricao)
@@ -85,6 +87,8 @@ export default function ModalAddEvento(props) {
             return toast.error("Introduza o número de vagas")
         if (!dataEvento)
             return toast.error("Introduza a data")
+        if (!horaEvento)
+            return toast.error("Introduza uma hora")
         if (!horas)
             return toast.error("Introduza o número de horas")
         if (!selectPontoInteresse)
@@ -122,7 +126,7 @@ export default function ModalAddEvento(props) {
     return (
         <div className='row align-self-center'>
             <div className="modal fade" id={props.idModal} data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div className="modal-dialog">
+                <div className="modal-dialog modal-dialog-scrollable">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id="staticBackdropLabel">Adicionar Evento</h1>
@@ -132,8 +136,12 @@ export default function ModalAddEvento(props) {
 
                             <Input className="input-group" id="nomeEvento" label="Nome do Evento" onChange={(value) => setNomeEvento(value.target.value)} />
 
-                            <Input className="input-group mt-4" id="dataEvento" type="date" placeholder=" Data de fim (dd-mm-aaaa)" onChange={(value) => {
+                            <Input className="input-group mt-4" id="dataEvento" type="date" label="Data (dd-mm-aaaa)" onChange={(value) => {
                                 setDataEvento(value.target.value)
+                            }} />
+
+                            <Input className="input-group mt-4" id="horaEvento" type="time" label="Hora de inicio" onChange={(value) => {
+                                setHoraEvento(value.target.value)
                             }} />
 
                             <Input className="input-group mt-4" type="number" id="horaEvento" label="Número de horas do evento" onChange={(value) => setHoras(value.target.value)} />

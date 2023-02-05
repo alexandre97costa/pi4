@@ -126,8 +126,8 @@ module.exports = {
             })
     },
 
-    // só visitantes é que podem fazer reservas
     post: async (req, res) => {
+        // só visitantes é que podem fazer reservas
         if (req.auth.tipo !== 1)
             return res.status(401).json({ msg: 'Apenas visitantes podem colocar reservas' })
 
@@ -141,9 +141,22 @@ module.exports = {
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
-            return res.status(400).json({ msg: 'Faltam dados para poder criar a reserva.' })
+            return res.status(400).json({ msg: 'Faltam dados para poder criar a reserva.', required_params })
 
         const { nome, pessoas, visitante_id, sessao_id, observacoes } = req.body
+
+        // ver se a sessao existe
+        const sessao = await sessao.findByPk(+sessao_id)
+        if (sessao === null)
+            return res.status(404).json({ msg: 'A sessão enviada não existe ou foi eliminada. ' })
+
+        // ver se tem vagas suficientes
+        if (sessao.vagas < pessoas)
+            return res.status(400).json({ msg: 'A sessão não tem vagas suficientes para satisfazer a reserva. ' })
+
+        // a partir daqui, tudo gucci
+
+        await sessao.update({ vagas: vagas - pessoas })
 
         await reserva
             .create({
@@ -181,6 +194,16 @@ module.exports = {
 
         if (_reserva.visitante_id !== req.auth.id)
             return res.status(401).json({ msg: 'Só podes mudar as tuas próprias reservas' })
+
+        // todo: ver se a sessao aceita a mudança de pessoas
+        // ver se a sessao existe
+        const sessao = await sessao.findByPk(+sessao_id)
+        if (sessao === null)
+            return res.status(404).json({ msg: 'A sessão enviada não existe ou foi eliminada. ' })
+
+        // ver se tem vagas suficientes (vagas + pessoas para contabilizar bem as vagas "reais")
+        if (sessao.vagas + _reserva.pessoas < pessoas_novo)
+            return res.status(400).json({ msg: 'A sessão não tem vagas suficientes para satisfazer a reserva. ' })
 
         await _reserva
             .update({ pessoas: +pessoas_novo })
@@ -321,7 +344,7 @@ module.exports = {
             return res.status(401).json({ msg: 'Apenas visitantes podem eliminar reservas' })
 
         const { id } = req.params
-        
+
         // verificar se a reserva existe
         const _reserva = await reserva.findByPk(+id)
         if (_reserva === null)

@@ -34,6 +34,7 @@ export default function Recompensa() {
         setRecompensas(output.data?.data ?? []);
       })
       .catch((error) => {
+        toast.dismiss()
         if (error.response.status === 404)
           return toast.warning(error.response.data.msg)
         console.log(error)

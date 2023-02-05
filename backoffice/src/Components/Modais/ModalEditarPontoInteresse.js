@@ -53,28 +53,48 @@ export default function ModalNewPontoInteresse(props) {
             });
     }
 
-
-
     function dismissToast() {
         toast.dismiss(toastId.current)
     }
 
-    function axiosPost() {
-        if (nome === '')
+    async function axiosPut() {
+        toast.dismiss()
+        console.log(nome)
+        if (!nome)
             return toast.error("Introduza nome ao Ponto de Interesse")
-        if (descricao === '')
+        if (!descricao)
             return toast.error("Introduza uma descrição ao Ponto de Interesse")
-        if (morada === '')
+        if (!morada)
             return toast.error("Introduza a morada ao Ponto de Interesse")
-        if (codigoPostal === '')
+        if (!codigoPostal)
             return toast.error("Introduza o codigo postal ao Ponto de Interesse")
-        if (contacto === '')
+        if (!contacto)
             return toast.error("Introduza contacto ao Ponto de Interesse")
-        if (selectTipo === '')
+        if (!selectTipo)
             return toast.error("Selecione um tipo")
 
-        toast.success("Ponto de Interesse adicionado com sucesso")
-        console.log(props.idPontoInteresse)
+        const url = ip + "/pi/" + props.pontoInteresse?.id
+
+        let data = {
+            nome: nome,
+            descricao: descricao,
+            morada: morada,
+            codigo_postal: codigoPostal,
+            telemovel: contacto,
+            pontos: pontos,
+            tipo_interesse_id: selectTipo.split(' ')[0],
+        }
+
+        await axios
+            .put(url, data, auth.header())
+            .then((output) => {
+                toast.success("Ponto de Interesse atualizado com sucesso")
+                props.onChange()
+            }).catch((error) => {
+                toast.error(error.response.data.msg)
+                console.log(error)
+            })
+
     }
 
     return (
@@ -100,7 +120,7 @@ export default function ModalNewPontoInteresse(props) {
 
                                 <textarea className="form-control my-4" placeholder="Descrição" id="descricao" rows="3" defaultValue={descricao} onChange={(value) => setDescricao(value.target.value)} />
 
-                                <Dropdown items={tipos} onChange={(item, index) => console.log(item)} />
+                                <Dropdown items={tipos} onChange={(item) => setSelectTipo(item)} />
 
                                 {/* <select className="form-select mt-4" value={tipo} onChange={(value) => setTipo(value.target.value)}>
                                     {baseDadosTipo.map((item, index) => {
@@ -114,7 +134,7 @@ export default function ModalNewPontoInteresse(props) {
                         </div>
                         <div className="modal-footer">
                             <Botao className="btn-secondary" dismiss="modal" texto="Fechar" onClick={() => dismissToast()} />
-                            <Botao texto="Enviar" onClick={() => axiosPost()} />
+                            <Botao texto="Enviar" onClick={() => axiosPut()} />
 
                             <ToastContainer />
                         </div>
