@@ -16,7 +16,7 @@ export default function Dropdown(props) {
     return (
         <div className='col'>
             <div className='dropdown w-100 mb-3'>
-                <button className="btn w-100 text-start bg-white py-3 border rounded-3 dropdown-toggle d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button className="btn w-100 text-start bg-white py-3 border rounded-3 dropdown-toggle d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" disabled={props.disabled}>
                     {selectedItem}
                 </button>
                 <ul className='dropdown-menu w-100 shadow'>

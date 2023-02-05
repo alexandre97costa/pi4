@@ -152,7 +152,7 @@ export default function ModalAddEvento(props) {
 
                             <Dropdown items={pontoInteresse} onChange={(item, index) => setSelectPontoInteresse(item)} />
 
-                            <Dropdown items={tipo} onChange={(item, index) => setSelectTipo(item)} />
+                            <Dropdown disabled="" items={tipo} onChange={(item, index) => setSelectTipo(item)} />
 
                             <textarea className="form-control mt-4" placeholder="Descrição" id="descricao" rows="3" onChange={(value) => setDescricao(value.target.value)} />
 
