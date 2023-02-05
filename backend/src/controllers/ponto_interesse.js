@@ -221,7 +221,10 @@ module.exports = {
 
         // se for um agente a editar, verificar se o pi lhe pertence
         const _user = await utilizador.findByPk(+req.auth.id)
-        if (req.auth.tipo === 2 && _pi.agente_turistico_id === _user.id)
+        console.log("pi: " + _pi.agente_turistico_id)
+        console.log("agente: " + _user.id)
+        console.log(_pi.agente_turistico_id !== _user.id)
+        if (req.auth.tipo !== 2 && _pi.agente_turistico_id !== _user.id)
             return res.status(401).json({ msg: 'Como agente, não podes editar pontos de interesse que não te pertençam.' })
 
 
@@ -236,7 +239,7 @@ module.exports = {
                 tipo_interesse_id: tipo_interesse_id
             })
             .then(output => {
-                return !output[0] ?
+                return !output ?
                     res.status(400).json({ msg: 'Ponto de interesse não atualizado.' }) :
                     res.status(200).json({ msg: 'Ponto de interesse atualizado.', ponto_interesse: output[0] })
             })

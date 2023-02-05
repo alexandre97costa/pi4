@@ -25,9 +25,9 @@ export default function Sidebar(props) {
 
                 {/* Titulo */}
                 <Link to='/' className='navbar-brand w-100 text-light d-flex justify-content-start align-items-center py-3'>
-                    <i className='bi bi-signpost-2-fill fs-1 ms-1 me-3 text-success'></i>
+                    <i className='bi bi-signpost-2-fill fs-1 ms-1 me-3 text-primary'></i>
                     <div className=''>
-                        <div className='fs-5 text-success lh-sm'>Green Trip</div>
+                        <div className='fs-5 text-primary lh-sm'>Green Trip</div>
                         <div className='fs-6 text-secondary lh-sm'>{tipoUtilizador}</div>
                     </div>
                 </Link>
@@ -41,7 +41,7 @@ export default function Sidebar(props) {
 
                         return (
                             item.path === location.pathname ?
-                                <li key={index} className=' py-1 d-flex align-items-center bg-success rounded-3'>
+                                <li key={index} className=' py-1 d-flex align-items-center bg-primary rounded-3'>
                                     <i className={'bi bi-' + item.icon + ' fs-4 mx-2 text-white'}></i>
                                     <span className=' d-none d-sm-inline fs-6 text-white fw-semibold'>
                                         {item.text}
@@ -50,7 +50,7 @@ export default function Sidebar(props) {
                                 :
                                 <Link key={index} to={item.path} className='text-decoration-none'>
                                     <li className='pi4-menu-item my-1 py-1 d-flex align-items-center rounded-3'>
-                                        <i className={'bi bi-' + item.icon + ' fs-4 mx-2 text-success'}></i>
+                                        <i className={'bi bi-' + item.icon + ' fs-4 mx-2 text-primary'}></i>
                                         <span className='d-none d-sm-inline fs-6 text-secondary'>
                                             {item.text}
                                         </span>

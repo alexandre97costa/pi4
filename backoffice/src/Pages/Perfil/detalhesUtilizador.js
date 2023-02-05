@@ -1,13 +1,24 @@
-import React from 'react';
-
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import auth from "../../Auth/auth.service";
 import CardAdd from '../../Components/Cards/CardAdd';
 import CardPontoInteresse from '../../Components/Cards/CardPontoInteresse';
 import CardDetails from '../../Components/Cards/CardDetails';
 
-//Imagem exemplo
 import fotoAgente from '../../Assets/Images/fotoagente.jpg'
 
-export default function DetalhesAgenteTuristico() {
+const ip = process.env.REACT_APP_IP;
+
+export default function DetalhesUtilizador() {
+
+    const [utilizadores, setUtilizadores] = useState([]);
+    const { id_utilizador } = useParams();
+
+    useEffect(() => {
+        axiosGetUtilizador()
+      }, []);
+
     const itens = [{
         id: 1,
         imagem: fotoAgente,
@@ -43,6 +54,18 @@ export default function DetalhesAgenteTuristico() {
         categoria: 'Email',
         informacao: 'manuel.antonio@gmail.com'
     }]
+
+    async function axiosGetUtilizador() {
+        const url = ip + "/utilizador/" + id_utilizador
+    
+        await axios
+          .get(url, auth.header())
+          .then((output) => {
+            console.log(output.data.data);
+            setUtilizadores(output.data?.data ?? []);
+          })
+          .catch((error) => console.error(error));
+      }
 
     return (
         <>

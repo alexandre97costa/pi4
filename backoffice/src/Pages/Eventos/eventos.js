@@ -61,7 +61,7 @@ export default function Eventos() {
             <div className='row gy-4 mt-0'>
                 {eventos.map((item, index) => {
                     return (
-                        <div key={index} className="col-12 col-sm-6 col-md-4">
+                        <div key={index} className="col-12 col-sm-6 col-md-4 ">
                             <CardReservas
                                 nomePontoInteresse={item.ponto_interesse.nome}
                                 nomeEvento={item.nome}

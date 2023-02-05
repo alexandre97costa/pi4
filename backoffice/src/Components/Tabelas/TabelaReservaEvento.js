@@ -1,40 +1,49 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import auth from '../../Auth/auth.service';
 
 import CardForm from '../CardForm';
 
-export default function TabelaReservaEvento() {
-    const [listaReservaEvento, setListaReservaEvento] = useState([])
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-    const listaReservaEventoExemplo = [{
-        id: 1,
-        nomeReserva: "Monte Branco",
-        numeroPessoas: "4 pessoas",
-        horaChegada: "18:00h",
-        data: "15/01/2023",
-    }, {
-        id: 2,
-        nomeReserva: "Monte Branco",
-        numeroPessoas: "4 pessoas",
-        horaChegada: "18:00h",
-        data: "15/01/2023",
-    }, {
-        id: 3,
-        nomeReserva: "Monte Branco",
-        numeroPessoas: "4 pessoas",
-        horaChegada: "18:00h",
-        data: "15/01/2023",
-    }]
+const ip = process.env.REACT_APP_IP
 
-
+export default function TabelaReservaEvento(props) {
+    const [reservas, setReservas] = useState([])
 
     useEffect(() => {
-        setListaReservaEvento(listaReservaEventoExemplo)
+        axiosGet()
     }, [])
 
+    async function axiosGet() {
+        const url = ip + '/reserva'
+        let options = {
+            ...auth.header(),
+            params: {
+                evento_id: props.eventoId,
+                validado: true
+            },
+        }
+
+        await axios
+            .get(url, options)
+            .then((output) => {
+                console.log(output.data.data)
+                setReservas(output.data?.data ?? [])
+            }).catch((error) => {
+                toast.dismiss()
+                toast.warning(error.response.data.msg)
+                if (error.response.status === 404)
+                    return setReservas([])
+
+                console.error(error)
+            })
+    }
 
     function axiosDelete(index) {
         //Aqui fazemos o pedido axios pra dar delete
-        console.log("Delete id: " + listaReservaEvento[index].id + " com o nome: " + listaReservaEvento[index].nomeReserva)
+        // console.log("Delete id: " + listaReservaEvento[index].id + " com o nome: " + listaReservaEvento[index].nomeReserva)
     }
 
     return (
@@ -51,18 +60,20 @@ export default function TabelaReservaEvento() {
                     </thead>
 
                     <tbody className='table-group-divider'>
-                        {listaReservaEvento.map((item, index) => {
+                        {reservas.map((item, index) => {
+                            const options = { year: 'numeric', month: 'numeric', day: 'numeric' }
                             return (
                                 <tr key={index} className="h-5-5rem">
-                                    <td className='text-start w-20'>{item.nomeReserva}</td>
-                                    <td className='w-20'>{item.numeroPessoas}</td>
-                                    <td className='w-20 d-none d-md-table-cell'>{item.horaChegada}</td>
-                                    <td className='w-20'>{item.data}</td>
+                                    <td className='text-start w-20'>{item.nome}</td>
+                                    <td className='w-20'>{item.pessoas}</td>
+                                    <td className='w-20 d-none d-md-table-cell'>{item.sessao?.data_hora.split('T')[1].split(':')[0]}:{item.sessao?.data_hora.split('T')[1].split(':')[1]}h</td>
+                                    <td className='w-20'>{new Date(item.sessao?.data_hora.split('T')[0]).toLocaleDateString(undefined, options)}</td>
                                 </tr>
                             )
                         })}
                     </tbody>
                 </table>
+                <ToastContainer />
             </div>
         </CardForm>
     );
