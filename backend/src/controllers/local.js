@@ -34,9 +34,9 @@ module.exports = {
     distrito: async (req, res) => {
         await distrito.findAll()
             .then(output => {
-                return !output.count ?
+                return !output ?
                     res.status(404).json({ msg: 'Não existem distritos.' }) :
-                    res.status(200).json({ data: output.rows, count: output.count })
+                    res.status(200).json({ data: output, count: output.count })
             })
             .catch(error => {
                 res.status(400).json({ msg: 'Ocorreu um erro no pedido de distritos.' })
