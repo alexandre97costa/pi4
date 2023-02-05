@@ -46,6 +46,7 @@ export default function ModalNewPontoInteresse(props) {
     }]
 
     useEffect(() => {
+        console.log('modal new ponto de interesse')
         axiosGetDistrito()
     }, [])
 
