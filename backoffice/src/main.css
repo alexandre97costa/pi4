@@ -156,3 +156,8 @@
     max-height: 280px;
     overflow-y: auto;
 }
+
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+  }
