@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import Botao from '../Botao';
 import Dropdown from '../Dropdown';
+import DropdownSelect from '../DropdownSelect';
 import Input from '../Input';
 
 const ip = process.env.REACT_APP_IP;
@@ -22,14 +23,14 @@ export default function ModalNewPontoInteresse(props) {
     const [selectTipo, setSelectTipo] = useState('')
     const [tipos, setTipos] = useState([])
 
-    const [selectDistrito, setSelectDistrito] = useState('')
     const [distritos, setDistritos] = useState([])
+    const [selectedDistrito, setSelectDistrito] = useState('')
 
-    const [selectMunicipio, setSelectMunicipo] = useState('')
     const [municipios, setMunicipios] = useState([])
+    const [selectedMunicipio, setSelectMunicipo] = useState('')
 
-    const [selectFreguesia, setSelectFreguesia] = useState('')
     const [freguesias, setFreguesias] = useState([])
+    const [selectedFreguesia, setSelectFreguesia] = useState('')
 
 
     const toastId = useRef(null)
@@ -46,56 +47,57 @@ export default function ModalNewPontoInteresse(props) {
     }]
 
     useEffect(() => {
-        console.log('modal new ponto de interesse')
-        axiosGetDistrito()
+        getDistritos()
     }, [])
 
-    async function axiosGetDistrito() {
+    useEffect(() => {
+        console.log(selectedDistrito)
+    }, [selectedDistrito])
+
+    async function getDistritos() {
         const url = ip + '/local/distrito'
 
         await axios
             .get(url, auth.header())
-            .then((output) => {
-                setDistritos([...output.data?.data.map(data => data.id + ' ' + data.nome)])
-            }).catch((error) => console.log(error))
+            .then(output => {
+                console.log(output)
+                setDistritos(
+                    output.data?.distritos.map(distrito => {
+                        return {
+                            label: distrito.nome,
+                            value: distrito.id
+                        }
+                    }) ?? [])
+            })
+            .catch(error => console.log(error))
     }
 
-    async function axiosGetMunicipio(item) {
+    async function getMunicipios(item) {
         const url = ip + '/local/municipio'
 
-        console.log(!item? 0 : 'True')
-
-        let options = {
+        const options = {
             ...auth.header(),
-            params: {
-                distrito_id: 1
-            }
+            params: { distrito_id: 1 }
         }
-
-        console.log(options)
 
         await axios
             .get(url, options)
-            .then((output) => {
-                setDistritos([...output.data?.data.map(data => data.id + ' ' + data.nome)])
-            }).catch((error) => console.log(error))
+            .then(output => { setMunicipios([...output.data?.municipios.map(data => data.id + ' ' + data.nome)]) })
+            .catch(error => console.log(error))
     }
 
-    async function axiosGetFreguesia(item) {
+    async function getFreguesias(item) {
         const url = ip + '/local/freguesia'
 
-        let options = {
+        const options = {
             ...auth.header(),
-            params: {
-                distrito_id: item.split(' ')[0]
-            }
+            params: { municipio_id: item.split(' ')[0] }
         }
 
         await axios
             .get(url, options)
-            .then((output) => {
-                setDistritos([...output.data?.data.map(data => data.id + ' ' + data.nome)])
-            }).catch((error) => console.log(error))
+            .then(output => { setFreguesias([...output.data?.freguesias.map(data => data.id + ' ' + data.nome)]) })
+            .catch(error => console.log(error))
     }
 
     function axiosPostPontoInteresse() {
@@ -138,31 +140,66 @@ export default function ModalNewPontoInteresse(props) {
                         </div>
                         <div className="modal-body">
                             <div className="card border border-0 mb-3 p-0">
-                                <Input className="input-group" id="nomePontoInteresse" label="Nome" onchange={(value) => setNome(value.target.value)} />
+                                <Input
+                                    className="input-group"
+                                    id="nomePontoInteresse"
+                                    label="Nome"
+                                    onchange={(value) => setNome(value.target.value)}
+                                />
+                                <Input
+                                    className="input-group mt-4"
+                                    id="localizacao"
+                                    label="Morada"
+                                    onchange={(value) => setMorada(value.target.value)}
+                                />
+                                <Input
+                                    className="input-group mt-4"
+                                    id="codigoPostal"
+                                    label="Código Postal"
+                                    onchange={(value) => setCodigoPostal(value.target.value)}
+                                />
+                                <Input
+                                    className="input-group mt-4"
+                                    id="contacto"
+                                    type="number"
+                                    label="Contacto"
+                                    onchange={(value) => setContacto(value.target.value)}
+                                />
+                                <Input
+                                    className="input-group mt-4"
+                                    id="numeroPontos"
+                                    type="number"
+                                    label="Número de Pontos"
+                                    onchange={(value) => setPontos(value.target.value)}
+                                />
+                                <textarea
+                                    className="form-control my-4"
+                                    label="Descrição"
+                                    id="descricao"
+                                    rows="3"
+                                    onChange={(value) => setDescricao(value.target.value)}
+                                />
+                                <DropdownSelect
+                                    items={distritos}
+                                    onChange={(value, label) => {
+                                        setSelectDistrito(value)
+                                        getMunicipios(value)
+                                    }} />
 
-                                <Input className="input-group mt-4" id="localizacao" label="Morada" onchange={(value) => setMorada(value.target.value)} />
+                                <Dropdown
+                                    items={municipios}
+                                    disabled={!selectedDistrito}
+                                    onChange={(item, index) => {
+                                        setSelectMunicipo(item)
+                                        // axiosGetFreguesia(item)
+                                    }} />
 
-                                <Input className="input-group mt-4" id="codigoPostal" label="Código Postal" onchange={(value) => setCodigoPostal(value.target.value)} />
-
-                                <Input className="input-group mt-4" id="contacto" type="number" label="Contacto" onchange={(value) => setContacto(value.target.value)} />
-
-                                <Input className="input-group mt-4" id="numeroPontos" type="number" label="Número de Pontos" onchange={(value) => setPontos(value.target.value)} />
-
-                                <textarea className="form-control my-4" label="Descrição" id="descricao" rows="3" onChange={(value) => setDescricao(value.target.value)} />
-
-                                <Dropdown items={distritos} onChange={(item, index) => {
-                                    setSelectDistrito(item)
-                                    axiosGetMunicipio(item)
-                                }} />
-
-                                <Dropdown items={municipios} disabled={!selectDistrito} onChange={(item, index) => {
-                                    setSelectMunicipo(item)
-                                    // axiosGetFreguesia(item)
-                                }} />
-
-                                <Dropdown items={freguesias} disabled={!selectMunicipio} onChange={(item) => {
-                                    setSelectFreguesia(item)
-                                }} />
+                                <Dropdown
+                                    items={freguesias}
+                                    disabled={!selectedMunicipio}
+                                    onChange={(item) => {
+                                        setSelectFreguesia(item)
+                                    }} />
 
                             </div>
                         </div>

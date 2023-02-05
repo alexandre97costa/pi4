@@ -34,7 +34,7 @@ module.exports = {
             .then(output => {
                 return !output ?
                     res.status(404).json({ msg: 'Não existem distritos.' }) :
-                    res.status(200).json({ data: output, count: output.count })
+                    res.status(200).json({ distritos: output.rows, count: output.count })
             })
             .catch(error => {
                 res.status(400).json({ msg: 'Ocorreu um erro no pedido de distritos.' })
@@ -49,7 +49,7 @@ module.exports = {
             .then(output => {
                 return !output.count ?
                     res.status(404).json({ msg: 'Não existem municipios neste distrito.' }) :
-                    res.status(200).json({ data: output.rows, count: output.count })
+                    res.status(200).json({ municipios: output.rows, count: output.count })
             })
             .catch(error => {
                 res.status(400).json({ msg: 'Ocorreu um erro no pedido de municipios.' })
@@ -64,7 +64,7 @@ module.exports = {
             .then(output => {
                 return !output.count ?
                     res.status(404).json({ msg: 'Não existem freguesias neste municipio.' }) :
-                    res.status(200).json({ data: output.rows, count: output.count })
+                    res.status(200).json({ freguesias: output.rows, count: output.count })
             })
             .catch(error => {
                 res.status(400).json({ msg: 'Ocorreu um erro no pedido de freguesias.' })

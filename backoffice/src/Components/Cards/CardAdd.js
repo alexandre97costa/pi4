@@ -33,11 +33,11 @@ export default function AddCard(props) {
 
 	return (
 		<>
-			<div className="card border-0 shadow rounded-4 h-100 cursor-pointer p-3"
+			<div className="card border-0 shadow rounded-4 h-100 cursor-pointer p-4"
 				data-bs-toggle="modal" data-bs-target={'#' + props.idModal}>
 				<div className="text-success text-center my-auto">
 					<i className="bi-plus-lg fs-1 "></i>
-					<div className="h6">{props.title}</div>
+					<div className="h4">{props.title}</div>
 				</div>
 			</div>
 
