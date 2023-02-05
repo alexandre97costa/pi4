@@ -8,6 +8,7 @@ import Input from '../../../Components/Input';
 import CardForm from '../../../Components/CardForm';
 import ModalSelectCategoria from '../../../Components/Modais/ModalSelectCategoria';
 import dev from '../../../Auth/dev';
+import { useParams } from 'react-router-dom';
 
 const ip = process.env.REACT_APP_IP
 const maxRecords = process.env.REACT_APP_MAX_RECORDS
@@ -18,8 +19,9 @@ export default function Utilizadores() {
 	const [utilizadores, setUtilizadores] = useState([])
 	const [utilizadoresCount, setUtilizadoresCount] = useState(0)
 
+	const {tipoId} = useParams()
 	// filtros
-	const [tipo, setTipo] = useState(0)
+	const [tipo, setTipo] = useState(tipoId)
 	const [nome, setNome] = useState('')
 
 	// pagination
@@ -38,12 +40,14 @@ export default function Utilizadores() {
 
 
 	useEffect(() => {
+		setTipo(tipoId)
 		setOffset(0) // volta à primeira pagina
 		getUtilizadores() // re
 	}, [nome, tipo, offset]) // ir adicionando aqui os hooks dos filtros
 
 
 	async function getUtilizadores() {
+		console.log("offset: " + offset)
 
 		let options = {
 			...auth.header(),

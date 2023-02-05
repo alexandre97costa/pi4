@@ -1,7 +1,7 @@
 # Agente
 
 ## Dashboard
-- os botoes de açoes rapidas nao estão com o tamanho certo
+- os botoes de açoes rapidas nao estão com o tamanho certo - Feito 
 
 ## Adicionar PI
 - codigo postal precisa de mudar o tipo e adicionar mais validação
@@ -10,6 +10,7 @@
 - Há uma textarea sem label, nao faço ideia o que seja
 - Tipo de interesse deve mudar a label para "Tipo de Interesse", e ir buscar os tipos à BD
 - Ao enviar, nao deixa com o erro "Introduza um nome" mesmo quando está tudo preenchido
+- Label do contacto não deve ser incremental - Feito
 
 ## Validar Voucher
 - nao funciona 
@@ -41,13 +42,13 @@
 
 ## Pontos de Interesse (Detalhe)
 - gerir agente: mudar icon
-- gerir agente: tirar coluna da localidade
+- gerir agente: tirar coluna da localidade - Feito
 - gerir agente: nao está a fazer o POST
-- sugestao: quando nao ha eventos/recompensas, ter uma frase qualquer a indicar isso (como a tabela de utilizadores tem)
+- sugestao: quando nao ha eventos/recompensas, ter uma frase qualquer a indicar isso (como a tabela de utilizadores tem) - Feito
 
 
 ## Eventos
-- Os cards podiam ter todos a mesma altura
+- Os cards podiam ter todos a mesma altura - Feito
 
 # Admin
 ## Dashboard

@@ -58,22 +58,22 @@ export default function Home() {
           texto="Atribuição de Perfil"
         />
         <BotaoDashboard
-          to="/consultar-pontos-interesse"
+          to="/pontos-interesse"
           class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
           icon="bi-geo-alt fs-3"
           texto="Pontos de Interesse"
         />
         <BotaoDashboard
-          to="/responsavel-regiao/lista-eventos"
+          to="/eventos"
           class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
           icon="bi-calendar4-event fs-3"
           texto="Eventos"
         />
         <BotaoDashboard
-          to="/responsavel-regiao/lista-vouchers"
+          to="/recompensas"
           class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
           icon="bi-cart-check fs-3"
-          texto="Vouchers"
+          texto="Recompensas"
         />
       </div>
 

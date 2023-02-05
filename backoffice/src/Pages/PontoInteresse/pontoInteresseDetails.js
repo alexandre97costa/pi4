@@ -106,7 +106,7 @@ export default function PontoInteresseDetails() {
             <p className="fs-5 text-body fw-light">Ações Rápidas</p>
             <button
               type="button"
-              className="btn btn-light btn-lg shadow mt-3"
+              className="btn btn-light btn-lg bg-white shadow mt-3 p-4"
               data-bs-toggle="modal"
               data-bs-target="#editarAgente"
             >
@@ -121,7 +121,7 @@ export default function PontoInteresseDetails() {
             <p className="fs-5 text-body fw-light">Ações Rápidas</p>
             <button
               type="button"
-              className="btn btn-light btn-lg shadow mt-3"
+              className="btn btn-light btn-lg bg-white shadow mt-3 p-4"
               data-bs-toggle="modal"
               data-bs-target="#editarAgente"
             >
