@@ -9,4 +9,6 @@ router.patch('/:id', r.validar)
 router.put('/:id', r.editar)
 router.delete('/:id', r.delete)
 
+router.post('/:id/associar', r.associar)
+
 module.exports = router;

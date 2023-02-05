@@ -230,4 +230,41 @@ module.exports = {
                 return
             })
     },
+
+
+    associar: async (req, res) => {
+        // só agentes
+        if (req.auth.tipo !== 2)
+            return res.status(401).json({ msg: 'Apenas agentes podem associar pontos de interesse a recompensas.' })
+
+        if (!req.body.hasOwnProperty('ponto_interesse_id'))
+            return res.status(400).json({ msg: 'Falta o ponto_interesse_id no body.' })
+
+        const { id } = req.params
+        const { ponto_interesse_id } = req.body
+
+        // verificar se o ponto de interese realmente existe
+        const _recompensa = await recompensa.findByPk(id)
+        if (_recompensa === null)
+            res.status(404).json({ msg: 'A recompensa fornecida não existe ou foi eliminada.' })
+
+        // a partir daqui, tudo gucci
+
+        await ponto_interesse_recompensa
+            .create({
+                recompensa_id: id,
+                ponto_interesse_id: ponto_interesse_id
+            })
+            .then(output => {
+                return res.status(200).json({
+                    msg: 'Recompensa associada com o ponto de interesse ' + ponto_interesse_id + '.',
+                    ponto_interesse_recompensa: output
+                })
+            })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
+    },
 }
