@@ -64,8 +64,7 @@ export default function ModalAddRecompensa(props) {
                 console.log(output)
                 toast.success("Recompensa adicionada com sucesso")
             }).catch((error) => {
-                if (error.response.status === 401)
-                    return toast.warning(error.response.data.msg)
+                toast.dismiss()
 
                 toast.warning(error.response.data.msg)
                 console.error(error)
