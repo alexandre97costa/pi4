@@ -6,6 +6,9 @@ import CardAdd from '../../Components/Cards/CardAdd';
 import CardPontoInteresse from '../../Components/Cards/CardPontoInteresse';
 import CardDetails from '../../Components/Cards/CardDetails';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import fotoAgente from '../../Assets/Images/fotoagente.jpg'
 
 const ip = process.env.REACT_APP_IP;
@@ -13,47 +16,13 @@ const ip = process.env.REACT_APP_IP;
 export default function DetalhesUtilizador() {
 
     const [utilizadores, setUtilizadores] = useState([]);
+    const [pontoInteresseDetails, setPontoInteresseDetails] = useState([]);
     const { id_utilizador } = useParams();
+    const { id_ponto_interesse } = useParams();
 
     useEffect(() => {
         axiosGetUtilizador()
       }, []);
-
-    const itens = [{
-        id: 1,
-        imagem: fotoAgente,
-        title: "Nome do Local Turístico",
-        subTitle: "Categoria",
-        morada: "Morada",
-        numeroScans: "10",
-        numeroComentarios: "2200",
-        numeroFavoritos: "1209",
-        numeroCheck: "123"
-    }, {
-        id: 2,
-        imagem: fotoAgente,
-        title: "Nome do Local Turístico",
-        subTitle: "Categoria",
-        morada: "Morada",
-        numeroScans: "1",
-        numeroComentarios: "22",
-        numeroFavoritos: "12",
-        numeroCheck: "3"
-    }]
-
-    const utilizadorDetails = [{
-        categoria: 'Nome',
-        informacao: 'Manuel Antonio'
-    }, {
-        Descrição: 'Descrição',
-        informacao: 'Um agente turistico 5 estrelas'
-    }, {
-        categoria: 'Contacto',
-        informacao: '910933857'
-    } , {
-        categoria: 'Email',
-        informacao: 'manuel.antonio@gmail.com'
-    }]
 
     async function axiosGetUtilizador() {
         const url = ip + "/utilizador/" + id_utilizador
@@ -67,6 +36,21 @@ export default function DetalhesUtilizador() {
           .catch((error) => console.error(error));
       }
 
+      async function axiosGetPontoInteresse() {
+        const url = ip + "/pi/" + id_ponto_interesse
+    
+        await axios
+          .get(url, auth.header())
+          .then((output) => {
+            setPontoInteresseDetails(output.data?.data ?? []);
+          })
+          .catch((error) => {
+            toast.dismiss()
+            toast.error(error.response.data.msg)
+            console.error(error)
+          });
+      }
+
     return (
         <>
             <div className='row gy-4'>
@@ -75,7 +59,7 @@ export default function DetalhesUtilizador() {
                 </div>
 
                 <div className='col-12 col-md-9'>
-                    <CardDetails info={utilizadorDetails} />
+                    <CardDetails info={utilizadores} />
                 </div>
 
 
@@ -87,19 +71,19 @@ export default function DetalhesUtilizador() {
                     />
                 </div>
 
-                {itens.map((item, index) => {
+                {pontoInteresseDetails.map((item, index) => {
                     return (
                         <div key={index} className='col-12 col-md-3'>
                             <CardPontoInteresse
-                                id={item.id}
-                                imagem={item.imagem}
-                                nome={item.title}
-                                categoria={item.subTitle}
+                                id_ponto_interesse={item.id}
+                                imagem={item.imagens[0].url}
+                                nome={item.nome}
+                                categoria={item.tipo_interesse.nome}
                                 morada={item.morada}
-                                numeroScans={item.numeroScans}
-                                numeroComentarios={item.numeroComentarios}
-                                numeroFavoritos={item.numeroFavoritos}
-                                numeroCheck={item.numeroCheck}
+                                numeroScans={item.count_scans}
+                                //numeroComentarios={item.tipo_interesse.observacoes}
+                                numeroFavoritos={item.avg_avaliacao}
+                                //numeroCheck={item.validado}
                                 tipo="remove"
                                 onClick={(value) => console.log(value)}
                             />

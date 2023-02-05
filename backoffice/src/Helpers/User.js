@@ -23,7 +23,7 @@ export default function User() {
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end rounded-4 shadow">
                     <li>
-                        <Link className="dropdown-item rounded-3" path="">
+                        <Link className="dropdown-item rounded-3" to="/detalhes-utilizador">
                             <i className='bi bi-person me-2'></i>
                             <span>Ver perfil</span>
                         </Link>
