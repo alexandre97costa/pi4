@@ -32,7 +32,7 @@ export const menu = [
         {
             text: "Agentes Turísticos",
             path: "/utilizadores",
-            icon: "speedometer2"
+            icon: "person-badge"
         },
         {
             text: "Pontos de Interesse",
@@ -47,7 +47,7 @@ export const menu = [
         {
             text: "Reservas",
             path: "/reservas",
-            icon: "calendar4-event"
+            icon: "journal-text"
         },
         {
             text: "Recompensas",
@@ -65,7 +65,7 @@ export const menu = [
         {
             text: "Utilizadores",
             path: "/utilizadores",
-            icon: "speedometer2"
+            icon: "person-badge"
         },
         {
             text: "Pontos de Interesse",
@@ -80,7 +80,7 @@ export const menu = [
         {
             text: "Reservas",
             path: "/reservas",
-            icon: "calendar4-event"
+            icon: "journal-text"
         },
         {
             text: "Recompensas",
@@ -90,7 +90,7 @@ export const menu = [
         {
             text: "Microsite",
             path: "/microsite",
-            icon: "gift"
+            icon: "display"
         }
     ]
 ]
