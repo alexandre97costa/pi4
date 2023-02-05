@@ -19,7 +19,7 @@ export default function Eventos() {
     }, []);
 
     async function axiosGetEventos() {
-        const url = ip + "/evento"
+        const url = ip + "/evento"/*saber qual a rota*/
         console.log("foi buscar")
         let options = {
             ...auth.header(),
@@ -58,10 +58,10 @@ export default function Eventos() {
                 <p className="fs-5 text-body fw-light mb-0">Vista Geral</p>
             </div>
 
-            <div className='row gy-4 mt-0 '>
+            <div className='row gy-4 mt-0'>
                 {eventos.map((item, index) => {
                     return (
-                        <div key={index} className="col-12 col-sm-6 col-md-3 d-flex align-items-stretch ">
+                        <div key={index} className="col-12 col-sm-6 col-md-4 ">
                             <CardReservas
                                 nomePontoInteresse={item.ponto_interesse.nome}
                                 nomeEvento={item.nome}
