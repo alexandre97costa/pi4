@@ -113,15 +113,20 @@ module.exports = {
             'vagas',
             'horas_duracao',
             'ponto_interesse_id',
-            'tipo_evento_id'
+            'tipo_evento_id',
+            // para a sessao
+            'data',
+            'hora'
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
             return res.status(400).json({ msg: 'Faltam dados para poder criar o evento.' })
 
-        const { nome, descricao, pontos, vagas, horas_duracao, ponto_interesse_id, tipo_evento_id } = req.body
+        const { nome, descricao, pontos, vagas, horas_duracao, ponto_interesse_id, tipo_evento_id, data, hora } = req.body
 
-        console.log(req.auth.id)
+        const ts = data + 'T' + hora + ':00'
+        const timestamp = new Date(ts)
+
         // so para pontos de interesse que lhe pertencem
         const pis_agente = await ponto_interesse.findAll({ where: { agente_turistico_id: req.auth.id } })
         const pi_valido = pis_agente.find(pi => +pi.id === +ponto_interesse_id)
@@ -139,6 +144,7 @@ module.exports = {
                 tipo_evento_id: tipo_evento_id,
             })
             .then(output => {
+                
                 return res.status(200).json({ msg: 'Evento criado.', evento: output })
             })
             .catch(error => {

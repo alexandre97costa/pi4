@@ -229,12 +229,6 @@ module.exports = {
         if (!(/^[A-Za-zÀ-ÖØ-öø-ÿ\d\w@$!%*#?&]{6,}$/.test(password)))
             return res.status(400).json({ msg: 'A password pode ter letras, numeros, e os carateres especiais: _ @ $ ! % * # ? &.' })
 
-        // validação check, encriptar
-        bcrypt
-        .hash(password, 10)
-        .then(hash => { password = hash })
-        .catch(error => { dev.error(error) })
-
 
         // verificar se o utilizador realmente existe
         const _utilizador = await utilizador.findByPk(id)

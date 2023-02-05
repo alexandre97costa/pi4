@@ -35,8 +35,8 @@ module.exports = (sequelize) => {
                         msg: 'A password precisa de ter no minimo 6 carateres'
                     },
                     is: {
-                        args: ['^[A-Za-zÀ-ÖØ-öø-ÿ\d\w@$!%*#?&]{6,}$'],
-                        msg: 'A password pode ter letras, numeros, e os carateres especiais: _ @ $ ! % * # ? &.'
+                        args: ['^[A-Za-zÀ-ÖØ-öø-ÿ\\.\\/\\d\\w@$!%*#?&]{6,}$'],
+                        msg: 'A password precisa de ter letras, numeros, e um dos carateres especiais: _ @ $ ! % * # ? &.'
                     }
                 }
             },
@@ -85,6 +85,17 @@ module.exports = (sequelize) => {
                     return bcrypt.hash(utilizador.password, 10)
                         .then(hash => { utilizador.password = hash; })
                         .catch(err => { throw new Error(err); });
+                },
+                beforeUpdate: (utilizador) => {
+                    // se no update foi mudada a passe, é preciso encriptá-la
+                    if (utilizador.previous().hasOwnProperty('password')) {
+                        return bcrypt.hash(utilizador.password, 10)
+                            .then(hash => { 
+                                utilizador.password = hash; 
+                                console.log('nova: ', utilizador.password)
+                            })
+                            .catch(err => { throw new Error(err); });
+                    }
                 },
                 afterDestroy: async (utilizador) => {
 
