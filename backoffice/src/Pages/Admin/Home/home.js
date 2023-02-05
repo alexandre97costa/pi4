@@ -71,7 +71,7 @@ export default function Home() {
                 </div>
 
                 <BotaoDashboard
-                    to="/utilizadores"
+                    to="/utilizadores/0"
                     class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
                     icon="bi-person-check fs-3"
                     texto="Atribuição de Perfil" />
@@ -94,22 +94,22 @@ export default function Home() {
                 </div>
 
                 <BotaoDashboard
-                    to="/utilizadores"
+                    to="/utilizadores/1"
                     class="btn-light btn-lg bg-visitante text-light p-4 w-100 h-100 text-start d-flex align-items-center"
                     icon="bi-phone fs-3"
                     texto="Visitantes" />
                 <BotaoDashboard
-                    to="/utilizadores"
+                    to="/utilizadores/2"
                     class="btn-light btn-lg bg-agente text-light p-4 w-100 h-100 text-start d-flex align-items-center"
                     icon="bi-geo-alt fs-3"
                     texto="Agentes Turísticos" />
                 <BotaoDashboard
-                    to="/utilizadores"
+                    to="/utilizadores/3"
                     class="btn-light btn-lg bg-responsavel text-light p-4 w-100 h-100 text-start d-flex align-items-center"
                     icon="bi-map fs-3"
                     texto="Responsáveis de Região" />
                 <BotaoDashboard
-                    to="/utilizadores"
+                    to="/utilizadores/4"
                     class="btn-light btn-lg bg-admin text-light p-4 w-100 h-100 text-start d-flex align-items-center"
                     icon="bi-globe2 fs-3"
                     texto="Administradores" />

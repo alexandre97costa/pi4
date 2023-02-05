@@ -14,7 +14,6 @@ import ModalNewPontoInteresse from '../../../Components/Modais/ModalNewPontoInte
 const ip = process.env.REACT_APP_IP
 
 export default function Home() {
-    const [codeReserva, setCodeReserva] = useState("")
     const [codeVoucher, setCodeVoucher] = useState("")
     const [codePontoInteresse, setCodePontoInteresse] = useState("")
     const [eventos, setEventos] = useState([])
@@ -74,16 +73,20 @@ export default function Home() {
         toast.success("Voucher validado")
     }
 
-    function validarReserva() {
-        if (!codeReserva)
+    async function validarReserva(code) {
+        if (!code)
             return toast.warning("Introduza um codigo")
-        toast.success("Reserva validada")
-    }
 
-    function adicionarPontoInteresse() {
-        if (!codePontoInteresse)
-            return toast.warning("Introduza as informações")
-        toast.success("Ponto de Interesse enviado com sucesso")
+        const url = "/reserva/confirmar/" + code
+
+        await axios
+            .patch(url, auth.header())
+            .then((output) => {
+                toast.success("Reserva validada")
+            }).catch((error) => {
+                console.log(error)
+                toast.error(error.response.data.msg)
+            })
     }
 
 
@@ -93,7 +96,7 @@ export default function Home() {
                 <div className='col-12 mt-2'>
                     <p className="fs-5 text-body fw-light ">Ações Rápidas</p>
                 </div>
-                
+
                 <div className='col-12 col-md-3 '>
                     <button className="btn btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center shadow text-break rounded-3 border-0" data-bs-toggle="modal" data-bs-target="#validarVoucher"><i className="bi bi-cart-check fs-3 pe-3 "></i> Validar Voucher</button>
 
@@ -103,7 +106,7 @@ export default function Home() {
                 <div className='col-12 col-md-3'>
                     <button className="btn btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center shadow text-break rounded-3 border-0" data-bs-toggle="modal" data-bs-target="#validarReserva"><i className="bi bi-journal-check fs-3 pe-3"></i>Validar Reserva</button>
 
-                    <ModalValidar idModal="validarReserva" title="Validar Reserva" onSubmit={(value) => setCodeReserva(value)} onClick={() => validarReserva()} />
+                    <ModalValidar idModal="validarReserva" title="Validar Reserva" onSubmit={(value) => validarReserva(value)} />
                 </div>
 
                 <div className='col-12 col-md-4'>
