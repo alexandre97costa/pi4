@@ -270,7 +270,7 @@ export default function App() {
         />
 
         <Route
-          path="/lista-reservas-eventos"
+          path="/lista-reservas-eventos/:eventoId"
           element={
             <ProtectedRoute>
               <Pagina title="Reservas ao evento">

@@ -113,6 +113,7 @@ export default function ModalAddEvento(props) {
                 toast.success(output.data.msg)
                 props.onChange()
             }).catch((error) => {
+                toast.dismiss()
                 toast.warning(error.response.data.msg)
                 console.error(error)
             })

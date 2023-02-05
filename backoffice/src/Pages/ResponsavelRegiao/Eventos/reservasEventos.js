@@ -1,22 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import Dropdown from "../../../Components/Dropdown";
 import TabelaReservaEvento from "../../../Components/Tabelas/TabelaReservaEvento";
 
 export default function ReservasEvento() {
-    const tipos = ["Todas", "A", "B", "C"]
+    const eventoId = useParams()
+
+    useEffect(() => {
+        console.log(eventoId)
+    }, [])
 
     return (
         <>
-            <div className="row justify-content-end">
-                <div className="col-4 col-md-2">
-                    <Dropdown tipos={tipos} onChange={(value) => console.log(value)} />
-                </div>
-            </div>
-
             <div className="row">
-                <div className="col-12">
-                    <TabelaReservaEvento />
+                <div className="col-12 mt-4">
+                    <TabelaReservaEvento eventoId={eventoId.eventoId} />
                 </div>
             </div>
         </>

@@ -77,6 +77,20 @@ module.exports = (sequelize) => {
                             console.log(output)
                         })
                         .catch(error => { console.log(error) })
+                },
+                afterDestroy: async (pi, options) => {
+
+                    await sequelize.models.ponto_interesse_recompensa
+                        .destroy({ where: { ponto_interesse_id: pi.id } })
+
+                    await sequelize.models.imagem
+                        .destroy({ where: { ponto_interesse_id: pi.id } })
+
+                    await sequelize.models.comentario_avaliacao
+                        .destroy({ where: { ponto_interesse_id: pi.id } })
+
+                    await sequelize.models.evento
+                        .destroy({ where: { ponto_interesse_id: pi.id } })
                 }
             }
         }

@@ -47,7 +47,7 @@ module.exports = (sequelize) => {
                     notNull: { msg: 'A data de nascimento não pode estar vazia.' },
                     isDate: { msg: 'A data de nascimento inserida não é valida.' },
                     isBefore: {
-                        args: new Date(new Date().setFullYear(new Date().getFullYear() -13)).toString(),
+                        args: new Date(new Date().setFullYear(new Date().getFullYear() - 13)).toString(),
                         msg: 'Precisa de ter mais de 13 anos para se resgistar.'
                     }
                 }
@@ -57,7 +57,7 @@ module.exports = (sequelize) => {
                 allowNull: false,
                 defaultValue: 0,
                 validate: {
-                    min: { 
+                    min: {
                         args: -1,
                         msg: 'Os pontos não podem ser negativos.'
                     }
@@ -85,6 +85,21 @@ module.exports = (sequelize) => {
                     return bcrypt.hash(utilizador.password, 10)
                         .then(hash => { utilizador.password = hash; })
                         .catch(err => { throw new Error(err); });
+                },
+                afterDestroy: async (utilizador) => {
+
+                    await sequelize.models.reserva
+                        .destroy({ where: { visitante_id: utilizador.id } })
+
+                    await sequelize.models.comentario_avaliacao
+                        .destroy({ where: { visitante_id: utilizador.id } })
+
+                    await sequelize.models.scan_evento
+                        .destroy({ where: { visitante_id: utilizador.id } })
+
+                    await sequelize.models.scan_ponto_interesse
+                        .destroy({ where: { visitante_id: utilizador.id } })
+
                 }
             }
         }

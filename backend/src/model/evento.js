@@ -40,10 +40,11 @@ module.exports = (sequelize) => {
             paranoid: true, // na prática, faz com que os records não sejam eliminados, mas sim escondidos (soft-delete) 
             timestamps: true, // created_at, updated_at, e deleted_at
             hooks: {
-                afterCreate: async (item, index) => {
-                    console.log(item)
-                    console.log("----------------")
-                    console.log(index)
+                afterDestroy: async (evento, options) => {
+
+                    await sequelize.models.sessao
+                        .destroy({ where: { evento_id: evento.id } })
+                        .then(output => console.log(output)) // envia o numero de instances eliminadas
                 }
             }
         }

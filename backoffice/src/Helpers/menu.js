@@ -45,11 +45,6 @@ export const menu = [
             icon: "calendar4-event"
         },
         {
-            text: "Reservas",
-            path: "/reservas",
-            icon: "journal-text"
-        },
-        {
             text: "Recompensas",
             path: "/recompensas",
             icon: "gift"
@@ -78,11 +73,6 @@ export const menu = [
             icon: "calendar4-event"
         },
         {
-            text: "Reservas",
-            path: "/reservas",
-            icon: "journal-text"
-        },
-        {
             text: "Recompensas",
             path: "/recompensas",
             icon: "gift"
@@ -90,7 +80,7 @@ export const menu = [
         {
             text: "Microsite",
             path: "/microsite",
-            icon: "display"
+            icon: "calendar3"
         }
     ]
 ]
