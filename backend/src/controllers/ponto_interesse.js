@@ -33,8 +33,6 @@ module.exports = {
         const min_aval = req.query?.min_aval ?? 0
         // todo: pontos
 
-        dev.log(id)
-
         // * ordenação e paginação
         const order = req.query?.order ?? 'nome'
         const direction = req.query?.direction ?? 'asc'

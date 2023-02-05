@@ -26,6 +26,12 @@ module.exports = (sequelize) => {
                 beforeCreate: async sessao => {
                     const _evento = await sequelize.models.evento.findByPk(sessao.evento_id)
                     sessao.vagas = _evento.lotacao
+                },
+                afterDestroy: async (sessao, options) => {
+
+                    await sequelize.models.reserva
+                        .destroy({ where: { sessao_id: sessao.id } })
+                        .then(output => console.log(output)) // envia o numero de instances eliminadas
                 }
             }
         }
