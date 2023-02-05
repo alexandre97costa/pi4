@@ -74,17 +74,17 @@ export default function ModalNewPontoInteresse(props) {
                         </div>
                         <div className="modal-body">
                             <div className="card border border-0 mb-3 p-0">
-                                <Input className="input-group" id="nomePontoInteresse" placeholder="Nome" onchange={(value) => setNome(value.target.value)} />
+                                <Input className="input-group" id="nomePontoInteresse" label="Nome" onchange={(value) => setNome(value.target.value)} />
 
-                                <Input className="input-group mt-4" id="localizacao" placeholder="Morada" onchange={(value) => setLocalizacao(value.target.value)} />
+                                <Input className="input-group mt-4" id="localizacao" label="Morada" onchange={(value) => setLocalizacao(value.target.value)} />
 
-                                <Input className="input-group mt-4" id="codigoPostal" type="number" placeholder="Código Postal" onchange={(value) => setCP(value.target.value)} />
+                                <Input className="input-group mt-4" id="codigoPostal" type="number" label="Código Postal" onchange={(value) => setCP(value.target.value)} />
 
-                                <Input className="input-group mt-4" id="contacto" type="number" placeholder="Contacto" onchange={(value) => setContacto(value.target.value)} />
+                                <Input className="input-group mt-4" id="contacto" type="number" label="Contacto" onchange={(value) => setContacto(value.target.value)} />
 
-                                <Input className="input-group mt-4" id="numeroPontos" type="number" placeholder="Número de Pontos" onchange={(value) => setPontos(value.target.value)} />
+                                <Input className="input-group mt-4" id="numeroPontos" type="number" label="Número de Pontos" onchange={(value) => setPontos(value.target.value)} />
 
-                                <textarea className="form-control mt-4" placeholder="Descrição" id="descricao" rows="3" onChange={(value) => setDescricao(value.target.value)} />
+                                <textarea className="form-control mt-4" label="Descrição" id="descricao" rows="3" onChange={(value) => setDescricao(value.target.value)} />
 
                                 <select className="form-select mt-4" value={tipo} onChange={(value) => setTipo(value.target.value)}>
                                     {baseDadosTipo.map((item, index) => {
