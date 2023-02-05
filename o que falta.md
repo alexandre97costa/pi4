@@ -1,7 +1,7 @@
 # Agente
 
 ## Dashboard
-- os botoes de açoes rapidas nao estão com o tamanho certo
+- os botoes de açoes rapidas nao estão com o tamanho certo - Feito 
 
 ## Adicionar PI
 - codigo postal precisa de mudar o tipo e adicionar mais validação
@@ -47,7 +47,7 @@
 
 
 ## Eventos
-- Os cards podiam ter todos a mesma altura
+- Os cards podiam ter todos a mesma altura - Feito
 
 # Admin
 ## Dashboard
