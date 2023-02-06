@@ -15,13 +15,7 @@
 ## Recompensas
 - a pagina parte (quando não ha informação enviada)
 
-## Perfil 
-- falta concluir
-
 # Responsavel
-
-## Utilizadores
-- so deveria ver agentes da sua região (ver se o filtro da para enviar isso)(o controller não vai pesquisar pela região)
 
 # Admin
 ## Dashboard
@@ -31,10 +25,7 @@
 - o link podia ser diferente
 
 ## Lista de Regiões
-- ligar a base de dados
-
-## Microsite
-- muito atrasado
+- Rever o que se pode fazer
 
 # ENTREGA
 

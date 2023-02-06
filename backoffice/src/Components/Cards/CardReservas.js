@@ -81,11 +81,9 @@ export default function CardReservas(props) {
                         <p className="fs-5 mx-2">{props.nomeEvento}</p>
                     </div>
 
-                    <VisibleTo tipo='4'>
-                        <div className='col-6 text-end'>
-                            <Link to={"/lista-reservas-eventos/" + props.eventoId} className="btn btn-outline-success btn-sm me-2 mb-5">Lista de reservas</Link>
-                        </div>
-                    </VisibleTo>
+                    <div className='col-6 text-end'>
+                        <Link to={"/lista-reservas-eventos/" + props.eventoId} className="btn btn-outline-success btn-sm me-2 mb-5">Lista de reservas</Link>
+                    </div>
 
                 </div>
             </div>

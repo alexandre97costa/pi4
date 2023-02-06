@@ -274,12 +274,7 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Pagina title="Reservas ao evento">
-                <VisibleTo tipo="3">
-                  <Pages.ReservasEvento />
-                </VisibleTo>
-                <VisibleTo tipo="4">
-                  <Pages.ReservasEvento />
-                </VisibleTo>
+                <Pages.ReservasEvento />
               </Pagina>
             </ProtectedRoute>
           }
