@@ -150,16 +150,17 @@ export default function Recompensa() {
         </VisibleTo>
 
         {recompensas.map((item, index) => {
-          // console.log(item)
-          return (
-            <div key={index} className="col-12 col-sm-6 col-md-3">
-              <CardRecompensa
-                title={item.titulo}
-                pontos={item.pontos}
-                categoria={item.tipo_interesse.nome}
-              />
-            </div>
-          );
+          if (!!item) {
+            return (
+              <div key={index} className="col-12 col-sm-6 col-md-3">
+                <CardRecompensa
+                  title={item.titulo}
+                  pontos={item.pontos}
+                  categoria={item.tipo_interesse.nome}
+                />
+              </div>
+            );
+          }
         })}
       </div>
     </div>
