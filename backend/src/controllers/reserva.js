@@ -157,7 +157,7 @@ module.exports = {
         // a partir daqui, tudo gucci
 
         await _sessao
-            .update({ vagas: vagas - pessoas })
+            .update({ vagas: _sessao.vagas - pessoas })
             .then(async output2 => {
                 await reserva
                     .create({
