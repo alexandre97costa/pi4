@@ -1,67 +1,69 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from "axios";
+import auth from "../../../Auth/auth.service";
 
-import GraficoHorizontal from '../../../Components/GraficoHorizontal';
 import BotaoDashboard from '../../../Components/BotaoDashboard';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CardPontoInteresse from '../../../Components/Cards/CardPontoInteresse';
+
+const ip = process.env.REACT_APP_IP;
+
 export default function Home() {
-    const borderRadius = 14
+    const [pontosInteresse, setPontoInteresse] = useState([]);
+    const [pontosInteresseAvaliados, setPontosInteresseAvaliados] = useState([]);
 
-    const dias = [
-        "22/12",
-        "23/12",
-        "24/12",
-        "25/12",
-    ];
+    useEffect(() => {
+        axiosGetPontosInteresse()
+        axiosGetPontosInteresseAvaliados()
+    }, [])
 
-    const dataUtilizadores = [
-        "10",
-        "13",
-        "50",
-        "26"
-    ]
+    async function axiosGetPontosInteresse() {
+        const url = ip + "/pi"
 
-    const dataAgenteTuristico = [
-        "100",
-        "112",
-        "58",
-        "91"
-    ]
+        let options = {
+            ...auth.header(),
+            params: {
+                limit: 4,
+                order: 'count_scans',
+                direction: 'desc'
+            }
+        }
 
-    const dataResponsavelRegiao = [
-        "35",
-        "36",
-        "59",
-        "126"
-    ]
+        await axios
+            .get(url, options)
+            .then((output) => {
+                setPontoInteresse(output.data?.data ?? []);
+            })
+            .catch((error) => {
+                toast.warning(error.response.data.msg)
+                console.error(error)
+            });
+    }
 
-    const dataAdmin = [
-        "145",
-        "56",
-        "89",
-        "46"
-    ]
+    async function axiosGetPontosInteresseAvaliados() {
+        const url = ip + "/pi"
 
-    const datasets = [{
-        label: "Visitantes",
-        data: dataUtilizadores,
-        backgroundColor: "#bacc6a",
-        borderRadius: borderRadius
-    }, {
-        label: "Agente Turistico",
-        data: dataAgenteTuristico,
-        backgroundColor: "#80b155",
-        borderRadius: borderRadius,
-    }, {
-        label: "Responsavel de Região",
-        data: dataResponsavelRegiao,
-        backgroundColor: "#539477",
-        borderRadius: borderRadius,
-    }, {
-        label: "Administrador",
-        data: dataAdmin,
-        backgroundColor: "#6c757d",
-        borderRadius: borderRadius,
-    }]
+        let options = {
+            ...auth.header(),
+            params: {
+                limit: 4,
+                order: 'avg_avaliacao',
+                direction: 'desc'
+            }
+        }
+
+        await axios
+            .get(url, options)
+            .then((output) => {
+                setPontosInteresseAvaliados(output.data?.data ?? []);
+            })
+            .catch((error) => {
+                toast.warning(error.response.data.msg)
+                console.error(error)
+            });
+    }
 
     return (
         <>
@@ -118,12 +120,52 @@ export default function Home() {
             <div className="row row-cols-1 row-cols-md-4 gx-4 mb-5">
 
                 <div className='col-12 col-md-12'>
-                    <p className="fs-5 text-body fw-light">Logins Utilizadores</p>
+                    <p className="fs-5 text-body fw-light">Pontos de Interesse mais visitados</p>
                 </div>
 
+                {pontosInteresse.map((item, index) => {
+                    return (
+                        <div key={index} className="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <CardPontoInteresse
+                                id_ponto_interesse={item.id}
+                                imagem={item.imagens[0].url}
+                                nome={item.nome}
+                                categoria={item.tipo_interesse.nome}
+                                morada={item.morada}
+                                numeroScans={item.count_scans}
+                                numeroFavoritos={item.avg_avaliacao}
+                            />
+                        </div>
+                    );
+                })}
+
+                <ToastContainer />
+
+            </div>
+
+            <div className="row row-cols-1 row-cols-md-4 gx-4 mb-5">
+
                 <div className='col-12 col-md-12'>
-                    <GraficoHorizontal datasets={datasets} data={dias} />
+                    <p className="fs-5 text-body fw-light">Pontos de Interesse mais bem avaliados</p>
                 </div>
+
+                {pontosInteresseAvaliados.map((item, index) => {
+                    return (
+                        <div key={index} className="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                            <CardPontoInteresse
+                                id_ponto_interesse={item.id}
+                                imagem={item.imagens[0].url}
+                                nome={item.nome}
+                                categoria={item.tipo_interesse.nome}
+                                morada={item.morada}
+                                numeroScans={item.count_scans}
+                                numeroFavoritos={item.avg_avaliacao}
+                            />
+                        </div>
+                    );
+                })}
+
+                <ToastContainer />
 
             </div>
         </>

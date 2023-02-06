@@ -27,7 +27,8 @@ export default function TabelaListaRecompensas(props) {
         let options = {
             ...auth.header(),
             params: {
-                tipo_interesse_id: props.tipo_id
+                tipo_interesse_id: props.tipo_id,
+                limit: props.limit
             }
         }
 
