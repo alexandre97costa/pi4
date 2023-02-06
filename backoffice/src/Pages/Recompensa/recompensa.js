@@ -122,16 +122,15 @@ export default function Recompensa() {
         </div>
 
         {pontoInteresse.map((item, index) => {
-          if (!!item.recompensas_associadas.length) {
-            return (
-              <div key={index} className="col-12 col-sm-6 col-md-4">
-                <CardListaRecompensas
-                  nomePontoInteresse={item.nome}
-                  recompensas={item.recompensas_associadas}
-                />
-              </div>
-            )
-          }
+          return ((!!item.recompensas_associadas.length && !!item.recompensas_associadas[0].recompensa) &&
+            <div key={index} className="col-12 col-sm-6 col-md-4">
+              <CardListaRecompensas
+                nomePontoInteresse={item.nome}
+                recompensas={item.recompensas_associadas}
+              />
+            </div>
+          )
+
         })}
 
         <div className="col-12 mt-5">
