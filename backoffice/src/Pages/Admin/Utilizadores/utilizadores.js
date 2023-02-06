@@ -19,7 +19,7 @@ export default function Utilizadores() {
 	const [utilizadores, setUtilizadores] = useState([])
 	const [utilizadoresCount, setUtilizadoresCount] = useState(0)
 
-	const {tipoId} = useParams()
+	const { tipoId } = useParams()
 	// filtros
 	const [tipo, setTipo] = useState(tipoId)
 	const [nome, setNome] = useState('')
@@ -40,7 +40,7 @@ export default function Utilizadores() {
 
 
 	useEffect(() => {
-		setTipo(tipoId)
+		// setTipo(tipoId)
 		setOffset(0) // volta à primeira pagina
 		getUtilizadores() // re
 	}, [nome, tipo, offset]) // ir adicionando aqui os hooks dos filtros
@@ -48,6 +48,7 @@ export default function Utilizadores() {
 
 	async function getUtilizadores() {
 		console.log("offset: " + offset)
+		console.log(tipo)
 
 		let options = {
 			...auth.header(),
@@ -114,7 +115,7 @@ export default function Utilizadores() {
 		<>
 			<div className='row row-cols-4 gap-0 mb-3'>
 				<Input label='Nome' onChange={e => setNome(e.target.value)} />
-				<Dropdown items={tipos} onChange={(item, index) => setTipo(index)} />
+				<Dropdown default={3} items={tipos} onChange={(item, index) => setTipo(index)} />
 			</div>
 			<div className='row mb-4'>
 				<div className='col-12'>
@@ -180,7 +181,7 @@ export default function Utilizadores() {
 					<Pagination
 						recordCount={utilizadoresCount}
 						startIndex={limit - (offset + 1)}
-						onChange={i => setOffset(limit * (i - 1))}
+						onChange={i => { console.log('i', i); setOffset(limit * (i - 1)) }}
 					/>
 				</div>
 			</div>

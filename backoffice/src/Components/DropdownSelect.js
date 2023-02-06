@@ -10,6 +10,13 @@ export default function DropdownSelect(props) {
         props.onChange(selectedValue)
     }, [selectedValue])
 
+    useEffect(() => {
+        console.log('selected Value', props.selectedValue)
+        console.log('selected Value', !!props?.selectedValue)
+        if (!!props?.selectedValue) {
+            props.onChange(props.selectedValue)
+        }
+    }, [])
 
     return (
         <div className='col'>
@@ -19,12 +26,14 @@ export default function DropdownSelect(props) {
                 onChange={e => {
                     setSelectedValue(e.target.value)
                 }}
+                value={(!!props?.selectedValue) ? props.selectedValue : 0}
             >
-                <option selected disabled>Selecione um</option>
+                <option value={0} disabled>Selecione um</option>
                 {
                     props.items.map((item, index) => {
                         return (
                             <option
+                                key={index}
                                 value={item?.value ?? index}>
                                 {item?.label ?? 'item.label'}
                             </option>

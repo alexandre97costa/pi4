@@ -60,7 +60,6 @@ export default function ModalNewPontoInteresse(props) {
         await axios
             .get(url, auth.header())
             .then(output => {
-                console.log(output)
                 setDistritos(
                     output.data?.distritos.map(distrito => {
                         return {
@@ -77,7 +76,7 @@ export default function ModalNewPontoInteresse(props) {
 
         const options = {
             ...auth.header(),
-            params: { distrito_id: 1 }
+            params: { distrito_id: item }
         }
 
         await axios
@@ -181,6 +180,7 @@ export default function ModalNewPontoInteresse(props) {
                                 />
                                 <DropdownSelect
                                     items={distritos}
+                                    // selectedValue={3}
                                     onChange={(value, label) => {
                                         setSelectDistrito(value)
                                         getMunicipios(value)
