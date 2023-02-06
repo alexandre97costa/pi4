@@ -15,7 +15,7 @@ export default function ModalEditarAgente(props) {
                         <div className='container-fluid'>
                             <div className='row'>
                                 <div className='col-12'>
-                                    <TabelaEditarAgente />
+                                    <TabelaEditarAgente pontoInteresseId={props.pontoInteresseId} />
                                 </div>
                             </div>
                         </div>

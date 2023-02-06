@@ -254,7 +254,7 @@ module.exports = {
 
     mudar_agente: async (req, res) => {
         // so o responsavel de regiao e admin podem mudar o agente de um ponto
-        if (req.auth.tipo !== 3 || req.auth.tipo !== 4)
+        if (req.auth.tipo !== 3 && req.auth.tipo !== 4)
             return res.status(401).json({ msg: 'Apenas responsáveis e admins podem mudar o agente de um ponto de interesse.' })
 
         const { id, agente_id } = req.params
@@ -269,7 +269,7 @@ module.exports = {
         await _pi
             .update({ agente_turistico_id: +agente_id })
             .then(output => {
-                return !output[0] ?
+                return !output ?
                     res.status(400).json({ msg: 'Ponto de interesse não atualizado.' }) :
                     res.status(200).json({ msg: 'Ponto de interesse atualizado.', ponto_interesse: output[0] })
             })

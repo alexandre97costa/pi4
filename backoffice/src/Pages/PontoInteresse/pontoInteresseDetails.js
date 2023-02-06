@@ -112,7 +112,7 @@ export default function PontoInteresseDetails() {
             >
               <i className="bi bi-file-earmark me-3"></i>Gerir Agente
             </button>
-            <ModalEditarAgente idModal="editarAgente" title="Editar Agente" />
+            <ModalEditarAgente pontoInteresseId={id_ponto_interesse} idModal="editarAgente" title="Editar Agente" />
           </div>
         </VisibleTo>
 
@@ -127,7 +127,7 @@ export default function PontoInteresseDetails() {
             >
               <i className="bi bi-file-earmark me-3"></i>Gerir Agente
             </button>
-            <ModalEditarAgente idModal="editarAgente" title="Editar Agente" />
+            <ModalEditarAgente pontoInteresseId={id_ponto_interesse} idModal="editarAgente" title="Editar Agente" />
           </div>
         </VisibleTo>
 
