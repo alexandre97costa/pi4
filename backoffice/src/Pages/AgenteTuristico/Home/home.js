@@ -188,19 +188,21 @@ export default function Home() {
                 </div>
 
                 {pontosInteresseAvaliados.map((item, index) => {
-                    return (
-                        <div key={index} className="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3 d-flex mb-5">
-                            <CardPontoInteresse
-                                id_ponto_interesse={item.id}
-                                imagem={item.imagens[0].url}
-                                nome={item.nome}
-                                categoria={item.tipo_interesse.nome}
-                                morada={item.morada}
-                                numeroScans={item.count_scans}
-                                numeroFavoritos={item.avg_avaliacao}
-                            />
-                        </div>
-                    );
+                    if (!!item.imagens[0]) {
+                        return (
+                            <div key={index} className="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3 d-flex mb-5">
+                                <CardPontoInteresse
+                                    id_ponto_interesse={item.id}
+                                    imagem={item.imagens[0].url}
+                                    nome={item.nome}
+                                    categoria={item.tipo_interesse.nome}
+                                    morada={item.morada}
+                                    numeroScans={item.count_scans}
+                                    numeroFavoritos={item.avg_avaliacao}
+                                />
+                            </div>
+                        );
+                    }
                 })}
             </div>
 
