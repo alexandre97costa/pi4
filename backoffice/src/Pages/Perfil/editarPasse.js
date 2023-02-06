@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 import auth from "../../Auth/auth.service";
 
@@ -17,7 +17,7 @@ export default function EditarPasse() {
     if (!palavraPasseNova || !palavraPasseConfirmacao)
       return toast.warning("Introduza uma palavra passe")
 
-    if (palavraPasseNova != palavraPasseConfirmacao)
+    if (palavraPasseNova !== palavraPasseConfirmacao)
       return toast.warning("Combinação diferente")
 
     const url = ip + '/utilizador/' + auth.getUser().id + '/password'

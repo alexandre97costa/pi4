@@ -6,8 +6,6 @@ import CardUtilizadorDetails from "../../Components/Cards/CardUtilizadoresDetail
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import fotoAgente from "../../Assets/Images/fotoagente.jpg";
-
 const ip = process.env.REACT_APP_IP;
 
 export default function DetalhesUtilizador() {
