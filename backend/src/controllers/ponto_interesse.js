@@ -180,6 +180,8 @@ module.exports = {
                 descricao: descricao,
                 freguesia_id: freguesia_id,
                 tipo_interesse_id: tipo_interesse_id,
+                agente_turistico_id: req.auth.id,
+                validado: true
             })
             .then(output => {
                 return res.status(200).json({

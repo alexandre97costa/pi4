@@ -6,7 +6,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import Botao from '../Botao';
-import Dropdown from '../Dropdown';
 import DropdownSelect from '../DropdownSelect';
 import Input from '../Input';
 
@@ -18,6 +17,7 @@ export default function ModalNewPontoInteresse(props) {
     const [morada, setMorada] = useState("")
     const [codigoPostal, setCodigoPostal] = useState("")
     const [contacto, setContacto] = useState("")
+    const [url, setUrl] = useState("")
     const [pontos, setPontos] = useState(0)
 
     const [selectTipo, setSelectTipo] = useState('')
@@ -112,7 +112,7 @@ export default function ModalNewPontoInteresse(props) {
         toast.dismiss(toastId.current)
     }
 
-    function axiosPost() {
+    async function axiosPost() {
         if (!nome)
             return toast.error("Introduza um nome")
         if (!morada)
@@ -123,10 +123,30 @@ export default function ModalNewPontoInteresse(props) {
             return toast.error("Introduza um contacto")
         if (!pontos)
             return toast.error("Introduza o número de pontos")
-        if (!selectTipo)
-            return toast.error("Selecione um tipo de interesse")
+        if (!url)
+            return toast.error("Introduza uma imagem do ponto")
+        // if (!selectTipo)
+        //     return toast.error("Selecione um tipo de interesse")
 
-        toast.success("Ponto de Interesse adicionado com sucesso")
+        const url = ip + '/pi'
+
+        const data = {
+            nome: nome,
+            descricao: descricao,
+            morada: morada,
+            codigo_postal: codigoPostal,
+            telemovel: contacto,
+            pontos: pontos,
+            freguesia_id: selectedFreguesia,
+            tipo_interesse_id: 1
+        }
+
+        await axios
+            .post(url, data, auth.header())
+            .then((output) => {
+                toast.success("Ponto de Interesse adicionado com sucesso")
+                console.log(output.data)
+            }).catch((error) => console.log(error))
     }
 
     return (
@@ -144,34 +164,39 @@ export default function ModalNewPontoInteresse(props) {
                                     className="input-group"
                                     id="nomePontoInteresse"
                                     label="Nome"
-                                    onchange={(value) => setNome(value.target.value)}
+                                    onChange={(value) => setNome(value.target.value)}
                                 />
                                 <Input
                                     className="input-group mt-4"
                                     id="localizacao"
                                     label="Morada"
-                                    onchange={(value) => setMorada(value.target.value)}
+                                    onChange={(value) => setMorada(value.target.value)}
                                 />
                                 <Input
                                     className="input-group mt-4"
                                     id="codigoPostal"
                                     label="Código Postal"
-                                    onchange={(value) => setCodigoPostal(value.target.value)}
+                                    onChange={(value) => setCodigoPostal(value.target.value)}
                                 />
                                 <Input
                                     className="input-group mt-4"
                                     id="contacto"
                                     type="number"
                                     label="Contacto"
-                                    onchange={(value) => setContacto(value.target.value)}
+                                    onChange={(value) => setContacto(value.target.value)}
                                 />
                                 <Input
                                     className="input-group mt-4"
                                     id="numeroPontos"
                                     type="number"
                                     label="Número de Pontos"
-                                    onchange={(value) => setPontos(value.target.value)}
+                                    onChange={(value) => setPontos(value.target.value)}
                                 />
+                                <Input
+                                    className="input-group mt-4"
+                                    id="urlImagem"
+                                    label="Url da imagem"
+                                    onChange={(value) => setUrl(value.target.value)} />
                                 <textarea
                                     className="form-control my-4"
                                     label="Descrição"
