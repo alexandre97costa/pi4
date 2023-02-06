@@ -9,6 +9,7 @@ import CardForm from '../../../Components/CardForm';
 import ModalSelectCategoria from '../../../Components/Modais/ModalSelectCategoria';
 import dev from '../../../Auth/dev';
 import { useParams } from 'react-router-dom';
+import DropdownSelect from '../../../Components/DropdownSelect';
 
 const ip = process.env.REACT_APP_IP
 const maxRecords = process.env.REACT_APP_MAX_RECORDS
@@ -33,22 +34,33 @@ export default function Utilizadores() {
 		// tipos
 		axios
 			.get(ip + '/tipos/utilizador', auth.header())
-			.then(output => { setTipos(['Todos', ...output.data?.tipos.map(t => t.nome)] ?? []) })
+			.then(output => {
+				setTipos([{
+					label: 'Todos',
+					value: 0
+				},
+				...output.data?.tipos.map(t => {
+					return {
+						label: t.nome,
+						value: t.id
+					}
+				})]
+				)
+				// ['Todos', ...output.data?.tipos.map(t => t.nome)] ?? []) })
 
-		getUtilizadores()
+				getUtilizadores()
+			})
 	}, [])
 
-
 	useEffect(() => {
-		// setTipo(tipoId)
 		setOffset(0) // volta à primeira pagina
 		getUtilizadores() // re
 	}, [nome, tipo, offset]) // ir adicionando aqui os hooks dos filtros
 
 
 	async function getUtilizadores() {
+		console.log("tipo: " + tipo)
 		console.log("offset: " + offset)
-		console.log(tipo)
 
 		let options = {
 			...auth.header(),
@@ -115,7 +127,8 @@ export default function Utilizadores() {
 		<>
 			<div className='row row-cols-4 gap-0 mb-3'>
 				<Input label='Nome' onChange={e => setNome(e.target.value)} />
-				<Dropdown default={3} items={tipos} onChange={(item, index) => setTipo(index)} />
+				<DropdownSelect selectedValue={tipoId} items={tipos} onChange={(item) => setTipo(item)} />
+				{/* <Dropdown default={3} items={tipos} onChange={(item, index) => setTipo(index)} /> */}
 			</div>
 			<div className='row mb-4'>
 				<div className='col-12'>

@@ -35,17 +35,6 @@ export default function ModalNewPontoInteresse(props) {
 
     const toastId = useRef(null)
 
-    const TiposPontoInteresse = [{
-        id: 0,
-        nome: 'Tipo do Ponto de Interesse'
-    }, {
-        id: 1,
-        nome: 'Restaurante'
-    }, {
-        id: 2,
-        nome: 'Museu'
-    }]
-
     useEffect(() => {
         getDistritos()
     }, [])
