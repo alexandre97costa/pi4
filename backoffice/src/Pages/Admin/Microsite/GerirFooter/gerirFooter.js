@@ -7,11 +7,13 @@ export default function GerirEditarFooter() {
     {
       id: "inputUrlIconFacebook",
       texto: "Url do Icon Facebook",
+      label: "",
       useState: "teste1"
     },
     {
       id: "inputLinkFacebook",
       texto: "Link para o facebook",
+      label: "",
       useState: "teste2"
     }
   ]
@@ -20,11 +22,13 @@ export default function GerirEditarFooter() {
     {
       id: "inputUrlIconInstagram",
       texto: "Url do Icon Instagram",
+      label: "",
       useState: "teste1"
     },
     {
       id: "inputLinkInstagram",
       texto: "Link para o Instagram",
+      label: "",
       useState: "teste2"
     }
   ]
@@ -33,11 +37,13 @@ export default function GerirEditarFooter() {
     {
       id: "inputUrlIconTwitter",
       texto: "Url do Icon Twitter",
+      label: "",
       useState: "teste1"
     },
     {
       id: "inputLinkTwitter",
       texto: "Link para o Twitter",
+      label: "",
       useState: "teste2"
     }
   ]
@@ -46,10 +52,12 @@ export default function GerirEditarFooter() {
     {
       id: "inputPoliticaPrivacidade",
       texto: "Link para a página de Política de Privacidade",
+      label: "",
       useState: "teste1"
     },
     {
       id: "inputPoliticaCookies",
+      label: "",
       texto: "Link para a página de Política de Cookies",
       useState: "teste2"
     }

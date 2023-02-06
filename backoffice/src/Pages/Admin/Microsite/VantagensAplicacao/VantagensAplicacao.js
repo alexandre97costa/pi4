@@ -12,12 +12,13 @@ export default function GerirVantagensApp() {
     {
       id: "inputTitulo",
       texto: "Titulo",
+      label: "",
       useState: "teste1",
-      value: "Pinoquio"
     },
     {
       id: "inputSubtitulo",
       texto: "Subtítulo",
+      label: "",
       useState: "teste2"
     }
   ]
@@ -26,21 +27,25 @@ export default function GerirVantagensApp() {
     {
       id: "inputTitulo",
       texto: "Titulo",
+      label: "",
       useState: "teste1"
     },
     {
       id: "inputSubtitulo",
       texto: "Subtítulo",
+      label: "",
       useState: "teste2"
     },
     {
       id: "inputTextoBotao",
       texto: "Texto Botão",
+      label: "",
       useState: "teste3"
     },
     {
       id: "inputLinkIcon",
       texto: "Link para o icon",
+      label: "",
       useState: "teste4"
     }
   ]
@@ -49,21 +54,25 @@ export default function GerirVantagensApp() {
     {
       id: "inputTitulo",
       texto: "Titulo",
+      label: "",
       useState: "teste1"
     },
     {
       id: "inputSubtitulo",
       texto: "Subtítulo",
+      label: "",
       useState: "teste2"
     },
     {
       id: "inputTextoBotao",
       texto: "Texto Botão",
+      label: "",
       useState: "teste3"
     },
     {
       id: "inputLinkIcon",
       texto: "Link para o icon",
+      label: "",
       useState: "teste4"
     }
   ]
@@ -72,21 +81,25 @@ export default function GerirVantagensApp() {
     {
       id: "inputTitulo",
       texto: "Titulo",
+      label: "",
       useState: "teste1"
     },
     {
       id: "inputSubtitulo",
       texto: "Subtítulo",
+      label: "",
       useState: "teste2"
     },
     {
       id: "inputTextoBotao",
       texto: "Texto Botão",
+      label: "",
       useState: "teste3"
     },
     {
       id: "inputLinkIcon",
       texto: "Link para o icon",
+      label: "",
       useState: "teste4"
     }
   ]

@@ -7,6 +7,7 @@ export default function GerirMenu() {
     {
       id: "inputUrlImagem",
       texto: "Url da imagem",
+      label: "",
       useState: "teste1"
     }
   ]
@@ -15,7 +16,7 @@ export default function GerirMenu() {
     <div className="container-fluid">
       <div className="row">
         <div className='col-12 offset-md-1 col-md-10'>
-          <FormsMicrosite itens={teste} />
+          <FormsMicrosite itens={teste}  />
         </div>
       </div>
     </div>

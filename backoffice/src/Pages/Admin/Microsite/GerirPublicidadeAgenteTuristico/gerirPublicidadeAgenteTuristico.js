@@ -7,16 +7,19 @@ export default function GerirPublicidadeAgenteTuristico() {
     {
       id: "inputTitulo",
       texto: "Titulo",
+      label: "",
       useState: "teste1"
     },
     {
       id: "inputSubtitulo",
       texto: "Subtítulo",
+      label: "",
       useState: "teste2"
     },
     {
       id: "inputTextoBotao",
       texto: "Texto Botão",
+      label: "",
       useState: "teste3"
     }
   ]

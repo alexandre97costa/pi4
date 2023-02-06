@@ -16,13 +16,14 @@ export default function FormsMicrosite(props) {
                     return (
                         <div className='row' key={index}>
                             <div className='col-12'>
-                                <label className="fs-5 mb-2 ms-1" htmlFor={item.id}>{item.texto}</label>
+                                <label className="fs-5 mb-2 mt-2 ms-1" htmlFor={item.id}>{item.texto}</label>
                             </div>
 
                             <div className='col-7 col-sm-8 col-md-9'>
                                 <Input
                                     id={item.id}
                                     type="text"
+                                    label={item.label}
                                     className="rounded-3 mb-3"
                                     pattern={item.pattern}
                                     required={true}
