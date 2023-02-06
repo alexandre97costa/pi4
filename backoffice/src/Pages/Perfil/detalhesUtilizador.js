@@ -26,7 +26,7 @@ export default function DetalhesUtilizador() {
   }, []);
 
   async function axiosGetUtilizador() {
-    const url = ip + "/utilizador/" + id_utilizador;
+    const url = ip + "/utilizador/" + auth.getUser().id;
 
     await axios
       .get(url, auth.header())
