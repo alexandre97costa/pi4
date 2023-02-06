@@ -77,10 +77,10 @@ export const menu = [
             path: "/recompensas",
             icon: "gift"
         },
-        {
-            text: "Microsite",
-            path: "/microsite",
-            icon: "calendar3"
-        }
+        // {
+        //     text: "Microsite",
+        //     path: "/microsite",
+        //     icon: "calendar3"
+        // }
     ]
 ]
