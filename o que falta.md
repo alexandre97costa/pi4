@@ -1,12 +1,4 @@
 # Agente
-
-## Adicionar PI
-- Controller tem de aceitar o url da imagem: feito
-
-## Editar PI
-- Validações
-- ponto-interesse-details deve passar a ponto-interesse
-
 ## Validar Voucher
 - nao funciona (ir ver ao controller)
 
