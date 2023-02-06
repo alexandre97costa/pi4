@@ -16,9 +16,6 @@
 
 # Admin
 
-## Lista de Regiões
-- Rever o que se pode fazer
-
 # ENTREGA
 
 ## Apresentação
