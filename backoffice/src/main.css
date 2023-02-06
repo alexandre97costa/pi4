@@ -13,9 +13,13 @@
     --pi4-secondary-dark: darkgreen;
 
     --visitante: #bacc6a;
+    --visitante-dark: #a7b85f;
     --agente-turistico: #80b155;
+    --agente-turistico-dark: #74a14d;
     --responsavel-regiao: #539477;
+    --responsavel-regiao-dark: #447a62;
     --administrador: #6c757d;
+    --administrador-dark: #5a6269;
     --modais: #343A40;
 
 }
@@ -41,10 +45,60 @@
     background-color: var(--administrador);
 }
 
+/* botões */
+.btn-modais {
+    background-color: var(--modais);
+}
+
+.btn-visitante {
+    background-color: var(--visitante);
+}
+
+.btn.btn-visitante:hover,
+.btn.btn-outline-visitante:hover {
+    color: var(--bs-white);
+    background-color: var(--visitante-dark);
+    border-color: var(--visitante-dark);
+}
+
+.btn-agente {
+    background-color: var(--agente-turistico);
+}
+
+.btn.btn-agente:hover,
+.btn.btn-outline-agente:hover {
+    color: var(--bs-white);
+    background-color: var(--agente-turistico-dark);
+    border-color: var(--agente-turistico-dark);
+}
+
+.btn-responsavel {
+    background-color: var(--responsavel-regiao);
+}
+
+.btn.btn-responsavel:hover,
+.btn.btn-outline-responsavel:hover {
+    color: var(--bs-white);
+    background-color: var(--responsavel-regiao-dark);
+    border-color: var(--responsavel-regiao-dark);
+}
+
+.btn-admin {
+    background-color: var(--administrador);
+}
+
+.btn.btn-admin:hover,
+.btn.btn-outline-admin:hover {
+    color: var(--bs-white);
+    background-color: var(--administrador-dark);
+    border-color: var(--administrador-dark);
+}
+
 /* color text */
 .text-visitante {
     color: var(--visitante)
 }
+
 
 .text-responsavel {
     color: var(--responsavel-regiao);

@@ -82,7 +82,7 @@ export default function CardReservas(props) {
                     </div>
 
                     <div className='col-6 text-end'>
-                        <Link to={"/lista-reservas-eventos/" + props.eventoId} className="btn btn-outline-success btn-sm me-2 mb-5">Lista de reservas</Link>
+                        <Link to={"/evento-reservas/" + props.eventoId} className="btn btn-outline-success btn-sm me-2 mb-5">Lista de reservas</Link>
                     </div>
 
                 </div>

@@ -23,11 +23,6 @@
 - so deveria ver agentes da sua região (ver se o filtro da para enviar isso)(o controller não vai pesquisar pela região)
 
 # Admin
-## Dashboard
-- os botoes de utilizaodr precisam de ser revistos (cor do hover)
-
-## Lista de reservas
-- o link podia ser diferente
 
 ## Lista de Regiões
 - Rever o que se pode fazer

@@ -118,33 +118,25 @@ export default function ModalNewPontoInteresse(props) {
             .catch(error => console.log(error))
     }
 
-    function axiosPostPontoInteresse() {
-        //Aqui fazemos o post na api
-    }
-
-    function axiosGetTiposPontoInteresse() {
-        //Aqui fazemos o pedido api para sabermos quais pontos de interesse existem
-    }
-
     function dismissToast() {
         toast.dismiss(toastId.current)
     }
 
     async function axiosPost() {
-        // if (!nome)
-        //     return toast.error("Introduza um nome")
-        // if (!morada)
-        //     return toast.error("Introduza uma localização")
-        // if (!codigoPostal)
-        //     return toast.error("Introduza um código postal")
-        // if (!contacto)
-        //     return toast.error("Introduza um contacto")
+        if (!nome)
+            return toast.error("Introduza um nome")
+        if (!morada)
+            return toast.error("Introduza uma localização")
+        if (!codigoPostal)
+            return toast.error("Introduza um código postal")
+        if (!contacto)
+            return toast.error("Introduza um contacto")
         if (!pontos)
             return toast.error("Introduza o número de pontos")
-        // if (!url)
-        //     return toast.error("Introduza uma imagem do ponto")
-        // if (!selectTipo)
-        //     return toast.error("Selecione um tipo de interesse")
+        if (!url)
+            return toast.error("Introduza uma imagem do ponto")
+        if (!selectTipo)
+            return toast.error("Selecione um tipo de interesse")
 
         const baseUrl = ip + '/pi'
 
@@ -156,7 +148,8 @@ export default function ModalNewPontoInteresse(props) {
             telemovel: contacto,
             pontos: pontos,
             freguesia_id: selectedFreguesia,
-            tipo_interesse_id: selectTipo
+            tipo_interesse_id: selectTipo,
+            url_imagem: url
         }
 
         await axios
@@ -164,6 +157,7 @@ export default function ModalNewPontoInteresse(props) {
             .then((output) => {
                 toast.success("Ponto de Interesse adicionado com sucesso")
                 console.log(output.data)
+                props.onSubmit()
             }).catch((error) => console.log(error))
     }
 
@@ -306,7 +300,9 @@ export default function ModalNewPontoInteresse(props) {
                         </div>
                         <div className="modal-footer">
                             <Botao className="btn-secondary" dismiss="modal" texto="Fechar" onClick={() => dismissToast()} />
-                            <Botao texto="Enviar" onClick={() => axiosPost()} />
+                            <Botao texto="Enviar" onClick={() => {
+                                axiosPost()
+                            }} />
 
                             <ToastContainer />
                         </div>
