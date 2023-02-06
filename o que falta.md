@@ -1,63 +1,40 @@
 # Agente
 
-## Dashboard
-- os botoes de açoes rapidas nao estão com o tamanho certo - Feito 
-
 ## Adicionar PI
-- codigo postal precisa de mudar o tipo e adicionar mais validação
+- Adicionar mais validação
 - Contacto precisa de mais validação (nao pode ter nºs decimais)
 - Numero de pontos nao pode ser deciaml, devia avançar de 5 em 5
 - Há uma textarea sem label, nao faço ideia o que seja
 - Tipo de interesse deve mudar a label para "Tipo de Interesse", e ir buscar os tipos à BD
-- Ao enviar, nao deixa com o erro "Introduza um nome" mesmo quando está tudo preenchido
-- Label do contacto não deve ser incremental - Feito
 
 ## Validar Voucher
-- nao funciona 
+- nao funciona (ir ver ao controller)
 
 ## Validar Reserva 
-- nao funciona
+- nao funciona (controller n da nda)
 
 ## Recompensas
-- a pagina parte (ns porquê)
+- a pagina parte (ver)
 
 ## Perfil 
-- a pagina parte 
+- falta concluir
 
 # Responsavel
 
 ## Dashboard
-- Atribuição de perfil nao vai a lado nenhum
-- Pontos de Interesse nao vai a lado nenhum
-- Eventos nao vai a lado nenhum
-- Vouchers nao vai a lado nenhum
-- a tabela de validaçaõ de AT ainda tem info ficticia (nao vem da BD) 
-- falta as ações de confirmar/rejeitar
-- Grafico categorias mais visitadas nao funfa
+- Atribuição de perfil (ver o id)
 
 ## Utilizadores
-- so deveria ver agentes da sua regia
-- nao deveria poder mudar o tipo
-- nao deveria poder eliminar ninguem
+- so deveria ver agentes da sua região
+- nao deveria poder mudar o tipo (visível)
+- nao deveria poder eliminar ninguém (visível)
 
 ## Pontos de Interesse (Detalhe)
 - gerir agente: mudar icon
-- gerir agente: tirar coluna da localidade - Feito
-- gerir agente: nao está a fazer o POST
-- sugestao: quando nao ha eventos/recompensas, ter uma frase qualquer a indicar isso (como a tabela de utilizadores tem) - Feito
-
-
-## Eventos
-- Os cards podiam ter todos a mesma altura - Feito
 
 # Admin
 ## Dashboard
-
-- Os botoes de utilizadores podiam mandar para a oagina ja com os filtros
 - os botoes de utilizaodr precisam de ser revistos (cor do hover)
-- gerir regioes: tabela com valroes ficticios
-- gerir regioes: botoes nao funfam
-- grafico nao funfa
 
 ## Lista de reservas
 - o link podia ser diferente

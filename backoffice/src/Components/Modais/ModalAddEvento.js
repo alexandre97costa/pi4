@@ -107,7 +107,9 @@ export default function ModalAddEvento(props) {
             vagas: vagas,
             horas_duracao: horas,
             ponto_interesse_id: selectPontoInteresse.split(' ')[0],
-            tipo_evento_id: selectTipo.split(' ')[0]
+            tipo_evento_id: selectTipo.split(' ')[0],
+            data: dataEvento,
+            hora: horaEvento
         }
 
         await axios
@@ -144,7 +146,7 @@ export default function ModalAddEvento(props) {
                                 setHoraEvento(value.target.value)
                             }} />
 
-                            <Input className="input-group mt-4" type="number" id="horaEvento" label="Número de horas do evento" onChange={(value) => setHoras(value.target.value)} />
+                            <Input className="input-group mt-4" type="number" id="horasEvento" label="Número de horas do evento" onChange={(value) => setHoras(value.target.value)} />
 
                             <Input className="input-group mt-4" type="number" id="limitePessoas" label="Número de vagas" min="1" onChange={(value) => setVagas(value.target.value)} />
 
