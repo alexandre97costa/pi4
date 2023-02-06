@@ -30,7 +30,6 @@ export default function ModalNewPontoInteresse(props) {
     }, [props.pontoInteresse])
 
     function fakeAxiosPostPontoInteresse() {
-        console.log(props.pontoInteresse)
         setNome(props.pontoInteresse?.nome)
         setDescricao(props.pontoInteresse?.descricao)
         setMorada(props.pontoInteresse?.morada)
@@ -59,7 +58,6 @@ export default function ModalNewPontoInteresse(props) {
 
     async function axiosPut() {
         toast.dismiss()
-        console.log(nome)
         if (!nome)
             return toast.error("Introduza nome ao Ponto de Interesse")
         if (!descricao)

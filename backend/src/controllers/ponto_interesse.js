@@ -117,6 +117,7 @@ module.exports = {
                         as: 'recompensas_associadas',
                         include: {
                             model: recompensa,
+                            required: true,
                             as: 'recompensa'
                         }
                     }, {

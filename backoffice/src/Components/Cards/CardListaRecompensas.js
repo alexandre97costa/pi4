@@ -23,15 +23,18 @@ export default function CardListaRecompensas(props) {
 
             {props.recompensas.map((item, index) => {
                 return (
+                    !!item.recompensa?.titulo &&
                     <div key={index} className="row w-100 align-self-center border-top pt-3 pb-0">
-                        <div className='col-5 ps-0'>
+                        <div className='col-12 ps-0'>
                             <p className="text-start text-muted">{item.recompensa.titulo}</p>
                         </div>
+                        {/* 
                         <VisibleTo tipo="2">
                             <div className='col-7 text-end pe-0'>
                                 <Botao className="btn-outline-danger btn-sm" texto="Eliminar" onClick={() => axiosRemoveRecompensaPontoInteresse(item.id)} />
                             </div>
                         </VisibleTo>
+                         */}
                     </div>
                 )
             })}

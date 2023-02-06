@@ -77,8 +77,6 @@ export default function Home() {
 
     async function axiosGetEventos() {
         const url = ip + "/evento"/*saber qual a rota*/
-        console.log(url)
-        console.log(auth.header())
 
         let options = {
             ...auth.header(),
@@ -171,16 +169,15 @@ export default function Home() {
                 </div>
 
                 {pontoInteresse.map((item, index) => {
-                    if (!!item.recompensas_associadas.length) {
-                        return (
-                            <div key={index} className="col-12 col-sm-6 col-md-4">
-                                <CardListaRecompensas
-                                    nomePontoInteresse={item.nome}
-                                    recompensas={item.recompensas_associadas}
-                                />
-                            </div>
-                        )
-                    }
+                    return (!!item.recompensas_associadas.length &&
+                        <div key={index} className="col-12 col-sm-6 col-md-4">
+                            <CardListaRecompensas
+                                nomePontoInteresse={item.nome}
+                                recompensas={item.recompensas_associadas}
+                            />
+                        </div>
+                    )
+
                 })}
 
                 <div className='col-12 col-md-12 mt-5'>

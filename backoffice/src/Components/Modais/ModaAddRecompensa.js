@@ -48,7 +48,6 @@ export default function ModalAddRecompensa(props) {
         }
 
         const url = ip + "/recompensa"
-        console.log(url)
 
         let options = {
             titulo: nomeRecompensa,
@@ -73,7 +72,6 @@ export default function ModalAddRecompensa(props) {
 
     async function getPontosInteresseAxios() {
         const url = ip + "/pi"
-        console.log(url)
 
         let options = {
             ...auth.header(),
@@ -96,7 +94,6 @@ export default function ModalAddRecompensa(props) {
 
     async function getTiposAxios() {
         const url = ip + "/tipos/pi"
-        console.log(url)
 
         await axios
             .get(url, auth.header())

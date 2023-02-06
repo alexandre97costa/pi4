@@ -35,7 +35,6 @@ export default function ModalAddEvento(props) {
 
     async function getPontosInteresseAxios() {
         const url = ip + "/pi"
-        console.log(url)
 
         let options = {
             ...auth.header(),
@@ -58,7 +57,6 @@ export default function ModalAddEvento(props) {
 
     async function getTiposAxios() {
         const url = ip + "/tipos/evento"
-        console.log(url)
 
         await axios
             .get(url, auth.header())

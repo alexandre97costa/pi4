@@ -224,7 +224,7 @@ export default function App() {
         {/* aqui no AT E RR pode aparecer as recompensas e os eventos 
 		  + no AT botão para adicionar novas recompensas e evento */}
         <Route
-          path="/ponto-interesse-details/:id_ponto_interesse" // aqui devia ser ponto-interesse/:id
+          path="/ponto-interesse/:id_ponto_interesse" 
           element={
             <ProtectedRoute>
               <Pagina title="Ponto Interesse">

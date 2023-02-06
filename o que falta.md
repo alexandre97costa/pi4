@@ -1,10 +1,11 @@
 # Agente
 
 ## Adicionar PI
-- Controller tem de aceitar o url da imagem
+- Controller tem de aceitar o url da imagem: feito
 
 ## Editar PI
 - Validações
+- ponto-interesse-details deve passar a ponto-interesse
 
 ## Validar Voucher
 - nao funciona (ir ver ao controller)
@@ -16,6 +17,10 @@
 - a pagina parte (quando não ha informação enviada)
 
 # Responsavel
+
+## Utilizadores
+- cagar para isto agora
+- so deveria ver agentes da sua região (ver se o filtro da para enviar isso)(o controller não vai pesquisar pela região)
 
 # Admin
 ## Dashboard
