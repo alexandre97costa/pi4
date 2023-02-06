@@ -36,13 +36,6 @@ export default function DetalhesUtilizador() {
   return (
     <>
       <div className="row gy-4">
-        <div className="col-3 d-none d-md-block">
-          <img
-            src={fotoAgente}
-            className="card-img-top h-100 img-fluid rounded-4"
-          />
-        </div>
-
         <div className="col-12 col-md-9">
           <CardUtilizadorDetails info={utilizadores} />
         </div>

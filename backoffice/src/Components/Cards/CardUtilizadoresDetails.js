@@ -18,7 +18,7 @@ export default function CardUtilizadoresDetails(props) {
                                 <div className='col-12'>
                                     <h5 className="card-subtitle mt-3 mb-2 ms-3 fs-4">E-mail</h5>
                                     <p className="card-title mb-4 ms-3 fw-light">{item.email}</p>
-                                </div>
+                                </div>  
 
 
                                 <div className='col-12'>
@@ -32,8 +32,8 @@ export default function CardUtilizadoresDetails(props) {
                                 </div>
 
                                 <div className='col-12 mb-3 ms-3 d-flex align-items-center'>
-                                    <Link type="button" className="btn btn-primary w-25" to="/editar-perfil">Editar Perfil</Link>
-                                    <Link type="button" className="btn btn-primary w-25 ms-5" to="/editar-passe">Editar Palavra-passe</Link>
+                                    <Link type="button" className="btn btn-lg btn-primary w-25" to="/editar-perfil">Editar Perfil</Link>
+                                    <Link type="button" className="btn btn-lg btn-outline-secondary w-25 ms-5" to="/editar-passe">Editar Palavra-passe</Link>
                                 </div>
                                 
                             </div>
