@@ -43,6 +43,7 @@ export default function Home() {
         await axios
             .get(url, options)
             .then((output) => {
+                console.log(output.data.data)
                 setPontosInteresseAvaliados(output.data?.data ?? []);
             })
             .catch((error) => {
@@ -50,8 +51,6 @@ export default function Home() {
                 console.error(error)
             });
     }
-
-
 
     async function axiosGetPontoInteresse() {
         const url = ip + "/pi"
