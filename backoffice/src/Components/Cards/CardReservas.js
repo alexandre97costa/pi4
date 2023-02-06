@@ -71,7 +71,7 @@ export default function CardReservas(props) {
     }
 
     return (
-        <div className="card border border-0 rounded-4 shadow h-100">
+        <div className="card border border-0 rounded-4 shadow">
 
             <div className="col-12">
                 <div className='row py-3'>
