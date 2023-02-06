@@ -3,6 +3,9 @@
 ## Adicionar PI
 - Controller tem de aceitar o url da imagem
 
+## Editar PI
+- Validações
+
 ## Validar Voucher
 - nao funciona (ir ver ao controller)
 
