@@ -2,10 +2,6 @@
 
 ## Adicionar PI
 - Controller tem de aceitar o url da imagem
-- Adicionar mais validação
-- Contacto precisa de mais validação (nao pode ter nºs decimais)
-- Numero de pontos nao pode ser decimal, devia avançar de 5 em 5
-- Tipo de interesse deve mudar a label para "Tipo de Interesse", e ir buscar os tipos à BD
 
 ## Validar Voucher
 - nao funciona (ir ver ao controller)

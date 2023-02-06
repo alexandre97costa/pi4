@@ -131,20 +131,20 @@ export default function ModalNewPontoInteresse(props) {
     }
 
     async function axiosPost() {
-        if (!nome)
-            return toast.error("Introduza um nome")
-        if (!morada)
-            return toast.error("Introduza uma localização")
-        if (!codigoPostal)
-            return toast.error("Introduza um código postal")
-        if (!contacto)
-            return toast.error("Introduza um contacto")
+        // if (!nome)
+        //     return toast.error("Introduza um nome")
+        // if (!morada)
+        //     return toast.error("Introduza uma localização")
+        // if (!codigoPostal)
+        //     return toast.error("Introduza um código postal")
+        // if (!contacto)
+        //     return toast.error("Introduza um contacto")
         if (!pontos)
             return toast.error("Introduza o número de pontos")
-        if (!url)
-            return toast.error("Introduza uma imagem do ponto")
-        if (!selectTipo)
-            return toast.error("Selecione um tipo de interesse")
+        // if (!url)
+        //     return toast.error("Introduza uma imagem do ponto")
+        // if (!selectTipo)
+        //     return toast.error("Selecione um tipo de interesse")
 
         const baseUrl = ip + '/pi'
 
@@ -218,7 +218,6 @@ export default function ModalNewPontoInteresse(props) {
                                 <Input
                                     className="input-group mt-4"
                                     id="contacto"
-                                    type="tel"
                                     label="Contacto"
                                     onChange={(value) => {
                                         const regex = /^[0-9]{9}$/
@@ -241,8 +240,15 @@ export default function ModalNewPontoInteresse(props) {
                                             toast.warning('Os pontos não podem negativos ou 0')
                                         }
 
+                                        const regex = /^-?\d+$/
+
                                         if(value.target.value > 0)
-                                            setPontos(value.target.value)
+                                            if (!!String(value.target.value).match(regex))
+                                                setPontos(value.target.value)
+                                            else {
+                                                setPontos('')
+                                                toast.warning('Os pontos não podem ser decimais')
+                                            }
                                     }}
                                 />
                                 <Input
