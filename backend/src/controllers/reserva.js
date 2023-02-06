@@ -146,17 +146,17 @@ module.exports = {
         const { nome, pessoas, visitante_id, sessao_id, observacoes } = req.body
 
         // ver se a sessao existe
-        const sessao = await sessao.findByPk(+sessao_id)
-        if (sessao === null)
+        const _sessao = await sessao.findByPk(+sessao_id)
+        if (_sessao === null)
             return res.status(404).json({ msg: 'A sessão enviada não existe ou foi eliminada. ' })
 
         // ver se tem vagas suficientes
-        if (sessao.vagas < pessoas)
+        if (_sessao.vagas < pessoas)
             return res.status(400).json({ msg: 'A sessão não tem vagas suficientes para satisfazer a reserva. ' })
 
         // a partir daqui, tudo gucci
 
-        await sessao.update({ vagas: vagas - pessoas })
+        await _sessao.update({ vagas: vagas - pessoas })
 
         await reserva
             .create({

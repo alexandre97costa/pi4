@@ -124,20 +124,38 @@ export default function Home() {
                     <p className="fs-5 text-body fw-light ">Ações Rápidas</p>
                 </div>
 
-                <div className='col-12 col-md-3 '>
-                    <button className="btn btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center shadow text-break rounded-3 border-0" data-bs-toggle="modal" data-bs-target="#validarVoucher"><i className="bi bi-cart-check fs-3 pe-3 "></i> Validar Voucher</button>
+                <div className='col-12 col-md-4 '>
+                    <button
+                        className="btn btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center shadow text-break rounded-3 border-0"
+                        data-bs-toggle="modal"
+                        data-bs-target="#validarVoucher">
+                        <i className="bi bi-cart-check fs-3 pe-3 "></i>
+                        Resgatar Voucher
+                    </button>
 
                     <ModalValidar idModal="validarVoucher" title="Validar Voucher" onSubmit={(value) => setCodeVoucher(value)} onClick={() => validarVoucher()} />
                 </div>
 
-                <div className='col-12 col-md-3'>
-                    <button className="btn btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center shadow text-break rounded-3 border-0" data-bs-toggle="modal" data-bs-target="#validarReserva"><i className="bi bi-journal-check fs-3 pe-3"></i>Validar Reserva</button>
+                <div className='col-12 col-md-4'>
+                    <button
+                        className="btn btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center shadow text-break rounded-3 border-0"
+                        data-bs-toggle="modal"
+                        data-bs-target="#validarReserva">
+                        <i className="bi bi-journal-check fs-3 pe-3"></i>
+                        Confirmar Reserva
+                    </button>
 
                     <ModalValidar idModal="validarReserva" title="Validar Reserva" onSubmit={(value) => validarReserva(value)} />
                 </div>
 
                 <div className='col-12 col-md-4'>
-                    <button className="btn btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center shadow text-break rounded-3 border-0" data-bs-toggle="modal" data-bs-target="#NewPontoInteresse"><i className="bi bi-journal-check fs-3 pe-3"></i>Adicionar Ponto de Interesse</button>
+                    <button
+                        className="btn btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center shadow text-break rounded-3 border-0"
+                        data-bs-toggle="modal"
+                        data-bs-target="#NewPontoInteresse">
+                        <i className="bi bi-geo-alt fs-3 pe-3"></i>
+                        Criar Ponto de Interesse
+                    </button>
 
                     <ModalNewPontoInteresse idModal="NewPontoInteresse" />
                 </div>
@@ -168,7 +186,7 @@ export default function Home() {
                 </div>
 
                 {pontoInteresse.map((item, index) => {
-                    return (!!item.recompensas_associadas.length &&
+                    return ((!!item.recompensas_associadas.length && !!item.recompensas_associadas[0].recompensa) &&
                         <div key={index} className="col-12 col-sm-6 col-md-4">
                             <CardListaRecompensas
                                 nomePontoInteresse={item.nome}
