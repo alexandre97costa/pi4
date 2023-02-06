@@ -1,11 +1,5 @@
 # Agente
 
-## Adicionar PI
-- Controller tem de aceitar o url da imagem
-
-## Editar PI
-- Validações
-
 ## Validar Voucher
 - nao funciona (ir ver ao controller)
 
@@ -18,11 +12,6 @@
 # Responsavel
 
 # Admin
-## Dashboard
-- os botoes de utilizaodr precisam de ser revistos (cor do hover)
-
-## Lista de reservas
-- o link podia ser diferente
 
 ## Lista de Regiões
 - Rever o que se pode fazer

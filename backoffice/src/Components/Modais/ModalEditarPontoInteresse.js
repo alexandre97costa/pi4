@@ -112,13 +112,46 @@ export default function ModalNewPontoInteresse(props) {
 
                                 <Input className="input-group mt-4" id="morada" label="Morada" value={morada} onchange={(value) => setMorada(value.target.value)} />
 
-                                <Input className="input-group mt-4" id="codigoPostal" label="Código Postal" value={codigoPostal} onChange={(value) => setCodigoPostal(value.target.value)} />
+                                <Input className="input-group mt-4" id="codigoPostal" label="Código Postal" value={codigoPostal} onChange={(value) => {
+                                    const regex = /^\d{4}-\d{3}?$/
 
-                                <Input className="input-group mt-4" id="contacto" type="number" label="Contacto" value={contacto} onChange={(value) => setContacto(value.target.value)} />
+                                    if (!!String(value.target.value).match(regex))
+                                        setCodigoPostal(value.target.value)
 
-                                <Input className="input-group mt-4" id="numeroPontos" type="number" value={pontos} label="Número de Pontos" onChange={(value) => setPontos(value.target.value)} />
+                                    if (!String(value.target.value).match(regex))
+                                        setCodigoPostal('')
+                                }} />
 
-                                <textarea className="form-control my-4" placeholder="Descrição" id="descricao" rows="3" defaultValue={descricao} onChange={(value) => setDescricao(value.target.value)} />
+                                <Input className="input-group mt-4" id="contacto" type="number" label="Contacto" value={contacto} onChange={(value) => {
+                                    const regex = /^[0-9]{9}$/
+
+                                    if (!!String(value.target.value).match(regex))
+                                        setContacto(value.target.value)
+
+                                    if (!String(value.target.value).match(regex))
+                                        setContacto('')
+                                }} />
+
+                                <Input className="input-group mt-4" id="numeroPontos" type="number" value={pontos} label="Número de Pontos" onChange={(value) => {
+                                    if (value.target.value <= 0) {
+                                        setPontos(0)
+                                        toast.warning('Os pontos não podem negativos ou 0')
+                                    }
+
+                                    const regex = /^-?\d+$/
+
+                                    if (value.target.value > 0)
+                                        if (!!String(value.target.value).match(regex))
+                                            setPontos(value.target.value)
+                                        else {
+                                            setPontos('')
+                                            toast.warning('Os pontos não podem ser decimais')
+                                        }
+                                }} />
+
+                                <textarea className="form-control my-4" placeholder="Descrição" id="descricao" rows="3" defaultValue={descricao} onChange={(value) => {
+
+                                }} />
 
                                 <Dropdown items={tipos} onChange={(item) => setSelectTipo(item)} />
 

@@ -48,6 +48,7 @@ export default function PontoInteresse(props) {
 							title="Adicionar Ponto de Interesse"
 							idModal="AddPontoInteresse"
 							nomeModal="newPontoInteresse"
+							onSubmit={() => axiosGetPontosInteresse() }
 						/>
 					</div>
 				</VisibleTo>

@@ -15,6 +15,7 @@ export default function AddCard(props) {
 					morada="Localização"
 					descricao="Descrição"
 					cabecalho="Tipo de Ponto de Interesse"
+					onSubmit={() => props.onSubmit()}
 				/>
 			)
 		if (nome === 'addAgenteTuristicoPontoInteresse')
