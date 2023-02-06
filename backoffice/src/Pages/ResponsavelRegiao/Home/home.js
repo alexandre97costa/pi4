@@ -52,7 +52,7 @@ export default function Home() {
         </div>
 
         <BotaoDashboard
-          to="/admin/lista-utilizadores"
+          to="/utilizadores/2"
           class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
           icon="bi-person-check fs-3"
           texto="Atribuição de Perfil"
