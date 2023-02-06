@@ -11,8 +11,6 @@ export default function DropdownSelect(props) {
     }, [selectedValue])
 
     useEffect(() => {
-        console.log('selected Value', props.selectedValue)
-        console.log('selected Value', !!props?.selectedValue)
         if (!!props?.selectedValue) {
             props.onChange(props.selectedValue)
         }
@@ -20,28 +18,42 @@ export default function DropdownSelect(props) {
 
     return (
         <div className='col'>
-            <select
-                className="form-select form-select-lg mb-3"
-                aria-label="Selecione um"
-                onChange={e => {
-                    setSelectedValue(e.target.value)
-                }}
-                value={(!!props?.selectedValue) ? props.selectedValue : 0}
-            >
-                <option value={0} disabled>Selecione um</option>
-                {
-                    props.items.map((item, index) => {
-                        return (
-                            <option
-                                key={index}
-                                value={item?.value ?? index}>
-                                {item?.label ?? 'item.label'}
-                            </option>
-                        )
-                    })
+            {props.disabled ?
+                <select
+                    className="form-select mb-3"
+                    aria-label="Selecione um"
+                    value={0}
+                    disabled>
+                    <option value={0} disabled>{props?.label ?? 'Selecione um'}</option>
+                </select>
+                :
+                <select
+                    className="form-select mb-3"
+                    aria-label="Selecione um"
+                    onChange={e => {
+                        setSelectedValue(e.target.value)
+                    }}
+                    value={
+                        !!selectedValue ?
+                            selectedValue :
+                            (props?.selectedValue ?? 0)
+                    }
+                >
+                    <option value={0} disabled>{props?.label ?? 'Selecione um'}</option>
+                    {
+                        props.items.map((item, index) => {
+                            return (
+                                <option
+                                    key={index}
+                                    value={item?.value ?? index}>
+                                    {item?.label ?? 'item.label'}
+                                </option>
+                            )
+                        })
 
-                }
-            </select>
+                    }
+                </select>
+            }
         </div>
     );
 }

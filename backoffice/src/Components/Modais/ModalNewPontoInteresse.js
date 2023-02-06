@@ -50,10 +50,6 @@ export default function ModalNewPontoInteresse(props) {
         getDistritos()
     }, [])
 
-    useEffect(() => {
-        console.log(selectedDistrito)
-    }, [selectedDistrito])
-
     async function getDistritos() {
         const url = ip + '/local/distrito'
 
@@ -81,7 +77,15 @@ export default function ModalNewPontoInteresse(props) {
 
         await axios
             .get(url, options)
-            .then(output => { setMunicipios([...output.data?.municipios.map(data => data.id + ' ' + data.nome)]) })
+            .then(output => {
+                setMunicipios(
+                    output.data?.municipios.map(municipio => {
+                        return {
+                            label: municipio.nome,
+                            value: municipio.id
+                        }
+                    }) ?? [])
+            })
             .catch(error => console.log(error))
     }
 
@@ -90,12 +94,20 @@ export default function ModalNewPontoInteresse(props) {
 
         const options = {
             ...auth.header(),
-            params: { municipio_id: item.split(' ')[0] }
+            params: { municipio_id: item }
         }
 
         await axios
             .get(url, options)
-            .then(output => { setFreguesias([...output.data?.freguesias.map(data => data.id + ' ' + data.nome)]) })
+            .then(output => {
+                setFreguesias(
+                    output.data?.freguesias.map(freguesia => {
+                        return {
+                            label: freguesia.nome,
+                            value: freguesia.id
+                        }
+                    }) ?? [])
+            })
             .catch(error => console.log(error))
     }
 
@@ -181,24 +193,31 @@ export default function ModalNewPontoInteresse(props) {
                                 <DropdownSelect
                                     items={distritos}
                                     // selectedValue={3}
-                                    onChange={(value, label) => {
-                                        setSelectDistrito(value)
-                                        getMunicipios(value)
+                                    label="Selecione um distrito"
+                                    onChange={value => {
+                                        if (!!value) {
+                                            setSelectDistrito(value)
+                                            getMunicipios(value)
+                                        }
                                     }} />
 
-                                <Dropdown
+                                <DropdownSelect
                                     items={municipios}
+                                    label="Selecione um município"
                                     disabled={!selectedDistrito}
-                                    onChange={(item, index) => {
-                                        setSelectMunicipo(item)
-                                        // axiosGetFreguesia(item)
+                                    onChange={value => {
+                                        if (!!value) {
+                                            setSelectMunicipo(value)
+                                            getFreguesias(value)
+                                        }
                                     }} />
 
-                                <Dropdown
+                                <DropdownSelect
                                     items={freguesias}
+                                    label="Selecione um freguesia"
                                     disabled={!selectedMunicipio}
-                                    onChange={(item) => {
-                                        setSelectFreguesia(item)
+                                    onChange={value => {
+                                        setSelectFreguesia(value)
                                     }} />
 
                             </div>
