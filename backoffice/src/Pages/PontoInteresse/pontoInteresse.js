@@ -53,22 +53,24 @@ export default function PontoInteresse(props) {
 				</VisibleTo>
 
 				{pontosInteresse.map((item, index) => {
-					return (
-						<div key={index} className="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+					if (!!item.imagens[0]) {
+						return (
+							<div key={index} className="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3 d-flex">
 
-							<CardPontoInteresse
-								id_ponto_interesse={item.id}
-								imagem={item.imagens[0].url}
-								nome={item.nome}
-								categoria={item.tipo_interesse.nome}
-								morada={item.morada}
-								numeroScans={item.count_scans}
-								//numeroComentarios={item.tipo_interesse.observacoes}
-								numeroFavoritos={item.avg_avaliacao}
-							//numeroCheck={item.validado}
-							/>
-						</div>
-					);
+								<CardPontoInteresse
+									id_ponto_interesse={item.id}
+									imagem={item.imagens[0].url}
+									nome={item.nome}
+									categoria={item.tipo_interesse.nome}
+									morada={item.morada}
+									numeroScans={item.count_scans}
+									//numeroComentarios={item.tipo_interesse.observacoes}
+									numeroFavoritos={item.avg_avaliacao}
+								//numeroCheck={item.validado}
+								/>
+							</div>
+						)
+					}
 				})}
 				<ToastContainer />
 			</div>

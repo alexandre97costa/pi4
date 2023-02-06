@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
                 validate: {
                     is: {
                         args: /^[0-9]{4}-[0-9]{3}$/i, // regex codigo postal (4 numeros + hiphen + 3 numeros)
-                        msg: 'o valor inserido não corresponde ao padrão xxxx-xxx'
+                        msg: 'o codigo-postal inserido não corresponde ao padrão xxxx-xxx'
                     }
                 }
             },
@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
                 validate: {
                     is: {
                         args: /^[0-9]{9}$/i, // regex nº tlm (9 numeros)
-                        msg: 'o valor inserido não tem 9 números'
+                        msg: 'o telemovel inserido não tem 9 números'
                     }
                 }
             },
