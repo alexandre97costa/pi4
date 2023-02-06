@@ -37,6 +37,7 @@ export default function ModalNewPontoInteresse(props) {
 
     useEffect(() => {
         getDistritos()
+        getTipos()
     }, [])
 
     async function getDistritos() {
@@ -100,6 +101,23 @@ export default function ModalNewPontoInteresse(props) {
             .catch(error => console.log(error))
     }
 
+    async function getTipos() {
+        const url = ip + '/tipos/pi'
+
+        await axios
+            .get(url, auth.header())
+            .then(output => {
+                setTipos(
+                    output.data?.tipos_interesse.map(tipo => {
+                        return {
+                            label: tipo.nome,
+                            value: tipo.id
+                        }
+                    }) ?? [])
+            })
+            .catch(error => console.log(error))
+    }
+
     function axiosPostPontoInteresse() {
         //Aqui fazemos o post na api
     }
@@ -113,22 +131,22 @@ export default function ModalNewPontoInteresse(props) {
     }
 
     async function axiosPost() {
-        if (!nome)
-            return toast.error("Introduza um nome")
-        if (!morada)
-            return toast.error("Introduza uma localização")
-        if (!codigoPostal)
-            return toast.error("Introduza um código postal")
-        if (!contacto)
-            return toast.error("Introduza um contacto")
+        // if (!nome)
+        //     return toast.error("Introduza um nome")
+        // if (!morada)
+        //     return toast.error("Introduza uma localização")
+        // if (!codigoPostal)
+        //     return toast.error("Introduza um código postal")
+        // if (!contacto)
+        //     return toast.error("Introduza um contacto")
         if (!pontos)
             return toast.error("Introduza o número de pontos")
-        if (!url)
-            return toast.error("Introduza uma imagem do ponto")
+        // if (!url)
+        //     return toast.error("Introduza uma imagem do ponto")
         // if (!selectTipo)
         //     return toast.error("Selecione um tipo de interesse")
 
-        const url = ip + '/pi'
+        const baseUrl = ip + '/pi'
 
         const data = {
             nome: nome,
@@ -138,11 +156,11 @@ export default function ModalNewPontoInteresse(props) {
             telemovel: contacto,
             pontos: pontos,
             freguesia_id: selectedFreguesia,
-            tipo_interesse_id: 1
+            tipo_interesse_id: selectTipo
         }
 
         await axios
-            .post(url, data, auth.header())
+            .post(baseUrl, data, auth.header())
             .then((output) => {
                 toast.success("Ponto de Interesse adicionado com sucesso")
                 console.log(output.data)
@@ -153,7 +171,7 @@ export default function ModalNewPontoInteresse(props) {
         <>
             <div className="modal fade" id={props.idModal} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog modal-dialog-scrollable">
-                    <div className="modal-content">
+                    <form className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id="exampleModalLabel">Adicionar ponto de interesse</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => dismissToast()}></button>
@@ -161,49 +179,99 @@ export default function ModalNewPontoInteresse(props) {
                         <div className="modal-body">
                             <div className="card border border-0 mb-3 p-0">
                                 <Input
-                                    className="input-group"
+                                    className="input-group mb-4"
                                     id="nomePontoInteresse"
                                     label="Nome"
                                     onChange={(value) => setNome(value.target.value)}
                                 />
+                                <DropdownSelect
+                                    items={tipos}
+                                    label="Selecione um tipo interesse"
+                                    onChange={value => {
+                                        if (!!value) {
+                                            setSelectTipo(value)
+                                        }
+                                    }}
+                                />
                                 <Input
-                                    className="input-group mt-4"
+                                    className="input-group mt-3"
                                     id="localizacao"
                                     label="Morada"
-                                    onChange={(value) => setMorada(value.target.value)}
+                                    onChange={(value) => {
+                                        setMorada(value.target.value)
+                                    }}
                                 />
                                 <Input
                                     className="input-group mt-4"
                                     id="codigoPostal"
                                     label="Código Postal"
-                                    onChange={(value) => setCodigoPostal(value.target.value)}
+                                    onChange={(value) => {
+                                        const regex = /^\d{4}-\d{3}?$/
+
+                                        if (!!String(value.target.value).match(regex))
+                                            setCodigoPostal(value.target.value)
+
+                                        if (!String(value.target.value).match(regex))
+                                            setCodigoPostal('')
+                                    }}
                                 />
                                 <Input
                                     className="input-group mt-4"
                                     id="contacto"
-                                    type="number"
                                     label="Contacto"
-                                    onChange={(value) => setContacto(value.target.value)}
+                                    onChange={(value) => {
+                                        const regex = /^[0-9]{9}$/
+
+                                        if (!!String(value.target.value).match(regex))
+                                            setContacto(value.target.value)
+
+                                        if (!String(value.target.value).match(regex))
+                                            setContacto('')
+                                    }}
                                 />
                                 <Input
                                     className="input-group mt-4"
                                     id="numeroPontos"
                                     type="number"
                                     label="Número de Pontos"
-                                    onChange={(value) => setPontos(value.target.value)}
+                                    onChange={(value) => {
+                                        if (value.target.value <= 0) {
+                                            setPontos(0)
+                                            toast.warning('Os pontos não podem negativos ou 0')
+                                        }
+
+                                        const regex = /^-?\d+$/
+
+                                        if(value.target.value > 0)
+                                            if (!!String(value.target.value).match(regex))
+                                                setPontos(value.target.value)
+                                            else {
+                                                setPontos('')
+                                                toast.warning('Os pontos não podem ser decimais')
+                                            }
+                                    }}
                                 />
                                 <Input
                                     className="input-group mt-4"
                                     id="urlImagem"
                                     label="Url da imagem"
-                                    onChange={(value) => setUrl(value.target.value)} />
+                                    onChange={(value) => {
+                                        const regex = /(?:(?:https?:\/\/))[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b(?:[-a-zA-Z0-9@:%_\+.~#?&\/=]*(\.jpg|\.png|\.jpeg))/
+
+                                        if (!!String(value.target.value).match(regex))
+                                            setUrl(value.target.value)
+
+                                        if (!String(value.target.value).match(regex))
+                                            setUrl('')
+                                    }} />
                                 <textarea
                                     className="form-control my-4"
-                                    label="Descrição"
+                                    placeholder="Descrição do Ponto de Interesse"
                                     id="descricao"
                                     rows="3"
                                     onChange={(value) => setDescricao(value.target.value)}
                                 />
+
                                 <DropdownSelect
                                     items={distritos}
                                     // selectedValue={3}
@@ -242,7 +310,7 @@ export default function ModalNewPontoInteresse(props) {
 
                             <ToastContainer />
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </>

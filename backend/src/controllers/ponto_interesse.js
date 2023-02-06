@@ -63,7 +63,7 @@ module.exports = {
                     agente_turistico_id:
                         // se o utilizador logado for agente
                         (req.auth.tipo === 2) ?
-                            // automaticamente so mostra is seus proprios PIS
+                            // automaticamente so mostra os seus proprios PIS
                             req.auth.id :
                             // caso contrário, podemos filtrar pelo param (se vier preenchido)
                             !!+agente_turistico_id ?
@@ -162,13 +162,14 @@ module.exports = {
             'telemovel',
             'pontos',
             'freguesia_id',
-            'tipo_interesse_id'
+            'tipo_interesse_id',
+            'url_imagem'
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
-            return res.status(400).json({ msg: 'Faltam dados para poder criar o ponto de interesse.' })
+            return res.status(400).json({ msg: 'Faltam dados para poder criar o ponto de interesse.', required_params })
 
-        const { nome, morada, codigo_postal, telemovel, pontos, descricao, freguesia_id, tipo_interesse_id } = req.body
+        const { nome, morada, codigo_postal, telemovel, pontos, descricao, freguesia_id, tipo_interesse_id, url_imagem } = req.body
 
         await ponto_interesse
             .create({
@@ -181,7 +182,12 @@ module.exports = {
                 freguesia_id: freguesia_id,
                 tipo_interesse_id: tipo_interesse_id,
                 agente_turistico_id: req.auth.id,
-                validado: true
+                validado: true,
+                imagens: [{
+                    url: url_imagem
+                }]
+            }, {
+                include: imagem
             })
             .then(output => {
                 return res.status(200).json({
