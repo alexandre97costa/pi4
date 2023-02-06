@@ -156,22 +156,26 @@ module.exports = {
 
         // a partir daqui, tudo gucci
 
-        await _sessao.update({ vagas: vagas - pessoas })
+        await _sessao
+            .update({ vagas: vagas - pessoas })
+            .then(async output2 => {
+                await reserva
+                    .create({
+                        nome: nome,
+                        pessoas: pessoas,
+                        visitante_id: visitante_id,
+                        sessao_id: sessao_id,
+                        observacoes: observacoes
+                    })
+                    .then(output => { return res.status(200).json({ reserva: output }) })
+                    .catch(error => {
+                        res.status(400).json({ error })
+                        dev.error(error)
+                        return
+                    })
+            })
 
-        await reserva
-            .create({
-                nome: nome,
-                pessoas: pessoas,
-                visitante_id: visitante_id,
-                sessao_id: sessao_id,
-                observacoes: observacoes
-            })
-            .then(output => { return res.status(200).json({ reserva: output }) })
-            .catch(error => {
-                res.status(400).json({ error })
-                dev.error(error)
-                return
-            })
+
     },
 
     // o unico parametro que o visitante pode mudar na sua reserva

@@ -132,5 +132,65 @@ module.exports = {
                 dev.error(error)
                 return
             })
+    },
+
+    // patch
+    resgatar: async (req, res) => {
+        if (req.auth.tipo !== 2)
+            req.status(401).json({ msg: 'Apenas agentes podem resgatar vouchers' })
+
+        const { codigo } = req.params
+
+        // trazer todos os vouchers de recompensas de pontos de ineteresse do agente 🥵
+
+        const _pis = await ponto_interesse
+            .findAll({
+                where: { agente_turistico_id: req.auth.id },
+                include: {
+                    model: ponto_interesse_recompensa,
+                    as: 'recompensas_associadas',
+                    include: {
+                        model: recompensa,
+                        as: 'recompensa',
+                        include: {
+                            model: voucher,
+                            where: { data_usado: null }
+                        }
+                    }
+                }
+            })
+
+        const vouchers = _pis
+            .map(pi => pi.recompensas_associadas)
+            .flat(1)
+            .map(r => !!r.recompensa?.vouchers ? r.recompensa?.vouchers : null)
+            .flat(2)
+            .filter(v => v !== null)
+
+        const output = vouchers.filter(voucher => voucher.codigo_confirmacao === codigo)
+
+        if (!output.length)
+            return res.status(404).json({ msg: 'O voucher indicado nao existe ou é de uma recompensa que não está associada a nenhum dos teus pontos de interesse.', vouchers })
+
+        // se houver varios olha, vao todos
+        await voucher
+            .update(
+                { data_usado: new Date() },
+                {
+                    where: {
+                        data_usado: null,
+                        codigo_confirmacao: codigo
+                    }
+                },
+            )
+            .then(output => { return res.status(200).json({ vouchers: output }) })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
+
+
+
     }
 }
