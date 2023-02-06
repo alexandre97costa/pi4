@@ -14,7 +14,6 @@ export default function Home() {
     const [pontosInteresse, setPontoInteresse] = useState([]);
     const [pontosInteresseAvaliados, setPontosInteresseAvaliados] = useState([]);
 
-
     useEffect(() => {
         axiosGetPontosInteresse()
         axiosGetPontosInteresseAvaliados()

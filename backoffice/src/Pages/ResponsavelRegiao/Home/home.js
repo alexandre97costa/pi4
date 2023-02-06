@@ -1,48 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import auth from "../../../Auth/auth.service";
 
-import GraficoHorizontal from "../../../Components/GraficoHorizontal";
 import BotaoDashboard from "../../../Components/BotaoDashboard";
-import TabelaListaAgentesTuristicos from "../../../Components/Tabelas/TabelaListaAgentesTuristicos";
+import TabelaListaRecompensas from "../../../Components/Tabelas/TabelaListaRecompensas";
+import CardPontoInteresse from '../../../Components/Cards/CardPontoInteresse';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const ip = process.env.REACT_APP_IP;
 
 export default function Home() {
-  const borderRadius = 14;
+  const [pontosInteresseAvaliados, setPontosInteresseAvaliados] = useState([]);
 
-  const dias = ["22/12", "23/12", "24/12", "25/12"];
+  useEffect(() => {
+    axiosGetPontosInteresseAvaliados()
+  }, [])
 
-  const dataRestauracao = ["10", "13", "50", "26"];
+  async function axiosGetPontosInteresseAvaliados() {
+    const url = ip + "/pi"
 
-  const dataMuseus = ["100", "112", "58", "91"];
+    let options = {
+        ...auth.header(),
+        params: {
+            limit: 4,
+            order: 'avg_avaliacao',
+            direction: 'desc'
+        }
+    }
 
-  const dataEspacosVerdes = ["35", "36", "59", "126"];
-
-  const dataFeiras = ["145", "56", "89", "46"];
-
-  const datasets = [
-    {
-      label: "Restauração",
-      data: dataRestauracao,
-      backgroundColor: "#bacc6a",
-      borderRadius: borderRadius,
-    },
-    {
-      label: "Museus",
-      data: dataMuseus,
-      backgroundColor: "#80b155",
-      borderRadius: borderRadius,
-    },
-    {
-      label: "Espaços Verdes",
-      data: dataEspacosVerdes,
-      backgroundColor: "#539477",
-      borderRadius: borderRadius,
-    },
-    {
-      label: "Feiras",
-      data: dataFeiras,
-      backgroundColor: "#6c757d",
-      borderRadius: borderRadius,
-    },
-  ];
+    await axios
+        .get(url, options)
+        .then((output) => {
+            setPontosInteresseAvaliados(output.data?.data ?? []);
+        })
+        .catch((error) => {
+            toast.warning(error.response.data.msg)
+            console.error(error)
+        });
+}
 
   return (
     <>
@@ -78,21 +75,41 @@ export default function Home() {
       </div>
 
       <div className="row row-cols-1 row-cols-md-4 gx-4 mb-5">
-        <div className="col-12 col-md-12">
-          <p className="fs-5 text-body fw-light">Validação de Agentes Turísticos</p>
+
+        <div className='col-12 col-md-12'>
+          <p className="fs-5 text-body fw-light">Recompensas ativas</p>
         </div>
-        <TabelaListaAgentesTuristicos />
+
+        <TabelaListaRecompensas limit={5} />
+
       </div>
 
       <div className="row row-cols-1 row-cols-md-4 gx-4 mb-5">
-        <div className="col-12 col-md-12">
-          <p className="fs-5 text-body fw-light">Categorias mais visitadas</p>
+
+        <div className='col-12 col-md-12'>
+          <p className="fs-5 text-body fw-light">Pontos de Interesse mais bem avaliados</p>
         </div>
 
-        <div className="col-12 col-md-12">
-        <GraficoHorizontal datasets={datasets} data={dias} />
-        </div>
+        {pontosInteresseAvaliados.map((item, index) => {
+          return (
+            <div key={index} className="col-12 col-xs-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+              <CardPontoInteresse
+                id_ponto_interesse={item.id}
+                imagem={item.imagens[0].url}
+                nome={item.nome}
+                categoria={item.tipo_interesse.nome}
+                morada={item.morada}
+                numeroScans={item.count_scans}
+                numeroFavoritos={item.avg_avaliacao}
+              />
+            </div>
+          );
+        })}
+
+        <ToastContainer />
+
       </div>
+
     </>
   );
 }
