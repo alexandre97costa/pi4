@@ -110,7 +110,7 @@ export default function PontoInteresseDetails() {
               data-bs-toggle="modal"
               data-bs-target="#editarAgente"
             >
-              <i className="bi bi-file-earmark me-3"></i>Gerir Agente
+              <i className="bi bi-person-plus me-3"></i>Gerir Agente
             </button>
             <ModalEditarAgente pontoInteresseId={id_ponto_interesse} idModal="editarAgente" title="Editar Agente" />
           </div>

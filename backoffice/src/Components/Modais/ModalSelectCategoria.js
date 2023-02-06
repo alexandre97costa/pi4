@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Botao from '../Botao';
+import VisibleTo from "../../Helpers/VisibleTo";
 
 export default function ModalSelectCategoria(props) {
     function axiosChangeTipoUtilizador(button) {
@@ -26,7 +27,9 @@ export default function ModalSelectCategoria(props) {
                                 <div className='col-6 border-start border-2'>
                                     <div className='row'>
                                         <div className='col-12'>
-                                            <Botao className="btn-light w-100 my-4" texto="Responsável Região"dismiss="modal" label="Close" onClick={(value) => axiosChangeTipoUtilizador(value.target.innerText)} />
+                                            <VisibleTo tipo={4}>
+                                                <Botao className="btn-light w-100 my-4" texto="Responsável Região" dismiss="modal" label="Close" onClick={(value) => axiosChangeTipoUtilizador(value.target.innerText)} />
+                                            </VisibleTo>
                                             <Botao className="btn-light w-100 mb-4" texto="Agente Turístico" dismiss="modal" label="Close" onClick={(value) => axiosChangeTipoUtilizador(value.target.innerText)} />
                                             <Botao className="btn-light w-100 mb-4" texto="Visitante" dismiss="modal" label="Close" onClick={(value) => axiosChangeTipoUtilizador(value.target.innerText)} />
                                         </div>

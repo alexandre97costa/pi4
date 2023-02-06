@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import auth from '../../../Auth/auth.service';
 
-import Dropdown from '../../../Components/Dropdown';
+import VisibleTo from "../../../Helpers/VisibleTo";
 import Pagination from '../../../Components/Pagination';
 import Input from '../../../Components/Input';
 import CardForm from '../../../Components/CardForm';
@@ -32,24 +32,34 @@ export default function Utilizadores() {
 
 	useEffect(() => {
 		// tipos
-		axios
-			.get(ip + '/tipos/utilizador', auth.header())
-			.then(output => {
-				setTipos([{
-					label: 'Todos',
-					value: 0
-				},
-				...output.data?.tipos.map(t => {
-					return {
-						label: t.nome,
-						value: t.id
-					}
-				})]
-				)
-				// ['Todos', ...output.data?.tipos.map(t => t.nome)] ?? []) })
+		console.log(auth.getUser().tipo)
+		if (auth.getUser().tipo === 4) {
+			axios
+				.get(ip + '/tipos/utilizador', auth.header())
+				.then(output => {
+					setTipos([{
+						label: 'Todos',
+						value: 0
+					},
+					...output.data?.tipos.map(t => {
+						return {
+							label: t.nome,
+							value: t.id
+						}
+					})]
+					)
 
-				getUtilizadores()
-			})
+					getUtilizadores()
+				})
+		} else {
+			setTipos([{
+				label: 'Visitante',
+				value: 1
+			}, {
+				label: 'Agente Turistico',
+				value: 2
+			}])
+		}
 	}, [])
 
 	useEffect(() => {
@@ -128,7 +138,6 @@ export default function Utilizadores() {
 			<div className='row row-cols-4 gap-0 mb-3'>
 				<Input label='Nome' onChange={e => setNome(e.target.value)} />
 				<DropdownSelect selectedValue={tipoId} items={tipos} onChange={(item) => setTipo(item)} />
-				{/* <Dropdown default={3} items={tipos} onChange={(item, index) => setTipo(index)} /> */}
 			</div>
 			<div className='row mb-4'>
 				<div className='col-12'>
@@ -165,11 +174,13 @@ export default function Utilizadores() {
 																<i className='bi bi-pencil-fill me-2'></i>
 																Mudar tipo
 															</button>
-															{/* Eliminar */}
-															<button className='btn btn-outline-danger'>
-																<i className='bi bi-trash-fill me-2'></i>
-																Eliminar
-															</button>
+															<VisibleTo tipo={4}>
+																{/* Eliminar */}
+																<button className='btn btn-outline-danger'>
+																	<i className='bi bi-trash-fill me-2'></i>
+																	Eliminar
+																</button>
+															</VisibleTo>
 														</div>
 														<ModalSelectCategoria idModal={item.nome.replace(/\s+/g, '') + index} nome={item.nome} regiao={item.regiao} id={item.id} />
 													</td>

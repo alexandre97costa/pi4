@@ -31,7 +31,7 @@ export const menu = [
         },
         {
             text: "Agentes Turísticos",
-            path: "/utilizadores/1",
+            path: "/utilizadores/2",
             icon: "person-badge"
         },
         {

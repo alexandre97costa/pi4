@@ -17,10 +17,10 @@ export default function DropdownSelect(props) {
     }, [])
 
     return (
-        <div className='col'>
+        <div className='col mb-3'>
             {props.disabled ?
                 <select
-                    className="form-select mb-3"
+                    className="form-select h-100"
                     aria-label="Selecione um"
                     value={0}
                     disabled>
@@ -28,7 +28,7 @@ export default function DropdownSelect(props) {
                 </select>
                 :
                 <select
-                    className="form-select mb-3"
+                    className="form-select h-100"
                     aria-label="Selecione um"
                     onChange={e => {
                         setSelectedValue(e.target.value)

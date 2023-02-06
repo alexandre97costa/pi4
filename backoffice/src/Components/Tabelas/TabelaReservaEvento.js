@@ -54,7 +54,7 @@ export default function TabelaReservaEvento(props) {
                         <tr>
                             <th className='text-start fw-normal fs-5' scope="col">Nome Reserva</th>
                             <th className='fw-normal fs-5' scope="col">Nº Pessoas</th>
-                            <th className='fw-normal fs-5 d-none d-md-table-cell' scope="col">Hora Chegada</th>
+                            <th className='fw-normal fs-5 d-none d-md-table-cell' scope="col">Hora da Sessão</th>
                             <th className='fw-normal fs-5' scope="col">Data</th>
                         </tr>
                     </thead>

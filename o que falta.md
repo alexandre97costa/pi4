@@ -14,23 +14,15 @@
 - nao funciona (controller n da nda)
 
 ## Recompensas
-- a pagina parte (ver)
+- a pagina parte (quando não ha informação enviada)
 
 ## Perfil 
 - falta concluir
 
 # Responsavel
 
-## Dashboard
-- Atribuição de perfil (ver o id)
-
 ## Utilizadores
-- so deveria ver agentes da sua região
-- nao deveria poder mudar o tipo (visível)
-- nao deveria poder eliminar ninguém (visível)
-
-## Pontos de Interesse (Detalhe)
-- gerir agente: mudar icon
+- so deveria ver agentes da sua região (ver se o filtro da para enviar isso)
 
 # Admin
 ## Dashboard
@@ -38,7 +30,9 @@
 
 ## Lista de reservas
 - o link podia ser diferente
-- Coluna "Hora Chegada" mudar para "Hora da Sessão"
+
+## Lista de Regiões
+- ligar a base de dados
 
 ## Microsite
 - muito atrasado
