@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.example.ficha8.Req
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.json.JSONObject
+import pi4.main.Activitys.Passeword.ActivityNovaPasseword
 import pi4.main.Activitys.Passeword.ActivityRecuperarPasseword
 import pi4.main.Classes.Gestor
 import pi4.main.Classes.StartActivitys
@@ -42,7 +43,7 @@ class ActivityEditarPerfil : AppCompatActivity() {
     private fun editarPasseword() {
         val textViewEditarPasseword = findViewById<TextView>(R.id.textViewEditar)
 
-        StartActivitys(this).textViewGoTo(textViewEditarPasseword, ActivityRecuperarPasseword())
+        StartActivitys(this).textViewGoTo(textViewEditarPasseword, ActivityNovaPasseword())
     }
 
     private fun guardar() {
