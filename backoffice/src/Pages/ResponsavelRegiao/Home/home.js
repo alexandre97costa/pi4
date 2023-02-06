@@ -22,24 +22,24 @@ export default function Home() {
     const url = ip + "/pi"
 
     let options = {
-        ...auth.header(),
-        params: {
-            limit: 4,
-            order: 'avg_avaliacao',
-            direction: 'desc'
-        }
+      ...auth.header(),
+      params: {
+        limit: 4,
+        order: 'avg_avaliacao',
+        direction: 'desc'
+      }
     }
 
     await axios
-        .get(url, options)
-        .then((output) => {
-            setPontosInteresseAvaliados(output.data?.data ?? []);
-        })
-        .catch((error) => {
-            toast.warning(error.response.data.msg)
-            console.error(error)
-        });
-}
+      .get(url, options)
+      .then((output) => {
+        setPontosInteresseAvaliados(output.data?.data ?? []);
+      })
+      .catch((error) => {
+        toast.warning(error.response.data.msg)
+        console.error(error)
+      });
+  }
 
   return (
     <>
