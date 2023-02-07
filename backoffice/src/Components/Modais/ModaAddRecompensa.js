@@ -54,7 +54,7 @@ export default function ModalAddRecompensa(props) {
             descricao: descricao,
             pontos: numeroPontos,
             tipo_interesse_id: selectTipo.split(' ')[0],
-            // ponto_interesse_id: selectPontoInteresse.split(' ')[0]
+            ponto_interesse_id: selectPontoInteresse.split(' ')[0]
         }
 
         await axios

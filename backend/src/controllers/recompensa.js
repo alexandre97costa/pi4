@@ -49,8 +49,6 @@ module.exports = {
         const offset = req.query?.offset ?? 0
         const limit = req.query?.limit ?? 0
 
-        dev.log(validado)
-
         await recompensa
             .findAndCountAll({
                 where: {
@@ -110,22 +108,32 @@ module.exports = {
             'titulo',
             'descricao',
             'pontos',
-            'tipo_interesse_id'
+            'tipo_interesse_id',
+            'ponto_interesse_id'
         ]
         const check_all_required = required_params.every(param => req.body.hasOwnProperty(param))
         if (!check_all_required)
             return res.status(400).json({ msg: 'Faltam dados para poder criar a recompensa.' })
 
-        const { titulo, descricao, pontos, tipo_interesse_id } = req.body
+        const { titulo, descricao, pontos, tipo_interesse_id, ponto_interesse_id } = req.body
 
-        await recompensa
+        const recompensaCreate = await recompensa
             .create({
                 titulo: titulo,
                 descricao: descricao,
+                observacoes: descricao,
                 pontos: pontos,
+                validado: false,
                 tipo_interesse_id: tipo_interesse_id
             })
-            .then(output => {
+
+        console.log(recompensaCreate)
+
+        await ponto_interesse_recompensa
+            .create({
+                recompensa_id: recompensaCreate.id,
+                ponto_interesse_id: ponto_interesse_id
+            }).then(output => {
                 return res.status(200).json({
                     msg: 'Recompensa criada.',
                     recompensa: output

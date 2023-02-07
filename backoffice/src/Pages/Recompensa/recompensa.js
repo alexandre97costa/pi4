@@ -26,8 +26,7 @@ export default function Recompensa() {
 
   async function axiosGetRecompensas() {
     const url = ip + "/recompensa"
-    console.log(url)
-    //Aqui que fazemos o pedido axios das recompensas
+    
     await axios
       .get(url, auth.header())
       .then((output) => {
