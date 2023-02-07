@@ -44,7 +44,6 @@ export default function Recompensa() {
     const url = ip + "/pi"
     console.log(url)
 
-    //Só vai buscar no caso de ser um agente turistico os seus pontos de interesse
     if (auth.getUser().tipo === 2) {
       let optionsAT = {
         ...auth.header(),
