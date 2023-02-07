@@ -160,27 +160,20 @@ module.exports = {
             return res.status(400).json({ msg: 'A sessão não tem vagas suficientes para satisfazer a reserva. ' })
 
         // a partir daqui, tudo gucci
-
-        await _sessao
-            .update({ vagas: _sessao.vagas - pessoas })
-            .then(async output2 => {
-                await reserva
-                    .create({
-                        nome: nome,
-                        pessoas: pessoas,
-                        visitante_id: visitante_id,
-                        sessao_id: sessao_id,
-                        observacoes: observacoes
-                    })
-                    .then(output => { return res.status(200).json({ reserva: output }) })
-                    .catch(error => {
-                        res.status(400).json({ error })
-                        dev.error(error)
-                        return
-                    })
+        await reserva
+            .create({
+                nome: nome,
+                pessoas: pessoas,
+                visitante_id: visitante_id,
+                sessao_id: sessao_id,
+                observacoes: observacoes
             })
-
-
+            .then(output => { return res.status(200).json({ reserva: output }) })
+            .catch(error => {
+                res.status(400).json({ error })
+                dev.error(error)
+                return
+            })
     },
 
     // o unico parametro que o visitante pode mudar na sua reserva
@@ -259,10 +252,14 @@ module.exports = {
         // ✅ tudo gucci, siga pra vinho
         await _reserva
             .update({ validado: !!validado })
-            .then(output => {
-                return !output ?
-                    res.status(400).json({ msg: 'Reserva não atualizada' }) :
-                    res.status(200).json({ msg: 'Reserva atualizada', reserva: output[0] })
+            .then(async output => {
+                await _sessao
+                    .update({ vagas: _sessao.vagas - _reserva.pessoas })
+                    .then(output2 => {
+                        return !output ?
+                            res.status(400).json({ msg: 'Reserva não atualizada' }) :
+                            res.status(200).json({ msg: 'Reserva atualizada', reserva: output[0] })
+                    })
             })
             .catch(error => {
                 res.status(400).json({ error })
