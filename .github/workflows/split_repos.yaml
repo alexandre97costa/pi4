@@ -1,0 +1,51 @@
+# This is a workflow to copy the backend folder to another repo (alexandre97costa/pi4-backend)
+
+name: Split this mono-repo into 3
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Push the backend folder to pi4-backend
+        id: push_backend
+        uses: cpina/github-action-push-to-another-repository@v1.4.2
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: "backend"
+          destination-github-username: "alexandre97costa"
+          destination-repository-name: "pi4-backend"
+          user-email: alexandre97costa@gmail.com
+          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
+
+      - name: Push the back office folder to pi4-back-office
+        id: push_back_office
+        uses: cpina/github-action-push-to-another-repository@v1.4.2
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: "backoffice"
+          destination-github-username: "alexandre97costa"
+          destination-repository-name: "pi4-back-office"
+          user-email: alexandre97costa@gmail.com
+          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
+
+      - name: Push the microsite folder to pi4-microsite
+        id: push_microsite
+        uses: cpina/github-action-push-to-another-repository@v1.4.2
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source-directory: "website"
+          destination-github-username: "alexandre97costa"
+          destination-repository-name: "pi4-microsite"
+          user-email: alexandre97costa@gmail.com
+          commit-message: See ORIGIN_COMMIT from $GITHUB_REF
