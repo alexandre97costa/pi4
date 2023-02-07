@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
             },
             validado: {
                 type: DataTypes.BOOLEAN,
-                defaultValue: false
+                defaultValue: null
             },
             codigo_confirmacao: {
                 type: DataTypes.STRING(5),
