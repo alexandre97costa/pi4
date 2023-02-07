@@ -178,6 +178,7 @@ export default function PontoInteresseDetails() {
 							title="Adicionar Evento"
 							idModal="AddEvento"
 							nomeModal="addEvento"
+							onChange={() => axiosGetEventos() }
 						/>
 					</div>
 				</VisibleTo>
