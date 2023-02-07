@@ -45,14 +45,8 @@ module.exports = {
         let validado = req.query?.validado ?? null
         const confirmado = !!(req.query?.confirmado ?? true)
 
-        console.log("validado antes: " + validado)
-
         if (validado == null)
             validado = true
-
-        console.log("validado: " + validado)
-        console.log("valor !!validado: " + !!validado)
-
 
         // * ordenação e paginação
         const order = req.query?.order ?? 'nome'
