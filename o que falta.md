@@ -4,6 +4,9 @@
 ## Validar Reserva 
 - nao funciona (controller n da nda)
 
+## Recompensa
+- Ver a vista geral (mostrar informação não correta)
+
 # Responsavel
 
 # Admin
