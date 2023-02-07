@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
                 afterDestroy: async (sessao, options) => {
 
                     await sequelize.models.reserva
-                        .destroy({ where: { sessao_id: sessao.id } })
+                        .destroy({ where: { sessao_id: sessao.id }, individualHooks: true })
                         .then(output => console.log(output)) // envia o numero de instances eliminadas
                 }
             }

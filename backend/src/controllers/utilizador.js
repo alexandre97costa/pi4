@@ -293,10 +293,7 @@ module.exports = {
 
         // os visitantes e agentes só se podem eliminar a si mesmos
         if (
-            req.auth.id !== id && (
-                req.auth.tipo === 1 ||
-                req.auth.tipo === 2
-            )) {
+            req.auth.id !== id && req.auth.tipo !== 4) {
             return res.status(401).json({ msg: 'Não podes eliminar outros utilizadores.' })
         }
 

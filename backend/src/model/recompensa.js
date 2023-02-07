@@ -29,7 +29,10 @@ module.exports = (sequelize) => {
                 afterDestroy: async (recompensa, options) => {
 
                     await sequelize.models.ponto_interesse_recompensa
-                        .destroy({ where: { recompensa_id: recompensa.id } })
+                        .destroy({ where: { recompensa_id: recompensa.id }, individualHooks: true })
+                        
+                    await sequelize.models.voucher
+                        .destroy({ where: { recompensa_id: recompensa.id }, individualHooks: true })
 
                 }
             }

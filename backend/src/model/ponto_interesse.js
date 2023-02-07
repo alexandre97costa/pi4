@@ -70,7 +70,7 @@ module.exports = (sequelize) => {
                 afterBulkDestroy: async (item) => {
                     console.log(item)
                     await sequelize.models.evento
-                        .destroy({ where: { ponto_interesse_id: item.where.id } })
+                        .destroy({ where: { ponto_interesse_id: item.id } })
                         .then(output => {
                             if (!output)
                                 return console.log("Não existem eventos")
@@ -81,16 +81,16 @@ module.exports = (sequelize) => {
                 afterDestroy: async (pi, options) => {
 
                     await sequelize.models.ponto_interesse_recompensa
-                        .destroy({ where: { ponto_interesse_id: pi.id } })
+                        .destroy({ where: { ponto_interesse_id: pi.id }, individualHooks: true })
 
                     await sequelize.models.imagem
-                        .destroy({ where: { ponto_interesse_id: pi.id } })
+                        .destroy({ where: { ponto_interesse_id: pi.id }, individualHooks: true })
 
                     await sequelize.models.comentario_avaliacao
-                        .destroy({ where: { ponto_interesse_id: pi.id } })
+                        .destroy({ where: { ponto_interesse_id: pi.id }, individualHooks: true })
 
                     await sequelize.models.evento
-                        .destroy({ where: { ponto_interesse_id: pi.id } })
+                        .destroy({ where: { ponto_interesse_id: pi.id }, individualHooks: true })
                 }
             }
         }

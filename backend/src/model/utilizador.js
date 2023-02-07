@@ -75,7 +75,7 @@ module.exports = (sequelize) => {
                     // capitalizar o nome
                     utilizador.nome =
                         utilizador.nome
-                        .trim()
+                            .trim()
                             .split(' ')
                             .map(word => {
                                 return word[0].toUpperCase() + word.substring(1, word.length)
@@ -91,8 +91,8 @@ module.exports = (sequelize) => {
                     // se no update foi mudada a passe, é preciso encriptá-la
                     if (utilizador.previous().hasOwnProperty('password')) {
                         return bcrypt.hash(utilizador.password, 10)
-                            .then(hash => { 
-                                utilizador.password = hash; 
+                            .then(hash => {
+                                utilizador.password = hash;
                                 console.log('nova: ', utilizador.password)
                             })
                             .catch(err => { throw new Error(err); });
@@ -101,16 +101,25 @@ module.exports = (sequelize) => {
                 afterDestroy: async (utilizador) => {
 
                     await sequelize.models.reserva
-                        .destroy({ where: { visitante_id: utilizador.id } })
+                        .destroy({ where: { visitante_id: utilizador.id }, individualHooks: true })
 
                     await sequelize.models.comentario_avaliacao
-                        .destroy({ where: { visitante_id: utilizador.id } })
+                        .destroy({ where: { visitante_id: utilizador.id }, individualHooks: true })
 
                     await sequelize.models.scan_evento
-                        .destroy({ where: { visitante_id: utilizador.id } })
+                        .destroy({ where: { visitante_id: utilizador.id }, individualHooks: true })
 
                     await sequelize.models.scan_ponto_interesse
-                        .destroy({ where: { visitante_id: utilizador.id } })
+                        .destroy({ where: { visitante_id: utilizador.id }, individualHooks: true })
+
+                    await sequelize.models.candidatura_at
+                        .destroy({ where: { visitante_id: utilizador.id }, individualHooks: true })
+
+                    await sequelize.models.voucher
+                        .destroy({ where: { visitante_id: utilizador.id }, individualHooks: true })
+
+                    await sequelize.models.ponto_interesse
+                        .destroy({ where: { agente_turistico_id: utilizador.id }, individualHooks: true })
 
                 }
             }
