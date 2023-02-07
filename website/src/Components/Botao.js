@@ -1,29 +1,37 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Botao(props) {
-  return (
-    <button
-      onClick={(value) => props.onClick(value)}
-      id={changeId()}
-      type={changeType()}
+
+    const [file, setFile] = useState(null);
+    
+    useEffect(() => {
+    fetch("/APK/MyGreenTrip.apk")
+    .then((response) => response.blob())
+    .then((blob) => setFile(URL.createObjectURL(blob)));
+    }, []);
+
+
+    return (
+      <button
+      onClick={() => {
+      if (file) {
+      const link = document.createElement("a");
+      link.href = file;
+      link.download = "MyGreenTrip.apk";
+      document.body.appendChild(link);
+      link.click();
+      }
+      }}
       className={changeClassName()}
-    >
+      >
       {props.texto}
-    </button>
-  );
+      </button>
+      );
+      
 
   function changeClassName() {
     if (!props.className) return "btn btn-primary btn-lg";
     return "btn " + props.className;
   }
 
-  function changeType() {
-    if (!props.type) return "button";
-    return props.type;
-  }
-
-  function changeId() {
-    if (!props.id) return;
-    return props.id;
-  }
 }
