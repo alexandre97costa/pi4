@@ -112,7 +112,7 @@ class FragmentPerfil : Fragment() {
 
         buttonTermos.setOnClickListener {
             //Mudar o ip para apresentacao
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.80.112:4003/termos-utilizacao")))
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.1.75:4003/termos-utilizacao")))
         }
 
     }
