@@ -1,5 +1,5 @@
 
-var sequelize = require('../config/database')
+var sequelize = require('../config/database_')
 const { Op } = require("sequelize")
 const { dev: devClass } = require('../_dev/dev')
 const dev = new devClass;

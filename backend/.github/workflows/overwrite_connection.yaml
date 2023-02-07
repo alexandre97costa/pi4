@@ -15,7 +15,7 @@ jobs:
       - name: Overwrite db.js
         uses: "DamianReeves/write-file-action@v1.0"
         with:
-          path: src/config/Database.js
+          path: src/config/database.js
           write-mode: overwrite
           contents: |
             const { Sequelize } = require('sequelize');
