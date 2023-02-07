@@ -61,11 +61,11 @@ export default function ModalAddRecompensa(props) {
             .post(url, options, auth.header())
             .then((output) => {
                 console.log(output)
-                toast.success("Recompensa adicionada com sucesso")
+                toast.warning(output.data.msg)
             }).catch((error) => {
                 toast.dismiss()
 
-                toast.warning(error.response.data.msg)
+                toast.error(error.response.data.msg)
                 console.error(error)
             })
     }

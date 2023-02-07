@@ -135,7 +135,7 @@ module.exports = {
                 ponto_interesse_id: ponto_interesse_id
             }).then(output => {
                 return res.status(200).json({
-                    msg: 'Recompensa criada.',
+                    msg: 'Aguarda validação por um responsavel',
                     recompensa: output
                 })
             })
