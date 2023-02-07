@@ -177,7 +177,7 @@ export default function Home() {
                 </div>
 
                 <div className='col-12 mt-5'>
-                    <p className="fs-5 text-body fw-light">Confirmar Reservas<i className="bi bi-box-arrow-up-right ps-2"></i></p>
+                    <p className="fs-5 text-body fw-light">Validar Reservas<i className="bi bi-box-arrow-up-right ps-2"></i></p>
                 </div>
             </div>
 
@@ -186,6 +186,7 @@ export default function Home() {
                     return (
                         <div key={index} className="col-12 col-sm-6 col-md-4">
                             <CardReservas
+                                idPontoInteresse={item.ponto_interesse.id}
                                 nomePontoInteresse={item.ponto_interesse.nome}
                                 nomeEvento={item.nome}
                                 sessao={item.sessoes}

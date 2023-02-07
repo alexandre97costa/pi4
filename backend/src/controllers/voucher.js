@@ -170,7 +170,7 @@ module.exports = {
         const output = vouchers.filter(voucher => voucher.codigo_confirmacao === codigo)
 
         if (!output.length)
-            return res.status(404).json({ msg: 'O voucher indicado nao existe ou é de uma recompensa que não está associada a nenhum dos teus pontos de interesse.', vouchers })
+            return res.status(404).json({ msg: 'O voucher indicado está incorreto, já foi validado, ou é de uma recompensa que não está associada a nenhum dos teus pontos de interesse.', vouchers })
 
         // se houver varios olha, vao todos
         await voucher
