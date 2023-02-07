@@ -77,11 +77,11 @@ export default function Home() {
                     class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
                     icon="bi-person-check fs-3"
                     texto="Atribuição de Perfil" />
-                <BotaoDashboard
+                {/* <BotaoDashboard
                     to="/microsite"
                     class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
                     icon="bi-window-sidebar fs-3"
-                    texto="Gerir Micro Site" />
+                    texto="Gerir Micro Site" /> */}
                 <BotaoDashboard
                     to="/regioes"
                     class="btn-light btn-lg bg-white p-4 w-100 h-100 text-start d-flex align-items-center"
