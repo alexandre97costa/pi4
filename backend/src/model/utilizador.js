@@ -75,6 +75,7 @@ module.exports = (sequelize) => {
                     // capitalizar o nome
                     utilizador.nome =
                         utilizador.nome
+                        .trim()
                             .split(' ')
                             .map(word => {
                                 return word[0].toUpperCase() + word.substring(1, word.length)
