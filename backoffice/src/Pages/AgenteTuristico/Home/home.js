@@ -14,7 +14,6 @@ import CardPontoInteresse from '../../../Components/Cards/CardPontoInteresse';
 const ip = process.env.REACT_APP_IP
 
 export default function Home() {
-    const [codeVoucher, setCodeVoucher] = useState("")
     const [codePontoInteresse, setCodePontoInteresse] = useState("")
     const [eventos, setEventos] = useState([])
     const [pontoInteresse, setPontoInteresse] = useState([]);
@@ -43,7 +42,6 @@ export default function Home() {
         await axios
             .get(url, options)
             .then((output) => {
-                console.log(output.data.data)
                 setPontosInteresseAvaliados(output.data?.data ?? []);
             })
             .catch((error) => {
@@ -68,7 +66,6 @@ export default function Home() {
         return await axios
             .get(url, optionsAT)
             .then((output) => {
-                console.log(output.data)
                 setPontoInteresse(output.data?.data ?? []);
             })
             .catch((error) => console.error(error));
@@ -88,26 +85,43 @@ export default function Home() {
         await axios
             .get(url, options)
             .then((output) => {
-                console.log(output.data.data);
                 setEventos(output.data?.data ?? []);
             })
             .catch((error) => console.error(error));
     }
 
-    function validarVoucher() {
-        if (!codeVoucher)
-            return toast.warning("Introduza um codigo")
-        toast.success("Voucher validado")
-    }
-
-    async function validarReserva(code) {
+    async function validarVoucher(code) {
+        toast.dismiss()
         if (!code)
             return toast.warning("Introduza um codigo")
 
-        const url = "/reserva/confirmar/" + code
+        const url = ip + '/voucher/resgatar/' + code
+
+        const data = {}
 
         await axios
-            .patch(url, auth.header())
+            .patch(url, data, auth.header())
+            .then((output) => {
+                toast.success("Voucher validado")
+            }).catch((error) => { 
+                toast.error(error.response.data.msg)
+                console.log(error) 
+            })
+    }
+
+    async function validarReserva(code) {
+        toast.dismiss()
+        if (!code)
+            return toast.warning("Introduza um codigo")
+
+        const url = ip + "/reserva/confirmar/" + code
+
+        let data = {}
+
+        console.log(url)
+
+        await axios
+            .patch(url, data, auth.header())
             .then((output) => {
                 toast.success("Reserva validada")
             }).catch((error) => {
@@ -133,7 +147,9 @@ export default function Home() {
                         Resgatar Voucher
                     </button>
 
-                    <ModalValidar idModal="validarVoucher" title="Validar Voucher" onSubmit={(value) => setCodeVoucher(value)} onClick={() => validarVoucher()} />
+                    <ModalValidar idModal="validarVoucher" title="Validar Voucher" onSubmit={(value) => {
+                        validarVoucher(value)
+                    }} />
                 </div>
 
                 <div className='col-12 col-md-4'>

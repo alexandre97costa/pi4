@@ -12,6 +12,9 @@ const ip = process.env.REACT_APP_IP
 export default function TabelaReservaEvento(props) {
     const [reservas, setReservas] = useState([])
 
+    let flag = 0
+    let count = 0
+
     useEffect(() => {
         axiosGet()
     }, [])
@@ -41,11 +44,6 @@ export default function TabelaReservaEvento(props) {
             })
     }
 
-    function axiosDelete(index) {
-        //Aqui fazemos o pedido axios pra dar delete
-        // console.log("Delete id: " + listaReservaEvento[index].id + " com o nome: " + listaReservaEvento[index].nomeReserva)
-    }
-
     return (
         <CardForm>
             <div className="table-responsive">
@@ -60,25 +58,34 @@ export default function TabelaReservaEvento(props) {
                     </thead>
 
                     <tbody className='table-group-divider'>
-                        
-                    {reservas.length > 0 ? (
-                        reservas.map((item, index) => {
-                            const options = { year: 'numeric', month: 'numeric', day: 'numeric' }
-                            return (
-                                <tr key={index} className="h-5-5rem">
-                                    <td className='text-start w-20'>{item.nome}</td>
-                                    <td className='w-20'>{item.pessoas}</td>
-                                    <td className='w-20 d-none d-md-table-cell'>{item.sessao?.data_hora.split('T')[1].split(':')[0]}:{item.sessao?.data_hora.split('T')[1].split(':')[1]}h</td>
-                                    <td className='w-20'>{new Date(item.sessao?.data_hora.split('T')[0]).toLocaleDateString(undefined, options)}</td>
-                                </tr>
-                            )
-                        })) : (
-                            <tr>
-                              <div className='pt-3 text-muted fw-light fst-italic'>
-                                Não existem reservas no Evento selecionado
-                              </div>
-                            </tr>
-                          )}
+
+                        {reservas.map((item, index) => {
+                            if (item.validado === true) {
+                                const options = { year: 'numeric', month: 'numeric', day: 'numeric' }
+                                count++
+                                return (
+                                    <tr key={index} className="h-5-5rem">
+                                        <td className='text-start w-20'>{item.nome}</td>
+                                        <td className='w-20'>{item.pessoas}</td>
+                                        <td className='w-20 d-none d-md-table-cell'>{item.sessao?.data_hora.split('T')[1].split(':')[0]}:{item.sessao?.data_hora.split('T')[1].split(':')[1]}h</td>
+                                        <td className='w-20'>{new Date(item.sessao?.data_hora.split('T')[0]).toLocaleDateString(undefined, options)}</td>
+                                    </tr>
+                                )
+                            }
+                            
+                            if (reservas.length - 1 == index)
+                                if (count == 0 && flag == 0) {
+                                    flag++
+                                    return (
+                                        <tr>
+                                            <div className='pt-3 text-muted fw-light fst-italic'>
+                                                Não existem reservas no Evento selecionado
+                                            </div>
+                                        </tr>
+                                    )
+                                }
+                        })}
+
                     </tbody>
                 </table>
                 <ToastContainer />

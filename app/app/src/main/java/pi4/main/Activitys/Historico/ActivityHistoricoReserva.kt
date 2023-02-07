@@ -30,6 +30,7 @@ class ActivityHistoricoReserva : AppCompatActivity() {
 
         //Madar o id do utilizador
         val queryParams = JSONObject("""{}""")
+        queryParams.put("validado", true)
 
         Req.GET("/reserva", queryParams, this, UserManager.getUtilizador()!!.getToken(), then = { res ->
             val data  = res.getJSONArray("data")

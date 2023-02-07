@@ -23,13 +23,14 @@ export default function Eventos() {
         console.log("foi buscar")
         let options = {
             ...auth.header(),
-            params: {},
+            params: {
+                validado: null
+            },
         }
 
         await axios
             .get(url, options)
             .then((output) => {
-                console.log(output.data.data);
                 setEventos(output.data?.data ?? []);
             })
             .catch((error) => {

@@ -42,8 +42,17 @@ module.exports = {
         const ponto_interesse_id = req.query?.ponto_interesse_id ?? 0
         const minPessoas = req.query?.minPessoas ?? 0
         const maxPessoas = req.query?.maxPessoas ?? 0
-        const validado = req.query?.validado ?? null
+        let validado = req.query?.validado ?? null
         const confirmado = !!(req.query?.confirmado ?? true)
+
+        console.log("validado antes: " + validado)
+
+        if (validado == null)
+            validado = true
+
+        console.log("validado: " + validado)
+        console.log("valor !!validado: " + !!validado)
+
 
         // * ordenação e paginação
         const order = req.query?.order ?? 'nome'
@@ -67,7 +76,9 @@ module.exports = {
                     visitante_id: (req.auth.tipo === 1) ?
                         req.auth.id :
                         { [Op.ne]: 0 },
-                    validado: validado
+                    validado: !!validado ?
+                        { [Op.not]: false } :
+                        { [Op.is]: false }
                 },
                 include: [
                     {
@@ -281,6 +292,8 @@ module.exports = {
 
         const { codigo } = req.params
 
+        console.log(codigo)
+
         // verificar se a reserva existe 
         const _reserva = await reserva.findOne({ where: { codigo_confirmacao: codigo, confirmado: false } })
         if (_reserva === null)
@@ -330,7 +343,7 @@ module.exports = {
                 confirmado: true
             })
             .then(output => {
-                return !output[0] ?
+                return !output ?
                     res.status(400).json({ msg: 'Reserva não atualizada' }) :
                     res.status(200).json({ msg: 'Reserva atualizada', reserva: output[0] })
             })

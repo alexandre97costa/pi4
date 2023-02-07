@@ -32,7 +32,6 @@ export default function CardReservas(props) {
         await axios
             .get(url, options)
             .then((output) => {
-                console.log(output.data.data)
                 setReservas(output.data?.data ?? [])
             }).catch((error) => {
                 if (error.response.status === 404)
@@ -51,7 +50,6 @@ export default function CardReservas(props) {
         await axios
             .patch(url, options, auth.header())
             .then((output) => {
-                console.log(output.data)
                 getReservas()
             }).catch((error) => console.error(error))
     }
@@ -65,7 +63,6 @@ export default function CardReservas(props) {
         await axios
             .patch(url, options, auth.header())
             .then((output) => {
-                console.log(output.data)
                 getReservas()
             }).catch((error) => console.error(error))
     }
@@ -114,24 +111,26 @@ export default function CardReservas(props) {
 
                 <VisibleTo tipo='2'>
                     {reservas.map((item, index) => {
-                        const options = { year: 'numeric', month: 'numeric', day: 'numeric' }
+                        if (item.validado === null) {
+                            const options = { year: 'numeric', month: 'numeric', day: 'numeric' }
 
-                        return (
-                            <div key={index} className='col-12 border-top'>
-                                <div className='row align-items-center py-3'>
+                            return (
+                                <div key={index} className='col-12 border-top'>
+                                    <div className='row align-items-center py-3'>
 
-                                    <div className='col-6'>
-                                        <div className="text-start text-muted">{new Date(item.sessao.data_hora.split('T')[0]).toLocaleDateString(undefined, options)} {item.sessao.data_hora.split('T')[1].split(':')[0]}:{item.sessao.data_hora.split('T')[1].split(':')[1]}<i className="fs-6 bi bi-person ms-2" />{item.pessoas}</div>
+                                        <div className='col-6'>
+                                            <div className="text-start text-muted">{new Date(item.sessao.data_hora.split('T')[0]).toLocaleDateString(undefined, options)} {item.sessao.data_hora.split('T')[1].split(':')[0]}:{item.sessao.data_hora.split('T')[1].split(':')[1]}<i className="fs-6 bi bi-person ms-2" />{item.pessoas}</div>
+                                        </div>
+
+                                        <div className="col-6 text-end">
+                                            <Botao className="btn-outline-success btn-sm" texto="Confirmar" onClick={() => postValidar(item.id)} />
+                                            <Botao className="btn-outline-danger btn-sm mt- 0 mt-sm-2 mt-md-0 ms-2" texto="Rejeitar" onClick={() => deleteReserva(item.id)} />
+                                        </div>
+
                                     </div>
-
-                                    <div className="col-6 text-end">
-                                        <Botao className="btn-outline-success btn-sm" texto="Confirmar" onClick={() => postValidar(item.id)} />
-                                        <Botao className="btn-outline-danger btn-sm mt- 0 mt-sm-2 mt-md-0 ms-2" texto="Rejeitar" onClick={() => deleteReserva(item.id)} />
-                                    </div>
-
                                 </div>
-                            </div>
-                        )
+                            )
+                        }
                     })}
                 </VisibleTo>
 

@@ -1,7 +1,6 @@
+# Api
+- Ao resgatar uma recompensa ele devia criar codigo de vouchers diferentes
 # Agente
-## Validar Voucher
-- nao funciona (ir ver ao controller)
-
 ## Validar Reserva 
 - nao funciona (controller n da nda)
 
