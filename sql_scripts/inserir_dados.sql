@@ -4724,7 +4724,6 @@ insert into ponto_interesse(id, nome, morada, codigo_postal, telemovel, pontos, 
 -- viseu, restauracao
 (34, 'Taberna D. Maria',  'Avenida Alberto Sampaio 28', '3510-027', 925698744, 15, 'Comida para levar, Reservas, Lugares sentados, Televisão, Tem cadeiras de papa, Acessível a cadeiras de rodas. Wi-Fi gratuito, Música ao vivo', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 6, 1, 8, 0, 0.00, '23ebc712-855b-4b24-9c7a-1c847291cefd'),
 (35, 'Vintage Bistro',  'Rua Miguel Bombarda 76', '3510-088', 91567744, 50, 'Primeira hamburgueria de Viseu, com uma cozinha estilo Americana. Hambúrgueres artesanais, pratos vegan e vegetarianos. Temos Francesinhas, Saladas , Bifes, Sobremesas diversas, gin´s, Varias cervejas, etc.', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 8, 0, 0.00, '1b075a96-8f96-41b5-ab68-16dfdbfb1311'),
-(36, 'Maisabor',  'Rua Miguel Bombarda 29', '3510-089', 91545744, 35, 'Comida para levar, Lugares sentados, Acessível a cadeiras de rodas, Serviço de mesa, Reservas', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 8, 0, 0.00, '869db54c-9624-404b-ac89-ca650360f276'),
 
 --viseu comercio
 (37, 'Tavares',  'Rua Formosa, n.º 77', '3500-135', 91145744, 60, 'Loja Tavares, vestuário para todos', true, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null , 4067, 1, 6, 0, 0.00, 'f09d1923-899f-4441-9b6e-4e63f4b402d6'),
@@ -4757,47 +4756,47 @@ insert into tipo_evento(id, nome, observacoes, created_at, updated_at, deleted_a
 -- sequencia tipo_evento
 SELECT setval('tipo_evento_id_seq', 9, true);
 
-insert into evento(id, nome, pontos, horas_duracao, descricao, lotacao, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id, codigo_uuid) values 
-(1, 'Noite Mágica no Palha Club',  50,  3, 'Dresscode: Roupa branca',                               200, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4, '05f8ad77-b0b0-40b4-a37f-ed080007e422'),
-(2, 'Glow Run',                    100, 9, 'Corrida de Pós Coloridos',                              150, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 40, 5, '949aa71d-8cee-4ebc-a049-f0215e48eca8'),
-(3, 'Visita Museu',                50,  8, 'Veja as reliquias guardadas',                           25,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  3, 2, '1d8c321b-0136-4b47-bced-4af3e4b4d145'),
-(4, 'Feira das Velharias',         75,  7, 'Venha comprar as reliquias do passado',                 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  7, 6, '0ecc5b50-0224-4229-81e3-acd56aa44e43'),
-(5, 'Missa do Viriato',            50,  6, 'Missa em memória de Viriato',                           25,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  6, 3, 'ea3cd9e8-efda-4eb1-83a5-d2c18c828ecd'),
-(6, 'Jantar dos Solteiros',        25,  5, 'Para todos os solteiros um jantar de confraternização', 50,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  34, 8, '994da453-138a-42ba-86de-1087aed9dcc8'),
-(7, 'Derbie Benfica - Sporting',   100, 4, 'Apoia os encarnados em mais um derbie fenomenal',       50,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  25, 5, '8daac093-709e-4d15-bdf6-b4d352c47779'),
-(8, '3 dias em Mira',              50,  3, 'Escapadinha de Fim de Semana na Praia de Mira',         10,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  30, 9, '16b5b558-e658-4b2d-9839-b1c897260c3d'),
-(9, 'Tarde de Animação Infantil',  75,  2, 'O seu filho merece uma tarde de animação',              400, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  9, 7, '107b7d59-e596-43b6-a26e-6abc990c4335'),
-(10, 'Prova de Vinhos',            50,  4, 'Teste o seu palato nesta prova de vinhos',              5,   CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  32, 8, '06183bff-5079-4754-b70a-9dd4003ee603');
--- sequencia evento
-SELECT setval('evento_id_seq', 10, true);
+-- insert into evento(id, nome, pontos, horas_duracao, descricao, lotacao, created_at, updated_at, deleted_at, ponto_interesse_id, tipo_evento_id, codigo_uuid) values 
+-- (1, 'Noite Mágica no Palha Club',  50,  3, 'Dresscode: Roupa branca',                               200, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 38, 4, '05f8ad77-b0b0-40b4-a37f-ed080007e422'),
+-- (2, 'Glow Run',                    100, 9, 'Corrida de Pós Coloridos',                              150, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 40, 5, '949aa71d-8cee-4ebc-a049-f0215e48eca8'),
+-- (3, 'Visita Museu',                50,  8, 'Veja as reliquias guardadas',                           25,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  3, 2, '1d8c321b-0136-4b47-bced-4af3e4b4d145'),
+-- (4, 'Feira das Velharias',         75,  7, 'Venha comprar as reliquias do passado',                 100, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  7, 6, '0ecc5b50-0224-4229-81e3-acd56aa44e43'),
+-- (5, 'Missa do Viriato',            50,  6, 'Missa em memória de Viriato',                           25,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  6, 3, 'ea3cd9e8-efda-4eb1-83a5-d2c18c828ecd'),
+-- (6, 'Jantar dos Solteiros',        25,  5, 'Para todos os solteiros um jantar de confraternização', 50,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  34, 8, '994da453-138a-42ba-86de-1087aed9dcc8'),
+-- (7, 'Derbie Benfica - Sporting',   100, 4, 'Apoia os encarnados em mais um derbie fenomenal',       50,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  25, 5, '8daac093-709e-4d15-bdf6-b4d352c47779'),
+-- (8, '3 dias em Mira',              50,  3, 'Escapadinha de Fim de Semana na Praia de Mira',         10,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  30, 9, '16b5b558-e658-4b2d-9839-b1c897260c3d'),
+-- (9, 'Tarde de Animação Infantil',  75,  2, 'O seu filho merece uma tarde de animação',              400, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  9, 7, '107b7d59-e596-43b6-a26e-6abc990c4335'),
+-- (10, 'Prova de Vinhos',            50,  4, 'Teste o seu palato nesta prova de vinhos',              5,   CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,  32, 8, '06183bff-5079-4754-b70a-9dd4003ee603');
+-- -- sequencia evento
+-- SELECT setval('evento_id_seq', 10, true);
 
--- todo: sequencias daqui pra baixo
-insert into scan_evento(id, created_at, updated_at, deleted_at, evento_id, visitante_id, pontos_recebidos) values 
-(1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1, 1, (select pontos from evento where id=1)),
-(2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2, 1, (select pontos from evento where id=2));
--- sequencia scan_ponto_interesse
-SELECT setval('scan_ponto_interesse_id_seq', 2, true);
+-- -- todo: sequencias daqui pra baixo
+-- insert into scan_evento(id, created_at, updated_at, deleted_at, evento_id, visitante_id, pontos_recebidos) values 
+-- (1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 1, 1, (select pontos from evento where id=1)),
+-- (2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null, 2, 1, (select pontos from evento where id=2));
+-- -- sequencia scan_ponto_interesse
+-- SELECT setval('scan_ponto_interesse_id_seq', 2, true);
 
-INSERT INTO sessao (id, data_hora, vagas, inicio_evento, fim_evento, evento_id, created_at, updated_at, deleted_at) VALUES 
-(1, '2023-01-05 17:00:00', 200, false, false, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(2, '2023-01-06 16:00:00', 200, false, false, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(3, '2023-01-07 15:00:00', 150, false, false, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(4, '2023-01-08 14:00:00', 25,  false, false, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(5, '2023-01-09 13:00:00', 100, false, false, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(6, '2023-01-10 12:00:00', 25,  false, false, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(7, '2023-01-11 11:00:00', 50,  false, false, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(8, '2023-01-12 10:00:00', 50,  false, false, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
--- sequencia sessao
-SELECT setval('sessao_id_seq', 8, true);
+-- INSERT INTO sessao (id, data_hora, vagas, inicio_evento, fim_evento, evento_id, created_at, updated_at, deleted_at) VALUES 
+-- (1, '2023-01-05 17:00:00', 200, false, false, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (2, '2023-01-06 16:00:00', 200, false, false, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (3, '2023-01-07 15:00:00', 150, false, false, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (4, '2023-01-08 14:00:00', 25,  false, false, 3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (5, '2023-01-09 13:00:00', 100, false, false, 4, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (6, '2023-01-10 12:00:00', 25,  false, false, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (7, '2023-01-11 11:00:00', 50,  false, false, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (8, '2023-01-12 10:00:00', 50,  false, false, 6, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+-- -- sequencia sessao
+-- SELECT setval('sessao_id_seq', 8, true);
 
-insert into reserva (id, nome, pessoas, validado, confirmado, codigo_confirmacao, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
-(1, 'João da Silva',    2, true, true,  'G0001', 'Sem observações', 1, 3,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(2, 'Miguel Valente',   4, true, false, 'D0002', 'Sem observações', 2, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(3, 'Raquel Almeida',   1, true, false, 'E0003', 'Sem observações', 3, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(4, 'Rita Pinho',       3, true, false, 'K0004', 'Sem observações', 4, 4,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(5, 'Tânia Mota',       2, true, false, 'M0005', 'Sem observações', 5, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
--- sequencia reserva
-SELECT setval('reserva_id_seq', 5, true);
+-- insert into reserva (id, nome, pessoas, validado, confirmado, codigo_confirmacao, observacoes, sessao_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
+-- (1, 'João da Silva',    2, true, true,  'G0001', 'Sem observações', 1, 3,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (2, 'Miguel Valente',   4, true, false, 'D0002', 'Sem observações', 2, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (3, 'Raquel Almeida',   1, true, false, 'E0003', 'Sem observações', 3, 18, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (4, 'Rita Pinho',       3, true, false, 'K0004', 'Sem observações', 4, 4,  CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (5, 'Tânia Mota',       2, true, false, 'M0005', 'Sem observações', 5, 14, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+-- -- sequencia reserva
+-- SELECT setval('reserva_id_seq', 5, true);
 
 insert into comentario_avaliacao (id, visitante_id, ponto_interesse_id, comentario, avaliacao, created_at, updated_at, deleted_at) VALUES 
 (1, 1, 4, 'Adorei a minha visita ao jardim zoológico!', 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -4805,27 +4804,27 @@ insert into comentario_avaliacao (id, visitante_id, ponto_interesse_id, comentar
 -- sequencia comentario_avaliacao
 SELECT setval('comentario_avaliacao_id_seq', 2, true);
 
--- aqui temos de rever é necessario observacoes e descricao?
-insert into recompensa(id, tipo_interesse_id, validado, titulo, descricao, pontos, observacoes, created_at, updated_at, deleted_at) VALUES
-(1, 1, false, 'Caneca turística', 'Caneca turística com o logotipo da cidade', 100, 'Caneca turística com o logotipo da cidade', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(2, 2, false, 'Café', 'Um café sabe sempre bem', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(3, 3, false, 'Voucher para jantar', 'Voucher para jantar para 2 pessoas', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
--- sequencia recompensa
-SELECT setval('recompensa_id_seq', 3, true);
+-- -- aqui temos de rever é necessario observacoes e descricao?
+-- insert into recompensa(id, tipo_interesse_id, validado, titulo, descricao, pontos, observacoes, created_at, updated_at, deleted_at) VALUES
+-- (1, 1, false, 'Caneca turística', 'Caneca turística com o logotipo da cidade', 100, 'Caneca turística com o logotipo da cidade', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (2, 2, false, 'Café', 'Um café sabe sempre bem', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (3, 3, false, 'Voucher para jantar', 'Voucher para jantar para 2 pessoas', 100, 'observacoes', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+-- -- sequencia recompensa
+-- SELECT setval('recompensa_id_seq', 3, true);
 
-insert into ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, created_at, updated_at, deleted_at) VALUES
- (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
- (2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
- -- sequencia ponto_interesse_recompensa
-SELECT setval('ponto_interesse_recompensa_id_seq', 2, true);
+-- insert into ponto_interesse_recompensa (id, ponto_interesse_id, recompensa_id, created_at, updated_at, deleted_at) VALUES
+--  (1, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+--  (2, 2, 2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+--  -- sequencia ponto_interesse_recompensa
+-- SELECT setval('ponto_interesse_recompensa_id_seq', 2, true);
 
-insert into voucher (id, data_compra, data_validade, data_usado, codigo_confirmacao, pontos_gastos, recompensa_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
-(1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, 'A0001', 10, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(2, CURRENT_DATE, CURRENT_DATE + INTERVAL '3', NULL, 'Z0002', 20, 2, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(3, CURRENT_DATE, CURRENT_DATE + INTERVAL '2', NULL, 'D0003', 30, 3, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(4, CURRENT_DATE, CURRENT_DATE + INTERVAL '6', NULL, 'F0004', 40, 1, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
- -- sequencia voucher
-SELECT setval('voucher_id_seq', 4, true);
+-- insert into voucher (id, data_compra, data_validade, data_usado, codigo_confirmacao, pontos_gastos, recompensa_id, visitante_id, created_at, updated_at, deleted_at) VALUES 
+-- (1, CURRENT_DATE, CURRENT_DATE + INTERVAL '1', NULL, 'A0001', 10, 1, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (2, CURRENT_DATE, CURRENT_DATE + INTERVAL '3', NULL, 'Z0002', 20, 2, 5, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (3, CURRENT_DATE, CURRENT_DATE + INTERVAL '2', NULL, 'D0003', 30, 3, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
+-- (4, CURRENT_DATE, CURRENT_DATE + INTERVAL '6', NULL, 'F0004', 40, 1, 12, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
+--  -- sequencia voucher
+-- SELECT setval('voucher_id_seq', 4, true);
 
 insert into imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted_at) VALUES 
 (1, 'http://1.bp.blogspot.com/--CVhklt3QYQ/VjsUH_wK99I/AAAAAAABiWM/y2QdrC63-1g/s1600/Jardim%2Bdas%2BM%25C3%25A3es.jpg', 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
@@ -4886,8 +4885,6 @@ insert into imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted
 ', 34, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (35, 'https://media-cdn.tripadvisor.com/media/photo-s/15/87/08/e9/novidades-a-chegar.jpg
 ', 35, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(36, 'https://media-cdn.tripadvisor.com/media/photo-s/12/b4/05/fc/photo2jpg.jpg
-', 36, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (37, 'https://www.lojastavares.pt/wp-content/uploads/2020/03/Lojas-Tavares.png
 ', 37, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (38, 'https://10619-2.s.cdn12.com/rests/original/108_507920504.jpg
@@ -4902,7 +4899,7 @@ insert into imagem (id, url, ponto_interesse_id, created_at, updated_at, deleted
 ', 42, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
 (43, 'https://www.algarvetips.com/wp-content/uploads/2019/05/Praia-do-Vau-Algarve.jpg
 ', 43, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null),
-(44, 'https://www.visitalgarve.pt/util/imgLoader2.a;shx?w=480&h=360&img=/upload_files/client_id_1/website_id_1/estadio.jpg
+(44, 'https://media-cdn.tripadvisor.com/media/photo-s/26/6e/fa/e4/caption.jpg
 ', 44, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null);
 
 -- sequencia imagem
