@@ -24,7 +24,7 @@ export default function AddCard(props) {
 			)
 		if (nome === 'addEvento')
 			return (
-				<ModalAddEvento idModal={props.idModal} />
+				<ModalAddEvento onChange={() => props.onChange()} idModal={props.idModal} />
 			)
 		if (nome === 'addRecompensa')
 			return (
