@@ -50,6 +50,7 @@ module.exports = (sequelize) => {
                     v.codigo_confirmacao =
                         characters.charAt(Math.floor(Math.random() * characters.length))
                         + v.id.toString().slice(-4).padStart(4, '0')
+                    await v.save()
 
                     // retirar pontos ao utilizador
                     await sequelize.models.utilizador.decrement(
