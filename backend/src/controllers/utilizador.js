@@ -255,7 +255,7 @@ module.exports = {
 
     mudar_tipo: async (req, res) => {
         // apenas admins e responsaveis podem mudar tipos
-        if (req.auth.tipo !== 3 || req.auth.tipo !== 4)
+        if (req.auth.tipo === 1 || req.auth.tipo === 2)
             return res.status(401).json({ msg: 'Apenas administradores e responsáveis podem mudar o tipo de utilizador.' })
 
         // nao podes mudar o tipo a ti mesmo
@@ -276,7 +276,7 @@ module.exports = {
         await _utilizador
             .update({ tipo_utilizador_id: +novo_tipo })
             .then(output => {
-                return !output[0] ?
+                return !output ?
                     res.status(400).json({ msg: 'Utilizador não atualizado.' }) :
                     res.status(200).json({ msg: 'Utilizador atualizado.', utilizador: output[0] })
             })

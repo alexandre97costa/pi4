@@ -7,9 +7,11 @@ import Pagination from '../../../Components/Pagination';
 import Input from '../../../Components/Input';
 import CardForm from '../../../Components/CardForm';
 import ModalSelectCategoria from '../../../Components/Modais/ModalSelectCategoria';
-import dev from '../../../Auth/dev';
 import { useParams } from 'react-router-dom';
 import DropdownSelect from '../../../Components/DropdownSelect';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ip = process.env.REACT_APP_IP
 const maxRecords = process.env.REACT_APP_MAX_RECORDS
@@ -67,6 +69,24 @@ export default function Utilizadores() {
 		getUtilizadores() // re
 	}, [nome, tipo, offset]) // ir adicionando aqui os hooks dos filtros
 
+	async function deleteUtilizador(id) {
+		await axios
+			.delete(ip + '/utilizador/' + id, auth.header())
+			.then(output => {
+				console.log(output.data)
+				toast.success(output.data.msg)
+				getUtilizadores()
+			})
+			.catch(error => {
+				if (error.response.status === 404) {
+					setUtilizadores([])
+					setUtilizadoresCount(0)
+					return
+				}
+
+				toast.error(error.response.data.msg)
+			})
+	}
 
 	async function getUtilizadores() {
 		console.log("tipo: " + tipo)
@@ -176,13 +196,13 @@ export default function Utilizadores() {
 															</button>
 															<VisibleTo tipo={4}>
 																{/* Eliminar */}
-																<button className='btn btn-outline-danger'>
+																<button className='btn btn-outline-danger' onClick={() => deleteUtilizador(item.id)}>
 																	<i className='bi bi-trash-fill me-2'></i>
 																	Eliminar
 																</button>
 															</VisibleTo>
 														</div>
-														<ModalSelectCategoria idModal={item.nome.replace(/\s+/g, '') + index} nome={item.nome} regiao={item.regiao} id={item.id} />
+														<ModalSelectCategoria idModal={item.nome.replace(/\s+/g, '') + index} nome={item.nome} regiao={item.regiao} id={item.id} onChange={() => { getUtilizadores() }} />
 													</td>
 												</tr>
 											)
@@ -209,6 +229,7 @@ export default function Utilizadores() {
 					/>
 				</div>
 			</div>
+			<ToastContainer />
 		</>
 	);
 }
