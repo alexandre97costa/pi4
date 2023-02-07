@@ -275,7 +275,6 @@ module.exports = {
     // o visitante mostra o codigo da sua reserva ao agente
     // o agente insere-o no back office, que por sua vez confirma a reserva
     confirmar: async (req, res) => {
-        // todo: testar
         // tem que ser um agente a confirmar
         // * 🚨 guard clauses
         if (req.auth.tipo !== 2)

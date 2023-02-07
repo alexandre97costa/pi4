@@ -1,12 +1,3 @@
-# Api
-- Ao resgatar uma recompensa ele devia criar codigo de vouchers diferentes
-# Agente
-## Validar Reserva 
-- nao funciona (controller n da nda)
-
-# Responsavel
-
-# Admin
 
 # ENTREGA
 
