@@ -5,6 +5,7 @@ import CardInscrever from "../../Components/CardInscrever";
 import Footer from "../../Components/Footer";
 import Carrousel from "../../Components/Carrousel"
 
+import Botao from "../../Components/Botao";
 import Navbar from "../../Components/Navbar";
 import CardVantagens from "../../Components/CardVantagens";
 
@@ -19,6 +20,10 @@ export default function Index() {
 
           <div className='col-12'>
             <Carrousel id="slidesApp" />
+          </div>
+
+          <div className="col-12 d-block d-md-none">
+            <Botao className="btn-dark btn-lg w-100" texto="Faz download da app!" />
           </div>
 
           <div className="col-12">

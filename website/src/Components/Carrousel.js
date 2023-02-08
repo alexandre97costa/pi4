@@ -4,6 +4,8 @@ import slide1 from "../Assets/images/slide1.jpg";
 import slide2 from "../Assets/images/slide2.jpg";
 import slide3 from "../Assets/images/slide3.jpg";
 
+import Botao from "./Botao";
+
 export default function Carrousel() {
   //É só um exemplo
   const imagens = [{
@@ -27,25 +29,20 @@ export default function Carrousel() {
       <div className="carousel-indicators">
         {imagens.map((item, index) => {
           if (!index)
-            return(<button key={index} type="button" data-bs-target="#carouselMicrosite" data-bs-slide-to={index} className="active" aria-current="true" aria-label={'Slide ' + index} />) 
-          return(<button key={index} type="button" data-bs-target="#carouselMicrosite" data-bs-slide-to={index} aria-label={'Slide ' + index} />)
+            return (<button key={index} type="button" data-bs-target="#carouselMicrosite" data-bs-slide-to={index} className="active" aria-current="true" aria-label={'Slide ' + index} />)
+          return (<button key={index} type="button" data-bs-target="#carouselMicrosite" data-bs-slide-to={index} aria-label={'Slide ' + index} />)
         })}
       </div>
       <div className="carousel-inner">
         {imagens.map((item, index) => {
-          if (!index)
-            return (
-              <div key={index} className="carousel-item h-100 active">
-                <img
-                  src={item.imagem}
-                  className="d-block w-100 h-25rem rounded-4"
-                  alt={item.alt}
-                />
-              </div>
-            );
 
           return (
-            <div key={index} className="carousel-item h-100">
+            <div key={index} className={"carousel-item position-relative h-100" + (!index ? " active" : "")}>
+              <Botao
+                className="btn-dark d-none d-md-block  position-absolute"
+                texto="Download"
+                style={{top: '58%', left: '18.7%'}}
+              />
               <img
                 src={item.imagem}
                 className="d-block w-100 h-25rem rounded-4"

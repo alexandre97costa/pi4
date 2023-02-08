@@ -13,6 +13,7 @@ export default function Botao(props) {
 
   return (
     <button
+      style={props.style}
       onClick={() => {
         if (file) {
           const link = document.createElement("a");

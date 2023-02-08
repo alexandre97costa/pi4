@@ -5,7 +5,7 @@ import CardBackground from "./CardBackground";
 
 export default function CardBaixar() {
   const texto = {
-    cardTitulo: "Já pensas-te na tua próxima viagem?",
+    cardTitulo: "Já pensaste na tua próxima viagem?",
     cardTexto: "Download da app My Green Trip"
   }
 
